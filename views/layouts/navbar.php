@@ -1,3 +1,14 @@
+<?php
+
+$flags = array(
+    'ru-RU' => 'ru',
+    'en-US' => 'en',
+    'hy' => 'hy',
+);
+$lang = Yii::$app->request->get('lang');
+$flag = $flags[$lang];
+
+?>
 <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
     <a class="navbar-brand" href="/">Warehouse</a>
 
@@ -99,30 +110,29 @@
 <!--                <a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>-->
 <!--            </div>-->
 <!--        </li>-->
-        <li class="nav-item dropdown no-caret mr-3">
-            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
-                <h6 class="dropdown-header dropdown-notifications-header">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail mr-2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    Message Center
-                </h6>
-                <a class="dropdown-item dropdown-notifications-item" href="#!">
-                    <img class="dropdown-notifications-item-img" src="https://source.unsplash.com/vTL_qy03D1I/60x60">
-                    <div class="dropdown-notifications-item-content">
-                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                        <div class="dropdown-notifications-item-content-details">Emily Fowler · 58m</div>
-                    </div>
-                </a>
-                <a class="dropdown-item dropdown-notifications-item" href="#!">
-                    <img class="dropdown-notifications-item-img" src="https://source.unsplash.com/4ytMf8MgJlY/60x60">
-                    <div class="dropdown-notifications-item-content">
-                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                        <div class="dropdown-notifications-item-content-details">Diane Chambers · 2d</div>
-                    </div>
-                </a>
-                <a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
+        <li class="nav-item dropdown no-caret">
+            <div class="dropdown">
+                <button class="g-btn" type="button dropdown-toggle" id="dropdownLangButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="/img/icons/flags/<?php echo $flag;?>.png" class="g-lang-flag g-lang-flag-show" alt="flag" width="20">
+                </button>
+
+                <ul class="dropdown-menu lang-dropdown-menu dropdown-menu-right g-navbar-buttons-drop" aria-labelledby="dropdownLangButton" x-placement="bottom-end" style="position: absolute; transform: translate3d(-126px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    <li>
+                        <a class="dropdown-item" rel="alternate" hreflang="en" href="?lang=en-US">
+                            <img src="/img/icons/flags/en.png" class="g-lang-flag" alt="flag" width="20"> English
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" rel="alternate" hreflang="ru" href="?lang=ru-RU">
+                            <img src="/img/icons/flags/ru.png" class="g-lang-flag" alt="flag" width="20"> русский
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" rel="alternate" hreflang="hy" href="?lang=hy">
+                            <img src="/img/icons/flags/hy.png" class="g-lang-flag" alt="flag" width="20"> Հայերեն
+                        </a>
+                    </li>
+                </ul>
             </div>
         </li>
         <li class="nav-item dropdown no-caret dropdown-notifications">

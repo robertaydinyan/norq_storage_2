@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'sort' => 'адг'
+    'Warehouse' => 'Склад'
 ];

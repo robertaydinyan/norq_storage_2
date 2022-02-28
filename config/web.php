@@ -2,13 +2,16 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-
+$lang = preg_replace('/[^A-Za-z0-9\-]/', '', $_GET['lang']) ?: 'en-UN';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language' => 'hy',
-    'sourceLanguage' => 'en',
+    'language' => $lang,
+//    function ($event) {
+//        return ;//;
+//    },
+    'sourceLanguage' => 'en-US',
     'defaultRoute' => '/fastnet/tariff',
     'timezone' => 'Asia/Yerevan',
     'aliases' => [
