@@ -1,0 +1,166 @@
+@import "flex";
+
+// VARIABLES
+
+
+// Font face
+@mixin font-face($font-family, $url) {
+  @font-face {
+    font-family: '#{$font-family}';
+    src: url('#{$url}.eot');
+    src: url('#{$url}.eot?#iefix') format('embedded-opentype'),
+    url('#{$url}.woff') format('woff'),
+    url('#{$url}.ttf') format('truetype'),
+    url('#{$url}.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+// Border radius
+@mixin border-radius($topleft: null, $topright: null, $bottomright: null, $bottomleft: null) {
+  @if $topleft != null and $topleft >= 0 {
+    border-top-left-radius: $topleft;;
+    -webkit-border-top-left-radius: $topleft;
+    -moz-border-radius-topleft: $topleft;
+  }
+
+  @if $topright != null and $topright >= 0 {
+    border-top-right-radius: $topright;
+    -webkit-border-top-right-radius: $topright;
+    -moz-border-radius-topright: $topright;
+  }
+
+  @if $bottomleft != null and $bottomleft >= 0 {
+    border-bottom-left-radius: $bottomleft;
+    -webkit-border-bottom-left-radius: $bottomleft;
+    -moz-border-radius-bottomleft: $bottomleft;
+  }
+
+  @if $bottomright != null and $bottomright >= 0 {
+    border-bottom-right-radius: $bottomright;
+    -webkit-border-bottom-right-radius: $bottomright;
+    -moz-border-radius-bottomright: $bottomright;
+  }
+}
+
+// @include dots(#000000, 10px, bottom)
+@mixin dots($color, $spacing, $position: bottom, $dotsWidth: 40%, $orientation: horizontal) {
+  @if $orientation == horizontal {
+    background-position: $position;
+    background-repeat: repeat-x;
+    background-size: $spacing 1px;
+    background-image: linear-gradient(to right, $color $dotsWidth, rgba(255, 255, 255, 0) 0%);
+    background-image: -webkit-linear-gradient(to right, $color $dotsWidth, rgba(255, 255, 255, 0) 0%);
+  }
+  @else {
+    background-position: $position;
+    background-repeat: repeat-x;
+    background-size: $spacing 1px;
+    background-image: linear-gradient($color $dotsWidth, rgba(255, 255, 255, 0) 0%);
+    background-image: -webkit-linear-gradient($color $dotsWidth, rgba(255, 255, 255, 0) 0%);
+  }
+}
+
+@mixin dottedBorder($color: #8f8f8f, $orientation: horizontal, $position: top, $spacing: 5px, $size: 1px, $dotsWidth: 40%, $repeat-x: null, $repeat-y: null) {
+  background-position: $position;
+  @if $orientation == horizontal {
+    background-image: -webkit-linear-gradient(to right, $color $dotsWidth, rgba(255,255,255,0) 0%);
+    background-image: -moz-linear-gradient(to right, $color $dotsWidth, rgba(255,255,255,0) 0%);
+    background-image: -ms-linear-gradient(to right, $color $dotsWidth, rgba(255,255,255,0) 0%);
+    background-image: -o-linear-gradient(to right, $color $dotsWidth, rgba(255,255,255,0) 0%);
+    background-image: linear-gradient(to right, $color $dotsWidth, rgba(255,255,255,0) 0%);
+    background-size: $spacing $size;
+    @if $repeat-x != null {
+      background-repeat: repeat-x;
+    }
+  }
+  @else {
+    background-image: -webkit-linear-gradient($color $dotsWidth, rgba(255,255,255,0) 0%);
+    background-image: -moz-linear-gradient($color $dotsWidth, rgba(255,255,255,0) 0%);
+    background-image: -ms-linear-gradient($color $dotsWidth, rgba(255,255,255,0) 0%);
+    background-image: -o-linear-gradient($color $dotsWidth, rgba(255,255,255,0) 0%);
+    background-image: linear-gradient($color $dotsWidth, rgba(255,255,255,0) 0%);
+    background-size: $size $spacing;
+    @if $repeat-y != null {
+      background-repeat: repeat-y;
+    }
+  }
+  .ie9 & {
+    border-#{$position}:1px dotted $color;
+  }
+}
+
+// @include css3-prefix(transform, scale3d(2.5, 2, 1.5));
+@mixin css3-prefix($prop, $value) {
+  -webkit-#{$prop}: #{$value};
+  -moz-#{$prop}: #{$value};
+  -ms-#{$prop}: #{$value};
+  -o-#{$prop}: #{$value};
+  #{$prop}: #{$value};
+}
+
+/**
+Here is a great Sass mixin for supporting retina-ready images you can serve to Apple devices
+with a Retina Display. To use this mixin, you need to provide two versions of the same image,
+one in single size (1x) and one in double size (2x). You can use this mixin to provide a retina-
+ready background image for any HTML element.
+ */
+
+// @include retina-image("my-image2x.png", 1000px, 500px);
+@mixin retina-image($image, $width, $height) {
+  @media (min--moz-device-pixel-ratio: 1.3),
+  (-o-min-device-pixel-ratio: 2.6/2),
+  (-webkit-min-device-pixel-ratio: 1.3),
+  (min-device-pixel-ratio: 1.3),
+  (min-resolution: 1.3dppx) {
+    background-image: url($image);
+    background-size: $width $height;
+  }
+}
+
+// @include abs-position(100px, 100px, auto, auto);
+@mixin abs-position ($top, $right, $bottom, $left) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+/**
+If you want a consistent look across different screen sizes you will find this aspect ratio
+mixin useful. It maintains the aspect ratio at any screen size. To use this mixin, you need two
+HTML elements: an outer and an inner one. The mixin calculates the aspect ratio of the two
+elements and maintains that at any resolution.
+
+Example HTML
+<div class="outer-box">
+   <div class="inner-box"></div>
+</div>
+ */
+
+// @include aspect-ratio(4, 3);
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .inner-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+// @include text-shorten();
+@mixin text-shorten {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

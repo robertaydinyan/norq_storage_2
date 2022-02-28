@@ -1,0 +1,54 @@
+.zone9 {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.68);
+    height: 100%;
+    width: 0;
+    right: -75px;
+}
+.popup1{
+    z-index: 6;
+}
+.popup2{
+    z-index: 9;
+}
+.zone9-slide {
+    position: absolute;
+    right: 0;
+    width: 85%;
+    background-color: #ffffff;
+    height: 100%;
+    border-left: 1px solid #dcdcdc;
+    box-shadow: -2px -1px 11px 0 rgba(0,0,0,0.19);
+}
+
+.zone9-close {
+    position: absolute;
+    display: inline-block;
+    background: #008000b0;
+    padding: 5px  5px 5px 12px;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    color: #ffffff;
+    top: 56px;
+    cursor: pointer;
+}
+
+.zone9-popup-close-div{
+    position: absolute;
+    left: -72px;
+    top: 5%;
+}
+
+.zone9-popup-close-div div {
+    padding: 6px 45px 6px 14px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background-color: #25af36;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+}
+.zone9-popup-content {
+    height: 100%;
+    width: 100%;
+}

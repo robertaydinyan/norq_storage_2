@@ -1,0 +1,167 @@
+.dropdown-menu{
+    height: 300px;
+    overflow: hidden;
+}
+/*  Tree View   */
+span{
+    font-family: Tahoma !important;
+}
+#myUL, #myUL ul { list-style-type: none; }
+#myUL {
+    margin: 0;
+    padding: 0;
+    color: #3b3f5c;
+    font-weight: 600;
+
+}
+.caret {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+    font-size: 13px;
+    color: #0e1726;
+    text-transform: capitalize;
+}
+.modal-lg{
+    max-width:1000px !important;
+}
+.select2-container.select2-container--krajee .select2-selection--single, .select2-container.select2-container--bootstrap .select2-selection--single, .select2-container.select2-container .select2-selection--single{
+    height: 37px !important;
+}
+.caret.caret-down::before {
+    content: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="%232b50ed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder-plus"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>');
+}
+.caret::before {
+    content: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="%232b50ed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder-minus"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="9" y1="14" x2="15" y2="14"></line></svg>');
+    color: #888ea8;
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: sub;
+}
+.nested {
+    display: none;
+    padding-left: 28px;
+}
+.nested li {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: #5c1ac3;
+    font-size: 13px;
+}
+.active { display: block; }
+.file-tree * { list-style-type: none; }
+.file-tree {
+    margin-bottom: 0;
+    padding-left: 20px;
+    list-style: none;
+    overflow: hidden;
+    overflow-x: auto;
+}
+.file-tree ul {
+    list-style: none;
+    display: none;
+    padding-left: 30px;
+}
+.group-product-index{
+    background: white;margin-top: 10px;border-radius: 5px;
+}
+.btn-add-product{
+    cursor: pointer;
+}
+.badge{
+    top: -5px;
+    right: 7px;
+    position: relative;
+    border: 1px solid lightgray;
+}
+.file-tree li {
+    position: relative;
+    padding: 5px 0;
+    cursor: auto;
+    white-space: nowrap;
+    font-size: 1rem;
+    font-weight: bolder;
+    /*border-bottom: 1px solid lightgrey;*/
+    color: #474747;
+}
+.hide-block{
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    opacity: 0.10;
+    background: gray;
+    z-index: 1000;
+}
+.file-tree-folder p{
+    margin-bottom: 0px !important;
+}
+.btn{
+    line-height: 1 !important;
+}
+.file-tree .file-tree-folder {
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    transition-delay: 0s;
+    cursor: pointer;
+    padding-left: 3px;
+}
+.file-tree .file-tree-folder::before {
+    /*content: "\e9b9"; font-size: 1.25rem;*/
+}
+.file-tree .file-tree-folder::after {
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    transition-delay: 0s;
+    position: absolute;
+    top: 2px;
+    left: -19px;
+    content: "\f182";
+    display: block;
+    text-align: center;
+    font-family: 'flaticon' !important;
+    /*content: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="%232b50ed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');*/
+    content: "\f07c";
+    font-family: "Font Awesome 5 Pro" !important;
+    font-size: 20px;
+    color: #29a746;
+}
+.file-tree .file-tree-folder.open::after {
+    /*-webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);*/
+    content: "\f07b";
+    font-family: "Font Awesome 5 Pro" !important;
+    color: #29a746;
+}
+.file-tree li.file-tree-folder::before {
+    display: inline-block;
+    text-align: center;
+    width: 30px;
+    margin-right: .25rem;
+    vertical-align: middle;
+    font-size: 1rem;
+    color: #1b55e2;
+    /*content: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="%232b50ed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>');*/
+}
+.file-tree li::before {
+    /*content: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="%232b50ed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>');*/
+    font-size: 1rem;
+    color: #1b55e2;
+    margin-right: 9px;
+    position: relative;
+    top: 2px;
+
+}
+@media (max-width: 767px) {
+    .custo-radio { margin-top: 5px; }
+}

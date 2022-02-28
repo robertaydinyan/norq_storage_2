@@ -1,0 +1,29 @@
+.erp-right-popup-zone {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    z-index: 200;
+    background-color: rgba(41, 61, 61, 0.7);
+    /*display: none;*/
+}
+.erp-right-popup-zone-container {
+    position: relative;
+    float: right;
+    height: 100%;
+    width: 80%;
+    background-color: #ffffff;
+}
+.erp-right-popup-zone-close{
+    position: absolute;
+    left: -64px;
+    top: 5%;
+}
+.erp-right-popup-zone-close div{
+    padding: 6px 35px 6px 14px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background-color: #25af36;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+}
