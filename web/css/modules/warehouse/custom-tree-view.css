@@ -133,7 +133,7 @@ span{
     content: "\f07c";
     font-family: "Font Awesome 5 Pro" !important;
     font-size: 20px;
-    color: #29a746;
+    color: #007bff;
 }
 .file-tree .file-tree-folder.open::after {
     /*-webkit-transform: rotate(180deg);
@@ -141,7 +141,7 @@ span{
     transform: rotate(180deg);*/
     content: "\f07b";
     font-family: "Font Awesome 5 Pro" !important;
-    color: #29a746;
+    color:#007bff;
 }
 .file-tree li.file-tree-folder::before {
     display: inline-block;

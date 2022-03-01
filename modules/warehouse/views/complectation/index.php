@@ -13,12 +13,15 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 ?>
 <div class="group-product-index">
 
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-success" >Ստեղծել Կոմպլեկտացիա</a></h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-primary" >Ստեղծել Կոմպլեկտացիա</a></h1>
 
     <?php Pjax::begin(); ?>
     <div style="padding:20px;" >
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'tableOptions' => [
+            'class' => 'table table-hover'
+        ],
         'columns' => [
             'id',
             'price',

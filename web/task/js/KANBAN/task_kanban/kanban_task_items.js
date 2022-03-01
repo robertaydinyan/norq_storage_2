@@ -153,7 +153,7 @@ function kanbanTemplatesGenerateTaskItems(options = {}) {
                         </div>
                         <div class="knbn-tasks-item-info" style="margin-bottom: ${options.checklists_info? "8px" : "0"}">
                             <div class="knbn-tasks-tags"></div>
-                            <div class="knbn-tasks-item-checklist" style="border: ${options.checklists_info? "1px solid #25af36" : "none"}"></div>
+                            <div class="knbn-tasks-item-checklist" style="border: ${options.checklists_info? "1px solid #007bff" : "none"}"></div>
                             <div class="knbn-tasks-item-files"></div>
                         </div>
                         <div class = "knbn-ti-date">

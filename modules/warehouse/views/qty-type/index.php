@@ -14,13 +14,16 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;" ><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-success" >Ստեղծել Չափման միավոր</a></h1>
+    <h1 style="padding: 20px;" ><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-primary" >Ստեղծել Չափման միավոր</a></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <div style="padding: 20px;">
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'tableOptions' => [
+            'class' => 'table table-hover'
+        ],
         'filterModel' => $searchModel,
         'columns' => [
             'id',

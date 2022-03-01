@@ -32,7 +32,7 @@ use kartik\select2\Select2;
     ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -131,8 +131,7 @@ header .header-grid {
 .jobTime {
     font-weight: bolder;
     font-size: 28px;
-    color: #25af36;
-    border-right: 1px solid #dcdcdc;
+    color: #007bff    border-right: 1px solid #dcdcdc;
     padding: 0 10px;
 }
 
@@ -186,16 +185,13 @@ header .header-grid {
 }
 
 .z2-sidemenu-link:hover{
-    color: #25af36;
-    text-decoration: none;
+    color: #007bff    text-decoration: none;
 }
 .z2-sidemenu-link-active .z2-sidemenu-name{
-    color: #25af36;
-}
+    color: #007bff}
 
 .z2-sidemenu-link-active .z2-sidemenu-icon{
-    background-color: #25af36;
-}
+    background-color: #007bff}
 
 .z2-sidemenu-link-active:hover{
     color: unset;
@@ -225,8 +221,7 @@ header .header-grid {
 }
 
 .iconNav:hover {
-    color: #25af36;
-}
+    color: #007bff}
 
 .navIcon {
     cursor: pointer;
@@ -248,8 +243,7 @@ header .header-grid {
 }
 
 .active {
-    color : #25af36;
-}
+    color : #007bff}
 
 .z3navigation a {
     color: #111155;
@@ -268,8 +262,7 @@ a.addDellink {
 }
 
 .z3navigation.active a {
-    color:#25af36;
-}
+    color:#007bff}
 
 .zone4 {
     height: 36px;
@@ -287,8 +280,7 @@ a.addDellink {
 }
 
 .starIcon:hover {
-    color: #25af36;
-}
+    color: #007bff}
 
 .buttonZ4 {
     margin-top: -5px;
@@ -300,8 +292,7 @@ a.addDellink {
     font-size: 14px;
     border-radius: 5px;
     white-space: nowrap;
-    background-color: #25af36;
-}
+    background-color: #007bff}
 
 .zone5 {
     margin-top: 15px;
@@ -380,7 +371,7 @@ a.addDellink {
     left: -19px;
     height: 52px;
     width: 21px;
-    background: #25af36ad;
+    background: #007bff;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 9px;
     padding-top: 14px;

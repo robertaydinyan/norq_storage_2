@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
         <?php echo Html::submitButton(
             $model->getIsNewRecord() ? Yii::t('app', 'Create') : Yii::t('app', 'Update'),
             [
-                'class' => $model->getIsNewRecord() ? 'btn btn-success' : 'btn btn-primary',
+                'class' => $model->getIsNewRecord() ? 'btn btn-primary' : 'btn btn-primary',
             ]
         ); ?>
     </div>

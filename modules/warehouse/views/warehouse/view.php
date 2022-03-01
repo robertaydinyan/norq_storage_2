@@ -34,6 +34,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
         <?php if($model->type != 2){ ?>
         <?= DetailView::widget([
             'model' => $model,
+                'options' => ['class' => 'table table-hover'],
             'attributes' => [
                 'name',
                 [
@@ -89,6 +90,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
         <?php } else {
             echo DetailView::widget([
                 'model' => $model,
+                'options' => ['class' => 'table table-hover'],
                 'attributes' => [
                     'name',
                     [
@@ -121,7 +123,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
     </div>
     <div class="col-lg-7" style="margin-left: 50px;margin-top:36px;">
 
-        <table  class="table table-striped table-bordered detail-view" style="width:100%">
+        <table  class="table table-hover  detail-view" style="width:100%">
             <thead>
             <?php if (!empty($dataProvider['result'])) : ?>
             <tr>

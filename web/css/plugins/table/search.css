@@ -61,7 +61,7 @@
     font-weight:900;
 }
 .default-grand {
-    background-color: #25AF36;
+    background-color: #007bff;
     color: white;
     padding: 2px;
     display: flex;
@@ -376,13 +376,13 @@
     transition: color 0.2s ease-in-out;
 }
 .search-field-box button:hover {
-    color: #25af36;
-    border-bottom: 1px dashed #25af36;
+    color: #007bff;
+    border-bottom: 1px dashed #007bff;
 }
 
 .fitlter-settings-button {
     background: transparent;
-    color:#25af36;
+    color:#007bff;
     border: none;
     box-shadow: none;
     transition: color 0.2s ease-in-out;

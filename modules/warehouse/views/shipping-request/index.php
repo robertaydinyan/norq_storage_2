@@ -28,7 +28,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
     </nav>
 
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-success" >Ստեղծել հարցում</a>
+        <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-primary" >Ստեղծել հարցում</a>
     </h1>
     <div style="padding:20px;">
         <form class="row" action="" method="get">
@@ -549,6 +549,9 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'tableOptions' => [
+            'class' => 'table table-hover'
+        ],
         'summary'=>'',
         'columns' => $columns,
     ]); ?>

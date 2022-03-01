@@ -208,7 +208,7 @@ previous button's border...
 .fc .fc-button-group > * { /* extra precedence b/c buttons have margin set to zero */
     float: left;
     margin: 0 0 0 -1px;
-    background: #25AF36;
+    background: #007bff;
     text-shadow: none;
     border: 0;
 }

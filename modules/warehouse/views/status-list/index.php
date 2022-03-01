@@ -13,7 +13,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <?= Html::a('Ստեղծել', ['create'], ['class' => 'btn btn-success float-right']) ?></h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <?= Html::a('Ստեղծել', ['create'], ['class' => 'btn btn-primary float-right']) ?></h1>
 
     <div style="padding: 20px;">
     <?php Pjax::begin(); ?>
@@ -21,6 +21,9 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'tableOptions' => [
+            'class' => 'table table-hover'
+        ],
         'filterModel' => $searchModel,
         'columns' => [
             'id',

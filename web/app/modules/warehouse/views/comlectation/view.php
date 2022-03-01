@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([
         'model' => $model,
+        'options' => ['class' => 'table table-hover'],
         'attributes' => [
             'id',
             'price',

@@ -15,7 +15,7 @@ if(!empty($data)){ ?>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
     <div style="padding: 20px;">
-        <table class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap" id="datatable">
+        <table class="kv-grid-table table table-hover  kv-table-wrap" id="datatable">
             <thead>
             <tr style="background:#474747;color:#fff;">
                 <?php if(@$_GET['show-series']){ ?>

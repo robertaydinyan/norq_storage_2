@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h4 style="padding: 20px;">
         <?= Html::encode($this->title) ?>
         <div style="display: flex;float: right">
-            <a style="margin-right: 10px;" href="<?= Url::to(['/warehouse/shipping-product']) ?>"  class="btn btn-sm btn-success" >Ապրանքի տեղափոխություն</a>
+            <a style="margin-right: 10px;" href="<?= Url::to(['/warehouse/shipping-product']) ?>"  class="btn btn-sm btn-primary" >Ապրանքի տեղափոխություն</a>
         </div>
     </h4>
 

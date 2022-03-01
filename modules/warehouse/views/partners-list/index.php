@@ -29,7 +29,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         </div>
     </nav>
     <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-success" >Ստեղծել</a>
+        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել</a>
     </h4>
     <div style="padding:20px;" >
     <?php Pjax::begin(); ?>

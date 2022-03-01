@@ -323,7 +323,7 @@ function createTaskGantt (midObj){
                     var f = false;
                     if (sortable[j][1] >= Math.max(date_list_obj.ps, date_list_obj.rs) && sortable[j + 1][1] <= Math.min(date_list_obj.pe, date_list_obj.re)) {
                         $(this).css({ background: 'rgb(183,209,186)' });
-                        $(this).children().css({ background: '#25af36' });
+                        $(this).children().css({ background: '#007bff' });
                         $(this).removeClass('resize-grey');
                         $(this).closest('.clicked-gantt').addClass('not-resize');
                         $(this).parent().parent().parent().removeClass('draggable2');

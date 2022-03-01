@@ -20,11 +20,14 @@ $this->params['breadcrumbs'][] = $this->title;
             <li class="breadcrumb-item"><a href="<?= Url::to(['index']) ?>">Հետ</a></li>
         </ol>
     </nav>
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-success" >Ստեղծել Պահեստ</a></h4>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել Պահեստ</a></h4>
 
         <div style="padding:20px;">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
+            'tableOptions' => [
+                'class' => 'table table-hover'
+            ],
             'filterModel' => $searchModel,
             'columns' => [
                 'id',
@@ -34,19 +37,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => function ($model) {
                        switch ($model->type){
                            case 1:
-                               $icon = '<i style="color:#28a745;" class="fa fa-warehouse"></i>';
+                               $icon = '<i  class="fa fa-warehouse"></i>';
                                break;
                            case 3:
-                               $icon = '<i style="color:#28a745;" class="fa fa-server"></i>';
+                               $icon = '<i  class="fa fa-server"></i>';
                                break;
                            case 4:
-                               $icon = '<i style="color:#28a745;" class="fa fa-home"></i>';
+                               $icon = '<i  class="fa fa-home"></i>';
                                break;
                            case 2:
-                               $icon = '<i style="color:#28a745;" class="fa fa-broadcast-tower"></i>';
+                               $icon = '<i  class="fa fa-broadcast-tower"></i>';
                                break;
                            default:
-                               $icon = '<i style="color:#28a745;" class="fa fa-warehouse"></i>';
+                               $icon = '<i  class="fa fa-warehouse"></i>';
                                break;
                        }
                         return $icon.'  '.$model->getType($model->type)->name;
@@ -109,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]); ?>
         </div>
-<button style="margin:20px;" onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-success">Xls</button>
+<button style="margin:20px;" onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary">Xls</button>
 </div>
 
 <script>

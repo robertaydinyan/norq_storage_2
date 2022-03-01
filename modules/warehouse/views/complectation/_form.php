@@ -94,7 +94,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
         </div>
     </div>
     <div class="form-group">
-        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-success check-counts']) ?>
+        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary check-counts']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 

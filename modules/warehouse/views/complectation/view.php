@@ -33,6 +33,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
             <div class="col-sm-4">
                 <?= DetailView::widget([
                     'model' => $model,
+                    'options' => ['class' => 'table table-hover'],
                     'attributes' => [
                         'id',
                         'price',

@@ -112,10 +112,10 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
     <br>
     <?php if($modal->isNewRecord){ ?>
     <div class="form-group">
-        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-success','disabled'=>'disabled']) ?>
+        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary','disabled'=>'disabled']) ?>
     </div>
     <?php } else { ?>
-         <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-success']) ?>
+         <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary']) ?>
     <?php } ?>
     <?php ActiveForm::end(); ?>
 

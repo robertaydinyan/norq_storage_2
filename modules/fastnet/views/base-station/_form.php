@@ -88,7 +88,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Ստեղծել', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Ստեղծել', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

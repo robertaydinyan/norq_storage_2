@@ -15,7 +15,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 <div class="shipping-product-index group-product-index">
 
     <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-success" >Ստեղծել Ապրանքի տեղափոխություն</a>
+        <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել Ապրանքի տեղափոխություն</a>
     </h4>
     <div style="padding:20px;">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

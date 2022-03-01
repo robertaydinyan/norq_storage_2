@@ -25,16 +25,11 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
     div.dataTables_wrapper {
         width: 95%;
     }
-    .fa-plus{
-        color:#29a746;
-    }
-    .fa-trash{
-        color:darkred;
-    }
+
 </style>
 <div class="group-product-index" >
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <p style="float: right;"><button class="btn btn-sm btn-success"  onclick="addPopup(0)">Ստեղծել Ապրանքի խումբ</button></p></h4>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <p style="float: right;"><button class="btn btn-sm btn-primary"  onclick="addPopup(0)">Ստեղծել Ապրանքի խումբ</button></p></h4>
     <div style="display: flex">
         <div class="col-lg-12">
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
@@ -67,7 +62,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                           <label for="fname">Անվանում</label><br>
                           <input type="text" class="form-control" id="fname" name="name"><br>
                           <input type="hidden" id="group_id" name="group_id">
-                          <button class="btn btn-success">Ավելացնել</button>
+                          <button class="btn btn-primary">Ավելացնել</button>
                         </form>
                     </div>
                 </div>
@@ -85,7 +80,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                         <label for="fname">Անվանում</label><br>
                         <input type="text" class="form-control" id="fname__" name="name"><br>
                         <input type="hidden" id="id" name="id">
-                        <button class="btn btn-success" type="submit" name="update_button">Պահպանել</button>
+                        <button class="btn btn-primary" type="submit" name="update_button">Պահպանել</button>
                     </form>
                 </div>
             </div>

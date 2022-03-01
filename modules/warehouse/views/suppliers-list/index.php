@@ -21,12 +21,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
     div.dataTables_wrapper {
         width: 95%;
     }
-    .fa-plus{
-        color:#29a746;
-    }
-    .fa-trash{
-        color:darkred;
-    }
+
 </style>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
@@ -63,7 +58,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                     <label for="fname">Անվանում</label><br>
                     <input type="text" class="form-control" id="fname" name="name"><br>
                     <input type="hidden" id="group_id" name="parent_id">
-                    <button class="btn btn-success">Ավելացնել</button>
+                    <button class="btn btn-primary">Ավելացնել</button>
                 </form>
             </div>
         </div>
@@ -81,7 +76,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                     <label for="fname">Անվանում</label><br>
                     <input type="text" class="form-control" id="fname__" name="name"><br>
                     <input type="hidden" id="id" name="id">
-                    <button class="btn btn-success" type="submit" name="update_button">Պահպանել</button>
+                    <button class="btn btn-primary" type="submit" name="update_button">Պահպանել</button>
                 </form>
             </div>
         </div>

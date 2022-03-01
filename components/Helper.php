@@ -1090,7 +1090,7 @@ class Helper
         $importButton = Html::submitButton(Yii::t('app', 'Ներմուծում'), [
             'type' => 'button',
             'title' => Yii::t('app', 'Ներմուծում'),
-            'class' => 'btn btn-success ml-2'
+            'class' => 'btn btn-primary ml-2'
         ]);
 
         $fileInputLabel = Html::label($importInputText.$importInput, 'deal-import-deal', ['class' => 'btn btn-light btn-file ml-2 mb-0']);

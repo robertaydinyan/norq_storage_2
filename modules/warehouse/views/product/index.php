@@ -44,13 +44,13 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
 
 <div class="group-product-index">
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a href="/warehouse/group-product/show-group-products" class="btn btn-success" style="float: right;">Խմբեր</a>
+        <a href="/warehouse/group-product/show-group-products" class="btn btn-primary" style="float: right;">Խմբեր</a>
     </h1>
 
 <div class="product-index group-product-index" style="padding: 20px;">
 
   
-        <table  class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap" style="width:100%">
+        <table  class="kv-grid-table table table-hover  kv-table-wrap" style="width:100%">
             <thead>
             <?php if (!empty($dataProvider['result'])) : ?>
             <tr>

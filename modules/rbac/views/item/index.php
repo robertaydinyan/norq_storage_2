@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="item-index card card-body border-0 shadow rounded mt-3">
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h3><?= Html::encode($this->title); ?></h3>
-        <?= Html::a(Yii::t('app', 'Create ' . 'Item'), ['create'], ['class' => 'btn btn-success']); ?>
+        <?= Html::a(Yii::t('app', 'Create ' . 'Item'), ['create'], ['class' => 'btn btn-primary']); ?>
     </div>
 
     <?php Pjax::begin(['timeout' => 5000, 'enablePushState' => false]); ?>

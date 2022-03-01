@@ -30,7 +30,7 @@
 /*    padding: 20px 7px 17px 10px;*/
 /*    border-top-left-radius: 50px;*/
 /*    border-bottom-left-radius: 50px;*/
-/*    background-color: #25af36;*/
+/*    background-color: #007bff;*/
 /*    opacity: 0.4;*/
 /*    color: #ffffff;*/
 /*}*/
@@ -215,8 +215,8 @@
     display: block;
 }
 .knbn-cr-bot .knbn-t-icon-pp{
-    color: #25af36;
+    color: #007bff;
 }
 .knbn-cr-bot .knbn-t-icon-pp:hover{
-    color: #25af36;
+    color: #007bff;
 }

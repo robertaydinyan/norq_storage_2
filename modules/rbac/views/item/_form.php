@@ -37,7 +37,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="form-group">
-        <?php echo Html::submitButton($model->getIsNewRecord() ? Yii::t('app', 'Ստեղծել') : Yii::t('app', 'Թարմացնել'), ['class' => $model->getIsNewRecord() ? 'btn btn-success' : 'btn btn-primary']); ?>
+        <?php echo Html::submitButton($model->getIsNewRecord() ? Yii::t('app', 'Ստեղծել') : Yii::t('app', 'Թարմացնել'), ['class' => $model->getIsNewRecord() ? 'btn btn-primary' : 'btn btn-primary']); ?>
     </div>
 
     <?php ActiveForm::end(); ?>

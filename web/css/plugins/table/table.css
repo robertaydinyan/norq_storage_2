@@ -75,7 +75,7 @@
 }
 .allTable table a:hover {
     text-decoration: underline;
-    color: #25af36;
+    color: #007bff;
 }
 .allTable table button {
     background: none;
@@ -190,7 +190,7 @@
 .table-status-bar .table-status-item{
     min-width: 30px;
     cursor: pointer;
-    background-color: #25af36;
+    background-color: #007bff;
     border-left: 1px solid #cdcdcd;
     border-right: 1px solid #cdcdcd;
 }
@@ -335,14 +335,14 @@
 
 .tf-second-section .tf-pages-next,
 .tf-second-section .tf-pages-last {
-    color: #25af36;
+    color: #007bff;
     cursor: pointer;
     position: relative;
     margin-left: 7px;
 }
 
 .tf-second-section .tf-show-quantity {
-    color: #25af36;
+    color: #007bff;
     cursor: pointer;
 }
 
@@ -387,5 +387,5 @@
     width: 100%;
 }
 .tableFooterSection .fas {
-    color: #25af36;
+    color: #007bff;
 }

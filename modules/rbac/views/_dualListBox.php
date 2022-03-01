@@ -21,7 +21,7 @@ $this->registerJs("var _opts = {$opts};", View::POS_BEGIN);
         <div class="move-buttons">
             <br><br>
             <?php echo Html::a('&gt;&gt;', $assignUrl, [
-                'class' => 'btn btn-success btn-assign',
+                'class' => 'btn btn-primary btn-assign',
                 'data-target' => 'available',
                 'title' => Yii::t('app', 'Assign'),
             ]); ?>

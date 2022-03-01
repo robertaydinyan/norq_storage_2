@@ -122,7 +122,7 @@ $this->registerJsFile('@web/js/modules/warehouse/shipping.js', ['depends' => 'yi
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Ստեղծել ', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Ստեղծել ', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

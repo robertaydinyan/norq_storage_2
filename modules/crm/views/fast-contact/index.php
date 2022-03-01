@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="d-flex align-items-center justify-content-between">
             <h1><?= Html::encode($this->title) ?></h1>
 
-                <?= Html::a('Ավելացնել Ֆիզ․ անձ', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Ավելացնել Ֆիզ․ անձ', ['create'], ['class' => 'btn btn-primary']) ?>
         </div>
         <div class="table-responsive">
             <?= GridView::widget([

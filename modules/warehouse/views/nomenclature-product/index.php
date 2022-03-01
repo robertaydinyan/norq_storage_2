@@ -15,7 +15,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
 ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>  <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-success" >Ստեղծել Ապրանքի Նոմենկլատուրա</a></h4>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>  <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել Ապրանքի Նոմենկլատուրա</a></h4>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <div style="padding:20px;" >

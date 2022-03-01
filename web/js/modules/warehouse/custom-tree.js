@@ -38,9 +38,9 @@ function getProducts(id){
     });
 }
 function setGroup(id,el_){
-    $('.switch').next().css('border-bottom','0px solid #25AF36');
-    el_.css('border-bottom','2px solid #25AF36');
-    $('#showProducts').prev().replaceWith('<div><a href="#" onclick="selectProduct()" style="margin-top:5px;display: block;">Ըստ Ապրանքների ('+el_.text()+') </a> <span class="close" style="color:#25AF36;margin-top: -25px;cursor:pointer;" onclick="removeGroup()">X</span></div>');
+    $('.switch').next().css('border-bottom','0px solid #007bff');
+    el_.css('border-bottom','2px solid #007bff');
+    $('#showProducts').prev().replaceWith('<div><a href="#" onclick="selectProduct()" style="margin-top:5px;display: block;">Ըստ Ապրանքների ('+el_.text()+') </a> <span class="close" style="color:#007bff;margin-top: -25px;cursor:pointer;" onclick="removeGroup()">X</span></div>');
     $('#group').val(id);
 }
 

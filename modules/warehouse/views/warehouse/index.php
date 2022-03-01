@@ -14,9 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="group-product-index">
 
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-success" >Ստեղծել Պահեստ</a></h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-primary" >Ստեղծել Պահեստ</a></h1>
     <div style="padding:20px;" class="table">
-        <table class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap">
+        <table class="kv-grid-table table table-hover  kv-table-wrap">
             <?php foreach ($warehouse_types as $ware_type => $ware_type_val){ ?>
             <tr>
               

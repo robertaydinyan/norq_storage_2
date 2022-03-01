@@ -633,7 +633,7 @@ $(document).ready(() => {
     });
     $('.starCheck').on('click', function () {
         if (!$(this).hasClass('checked')) {
-            $(this).css('color', '#25af36');
+            $(this).css('color', '#007bff');
             $(this).addClass('checked');
         } else {
             $(this).css('color', '#bababa');

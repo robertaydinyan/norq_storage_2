@@ -23,7 +23,7 @@ $flag = $flags[$lang];
     <ul class="navbar-nav align-items-center ml-auto">
         <li class="nav-item dropdown no-caret mr-3 d-none d-md-inline">
             <a class="nav-link dropdown-toggle timer" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="d-none d-md-inline text-primary">
+                <div class="d-none d-md-inline " style="color:#007bff">
                     <?php date_default_timezone_set('Asia/Yerevan');
                             echo $timestamp = date('H:i');?>
                 </div>
