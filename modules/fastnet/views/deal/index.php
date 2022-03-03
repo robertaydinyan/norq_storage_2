@@ -370,7 +370,7 @@ if (ArrayHelper::getValue(Yii::$app->getRequest()->getQueryParam('DealSearch'), 
             'buttons' => [
                 'view' => function ($url, $model) {
                     if (Yii::$app->user->can('viewDeal', ['model' => $model])) {
-                        return Html::a('<i class="far fa-eye"></i>', $url, [
+                        return Html::a('<i class="fas fa-eye"></i>', $url, [
                             'title' => Yii::t('app', 'Դիտել'),
                             'class' => 'btn text-primary btn-sm mr-2'
                         ]);

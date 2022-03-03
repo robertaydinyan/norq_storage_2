@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
 <div class="group-product-index">
-    <div class="group-product-index">
+    <div class="">
        <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
         <div id="w3-collapse" class="collapse navbar-collapse">
             <ul id="w5" class="navbar-nav w-100 nav">
@@ -23,7 +23,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             </ul>
         </div>
     </nav>
-    <h4 style="padding: 20px;" ><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-success" >Ստեղծել վճարում</a></h4>
+    <h4 style="padding: 20px;" ><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել վճարում</a></h4>
 
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -32,6 +32,9 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'tableOptions' => [
+            'class' => 'table table-hover'
+        ],
         'columns' => [
             'id',
             [

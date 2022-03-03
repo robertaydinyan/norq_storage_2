@@ -65,7 +65,10 @@ span{
     padding-left: 30px;
 }
 .group-product-index{
-    background: white;margin-top: 10px;border-radius: 5px;
+    background: white;
+    margin-top: 10px;
+    border-radius: 5px;
+    border:1px dashed #007bff;
 }
 .btn-add-product{
     cursor: pointer;
@@ -164,4 +167,7 @@ span{
 }
 @media (max-width: 767px) {
     .custo-radio { margin-top: 5px; }
+}
+.table td {
+    font-size:13px;
 }

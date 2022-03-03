@@ -471,3 +471,12 @@ a.addDellink {
     border-radius: 6px;
     border-bottom: 1px solid #dee2e6 !important;;
 }
+.main-header2 ul li a {
+    color:#fff!important;
+}
+
+.flag {
+    background: #0055a5!important;
+    border: 0!important;
+    color: #fff!important;
+}

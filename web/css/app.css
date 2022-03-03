@@ -2447,12 +2447,12 @@ fieldset:disabled a.btn {
 }
 .btn-primary:hover {
   color: #FFFFFF;
-  background-color: #1e8f2c;
+  background-color: #007bff;
   border-color: #1c8529;
 }
 .btn-primary:focus, .btn-primary.focus {
   color: #FFFFFF;
-  background-color: #1e8f2c;
+  background-color:#007bff;
   border-color: #1c8529;
   box-shadow: 0 0 0 0.2rem rgba(70, 187, 84, 0.5);
 }

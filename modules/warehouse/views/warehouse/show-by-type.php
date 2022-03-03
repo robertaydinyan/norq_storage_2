@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="group-product-index">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= Url::to(['index']) ?>">Հետ</a></li>
+            <li class="breadcrumb-item"><a href="<?= Url::to(['index']) ?>"><i class='fas fa-long-arrow-alt-left' style='font-size:30px'></i></a></li>
         </ol>
     </nav>
     <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել Պահեստ</a></h4>
@@ -85,7 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'template' => '{view}{update}{delete}',
                     'buttons' => [
                         'view' => function ($url, $model) {
-                            return Html::a('<i class="far fa-eye"></i>', $url, [
+                            return Html::a('<i class="fas fa-eye"></i>', $url, [
                                 'title' => Yii::t('app', 'Դիտել'),
                                 'class' => 'btn text-primary btn-sm mr-2'
                             ]);

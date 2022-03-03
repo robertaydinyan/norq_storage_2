@@ -44,7 +44,7 @@ AppAsset::register($this);
 
 <section id="page-content" class="d-flex">
     <?php if(!Yii::$app->user->isGuest) : ?>
-        <div class="aside-box">
+        <div class="aside-box d-none">
             <aside><?= $this->render('aside') ?></aside>
         </div>
     <?php endif;?>
@@ -53,11 +53,11 @@ AppAsset::register($this);
 
         <!-- Navbar -->
 
-        <?php
-        //        if(Yii::$app->controller->module->id == 'fastnet'){
+      <!--  --><?php
+/*        //        if(Yii::$app->controller->module->id == 'fastnet'){
         Helper::constructMenu(Yii::$app->controller->module->id);
         //        }
-        ?>
+        */?>
         <!-- .end Navbar -->
 
         <!-- Content -->
@@ -161,3 +161,5 @@ $this->registerJs("$('.fa-bell').closest('.dropdown-toggle').append('<small clas
 </body>
 </html>
 <?php $this->endPage() ?>
+
+

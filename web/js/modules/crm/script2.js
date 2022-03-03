@@ -581,7 +581,7 @@ function confirmDeletion (text){
                 <span><strong>Вы действительно хотите удалить <span>${text}</span></strong></span>
             </div>
             <div>
-                <button id = "cancel-deletion-btn" class = "c-btn c-btn-secondary c-btn-ol">отменить</button>
+                <button id = "cancel-deletion-btn" class = "c-btn c-btn-primary c-btn-ol">отменить</button>
                 <button id = "confirm-deletion-btn" class = "c-btn c-btn-danger">УДАЛИТЬ</button>
             </div>
         </div>`);

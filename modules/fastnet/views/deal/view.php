@@ -525,7 +525,7 @@ $balance = $deal->status == Deal::CONTRACT_TERMINATION ? $pricing->virtualBalanc
                     <!-- Save Vacation button -->
                     <div class="col-sm-12 text-right">
                         <div class="form-group">
-                            <button type="button" class="btn addVacation btn-success text-white" data-url="<?= Url::to(['deal/add-vacation']); ?>"><?= !$deal->vacation ? Yii::t('app', 'Ավելացնել') : Yii::t('app', 'Թարմացնել') ?></button>
+                            <button type="button" class="btn addVacation btn-primary text-white" data-url="<?= Url::to(['deal/add-vacation']); ?>"><?= !$deal->vacation ? Yii::t('app', 'Ավելացնել') : Yii::t('app', 'Թարմացնել') ?></button>
                         </div>
                     </div>
 
@@ -538,7 +538,7 @@ $balance = $deal->status == Deal::CONTRACT_TERMINATION ? $pricing->virtualBalanc
                                     <div class="row ">
                                         <table>
                                             <tbody>
-                                            <tr>
+                                               <tr>
                                                 <td><b>Սկիզբ</b></td>
                                                 <td><?= date('d-m-Y',strtotime($deal->vacation->data_start)) ?></td>
                                             </tr>

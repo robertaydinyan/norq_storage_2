@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view}{update}{delete}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="far fa-eye"></i>', $url, [
+                        return Html::a('<i class="fas fa-eye"></i>', $url, [
                             'title' => Yii::t('app', 'Դիտել'),
                             'class' => 'btn text-primary btn-sm mr-2'
                         ]);
