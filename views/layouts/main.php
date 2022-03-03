@@ -44,7 +44,7 @@ AppAsset::register($this);
 
 <section id="page-content" class="d-flex">
     <?php if(!Yii::$app->user->isGuest) : ?>
-        <div class="aside-box">
+        <div class="aside-box d-none">
             <aside><?= $this->render('aside') ?></aside>
         </div>
     <?php endif;?>
@@ -53,11 +53,11 @@ AppAsset::register($this);
 
         <!-- Navbar -->
 
-        <?php
-        //        if(Yii::$app->controller->module->id == 'fastnet'){
+      <!--  --><?php
+/*        //        if(Yii::$app->controller->module->id == 'fastnet'){
         Helper::constructMenu(Yii::$app->controller->module->id);
         //        }
-        ?>
+        */?>
         <!-- .end Navbar -->
 
         <!-- Content -->
@@ -91,7 +91,7 @@ for($i = 0 ; $i<count($notifications);$i++){
     if($notifications[$i]['accept_url'] || $notifications[$i]['decline_url']){
         $string .= '<div class="control-buttons" style="margin-bottom:10px;">';
            if($notifications[$i]['accept_url']){
-               $string .= '<a class="btn btn-success btn-sm" href="'.$notifications[$i]['accept_url'].'">Ընդունել</a>';
+               $string .= '<a class="btn btn-primary btn-sm" href="'.$notifications[$i]['accept_url'].'">Ընդունել</a>';
            }
             if($notifications[$i]['decline_url']){
                 $string .= '<a class="btn btn-danger btn-sm" style="margin-left:10px;" href="'.$notifications[$i]['decline_url'].'">Մերժել</a>';
@@ -102,7 +102,7 @@ for($i = 0 ; $i<count($notifications);$i++){
     $string .= '<hr style="margin:2px;">';
 }
 
-$this->registerJs("$('.fa-bell').closest('.dropdown-toggle').append('<small class=\"badge notifications-count badge-success\" style=\"top:-10px;font-size:50%;\">".$notification_count."</small>');
+$this->registerJs("$('.fa-bell').closest('.dropdown-toggle').append('<small class=\"badge notifications-count badge-primary\" style=\"top:-10px;font-size:50%;\">".$notification_count."</small>');
             $('.dropdown-notifications').on('click', 
                     function() { 
                         $('.dropdown-menu').html(`".$string."`);                      
@@ -161,3 +161,5 @@ $this->registerJs("$('.fa-bell').closest('.dropdown-toggle').append('<small clas
 </body>
 </html>
 <?php $this->endPage() ?>
+
+

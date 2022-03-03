@@ -14,7 +14,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 <div class="complectation-shipping-index group-product-index" >
 
     <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-success" >Ստեղծել կոմպլեկտացիայի տեղափոխություն</a>
+        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել կոմպլեկտացիայի տեղափոխություն</a>
     </h4>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

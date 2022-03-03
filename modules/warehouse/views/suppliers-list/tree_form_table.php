@@ -37,7 +37,7 @@
                               <input type="text" id="search_input" class="form-control">
                         </div>
                         <div class="col-sm-2">
-                             <button type="button" id="search_button" class="btn btn-success"><i class="fa fa-search"></i></button>
+                             <button type="button" id="search_button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </div>
                         <div class="col-sm-12" id="search_results">
                             

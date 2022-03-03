@@ -5,8 +5,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <div class="mod-content"><table class="table table-striped table-bordered">
-                    <table class="table table-striped table-bordered">
+                <div class="mod-content"><table class="table table-hover">
+                    <table class="table table-hover">
                         <thead>
                         <tr>
                             <th>ID</th>

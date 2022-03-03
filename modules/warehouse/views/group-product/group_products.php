@@ -29,8 +29,8 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 
 <div  class="group-product-index">
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-success" >Ստեղծել Խումբ</a>
-        <a href="/warehouse/product" style="float: right;margin-right: 10px;" class="btn btn-success">Պահեստներ</a>
+        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-primary" >Ստեղծել Խումբ</a>
+        <a href="/warehouse/product" style="float: right;margin-right: 10px;" class="btn btn-primary">Պահեստներ</a>
     </h1>
 
     <div style="clear: both;"></div>
@@ -51,7 +51,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
         </div>
         <div class="col-lg-9">
             <br>
-    <table id="products" class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap" style="width:95%;background: white;">
+    <table id="products" class="kv-grid-table table table-hover kv-table-wrap" style="width:95%;background: white;">
     <thead>
     <tr>
         <th>Անուն</th>

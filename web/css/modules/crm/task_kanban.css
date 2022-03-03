@@ -67,7 +67,7 @@
     background: linear-gradient(0deg,#f3f3f3 0,rgba(243,243,243,0) 100%);
 }
 .knbn-item-link:hover {
-    color: #25af36;
+    color: #007bff;
 }
 
 .knbn-task-add{
@@ -116,8 +116,8 @@
     border: 1px solid #eed588;
 }
 .task-priority-color-6{
-    color: #25af36;
-    border: 1px solid #25af36;
+    color: #007bff;
+    border: 1px solid #007bff;
 }
 .task-priority-color-7{
     color: #c9ebcd;
@@ -174,10 +174,10 @@
     display: block;
 }
 .knbn-task-cont .knbn-t-icon-pp {
-    color: #25af36;
+    color: #007bff;
 }
 .knbn-task-cont .knbn-t-icon-pp:hover {
-    color: #25af36;
+    color: #007bff;
 }
 .knbn-tc-date {
     vertical-align: middle;
@@ -262,23 +262,23 @@
     margin-bottom: 5px;
 }
 .knbn-tasks-tags > span{
-    color: #25af36;
+    color: #007bff;
     padding: 0 6px;
     margin: 0 4px 4px 0;
     vertical-align: middle;
     border-radius: 9px;
-    border: 1px solid #25af36;
+    border: 1px solid #007bff;
 }
 .knbn-tasks-item-checklist {
     width: fit-content;
-    color: #25af36;
+    color: #007bff;
     padding: 0 6px;
     margin: 0 4px 0 0;
     vertical-align: middle;
     border-radius: 9px;
 }
 .knbn-tasks-item-checklist * {
-    color: #25af36;
+    color: #007bff;
 }
 .knbn-tasks-item-checklist span:first-child {
     margin-right: 3px;

@@ -25,7 +25,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         <br>
         <div class="row">
             <div class="col-sm-5">
-                <table class="table">
+                <table class="table table-hover">
                     <?php if($model->provider->name){ ?>
                     <tr>
                         <th scope="col">Հանձնող պահեստ</th>
@@ -102,7 +102,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                      $products = ShippingProducts::findByShipReq($model->id);
                   }
                 ?>
-                       <table class="table table-striped table-bordered">
+                       <table class="table table-hover">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -146,7 +146,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         </div>
        
     </div>
-     <button class="btn btn-success" onclick="PrintElem('print');" style="margin:20px;">Տպել</button>
+     <button class="btn btn-primary" onclick="PrintElem('print');" style="margin:20px;">Տպել</button>
 </div>
 <script>
     function PrintElem(el)

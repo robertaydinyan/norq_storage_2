@@ -26,13 +26,14 @@ $this->params['breadcrumbs'][] = $model->name;
                 'data-confirm' => Yii::t('app', 'Are you sure to delete this item?'),
                 'data-method' => 'post',
             ]); ?>
-            <?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-success']); ?>
+            <?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-primary']); ?>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
             <?= DetailView::widget([
                 'model' => $model,
+                'options' => ['class' => 'table table-hover'],
                 'attributes' => [
                     'name',
                     'description:ntext',

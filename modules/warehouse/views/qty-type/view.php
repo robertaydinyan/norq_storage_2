@@ -21,6 +21,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     <div class="col-lg-4">
         <?= DetailView::widget([
             'model' => $model,
+            'options' => ['class' => 'table table-hover'],
             'attributes' => [
                 'id',
                 'type',

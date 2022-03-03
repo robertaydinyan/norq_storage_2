@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="base-station-index card card-body border-0 shadow rounded mt-3">
         <div class="d-flex align-items-center justify-content-between">
             <h1><?= Html::encode($this->title) ?></h1>
-            <?= Html::a(Yii::t('app', 'Ստեղծել բազային կայան'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a(Yii::t('app', 'Ստեղծել բազային կայան'), ['create'], ['class' => 'btn btn-primary']) ?>
         </div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

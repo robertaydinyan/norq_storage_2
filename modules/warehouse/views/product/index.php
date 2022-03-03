@@ -47,10 +47,10 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
         <a href="/warehouse/group-product/show-group-products" class="btn btn-success" style="float: right;"><?php echo Yii::t('app', 'Groups'); ?></a>
     </h1>
 
-<div class="product-index group-product-index" style="padding: 20px;">
+<div class="product-index " style="padding: 20px;">
 
   
-        <table  class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap" style="width:100%">
+        <table  class="kv-grid-table table table-hover  kv-table-wrap" style="width:100%">
             <thead>
             <?php if (!empty($dataProvider['result'])) : ?>
             <tr>

@@ -49,7 +49,7 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
                     <input type="text"  class="form-control mac" name="Product[mac_address][0][]">
                 </div>
                 <div class="col-sm-1">
-                    <button class="btn btn-success btn-sm clone-mac" type="button"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-primary btn-sm clone-mac" type="button"><i class="fa fa-plus"></i></button>
                 </div>
                 <div class="col-sm-1 hide" style="margin-left:5px;">
                     <button class="btn btn-danger btn-sm remove-mac" onclick="$(this).closest('.cloned-mac').remove()" type="button"><i class="fa fa-minus"></i></button>
@@ -63,7 +63,7 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         </div>
     </div>
     <div class="col-sm-12">
-        <button class="btn btn-success clone-product" type="button"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-primary clone-product" type="button"><i class="fa fa-plus"></i></button>
     </div>
 </div>
 

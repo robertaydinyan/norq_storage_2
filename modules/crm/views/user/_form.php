@@ -98,7 +98,7 @@ use yii\widgets\ActiveForm;
         </div>
 
         <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Պահպանել'), ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(Yii::t('app', 'Պահպանել'), ['class' => 'btn btn-primary']) ?>
         </div>
 
     <?php ActiveForm::end(); ?>

@@ -149,7 +149,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
             ->db
             ->createCommand("SELECT SUM(s_shipping_products.count * s_shipping_products.price) as price,s_shipping.invoice,s_shipping.id FROM s_shipping_products LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id WHERE s_shipping.supplier_id = $id GROUP BY s_shipping.id ORDER BY s_shipping.created_at ASC ")->queryAll();
         $sum = 0;
-        $html = '<table class="table table-striped table-bordered">
+        $html = '<table class="table table-hover">
                        <thead>
                         <tr>
                             <th>ID</th>

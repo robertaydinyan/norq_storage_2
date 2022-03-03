@@ -48,9 +48,9 @@ function loadConnections(monthFilter = null) {
                 datasets: [{
                     label: 'Միացումների քանակ',
                     backgroundColor: gradient,
-                    pointBackgroundColor: '#25AF36',
+                    pointBackgroundColor: '#007bff',
                     borderWidth: 1,
-                    borderColor: '#25AF36',
+                    borderColor: '#007bff',
                     data: response.data
                 }]
             };
@@ -65,7 +65,7 @@ function loadConnections(monthFilter = null) {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            fontColor: '#25AF36'
+                            fontColor: '#007bff'
                         },
                         gridLines: {
                             color: 'rgba(200, 200, 200, 0.08)',
@@ -74,7 +74,7 @@ function loadConnections(monthFilter = null) {
                     }],
                     xAxes:[{
                         ticks: {
-                            fontColor: '#25AF36'
+                            fontColor: '#007bff'
                         }
                     }]
                 },
@@ -87,7 +87,7 @@ function loadConnections(monthFilter = null) {
                     display: false
                 },
                 point: {
-                    backgroundColor: '#25AF36'
+                    backgroundColor: '#007bff'
                 },
                 tooltips: {
                     titleFontFamily: 'Poppins',

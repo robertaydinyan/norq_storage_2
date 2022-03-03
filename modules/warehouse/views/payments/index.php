@@ -20,12 +20,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     div.dataTables_wrapper {
         width: 95%;
     }
-    .fa-plus{
-        color:#29a746;
-    }
-    .fa-trash{
-        color:darkred;
-    }
+
 </style>
 <div class="group-product-index">
    <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">

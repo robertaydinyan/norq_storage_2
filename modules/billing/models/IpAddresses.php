@@ -23,7 +23,7 @@ class IpAddresses extends \yii\db\ActiveRecord
 
     const ipStatusColor = [
         0 => ['status'=> 'Պասիվ','color' => '#ccc'],
-        1 => ['status'=> 'Ակտիվ', 'color' => '#25AF36'],
+        1 => ['status'=> 'Ակտիվ', 'color' => '#007bff'],
         2 => ['status'=> 'Ընթացքում', 'color' => '#FAE000'],
         3 => ['status'=> 'Զբաղված ', 'color' => '#F23737'],
     ];

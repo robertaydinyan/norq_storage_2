@@ -38,7 +38,7 @@
 .left-head-div-child {
     margin-top: 5px;
     height: 12px;
-    /*background-color: #25af36;*/
+    /*background-color: #007bff;*/
 }
 
 .mid-head-div {
@@ -50,7 +50,7 @@
 .mid-head-div-child {
     margin-top: 5px;
     height: 12px;
-    /*background-color: #25af36;*/
+    /*background-color: #007bff;*/
 }
 
 .right-head-div {
@@ -62,7 +62,7 @@
 .right-head-div-child {
     margin-top: 5px;
     height: 12px;
-    /*background-color: #25af36;*/
+    /*background-color: #007bff;*/
 }
 
 .right-head-div-dop {
@@ -74,7 +74,7 @@
 .right-head-div-child-dop {
     margin-top: 5px;
     height: 12px;
-    /*background-color: #25af36;*/
+    /*background-color: #007bff;*/
 }
 
 .line-for-left-relation {
@@ -208,7 +208,7 @@
 }
 
 .datetimepicker table tr td.active {
-    background-color: #25af36;
+    background-color: #007bff;
 }
 
 .header-place-for-gantt {
@@ -634,7 +634,7 @@
 }
 
 .orange-head-div-child {
-    background-color: #25af36;
+    background-color: #007bff;
     position: relative;
     height: 12px;
     top: 50%;

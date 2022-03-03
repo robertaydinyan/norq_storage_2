@@ -142,7 +142,7 @@
 
 .knt-add-employee-name{
     height: 30px;
-    background-color: #25af36;
+    background-color: #007bff;
     border-radius: 5px;
     color: #ffffff;
     display: flex;
@@ -170,7 +170,7 @@
     height: 30px;
     display: flex;
     align-items: center;
-    color:#25af36;
+    color:#007bff;
     font-weight: 800;
     margin-left: 10px;
 }
@@ -418,7 +418,7 @@
 .knbn-task-all-tags {
     margin-top: 10px;
     padding: 5px;
-    color: #25af36;
+    color: #007bff;
     display: flex;
     flex-wrap: wrap;
 }

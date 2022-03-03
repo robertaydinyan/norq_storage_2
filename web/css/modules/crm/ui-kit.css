@@ -135,7 +135,7 @@ fieldset.c-input textarea {
     text-align: center;
     cursor: pointer;
     user-select: none;
-    background-color: #25af36;
+    background-color: #007bff;
     border: 1px solid transparent;
     box-shadow: 0 4px 10px rgba(37, 175, 54, 0.25);
     color: #fff;
@@ -201,7 +201,7 @@ fieldset.c-input textarea {
 .c-search-loop .c-search-loop-icon {
     display: inline-block;
     font-size: 20px;
-    background-color: #25af36;
+    background-color: #007bff;
     width: 50px;
     height: 100%;
     border-top-right-radius: 6px;
@@ -375,19 +375,19 @@ fieldset.c-input textarea {
 }
 
 .c-checkbox label:hover::before {
-    background-color: #25AF36;
-    border-color: #25AF36;
+    background-color: #007bff;
+    border-color: #007bff;
     opacity: .5;
 }
 
 .c-checkbox label:hover::after {
-    border-color: #25af36;
+    border-color: #007bff;
     opacity: 0;
 }
 
 .c-checkbox input[type="checkbox"]:checked+label::before {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .c-checkbox input[type="checkbox"]:checked:hover+label::before {
@@ -395,7 +395,7 @@ fieldset.c-input textarea {
 }
 
 .c-checkbox input[type="checkbox"]:checked:hover+label::after {
-    border-color: #25af36;
+    border-color: #007bff;
     opacity: 1;
 }
 
@@ -415,8 +415,8 @@ fieldset.c-input textarea {
 }
 
 .c-checkbox input[type="checkbox"]:checked:disabled:hover+label::before {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .c-checkbox input[type="checkbox"]:checked:disabled:hover+label::after {
@@ -424,8 +424,8 @@ fieldset.c-input textarea {
 }
 
 .c-checkbox input[type="checkbox"]:checked:disabled+label::before {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .c-checkbox input[type="checkbox"]:checked:disabled+label::after {
@@ -450,16 +450,16 @@ fieldset.c-input textarea {
 
 .c-checkbox-round input[type="checkbox"]:checked+label::before {
     background-color: #fff;
-    border-color: #25af36;
+    border-color: #007bff;
 }
 
 .c-checkbox-round input[type="checkbox"]:checked+label::after {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .c-checkbox-round input[type="checkbox"]:checked:hover+label::before {
-    background-color: #25af36;
+    background-color: #007bff;
     opacity: .5;
 }
 
@@ -515,29 +515,29 @@ fieldset.c-input textarea {
 }
 
 .c-label-checkbox span:hover::before {
-    background-color: #25AF36;
-    border-color: #25AF36;
+    background-color: #007bff;
+    border-color: #007bff;
     opacity: .5;
 }
 
 .c-label-checkbox span:hover::after{
-    border-color: #25af36;
+    border-color: #007bff;
     opacity: 0;
 }
 
 .c-label-checkbox input[type="checkbox"]:checked~span::before {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .c-label-checkbox input[type="checkbox"]:checked~span:hover::before {
     background-color: #fff;
-    border-color: #25af36;
+    border-color: #007bff;
 }
 
 .c-label-checkbox input[type="checkbox"]:checked~span:hover::after {
-    border-left: 2px solid #25af36;
-    border-bottom: 2px solid #25af36;
+    border-left: 2px solid #007bff;
+    border-bottom: 2px solid #007bff;
     opacity: 1
 }
 
@@ -551,8 +551,8 @@ fieldset.c-input textarea {
 }
 
 .c-label-checkbox input[type="checkbox"]:checked:disabled~span::before {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .c-label-checkbox input[type="checkbox"]:checked:disabled:hover~span::after {
@@ -577,16 +577,16 @@ fieldset.c-input textarea {
 }
 .c-label-checkbox-round input[type="checkbox"]:checked+span::before {
     background-color: #fff;
-    border-color: #25af36;
+    border-color: #007bff;
 }
 
 .c-label-checkbox-round input[type="checkbox"]:checked+span::after {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .c-label-checkbox-round input[type="checkbox"]:checked:hover+span::before {
-    background-color: #25af36;
+    background-color: #007bff;
     opacity: .5;
 }
 
@@ -651,30 +651,30 @@ fieldset.c-input textarea {
 }
 
 .c-radio label:hover::before {
-    background-color: #25AF36;
-    border-color: #25AF36;
+    background-color: #007bff;
+    border-color: #007bff;
     opacity: .5;
 }
 
 .c-radio label:hover::after {
-    background-color: #25AF36;
-    border-color: #25AF36;
+    background-color: #007bff;
+    border-color: #007bff;
     opacity: 0;
 }
 
 .c-radio input[type="radio"]:checked+label::before {
     background-color: #fff;
-    border-color: #25af36;
+    border-color: #007bff;
 }
 
 .c-radio input[type="radio"]:checked:hover+label::before {
-    background-color: #25af36;
+    background-color: #007bff;
     opacity: .5;
 }
 
 .c-radio input[type="radio"]:checked+label::after {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .c-radio input[type="radio"]:checked:hover+label::after {
@@ -691,13 +691,13 @@ fieldset.c-input textarea {
 
 .c-radio input[type="radio"]:checked:disabled:hover+label::before {
     background-color: #fff;
-    border-color: #25af36;
+    border-color: #007bff;
     opacity: 1;
 }
 
 .c-radio input[type="radio"]:checked:disabled:hover+label::after {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 /* end radio */
@@ -745,29 +745,29 @@ fieldset.c-input textarea {
 }
 
 .c-label-radio span:hover::before {
-    background-color: #25AF36;
-    border-color: #25AF36;
+    background-color: #007bff;
+    border-color: #007bff;
     opacity: .5;
 }
 
 .c-label-radio span:hover::after{
-    border-color: #25af36;
+    border-color: #007bff;
     opacity: 0;
 }
 
 .c-label-radio input[type="radio"]:checked~span::before {
     background-color: #fff;
-    border-color: #25af36;
+    border-color: #007bff;
 }
 
 .c-label-radio input[type="radio"]:checked~span:hover::before {
-    background-color: #25af36;
+    background-color: #007bff;
     opacity: .5;
 }
 
 .c-label-radio input[type="radio"]:checked~span::after {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .c-label-radio input[type="radio"]:checked~span:hover::after {
@@ -785,13 +785,13 @@ fieldset.c-input textarea {
 
 .c-label-radio input[type="radio"]:checked:disabled:hover~span::before{
     background-color: #fff;
-    border-color: #25af36;
+    border-color: #007bff;
     opacity: 1;
 }
 
 .c-label-radio input[type="radio"]:checked:disabled:hover~span::after{
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 /* end label radio */
@@ -843,17 +843,17 @@ fieldset.c-input textarea {
 }
 
 .c-switch input[type="checkbox"]:checked+label::before {
-    border-color: #25af36;
+    border-color: #007bff;
 }
 
 .c-switch input[type="checkbox"]:checked+label::after {
     left: 16px;
-    background-color: #25af36;
+    background-color: #007bff;
 }
 
 .c-switch label:hover::before {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
     opacity: .5;
 }
 
@@ -878,11 +878,11 @@ fieldset.c-input textarea {
 }
 
 .c-switch input[type="checkbox"]:checked:disabled:hover+label::before {
-    border-color: #25af36;
+    border-color: #007bff;
 }
 
 .c-switch input[type="checkbox"]:checked:disabled:hover+label::after {
-    background-color: #25af36;
+    background-color: #007bff;
 }
 
 /*label switch*/
@@ -928,17 +928,17 @@ fieldset.c-input textarea {
 }
 
 .c-label-switch input[type="checkbox"]:checked+span::before {
-    border-color: #25af36;
+    border-color: #007bff;
 }
 
 .c-label-switch input[type="checkbox"]:checked+span::after {
     left: 16px;
-    background-color: #25af36;
+    background-color: #007bff;
 }
 
 .c-label-switch:hover span::before {
-    background-color: #25af36;
-    border-color: #25af36;
+    background-color: #007bff;
+    border-color: #007bff;
     opacity: .5;
 }
 
@@ -968,7 +968,7 @@ fieldset.c-input textarea {
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: #25af36;
+    background: #007bff;
     margin-top: -6px;
     cursor: pointer;
 }
@@ -978,7 +978,7 @@ fieldset.c-input textarea {
 }
 
 .c-range::-moz-range-thumb {
-    background-color: #25af36;
+    background-color: #007bff;
     border-radius: 50%;
     border: 2px solid #fff;
     cursor: pointer;
@@ -991,7 +991,7 @@ fieldset.c-input textarea {
 }
 
 .c-range::-moz-range-progress {
-    background-color: #25af36;
+    background-color: #007bff;
     height: 4px;
     border-radius: 5px;
 }
@@ -1058,7 +1058,7 @@ fieldset.c-input textarea {
 }
 
 .c-pagination-box .c-pagination-item-current{
-    color: #25af36;
+    color: #007bff;
 }
 
 /* end pagination */
@@ -1094,11 +1094,11 @@ fieldset.c-input textarea {
 }
 
 .c-dotted-pagination-box .c-dotted-pagination-item-current{
-    background-color: #25af36;
+    background-color: #007bff;
 }
 
 .c-dotted-pagination-box .c-dotted-pagination-item-current:hover{
-    background-color: #25af36;
+    background-color: #007bff;
 }
 
 .c-dotted-pagination-box .c-dotted-pagination-item-last{
@@ -1139,12 +1139,12 @@ fieldset.c-input textarea {
 
 .c-arrow-pagination-box .c-dotted-pagination-item-current{
     color: #fff;
-    background-color: #25af36;
+    background-color: #007bff;
     border-radius: 50%;
 }
 
 .c-arrow-pagination-box .c-pagination-item-last{
-    color: #25af36;
+    color: #007bff;
     cursor: pointer;
 }
 
@@ -1181,7 +1181,7 @@ fieldset.c-input textarea {
     min-width: 22px;
     border: 1px solid #C2CAD4;
     border-radius: 8px;
-    color: #25af36;
+    color: #007bff;
     text-align: center;
     margin: 0 5px;
     padding: 4px;
@@ -1199,12 +1199,12 @@ fieldset.c-input textarea {
 }
 
 .ui-slider .ui-widget-header {
-    background-color: #25af36;
+    background-color: #007bff;
     border-radius: 5px;
 }
 
 .ui-slider .ui-slider-handle {
-    background-color: #25af36;
+    background-color: #007bff;
     border-radius: 50%;
     border: 2px solid #fff;
     width: 13px;
@@ -1236,7 +1236,7 @@ fieldset.c-input textarea {
     border-radius: 50%;
     width: 13px;
     height: 13px;
-    background-color: #25af36;
+    background-color: #007bff;
     border: 2px solid #fff;
 }
 
@@ -1265,7 +1265,7 @@ fieldset.c-input textarea {
     text-align: center;
     cursor: pointer;
     user-select: none;
-    background-color: #25af36;
+    background-color: #007bff;
     border: 1px solid transparent;
     box-shadow: 0 4px 10px rgba(37, 175, 54, 0.25);
     color: #fff;
@@ -1296,8 +1296,8 @@ fieldset.c-input textarea {
 }
 
 .c-btn-ol.c-btn {
-    color: #25af36;
-    border-color: #25af36;
+    color: #007bff;
+    border-color: #007bff;
     background-color: transparent;
 }
 
@@ -1344,7 +1344,7 @@ fieldset.c-input textarea {
 .c-btn-link {
     background-color: transparent;
     box-shadow: none;
-    color: #25af36;
+    color: #007bff;
 }
 
 .c-btn-link:hover {
@@ -1352,12 +1352,12 @@ fieldset.c-input textarea {
 }
 
 a.c-btn-link {
-    color: #25af36;
+    color: #007bff;
     text-decoration: none;
 }
 
 a.c-btn-link:hover {
-    color: #25af36;
+    color: #007bff;
     text-decoration: none;
 }
 
@@ -1409,8 +1409,8 @@ a.c-btn-link:hover {
 
 .c-btn-underline:hover,
 .c-btn-dashed:hover{
-    border-bottom-color: #25af36;
-    color: #25af36;
+    border-bottom-color: #007bff;
+    color: #007bff;
 }
 
 .c-btn-underline-show,
@@ -1438,7 +1438,7 @@ a.c-btn-link:hover {
 
 .c-btn-underline-show:hover,
 .c-btn-dashed-show:hover{
-    color: #25af36;
+    color: #007bff;
 }
 
 .c-btn-underline-danger{
@@ -1510,37 +1510,37 @@ a.c-btn-link:hover {
 }
 
 .c-btn-underline-primary{
-    color: #25af36;
+    color: #007bff;
 }
 
 .c-btn-underline-primary:hover{
-    color: #25af36;
-    border-bottom-color: #25af36;
+    color: #007bff;
+    border-bottom-color: #007bff;
 }
 
 .c-btn-underline-show-primary{
-    color: #25af36;
+    color: #007bff;
 }
 
 .c-btn-underline-show-primary:hover{
-    color: #25af36;
+    color: #007bff;
 }
 
 .c-btn-dashed-primary{
-    color: #25af36;
+    color: #007bff;
 }
 
 .c-btn-dashed-primary:hover{
-    color: #25af36;
-    border-bottom-color: #25af36;
+    color: #007bff;
+    border-bottom-color: #007bff;
 }
 
 .c-btn-dashed-show-primary{
-    color: #25af36;
+    color: #007bff;
 }
 
 .c-btn-dashed-show-primary:hover{
-    color: #25af36;
+    color: #007bff;
 }
 
 .c-btn-underline-info{
@@ -1618,7 +1618,7 @@ a.c-btn-link:hover {
 .c-tag {
     display: inline-block;
     background-color: #c9ebcd;
-    color: #25af36;
+    color: #007bff;
     padding-left: .5rem;
     border-radius: .25rem;
 }
@@ -1668,7 +1668,7 @@ a.c-btn-link:hover {
 }
 
 .c-rating-item:hover span{
-    background-color: #25af36;
+    background-color: #007bff;
 }
 */
 
@@ -1783,7 +1783,7 @@ a.c-btn-link:hover {
     min-height: 16px;
     float: left;
     position: relative;
-    background-color: #25af36;
+    background-color: #007bff;
     color: #fff;
     user-select: none;
 }
@@ -1798,7 +1798,7 @@ a.c-btn-link:hover {
     height: 0;
     border-top: 16px solid transparent;
     border-bottom: 16px solid transparent;
-    border-left: 10px solid #25af36;
+    border-left: 10px solid #007bff;
     z-index: 2;
     transition: border-color 0.2s ease;
 }
@@ -1848,7 +1848,7 @@ a.c-btn-link:hover {
 }
 
 .c-arrow-steps-box .c-arrow-step.c-arrow-step-current:after {
-    border-left: 10px solid #25af36;
+    border-left: 10px solid #007bff;
 }
 
 /* end arrow steps */
@@ -1892,11 +1892,11 @@ a.c-btn-link:hover {
 
 .c-kanban-arrows-box .c-kanban-arrow.c-kanban-arrow-current{
     color: #fff;
-    background-color: #25af36;
+    background-color: #007bff;
 }
 
 .c-kanban-arrows-box .c-kanban-arrow.c-kanban-arrow-current::after{
-    border-left: 10px solid #25af36;
+    border-left: 10px solid #007bff;
 }
 
 .c-kanban-arrows-box .c-kanban-arrow:after {
@@ -2038,7 +2038,7 @@ a.c-btn-link:hover {
 
 .chat-my-messages {
     border-radius: 13px 20px 0 13px;
-    background-color: #25af36;
+    background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
     display: inline-block;
@@ -2129,7 +2129,7 @@ a.c-btn-link:hover {
 }
 
 .chat-send-btn{
-    background-color: #25af36;
+    background-color: #007bff;
     border-radius: .25rem;
     border: none;
     margin-left: 8px;
@@ -2168,7 +2168,7 @@ a.c-btn-link:hover {
     margin-left: -9px;
     border-style: solid;
     border-width: 6px 0 4px 21px;
-    border-color: transparent transparent transparent #25af36;
+    border-color: transparent transparent transparent #007bff;
 }
 
 /* end chat */
@@ -2235,13 +2235,13 @@ a.c-btn-link:hover {
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     border: none;
     background-color: #c9ebcd;
-    color: #25af36;
+    color: #007bff;
     border-radius: .25rem;
     padding-bottom: 1px;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-    color: #25AF36 !important;
+    color: #007bff !important;
 }
 
 .select2-container--default .select2-results__option[aria-selected=true] {
@@ -2249,7 +2249,7 @@ a.c-btn-link:hover {
 }
 
 .select2-container--default .select2-results__option.select2-results__option--highlighted {
-    background-color: #25AF36 !important;
+    background-color: #007bff !important;
 }
 
 /* end select 2 */
@@ -2282,8 +2282,8 @@ a.c-btn-link:hover {
 }
 
 .ui-selectmenu-menu .ui-menu-item:hover>.ui-menu-item-wrapper {
-    background-color: #25af36;
-    border: 1px solid #25af36;
+    background-color: #007bff;
+    border: 1px solid #007bff;
 }
 
 /* jquery ui select */
@@ -2521,12 +2521,12 @@ a.c-btn-link:hover {
 
 .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_today {
     color: #fff;
-    background-color: #25af36;
+    background-color: #007bff;
 }
 
 .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_today:hover {
     color: #fff !important;
-    background-color: #25af36 !important;
+    background-color: #007bff !important;
 }
 
 .xdsoft_datetimepicker .xdsoft_label:hover>span {
@@ -2547,12 +2547,12 @@ a.c-btn-link:hover {
 }
 
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div.xdsoft_current {
-    background-color: #25af36;
+    background-color: #007bff;
     color: #fff;
 }
 
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div.xdsoft_current:hover {
-    background-color: #25af36 !important;
+    background-color: #007bff !important;
     color: #fff !important;
 }
 
@@ -2587,15 +2587,15 @@ a.c-btn-link:hover {
 }
 
 .sp-container .sp-cancel{
-    color: #25af36 !important;
+    color: #007bff !important;
 }
 
 .sp-container .sp-cancel:hover{
-    color: #25af36 !important;
+    color: #007bff !important;
 }
 
 .sp-container .sp-choose{
-    background: #25af36;
+    background: #007bff;
     color: #fff;
     border: none;
     box-shadow: none;
@@ -2607,7 +2607,7 @@ a.c-btn-link:hover {
 .sp-container .sp-choose:hover{
     border: none;
     box-shadow: none;
-    background: #25af36;
+    background: #007bff;
     text-shadow: none;
 }
 
@@ -2634,7 +2634,7 @@ a.c-btn-link:hover {
 }
 *::-webkit-scrollbar-thumb:horizontal:hover,
 *::-webkit-scrollbar-thumb:vertical:hover {
-    background-color: #25AF36;
+    background-color: #007bff;
 }
 *::-webkit-scrollbar-thumb:horizontal,
 *::-webkit-scrollbar-thumb:vertical{
@@ -2736,11 +2736,11 @@ a.c-btn-link:hover {
     width: 100%;
     margin: 0;
     color: #fff;
-    background: #25AF36;
+    background: #007bff;
     border: none;
     padding: 10px;
     border-radius: 4px;
-    border-bottom: 4px solid #25AF36;
+    border-bottom: 4px solid #007bff;
     transition: all .2s ease;
     outline: none;
     text-transform: uppercase;
@@ -2748,7 +2748,7 @@ a.c-btn-link:hover {
 }
 
 .file-upload-btn:hover {
-    background: #25AF36;
+    background: #007bff;
     color: #ffffff !important;
     transition: all .2s ease;
     cursor: pointer;
@@ -2777,13 +2777,13 @@ a.c-btn-link:hover {
 
 .image-upload-wrap {
     margin-top: 20px;
-    border: 4px dashed #25AF36;
+    border: 4px dashed #007bff;
     position: relative;
 }
 
 .image-dropping,
 .image-upload-wrap:hover {
-    background-color: #25AF36;
+    background-color: #007bff;
     border: 4px dashed #ffffff;
 }
 

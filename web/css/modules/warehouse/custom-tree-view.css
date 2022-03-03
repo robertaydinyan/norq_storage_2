@@ -65,7 +65,10 @@ span{
     padding-left: 30px;
 }
 .group-product-index{
-    background: white;margin-top: 10px;border-radius: 5px;
+    background: white;
+    margin-top: 10px;
+    border-radius: 5px;
+    border:1px dashed #007bff;
 }
 .btn-add-product{
     cursor: pointer;
@@ -133,7 +136,7 @@ span{
     content: "\f07c";
     font-family: "Font Awesome 5 Pro" !important;
     font-size: 20px;
-    color: #29a746;
+    color: #007bff;
 }
 .file-tree .file-tree-folder.open::after {
     /*-webkit-transform: rotate(180deg);
@@ -141,7 +144,7 @@ span{
     transform: rotate(180deg);*/
     content: "\f07b";
     font-family: "Font Awesome 5 Pro" !important;
-    color: #29a746;
+    color:#007bff;
 }
 .file-tree li.file-tree-folder::before {
     display: inline-block;
@@ -164,4 +167,7 @@ span{
 }
 @media (max-width: 767px) {
     .custo-radio { margin-top: 5px; }
+}
+.table td {
+    font-size:13px;
 }

@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $model->name;
 
     <?php echo DetailView::widget([
         'model' => $model,
+        'options' => ['class' => 'table table-hover'],
         'attributes' => [
             'name',
             'className',

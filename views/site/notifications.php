@@ -19,7 +19,7 @@ $string .= '<div class="dropdown-notifications-item-content " >
     if($notifications[$i]['accept_url'] || $notifications[$i]['decline_url']){
     $string .= '<div class="control-buttons" style="margin-bottom:10px;">';
         if($notifications[$i]['accept_url']){
-        $string .= '<a class="btn btn-success btn-sm" href="'.$notifications[$i]['accept_url'].'">Ընդունել</a>';
+        $string .= '<a class="btn btn-primary btn-sm" href="'.$notifications[$i]['accept_url'].'">Ընդունել</a>';
         }
         if($notifications[$i]['decline_url']){
         $string .= '<a class="btn btn-danger btn-sm" style="margin-left:10px;" href="'.$notifications[$i]['decline_url'].'">Մերժել</a>';

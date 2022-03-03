@@ -31,6 +31,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
         <?= DetailView::widget([
             'model' => $model,
+            'options' => ['class' => 'table table-hover'],
             'attributes' => [
                 'id',
                 [
@@ -108,7 +109,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 <!--            $model->toWarehouse->user_id === Yii::$app->user->identity->id-->
             <?php if ($model->status !== 'Հաստատված') : ?>
                 <div>
-                    <a href="<?= Url::to(['shipping/confirm-shipping', 'shippingId' => $model->id]) ?>"  class="btn btn-success" >Տեղափոխության հաստատում</a>
+                    <a href="<?= Url::to(['shipping/confirm-shipping', 'shippingId' => $model->id]) ?>"  class="btn btn-primary" >Տեղափոխության հաստատում</a>
                 </div>
             <?php endif; ?>
 
@@ -150,17 +151,17 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             <?php if ($model->status !== 'Հաստատված հարցում') : ?>
                 <div style="display: flex">
                     <div class="col-lg-6">
-                        <a href="<?= Url::to(['shipping/edit-shipping-request', 'shippingId' => $model->id]) ?>"  class="btn btn-success" >Հարցման փոփոխում</a>
+                        <a href="<?= Url::to(['shipping/edit-shipping-request', 'shippingId' => $model->id]) ?>"  class="btn btn-primary" >Հարցման փոփոխում</a>
                     </div>
 
                     <div class="col-lg-6">
-                        <a href="<?= Url::to(['shipping/confirm-shipping-request', 'shippingId' => $model->id]) ?>"  class="btn btn-success" >Հարցման հաստատում</a>
+                        <a href="<?= Url::to(['shipping/confirm-shipping-request', 'shippingId' => $model->id]) ?>"  class="btn btn-primary" >Հարցման հաստատում</a>
                     </div>
                 </div>
             <?php elseif ($model->status == 'Հաստատված հարցում') : ?>
                     <div style="display: flex">
                         <div class="col-lg-6">
-                            <a href="<?= Url::to(['shipping-product/create', 'shippingId' => $model->id]) ?>"  class="btn btn-success" >Կատարել տեղափոխություն</a>
+                            <a href="<?= Url::to(['shipping-product/create', 'shippingId' => $model->id]) ?>"  class="btn btn-primary" >Կատարել տեղափոխություն</a>
                         </div>
                     </div>
 

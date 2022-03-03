@@ -632,9 +632,9 @@ $this->registerJsFile('@web/js/plugins/file-upload/file-field.js', ['depends' =>
 
     <div class="form-group" style="margin-top: 15px;">
         <?php if ($model->isNewRecord) : ?>
-            <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary']) ?>
         <?php else : ?>
-            <?= Html::submitButton('Թարմացնել', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('Թարմացնել', ['class' => 'btn btn-primary']) ?>
         <?php endif; ?>
     </div>
     <?php ActiveForm::end(); ?>

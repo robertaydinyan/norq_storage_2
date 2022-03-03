@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card card-body border-0 shadow rounded mt-3">
         <div class="d-flex align-items-center justify-content-between">
             <h1><?= Html::encode($this->title) ?></h1>
-            <?= Html::a('Ավելացնել Աշխատակից', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Ավելացնել Աշխատակից', ['create'], ['class' => 'btn btn-primary']) ?>
         </div>
 
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

@@ -2,6 +2,8 @@
 
 use app\components\Url;
 
+use app\components\Helper;
+
 $flags = array(
     'ru-RU' => 'ru',
     'en-US' => 'en',
@@ -11,8 +13,13 @@ $lang = Yii::$app->request->get('lang');
 $flag = $flags[$lang] ?: 'en';
 
 ?>
-<nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-    <a class="navbar-brand" href="/">Warehouse</a>
+<nav class="topnav navbar navbar-expand shadow navbar-light" id="sidenavAccordion" style=" background:#0055a5!important;">
+    <a class="navbar-brand" href="/warehouse/warehouse" style="color:#fff!important">Warehouse</a>
+    <?php
+    //        if(Yii::$app->controller->module->id == 'fastnet'){
+    Helper::constructMenu(Yii::$app->controller->module->id);
+    //        }
+    ?>
 
     <!--<form class="form-inline mr-auto d-none d-md-block w-100">
         <div class="form-group">
@@ -25,7 +32,7 @@ $flag = $flags[$lang] ?: 'en';
     <ul class="navbar-nav align-items-center ml-auto">
         <li class="nav-item dropdown no-caret mr-3 d-none d-md-inline">
             <a class="nav-link dropdown-toggle timer" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="d-none d-md-inline text-primary">
+                <div class="d-none d-md-inline " style="color:#fff">
                     <?php date_default_timezone_set('Asia/Yerevan');
                             echo $timestamp = date('H:i');?>
                 </div>
@@ -114,7 +121,7 @@ $flag = $flags[$lang] ?: 'en';
 <!--        </li>-->
         <li class="nav-item dropdown no-caret">
             <div class="dropdown">
-                <button class="g-btn" type="button dropdown-toggle" id="dropdownLangButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="g-btn flag" type="button dropdown-toggle" id="dropdownLangButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="/img/icons/flags/<?php echo $flag;?>.png" class="g-lang-flag g-lang-flag-show" alt="flag" width="20">
                 </button>
 
@@ -139,7 +146,7 @@ $flag = $flags[$lang] ?: 'en';
         </li>
         <li class="nav-item dropdown no-caret dropdown-notifications">
             <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell"></i>
+                <i class="fas fa-bell" style="color:#fff"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
                 <h6 class="dropdown-header dropdown-notifications-header">

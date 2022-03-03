@@ -74,7 +74,7 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         'enableGuessTitle'  => true,
         'addButtonPosition' => MultipleInput::POS_HEADER, // show add button in the header
         'addButtonOptions' => [
-            'class' => 'btn btn-success',
+            'class' => 'btn btn-primary',
             'label' => '<i class="fa fa-plus"></i>' // also you can use html code
         ],
         'removeButtonOptions' => [
@@ -112,7 +112,7 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
 </div>
 </div>
 <div class="form-group">
-    <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-success']) ?>
+    <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary']) ?>
 </div>
     <?php ActiveForm::end(); ?>
     <script>

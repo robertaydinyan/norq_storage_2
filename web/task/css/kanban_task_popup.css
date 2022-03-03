@@ -19,7 +19,7 @@
 /*    padding: 6px 45px 6px 14px;*/
 /*    border-top-left-radius: 50px;*/
 /*    border-bottom-left-radius: 50px;*/
-/*    background-color: #25af36;*/
+/*    background-color: #007bff;*/
 /*    color: #ffffff;*/
 /*    font-size: 20px;*/
 /*    cursor: pointer;*/
@@ -183,8 +183,8 @@
     height: 40px;
 }
 .knbn-tt-add span:hover{
-    border-bottom-color: #25af36;
-    color: #25af36;
+    border-bottom-color: #007bff;
+    color: #007bff;
 }
 .knbn-comment {
     display: flex;
@@ -290,8 +290,8 @@
     border-bottom: 1px dashed rgba(31,103,176,.5);
 }
 .knbn-tt-taskinproj span:last-child:hover {
-    border-bottom-color: #25af36;
-    color: #25af36;
+    border-bottom-color: #007bff;
+    color: #007bff;
 }
 
 .knbn-like-task {
@@ -299,7 +299,7 @@
     cursor: pointer;
 }
 .knbn-like-task:hover{
-    color: #25af36;
+    color: #007bff;
 }
 .knbn-ttc-top-else-btn {
     position: relative;
@@ -330,7 +330,7 @@
     padding: 0;
 }
 .knbn-ttc-top > div:nth-child(5) .knbn-tt-edit:hover {
-    color: #25af36;
+    color: #007bff;
 }
 .knbn-ttc-bottom .ui-widget.ui-widget-content {
     border:none;
@@ -547,7 +547,7 @@
     color: #858c96;
 }
 .z-ea-ch-radio-btn-active {
-    color: #25af36;
+    color: #007bff;
 }
 .z-ea-ch-inputs {
     padding: 10px 0;
@@ -598,7 +598,7 @@
     display: flex;
 }
 .z-ea-ch-header-status-items-green {
-    background-color: #25af36;
+    background-color: #007bff;
 }
 .z-ea-ch-header-status-items-grey {
     background-color: #edeef0;
@@ -661,7 +661,7 @@
 /*======================== checklistr part ends==========================*/
 /*======================== task right part starts==========================*/
 .knbn-ttcr-top {
-    background-color: #25af36;
+    background-color: #007bff;
     color: #ffffff;
     border-radius: 5px 5px 0 0;
     height: 40px;
@@ -814,7 +814,7 @@
 }
 
 .knbn-ttcr-cont-bottom-items-info a {
-    color: #25af36;
+    color: #007bff;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
@@ -923,7 +923,7 @@
 }
 
 .tt-checklist-list-responsibles-icon{
-    color: #25af36;
+    color: #007bff;
     margin-right: 4px;
 }
 .tt-checklist-item-context {
@@ -945,8 +945,8 @@
     width: fit-content;
 }
 .dashed-span-link-btn:hover {
-    border-bottom-color: #25af36;
-    color: #25af36;
+    border-bottom-color: #007bff;
+    color: #007bff;
 }
 
 .show {
@@ -1013,9 +1013,9 @@
 }
 .small-btn {
     font-size: 11px;
-    color: #25af36;
+    color: #007bff;
     padding: 3px;
-    border: 2px solid #25af36;
+    border: 2px solid #007bff;
     cursor: pointer;
 }
 .task-cont-tag-other, .task-cont-tag-related {

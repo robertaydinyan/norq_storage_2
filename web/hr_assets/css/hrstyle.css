@@ -12,10 +12,10 @@
     background-color: #f8f8f8;
 }
 .green-color{
-    color: #25af36;
+    color: #007bff;
 }
 .c-border{
-    border: 1px dashed #25af36;
+    border: 1px dashed #007bff;
 }
 .before-dot{
     position: relative;
@@ -26,7 +26,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #25af36;
+    background-color: #007bff;
     margin-right: 5px;
 }
 label{
@@ -102,7 +102,7 @@ span, .module-name{
 
 .c-table thead tr th td,
 .c-table tbody tr td {
-    border-right: 1px dashed #25af36;
+    border-right: 1px dashed #007bff;
 }
 .c-table.table-hover tbody tr:hover{
     background-color: #f5f5f5;
@@ -135,11 +135,11 @@ span, .module-name{
     text-transform: capitalize;
 }
 .hr-menu-link:hover{
-    color: #25af36;
+    color: #007bff;
     text-decoration: none;
 }
 .hr-menu-link-active{
-    color :#25af36;
+    color :#007bff;
 }
 .hr-image-name{
     display: flex;

@@ -228,7 +228,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
                    $products = ProductForRequest::find()->where(['shipping_id' => $model->id])->all();
                }
                ?>
-               <table class="table table-striped table-bordered mt-4" >
+               <table class="table table-hover mt-4" >
                    <thead>
                    <tr>
                        <th>ID</th>
@@ -321,7 +321,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
 </div>
     <div class="shipping-request-form col-sm-12">
         <div class="form-group">
-            <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-success check-counts']) ?>
+            <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary check-counts']) ?>
         </div>
     </div>
 

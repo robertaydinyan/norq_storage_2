@@ -28,7 +28,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
     </nav>
 
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-success" >Ստեղծել հարցում</a>
+        <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-primary" >Ստեղծել հարցում</a>
     </h1>
     <div style="padding:20px;">
         <form class="row" action="" method="get">
@@ -144,7 +144,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 </div>
             </div>
             <div class="col-sm-1">
-                <button type="submit" class="form-control b-none" >
+                <button type="submit" class="btn btn-primary b-none" >
                     <i class="fas fa-search"></i>
                 </button>
             </div>
@@ -205,16 +205,16 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
             'template' => '{view}{update}{accept}{decline}',
             'buttons' => [
                 'view' => function ($url, $model) {
-                    return Html::a('<i class="far fa-eye"></i>', $url, [
+                    return Html::a('<i class="fas fa-eye"></i>', $url, [
                         'title' => Yii::t('app', 'Դիտել'),
-                        'class' => 'btn btn-secondary  btn-sm mr-2'
+                        'class' => 'btn text-primary  btn-sm mr-2'
                     ]);
                 },
                 'update' => function ($url, $model) {
                     if($model->status != 3) {
-                        return Html::a('<i class="far fa-pencil"></i>', $url, [
+                        return Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                             'title' => Yii::t('app', 'Փոփոխել'),
-                            'class' => 'btn btn-secondary  btn-sm mr-2'
+                            'class' => 'btn text-primary  btn-sm mr-2'
                         ]);
                     } else {
                         return '';
@@ -224,12 +224,12 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                            if($model->status == 2) {
                                return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
                                    'title' => Yii::t('app', 'Հաստատել'),
-                                   'class' => 'btn btn-primary  btn-sm mr-2'
+                                   'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Հաստատել'),
-                                   'class' => 'btn btn-primary  btn-sm mr-2'
+                                   'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
                            }
                        },
@@ -237,12 +237,12 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                            if($model->status == 2) {
                                return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
                                    'title' => Yii::t('app', 'Մերժել'),
-                                   'class' => 'btn btn-danger  btn-sm mr-2'
+                                   'class' => 'btn text-danger  btn-sm mr-2'
                                ]);
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Մերժել'),
-                                   'class' => 'btn btn-danger  btn-sm mr-2'
+                                   'class' => 'btn text-danger  btn-sm mr-2'
                                ]);
                            }
                        },
@@ -312,16 +312,16 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'template' => '{view}{update}{accept}{decline}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="far fa-eye"></i>', $url, [
+                        return Html::a('<i class="fas fa-eye"></i>', $url, [
                             'title' => Yii::t('app', 'Դիտել'),
-                            'class' => 'btn btn-secondary  btn-sm mr-2'
+                            'class' => 'btn text-primary  btn-sm mr-2'
                         ]);
                     },
                     'update' => function ($url, $model) {
                         if($model->status != 3) {
-                            return Html::a('<i class="far fa-pencil"></i>', $url, [
+                            return Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                 'title' => Yii::t('app', 'Փոփոխել'),
-                                'class' => 'btn btn-secondary  btn-sm mr-2'
+                                'class' => 'btn text-primary  btn-sm mr-2'
                             ]);
                         } else {
                             return '';
@@ -331,7 +331,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                         if($model->status == 2) {
                             return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
                                 'title' => Yii::t('app', 'Հաստատել'),
-                                'class' => 'btn btn-primary  btn-sm mr-2'
+                                'class' => 'btn text-primary  btn-sm mr-2'
                             ]);
                         }
                     },
@@ -339,7 +339,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                         if($model->status == 2) {
                             return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
                                 'title' => Yii::t('app', 'Մերժել'),
-                                'class' => 'btn btn-danger  btn-sm mr-2'
+                                'class' => 'btn text-danger  btn-sm mr-2'
                             ]);
                         }
                     },
@@ -396,16 +396,16 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'template' => '{view}{update}{accept}{decline}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="far fa-eye"></i>', $url, [
+                        return Html::a('<i class="fas fa-eye"></i>', $url, [
                             'title' => Yii::t('app', 'Դիտել'),
-                            'class' => 'btn btn-secondary  btn-sm mr-2'
+                            'class' => 'btn text-primary  btn-sm mr-2'
                         ]);
                     },
                     'update' => function ($url, $model) {
                         if($model->status != 3) {
-                            return Html::a('<i class="far fa-pencil"></i>', $url, [
+                            return Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                 'title' => Yii::t('app', 'Փոփոխել'),
-                                'class' => 'btn btn-secondary  btn-sm mr-2'
+                                'class' => 'btn text-primary  btn-sm mr-2'
                             ]);
                         } else {
                             return '';
@@ -415,12 +415,12 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                            if($model->status == 2) {
                                return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
                                    'title' => Yii::t('app', 'Հաստատել'),
-                                   'class' => 'btn btn-primary  btn-sm mr-2'
+                                   'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Հաստատել'),
-                                   'class' => 'btn btn-primary  btn-sm mr-2'
+                                   'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
                            }
                        },
@@ -500,16 +500,16 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                    'template' => '{view}{update}{accept}{decline}',
                    'buttons' => [
                        'view' => function ($url, $model) {
-                           return Html::a('<i class="far fa-eye"></i>', $url, [
+                           return Html::a('<i class="fas fa-eye"></i>', $url, [
                                'title' => Yii::t('app', 'Դիտել'),
-                               'class' => 'btn btn-secondary  btn-sm mr-2'
+                               'class' => 'btn text-primary  btn-sm mr-2'
                            ]);
                        },
                        'update' => function ($url, $model) {
                            if($model->status != 3) {
-                               return Html::a('<i class="far fa-pencil"></i>', $url, [
+                               return Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                    'title' => Yii::t('app', 'Փոփոխել'),
-                                   'class' => 'btn btn-secondary  btn-sm mr-2'
+                                   'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
                            } else {
                                return '';
@@ -519,12 +519,12 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                            if($model->status == 2) {
                                return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
                                    'title' => Yii::t('app', 'Հաստատել'),
-                                   'class' => 'btn btn-primary  btn-sm mr-2'
+                                   'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Հաստատել'),
-                                   'class' => 'btn btn-primary  btn-sm mr-2'
+                                   'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
                            }
                        },
@@ -532,12 +532,12 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                            if($model->status == 2) {
                                return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
                                    'title' => Yii::t('app', 'Մերժել'),
-                                   'class' => 'btn btn-danger  btn-sm mr-2'
+                                   'class' => 'btn text-danger  btn-sm mr-2'
                                ]);
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Մերժել'),
-                                   'class' => 'btn btn-danger  btn-sm mr-2'
+                                   'class' => 'btn text-danger  btn-sm mr-2'
                                ]);
                            }
                        },
@@ -549,6 +549,9 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'tableOptions' => [
+            'class' => 'table table-hover'
+        ],
         'summary'=>'',
         'columns' => $columns,
     ]); ?>

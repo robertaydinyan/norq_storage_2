@@ -86,7 +86,7 @@ if (ArrayHelper::getValue(Yii::$app->getRequest()->getQueryParam('DealSearch'), 
         <h1><?= Html::encode($this->title) ?></h1>
 
         <?php if (Yii::$app->user->can('createDeal')) : ?>
-            <?= Html::a(Yii::t('app', 'Ստեղծել Գործարք'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a(Yii::t('app', 'Ստեղծել Գործարք'), ['create'], ['class' => 'btn btn-primary']) ?>
         <?php endif; ?>
     </div>
 
@@ -370,7 +370,7 @@ if (ArrayHelper::getValue(Yii::$app->getRequest()->getQueryParam('DealSearch'), 
             'buttons' => [
                 'view' => function ($url, $model) {
                     if (Yii::$app->user->can('viewDeal', ['model' => $model])) {
-                        return Html::a('<i class="far fa-eye"></i>', $url, [
+                        return Html::a('<i class="fas fa-eye"></i>', $url, [
                             'title' => Yii::t('app', 'Դիտել'),
                             'class' => 'btn text-primary btn-sm mr-2'
                         ]);
@@ -421,7 +421,7 @@ if (ArrayHelper::getValue(Yii::$app->getRequest()->getQueryParam('DealSearch'), 
 //                Html::button(Yii::t('app', 'Ներմուծում'), [
 //                    'type' => 'button',
 //                    'title' => Yii::t('app', 'Ներմուծում'),
-//                    'class' => 'btn btn-success ml-2'
+//                    'class' => 'btn btn-primary ml-2'
 //                ]),
             ]
         ],

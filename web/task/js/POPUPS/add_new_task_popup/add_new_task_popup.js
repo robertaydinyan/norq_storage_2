@@ -154,7 +154,7 @@ function kanbanTemplatesGenerationRightNewTaskPopup(options = {}) {
                     <div class = "knbn-new-task-temp"></div>
                     <div class = "knbn-new-task-popup-save-container">
                         <button class = "save-new-task c-btn">Поставить Задачу</button>
-                        <button id = "cancel-new-task" class = "c-btn c-btn-secondary c-btn-ol">Отменить</button>
+                        <button id = "cancel-new-task" class = "c-btn c-btn-primary c-btn-ol">Отменить</button>
                    </div>
                 </div>`);
             break;
@@ -185,7 +185,7 @@ function kanbanTemplatesGenerationRightNewTaskPopup(options = {}) {
                     <input data-date-type = "${options.date_type}" class="task-date-picker" type="text" value = "${options.date}">
                     <div class="task-date-picker-btns-cont">
                         <button class = "task-date-set c-btn c-btn-sm">Выбрать</button>
-                        <button class = "task-date-cancel c-btn c-btn-secondary c-btn-ol c-btn-sm">Закрыть</button>
+                        <button class = "task-date-cancel c-btn c-btn-primary c-btn-ol c-btn-sm">Закрыть</button>
                     </div>
                 </div>`);
             break;
