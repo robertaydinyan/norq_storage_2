@@ -2,7 +2,7 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-$lang = preg_replace('/[^A-Za-z0-9\-]/', '', $_GET['lang']) ?: 'en-UN';
+$lang = preg_replace('/[^A-Za-z0-9\-]/', '', $_GET['lang']) ?: 'en-US';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),

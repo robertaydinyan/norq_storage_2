@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel app\modules\warehouse\models\SearchSuppliersList */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Վճարումներ';
+$this->title = Yii::t('app', 'Payments');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
@@ -31,8 +31,8 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
    <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
     <div id="w3-collapse" class="collapse navbar-collapse">
         <ul id="w5" class="navbar-nav w-100 nav">
-            <li class="nav-item"><a class="nav-link" href="/warehouse/payments">ՎիՃակագրություն</a></li>
-            <li class="nav-item"><a class="nav-link" href="/warehouse/payments-log">Վճարումներ</a></li>
+            <li class="nav-item"><a class="nav-link" href="/warehouse/payments?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Statistics'); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="/warehouse/payments-log?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Payments'); ?></a></li>
         </ul>
     </div>
 </nav>

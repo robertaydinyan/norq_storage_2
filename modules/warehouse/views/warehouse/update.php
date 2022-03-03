@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /* @var $address app\modules\warehouse\models\Warehouse */
 /* @var $warehouse_types app\modules\warehouse\models\Warehouse */
 
-$this->title = 'Փոփոխել Պահեստ: ' . $model->id;
+$this->title = Yii::t('app', 'Change warehouse') . ': ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Warehouses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

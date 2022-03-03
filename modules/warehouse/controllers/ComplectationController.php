@@ -251,7 +251,7 @@ class ComplectationController extends Controller
                     }
                 }
             }
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', [
@@ -279,7 +279,7 @@ class ComplectationController extends Controller
                    Notifications::setNotification($value->id,"Փոփոխվել է կոմպլեկտացիա  ".$model->name,'/warehouse/complectation/view?id='.$model->id);
                 }
             } 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [
@@ -298,7 +298,7 @@ class ComplectationController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
     }
 
     /**

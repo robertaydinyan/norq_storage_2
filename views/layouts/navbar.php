@@ -1,12 +1,14 @@
 <?php
 
+use app\components\Url;
+
 $flags = array(
     'ru-RU' => 'ru',
     'en-US' => 'en',
     'hy' => 'hy',
 );
 $lang = Yii::$app->request->get('lang');
-$flag = $flags[$lang];
+$flag = $flags[$lang] ?: 'en';
 
 ?>
 <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
@@ -118,17 +120,17 @@ $flag = $flags[$lang];
 
                 <ul class="dropdown-menu lang-dropdown-menu dropdown-menu-right g-navbar-buttons-drop" aria-labelledby="dropdownLangButton" x-placement="bottom-end" style="position: absolute; transform: translate3d(-126px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
                     <li>
-                        <a class="dropdown-item" rel="alternate" hreflang="en" href="?lang=en-US">
+                        <a class="dropdown-item" rel="alternate" hreflang="en" href="<?php echo Url::current(['lang' => 'en-US']) ?>">
                             <img src="/img/icons/flags/en.png" class="g-lang-flag" alt="flag" width="20"> English
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" rel="alternate" hreflang="ru" href="?lang=ru-RU">
+                        <a class="dropdown-item" rel="alternate" hreflang="ru" href="<?php echo Url::current(['lang' => 'ru-RU']) ?>">
                             <img src="/img/icons/flags/ru.png" class="g-lang-flag" alt="flag" width="20"> русский
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" rel="alternate" hreflang="hy" href="?lang=hy">
+                        <a class="dropdown-item" rel="alternate" hreflang="hy" href="<?php echo Url::current(['lang' => 'hy']) ?>">
                             <img src="/img/icons/flags/hy.png" class="g-lang-flag" alt="flag" width="20"> Հայերեն
                         </a>
                     </li>

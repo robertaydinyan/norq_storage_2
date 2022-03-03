@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <table class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap">
             <?php foreach ($regions as $region => $region_val){ ?>
                 <tr>
-                    <td><a class="nav-link" href="<?= Url::to(['by-type']) ?>?type=<?php echo $type;?>&region=<?php echo $region_val->id;?>"><?php echo $region_val->name;?></a></td>
-                    <td><a class="nav-link" href="<?= Url::to(['show-by-type']) ?>?type=<?php echo $type;?>&region=<?php echo $region_val->id;?>">Դիտել (<?php echo Warehouse::getCountByRegion($type,$region_val->id);?>)</a></td>
+                    <td><a class="nav-link" href="<?= Url::to(['by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $type;?>&region=<?php echo $region_val->id;?>"><?php echo $region_val->name;?></a></td>
+                    <td><a class="nav-link" href="<?= Url::to(['show-by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $type;?>&region=<?php echo $region_val->id;?>">Դիտել (<?php echo Warehouse::getCountByRegion($type,$region_val->id);?>)</a></td>
                 </tr>
             <?php } ?>
         </table>

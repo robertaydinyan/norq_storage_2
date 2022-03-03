@@ -106,7 +106,7 @@ class WarehouseController extends Controller {
 
         }
         else {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
     }
 
@@ -214,7 +214,7 @@ class WarehouseController extends Controller {
 
             Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
             Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', ['model' => $model, 'dataUsers' => $dataUsers, 'address' => $address, 'warehouse_types' => $warehouse_types, 'warehouse_groups' => $warehouse_groups, ]);
@@ -299,10 +299,10 @@ class WarehouseController extends Controller {
             }
             Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
             Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
-        return $this->render('update', ['model' => $model, 'dataUsers' => $dataUsers, 'responsiblePersons' => $responsiblePersons, 'address' => $address, ]);
+        return $this->render('update', ['model' => $model, 'dataUsers' => $dataUsers, 'responsiblePersons' => $responsiblePersons, 'address' => $address, 'lang' => \Yii::$app->language]);
     }
 
     public function actionDelete($id) {
@@ -311,7 +311,7 @@ class WarehouseController extends Controller {
             ->identity->username === 'ashotfast') {
             $this->findModel($id)->delete();
         }
-        $this->redirect(['index']);
+        $this->redirect(['index', 'lang' => \Yii::$app->language]);
     }
 
     protected function findModel($id) {

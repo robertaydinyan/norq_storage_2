@@ -60,15 +60,15 @@ class Warehouse extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type' => 'Պահեստի տեսակը',
-            'name' => 'Անուն',
-            'responsible_id' => 'Պահեստապետ',
-            'created_at' => 'Ստեղծվել է',
-            'updated_at' => 'Updated At',
+            'type' => Yii::t('app', 'Warehouse type'),
+            'name' => Yii::t('app', 'Name'),
+            'responsible_id' => Yii::t('app', 'storekeeper'),
+            'created_at' => Yii::t('app', 'Created'),
+            'updated_at' => Yii::t('app', 'Updated at'),
             'crm_company_id' => 'Crm Company ID',
             'crm_contact_id' => 'Crm Contact ID',
             'contact_address_id' => 'contact_address_id',
-            'group_id' => 'Խումբ',
+            'group_id' => Yii::t('app', 'group'),
         ];
     }
 

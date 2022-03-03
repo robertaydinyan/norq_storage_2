@@ -32,7 +32,7 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
         'maintainOrder' => true,
         'hideSearch' => true,
         'options' => [
-            'placeholder' => Yii::t('app', 'Ընտրել'),
+            'placeholder' => Yii::t('app', 'Select'),
         ],
         'pluginOptions' => [
             'allowClear' => true
@@ -46,7 +46,7 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
         'maintainOrder' => true,
         'hideSearch' => true,
         'options' => [
-            'placeholder' => Yii::t('app', 'Ընտրել'),
+            'placeholder' => Yii::t('app', 'Select'),
         ],
         'pluginOptions' => [
             'allowClear' => true
@@ -76,7 +76,7 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
                    id="address-checkbox"
                    class="form-control add-address-checkbox"
                 >
-            <label class="has-star" for="address-checkbox">Ավելացնել հասցե</label>
+            <label class="has-star" for="address-checkbox"><?php echo Yii::t('app', 'Add an address'); ?></label>
             <div class="help-block invalid-feedback"></div>
         </div>
 
@@ -86,7 +86,7 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
         <div class="row deal-address-block">
 
             <div class="col-sm-12 mt-3">
-                <hr data-content="<?= Yii::t('app', 'Հասցե') ?>" class="hr-text d-none">
+                <hr data-content="<?= Yii::t('app', 'Address') ?>" class="hr-text d-none">
             </div>
 
             <div class="col-sm-12 mt-3">
@@ -100,7 +100,7 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
                     'options' => [
                         'class' => 'country-select',
                         'id' => 'countries_comp',
-                        'placeholder' => Yii::t('app', 'Ընտրել'),
+                        'placeholder' => Yii::t('app', 'Select'),
                         'data-url' => \app\components\Url::to(['/fastnet/deal/get-regions-by-country'])
                     ],
                     'pluginOptions' => [
@@ -219,7 +219,7 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

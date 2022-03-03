@@ -30,56 +30,56 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 </style>
 <div class="warehouse-view d-flex group-product-index" style="padding: 20px;">
     <div class="col-lg-4">
-        <h4><?= Html::encode($model->name) ?> (Պահեստ)</h4>
+        <h4><?= Html::encode($model->name) ?> (<?php echo Yii::t('app', 'Warehouse'); ?>)</h4>
         <?php if($model->type != 2){ ?>
         <?= DetailView::widget([
             'model' => $model,
             'attributes' => [
                 'name',
                 [
-                    'label' => 'Պահեստի տեսակը',
+                    'label' => Yii::t('app', 'Warehouse type'),
                     'value' => $model->getType($model->type)->name
                 ],
                 [
-                    'label' => 'Պահեստապետ',
+                    'label' => Yii::t('app', 'storekeeper'),
                     'value' => function ($model) {
                         $user = $model->getUser($model->responsible_id);
                         return $user->name.' '.$user->last_name;
                     }
                 ],
                 [
-                    'label' => 'Երկիր',
+                    'label' => Yii::t('app', 'Country'),
                     'value' => function ($model) {
                         return $model->contactAddress->country->name;
                     }
                 ],
                 [
-                    'label' => 'Մարզ',
+                    'label' => Yii::t('app', 'Region'),
                     'value' => function ($model) {
                         return $model->contactAddress->region->name;
                     }
                 ],
                 [
-                    'label' => 'Քաղաք',
+                    'label' => Yii::t('app', 'City'),
                     'value' => function ($model) {
                         return $model->contactAddress->city->name;
                     }
                 ],
                 [
-                    'label' => 'Փողոց',
+                    'label' => Yii::t('app', 'Street'),
                     'value' => function ($model) {
                         return $model->contactAddress->fastStreet->name;
                     }
                 ],
 
                 [
-                    'label' => 'Տուն',
+                    'label' => Yii::t('app', 'House'),
                     'value' => function ($model) {
                         return $model->contactAddress->house;
                     }
                 ],
                 [
-                    'label' => 'Ստեղծվել է',
+                    'label' => Yii::t('app', 'Created'),
                     'value' => function ($model) {
                         return date('d.m.Y',strtotime($model->created_at));
                     }
@@ -92,11 +92,11 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                 'attributes' => [
                     'name',
                     [
-                        'label' => 'Պահեստի տեսակը',
+                        'label' => Yii::t('app', 'Warehouse type'),
                         'value' => $model->getType($model->type)->name
                     ],
                     [
-                        'label' => 'Պահեստապետ',
+                        'label' => Yii::t('app', 'storekeeper'),
                         'value' => function ($model) {
                             $user = $model->getUser($model->responsible_id);
                             return $user->name . ' ' . $user->last_name;
@@ -108,11 +108,11 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
         } ?>
         <?php if(\Yii::$app->user->can('admin')){ ?>
         <p>
-            <?= Html::a('Փոփոխել', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('Ջնջել', ['delete', 'id' => $model->id], [
+            <?= Html::a(Yii::t('app', 'Change'), ['update', 'id' => $model->id, 'lang' => \Yii::$app->language], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id, 'lang' => \Yii::$app->language], [
                 'class' => 'btn btn-danger',
                 'data' => [
-                    'confirm' => 'Are you sure you want to delete this item?',
+                    'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
                     'method' => 'post',
                 ],
             ]) ?>
@@ -125,11 +125,11 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
             <thead>
             <?php if (!empty($dataProvider['result'])) : ?>
             <tr>
-                <th>Պահեստի անուն</th>
-                <th>Ապրանքի անուն</th>
-                <th>Ապրանքի Նկար</th>
-                <th>Քանակ</th>
-                <th>Ինդիվիդուալ</th>
+                <th><?php echo Yii::t('app','Warehouse name'); ?></th>
+                <th><?php echo Yii::t('app','Product name'); ?></th>
+                <th><?php echo Yii::t('app','Product Picture'); ?></th>
+                <th><?php echo Yii::t('app','Quantity'); ?></th>
+                <th><?php echo Yii::t('app','Individual'); ?></th>
             </tr>
             </thead>
             <tbody>
@@ -146,7 +146,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                     <?php else : ?>
                         <td><a href="#" data-toggle="modal" data-target="#viewInfo" onclick="showInfo(<?= $products['nid'] ?>,<?php echo $products['id'];?>)"><?= $products['count_n_product'] ?> <?= $products['qtype'] ?> </a></td>
                     <?php endif; ?>
-                      <td><?php if($products['individual']=='true'){ echo 'Այո';} else { echo 'Ոչ';} ?></td>
+                      <td><?php if($products['individual']=='true'){ echo Yii::t('app', 'Yes');} else { echo Yii::t('app', 'No');} ?></td>
                 </tr>
             <?php endforeach; ?>
    

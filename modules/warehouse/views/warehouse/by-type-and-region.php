@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach ($communities as $community => $community_val){ ?>
                 <tr>
                     <td><?php echo $community_val['id'];?></td>
-                    <td><a class="nav-link" href="<?= Url::to(['show-by-type']) ?>?type=<?php echo $type;?>&community=<?php echo $community_val['id'];?>"><?php echo $community_val['name'];?> (<?php echo Warehouse::getCountByCommunity($type,$community_val['id']);?>)</a></td>
+                    <td><a class="nav-link" href="<?= Url::to(['show-by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $type;?>&community=<?php echo $community_val['id'];?>"><?php echo $community_val['name'];?> (<?php echo Warehouse::getCountByCommunity($type,$community_val['id']);?>)</a></td>
                 </tr>
             <?php } ?>
         </table>

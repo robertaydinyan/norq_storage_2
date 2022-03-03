@@ -20,7 +20,7 @@ use app\modules\warehouse\models\Warehouse;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 
-$this->title = 'Ապրանքներ';
+$this->title = Yii::t('app', 'goods');
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -44,7 +44,7 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
 
 <div class="group-product-index">
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a href="/warehouse/group-product/show-group-products" class="btn btn-success" style="float: right;">Խմբեր</a>
+        <a href="/warehouse/group-product/show-group-products" class="btn btn-success" style="float: right;"><?php echo Yii::t('app', 'Groups'); ?></a>
     </h1>
 
 <div class="product-index group-product-index" style="padding: 20px;">
@@ -54,11 +54,11 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
             <thead>
             <?php if (!empty($dataProvider['result'])) : ?>
             <tr>
-                <th>Պահեստի անուն</th>
-                <th>Ապրանքի անուն</th>
-                <th>Ապրանքի Նկար</th>
-                <th>Քանակ</th>
-                <th>Ինդիվիդուալ</th>
+                <th><?php echo Yii::t('app', 'Warehouse name'); ?> </th>
+                <th><?php echo Yii::t('app', 'Product name'); ?> </th>
+                <th><?php echo Yii::t('app', 'Product Picture'); ?> </th>
+                <th><?php echo Yii::t('app', 'Quantity'); ?> </th>
+                <th><?php echo Yii::t('app', 'Individual'); ?> </th>
             </tr>
             </thead>
             <tbody>
@@ -74,7 +74,7 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
                     <?php else : ?>
                         <td><a href="#" data-toggle="modal" data-target="#viewInfo" onclick="showInfo(<?= $products['nid'] ?>,<?php echo $products['id'];?>)"><?= $products['count_n_product'] ?> <?= $products['qtype'] ?> </a></td>
                     <?php endif; ?>
-                      <td><?php if($products['individual']=='true'){ echo 'Այո';} else { echo 'Ոչ';} ?></td>
+                      <td><?php if($products['individual']=='true'){ echo Yii::t('app', 'Yes');} else { echo Yii::t('app', 'No');} ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -88,7 +88,7 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
                        if(isset($_GET['page']) && $page == intval($_GET['page'])){
                           $active = 'active';
                        }
-                        echo '<li class="page-item '.$active.'"><a class="page-link " href="/warehouse/product?page=' . $page . '">' . $page . '</a></li>';  
+                        echo '<li class="page-item '.$active.'"><a class="page-link " href="/warehouse/product?page=' . $page . '&lang=' . \Yii::$app->language . '">' . $page . '</a></li>';
                     }
                ?>
           </ul>

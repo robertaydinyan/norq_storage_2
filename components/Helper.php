@@ -161,6 +161,7 @@ class Helper
     {
 
         $modules = ['billing', 'crm', 'task', 'hr', 'fastnet', 'rbac', 'warehouse'];
+        $lang = Yii::$app->request->get('lang');
 
         if (in_array($module, $modules)) {
 
@@ -279,15 +280,15 @@ class Helper
                 $newSHipping = '';
             }
             $warehouse = [
-               ['label' => Yii::t('app', 'Հիմնական պահեստ'), 'url' => ['/warehouse/warehouse/view?id=20']],
-                ['label' => Yii::t('app', 'Պահեստներ'), 'url' => ['/warehouse/warehouse']],
-                ['label' => Yii::t('app', 'Ապրանքներ'), 'url' => ['/warehouse/product']],
-                ['label' => Yii::t('app', 'Փաստաթղթեր'), 'url' => ['/warehouse/shipping-request/documents']],
-                ['label' => Yii::t('app', 'Հարցումներ'), 'url' => ['/warehouse/shipping-request']],
-                ['label' => Yii::t('app', 'Տեղեկատուներ'), 'url' => ['/warehouse/qty-type']],
-                ['label' => Yii::t('app', 'Հաշվետվություններ'), 'url' => ['/warehouse/reports']],
-                ['label' => Yii::t('app', 'Կոմպլեկտացիա'), 'url' => ['/warehouse/complectation']],
-                ['label' => Yii::t('app', 'ՎՃարումներ'), 'url' => ['/warehouse/payments']],
+               ['label' => Yii::t('app', 'Main warehouse'), 'url' => ['/warehouse/warehouse/view?id=20&lang=' . $lang]],
+                ['label' => Yii::t('app', 'Warehouses'), 'url' => ['/warehouse/warehouse?lang=' . $lang]],
+                ['label' => Yii::t('app', 'goods'), 'url' => ['/warehouse/product?lang=' . $lang]],
+                ['label' => Yii::t('app', 'Documents'), 'url' => ['/warehouse/shipping-request/documents?lang=' . $lang]],
+                ['label' => Yii::t('app', 'Polls'), 'url' => ['/warehouse/shipping-request?lang=' . $lang]],
+                ['label' => Yii::t('app', 'Directory'), 'url' => ['/warehouse/qty-type?lang=' . $lang]],
+                ['label' => Yii::t('app', 'Reports'), 'url' => ['/warehouse/reports?lang=' . $lang]],
+                ['label' => Yii::t('app', 'Composition'), 'url' => ['/warehouse/complectation?lang=' . $lang]],
+                ['label' => Yii::t('app', 'Payments'), 'url' => ['/warehouse/payments?lang=' . $lang]],
             ];
 
             $rbac = [

@@ -13,7 +13,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 ?>
 <div class="group-product-index">
 
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-success" >Ստեղծել Կոմպլեկտացիա</a></h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-success" >Ստեղծել Կոմպլեկտացիա</a></h1>
 
     <?php Pjax::begin(); ?>
     <div style="padding:20px;" >
@@ -32,13 +32,13 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'template' => '{view}{delete}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="far fa-eye"></i>', $url, [
+                        return Html::a('<i class="far fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
                             'title' => Yii::t('app', 'Դիտել'),
                             'class' => 'btn text-primary btn-sm mr-2'
                         ]);
                     },
                     'delete' => function ($url, $model) {
-                        return Html::a('<i class="fas fa-trash-alt"></i>', $url, [
+                        return Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
                             'title' => Yii::t('app', 'Ջբջել'),
                             'class' => 'btn text-danger btn-sm',
                             'data' => [

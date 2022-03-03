@@ -55,14 +55,14 @@ class ContactAdress extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'contact_id' => Yii::t('app', 'Contact ID'),
             'company_id' => Yii::t('app', 'Company ID'),
-            'country_id' => Yii::t('app', 'Երկիր'),
-            'region_id' => Yii::t('app', 'Մարզ'),
-            'city_id' => Yii::t('app', 'Շրջան'),
-            'community_id' => Yii::t('app', 'Համայնք'),
-            'street' => Yii::t('app', 'Փողոց'),
-            'house' => Yii::t('app', 'Տուն'),
-            'housing' => Yii::t('app', 'Կորպուս'),
-            'apartment' => Yii::t('app', 'Բնակարան'),
+            'country_id' => Yii::t('app', 'Country'),
+            'region_id' => Yii::t('app', 'Region'),
+            'city_id' => Yii::t('app', 'District'),
+            'community_id' => Yii::t('app', 'Community'),
+            'street' => Yii::t('app', 'Street'),
+            'house' => Yii::t('app', 'House'),
+            'housing' => Yii::t('app', 'Building'),
+            'apartment' => Yii::t('app', 'Apartment'),
         ];
     }
     public static function getContactAddressToString($type, $id){

@@ -214,7 +214,8 @@ class Product extends \yii\db\ActiveRecord {
 
         if (!isset($data['show-series'])) {
             if (!isset($data['show-ware'])) {
-                $group_by = 'GROUP BY s_product.nomenclature_product_id';
+                // change
+                $group_by = 'GROUP BY s_product.id';
             }
             else {
                 $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
@@ -250,7 +251,7 @@ class Product extends \yii\db\ActiveRecord {
             $number_of_page = ceil(count($whProductsCount) / $results_per_page);
             $whProducts = Yii::$app
                 ->db
-                ->createCommand("SELECT s_warehouse.name as wname,s_nomenclature_product.img,s_nomenclature_product.id as nid,s_qty_type.type as qtype,s_nomenclature_product.individual,s_nomenclature_product.name as nomeclature_name,.s_warehouse.id,s_warehouse.contact_address_id,s_warehouse.type,nomenclature_product_id, sum(count) AS `count_n_product` FROM `s_product` LEFT JOIN `s_nomenclature_product` ON `s_product`.`nomenclature_product_id` = `s_nomenclature_product`.`id` LEFT JOIN `s_qty_type` ON `s_nomenclature_product`.`qty_type_id` = `s_qty_type`.`id` LEFT JOIN `s_warehouse` ON `s_product`.`warehouse_id` = `s_warehouse`.`id` WHERE `warehouse_id`=$id AND  `status`=1 AND s_product.count>0 GROUP BY `nomenclature_product_id`, `warehouse_id` ORDER BY `count_n_product` LIMIT " . $page_first_result . ',' . $results_per_page)->queryAll();
+                ->createCommand("SELECT s_warehouse.name as wname,s_nomenclature_product.img,s_nomenclature_product.id as nid,s_qty_type.type as qtype,s_nomenclature_product.individual,s_nomenclature_product.name as nomeclature_name,s_warehouse.id,s_warehouse.contact_address_id,s_warehouse.type,nomenclature_product_id, sum(count) AS `count_n_product` FROM `s_product` LEFT JOIN `s_nomenclature_product` ON `s_product`.`nomenclature_product_id` = `s_nomenclature_product`.`id` LEFT JOIN `s_qty_type` ON `s_nomenclature_product`.`qty_type_id` = `s_qty_type`.`id` LEFT JOIN `s_warehouse` ON `s_product`.`warehouse_id` = `s_warehouse`.`id` WHERE `warehouse_id`=$id AND  `status`=1 AND s_product.count>0 GROUP BY `nomenclature_product_id`, `warehouse_id` ORDER BY `count_n_product` LIMIT " . $page_first_result . ',' . $results_per_page)->queryAll();
             return ['result' => $whProducts, 'params' => $params, 'total' => $number_of_page];
         }
         else {
