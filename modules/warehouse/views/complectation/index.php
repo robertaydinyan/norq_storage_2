@@ -35,7 +35,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'template' => '{view}{delete}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="far fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
+                        return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
                             'title' => Yii::t('app', 'View'),
                             'class' => 'btn text-primary btn-sm mr-2'
                         ]);

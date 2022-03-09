@@ -44,7 +44,7 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
 
 <div class="group-product-index">
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a href="/warehouse/group-product/show-group-products" class="btn btn-success" style="float: right;"><?php echo Yii::t('app', 'Groups'); ?></a>
+        <a href="/warehouse/group-product/show-group-products" class="btn btn-primary" style="float: right;"><?php echo Yii::t('app', 'Groups'); ?></a>
     </h1>
 
 <div class="product-index " style="padding: 20px;">

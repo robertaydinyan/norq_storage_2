@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <li class="breadcrumb-item"><a href="<?= Url::to(['index']) ?>"><?php echo Yii::t('app', 'Back'); ?></a></li>
         </ol>
     </nav>
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-success" ><?php echo Yii::t('app', 'Create Warehouse'); ?></a></h4>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'Create Warehouse'); ?></a></h4>
         <div style="padding:20px;">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'template' => '{view}{update}{delete}',
                     'buttons' => [
                         'view' => function ($url, $model) {
-                            return Html::a('<i class="far fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
+                            return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
                                 'title' => Yii::t('app', 'View'),
                                 'class' => 'btn text-primary btn-sm mr-2'
                             ]);

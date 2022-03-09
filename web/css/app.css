@@ -9711,7 +9711,7 @@ button.bg-dark:focus {
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #187023 !important;
+  color: #007bff !important;
 }
 
 .text-secondary {
@@ -11949,7 +11949,7 @@ a.text-underline:hover {
 }
 
 .dropdown-toggle::after {
-  display: none;
+  display: none!important;
 }
 
 .sk-page-grid-sm-12,
