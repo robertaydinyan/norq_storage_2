@@ -67,7 +67,7 @@ class WarehouseTypesController extends Controller
         $model = new WarehouseTypes();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', [
@@ -87,7 +87,7 @@ class WarehouseTypesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [
@@ -106,7 +106,7 @@ class WarehouseTypesController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
     }
 
     /**

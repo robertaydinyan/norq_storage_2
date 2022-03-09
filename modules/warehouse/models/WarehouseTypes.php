@@ -38,7 +38,7 @@ class WarehouseTypes extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Անվանում',
+            'name' => Yii::t('app', 'Name'),
         ];
     }
     public function getCount() {

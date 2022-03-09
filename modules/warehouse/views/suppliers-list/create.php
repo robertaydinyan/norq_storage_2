@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\SuppliersList */
 
-$this->title = 'Ստեղծել մատակարար';
+$this->title = Yii::t('app', 'Create a provider');
 $this->params['breadcrumbs'][] = ['label' => 'Suppliers Lists', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);

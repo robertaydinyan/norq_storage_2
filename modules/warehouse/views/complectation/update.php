@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\Complectation */
 
-$this->title = 'Թարմացնել : ' . $model->name;
+$this->title = Yii::t('app', 'Update') . ' : ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Complectations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

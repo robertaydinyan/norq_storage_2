@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $suppliers app\modules\warehouse\models\ShippingType */
 /* @var $types app\modules\warehouse\models\ShippingType */
 /* @var $partners app\modules\warehouse\models\PartnersList */
-$this->title = 'Ստեղծել հարցում';
+$this->title = Yii::t('app', 'Create a query');
 $this->params['breadcrumbs'][] = ['label' => 'Shipping Requests', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);

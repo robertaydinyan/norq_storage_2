@@ -22,7 +22,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="col-sm-6">
-            <label class="control-label"   for="namiclature_id">Նամիկլատուրա</label>
+            <label class="control-label"   for="namiclature_id"><?php echo Yii::t('app', 'Nomenclature'); ?></label>
             <div id="showProducts"></div>
            <input type="text" class="form-control"   onfocus="selectProductNamiclature($(this))" required="required"><br>
            <input type="hidden" name="namiclature_id" class="namiclature_id">
@@ -37,7 +37,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
                 'maintainOrder' => true,
                 'hideSearch' => true,
                 'options' => [
-                    'placeholder' => Yii::t('app', 'Ընտրել'),
+                    'placeholder' => Yii::t('app', 'Select'),
                 ],
                 'pluginOptions' => [
                     'allowClear' => true,
@@ -61,7 +61,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
                                 'options' => [
                                     'id' => 'nomenclature_product',
                                     'class'=>'nm_products',
-                                    'placeholder' => Yii::t('app', 'Ընտրել')
+                                    'placeholder' => Yii::t('app', 'Select')
                                 ],
                                 'pluginOptions' => [
                                     'allowClear' => true
@@ -73,7 +73,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
                                 <select name="ComplectationProducts[product_id][]" class="ns_products form-control" required="required" >
                                     <option value=""></option>
                                 </select>
-                             <label class="control-label" for="shippingrequest-count">Ապրանք</label><div class="help-block"></div>
+                             <label class="control-label" for="shippingrequest-count"><?php echo Yii::t('app', 'good') ?></label><div class="help-block"></div>
                             </div>            
                         </div>
                        
@@ -87,14 +87,14 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
                       
                     </div>
                     <div class="add-address">
-                        <span class="btn-add-product">Ավելացնել</span>
+                        <span class="btn-add-product"><?php echo Yii::t('app', 'Add');?></span>
                     </div>
                 </div>
             <?php }  ?>
         </div>
     </div>
     <div class="form-group">
-        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary check-counts']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary check-counts']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 

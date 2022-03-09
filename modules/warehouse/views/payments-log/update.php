@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\QtyType */
 
-$this->title = 'Փոփոխել Վճարում';
+$this->title = Yii::t('app', 'Change payment');
 $this->params['breadcrumbs'][] = ['label' => 'Qty Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

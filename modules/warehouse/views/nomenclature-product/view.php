@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\warehouse\models\NomenclatureProduct */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Ապրանքի Նոմենկլատուրա', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Product Nomenclature'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 \yii\web\YiiAsset::register($this);
@@ -34,11 +34,11 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     ]) ?>
     </div>
     <p style="padding:20px;">
-        <?= Html::a('Փոփոխել', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Ջնջել', ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app', 'Change'), ['update', 'id' => $model->id, 'lang' => \Yii::$app->language], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id, 'lang' => \Yii::$app->language], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>

@@ -17,6 +17,6 @@ use yii\helpers\Url;
     <?php endforeach; ?>
 <?php else : ?>
     <ul style="display: block;padding-left: 0px;" >
-        <li><a href="<?= Url::to(['index']) ?>?id=<?=$tableTreeGroup['id']?> ">Ապրանքներ ( <?=NomenclatureProduct::findCountByGroup($tableTreeGroup['id'])?> Նոմ․)</a></li>
+        <li><a href="<?= Url::to(['index', 'lang' => \Yii::$app->language, 'id' => $tableTreeGroup['id']]) ?>"><?php echo Yii::t('app', 'goods'); ?> ( <?=NomenclatureProduct::findCountByGroup($tableTreeGroup['id'])?> <?php echo Yii::t('app', 'Nom.') ?>)</a></li>
     </ul>
 <?php endif; ?>

@@ -14,7 +14,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 ?>
 <div class="qty-type-view group-product-index">
 
-    <h4 style="padding: 20px;">Քանակի տեսակ ։ <?= Html::encode($model->type) ?></h4>
+    <h4 style="padding: 20px;"><?php echo Yii::t('app', 'Quantity type'); ?> ։ <?= Html::encode($model->type) ?></h4>
 
 
 
@@ -29,11 +29,11 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         ]) ?>
     </div>
     <p style="padding: 20px;">
-        <?= Html::a('Փոփոխել', ['update', 'id' => $model->id], ['class' => 'btn btn-sm btn-primary']) ?>
-        <?= Html::a('Ջնջել', ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app', 'Change'), ['update', 'id' => $model->id], ['class' => 'btn btn-sm btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-sm btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>

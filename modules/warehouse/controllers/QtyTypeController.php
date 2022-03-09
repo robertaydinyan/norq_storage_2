@@ -67,7 +67,7 @@ class QtyTypeController extends Controller
         $model = new QtyType();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', [
@@ -87,7 +87,7 @@ class QtyTypeController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [
@@ -106,7 +106,7 @@ class QtyTypeController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
     }
 
     /**

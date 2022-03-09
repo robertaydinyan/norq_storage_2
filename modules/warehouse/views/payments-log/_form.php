@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
     </div>
     <div style="padding-left: 15px;">
-        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

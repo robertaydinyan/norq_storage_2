@@ -62,7 +62,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                        class="form-control"
                        name="NomenclatureProduct[individual]"
                     <?= $model->individual == 'true' ? 'checked' : ''; ?>>
-                <label class="has-star" for="individual-status"><?= Yii::t('app', 'ինդիվիդուալ') ?></label>
+                <label class="has-star" for="individual-status"><?= Yii::t('app', 'Individual') ?></label>
                 <div class="help-block invalid-feedback"></div>
             </div>
 
@@ -75,7 +75,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
             'data' => $qtyTypes,
             'maintainOrder' => true,
             'options' => [
-                'placeholder' => Yii::t('app', 'Ընտրել'),
+                'placeholder' => Yii::t('app', 'Select'),
             ],
             'pluginOptions' => [
                 'tags' => true,
@@ -85,14 +85,14 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
         <?php if($model->img ){ ?>
             <img src="<?php echo $model->img;?>" width="200" alt="">
         <?php } ?>
-        <label class="control-label">Նկար</label>
+        <label class="control-label"><?php echo Yii::t('app', 'Image'); ?></label>
         <input type="file" name="image" >
 
     </div>
     <div class="col-lg-4">
 
 
-        <label>Խումբ</label>
+        <label><?php echo Yii::t('app', 'Group');?></label>
         <ul class="file-tree" style="border:1px solid lightgrey;padding: 20px;padding-left: 30px;">
             <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
                 <li class="file-tree-folder"> <span> <?= $tableTreeGroup['name'] ?></span>
@@ -112,10 +112,10 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
     <br>
     <?php if($modal->isNewRecord){ ?>
     <div class="form-group">
-        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary','disabled'=>'disabled']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary','disabled'=>'disabled']) ?>
     </div>
     <?php } else { ?>
-         <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary']) ?>
+         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
     <?php } ?>
     <?php ActiveForm::end(); ?>
 

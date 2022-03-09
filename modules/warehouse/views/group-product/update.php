@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\warehouse\models\GroupProduct */
 /* @var $groupProducts app\modules\warehouse\models\GroupProduct */
 
-$this->title = 'Փոփոխել Ապրանքի խումբ ' . $model->name;
+$this->title = Yii::t('app', 'Change') . ' ' . Yii::t('app', 'Product group') . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Group Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

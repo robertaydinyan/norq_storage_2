@@ -22,11 +22,11 @@
         <ul style="display: block;">
             <?php $groupProductsTabele = $groupProducts->where(['s_group_product.id'=> $tableTreeGroup['id']])->asArray()->all() ?>
             <?php if (!empty($groupProductsTabele)) : ?>
-                <a href="<?= \app\components\Url::to(['/warehouse/group-product/show-group-products', 'group_id' => $tableTreeGroup['id']]) ?>">
-                    <i class="fal fa-file-export">Ապրանքներ (<?php echo $groupProducts->where(['s_group_product.id'=> $tableTreeGroup['id'],'s_product.status'=> 1])->count() ?>)</i>
+                <a href="<?= \app\components\Url::to(['/warehouse/group-product/show-group-products', 'group_id' => $tableTreeGroup['id'], 'lang' => Yii::$app->language]) ?>">
+                    <i class="fal fa-file-export"><?php echo Yii::t('app', 'goods'); ?> (<?php echo $groupProducts->where(['s_group_product.id'=> $tableTreeGroup['id'],'s_product.status'=> 1])->count() ?>)</i>
                 </a>
             <?php else: ?>
-                <p>Ապրանքներ չկան</p>
+                <p><?php Yii::t('app', 'There are no products'); ?></p>
             <?php endif; ?>
         </ul>
 <?php endif; ?>

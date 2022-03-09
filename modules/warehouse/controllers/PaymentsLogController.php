@@ -71,7 +71,7 @@ class PaymentsLogController extends Controller
         $tableTreePartners = $this->buildTree($partners);
 
         if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
 
@@ -109,7 +109,7 @@ class PaymentsLogController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [
@@ -128,7 +128,7 @@ class PaymentsLogController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
     }
 
     /**

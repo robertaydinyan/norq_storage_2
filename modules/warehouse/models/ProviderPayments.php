@@ -37,7 +37,10 @@ class ProviderPayments extends \yii\db\ActiveRecord
      */
     public function attributeLabels()
     {
-        return ['price'=>'Գումար','provider_id'=>'Մատակարար'];
+        return [
+            'price' => Yii::t('app', 'amount'),
+            'provider_id' => Yii::t('app', 'Supplier')
+        ];
     }
 
 }

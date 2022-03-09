@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\WarehouseGroups */
 
-$this->title = 'Ստեղծել տեսակ';
+$this->title = Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Type');
 $this->params['breadcrumbs'][] = ['label' => 'Warehouse Groups', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);

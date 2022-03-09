@@ -37,7 +37,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
         'maintainOrder' => true,
         'hideSearch' => true,
         'options' => [
-            'placeholder' => Yii::t('app', 'Ընտրել'),
+            'placeholder' => Yii::t('app', 'Select'),
         ],
         'pluginOptions' => [
             'allowClear' => true,
@@ -45,12 +45,12 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
         ],
     ]) ?>
      <div class="form-group field-shippingrequest-request_id hide ">
-        <label class="control-label" for="product-invoice">Գնման հայտ</label>
+        <label class="control-label" for="product-invoice"><?php echo Yii::t('app', 'Purchase request'); ?></label>
         <input type="text" id="product-invoice" value="<?php echo $model->request_id;?>" class="form-control" name="ShippingRequest[request_id]" maxlength="255">
      </div>
  
       <div class="form-group date_">
-        <label class="control-label" for="product-invoice">Ամսաթիվ</label>
+        <label class="control-label" for="product-invoice"><?php echo Yii::t('app', 'Date'); ?></label>
         <?php if(!$model->isNewRecord){ ?>
             <input type="text" id="date_create" disabled value="<?php echo date('Y-m-d',strtotime($model->created_at));?>" class="form-control datepicker" name="ShippingRequest[date_create]" >
         <?php } else { ?>
@@ -62,7 +62,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
             $warehouseId = Warehouse::find()->where(['responsible_id'=>Yii::$app->user->getId()])->one()->id;
         ?>
            <div class="form-group field-shippingrequest-provider_warehouse_id">
-                <label class="control-label" for="shippingrequest-provider_warehouse_id">Փոխանցող պահեստ</label>
+                <label class="control-label" for="shippingrequest-provider_warehouse_id"><?php echo Yii::t('app', 'Transfer warehouse'); ?></label>
                 <input type="text" id="shippingrequest-provider_warehouse_id" onfocus="selectWarehouse($(this))" disabled class="form-control" >
                 <input type="hidden" name="ShippingRequest[provider_warehouse_id]" value="<?php echo $warehouseId;?>">
           </div>
@@ -75,14 +75,14 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
         </script>
         <?php } else { ?>
          <div class="form-group field-shippingrequest-provider_warehouse_id">
-            <label class="control-label" for="shippingrequest-provider_warehouse_id">Փոխանցող պահեստ</label>
+            <label class="control-label" for="shippingrequest-provider_warehouse_id"><?php echo Yii::t('app', 'Transfer warehouse'); ?></label>
             <input type="text" id="shippingrequest-provider_warehouse_id" onfocus="selectWarehouse($(this))" class="form-control" >
             <input type="hidden" name="ShippingRequest[provider_warehouse_id]" >
       </div>
        <?php } ?>
         <div id="showWarehouse"></div>
        <div class="form-group field-shippingrequest-supplier_warehouse_id">
-            <label class="control-label" for="shippingrequest-supplier_warehouse_id">Ստացող պահեստ</label>
+            <label class="control-label" for="shippingrequest-supplier_warehouse_id"><?php echo Yii::t('app', 'Supplier warehouse'); ?></label>
             <input type="text" id="shippingrequest-supplier_warehouse_id" onfocus="selectWarehouse($(this))" class="form-control" >
             <input type="hidden" name="ShippingRequest[supplier_warehouse_id]" >
       </div>
@@ -96,7 +96,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
         'maintainOrder' => true,
         'hideSearch' => false,
         'options' => [
-            'placeholder' => Yii::t('app', 'Ընտրել'),
+            'placeholder' => Yii::t('app', 'Select'),
         ],
         'pluginOptions' => [
             'allowClear' => true
@@ -126,7 +126,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
 
     </div>
     <div class="form-group field-product-supplier_id hide for_bay">
-        <label class="control-label" for="product-supplier_id">Մատակարար <?php if(!$model->isNewRecord){ echo '`'.$model->supplierp['name'];}?></label>
+        <label class="control-label" for="product-supplier_id"><?php echo Yii::t('app', 'Supplier'); ?> <?php if(!$model->isNewRecord){ echo '`'.$model->supplierp['name'];}?></label>
 
         <div>
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
@@ -169,7 +169,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
                     'options' => [
                         'id' => 'nomenclature_product',
                         'class'=>'nm_products',
-                        'placeholder' => Yii::t('app', 'Ընտրել')
+                        'placeholder' => Yii::t('app', 'Select')
                     ],
                     'pluginOptions' => [
                         'allowClear' => true
@@ -181,11 +181,11 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
                     <select name="ShippingRequest[nomenclature_product_id][]" class="ns_products form-control" required="required" >
                         <option value=""></option>
                     </select>
-                 <label class="control-label" for="shippingrequest-count">Ապրանք</label><div class="help-block"></div>
-                </div>            
+                 <label class="control-label" for="shippingrequest-count"><?php Yii::t('app', 'Product'); ?></label><div class="help-block"></div>
+                </div>
             </div>
-           
-     
+
+
             <div class="col-sm-3">
                 <?= $form->field($model, 'count[]', [
                     'options' => ['class' => 'form-group counts-input sk-floating-label'],
@@ -195,28 +195,28 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
              <div class="col-sm-2 hide">
                 <div class="form-group counts-input sk-floating-label field-shippingrequest-tp">
                     <select name="ShippingRequest[action_type][]" class="tp form-control" required="required" >
-                        <option value="1">Ինտերնետ</option>
+                        <option value="1"><?php echo Yii::t('app', 'Internet'); ?></option>
                         <option value="2">Ip</option>
                         <option value="3">Tv</option>
                     </select>
-                 <label class="control-label" for="shippingrequest-tp">Գործ․ տեսակ</label><div class="help-block"></div>
-                </div>            
+                 <label class="control-label" for="shippingrequest-tp"><?php Yii::t('app', 'Transaction type'); ?></label><div class="help-block"></div>
+                </div>
             </div>
             <div class="col-sm-12 hide">
                 <div class="form-group price-input sk-floating-label field-shippingrequest-price">
                     <input type="number" id="shippingrequest-price" class="form-control" name="ShippingRequest[price][]" required="required" autocomplete="off">
-                    <label class="control-label" for="shippingrequest-price">Վաճառքի գին</label>
+                    <label class="control-label" for="shippingrequest-price"><?php Yii::t('app', 'Sale price'); ?></label>
                     <div class="help-block"></div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="remove-address d-none float-right">
-                    <span class="ui-btn ui-btn-xs ui-btn-danger card-action-btn-remove-address"><?= Yii::t('app', 'Ջնջել') ?></span>
+                    <span class="ui-btn ui-btn-xs ui-btn-danger card-action-btn-remove-address"><?= Yii::t('app', 'Delete') ?></span>
                 </div>
             </div>
         </div>
         <div class="add-address">
-            <span class="btn-add-product">Ավելացնել</span>
+            <span class="btn-add-product"><?php echo Yii::t('app', 'Add'); ?></span>
         </div>
     </div>
     <?php } else { ?>
@@ -232,10 +232,10 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
                    <thead>
                    <tr>
                        <th>ID</th>
-                       <th>Ապրանք</th>
-                       <th>Քանակ</th>
-                       <th>Ինդիվիդուալ</th>
-                       <th>Ջնջել</th>
+                       <th><?php echo Yii::t('app', 'Product') ?></th>
+                       <th><?php echo Yii::t('app', 'Count') ?></th>
+                       <th><?php echo Yii::t('app', 'Individual') ?></th>
+                       <th><?php echo Yii::t('app', 'Delete') ?></th>
                    </tr>
                    </thead>
                    <?php if(!empty($products)){?>
@@ -277,7 +277,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
                                    'id' => 'nomenclature_product',
                                    'class'=>'nm_products',
                                    'value'=>$prod_val->product_id,
-                                   'placeholder' => Yii::t('app', 'Ընտրել')
+                                   'placeholder' => Yii::t('app', 'Select')
                                ],
                                'pluginOptions' => [
                                    'allowClear' => true
@@ -297,12 +297,12 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
                        ?>
                        <div class="row product-block" >
                            <div class="col-sm-12 mt-3">
-                               <label class="control-label" style="margin-bottom: 0px !important;">Ապրանքի Նոմենկլատուրա</label>
+                               <label class="control-label" style="margin-bottom: 0px !important;"><?php echo Yii::t('app', 'Product Nomenclature'); ?></label>
                                <input type="text"  class="form-control"  value="<?php echo $prod->nProduct->name;?>" disabled="true" required="required" autocomplete="off">
                            </div>
                            <br>
                            <div class="col-sm-12">
-                               <label class="control-label" style="margin-bottom: 0px !important;">Քանակ</label>
+                               <label class="control-label" style="margin-bottom: 0px !important;"><?php echo Yii::t('app', 'Count'); ?></label>
                                <input type="text"  class="form-control"  value="<?php echo $prod_val->count;?>" disabled="true" required="required" autocomplete="off">
                            </div>
 
@@ -310,7 +310,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
                        <?php  if($product == count($products)-1){ ?>
                            <br>
                        <div class="add-address">
-                           <span class="btn-add-product">Ավելացնել</span>
+                           <span class="btn-add-product"><?php echo Yii::t('app', 'Add'); ?></span>
                        </div>
                        <?php } ?>
                    <?php } ?>

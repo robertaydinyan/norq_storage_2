@@ -42,9 +42,9 @@ class ComplectationProducts extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'n_product_count' => 'Քանակ',
+            'n_product_count' => Yii::t('app', 'Count'),
             'complectation_id' => 'Complectation ID',
-            'product_id' => 'Ապրանք',
+            'product_id' => Yii::t('app', 'good'),
         ];
     }
     public function getProduct()

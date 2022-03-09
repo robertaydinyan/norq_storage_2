@@ -120,7 +120,7 @@ class NomenclatureProductController extends Controller
                        Notifications::setNotification($value->id,"Ստեղծվել է նոր Նոմենկլատուրա ".$model->name,'/warehouse/nomenclature-product');
                     }
                 } 
-                return $this->redirect(['create']);
+                return $this->redirect(['create', 'lang' => \Yii::$app->language]);
             }
         }
 
@@ -173,7 +173,7 @@ class NomenclatureProductController extends Controller
             } 
             $model->production_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));
             if ($model->save()) {
-                return $this->redirect(['index']);
+                return $this->redirect(['index', 'lang' => \Yii::$app->language]);
             }
         }
 
@@ -205,7 +205,7 @@ class NomenclatureProductController extends Controller
         } 
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
     }
 
     /**

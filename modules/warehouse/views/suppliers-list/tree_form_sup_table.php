@@ -3,6 +3,7 @@
 /* @var $tableTreeGroup yii\data\ActiveDataProvider */
 /* @var $groupProducts yii\data\ActiveDataProvider */
 ?>
+<input type="hidden" name="lang" value="<?php echo Yii::$app->language; ?>">
 <?php if(array_key_exists('children', $tableTreePartner)) : ?>
     <?php foreach ($tableTreePartner['children'] as $tableTreePartner) : ?>
         <li class="file-tree-folder"> <span data-name="<?= $tableTreePartner['name'] ?>" class="parent-block"><?= $tableTreePartner['name'] ?>

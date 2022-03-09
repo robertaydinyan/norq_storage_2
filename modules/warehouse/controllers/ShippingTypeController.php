@@ -76,7 +76,7 @@ class ShippingTypeController extends Controller
                    Notifications::setNotification($value->id,"Ստեղծվել է տեղափոխության տեսակ ".$model->name,'/warehouse/shipping-type');
                 }
             }
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', [
@@ -102,7 +102,7 @@ class ShippingTypeController extends Controller
                    Notifications::setNotification($value->id,"Փոփոխվել է տեղափոխության տեսակ ".$model->name,'/warehouse/shipping-type');
                 }
             }
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [
@@ -126,7 +126,7 @@ class ShippingTypeController extends Controller
                    Notifications::setNotification($value->id,"Ջնջվել է տեղափոխության տեսակ ".$id,'/warehouse/shipping-type');
                 }
             }   
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
     }
 
     /**

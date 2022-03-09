@@ -10,7 +10,7 @@ use yii\db\ActiveQuery;
 /* @var $tableTreeGroups yii\data\ActiveDataProvider */
 /* @var $groupProducts yii\data\ActiveDataProvider */
 
-$this->title = 'Ապրանքի խումբ';
+$this->title = Yii::t('app', 'Product group');
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -29,7 +29,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 </style>
 <div class="group-product-index" >
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <p style="float: right;"><button class="btn btn-sm btn-primary"  onclick="addPopup(0)">Ստեղծել Ապրանքի խումբ</button></p></h4>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <p style="float: right;"><button class="btn btn-sm btn-primary"  onclick="addPopup(0)"><?php echo Yii::t('app', 'Create a Product Group'); ?></button></p></h4>
     <div style="display: flex">
         <div class="col-lg-12">
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
@@ -59,10 +59,10 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                         </button>
                         <form method="post" action="">
                           <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
-                          <label for="fname">Անվանում</label><br>
+                          <label for="fname"><?php echo Yii::t('app', 'Name'); ?></label><br>
                           <input type="text" class="form-control" id="fname" name="name"><br>
                           <input type="hidden" id="group_id" name="group_id">
-                          <button class="btn btn-primary">Ավելացնել</button>
+                          <button class="btn btn-primary"><?php echo Yii::t('app', 'Add'); ?></button>
                         </form>
                     </div>
                 </div>
@@ -77,10 +77,10 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                     </button>
                     <form method="post" action="">
                         <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
-                        <label for="fname">Անվանում</label><br>
+                        <label for="fname"><?php echo Yii::t('app', 'Name'); ?></label><br>
                         <input type="text" class="form-control" id="fname__" name="name"><br>
                         <input type="hidden" id="id" name="id">
-                        <button class="btn btn-primary" type="submit" name="update_button">Պահպանել</button>
+                        <button class="btn btn-primary" type="submit" name="update_button"><?php echo Yii::t('app', 'Save'); ?></button>
                     </form>
                 </div>
             </div>

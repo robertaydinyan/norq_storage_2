@@ -4,6 +4,8 @@
 namespace app\modules\warehouse\models;
 
 
+use Yii;
+
 class QtyType extends \yii\db\ActiveRecord
 {
     /**
@@ -20,8 +22,8 @@ class QtyType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type'], 'required'],
-            [['type'], 'string', 'max' => 255],
+            [['type', 'type_ru', 'type_us'], 'required'],
+            [['type', 'type_ru', 'type_us'], 'string', 'max' => 255],
         ];
     }
 
@@ -32,7 +34,9 @@ class QtyType extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type' => 'Չափման միավորը',
+            'type_hy' => Yii::t('app', 'Unit of measurement(Armenian)'),
+            'type_ru' => Yii::t('app', 'Unit of measurement(Russian)'),
+            'type_us' => Yii::t('app', 'Unit of measurement(American)'),
         ];
     }
 

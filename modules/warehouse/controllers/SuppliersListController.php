@@ -53,7 +53,7 @@ class SuppliersListController extends Controller
                 $model->name = $form_data['name'];
                 $model->save(false);
             }
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
         $partners = SuppliersList::find()->asArray()->all();
         $tableTreePartners = $this->buildTree($partners);
@@ -111,7 +111,7 @@ class SuppliersListController extends Controller
                    Notifications::setNotification($value->id,"Ստեղծվել է նոր Գործընկեր ".$model->name,'/warehouse/suppliers-list');
                 }
             } 
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', [
@@ -137,7 +137,7 @@ class SuppliersListController extends Controller
                    Notifications::setNotification($value->id,"Փոփոխվել է Գործընկեր ".$model->name,'/warehouse/suppliers-list');
                 }
             } 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [
@@ -161,7 +161,7 @@ class SuppliersListController extends Controller
                    Notifications::setNotification($value->id,"Ջնջվել է Գործընկեր ".$id,'/warehouse/suppliers-list');
                 }
             } 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
     }
 
     /**

@@ -7,13 +7,13 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Կոմպլեկտացիա';
+$this->title = Yii::t('app', 'Composition');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
 <div class="group-product-index">
 
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" >Ստեղծել Կոմպլեկտացիա</a></h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a></h1>
 
     <?php Pjax::begin(); ?>
     <div style="padding:20px;" >
@@ -31,21 +31,21 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             //'warehouse_id',
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header' => Yii::t('app', 'Գործողություն'),
+                'header' => Yii::t('app', 'Action'),
                 'template' => '{view}{delete}',
                 'buttons' => [
                     'view' => function ($url, $model) {
                         return Html::a('<i class="far fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
-                            'title' => Yii::t('app', 'Դիտել'),
+                            'title' => Yii::t('app', 'View'),
                             'class' => 'btn text-primary btn-sm mr-2'
                         ]);
                     },
                     'delete' => function ($url, $model) {
                         return Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
-                            'title' => Yii::t('app', 'Ջբջել'),
+                            'title' => Yii::t('app', 'Delete'),
                             'class' => 'btn text-danger btn-sm',
                             'data' => [
-                                'confirm' => 'Are you absolutely sure ? You will lose all the information about this user with this action.',
+                                'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
                                 'method' => 'post',
                             ],
                         ]);

@@ -49,15 +49,15 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'vendor_code' => 'Լրիվ անուն',
-            'name' => 'Անուն',
-            'production_date' => 'Արտադրության ամսաթիվը',
-            'individual' => 'Անհատական',
-            'min_qty' => 'Մինիմալ քանակ',
-            'qty_for_notice' => 'Հաստատում պահանջող քանակ',
+            'vendor_code' => Yii::t('app', 'Vendor code'),
+            'name' => Yii::t('app', 'Name'),
+            'production_date' => Yii::t('app', 'Production date'),
+            'individual' => Yii::t('app', 'Individual'),
+            'min_qty' => Yii::t('app', 'Min Quantity'),
+            'qty_for_notice' => Yii::t('app', 'Quantity required for approval'),
             'is_vip' => 'Vip',
-            'qty_type_id' => 'Քանակի տեսակ',
-            'group_id' => 'Խումբ',
+            'qty_type_id' => Yii::t('app', 'Quantity type'),
+            'group_id' => Yii::t('app', 'Group'),
         ];
     }
     public function getProducts()

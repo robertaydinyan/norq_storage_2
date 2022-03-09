@@ -23,7 +23,7 @@
                        class="ctr"
                        name="NomenclatureProduct[group_id]"
                 >
-                <label class="has-star" for="item<?php echo $tableTreeGroup['id']; ?>"><?= Yii::t('app', 'Ընտրել') ?></label>
+                <label class="has-star" for="item<?php echo $tableTreeGroup['id']; ?>"><?= Yii::t('app', 'Select') ?></label>
                 <div class="help-block invalid-feedback"></div>
             
 

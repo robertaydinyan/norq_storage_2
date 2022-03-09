@@ -5,7 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\QtyType */
 
-$this->title = 'Փոփոխել Չափման միավորը: ' . $model->type;
+$lang = explode('-', \Yii::$app->language)[0];
+$lang = $lang ?: 'us';
+
+$this->title = Yii::t('app', 'Change') . ' ' . Yii::t('app', 'Unit of measurement') . ': ' . $model->{'type_' . $lang};
 $this->params['breadcrumbs'][] = ['label' => 'Qty Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

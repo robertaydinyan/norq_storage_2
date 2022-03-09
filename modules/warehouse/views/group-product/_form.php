@@ -24,7 +24,7 @@ use kartik\select2\Select2;
         'maintainOrder' => true,
         'hideSearch' => true,
         'options' => [
-            'placeholder' => Yii::t('app', 'Ընտրել'),
+            'placeholder' => Yii::t('app', 'Select'),
         ],
         'pluginOptions' => [
             'allowClear' => true
@@ -32,7 +32,7 @@ use kartik\select2\Select2;
     ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

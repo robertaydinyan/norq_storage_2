@@ -10,7 +10,7 @@ use yii\helpers\Url;
 /* @var $tableTreeGroups yii\data\ActiveDataProvider */
 /* @var $groupProducts yii\data\ActiveDataProvider */
 
-$this->title = 'Ապրանքներ';
+$this->title = Yii::t('app', 'goods');
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -29,8 +29,8 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 
 <div  class="group-product-index">
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-primary" >Ստեղծել Խումբ</a>
-        <a href="/warehouse/product" style="float: right;margin-right: 10px;" class="btn btn-primary">Պահեստներ</a>
+        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a group'); ?></a>
+        <a href="/warehouse/product?lang=<?php echo \Yii::$app->language ?>" style="float: right;margin-right: 10px;" class="btn btn-primary"><?php echo Yii::t('app', 'Warehouse'); ?></a>
     </h1>
 
     <div style="clear: both;"></div>
@@ -54,13 +54,13 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
     <table id="products" class="kv-grid-table table table-hover kv-table-wrap" style="width:95%;background: white;">
     <thead>
     <tr>
-        <th>Անուն</th>
-        <th>Գին</th>
-        <th>Քանակ</th>
-        <th>Մատակարար</th>
-        <th>Մեկնաբանություն</th>
-        <th>Ինդիվիդուալ</th>
-        <th>Պահեստի Տեսակ</th>
+        <th><?php echo Yii::t('app', 'Name'); ?></th>
+        <th><?php echo Yii::t('app', 'Price'); ?></th>
+        <th><?php echo Yii::t('app', 'Count'); ?></th>
+        <th><?php echo Yii::t('app', 'Supplier'); ?></th>
+        <th><?php echo Yii::t('app', 'Comment'); ?></th>
+        <th><?php echo Yii::t('app', 'Individual'); ?></th>
+        <th><?php echo Yii::t('app', 'Warehouse type'); ?></th>
     </tr>
     </thead>
     <tbody>

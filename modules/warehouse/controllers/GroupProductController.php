@@ -55,7 +55,7 @@ class GroupProductController extends Controller
                 $model->name = $form_data['name'];
                 $model->save(false);
             }
-             return $this->redirect(['index']);
+             return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
         
         $groupProducts = Product::find()->select([
@@ -188,7 +188,7 @@ class GroupProductController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Notifications::setNotification(1,"Ստեղծվել է ապրանքի խումբ ՝ <b>".$model->name."</b> ",'/warehouse/group-product');
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', [
@@ -212,7 +212,7 @@ class GroupProductController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Notifications::setNotification(1,"փոփոխվել է ապրանքի խումբ ՝ <b>".$model->name."</b> ",'/warehouse/group-product');
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [

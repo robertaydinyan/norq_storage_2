@@ -39,7 +39,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                         'price',
                         'name',
                         'count',[
-                            'label' => 'Ստեղծվել է',
+                            'label' => Yii::t('app', 'Created'),
                             'value' => function ($model) {
                                 return date('d.m.Y',strtotime($model->created_at));
                             }
@@ -53,10 +53,10 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                     <thead>
                     <?php if (!empty($whProducts)) : ?>
                     <tr>
-                        <th>Անուն</th>
-                        <th>Քանակ</th>
-                        <th>Սերիա</th>
-                        <th>Ինդիվիդուալ</th>
+                        <th><?php echo Yii::t('app', 'Name'); ?></th>
+                        <th><?php echo Yii::t('app', 'Count'); ?></th>
+                        <th><?php echo Yii::t('app', 'Series'); ?></th>
+                        <th><?php echo Yii::t('app', 'Individual'); ?></th>
                     </tr>
                     </thead>
                     <tbody>

@@ -38,7 +38,7 @@ class ShippingType extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Անվանում',
+            'name' => Yii::t('app', 'Name'),
         ];
     }
 }

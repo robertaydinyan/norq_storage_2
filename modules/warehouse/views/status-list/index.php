@@ -7,13 +7,13 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\modules\warehouse\models\SearchStatusList */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Կարգավիճակներ';
+$this->title = Yii::t('app', 'Statuses');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <?= Html::a('Ստեղծել', ['create'], ['class' => 'btn btn-primary float-right']) ?></h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <?= Html::a(Yii::t('app', 'Create'), ['create', 'lang' => \Yii::$app->language], ['class' => 'btn btn-primary float-right']) ?></h1>
 
     <div style="padding: 20px;">
     <?php Pjax::begin(); ?>
@@ -33,8 +33,8 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'buttons' => [
                     'update' => function ($url, $model) {
                         return
-                            Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
-                                'title' => Yii::t('app', 'Թարմացնել'),
+                            Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                'title' => Yii::t('app', 'Update'),
                                 'class' => 'btn text-primary btn-sm mr-2'
                             ]);
                     }

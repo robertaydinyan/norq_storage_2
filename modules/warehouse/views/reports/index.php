@@ -21,11 +21,12 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
 <div class="shipping-request-create group-product-index">
     <br>
 <form class="row" action="" id="report_form" method="get" style="padding: 20px;">
+    <input type="hidden" name="lang" value="<?php echo Yii::$app->language; ?>">
     <div class="col-sm-12" style="margin-bottom: 10px;">
         <div class="row">
             <div class="col-sm-2">
                 <select name="warehouse_type" class="form-control warehouse_type">
-                    <option value="">Պահեստի տեսակ</option>
+                    <option value=""><?php echo Yii::t('app', 'Warehouse type'); ?></option>
                     <?php if(!empty($warehouse_types)){
                         foreach ($warehouse_types as $warehouse =>$wh){
                             echo '<option  value="'.$warehouse.'" >'.$wh.'</option>';
@@ -35,7 +36,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
             </div>
             <div class="col-sm-2 <?php if(@!$_GET['region_id']){ echo 'hide';}?> region">
                 <select name="region_id" class="form-control region_">
-                    <option value="">Շրջան</option>
+                    <option value=""><?php echo Yii::t('app', 'District'); ?></option>
                     <?php if(!empty($regions)){
                         foreach ($regions as $region =>$rg){
                             echo '<option  value="'.$region.'" >'.$rg.'</option>';
@@ -45,7 +46,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
             </div>
             <div class="col-sm-2 hide subgroup">
                 <select name="virtual_type" <?php if(@!$_GET['virtual_type']){ echo 'hide';}?> class="form-control virtual_type">
-                    <option value="">Վիրտուալ (տեսակներ)</option>
+                    <option value=""><?php echo Yii::t('app', 'Virtual (types)'); ?></option>
                     <?php if(!empty($groups)){
                         foreach ($groups as $group =>$gr){
                             echo '<option  value="'.$group.'" >'.$gr.'</option>';
@@ -55,12 +56,12 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
             </div>
             <div class="col-sm-2 <?php if(@!$_GET['community_id']){ echo 'hide';}?> community">
                 <select name="community_id" class="form-control community_select">
-                    <option value="">Համայնք</option>
+                    <option value=""><?php echo Yii::t('app', 'Community'); ?></option>
                 </select>
             </div>
             <div class="col-sm-2 hide ware" <?php if(@!$_GET['supplier_warehouse_id']){ echo 'hide';}?>>
                 <select name="supplier_warehouse_id" class="form-control ware_select">
-                    <option value="">Պահեստ</option>
+                    <option value=""><?php echo Yii::t('app', 'Warehouse'); ?></option>
                 </select>
             </div>
             <div class="col-sm-2">
@@ -68,7 +69,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
                     echo DatePicker::widget([
                         'name' => 'from_created_at', 
                         'value' => $_GET['from_created_at'],
-                        'options' => ['placeholder' => 'սկիզբ'],
+                        'options' => ['placeholder' => Yii::t('app', 'Start')],
                         'pluginOptions' => [
                             'format' => 'dd-mm-yyyy',
                             'todayHighlight' => true
@@ -82,7 +83,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
                     echo DatePicker::widget([
                         'name' => 'to_created_at', 
                         'value' => $_GET['to_created_at'],
-                        'options' => ['placeholder' => 'ավարտ'],
+                        'options' => ['placeholder' => Yii::t('app', 'End')],
                         'pluginOptions' => [
                             'format' => 'dd-mm-yyyy',
                             'todayHighlight' => true
@@ -99,22 +100,22 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
         <div class="row">
             <div class="col-sm-6">
                 <button type="submit" class="btn btn-primary form-control">
-                    Հավաքել
+                    <?php echo Yii::t('app', 'Collect'); ?>
                 </button>
             </div>
         </div>
     </div>
     <div class="col-sm-2">
         <div>
-            <a href="#" onclick="selectProduct()" style="margin-top:5px;display: block;">Ըստ Ապրանքների</a>
+            <a href="#" onclick="selectProduct()" style="margin-top:5px;display: block;"><?php echo Yii::t('app', 'By Products'); ?></a>
         </div>
         <div id="showProducts"></div>
     </div>
     <div class="col-sm-2">
-        <input type="checkbox" <?php if(@$_GET['show-ware']){ echo 'checked';}; ?> name="show-ware" value="1" id="ware"> <label class="ml-1"  for="ware">Ըստ պահեստների</label>
+        <input type="checkbox" <?php if(@$_GET['show-ware']){ echo 'checked';}; ?> name="show-ware" value="1" id="ware"> <label class="ml-1"  for="ware"><?php echo Yii::t('app', 'By warehouses'); ?></label>
     </div>
     <div class="col-sm-2">
-        <input type="checkbox" <?php if(@$_GET['show-series']){ echo 'checked';}; ?> name="show-series" id="series" value="1"><label class="ml-1" for="series">Ըստ սերաների</label>
+        <input type="checkbox" <?php if(@$_GET['show-series']){ echo 'checked';}; ?> name="show-series" id="series" value="1"><label class="ml-1" for="series"><?php echo Yii::t('app', 'By series'); ?></label>
     </div>
 
 </form>

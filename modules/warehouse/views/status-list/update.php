@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\StatusList */
 
-$this->title = 'Փոփոխել: ' . $model->name;
+$this->title = Yii::t('app', 'Change') . ': ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Status Lists', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

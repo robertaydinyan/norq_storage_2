@@ -46,7 +46,20 @@ class ShippingRequest extends \yii\db\ActiveRecord {
      * {@inheritdoc}
      */
     public function attributeLabels() {
-        return ['id' => 'ID', 'count' => 'Քանակ', 'created_at' => 'Created At', 'nomenclature_product_id' => 'Ապրանքի Նոմենկլատուրա', 'shipping_id' => 'Shipping ID', 'shipping_type' => 'Տեսակ', 'request_id' => 'Գնման հայտ', 'provider_warehouse_id' => 'Հանձնող պահեստ', 'supplier_warehouse_id' => 'Ստացող պահեստ', 'status' => 'Կարգավիճակ', 'comment' => 'Մեկնաբանություն', 'user_id' => 'Պատասխանատու'];
+        return [
+            'id' => 'ID',
+            'count' => Yii::t('app', 'Count'),
+            'created_at' => 'Created At',
+            'nomenclature_product_id' => Yii::t('app', 'Product Nomenclature'),
+            'shipping_id' => 'Shipping ID',
+            'shipping_type' => Yii::t('app', 'Type'),
+            'request_id' => Yii::t('app', 'Purchase request'),
+            'provider_warehouse_id' => Yii::t('app', 'Delivery warehouse'),
+            'supplier_warehouse_id' => Yii::t('app', 'Supplier warehouse'),
+            'status' => Yii::t('app', 'Status'),
+            'comment' => Yii::t('app', 'Comment'),
+            'user_id' => Yii::t('app', 'Responsible')
+        ];
     }
 
     public function getNProduct() {

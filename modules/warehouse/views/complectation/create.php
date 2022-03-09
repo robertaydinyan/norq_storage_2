@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model_products app\modules\warehouse\models\ComplectationProducts */
 /* @var $dataWarehouses app\modules\warehouse\models\Warehouse */
 
-$this->title = 'Ստեղծել կոմպլեկտացիա';
+$this->title = Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition');
 $this->params['breadcrumbs'][] = ['label' => 'Complectations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);

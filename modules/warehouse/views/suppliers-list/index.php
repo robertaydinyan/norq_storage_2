@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel app\modules\warehouse\models\SearchSuppliersList */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Գործընկերներ';
+$this->title = Yii::t('app', 'co-workers');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
@@ -55,10 +55,10 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                 </button>
                 <form method="post" action="">
                     <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
-                    <label for="fname">Անվանում</label><br>
+                    <label for="fname"><?php echo Yii::t('app', 'Name'); ?></label><br>
                     <input type="text" class="form-control" id="fname" name="name"><br>
                     <input type="hidden" id="group_id" name="parent_id">
-                    <button class="btn btn-primary">Ավելացնել</button>
+                    <button class="btn btn-primary"><?php echo Yii::t('app', 'Save'); ?></button>
                 </form>
             </div>
         </div>
@@ -73,10 +73,10 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                 </button>
                 <form method="post" action="">
                     <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
-                    <label for="fname">Անվանում</label><br>
+                    <label for="fname"><?php echo Yii::t('app', 'Name'); ?></label><br>
                     <input type="text" class="form-control" id="fname__" name="name"><br>
                     <input type="hidden" id="id" name="id">
-                    <button class="btn btn-primary" type="submit" name="update_button">Պահպանել</button>
+                    <button class="btn btn-primary" type="submit" name="update_button"><?php echo Yii::t('app', 'Save'); ?></button>
                 </form>
             </div>
         </div>

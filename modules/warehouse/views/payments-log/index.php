@@ -9,7 +9,7 @@ use app\modules\warehouse\models\SuppliersList;
 /* @var $searchModel app\modules\warehouse\models\QtyTypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Վճարումներ';
+$this->title = Yii::t('app', 'Payments');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
@@ -18,12 +18,12 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
        <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
         <div id="w3-collapse" class="collapse navbar-collapse">
             <ul id="w5" class="navbar-nav w-100 nav">
-                <li class="nav-item"><a class="nav-link" href="/warehouse/payments">ՎիՃակագրություն</a></li>
-                <li class="nav-item"><a class="nav-link" href="/warehouse/payments-log">Վճարումներ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/warehouse/payments"><?php echo Yii::t('app', 'Statistics'); ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="/warehouse/payments-log"><?php echo Yii::t('app', 'Payments'); ?></a></li>
             </ul>
         </div>
     </nav>
-    <h4 style="padding: 20px;" ><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել վճարում</a></h4>
+    <h4 style="padding: 20px;" ><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'make a payment'); ?></a></h4>
 
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -38,7 +38,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         'columns' => [
             'id',
             [
-                'label' => 'Մատակարար',
+                'label' => Yii::t('app', 'Supplier'),
                 'value' => function ($model) {
                     $provider = SuppliersList::findOne($model->provider_id);
                     return $provider->name;
@@ -48,22 +48,22 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header' => Yii::t('app', 'Հղում'),
+                'header' => Yii::t('app', 'Reference'),
                 'template' => '{update}{delete}',
                 'buttons' => [
                     'update' => function ($url, $model) {
                         return
                             Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
-                                'title' => Yii::t('app', 'Թարմացնել'),
+                                'title' => Yii::t('app', 'Update'),
                                 'class' => 'btn text-primary btn-sm mr-2'
                             ]);
                     },
                     'delete' => function ($url, $model) {
                         return Html::a('<i class="fas fa-trash-alt"></i>', $url, [
-                            'title' => Yii::t('app', 'Ջբջել'),
+                            'title' => Yii::t('app', 'Delete'),
                             'class' => 'btn text-danger btn-sm',
                             'data' => [
-                                'confirm' => 'Are you absolutely sure ? You will lose all the information about this user with this action.',
+                                'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
                                 'method' => 'post',
                             ],
                         ]);

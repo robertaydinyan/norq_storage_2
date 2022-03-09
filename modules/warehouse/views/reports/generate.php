@@ -19,22 +19,22 @@ if(!empty($data)){ ?>
             <thead>
             <tr style="background:#474747;color:#fff;">
                 <?php if(@$_GET['show-series']){ ?>
-                    <td>Սերիա</td>
+                    <td><?php echo Yii::t('app', 'Series');?></td>
                 <?php } ?>
-                <td>Անվանում</td>
+                <td><?php echo Yii::t('app', 'Name');?></td>
                 <?php if(@$_GET['show-ware']){ ?>
-                    <td>Պահեստ</td>
+                    <td><?php echo Yii::t('app', 'Warehouse');?></td>
                 <?php } ?>
                  <?php if(!$_GET['from_created_at'] || !$_GET['to_created_at'] || @!$_GET['show-ware']){ ?>
-                    <td>Քանակ</td>
+                    <td><?php echo Yii::t('app', 'Count');?></td>
                 <?php } ?>
-                <td>Գին</td>
-                <td>Ընդ</td>
+                <td><?php echo Yii::t('app', 'Price');?></td>
+                <td><?php echo Yii::t('app', 'General');?></td>
                 <?php if($_GET['from_created_at'] && $_GET['to_created_at'] && @$_GET['show-ware'] && @!$_GET['show-series']){ ?>
-                    <td>Սկզբնական մնացորդ</td>
-                    <td>Մուտք</td>
-                    <td>Ելք</td>
-                    <td>Վերջնական մնացորդ</td>
+                    <td><?php echo Yii::t('app', 'Opening balance');?></td>
+                    <td><?php echo Yii::t('app', 'Login');?></td>
+                    <td><?php echo Yii::t('app', 'Exit');?></td>
+                    <td><?php echo Yii::t('app', 'General');?></td>
                 <?php } ?>
             </tr>
             </thead>

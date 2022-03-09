@@ -44,11 +44,11 @@ class Complectation extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'price' => 'Արժեք',
-            'name' => 'Անվանում',
-            'count' => 'Քանակ',
-            'created_at' => 'Ստեղծման ամսաթիվ',
-            'warehouse_id' => 'Պահեստ',
+            'price' => Yii::t('app', 'Cost'),
+            'name' => Yii::t('app', 'Name'),
+            'count' => Yii::t('app', 'Count'),
+            'created_at' => Yii::t('app', 'Date of creation'),
+            'warehouse_id' => Yii::t('app', 'Warehouse'),
         ];
     }
 }

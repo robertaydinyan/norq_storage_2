@@ -67,7 +67,7 @@ class StatusListController extends Controller
         $model = new StatusList();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', [
@@ -87,7 +87,7 @@ class StatusListController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [
@@ -106,7 +106,7 @@ class StatusListController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
     }
 
     /**

@@ -41,8 +41,8 @@ class GroupProduct extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Անուն',
-            'group_id' => 'Paren Անուն',
+            'name' => Yii::t('app', 'Name'),
+            'group_id' => Yii::t('app', 'Parent Name'),
         ];
     }
     public function getNProducts()
