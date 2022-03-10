@@ -43,14 +43,18 @@ class SuppliersListController extends Controller
             $form_data = Yii::$app->request->post();
             if(!isset($form_data['update_button'])) {
                 $model = new SuppliersList();
-                $model->name = $form_data['name'];
+                $model->name_hy = $form_data['name_hy'];
+                $model->name_ru = $form_data['name_ru'];
+                $model->name_en = $form_data['name_en'];
                 if ($form_data['parent_id']) {
                     $model->parent_id = $form_data['parent_id'];
                 }
                 $model->save(false);
             } else {
                 $model = SuppliersList::find()->where(['id'=>$form_data['id']])->one();
-                $model->name = $form_data['name'];
+                $model->name_hy = $form_data['name_hy'];
+                $model->name_ru = $form_data['name_ru'];
+                $model->name_en = $form_data['name_en'];
                 $model->save(false);
             }
             return $this->redirect(['index', 'lang' => \Yii::$app->language]);
@@ -60,6 +64,11 @@ class SuppliersListController extends Controller
         return $this->render('index', [
             'tableTreePartners' => $tableTreePartners,
         ]);
+    }
+
+    public function actionGetSupplier($id) {
+        return json_encode(SuppliersList::find()->where(['id' => $id])->asArray()->one());
+
     }
     public function actionDeleteSup()
     {

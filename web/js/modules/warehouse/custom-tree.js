@@ -8,6 +8,24 @@ function editePopup(id, el_){
     $('#fname__').val(name);
     $('#id').val(id);
 }
+function editPopup(id , el_, path) {
+    console.log(path);
+    console.log(id);
+    $.ajax({
+        url: '/warehouse/' + path,
+        method: 'get',
+        dataType: 'Json',
+        data: { id: id},
+        success: function (data) {
+            $('#editeGroup').modal('show');
+            $('#fname__').val(data['name_hy']);
+            $('#fname2__').val(data['name_ru']);
+            $('#fname3__').val(data['name_en']);
+            $('#id').val(id);
+
+        }
+    });
+}
 function deletePopup(id, el_){
     var res = confirm('Ջնջել ՞');
     if(res){

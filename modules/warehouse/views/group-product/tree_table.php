@@ -1,13 +1,15 @@
 <?php
 
 /* @var $tableTreeGroup yii\data\ActiveDataProvider */
-/* @var $groupProducts yii\data\ActiveDataProvider */
+/* @var $groupProdgucts yii\data\ActiveDataProvider */
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+
 ?>
 <?php if(array_key_exists('children', $tableTreeGroup)) : ?>
     <?php foreach ($tableTreeGroup['children'] as $tableTreeGroup) : ?>
-        <li class="file-tree-folder" data-id="<?= $tableTreeGroup['id'] ?>"> <span data-name="<?= $tableTreeGroup['name'] ?>" class="parent-block"><?= $tableTreeGroup['name'] ?>
+        <li class="file-tree-folder" data-id="<?= $tableTreeGroup['id'] ?>"> <span data-name="<?= $tableTreeGroup['name_' . $lang] ?>" class="parent-block"><?= $tableTreeGroup['name_' . $lang] ?>
                 <i class="fa fa-plus" onclick="addPopup(<?= $tableTreeGroup['id'] ?>)"></i>
-                <i style="margin-left:5px;" class="fa fa-pencil" onclick="editePopup(<?= $tableTreeGroup['id'] ?>,$(this))"></i>
+                <i style="margin-left:5px;" class="fa fa-pencil" onclick="editPopup(<?= $tableTreeGroup['id'] ?>,$(this), 'group-product/get-group')"></i>
                 <i style="margin-left:5px;" class="fa fa-trash" onclick="deletePopup(<?= $tableTreeGroup['id'] ?>,$(this))"></i>
             </span>
             <ul style="display: block;">

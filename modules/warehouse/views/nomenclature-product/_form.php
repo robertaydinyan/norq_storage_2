@@ -11,6 +11,7 @@ use kartik\date\DatePicker;
 /* @var $qtyTypes app\modules\warehouse\models\NomenclatureProduct */
 /* @var $tableTreeGroups app\modules\warehouse\models\NomenclatureProduct */
 /* @var $form yii\widgets\ActiveForm */
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 
@@ -22,10 +23,19 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <div class="row">
     <div class="col-lg-8">
-    <?= $form->field($model, 'vendor_code')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'vendor_code_hy')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'min_qty')->textInput() ?>
+        <?= $form->field($model, 'vendor_code_ru')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'vendor_code_en')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'name_hy')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'name_ru')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'name_en')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'min_qty')->textInput() ?>
 
         <?= $form->field($model, 'qty_for_notice')->textInput() ?>
     <div class="form-row" style="margin-left:10px;">
@@ -95,7 +105,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
         <label><?php echo Yii::t('app', 'Group');?></label>
         <ul class="file-tree" style="border:1px solid lightgrey;padding: 20px;padding-left: 30px;">
             <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
-                <li class="file-tree-folder"> <span> <?= $tableTreeGroup['name'] ?></span>
+                <li class="file-tree-folder"> <span> <?= $tableTreeGroup['name_' . $lang] ?></span>
                     <ul style="display: block;">
                         <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/nomenclature-product/tree_table.php', [
                             'tableTreeGroup' => $tableTreeGroup,

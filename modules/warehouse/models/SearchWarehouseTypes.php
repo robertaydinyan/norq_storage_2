@@ -17,8 +17,8 @@ class SearchWarehouseTypes extends WarehouseTypes
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['name_hy', 'name_ru', 'name_en'], 'required'],
+            [['name_hy', 'name_ru', 'name_en'], 'string', 'max' => 255],
         ];
     }
 
@@ -40,6 +40,7 @@ class SearchWarehouseTypes extends WarehouseTypes
      */
     public function search($params)
     {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $query = WarehouseTypes::find();
 
         // add conditions that should always apply here
@@ -61,7 +62,7 @@ class SearchWarehouseTypes extends WarehouseTypes
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name_' . $lang, $this->{'name_' . $lang}]);
 
         return $dataProvider;
     }

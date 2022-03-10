@@ -36,7 +36,7 @@ class QtyType extends \yii\db\ActiveRecord
             'id' => 'ID',
             'type_hy' => Yii::t('app', 'Unit of measurement(Armenian)'),
             'type_ru' => Yii::t('app', 'Unit of measurement(Russian)'),
-            'type_en' => Yii::t('app', 'Unit of measurement(American)'),
+            'type_en' => Yii::t('app', 'Unit of measurement(English)'),
         ];
     }
 

@@ -12,6 +12,7 @@ $this->title = Yii::t('app', 'co-workers');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
 <style>
     thead input {
@@ -31,9 +32,9 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
                 <?php foreach ($tableTreePartners as $tableTreePartner) : ?>
                     <li class="file-tree-folder">
-                         <span data-name="<?= $tableTreePartner['name'] ?>" class="parent-block"><?= $tableTreePartner['name'] ?>
+                         <span data-name="<?= $tableTreePartner['name_' . $lang] ?>" class="parent-block"><?= $tableTreePartner['name_' . $lang] ?>
                             <i class="fa fa-plus" onclick="addPopup(<?= $tableTreePartner['id'] ?>)"></i>
-                            <i style="margin-left:5px;" class="fa fa-pencil" onclick="editePopup(<?= $tableTreePartner['id'] ?>,$(this))"></i>
+                            <i style="margin-left:5px;" class="fa fa-pencil" onclick="editPopup(<?= $tableTreePartner['id'] ?>,$(this), 'suppliers-list/get-supplier')"></i>
                         </span>
                         <ul style="display: block;">
                             <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/suppliers-list/tree_table.php', [
@@ -55,8 +56,12 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                 </button>
                 <form method="post" action="">
                     <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
-                    <label for="fname"><?php echo Yii::t('app', 'Name'); ?></label><br>
-                    <input type="text" class="form-control" id="fname" name="name"><br>
+                    <label for="fname"><?php echo Yii::t('app', 'Name(Armenian)'); ?></label><br>
+                    <input type="text" class="form-control" id="fname" name="name_hy"><br>
+                    <label for="fname2"><?php echo Yii::t('app', 'Name(Russian)'); ?></label><br>
+                    <input type="text" class="form-control" id="fname2" name="name_ru"><br>
+                    <label for="fname3"><?php echo Yii::t('app', 'Name(English)'); ?></label><br>
+                    <input type="text" class="form-control" id="fname3" name="name_en"><br>
                     <input type="hidden" id="group_id" name="parent_id">
                     <button class="btn btn-primary"><?php echo Yii::t('app', 'Save'); ?></button>
                 </form>
@@ -73,8 +78,12 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                 </button>
                 <form method="post" action="">
                     <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
-                    <label for="fname"><?php echo Yii::t('app', 'Name'); ?></label><br>
-                    <input type="text" class="form-control" id="fname__" name="name"><br>
+                    <label for="fname__"><?php echo Yii::t('app', 'Name(Armenian)'); ?></label><br>
+                    <input type="text" class="form-control" id="fname__" name="name_hy"><br>
+                    <label for="fname2__"><?php echo Yii::t('app', 'Name(Russian)'); ?></label><br>
+                    <input type="text" class="form-control" id="fname2__" name="name_ru"><br>
+                    <label for="fname3__"><?php echo Yii::t('app', 'Name(English)'); ?></label><br>
+                    <input type="text" class="form-control" id="fname3__" name="name_en"><br>
                     <input type="hidden" id="id" name="id">
                     <button class="btn btn-primary" type="submit" name="update_button"><?php echo Yii::t('app', 'Save'); ?></button>
                 </form>

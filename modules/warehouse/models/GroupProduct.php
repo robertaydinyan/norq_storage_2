@@ -28,9 +28,9 @@ class GroupProduct extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name_hy', 'name_ru', 'name_en'], 'required'],
+            [['name_hy', 'name_ru', 'name_en'], 'string', 'max' => 255],
             [['group_id'], 'integer'],
-            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,7 +41,9 @@ class GroupProduct extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => Yii::t('app', 'Name'),
+            'name_hy' => Yii::t('app', 'Name(Armenian)'),
+            'name_ru' => Yii::t('app', 'Name(Russian)'),
+            'name_en' => Yii::t('app', 'Name(English)'),
             'group_id' => Yii::t('app', 'Parent Name'),
         ];
     }

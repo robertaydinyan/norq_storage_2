@@ -10,6 +10,7 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Statuses');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
@@ -27,7 +28,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         'filterModel' => $searchModel,
         'columns' => [
             'id',
-            'name',
+            'name_' . $lang,
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{update}',
                 'buttons' => [

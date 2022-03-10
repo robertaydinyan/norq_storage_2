@@ -67,13 +67,15 @@ class ShippingTypeController extends Controller
      */
     public function actionCreate()
     {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+
         $model = new ShippingType();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $admins = User::find()->where(['role'=>'admin'])->all();
             if(!empty($admins)){
                 foreach ($admins as $key => $value) {
-                   Notifications::setNotification($value->id,"Ստեղծվել է տեղափոխության տեսակ ".$model->name,'/warehouse/shipping-type');
+                   Notifications::setNotification($value->id,"Ստեղծվել է տեղափոխության տեսակ ".$model->{'name_' . $lang},'/warehouse/shipping-type');
                 }
             }
             return $this->redirect(['index', 'lang' => \Yii::$app->language]);
@@ -93,13 +95,15 @@ class ShippingTypeController extends Controller
      */
     public function actionUpdate($id)
     {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
              $admins = User::find()->where(['role'=>'admin'])->all();
             if(!empty($admins)){
                 foreach ($admins as $key => $value) {
-                   Notifications::setNotification($value->id,"Փոփոխվել է տեղափոխության տեսակ ".$model->name,'/warehouse/shipping-type');
+                   Notifications::setNotification($value->id,"Փոփոխվել է տեղափոխության տեսակ ".$model->{'name_' . $lang},'/warehouse/shipping-type');
                 }
             }
             return $this->redirect(['index', 'lang' => \Yii::$app->language]);

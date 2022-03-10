@@ -7,7 +7,7 @@ use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\ShippingRequestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 $this->title = Yii::t('app', 'Polls');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJsFile('@web/js/modules/crm/contact.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
@@ -21,7 +21,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 <?php $uri = explode('?',$_SERVER['REQUEST_URI']); ?>
                  <li class="nav-item "><a class="nav-link <?php if(!isset($_GET['type'])){ echo 'active';} ?>" href="<?php echo $uri[0];?>"><?php echo Yii::t('app', 'All'); ?></a></li>
                  <?php foreach ($shipping_types as $shp_type => $shp_type_val){ ?>
-                   <li class="nav-item "><a class="nav-link <?php if(isset($_GET['type']) && ($_GET['type']==$shp_type_val->id)){ echo 'active';} ?>" href="?type=<?php echo $shp_type_val->id;?>&lang=<?php echo \Yii::$app->language; ?>"><?php echo $shp_type_val->name;?></a></li>
+                   <li class="nav-item "><a class="nav-link <?php if(isset($_GET['type']) && ($_GET['type']==$shp_type_val->id)){ echo 'active';} ?>" href="?type=<?php echo $shp_type_val->id;?>&lang=<?php echo \Yii::$app->language; ?>"><?php echo $shp_type_val->{'name_' . $lang};?></a></li>
                  <?php } ?>
             </ul>
         </div>
@@ -157,7 +157,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
             'attribute' => 'shippingType',
             'label' => Yii::t('app', 'Type of transportation'),
             'value' => function ($model) {
-                return $model->shippingtype->name;
+                return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
             }
         ],
         [
@@ -196,7 +196,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
         [
             'label' => Yii::t('app', 'Status'),
             'value' => function ($model) {
-                return $model->status_->name;
+                return $model->status_->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
             }
         ],
         [
@@ -257,7 +257,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'attribute' => 'shippingType',
                 'label' => Yii::t('app', 'Type of transportation'),
                 'value' => function ($model) {
-                    return $model->shippingtype->name;
+                    return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                 }
             ],
             [
@@ -354,7 +354,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'attribute' => 'shippingType',
                 'label' => Yii::t('app', 'Type of transportation'),
                 'value' => function ($model) {
-                    return $model->shippingtype->name;
+                    return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                 }
             ],
             [
@@ -448,7 +448,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                    'attribute' => 'shippingType',
                    'label' => Yii::t('app', 'Type of transportation'),
                    'value' => function ($model) {
-                       return $model->shippingtype->name;
+                       return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                    }
                ],
                [

@@ -35,10 +35,10 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'group_id'], 'required'],
+            [['group_id'], 'required'],
             [['production_date'], 'safe'],
             [['group_id', 'qty_type_id','qty_for_notice','min_qty'], 'integer'],
-            [['vendor_code', 'name', 'group', 'individual','img'], 'string', 'max' => 255],
+            [['vendor_code_hy', 'vendor_code_ru', 'vendor_code_en', 'name_hy', 'name_en', 'name_ru', 'group', 'individual','img'], 'string', 'max' => 255],
         ];
     }
 
@@ -49,8 +49,12 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'vendor_code' => Yii::t('app', 'Vendor code'),
-            'name' => Yii::t('app', 'Name'),
+            'vendor_code_hy' => Yii::t('app', 'Vendor code(Armenian)'),
+            'name_hy' => Yii::t('app', 'Name(Armenian)'),
+            'vendor_code_ru' => Yii::t('app', 'Vendor code(Russian)'),
+            'name_ru' => Yii::t('app', 'Name(Russian)'),
+            'vendor_code_en' => Yii::t('app', 'Vendor code(English)'),
+            'name_en' => Yii::t('app', 'Name(English)'),
             'production_date' => Yii::t('app', 'Production date'),
             'individual' => Yii::t('app', 'Individual'),
             'min_qty' => Yii::t('app', 'Min Quantity'),

@@ -11,6 +11,7 @@ use yii\helpers\Url;
 $this->title = Yii::t('app', 'Warehouse');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title;
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -63,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach ($warehouse_types as $ware_type => $ware_type_val){ ?>
             <tr>
 
-                <td><a class="nav-link" href="<?= Url::to(['by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $ware_type_val->id;?>"><?php echo $ware_type_val->name;?></a></td>
+                <td><a class="nav-link" href="<?= Url::to(['by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $ware_type_val->id;?>"><?php echo $ware_type_val->{'name_' . $lang};?></a></td>
                 <td><a class="nav-link" href="<?= Url::to(['show-by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $ware_type_val->id;?>"><?php echo \Yii::t('app','View');?> (<?php echo $ware_type_val->count;?>)</a></td>
             </tr>
             <?php } ?>

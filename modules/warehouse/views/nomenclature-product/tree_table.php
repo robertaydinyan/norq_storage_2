@@ -2,10 +2,11 @@
 
 /* @var $tableTreeGroup yii\data\ActiveDataProvider */
 /* @var $groupProducts yii\data\ActiveDataProvider */
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
 <?php if(array_key_exists('children', $tableTreeGroup)) : ?>
     <?php foreach ($tableTreeGroup['children'] as $tableTreeGroup) : ?>
-        <li class="file-tree-folder"> <span> <?= $tableTreeGroup['name'] ?></span>
+        <li class="file-tree-folder"> <span> <?= $tableTreeGroup['name_' . $lang] ?></span>
             <ul style="display: block;">
                 <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/nomenclature-product/tree_table.php', [
                     'tableTreeGroup' => $tableTreeGroup,

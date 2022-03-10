@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /* @var $qtyTypes app\modules\warehouse\models\NomenclatureProduct */
 /* @var $tableTreeGroups app\modules\warehouse\models\NomenclatureProduct */
 
-$this->title = 'Ստեղծել Ապրանքի Նոմենկլատուրա';
+$this->title = Yii::t('app', 'Create product nomenclature');
 $this->params['breadcrumbs'][] = ['label' => 'Nomenclature Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

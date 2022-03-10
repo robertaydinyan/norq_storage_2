@@ -41,7 +41,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'label' => Yii::t('app', 'Supplier'),
                 'value' => function ($model) {
                     $provider = SuppliersList::findOne($model->provider_id);
-                    return $provider->name;
+                    return $provider->{'name_' . (explode('-', \Yii::$app->language)[0] ?: 'en')};
                 }
             ],
             'price',

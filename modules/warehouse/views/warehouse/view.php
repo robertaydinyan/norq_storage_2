@@ -8,6 +8,7 @@ use yii\helpers\Url;
 /* @var $model app\modules\warehouse\models\Warehouse */
 /* @var $dataProvider app\modules\warehouse\models\Warehouse */
 /* @var $searchModel app\modules\warehouse\models\Warehouse */
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Warehouses', 'url' => ['index']];
@@ -39,7 +40,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                 'name',
                 [
                     'label' => Yii::t('app', 'Warehouse type'),
-                    'value' => $model->getType($model->type)->name
+                    'value' => $model->getType($model->type)->{'name_' . $lang}
                 ],
                 [
                     'label' => Yii::t('app', 'storekeeper'),
@@ -164,7 +165,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                        if(isset($_GET['page']) && $page == intval($_GET['page'])){
                           $active = 'active';
                        }
-                        echo '<li class="page-item '.$active.'"><a class="page-link " href="/warehouse/product?page=' . $page . '">' . $page . '</a></li>';  
+                        echo '<li class="page-item '.$active.'"><a class="page-link " href="/warehouse/product?page=' . $page . '&lang=' . Yii::$app->language . '">' . $page . '</a></li>';
                     }
                ?>
           </ul>

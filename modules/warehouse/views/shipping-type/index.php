@@ -6,6 +6,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\SearchShippingType */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
 $this->title = Yii::t('app', 'Type of transfer');
 $this->params['breadcrumbs'][] = $this->title;
@@ -29,7 +30,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         'columns' => [
 
             'id',
-            'name',
+            'name_' . $lang,
 
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{update}',

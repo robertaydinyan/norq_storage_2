@@ -26,8 +26,8 @@ class ShippingType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 255],
+            [['name_hy', 'name_ru', 'name_en'], 'required'],
+            [['name_hy', 'name_ru', 'name_en'], 'string', 'max' => 255],
         ];
     }
 
@@ -38,7 +38,9 @@ class ShippingType extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => Yii::t('app', 'Name'),
+            'name_hy' => Yii::t('app', 'Name(Armenian)'),
+            'name_ru' => Yii::t('app', 'Name(Russian)'),
+            'name_en' => Yii::t('app', 'Name(English)'),
         ];
     }
 }

@@ -18,7 +18,8 @@ class GroupProductSearch extends GroupProduct
     {
         return [
             [['id', 'group_id'], 'integer'],
-            [['name'], 'safe'],
+            [['name_hy', 'name_ru', 'name_en'], 'required'],
+            [['name_hy', 'name_ru', 'name_en'], 'string', 'max' => 255],
         ];
     }
 

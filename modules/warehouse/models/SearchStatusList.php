@@ -18,7 +18,7 @@ class SearchStatusList extends StatusList
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['name_hy', 'name_ru', 'name_en'], 'safe'],
         ];
     }
 
@@ -40,6 +40,8 @@ class SearchStatusList extends StatusList
      */
     public function search($params)
     {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+
         $query = StatusList::find();
 
         // add conditions that should always apply here
@@ -61,7 +63,7 @@ class SearchStatusList extends StatusList
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name_' . $lang, $this->{'name_' . $lang}]);
 
         return $dataProvider;
     }

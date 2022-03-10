@@ -7,6 +7,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\NomenclatureProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
 $this->title = Yii::t('app', 'Product Nomenclature');
 $this->params['breadcrumbs'][] = $this->title;
@@ -23,12 +24,13 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
             <div class="col-sm-3">
                 <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
                     <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
-                        <li class="file-tree-folder"> <span data-name="l<?= $tableTreeGroup['name'] ?>"> <?= $tableTreeGroup['name'] ?> </span>
+                        <li class="file-tree-folder"> <span data-name="l<?= $tableTreeGroup['name_' . $lang] ?>"> <?= $tableTreeGroup['name_' . $lang] ?> </span>
                             <ul style="display: block;">
                                 <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/nomenclature-product/tree_table_second.php', [
                                     'tableTreeGroup' => $tableTreeGroup,
                                 ]); ?>
                             </ul>
+                            <br>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -52,14 +54,20 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                             }
                            }
                          ],
-                        'vendor_code',
-                        'name',
+                        [
+                            'attribute' => 'vendor_code_' . $lang,
+                            'label' => Yii::t('app', 'Vendor code')
+                        ],
+                        [
+                            'attribute' => 'name_' . $lang,
+                            'label' => Yii::t('app', 'Name')
+                        ],
                         //'groupProduct.name',
                         [
                             'attribute' => 'groupName',
                             'label' => Yii::t('app', 'Group'),
                             'value' => function ($model) {
-                                return $model->groupProduct->name;
+                                return $model->groupProduct->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                             }
                         ],
                         'production_date',

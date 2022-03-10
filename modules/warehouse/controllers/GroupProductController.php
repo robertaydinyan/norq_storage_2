@@ -4,6 +4,7 @@ namespace app\modules\warehouse\controllers;
 
 use app\models\Notifications;
 use app\modules\warehouse\models\Product;
+use app\modules\warehouse\models\SuppliersList;
 use Yii;
 use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\GroupProductSearch;
@@ -39,20 +40,25 @@ class GroupProductController extends Controller
      */
     public function actionIndex()
     {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
         if (Yii::$app->request->post()) {
 
             $form_data = Yii::$app->request->post();
             if(!isset($form_data['update_button'])) {
                 $model = new GroupProduct();
-                $model->name = $form_data['name'];
+                $model->name_hy = $form_data['name_hy'];
+                $model->name_ru = $form_data['name_ru'];
+                $model->name_en = $form_data['name_en'];
                 if ($form_data['group_id']) {
                     $model->group_id = $form_data['group_id'];
                 }
                 $model->save(false);
             } else {
                 $model = GroupProduct::find()->where(['id'=>$form_data['id']])->one();
-                $model->name = $form_data['name'];
+                $model->name_hy = $form_data['name_hy'];
+                $model->name_ru = $form_data['name_ru'];
+                $model->name_en = $form_data['name_en'];
                 $model->save(false);
             }
              return $this->redirect(['index', 'lang' => \Yii::$app->language]);
@@ -70,7 +76,7 @@ class GroupProductController extends Controller
             's_nomenclature_product.production_date as n_product_production_date',
             's_nomenclature_product.individual as n_product_individual',
             's_nomenclature_product.qty_type_id as n_product_qty_type',
-            's_group_product.name as group_name',
+            's_group_product.name_' . $lang . ' as group_name',
             's_group_product.id as group_id',
             's_warehouse.type as warehouse_type'
         ])
@@ -128,6 +134,11 @@ class GroupProductController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+
+    public function actionGetGroup($id) {
+        return json_encode(GroupProduct::find()->where(['id' => $id])->asArray()->one());
+
+    }
     /**
      * Displays a single GroupProduct model.
      * @param integer $id
@@ -136,7 +147,8 @@ class GroupProductController extends Controller
      */
     public function actionShowGroupProducts($group_id = null)
     {
-     
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+
         $haveProducts = Product::getGroupProducts($group_id);
         $groupProducts = Product::find()->select([
             's_product.id',
@@ -150,7 +162,7 @@ class GroupProductController extends Controller
             's_nomenclature_product.production_date as n_product_production_date',
             's_nomenclature_product.individual as n_product_individual',
             's_nomenclature_product.qty_type_id as n_product_qty_type',
-            's_group_product.name as group_name',
+            's_group_product.name_' . $lang . ' as group_name',
             's_group_product.id as group_id',
             's_warehouse.type as warehouse_type'
         ])

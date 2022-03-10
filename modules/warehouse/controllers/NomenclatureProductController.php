@@ -144,6 +144,7 @@ class NomenclatureProductController extends Controller
      */
     public function actionUpdate($id)
     {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $model = $this->findModel($id);
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
         $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type');
@@ -168,7 +169,7 @@ class NomenclatureProductController extends Controller
             }
             if(!empty($admins)){
                 foreach ($admins as $key => $value) {
-                   Notifications::setNotification($value->id,"Փոփոխվել է Նոմենկլատուրա ".$model->name,'/warehouse/nomenclature-product');
+                   Notifications::setNotification($value->id,"Փոփոխվել է Նոմենկլատուրա ".$model->{'name_' . $lang},'/warehouse/nomenclature-product');
                 }
             } 
             $model->production_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));
