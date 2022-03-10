@@ -18,7 +18,7 @@ class QtyTypeSearch extends QtyType
     {
         return [
             [['id'], 'integer'],
-            [['type_hy', 'type_us', 'type_ru'], 'safe'],
+            [['type_hy', 'type_en', 'type_ru'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class QtyTypeSearch extends QtyType
     public function search($params)
     {
         $lang = explode('-', \Yii::$app->language)[0];
-        $lang = $lang ?: 'us';
+        $lang = $lang ?: 'en';
         $query = QtyType::find();
         // add conditions that should always apply here
 

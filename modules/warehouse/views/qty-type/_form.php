@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'type_ru')->textInput(['maxlength' => true]) ?>
     </div>
     <div class="col-lg-4">
-<!--        --><?//= $form->field($model, 'type_us')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'type_en')->textInput(['maxlength' => true]) ?>
     </div>
     <div style="padding-left: 15px;">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>

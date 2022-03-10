@@ -6,15 +6,17 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\QtyType */
 
+
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Qty Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 \yii\web\YiiAsset::register($this);
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
 <div class="qty-type-view group-product-index">
 
-    <h4 style="padding: 20px;"><?php echo Yii::t('app', 'Quantity type'); ?> ։ <?= Html::encode($model->type) ?></h4>
+    <h4 style="padding: 20px;"><?php echo Yii::t('app', 'Quantity type'); ?> ։ <?= Html::encode($model->{'type_' . $lang}) ?></h4>
 
 
 
@@ -24,7 +26,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             'options' => ['class' => 'table table-hover'],
             'attributes' => [
                 'id',
-                'type',
+                'type_' . $lang,
             ],
         ]) ?>
     </div>

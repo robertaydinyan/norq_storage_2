@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\warehouse\models\QtyType */
 
 $lang = explode('-', \Yii::$app->language)[0];
-$lang = $lang ?: 'us';
+$lang = $lang ?: 'en';
 
 $this->title = Yii::t('app', 'Change') . ' ' . Yii::t('app', 'Unit of measurement') . ': ' . $model->{'type_' . $lang};
 $this->params['breadcrumbs'][] = ['label' => 'Qty Types', 'url' => ['index']];

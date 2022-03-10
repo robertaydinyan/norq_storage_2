@@ -14,7 +14,7 @@ $flag = $flags[$lang] ?: 'en';
 
 ?>
 <nav class="topnav navbar navbar-expand shadow navbar-light" id="sidenavAccordion" style=" background:#0055a5!important;">
-    <a class="navbar-brand" href="/warehouse/warehouse" style="color:#fff!important">Warehouse</a>
+    <a class="navbar-brand" href="/warehouse/warehouse?lang=<?php echo \Yii::$app->language; ?>" style="color:#fff!important">Warehouse</a>
     <?php
     //        if(Yii::$app->controller->module->id == 'fastnet'){
     Helper::constructMenu(Yii::$app->controller->module->id);
