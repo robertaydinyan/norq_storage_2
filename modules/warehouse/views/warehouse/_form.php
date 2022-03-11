@@ -52,7 +52,9 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
             'allowClear' => true
         ],
     ]) ?>
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name_hy')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name_ru')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name_en')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'responsible_id', [
         'options' => ['class' => 'form-group'],
@@ -62,7 +64,7 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
         'maintainOrder' => true,
         'hideSearch' => true,
         'options' => [
-            'placeholder' => Yii::t('app', 'Ընտրել'),
+            'placeholder' => Yii::t('app', 'Select'),
         ],
         'pluginOptions' => [
             'allowClear' => true

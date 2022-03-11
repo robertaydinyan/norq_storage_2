@@ -129,4 +129,5 @@ return [
     'Date of creation' => 'Дата создания',
     'make a payment' => 'сделать платеж',
     'Change payment' => 'Изменить платеж',
+    'invoices' => 'Инвоис',
 ];

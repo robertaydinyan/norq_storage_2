@@ -228,6 +228,7 @@ class WarehouseController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id) {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $model = $this->findModel($id);
         $address = new ContactAdress();
         $model->updated_at = Carbon::now()
@@ -297,8 +298,8 @@ class WarehouseController extends Controller {
 
                 }
             }
-            Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
-            Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
+            Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->{'name_' . $lang} . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
+            Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->{'name_' . $lang} . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
             return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 

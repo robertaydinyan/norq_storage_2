@@ -129,4 +129,5 @@ return [
     'Date of creation' => 'Ստեղծման ամսաթիվ',
     'make a payment' => 'տեղծել վճարում',
     'Change payment' => 'Փոփոխել Վճարում',
+    'invoices' => 'Ինվոիս',
 ];

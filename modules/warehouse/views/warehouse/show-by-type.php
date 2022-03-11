@@ -60,7 +60,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     'label' => Yii::t('app', 'Name'),
                     'value' => function ($model) {
                         if($model->type != 4){
-                            return $model->name;
+                            return $model->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                         } else {
                             return Warehouse::getContactAddressById($model->contact_address_id);
                         }

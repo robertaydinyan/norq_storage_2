@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.2/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
@@ -63,9 +64,9 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                     <?php foreach ($whProducts as $products) : ?>
 
                         <tr>
-                            <td><?= $products['nProduct']['name'] ?></td>
+                            <td><?= $products['nProduct']['name_' . $lang] ?></td>
                             <?php if ($products['nProduct']['individual'] == 'false') : ?>
-                                <td><?= $products['n_product_count'] ?> <?= $products['nProduct']['qtyType']['type'] ?></td>
+                                <td><?= $products['n_product_count'] ?> <?= $products['nProduct']['qtyType']['type_' . $lang] ?></td>
                             <?php else : ?>
                                 <td><a href="#"  onclick="showLog('<?= $products->product['mac_address']?>')"><?= $products['n_product_count'] ?> <?= $products['nProduct']['qtyType']['type'] ?> </a></td>
                             <?php endif; ?>

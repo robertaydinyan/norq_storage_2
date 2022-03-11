@@ -15,13 +15,14 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
 <div class="shipping-request-view group-product-index">
 
     
 
     <div style="padding:20px;"  id="print">
-        <h4><?php echo $model->shippingtype->name;?> (<?= Html::encode($this->title) ?>)</h4>
+        <h4><?php echo $model->shippingtype->{'name_' . $lang};?> (<?= Html::encode($this->title) ?>)</h4>
         <br>
         <div class="row">
             <div class="col-sm-5">
@@ -65,7 +66,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
                     <tr>
                         <th scope="col">Կարգավիճակ</th>
-                        <td><?php echo $model->status_->name;?></td>
+                        <td><?php echo $model->status_->{'name_' . $lang};?></td>
                     </tr>
                     <tr>
                         <th scope="col">Ստեղծվել է</th>

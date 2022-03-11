@@ -164,14 +164,14 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
             'attribute' => 'providerWarehouse',
             'label' => Yii::t('app', 'Type of transportation'),
             'value' => function ($model) {
-                return $model->provider->name;
+                return $model->provider->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
             }
         ],
         [
             'attribute' => 'supplierWarehouse',
             'label' => Yii::t('app', 'Supplier warehouse'),
             'value' => function ($model) {
-                return $model->supplier->name;
+                return $model->supplier->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
             }
         ],
         [
@@ -264,7 +264,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'attribute' => 'supplierWarehouse',
                 'label' => Yii::t('app', 'Supplier warehouse'),
                 'value' => function ($model) {
-                    return $model->supplier->name;
+                    return $model->supplier->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                 }
             ],
             [
@@ -297,7 +297,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
             [
                 'label' => Yii::t('app', 'Status'),
                 'value' => function ($model) {
-                    return $model->status_->name;
+                    return $model->status_->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                 }
             ],
             [
@@ -361,7 +361,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'attribute' => 'supplierWarehouse',
                 'label' => Yii::t('app', 'Supplier warehouse'),
                 'value' => function ($model) {
-                    return $model->provider->name;
+                    return $model->provider->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                 }
             ],
             [
@@ -374,7 +374,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
             [
                 'label' => Yii::t('app', 'Status'),
                 'value' => function ($model) {
-                    return $model->status_->name;
+                    return $model->status_->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                 }
             ],
 

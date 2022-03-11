@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
-
 ?>
  
 
@@ -31,13 +30,13 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 </style>
 <div class="warehouse-view d-flex group-product-index" style="padding: 20px;">
     <div class="col-lg-4">
-        <h4><?= Html::encode($model->name) ?> (<?php echo Yii::t('app', 'Warehouse'); ?>)</h4>
+        <h4><?= Html::encode($model->{'name_' . $lang}) ?> (<?php echo Yii::t('app', 'Warehouse'); ?>)</h4>
         <?php if($model->type != 2){ ?>
         <?= DetailView::widget([
             'model' => $model,
                 'options' => ['class' => 'table table-hover'],
             'attributes' => [
-                'name',
+                'name_' . $lang,
                 [
                     'label' => Yii::t('app', 'Warehouse type'),
                     'value' => $model->getType($model->type)->{'name_' . $lang}

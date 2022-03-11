@@ -10,7 +10,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
     <?php foreach ($tableTreePartner['children'] as $tableTreePartner) : ?>
         <li class="file-tree-folder" style="display: block;"> <span data-name="<?= $tableTreePartner['name_' . $lang] ?>" class="parent-block"><?= $tableTreePartner['name_' . $lang] ?>
             <?php if(!array_key_exists('children', $tableTreePartner)){ ?>
-               <?php echo ' <small style="margin-left:20px;">' . Yii::t('app', 'Debt') . '`'.number_format(ShippingRequest::getPartnerTotalAmount($tableTreePartner['id']),0,'.',',') . ' ' .  Yii::t('app', 'dram') .'  <span style="cursor:pointer;" onclick="showInvoices('.$tableTreePartner['id'].')" data-toggle="modal" data-target="#viewInfo">(invoices)</span><samll>'; ?>
+               <?php echo ' <small style="margin-left:20px;">' . Yii::t('app', 'Debt') . '`'.number_format(ShippingRequest::getPartnerTotalAmount($tableTreePartner['id']),0,'.',',') . ' ' .  Yii::t('app', 'dram') .'  <span style="cursor:pointer;" onclick="showInvoices('.$tableTreePartner['id'].')" data-toggle="modal" data-target="#viewInfo">(' . Yii::t("app", "invoices") . ')</span><samll>'; ?>
             <?php } ?>
             </span>
             <ul style="display: block;">

@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /* @var $dataUsers app\modules\warehouse\models\Warehouse */
 /* @var $warehouse_types app\modules\warehouse\models\Warehouse */
 
-$this->title = 'Ստեղծել Պահեստ';
+$this->title = Yii::t('app', 'Create Warehouse');
 $this->params['breadcrumbs'][] = ['label' => 'Warehouses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);

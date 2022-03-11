@@ -9,7 +9,7 @@ use yii\helpers\Url;
 /* @var $searchModel app\modules\warehouse\models\WarehouseSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Պահեստ';
+$this->title = Yii::t('app', 'Warehouse');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -23,6 +23,7 @@ use \app\modules\warehouse\models\Warehouse;
 $this->registerJsFile('@web/js/modules/warehouse/shipping_new.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\bootstrap4\BootstrapAsset::className()],]);
+$lang = Yii::$app->language;
 
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data','novalidate'=>'novalidate']]); ?>
@@ -63,7 +64,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
         ?>
            <div class="form-group field-shippingrequest-provider_warehouse_id">
                 <label class="control-label" for="shippingrequest-provider_warehouse_id"><?php echo Yii::t('app', 'Transfer warehouse'); ?></label>
-                <input type="text" id="shippingrequest-provider_warehouse_id" onfocus="selectWarehouse($(this))" disabled class="form-control" >
+                <input type="text" id="shippingrequest-provider_warehouse_id" onfocus="selectWarehouse($(this), '<?php echo $lang; ?>')" disabled class="form-control" >
                 <input type="hidden" name="ShippingRequest[provider_warehouse_id]" value="<?php echo $warehouseId;?>">
           </div>
         <script>
@@ -76,14 +77,14 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
         <?php } else { ?>
          <div class="form-group field-shippingrequest-provider_warehouse_id">
             <label class="control-label" for="shippingrequest-provider_warehouse_id"><?php echo Yii::t('app', 'Transfer warehouse'); ?></label>
-            <input type="text" id="shippingrequest-provider_warehouse_id" onfocus="selectWarehouse($(this))" class="form-control" >
+            <input type="text" id="shippingrequest-provider_warehouse_id" onfocus="selectWarehouse($(this), '<?php echo $lang; ?>')" class="form-control" >
             <input type="hidden" name="ShippingRequest[provider_warehouse_id]" >
       </div>
        <?php } ?>
         <div id="showWarehouse"></div>
        <div class="form-group field-shippingrequest-supplier_warehouse_id">
             <label class="control-label" for="shippingrequest-supplier_warehouse_id"><?php echo Yii::t('app', 'Supplier warehouse'); ?></label>
-            <input type="text" id="shippingrequest-supplier_warehouse_id" onfocus="selectWarehouse($(this))" class="form-control" >
+            <input type="text" id="shippingrequest-supplier_warehouse_id" onfocus="selectWarehouse($(this), '<?php echo $lang; ?>')" class="form-control" >
             <input type="hidden" name="ShippingRequest[supplier_warehouse_id]" >
       </div>
  
@@ -321,7 +322,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
 </div>
     <div class="shipping-request-form col-sm-12">
         <div class="form-group">
-            <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary check-counts']) ?>
+            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary check-counts']) ?>
         </div>
     </div>
 

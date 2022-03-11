@@ -16,8 +16,8 @@ $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'nam
                 </button>
                 <div class="mod-content">
                     <div class="col-sm-12">
-                            <select name="warehouse_type" class="form-control warehouse_type">
-                                <option value="">Պահեստի տեսակ</option>
+                        <select name="warehouse_type" class="form-control warehouse_type">
+                                <option value=""><?php echo Yii::t('app', 'Warehouse type'); ?></option>
                                 <?php if(!empty($warehouse_types)){
                                     foreach ($warehouse_types as $warehouse =>$wh){
                                         echo '<option  value="'.$warehouse.'" >'.$wh.'</option>';
@@ -27,7 +27,7 @@ $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'nam
                         </div>
                         <div class="col-sm-12 hide region">
                             <select name="region_id" class="form-control region_">
-                                <option value="">Շրջան</option>
+                                <option value=""><?php echo Yii::t('app', 'District'); ?></option>
                                 <?php if(!empty($regions)){
                                     foreach ($regions as $region =>$rg){
                                         echo '<option  value="'.$region.'" >'.$rg.'</option>';
@@ -37,7 +37,7 @@ $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'nam
                         </div>
                         <div class="col-sm-12 hide subgroup">
                             <select name="virtual_type"  class="form-control virtual_type">
-                                <option value="">Վիրտուալ (տեսակներ)</option>
+                                <option value=""><?php echo Yii::t('app', 'Virtual (types)'); ?></option>
                                 <?php if(!empty($groups)){
                                     foreach ($groups as $group =>$gr){
                                         echo '<option  value="'.$group.'" >'.$gr.'</option>';
@@ -47,12 +47,12 @@ $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'nam
                         </div>
                         <div class="col-sm-12 hide community">
                             <select name="community_id" class="form-control community_select">
-                                <option value="">Համայնք</option>
+                                <option value=""><?php echo Yii::t('app', 'Community'); ?></option>
                             </select>
                         </div>
                         <div class="col-sm-12 hide ware">
                             <select name="supplier_warehouse_id" onchange="setWarehouse($(this).val(),$(this).find('option:selected').text())" class="form-control ware_select">
-                                <option value="">Պահեստ</option>
+                                <option value=""><?php echo Yii::t('app', 'Warehouse'); ?></option>
                             </select>
                         </div>
                 </div>

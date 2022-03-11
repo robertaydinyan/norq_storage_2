@@ -9,7 +9,7 @@ use yii\helpers\Url;
 /* @var $searchModel app\modules\warehouse\models\WarehouseSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Պահեստ';
+$this->title = Yii::t('app', 'Warehouse');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach ($regions as $region => $region_val){ ?>
                 <tr>
                     <td><a class="nav-link" href="<?= Url::to(['by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $type;?>&region=<?php echo $region_val->id;?>"><?php echo $region_val->name;?></a></td>
-                    <td><a class="nav-link" href="<?= Url::to(['show-by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $type;?>&region=<?php echo $region_val->id;?>">Դիտել (<?php echo Warehouse::getCountByRegion($type,$region_val->id);?>)</a></td>
+                    <td><a class="nav-link" href="<?= Url::to(['show-by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $type;?>&region=<?php echo $region_val->id;?>"><?php echo Yii::t('app', 'View') ?> (<?php echo Warehouse::getCountByRegion($type,$region_val->id);?>)</a></td>
                 </tr>
             <?php } ?>
         </table>

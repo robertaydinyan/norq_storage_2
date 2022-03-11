@@ -49,7 +49,7 @@ class Warehouse extends \yii\db\ActiveRecord
             [['type', 'created_at'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['type','responsible_id', 'crm_company_id','group_id', 'crm_contact_id', 'contact_address_id'], 'integer'],
-            [[ 'name'], 'string', 'max' => 255],
+            [[ 'name_hy', 'name_ru', 'name_en'], 'string', 'max' => 255],
         ];
     }
 
@@ -61,7 +61,9 @@ class Warehouse extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'type' => Yii::t('app', 'Warehouse type'),
-            'name' => Yii::t('app', 'Name'),
+            'name_hy' => Yii::t('app', 'Name(Armenian)'),
+            'name_ru' => Yii::t('app', 'Name(Russian)'),
+            'name_en' => Yii::t('app', 'Name(English)'),
             'responsible_id' => Yii::t('app', 'storekeeper'),
             'created_at' => Yii::t('app', 'Created'),
             'updated_at' => Yii::t('app', 'Updated at'),

@@ -63,7 +63,7 @@ class GroupProductController extends Controller
             }
              return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
-        
+
         $groupProducts = Product::find()->select([
             's_product.id',
             's_product.price',
@@ -72,7 +72,7 @@ class GroupProductController extends Controller
             's_product.mac_address',
             's_product.comment',
             's_product.created_at',
-            's_nomenclature_product.name as n_product_name',
+            's_nomenclature_product.name_' . $lang . ' as n_product_name',
             's_nomenclature_product.production_date as n_product_production_date',
             's_nomenclature_product.individual as n_product_individual',
             's_nomenclature_product.qty_type_id as n_product_qty_type',
@@ -158,7 +158,7 @@ class GroupProductController extends Controller
             's_product.mac_address',
             's_product.comment',
             's_product.created_at',
-            's_nomenclature_product.name as n_product_name',
+            's_nomenclature_product.name_' . $lang . ' as n_product_name',
             's_nomenclature_product.production_date as n_product_production_date',
             's_nomenclature_product.individual as n_product_individual',
             's_nomenclature_product.qty_type_id as n_product_qty_type',

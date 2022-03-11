@@ -18,7 +18,7 @@ class WarehouseSearch extends Warehouse
     {
         return [
             [['id', 'responsible_id', 'crm_company_id', 'crm_contact_id'], 'integer'],
-            [['type', 'name', 'responsible_id', 'created_at', 'updated_at'], 'safe'],
+            [['type', 'name_hy', 'name_ru', 'name_en', 'responsible_id', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -40,6 +40,7 @@ class WarehouseSearch extends Warehouse
      */
     public function search($params)
     {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $query = Warehouse::find();
 
         // add conditions that should always apply here
@@ -93,7 +94,7 @@ class WarehouseSearch extends Warehouse
 //            ->andFilterWhere(['like', 'city', $this->city])
 //            ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'responsible_id', $this->responsible_id])
-            ->andFilterWhere(['like', 'name', $this->name]);
+            ->andFilterWhere(['like', 'name_' . $lang, $this->{'name_' . $lang}]);
 
         return $dataProvider;
     }
