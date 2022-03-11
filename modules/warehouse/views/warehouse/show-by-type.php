@@ -22,7 +22,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
             <li class="breadcrumb-item"><a href="<?= Url::to(['index']) ?>"><?php echo Yii::t('app', 'Back'); ?></a></li>
         </ol>
     </nav>
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'Create Warehouse'); ?></a></h4>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'Create Warehouse'); ?></a></h4>
         <div style="padding:20px;">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,

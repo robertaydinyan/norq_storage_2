@@ -14,7 +14,9 @@ use kartik\select2\Select2;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name_hy')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name_ru')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name_en')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'group_id', [
         'options' => ['class' => 'form-group'],

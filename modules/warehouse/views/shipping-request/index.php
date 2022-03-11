@@ -19,7 +19,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
         <div id="w5-collapse" class="collapse navbar-collapse">
             <ul id="w5" class="navbar-nav w-100 nav">
                 <?php $uri = explode('?',$_SERVER['REQUEST_URI']); ?>
-                 <li class="nav-item "><a class="nav-link <?php if(!isset($_GET['type'])){ echo 'active';} ?>" href="<?php echo $uri[0];?>"><?php echo Yii::t('app', 'All'); ?></a></li>
+                 <li class="nav-item "><a class="nav-link <?php if(!isset($_GET['type'])){ echo 'active';} ?>" href="<?php echo $uri[0] . '?lang=' . \Yii::$app->language; ?>"><?php echo Yii::t('app', 'All'); ?></a></li>
                  <?php foreach ($shipping_types as $shp_type => $shp_type_val){ ?>
                    <li class="nav-item "><a class="nav-link <?php if(isset($_GET['type']) && ($_GET['type']==$shp_type_val->id)){ echo 'active';} ?>" href="?type=<?php echo $shp_type_val->id;?>&lang=<?php echo \Yii::$app->language; ?>"><?php echo $shp_type_val->{'name_' . $lang};?></a></li>
                  <?php } ?>
@@ -278,7 +278,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'attribute' => 'supplier',
                 'label' => Yii::t('app', 'Supplier'),
                 'value' => function ($model) {
-                    return $model->supplierp->name;
+                    return $model->supplierp->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};;
                 }
             ],
             [

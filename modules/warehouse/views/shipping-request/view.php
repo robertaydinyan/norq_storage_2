@@ -27,16 +27,16 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         <div class="row">
             <div class="col-sm-5">
                 <table class="table table-hover">
-                    <?php if($model->provider->name){ ?>
+                    <?php if($model->provider->{'name_' . $lang}){ ?>
                     <tr>
                         <th scope="col">Հանձնող պահեստ</th>
-                        <td><?php echo $model->provider->name;?></td>
+                        <td><?php echo $model->provider->{'name_' . $lang};?></td>
                     </tr>
                     <?php } ?>
-                    <?php if($model->supplier->name){ ?>
+                    <?php if($model->supplier->{'name_' . $lang}){ ?>
                     <tr>
                         <th scope="col">Ստացող պահեստ</th>
-                        <td><?php echo $model->supplier->name;?></td>
+                        <td><?php echo $model->supplier->{'name_' . $lang};?></td>
                     </tr>
                     <?php } ?>
                     <?php if($model->request_id){ ?>
@@ -45,19 +45,19 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                         <td><a href="/warehouse/shipping-request/view?id=<?php echo $model->request_id;?>">Գնման հայտ (<?php echo $model->request_id;?>)</a></td>
                     </tr>
                     <?php } ?>
-                    <?php if($model->supplierp->name && $model->shipping_type != 9){ ?>
+                    <?php if($model->supplierp->{'name_' . $lang} && $model->shipping_type != 9){ ?>
                         <tr>
                             <th scope="col">Մատակարար</th>
-                            <td><?php echo $model->supplierp->name;?></td>
+                            <td><?php echo $model->supplierp->{'name_' . $lang};?></td>
                         </tr>
                     <?php } ?>
-                    <?php if($model->supplierp->name && $model->shipping_type == 9){ ?>
+                    <?php if($model->supplierp->{'name_' . $lang} && $model->shipping_type == 9){ ?>
                         <tr>
                             <th scope="col">Գործընկեր</th>
-                            <td><?php echo $model->supplierp->name;?> <?php echo @$model->supplierp->surname;?></td>
+                            <td><?php echo $model->supplierp->{'name_' . $lang};?> <?php echo @$model->supplierp->surname;?></td>
                         </tr>
                     <?php } ?>
-                    <?php if($model->partner->name){ ?>
+                    <?php if($model->partner->{'name_' . $lang}){ ?>
                         <tr>
                             <th scope="col">Գործընկեր</th>
                             <td><?php echo $model->partner->name;?></td>
