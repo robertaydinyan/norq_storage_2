@@ -13,6 +13,8 @@ use \app\modules\warehouse\models\Warehouse;
 $this->title = Yii::t('app', 'Warehouse');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title;
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+
 ?>
 <div class="group-product-index">
     <nav aria-label="breadcrumb">
@@ -51,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                $icon = '<i  class="fa fa-warehouse"></i>';
                                break;
                        }
-                        return $icon.'  '.$model->getType($model->type)->name;
+                        return $icon.'  '.$model->getType($model->type)->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                     }
                 ],
                 [

@@ -51,7 +51,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 </style>
 <div class="group-product-index">
 
-    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  >Ստեղծել Պահեստ</a></h1>
+    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create Warehouse'); ?></a></h1>
     <div class="modal-content-custom">
         <div class="close"><i class="fa fa-close"></i></div>
     </div>
