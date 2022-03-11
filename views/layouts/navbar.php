@@ -66,7 +66,7 @@ $flag = $flags[$lang] ?: 'en';
             </div>
         </li>
         <li class="nav-item dropdown no-caret mr-3 d-md-none">
-            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="searchDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle p-0 rounded-circle" id="searchDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>
             <!-- Dropdown - Search-->
             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--fade-in-up" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100">
@@ -145,7 +145,7 @@ $flag = $flags[$lang] ?: 'en';
             </div>
         </li>
         <li class="nav-item dropdown no-caret dropdown-notifications">
-            <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="btn btn-icon btn-transparent-dark dropdown-toggle p-0 rounded-circle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell" style="color:#fff"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
@@ -176,7 +176,7 @@ $flag = $flags[$lang] ?: 'en';
         <!-- Если пользователь гость, показыаем ссылку "Вход", если он авторизовался "Выход" -->
         <?php if (!Yii::$app->user->isGuest) : ?>
             <li class="nav-item dropdown no-caret mr-2 dropdown-user">
-                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle p-0 rounded-circle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="img-fluid" src="<?= Yii::getAlias('@web/img/user/user.jpg') ?>"></a>
                 <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
                     <h6 class="dropdown-header d-flex align-items-center">
