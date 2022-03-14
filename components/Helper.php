@@ -289,6 +289,7 @@ class Helper
                 ['label' => Yii::t('app', 'Reports'), 'url' => ['/warehouse/reports?lang=' . $lang]],
                 ['label' => Yii::t('app', 'Composition'), 'url' => ['/warehouse/complectation?lang=' . $lang]],
                 ['label' => Yii::t('app', 'Payments'), 'url' => ['/warehouse/payments?lang=' . $lang]],
+                ['label' => Yii::t('app', 'Users'), 'url' => ['/warehouse/users?lang=' . $lang]],
             ];
 
             $rbac = [

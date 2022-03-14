@@ -205,14 +205,14 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
             'template' => '{view}{update}{accept}{decline}',
             'buttons' => [
                 'view' => function ($url, $model) {
-                    return Html::a('<i class="fas fa-eye"></i>', $url, [
+                    return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
                         'title' => Yii::t('app', 'View'),
                         'class' => 'btn text-primary  btn-sm mr-2'
                     ]);
                 },
                 'update' => function ($url, $model) {
                     if($model->status != 3) {
-                        return Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
+                        return Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                             'title' => Yii::t('app', 'Change'),
                             'class' => 'btn text-primary  btn-sm mr-2'
                         ]);
@@ -222,7 +222,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 },
                   'accept' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
+                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Confirm'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
@@ -235,7 +235,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                        },
                        'decline' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
+                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Reject'),
                                    'class' => 'btn text-danger  btn-sm mr-2'
                                ]);
@@ -312,14 +312,14 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'template' => '{view}{update}{accept}{decline}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="fas fa-eye"></i>', $url, [
+                        return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
                             'title' => Yii::t('app', 'View'),
                             'class' => 'btn text-primary  btn-sm mr-2'
                         ]);
                     },
                     'update' => function ($url, $model) {
                         if($model->status != 3) {
-                            return Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
+                            return Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                                 'title' => Yii::t('app', 'Change'),
                                 'class' => 'btn text-primary  btn-sm mr-2'
                             ]);
@@ -329,7 +329,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                     },
                     'accept' => function ($url, $model) {
                         if($model->status == 2) {
-                            return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
+                            return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                 'title' => Yii::t('app', 'Confirm'),
                                 'class' => 'btn text-primary  btn-sm mr-2'
                             ]);
@@ -337,7 +337,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                     },
                     'decline' => function ($url, $model) {
                         if($model->status == 2) {
-                            return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
+                            return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                 'title' => Yii::t('app', 'Reject'),
                                 'class' => 'btn text-danger  btn-sm mr-2'
                             ]);
@@ -396,14 +396,14 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'template' => '{view}{update}{accept}{decline}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="fas fa-eye"></i>', $url, [
+                        return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
                             'title' => Yii::t('app', 'View'),
                             'class' => 'btn text-primary  btn-sm mr-2'
                         ]);
                     },
                     'update' => function ($url, $model) {
                         if($model->status != 3) {
-                            return Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
+                            return Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                                 'title' => Yii::t('app', 'Change'),
                                 'class' => 'btn text-primary  btn-sm mr-2'
                             ]);
@@ -413,7 +413,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                     },
                       'accept' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
+                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Confirm'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
@@ -426,7 +426,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                        },
                        'decline' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
+                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Reject'),
                                    'class' => 'btn btn-danger  btn-sm mr-2'
                                ]);
@@ -500,14 +500,14 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                    'template' => '{view}{update}{accept}{decline}',
                    'buttons' => [
                        'view' => function ($url, $model) {
-                           return Html::a('<i class="fas fa-eye"></i>', $url, [
+                           return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
                                'title' => Yii::t('app', 'View'),
                                'class' => 'btn text-primary  btn-sm mr-2'
                            ]);
                        },
                        'update' => function ($url, $model) {
                            if($model->status != 3) {
-                               return Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
+                               return Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Change'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
@@ -517,7 +517,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                        },
                        'accept' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
+                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Confirm'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
                                ]);
@@ -530,7 +530,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                        },
                        'decline' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
+                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Reject'),
                                    'class' => 'btn text-danger  btn-sm mr-2'
                                ]);

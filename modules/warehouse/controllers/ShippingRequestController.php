@@ -39,7 +39,7 @@ class ShippingRequestController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
         $dataProvider = $searchModel->search(Yii::$app
@@ -47,7 +47,7 @@ class ShippingRequestController extends Controller {
             ->queryParams);
         $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => [1, 2]])
             ->asArray()
-            ->all() , 'id', 'name');
+            ->all() , 'id', 'name_' . $lang);
         $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
             ->all();
         $dataUsers = [];
@@ -61,16 +61,24 @@ class ShippingRequestController extends Controller {
             ->asArray()
             ->all());
 
-        return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'shipping_types' => $shipping_types,
+            'warehouses' => $physicalWarehouse,
+            'suppliers' => $suppliers,
+            'users' => $dataUsers]);
     }
     public function actionDocuments() {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
         $dataProvider = $searchModel->search(Yii::$app
             ->request->queryParams, null, true);
         $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => [1, 2]])
             ->asArray()
-            ->all() , 'id', 'name');
+            ->all() , 'id', 'name_' . $lang);
         $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
             ->all();
         $dataUsers = [];
@@ -405,14 +413,16 @@ class ShippingRequestController extends Controller {
                     ->all();
                 foreach ($products as $product => $prod_val) {
                     $newProduct = Product::findOne($prod_val->product_id);
-                    $newProduct->id = null;
-                    $newProduct->status = 1;
-                    $newProduct->isNewRecord = true;
-                    $newProduct->created_at = $model->created_at;
-                    $newProduct->warehouse_id = $model->supplier_warehouse_id;
-                    $newProduct->count = $prod_val->count;
-                    $newProduct->price = 0;
-                    $newProduct->save(false);
+                    if ($newProduct) {
+                        $newProduct->id = null;
+                        $newProduct->status = 1;
+                        $newProduct->isNewRecord = true;
+                        $newProduct->created_at = $model->created_at;
+                        $newProduct->warehouse_id = $model->supplier_warehouse_id;
+                        $newProduct->count = $prod_val->count;
+                        $newProduct->price = 0;
+                        $newProduct->save(false);
+                    }
                     $total += ($prod_val->price * $prod_val->count);
 
                     if ($model
@@ -535,6 +545,7 @@ class ShippingRequestController extends Controller {
             $products = ShippingProducts::find()->where(['shipping_id' => $model
                 ->id])
                 ->all();
+            $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
             foreach ($products as $product => $prod_val) {
                 $product_full_data = $prod_val->findByProductId($prod_val->product_id) [0];
 
@@ -546,10 +557,10 @@ class ShippingRequestController extends Controller {
                     }
                     else {
                         $log->from_ = $model
-                            ->provider->name;
+                            ->provider->{'name_' . $lang};
                     }
                     $log->to_ = $model
-                        ->supplier->name;
+                        ->supplier->{'name_' . $lang};
                     $log->mac_address = $product_full_data['mac'];
                     $log->shipping_type = $model->shipping_type;
                     $log->request_id = $model->id;
@@ -561,21 +572,21 @@ class ShippingRequestController extends Controller {
 
             Notifications::setNotification($model
                 ->provider->responsible_id, "Հաստատվել է " . $model
-                ->shippingtype->name . " <b>" . $model
-                ->provider->name . "</b> -  <b>" . $model
-                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->{'name_' . $lang} . " <b>" . $model
+                ->provider->{'name_' . $lang} . "</b> -  <b>" . $model
+                ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->supplier->responsible_id, "Հաստատվել է " . $model
-                ->shippingtype->name . " <b>" . $model
-                ->provider->name . "</b> - <b>" . $model
-                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->{'name_' . $lang} . " <b>" . $model
+                ->provider->{'name_' . $lang} . "</b> - <b>" . $model
+                ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             if (($model
                 ->supplier->responsible_id != $model->user_id) && ($model
                 ->provider->responsible_id != $model->user_id)) {
                 Notifications::setNotification($model->user_id, "Հաստատվել է " . $model
-                    ->shippingtype->name . " <b>" . $model
-                    ->provider->name . "</b> - <b>" . $model
-                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->{'name_' . $lang} . " <b>" . $model
+                    ->provider->{'name_' . $lang} . "</b> - <b>" . $model
+                    ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
         }
         return $this->redirect(['index']);
@@ -656,6 +667,7 @@ class ShippingRequestController extends Controller {
         return $this->redirect(['index']);
     }
     public function actionDecline() {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $get = Yii::$app
             ->request
             ->get();
@@ -670,33 +682,35 @@ class ShippingRequestController extends Controller {
             if (!empty($products)) {
                 foreach ($products as $product => $prod_val) {
                     $newProduct = Product::findOne($prod_val->product_id);
-                    $newProduct->id = null;
-                    $newProduct->status = 1;
-                    $newProduct->individual = false;
-                    $newProduct->isNewRecord = true;
-                    $newProduct->created_at = $model->created_at;
-                    $newProduct->warehouse_id = $model->provider_warehouse_id;
-                    $newProduct->count = $prod_val->count;
-                    $newProduct->save(false);
+                    if ($newProduct) {
+                        $newProduct->id = null;
+                        $newProduct->status = 1;
+    //                    $newProduct->individual = false;
+                        $newProduct->isNewRecord = true;
+                        $newProduct->created_at = $model->created_at;
+                        $newProduct->warehouse_id = $model->provider_warehouse_id;
+                        $newProduct->count = $prod_val->count;
+                        $newProduct->save(false);
+                    }
                 }
             }
             Notifications::setNotification($model
                 ->provider->responsible_id, "Մերժվել է " . $model
-                ->shippingtype->name . " <b>" . $model
-                ->provider->name . "</b> -  <b>" . $model
-                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->{'name_' . $lang} . " <b>" . $model
+                ->provider->{'name_' . $lang} . "</b> -  <b>" . $model
+                ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->supplier->responsible_id, "Մերժվել է " . $model
-                ->shippingtype->name . " <b>" . $model
-                ->provider->name . "</b> - <b>" . $model
-                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->{'name_' . $lang} . " <b>" . $model
+                ->provider->{'name_' . $lang} . "</b> - <b>" . $model
+                ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             if (($model
                 ->supplier->responsible_id != $model->user_id) && ($model
                 ->provider->responsible_id != $model->user_id)) {
                 Notifications::setNotification($model->user_id, "Մերժվել է " . $model
-                    ->shippingtype->name . " <b>" . $model
-                    ->provider->name . "</b> - <b>" . $model
-                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->{'name_' . $lang} . " <b>" . $model
+                    ->provider->{'name_' . $lang} . "</b> - <b>" . $model
+                    ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
 
         }

@@ -24,6 +24,7 @@ $this->registerJsFile('@web/js/modules/warehouse/shipping_new.js', ['depends' =>
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\bootstrap4\BootstrapAsset::className()],]);
 $lang = Yii::$app->language;
+$lang_s = explode('-', \Yii::$app->language)[0] ?: 'en';
 
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data','novalidate'=>'novalidate']]); ?>
@@ -299,7 +300,7 @@ $lang = Yii::$app->language;
                        <div class="row product-block" >
                            <div class="col-sm-12 mt-3">
                                <label class="control-label" style="margin-bottom: 0px !important;"><?php echo Yii::t('app', 'Product Nomenclature'); ?></label>
-                               <input type="text"  class="form-control"  value="<?php echo $prod->nProduct->name;?>" disabled="true" required="required" autocomplete="off">
+                               <input type="text"  class="form-control"  value="<?php echo $prod->nProduct->{'name_' . $lang_s};?>" disabled="true" required="required" autocomplete="off">
                            </div>
                            <br>
                            <div class="col-sm-12">

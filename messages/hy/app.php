@@ -130,4 +130,10 @@ return [
     'make a payment' => 'տեղծել վճարում',
     'Change payment' => 'Փոփոխել Վճարում',
     'invoices' => 'Ինվոիս',
+    'Users' => 'Օգտատերեր',
+    'Print' => 'Տպել',
+    'In the matter of change' => 'Տեփոխության հարցում',
+    'search' => 'փնտրել',
+    'Previous' => 'Նախորդ',
+    'Next' => 'Հաջորդ',
 ];

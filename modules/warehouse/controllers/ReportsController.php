@@ -41,10 +41,11 @@ class ReportsController extends Controller
      */
     public function actionIndex()
     {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $shipping_types=  ShippingType::find()->all();
-        $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id', 'name');
+        $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id', 'name_' . $lang);
         $regions = ArrayHelper::map(Regions::find()->asArray()->all(), 'id', 'name');
-        $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'name');
+        $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'name_' . $lang);
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])->all(), 'id', 'name');
 
         $get = Yii::$app->request->get();

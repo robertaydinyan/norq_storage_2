@@ -130,4 +130,10 @@ return [
     'make a payment' => 'сделать платеж',
     'Change payment' => 'Изменить платеж',
     'invoices' => 'Инвоис',
+    'Users' => 'Пользователи',
+    'Print' => 'Распечатать',
+    'In the matter of change' => 'В вопросе изменения',
+    'search' => 'искать',
+    'Previous' => 'Предыдущий',
+    'Next' => 'Следующий',
 ];

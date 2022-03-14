@@ -99,22 +99,22 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
     </div>
 
 </div>
-  <?php if (!empty($whProducts)) : ?>
-     <script>
-            $('#products').DataTable( {
-                dom: 'Bfrtip',
-                buttons: [
-                     'csv', 'excel'
-                ],
-                "oLanguage": {
-                    "sSearch": "Որոնում "
-                },
-                "language": {
-                    "paginate": {
-                        "previous": "Նախորդ",
-                        "next": "Հաջորդ",
-                    }
+<?php if (!empty($whProducts)) : ?>
+    <script>
+        $('#products').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+               'csv', 'excel'
+            ],
+            "oLanguage": {
+                "sSearch": "<?php echo Yii::t('app', 'search'); ?>"
+            },
+            "language": {
+                "paginate": {
+                    "previous": "<?php echo Yii::t('app', 'Previous'); ?>",
+                    "next": "<?php echo Yii::t('app', 'Next'); ?>",
                 }
-            } );
-        </script>
-        <?php endif; ?>
+            }
+        } );
+    </script>
+<?php endif; ?>
