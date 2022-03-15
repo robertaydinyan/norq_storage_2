@@ -118,13 +118,14 @@ class ShippingRequestController extends Controller {
     }
     public function actionCreate() {
         $model = new ShippingRequest();
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()
             ->all() , 'id', 'name');
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
             ->asArray()
             ->all() , 'name', 'last_name', 'id');
         $types = ArrayHelper::map(ShippingType::find()->asArray()
-            ->all() , 'id', 'name');
+            ->all() , 'id', 'name_' . $lang);
 
         $suppliers = $this->buildTree(SuppliersList::find()
             ->where(['!=', 'id', 6])

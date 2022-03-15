@@ -3,9 +3,10 @@ use app\modules\warehouse\models\WarehouseTypes;
 use app\modules\billing\models\Regions;
 use app\modules\warehouse\models\WarehouseGroups;
 use yii\helpers\ArrayHelper;
-$warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id', 'name');
+$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id','name_' . $lang);
 $regions = ArrayHelper::map(Regions::find()->asArray()->all(), 'id', 'name');
-$groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'name');
+$groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'name_' . $lang);
 ?>
 <div class="modal fade" id="viewInfoWr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true" style="display: block;">
     <div class="modal-dialog modal-sm" role="document">

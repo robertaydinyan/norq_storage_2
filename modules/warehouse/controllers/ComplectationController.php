@@ -81,8 +81,9 @@ class ComplectationController extends Controller
     {
         $model = new Complectation();
         $model_products = new ComplectationProducts();
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
-        $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()->all(), 'id', 'name');
+        $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()->all(), 'id', 'name_' . $lang);
         $post = Yii::$app->request->post();
 
         if ($model->load($post)) {
