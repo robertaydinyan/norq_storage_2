@@ -171,3 +171,38 @@ span{
 .table td {
     font-size:13px;
 }
+.warehouse-home{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+.warehouse-home a{
+    color: #3b3f5c;
+}
+.warehouse-home-item {
+    position: relative;
+    border-radius: 10px;
+    min-height:250px;
+    width:32%;
+    overflow: hidden;
+    box-shadow: 0 4px 6px 0 rgb(85 85 85 / 8%), 0 1px 20px 0 rgb(0 0 0 / 7%), 0px 1px 11px 0px rgb(0 0 0 / 7%);
+
+}
+.btn-drop button{
+    border:1px solid #007bff;
+    background:#fff;
+    color:#007bff;
+}
+.btn-drop button:focus,.btn-drop button:hover,.btn-drop button:active{
+    border:1px solid #007bff!important;
+    background:#fff!important;
+    color:#007bff!important;
+}
+.see {
+    position: absolute;
+    bottom: 10px;
+    background:#1b55e2!important;
+    width: 96%;
+    margin-left: 2%!important;
+    padding: 15px 10px!important;
+}

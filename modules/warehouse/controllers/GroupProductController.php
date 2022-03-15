@@ -200,7 +200,7 @@ class GroupProductController extends Controller
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name_' . $lang);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Notifications::setNotification(1,"Ստեղծվել է ապրանքի խումբ ՝ <b>".$model->name."</b> ",'/warehouse/group-product');
+            Notifications::setNotification(1,"Ստեղծվել է ապրանքի խումբ ՝ <b>".$model->{'name_' . $lang} ."</b> ",'/warehouse/group-product');
             return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
@@ -241,13 +241,13 @@ class GroupProductController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDeleteGroup()
+    public function actionDelete()
     {
         $form_data = Yii::$app->request->get();
         $id = intval($form_data['id']);
         Notifications::setNotification(1,"Ջնջվել է ապրանքի խումբ ՝ <b>".$id."</b> ",'/warehouse/group-product');
         $this->findModel($id)->delete();
-        return true;
+        return $this->redirect(['/warehouse/group-product', 'lang' => Yii::$app->language]);
     }
 
     /**
@@ -265,4 +265,7 @@ class GroupProductController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+
+
 }

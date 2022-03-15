@@ -70,7 +70,10 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
             <?php } ?>
         </table>
     </div>
+
 </div>
+
+
 
 
 <script type="text/javascript">
