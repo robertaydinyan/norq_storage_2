@@ -196,7 +196,8 @@ class GroupProductController extends Controller
     public function actionCreate()
     {
         $model = new GroupProduct();
-        $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name_' . $lang);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Notifications::setNotification(1,"Ստեղծվել է ապրանքի խումբ ՝ <b>".$model->name."</b> ",'/warehouse/group-product');

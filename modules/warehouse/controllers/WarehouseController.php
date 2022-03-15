@@ -143,15 +143,16 @@ class WarehouseController extends Controller {
      */
     public function actionCreate() {
         $model = new Warehouse();
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $address = new ContactAdress();
 
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
             ->asArray()
             ->all() , 'name', 'last_name', 'id');
         $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()
-            ->all() , 'id', 'name');
+            ->all() , 'id', 'name_' . $lang);
         $warehouse_groups = ArrayHelper::map(WarehouseGroups::find()->asArray()
-            ->all() , 'id', 'name');
+            ->all() , 'id', 'name_' . $lang);
         $dataUsers = [];
         foreach ($uersData as $key => $value) {
             $dataUsers[$key] = $value[array_key_first($value) ] . ' ' . array_key_first($value);
@@ -212,8 +213,8 @@ class WarehouseController extends Controller {
                 $model->save();
             }
 
-            Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
-            Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
+            Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->name .   "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
+            Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->name .  "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
             return $this->redirect(['index', 'lang' => \Yii::$app->language]);
         }
 
