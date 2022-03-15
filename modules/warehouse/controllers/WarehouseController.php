@@ -4,6 +4,7 @@ namespace app\modules\warehouse\controllers;
 use app\models\User;
 use app\modules\billing\models\Regions;
 use app\modules\fastnet\models\Streets;
+use app\modules\rbac\filters\AccessControl;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ProductImagesPath;
@@ -34,7 +35,14 @@ class WarehouseController extends Controller {
      * {@inheritdoc}
      */
     public function behaviors() {
-        return ['verbs' => ['class' => VerbFilter::className() , 'actions' => ['delete' => ['POST'], ], ], ];
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className() ,
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -66,9 +74,11 @@ class WarehouseController extends Controller {
 
         ]);
     }
+
     public function actionGetWarehousesPopup() {
         return $this->renderAjax('popup-warehouses');
     }
+
     public function actionGetProductInfo() {
         $get = Yii::$app
             ->request

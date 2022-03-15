@@ -44,7 +44,7 @@ class ProductController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
-            ],
+            ]
         ];
     }
 

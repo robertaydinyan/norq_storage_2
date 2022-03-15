@@ -2,6 +2,7 @@
 
 namespace app\modules\rbac\filters;
 
+use app\rbac\WarehouseRule;
 use Yii;
 use yii\base\Action;
 use yii\base\Module;
@@ -32,13 +33,12 @@ class AccessControl extends \yii\filters\AccessControl
     {
         $controller = $action->controller;
         $params = ArrayHelper::getValue($this->params, $action->id, []);
-
-        if (Yii::$app->user->can('/' . $action->getUniqueId(), $params)) {
+        if (WarehouseRule::can($params)) {
             return true;
         }
 
         do {
-            if (Yii::$app->user->can('/' . ltrim($controller->getUniqueId() . '/*', '/')) || $action->getUniqueId() == 'fastnet/pay/index' || $action->getUniqueId() == 'fastnet/pay/payment') {
+            if (WarehouseRule::can($params)) {
                 return true;
             }
             $controller = $controller->module;

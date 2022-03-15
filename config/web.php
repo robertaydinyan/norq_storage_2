@@ -128,13 +128,18 @@ $config = [
             'enableLanguageDetection' => false,
             'enableLanguagePersistence' => false,
             'showScriptName' => false,
-            'rules' => require(__DIR__ . '/router.php'),
+//            'rules' => require(__DIR__ . '/router.php'),
+            'rules' => [
+                [
+                    'class' => 'app\components\WarehouseRule'
+                ]
+            ],
         ],
         'metadata' => [
             'class' => 'app\components\Metadata',
         ],
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class' => 'yii\rbac\PhpManager',
             'defaultRoles' => [
                 'admin', 'manager', 'operator', 'terminal'
             ]

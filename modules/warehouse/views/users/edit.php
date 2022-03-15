@@ -15,18 +15,25 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
     <input type="hidden" id="userID" value="<?php echo $user->id; ?>">
     <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create Warehouse'); ?></a></h1>
 
-    <?php if ($actions):
-        foreach ($actions as $action):
-            echo sprintf(
-                '<span class="action %s" data-id="%s">%s</span>',
-                !$action->hasAccess($user->id) ? 'passive' : '',
-                $action->id,
-                $action->name
-            );
-        endforeach;
-    else: ?>
-        <span>No action found</span>
-    <?php endif; ?>
+        <?php if (isset($controller_names)):
+            foreach ($controller_names as $cname):
+                echo '<h3 style="margin-bottom: 20px;">' . $cname->controller_name . '</h3>
+                      <div class="row" style="margin-bottom: 20px;">';
+                foreach($cname->getByControllerName() as $action):
+                    echo sprintf(
+                            '<div class="col-2" style="margin-bottom: 48px;"><span class="action %s" data-id="%s">%s</span></div>',
+                            !$action->hasAccess($user->id) ? 'passive' : '',
+                            $action->id,
+                            $action->action_name
+                        );
+                endforeach;
+                echo '</div>';
+            endforeach;
+        else: ?>
+            <span>No action found</span>
+        <?php endif; ?>
+
+    </div>
 </div>
 
 <style>

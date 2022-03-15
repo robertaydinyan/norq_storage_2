@@ -27,6 +27,7 @@ class UsersController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+
                 ],
             ],
         ];
@@ -51,10 +52,10 @@ class UsersController extends Controller
 
     public function actionEdit($id) {
         $user = User::findOne(['id' => $id]);
-        $actions = Action::find()->all();
+        $controller_names = Action::find()->select('DISTINCT `controller_name`')->all();
         return $this->render('edit', [
             'user' => $user,
-            'actions' => $actions,
+            'controller_names' => $controller_names
         ]);
     }
 

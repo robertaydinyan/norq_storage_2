@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\warehouse\models\Warehouse;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
