@@ -37,11 +37,11 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 'template' => '{update}',
                 'buttons' => [
                     'update' => function ($url, $model) {
-                        return
+                        return \app\rbac\WarehouseRule::can('warehouse-types', 'update') ?
                             Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                                 'title' => Yii::t('app', 'Update'),
                                 'class' => 'btn text-primary btn-sm mr-2'
-                            ]);
+                            ]) : '';
                     }
 
                 ]

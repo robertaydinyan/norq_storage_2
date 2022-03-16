@@ -87,28 +87,28 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                             'template' => '{view}{update}{delete}',
                             'buttons' => [
                                 'view' => function ($url, $model) {
-                                    return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    return \app\rbac\WarehouseRule::can('nomenclature-product', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
                                         'title' => Yii::t('app', 'View'),
                                         'class' => 'btn text-primary btn-sm mr-2'
-                                    ]);
+                                    ]) : '';
                                 },
 
                                 'update' => function ($url, $model) {
                                     return
-                                        Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                        \app\rbac\WarehouseRule::can('nomenclature-product', 'update') ?   Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                                             'title' => Yii::t('app', 'Update'),
                                             'class' => 'btn text-primary btn-sm mr-2'
-                                        ]);
+                                        ]) : '';
                                 },
                                 'delete' => function ($url, $model) {
-                                    return Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    return \app\rbac\WarehouseRule::can('nomenclature-product', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                                         'title' => Yii::t('app', 'Delete'),
                                         'class' => 'btn text-danger btn-sm',
                                         'data' => [
                                             'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
                                             'method' => 'post',
                                         ],
-                                    ]);
+                                    ]) : '';
                                 }
 
                             ]

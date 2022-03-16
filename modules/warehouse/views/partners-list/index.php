@@ -49,21 +49,21 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'template' => '{update}{delete}',
                 'buttons' => [
                     'update' => function ($url, $model) {
-                        return
+                        return \app\rbac\WarehouseRule::can('partners-list', 'update') ?
                             Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                 'title' => Yii::t('app', 'Թարմացնել'),
                                 'class' => 'btn text-primary btn-sm mr-2'
-                            ]);
+                            ]) : '';
                     },
                     'delete' => function ($url, $model) {
-                        return Html::a('<i class="fas fa-trash-alt"></i>', $url, [
+                        return \app\rbac\WarehouseRule::can('partners-list', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url, [
                             'title' => Yii::t('app', 'Ջբջել'),
                             'class' => 'btn text-danger btn-sm',
                             'data' => [
                                 'confirm' => 'Are you absolutely sure ? You will lose all the information about this user with this action.',
                                 'method' => 'post',
                             ],
-                        ]);
+                        ]) : '';
                     }
                 ]
             ],

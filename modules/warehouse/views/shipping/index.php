@@ -13,12 +13,15 @@ $this->title = 'Տեղափոխություն';
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php if(\app\rbac\WarehouseRule::can('shipping', 'index')): ?>
 <div class="group-product-index">
 
     <h4 style="padding: 20px;">
         <?= Html::encode($this->title) ?>
         <div style="display: flex;float: right">
+    <?php if(\app\rbac\WarehouseRule::can('shipping', 'edit-shipping-request')): ?>
             <a style="margin-right: 10px;" href="<?= Url::to(['/warehouse/shipping-product']) ?>"  class="btn btn-sm btn-primary" >Ապրանքի տեղափոխություն</a>
+    <?php endif; ?>
         </div>
     </h4>
 
@@ -52,21 +55,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view}{delete}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="fas fa-eye"></i>', $url, [
+                        return \app\rbac\WarehouseRule::can('shipping', 'view') ?
+                            Html::a('<i class="fas fa-eye"></i>', $url, [
                             'title' => Yii::t('app', 'Դիտել'),
                             'class' => 'btn text-primary btn-sm mr-2'
-                        ]);
+                        ]) : '';
                     },
 
                     'delete' => function ($url, $model) {
-                        return Html::a('<i class="fas fa-trash-alt"></i>', $url, [
+                        return  \app\rbac\WarehouseRule::can('shipping', 'delete') ?
+                            Html::a('<i class="fas fa-trash-alt"></i>', $url, [
                             'title' => Yii::t('app', 'Ջնջել'),
                             'class' => 'btn text-danger btn-sm',
                             'data' => [
                                 'confirm' => 'Are you absolutely sure ? You will lose all the information about this user with this action.',
                                 'method' => 'post',
                             ],
-                        ]);
+                        ]) : '';
                     }
 
                 ]
@@ -76,3 +81,4 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 </div>
+<?php endif; ?>

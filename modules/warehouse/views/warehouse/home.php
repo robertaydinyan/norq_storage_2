@@ -77,7 +77,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                         <div class="media-body">
                             <div class="media align-items-center">
                                 <div class="w-img">
-                                    <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
+                                    <i class='fas fa-warehouse mr-2'  style="color: #1b55e2;font-size: 35px;"></i>
                                 </div>
                                 <div class="media-body">
                                     <h3><?=   Yii::t('app', 'Main warehouse') ?><h3>
@@ -101,7 +101,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class='fas fa-warehouse mr-2'  style="color: #1b55e2;font-size: 35px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'Warehouses') ?></h3>
@@ -125,7 +125,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fas fa-user-injured mr-2" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'goods') ?></h3>
@@ -149,7 +149,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fa fa-file-text" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'Documents') ?></h3>
@@ -189,7 +189,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fas fa-poll-h" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'Polls') ?></h3>

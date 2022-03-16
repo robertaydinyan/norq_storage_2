@@ -44,9 +44,14 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 <!--        padding: 5px 5px 5px 15px;-->
 <!--    }-->
 <!--</style>-->
+<?php if(\app\rbac\WarehouseRule::can('users', 'index')): ?>
 <div class="user-index">
 
-    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create Warehouse'); ?></a></h1>
+    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?>
+        <?php if(\app\rbac\WarehouseRule::can('users', 'create')): ?>
+        <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create Warehouse'); ?></a>
+        <?php endif; ?>
+    </h1>
 
     <div style="padding:20px;" class="table">
         <table class="kv-grid-table table table-hover  kv-table-wrap">
@@ -65,7 +70,9 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <td><?php echo $user->last_name; ?></td>
                     <td><?php echo $user->email; ?></td>
                     <td>
+                        <?php if(\app\rbac\WarehouseRule::can('users', 'edit')): ?>
                         <a href="users/edit?lang=<?php echo Yii::$app->language; ?>&id=<?php echo $user->id; ?>"><i class="fas fa-pencil-alt"></i></a>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach;
@@ -73,6 +80,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         </table>
     </div>
 </div>
+<?php endif; ?>
 
 
 <!--<script type="text/javascript">-->

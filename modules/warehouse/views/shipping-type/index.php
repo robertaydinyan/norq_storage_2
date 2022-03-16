@@ -12,9 +12,14 @@ $this->title = Yii::t('app', 'Type of transfer');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
+<?php if(\app\rbac\WarehouseRule::can('shipping-type', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <?= Html::a(Yii::t('app', 'Create'), ['create', 'lang' => \Yii::$app->language], ['class' => 'btn btn-primary float-right']) ?></h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
+    <?php if(\app\rbac\WarehouseRule::can('shipping-type', 'create')): ?>
+        <?= Html::a(Yii::t('app', 'Create'), ['create', 'lang' => \Yii::$app->language], ['class' => 'btn btn-primary float-right']) ?>
+    <?php endif; ?>
+    </h1>
 
     <div style="padding: 20px;">
     <?php Pjax::begin(); ?>
@@ -36,11 +41,11 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'template' => '{update}',
                 'buttons' => [
                     'update' => function ($url, $model) {
-                        return
+                        return \app\rbac\WarehouseRule::can('shipping-type', 'update') ?
                             Html::a('<i class="fas fa-pencil-alt"></i>', $url .'&lang=' . \Yii::$app->language, [
                                 'title' => Yii::t('app', 'Update'),
                                 'class' => 'btn text-primary btn-sm mr-2'
-                            ]);
+                            ]) : '';
                     }
 
                 ]
@@ -52,3 +57,4 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     </div>
 
 </div>
+<?php endif; ?>
