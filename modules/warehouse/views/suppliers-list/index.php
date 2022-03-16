@@ -24,6 +24,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
     }
 
 </style>
+<?php if(\app\rbac\WarehouseRule::can('suppliers-list', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> </h1>
@@ -33,8 +34,12 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 <?php foreach ($tableTreePartners as $tableTreePartner) : ?>
                     <li class="file-tree-folder">
                          <span data-name="<?= $tableTreePartner['name_' . $lang] ?>" class="parent-block"><?= $tableTreePartner['name_' . $lang] ?>
+                             <?php if(\app\rbac\WarehouseRule::can('suppliers-list', 'create')): ?>
                             <i class="fa fa-plus" onclick="addPopup(<?= $tableTreePartner['id'] ?>)"></i>
+                             <?php endif; ?>
+                             <?php if(\app\rbac\WarehouseRule::can('suppliers-list', 'update')): ?>
                             <i style="margin-left:5px;" class="fa fa-pencil" onclick="editPopup(<?= $tableTreePartner['id'] ?>,$(this), 'suppliers-list/get-supplier')"></i>
+                             <?php endif; ?>
                         </span>
                         <ul style="display: block;">
                             <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/suppliers-list/tree_table.php', [
@@ -47,6 +52,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         </div>
     </div>
 </div>
+<?php endif; ?>
 <div class="modal fade" id="addGroup" tabindex="-1" role="dialog" aria-labelledby="addGroup" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

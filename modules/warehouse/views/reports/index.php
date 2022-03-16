@@ -18,6 +18,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
         padding-left: 10px;
     }
 </style>
+
+<?php if(\app\rbac\WarehouseRule::can('reports', 'index')): ?>
 <div class="shipping-request-create group-product-index">
     <br>
 <form class="row" action="" id="report_form" method="get" style="padding: 20px;">
@@ -96,6 +98,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
 
         </div>
     </div>
+    <?php if(\app\rbac\WarehouseRule::can('reports', 'generate')): ?>
     <div class="col-sm-2">
         <div class="row">
             <div class="col-sm-6">
@@ -105,6 +108,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
             </div>
         </div>
     </div>
+    <?php endif; ?>
     <div class="col-sm-2">
         <div>
             <a href="#" onclick="selectProduct()" style="margin-top:5px;display: block;"><?php echo Yii::t('app', 'By Products'); ?></a>
@@ -122,3 +126,4 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
 
 <div id="result_block"></div>
 </div>
+<?php endif; ?>

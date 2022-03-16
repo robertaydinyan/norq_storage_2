@@ -14,6 +14,7 @@ $this->registerJsFile('@web/js/modules/crm/contact.js', ['depends' => 'yii\web\J
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 ?>
+<?php if(\app\rbac\WarehouseRule::can('shipping-request', 'index')): ?>
 <div class="shipping-request-index group-product-index">
     <nav id="w5" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
         <div id="w5-collapse" class="collapse navbar-collapse">
@@ -28,7 +29,10 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
     </nav>
 
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
+    <?php if(\app\rbac\WarehouseRule::can('shipping-request', 'create')): ?>
+
         <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a query'); ?></a>
+    <?php endif; ?>
     </h1>
     <div style="padding:20px;">
         <form class="row" action="" method="get">
@@ -205,45 +209,51 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
             'template' => '{view}{update}{accept}{decline}',
             'buttons' => [
                 'view' => function ($url, $model) {
-                    return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                    return \app\rbac\WarehouseRule::can('shipping-request', 'view') ?
+                        Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
                         'title' => Yii::t('app', 'View'),
                         'class' => 'btn text-primary  btn-sm mr-2'
-                    ]);
+                    ]) : '' ;
                 },
                 'update' => function ($url, $model) {
                     if($model->status != 3) {
-                        return Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                        return  \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
+                            Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                             'title' => Yii::t('app', 'Change'),
                             'class' => 'btn text-primary  btn-sm mr-2'
-                        ]);
+                        ]) : '';
                     } else {
                         return '';
                     }
                 },
                   'accept' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                               return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
+                                   Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Confirm'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
-                              return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id='.$model->id, [
+                              return \app\rbac\WarehouseRule::can('shipping-request', 'accept-admin') ?
+                                  Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Confirm'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            }
                        },
                        'decline' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                               return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
+                                   Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Reject'),
                                    'class' => 'btn text-danger  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
-                              return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id='.$model->id, [
+                              return \app\rbac\WarehouseRule::can('shipping-request', 'decline-admin') ?
+                                  Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Reject'),
                                    'class' => 'btn text-danger  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            }
                        },
             ]
@@ -312,35 +322,39 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'template' => '{view}{update}{accept}{decline}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                        return \app\rbac\WarehouseRule::can('shipping-request', 'view') ?
+                            Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
                             'title' => Yii::t('app', 'View'),
                             'class' => 'btn text-primary  btn-sm mr-2'
-                        ]);
+                        ]) : '';
                     },
                     'update' => function ($url, $model) {
                         if($model->status != 3) {
-                            return Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                            return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
+                                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                                 'title' => Yii::t('app', 'Change'),
                                 'class' => 'btn text-primary  btn-sm mr-2'
-                            ]);
+                            ]) : '';
                         } else {
                             return '';
                         }
                     },
                     'accept' => function ($url, $model) {
                         if($model->status == 2) {
-                            return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                            return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
+                                Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                 'title' => Yii::t('app', 'Confirm'),
                                 'class' => 'btn text-primary  btn-sm mr-2'
-                            ]);
+                            ]) : '';
                         }
                     },
                     'decline' => function ($url, $model) {
                         if($model->status == 2) {
-                            return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                            return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
+                                Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                 'title' => Yii::t('app', 'Reject'),
                                 'class' => 'btn text-danger  btn-sm mr-2'
-                            ]);
+                            ]) : '';
                         }
                     },
                 ]
@@ -396,45 +410,51 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 'template' => '{view}{update}{accept}{decline}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                        return \app\rbac\WarehouseRule::can('shipping-request', 'view') ?
+                            Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
                             'title' => Yii::t('app', 'View'),
                             'class' => 'btn text-primary  btn-sm mr-2'
-                        ]);
+                        ]) : '';
                     },
                     'update' => function ($url, $model) {
                         if($model->status != 3) {
-                            return Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                            return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
+                                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                                 'title' => Yii::t('app', 'Change'),
                                 'class' => 'btn text-primary  btn-sm mr-2'
-                            ]);
+                            ]) : '';
                         } else {
                             return '';
                         }
                     },
                       'accept' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                               return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
+                                   Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Confirm'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
-                              return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id='.$model->id, [
+                              return \app\rbac\WarehouseRule::can('shipping-request', 'accept-admin') ?
+                                  Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Accept'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            }
                        },
                        'decline' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                               return  \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
+                                   Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Reject'),
                                    'class' => 'btn btn-danger  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
-                              return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id='.$model->id, [
+                              return \app\rbac\WarehouseRule::can('shipping-request', 'decline-admin') ?
+                                  Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Reject'),
                                    'class' => 'btn btn-danger  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            }
                        },
                 ]
@@ -500,45 +520,51 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                    'template' => '{view}{update}{accept}{decline}',
                    'buttons' => [
                        'view' => function ($url, $model) {
-                           return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                           return  \app\rbac\WarehouseRule::can('shipping-request', 'view') ?
+                               Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
                                'title' => Yii::t('app', 'View'),
                                'class' => 'btn text-primary  btn-sm mr-2'
-                           ]);
+                           ]) : '';
                        },
                        'update' => function ($url, $model) {
                            if($model->status != 3) {
-                               return Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                               return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
+                                   Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Change'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            } else {
                                return '';
                            }
                        },
                        'accept' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                               return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
+                                   Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Confirm'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
-                              return Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id='.$model->id, [
+                              return  \app\rbac\WarehouseRule::can('shipping-request', 'accept-admin') ?
+                                  Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Confirm'),
                                    'class' => 'btn text-primary  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            }
                        },
                        'decline' => function ($url, $model) {
                            if($model->status == 2) {
-                               return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                               return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
+                                   Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
                                    'title' => Yii::t('app', 'Reject'),
                                    'class' => 'btn text-danger  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            } else if($model->status == 5 && \Yii::$app->user->can('admin')){
-                              return Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id='.$model->id, [
+                              return  \app\rbac\WarehouseRule::can('shipping-request', 'decline-admin') ?
+                                  Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id='.$model->id, [
                                    'title' => Yii::t('app', 'Reject'),
                                    'class' => 'btn text-danger  btn-sm mr-2'
-                               ]);
+                               ]) : '';
                            }
                        },
                    ]
@@ -571,3 +597,4 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
     </div>
 
 </div>
+<?php endif; ?>

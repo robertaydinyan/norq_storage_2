@@ -12,10 +12,13 @@ $this->title = 'Ապրանքի տեղափոխություն';
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
+<?php if(\app\rbac\WarehouseRule::can('shipping-product', 'index')): ?>
 <div class="shipping-product-index group-product-index">
 
     <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>
+        <?php if(\app\rbac\WarehouseRule::can('shipping-product', 'create')): ?>
         <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել Ապրանքի տեղափոխություն</a>
+        <?php endif; ?>
     </h4>
     <div style="padding:20px;">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -75,10 +78,11 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'template' => '{view}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return Html::a('<i class="fas fa-eye"></i>', $url, [
+                        return \app\rbac\WarehouseRule::can('shipping-product', 'view') ?
+                            Html::a('<i class="fas fa-eye"></i>', $url, [
                             'title' => Yii::t('app', 'Դիտել'),
                             'class' => 'btn text-primary btn-sm mr-2'
-                        ]);
+                        ]) : '';
                     },
 
 //                    'update' => function ($url, $model) {
@@ -106,3 +110,4 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
     </div>
 </div>
+<?php  endif; ?>

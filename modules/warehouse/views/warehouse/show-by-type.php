@@ -86,17 +86,17 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     'template' => '{view}{update}{delete}',
                     'buttons' => [
                         'view' => function ($url, $model) {
-                            return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
+                            return \app\rbac\WarehouseRule::can('warehouse', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
                                 'title' => Yii::t('app', 'View'),
                                 'class' => 'btn text-primary btn-sm mr-2'
-                            ]);
+                            ]) : '';
                         },
                         'update' => function ($url, $model) {
-                            return
+                            return  \app\rbac\WarehouseRule::can('warehouse', 'update') ?
                                 Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
                                     'title' => Yii::t('app', 'Update'),
                                     'class' => 'btn text-primary btn-sm mr-2'
-                                ]);
+                                ]) : '';
                         },
                         'delete' => function ($url, $model) {
                             return Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [

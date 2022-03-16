@@ -13,6 +13,7 @@ $this->title = Yii::t('app', 'Payments');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
+<?php if(\app\rbac\WarehouseRule::can('payments-log', 'index')): ?>
 <div class="group-product-index">
     <div class="">
        <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
@@ -23,7 +24,11 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             </ul>
         </div>
     </nav>
-    <h4 style="padding: 20px;" ><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'make a payment'); ?></a></h4>
+    <h4 style="padding: 20px;" ><?= Html::encode($this->title) ?>
+        <?php if(\app\rbac\WarehouseRule::can('payments-log', 'create')): ?>
+        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'make a payment'); ?></a>
+        <?php endif; ?>
+    </h4>
 
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -52,21 +57,22 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'template' => '{update}{delete}',
                 'buttons' => [
                     'update' => function ($url, $model) {
-                        return
+                        return \app\rbac\WarehouseRule::can('payments-log', 'update') ?
                             Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                 'title' => Yii::t('app', 'Update'),
                                 'class' => 'btn text-primary btn-sm mr-2'
-                            ]);
+                            ]) : '';
                     },
                     'delete' => function ($url, $model) {
-                        return Html::a('<i class="fas fa-trash-alt"></i>', $url, [
+                        return  \app\rbac\WarehouseRule::can('payments-log', 'delete') ?
+                            Html::a('<i class="fas fa-trash-alt"></i>', $url, [
                             'title' => Yii::t('app', 'Delete'),
                             'class' => 'btn text-danger btn-sm',
                             'data' => [
                                 'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
                                 'method' => 'post',
                             ],
-                        ]);
+                        ]) : '';
                     }
 
                 ]
@@ -76,3 +82,4 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
     </div>
 </div>
+    <?php endif; ?>
