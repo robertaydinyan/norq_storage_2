@@ -96,7 +96,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                     'name',
                     [
                         'label' => Yii::t('app', 'Warehouse type'),
-                        'value' => $model->getType($model->type)->name
+                        'value' => $model->getType($model->type)->{'name_' . $lang}
                     ],
                     [
                         'label' => Yii::t('app', 'storekeeper'),

@@ -50,15 +50,6 @@ class WarehouseController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        if (!\Yii::$app
-            ->user
-            ->can('admin')) {
-            $warehouse = Warehouse::find()->where(['responsible_id' => Yii::$app
-                ->user
-                ->getId() ])
-                ->one();
-            $this->redirect('/warehouse/warehouse/view?id=' . $warehouse->id);
-        }
 
         $warehouse_types = WarehouseTypes::find()->all();
         return $this->render('index', ['warehouse_types' => $warehouse_types, ]);

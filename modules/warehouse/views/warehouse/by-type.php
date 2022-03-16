@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach ($regions as $region => $region_val){ ?>
                 <tr>
                     <td><a class="nav-link" href="<?= Url::to(['by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $type;?>&region=<?php echo $region_val->id;?>"><?php echo $region_val->name;?></a></td>
-                    <td><a class="nav-link" href="<?= Url::to(['show-by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $type;?>&region=<?php echo $region_val->id;?>"><?php echo Yii::t('app', 'View') ?> (<?php echo Warehouse::getCountByRegion($type,$region_val->id);?>)</a></td>
+                    <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'show-by-type') ? 'href="' . Url::to(['show-by-type', 'lang' => \Yii::$app->language]) . '&type=' . $type . '&region=' . $region_val->id . '">' . Yii::t('app', 'View') : '>'; ?> (<?php echo Warehouse::getCountByRegion($type,$region_val->id);?>)</a></td>
                 </tr>
             <?php } ?>
         </table>

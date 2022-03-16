@@ -51,7 +51,9 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 </style>
 <div class="group-product-index">
 
-    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?> <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create Warehouse'); ?></a></h1>
+    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?>
+    <?php echo \app\rbac\WarehouseRule::can('warehouse', 'create') ? '<a style="float: right" href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '" class="btn btn-primary "  >' .  Yii::t("app", "Create Warehouse") . '</a>' : ''; ?>
+    </h1>
     <div class="modal-content-custom">
         <div class="close"><i class="fa fa-close"></i></div>
     </div>
@@ -64,8 +66,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
             <?php foreach ($warehouse_types as $ware_type => $ware_type_val){ ?>
             <tr>
 
-                <td><a class="nav-link" href="<?= Url::to(['by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $ware_type_val->id;?>"><?php echo $ware_type_val->{'name_' . $lang};?></a></td>
-                <td><a class="nav-link" href="<?= Url::to(['show-by-type', 'lang' => \Yii::$app->language]) ?>&type=<?php echo $ware_type_val->id;?>"><?php echo \Yii::t('app','View');?> (<?php echo $ware_type_val->count;?>)</a></td>
+                <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'by-type') ? ('href="' . Url::to(['by-type', 'lang' => \Yii::$app->language]) . '&type=' . $ware_type_val->id) . '"' : '' ?>><?php echo $ware_type_val->{'name_' . $lang};?></a></td>
+                <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'show-by-type') ? 'href="' . Url::to(['show-by-type', 'lang' => \Yii::$app->language]) . '&type=' . $ware_type_val->id . '">' . \Yii::t('app','View') : '>';?> (<?php echo $ware_type_val->count;?>)</a></td>
             </tr>
             <?php } ?>
         </table>

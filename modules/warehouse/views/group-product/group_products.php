@@ -30,8 +30,11 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 
 <div  class="group-product-index">
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
-        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a group'); ?></a>
-        <a href="/warehouse/product?lang=<?php echo \Yii::$app->language ?>" style="float: right;margin-right: 10px;" class="btn btn-primary"><?php echo Yii::t('app', 'Warehouse'); ?></a>
+        <?php echo \app\rbac\WarehouseRule::can('group-product', 'create') ? ('<a style="float: right;margin-right: 10px;" class="btn btn-primary" 
+        href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '">' . Yii::t('app', 'Create a group') . '</a>') : '' ?>
+        <?php echo \app\rbac\WarehouseRule::can('product', 'index') ? ('<a href="/warehouse/product?lang=' . \Yii::$app->language .
+        '" style="float: right;margin-right: 10px;" class="btn btn-primary">' . Yii::t('app', 'Warehouse') . '</a>') : '' ?>
+        
     </h1>
 
     <div style="clear: both;"></div>
