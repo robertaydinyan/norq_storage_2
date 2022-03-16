@@ -43,13 +43,16 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
 </style>
 
 <div class="group-product-index">
+
     <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
+
         <a href="/warehouse/group-product/show-group-products?lang=<?php echo Yii::$app->language; ?>" class="btn btn-primary" style="float: right;"><?php echo Yii::t('app', 'Groups'); ?></a>
+
     </h1>
 
 <div class="product-index " style="padding: 20px;">
 
-  
+
         <table  class="kv-grid-table table table-hover  kv-table-wrap" style="width:100%">
             <thead>
             <?php if (!empty($dataProvider['result'])) : ?>
@@ -82,8 +85,8 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
         </table>
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <?php 
-                for($page = 1; $page<= $dataProvider['total']; $page++) {  
+            <?php
+                for($page = 1; $page<= $dataProvider['total']; $page++) {
                        $active = '';
                        if(isset($_GET['page']) && $page == intval($_GET['page'])){
                           $active = 'active';

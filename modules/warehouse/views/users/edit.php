@@ -17,8 +17,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
         <?php if (isset($controller_names)):
             foreach ($controller_names as $cname):
-                echo '<h3 style="margin-bottom: 20px;">' . $cname->controller_name . '</h3>
-                      <div class="row" style="margin-bottom: 20px;">';
+                echo '<button class="accordion"><h5 style="margin-bottom: 20px;">' . $cname->controller_name . '</h5></button>
+                      <div class="row panel" style="margin-bottom: 20px;padding-top: 20px;"><div class="d-flex flex-wrap pt-2 ">';
                 foreach($cname->getByControllerName() as $action):
                     echo sprintf(
                             '<div class="col-2" style="margin-bottom: 48px;"><span class="action %s" data-id="%s">%s</span></div>',
@@ -27,7 +27,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                             $action->action_name
                         );
                 endforeach;
-                echo '</div>';
+                echo '</div></div>';
             endforeach;
         else: ?>
             <span>No action found</span>
@@ -37,6 +37,33 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 </div>
 
 <style>
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+    .active, .accordion:hover {
+        background-color: #ccc;
+    }
+
+    .panel {
+        padding: 0 18px;
+        display: none;
+        background-color: white;
+        overflow: hidden;
+    }
+
+
+
+
     .action.passive {
         margin: 20px;
         padding: 20px;
@@ -71,5 +98,21 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 }
             })
         })
+    }
+</script>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
     }
 </script>

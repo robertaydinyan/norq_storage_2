@@ -31,17 +31,19 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
               </span>
         </div>
         <div class="d-flex">
+                 <div class="dropdown mr-2 btn-drop">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-filter mr-2"></i>Фильтры<i class="fa fa-caret-down ml-2"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                 </div>
+<?php if(\app\rbac\WarehouseRule::can('product', 'show-log')): ?>
 
-             <div class="dropdown mr-2 btn-drop">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-filter mr-2"></i>Фильтры<i class="fa fa-caret-down ml-2"></i>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-             </div>
+<?php endif; ?>
             <div class="dropdown mr-2 btn-drop">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bars mr-2"></i> Dropdown button<i class="fa fa-caret-down ml-2"></i>
@@ -78,23 +80,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                     <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h3>Պացիենտներ</h3>
-                                </div>
-                                <div class="w-img text-right">
-                                    <div class="w-img text-right">
-                                        <h2 style="color: #1b55e2;font-weight: bold">
-                                            <div class="dropdown mr-2 btn-drop">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Dropdown button<i class="fa fa-caret-down ml-2"></i>
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                </div>
-                                            </div>
-                                        </h2>
-                                    </div>
+                                    <h3><?=   Yii::t('app', 'Main warehouse') ?><h3>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +88,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     </div>
 
                     <div class="card-bottom-section mt-5">
-                        <div> <a href="" class="btn  text-white see mb-3">Դիտել</a></div>
+                        <div> <a href="/warehouse/warehouse/view?id=20&lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
                     </div>
                 </div>
             </div>
@@ -118,23 +104,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                 <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
-                                <h3>Պացիենտներ</h3>
-                            </div>
-                            <div class="w-img text-right">
-                                <div class="w-img text-right">
-                                    <h2 style="color: #1b55e2;font-weight: bold">
-                                        <div class="dropdown mr-2 btn-drop">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown button<i class="fa fa-caret-down ml-2"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </h2>
-                                </div>
+                                <h3><?=   Yii::t('app', 'Warehouses') ?></h3>
                             </div>
                         </div>
                     </div>
@@ -142,7 +112,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/warehouse?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
                 </div>
             </div>
         </div>
@@ -158,23 +128,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                 <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
-                                <h3>Պացիենտներ</h3>
-                            </div>
-                            <div class="w-img text-right">
-                                <div class="w-img text-right">
-                                    <h2 style="color: #1b55e2;font-weight: bold">
-                                        <div class="dropdown mr-2 btn-drop">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown button<i class="fa fa-caret-down ml-2"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </h2>
-                                </div>
+                                <h3><?=   Yii::t('app', 'goods') ?></h3>
                             </div>
                         </div>
                     </div>
@@ -182,7 +136,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a  href="/warehouse/product?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
                 </div>
             </div>
         </div>
@@ -198,7 +152,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                 <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
-                                <h3>Պացիենտներ</h3>
+                                <h3><?=   Yii::t('app', 'Documents') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
@@ -222,7 +176,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/shipping-request/documents?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
                 </div>
             </div>
         </div>
@@ -238,7 +192,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                 <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
-                                <h3>Պացիենտներ</h3>
+                                <h3><?=   Yii::t('app', 'Polls') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
@@ -262,7 +216,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/shipping-request?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
                 </div>
             </div>
         </div>
@@ -278,7 +232,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                 <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
-                                <h3>Պացիենտներ</h3>
+                                <h3><?=   Yii::t('app', 'Directory') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
@@ -302,7 +256,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/qty-type?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
                 </div>
             </div>
         </div>
@@ -318,7 +272,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                 <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
-                                <h3>Պացիենտներ</h3>
+                                <h3><?=   Yii::t('app', 'Reports') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
@@ -342,7 +296,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/reports?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
                 </div>
             </div>
         </div>
@@ -358,7 +312,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                 <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
-                                <h3>Պացիենտներ</h3>
+                                <h3><?=   Yii::t('app', 'Composition') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
@@ -382,7 +336,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/complectation?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
                 </div>
             </div>
         </div>
@@ -398,7 +352,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                 <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
-                                <h3>Պացիենտներ</h3>
+                                <h3><?=   Yii::t('app', 'Payments') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
@@ -422,7 +376,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/payments?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
                 </div>
             </div>
         </div>
@@ -438,7 +392,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                 <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
-                                <h3>Պացիենտներ</h3>
+                                <h3><?=   Yii::t('app', 'Users') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
@@ -462,7 +416,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/users?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
                 </div>
             </div>
         </div>

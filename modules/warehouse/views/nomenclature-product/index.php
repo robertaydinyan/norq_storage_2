@@ -14,9 +14,14 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 ?>
+<?php if(\app\rbac\WarehouseRule::can('nomenclature-product', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>  <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'Create product nomenclature'); ?></a></h4>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>
+    <?php if(\app\rbac\WarehouseRule::can('nomenclature-product', 'create')): ?>
+        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'Create product nomenclature'); ?></a>
+    <?php endif; ?>
+    </h4>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <div style="padding:20px;" >
@@ -116,3 +121,5 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
     </div>
 
 </div>
+
+<?php endif; ?>

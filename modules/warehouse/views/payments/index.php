@@ -22,6 +22,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     }
 
 </style>
+<?php if(\app\rbac\WarehouseRule::can('payments', 'index')): ?>
 <div class="group-product-index">
    <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
     <div id="w3-collapse" class="collapse navbar-collapse">
@@ -59,6 +60,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         </div>
     </div>
 </div>
+<?php endif; ?>
 
 
 <br>

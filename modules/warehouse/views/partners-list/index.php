@@ -12,6 +12,7 @@ $this->title = 'Գործընկերներ';
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
+<?php if(\app\rbac\WarehouseRule::can('partners-list', 'index')): ?>
 <div class="partners-list-index group-product-index">
     <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
         <div id="w3-collapse" class="collapse navbar-collapse">
@@ -29,7 +30,9 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         </div>
     </nav>
     <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>
+    <?php if(\app\rbac\WarehouseRule::can('partners-list', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել</a>
+    <?php endif; ?>
     </h4>
     <div style="padding:20px;" >
     <?php Pjax::begin(); ?>
@@ -70,3 +73,5 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     <?php Pjax::end(); ?>
     </div>
 </div>
+
+<?php endif; ?>

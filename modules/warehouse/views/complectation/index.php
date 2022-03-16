@@ -11,9 +11,14 @@ $this->title = Yii::t('app', 'Composition');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
+<?php if(\app\rbac\WarehouseRule::can('complectation', 'index')): ?>
 <div class="group-product-index">
 
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a></h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
+    <?php if(\app\rbac\WarehouseRule::can('complectation', 'create')): ?>
+        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a>
+    <?php endif; ?>
+    </h1>
 
     <?php Pjax::begin(); ?>
     <div style="padding:20px;" >
@@ -34,6 +39,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'header' => Yii::t('app', 'Action'),
                 'template' => '{view}{delete}',
                 'buttons' => [
+
                     'view' => function ($url, $model) {
                         return Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
                             'title' => Yii::t('app', 'View'),
@@ -59,3 +65,4 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     <?php Pjax::end(); ?>
 
 </div>
+<?php endif; ?>

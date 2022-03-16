@@ -9,13 +9,16 @@ use yii\widgets\Pjax;
 $this->title = 'Complectation Products';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php if(\app\rbac\WarehouseRule::can('complectation-products', 'index')): ?>
 <div class="complectation-products-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Complectation Products', ['create'], ['class' => 'btn btn-primary']) ?>
-    </p>
+    <?php if(\app\rbac\WarehouseRule::can('complectation-products', 'create')): ?>
+        <p>
+            <?= Html::a('Create Complectation Products', ['create'], ['class' => 'btn btn-primary']) ?>
+        </p>
+    <?php endif; ?>
 
     <?php Pjax::begin(); ?>
 
@@ -36,3 +39,4 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::end(); ?>
 
 </div>
+ <?php endif; ?>

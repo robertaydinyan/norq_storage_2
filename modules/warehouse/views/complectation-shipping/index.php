@@ -11,10 +11,13 @@ $this->title = 'Կոմպլեկտացիաի տեղափոխություն';
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
+<?php if(\app\rbac\WarehouseRule::can('complectation-shipping', 'index')): ?>
 <div class="complectation-shipping-index group-product-index" >
 
     <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>
+        <?php if(\app\rbac\WarehouseRule::can('complectation-shipping', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել կոմպլեկտացիայի տեղափոխություն</a>
+        <?php endif; ?>
     </h4>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -66,3 +69,5 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     </div>
 
 </div>
+
+<?php endif; ?>
