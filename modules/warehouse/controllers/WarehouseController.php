@@ -8,6 +8,9 @@ use app\modules\rbac\filters\AccessControl;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ProductImagesPath;
+use app\modules\warehouse\models\SearchShippingType;
+use app\modules\warehouse\models\ShippingRequestSearch;
+use app\modules\warehouse\models\ShippingType;
 use app\modules\warehouse\models\SuppliersList;
 use app\modules\warehouse\models\WarehouseGroups;
 use app\modules\warehouse\models\WarehouseTypes;
@@ -54,8 +57,11 @@ class WarehouseController extends Controller {
         $warehouse_types = WarehouseTypes::find()->all();
         return $this->render('index', ['warehouse_types' => $warehouse_types, ]);
     }
+
     public function actionHome() {
-        return $this->render('home');
+
+        $shipping_types = ShippingType::find()->all();
+        return $this->render('home', [  'shipping_types' => $shipping_types]);
     }
     public function actionShowByType() {
         $searchModel = new WarehouseSearch();

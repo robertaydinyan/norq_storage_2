@@ -88,7 +88,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     </div>
 
                     <div class="card-bottom-section mt-5">
-                        <div> <a href="/warehouse/warehouse/view?id=20&lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
+                        <div> <a href="/warehouse/warehouse/view?id=20&lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/warehouse?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/warehouse?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -125,7 +125,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-user-injured mr-2" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class='fas fa-box-open mr-2' style="color: #1b55e2;font-size: 40px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'goods') ?></h3>
@@ -136,7 +136,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a  href="/warehouse/product?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a  href="/warehouse/product?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -149,7 +149,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fa fa-file-text" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fa fa-file-text mr-2" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'Documents') ?></h3>
@@ -159,12 +159,20 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                     <h2 style="color: #1b55e2;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown button<i class="fa fa-caret-down ml-2"></i>
+                                                <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <nav id="w5" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+                                                    <div id="w5-collapse" class="collapse navbar-collapse">
+                                                        <ul id="w5" class="navbar-nav w-100 nav">
+                                                            <?php $uri = explode('?',$_SERVER['REQUEST_URI']); ?>
+                                                            <li class="nav-item dropdown-item"><a class="nav-link <?php if(!isset($_GET['type'])){ echo 'active';} ?>" href="<?php echo '/warehouse/shipping-request/documents' . '?lang=' . \Yii::$app->language; ?>"><?php echo Yii::t('app', 'All'); ?></a></li>
+                                                            <?php foreach ($shipping_types as $shp_type => $shp_type_val){ ?>
+                                                                <li class="nav-item dropdown-item"><a class="nav-link <?php if(isset($_GET['type']) && ($_GET['type']==$shp_type_val->id)){ echo 'active';} ?>" href="/warehouse/shipping-request/documents?type=<?php echo $shp_type_val->id;?>&lang=<?php echo \Yii::$app->language; ?>"><?php echo $shp_type_val->{'name_' . $lang};?></a></li>
+                                                            <?php } ?>
+                                                        </ul>
+                                                    </div>
+                                                </nav>
                                             </div>
                                         </div>
                                     </h2>
@@ -176,7 +184,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/shipping-request/documents?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/shipping-request/documents?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -189,7 +197,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-poll-h" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fas fa-poll-h mr-2" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'Polls') ?></h3>
@@ -199,12 +207,20 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                     <h2 style="color: #1b55e2;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown button<i class="fa fa-caret-down ml-2"></i>
+                                                <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <nav id="w5" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+                                                    <div id="w5-collapse" class="collapse navbar-collapse">
+                                                        <ul id="w5" class="navbar-nav w-100 nav">
+                                                            <?php $uri = explode('?',$_SERVER['REQUEST_URI']); ?>
+                                                            <li class="nav-item dropdown-item"><a class="nav-link <?php if(!isset($_GET['type'])){ echo 'active';} ?>" href="<?php echo '/warehouse/shipping-request/documents' . '?lang=' . \Yii::$app->language; ?>"><?php echo Yii::t('app', 'All'); ?></a></li>
+                                                            <?php foreach ($shipping_types as $shp_type => $shp_type_val){ ?>
+                                                                <li class="nav-item dropdown-item"><a class="nav-link <?php if(isset($_GET['type']) && ($_GET['type']==$shp_type_val->id)){ echo 'active';} ?>" href="/warehouse/shipping-request?type=<?php echo $shp_type_val->id;?>&lang=<?php echo \Yii::$app->language; ?>"><?php echo $shp_type_val->{'name_' . $lang};?></a></li>
+                                                            <?php } ?>
+                                                        </ul>
+                                                    </div>
+                                                </nav>
                                             </div>
                                         </div>
                                     </h2>
@@ -216,7 +232,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/shipping-request?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/shipping-request?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -229,7 +245,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fa fa-newspaper mr-2" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'Directory') ?></h3>
@@ -239,12 +255,16 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                     <h2 style="color: #1b55e2;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown button<i class="fa fa-caret-down ml-2"></i>
+                                                <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+                                                    <div id="w3-collapse" class="collapse navbar-collapse">
+                                                        <ul id="w5" class="navbar-nav w-100 nav">
+                                                            <li class="nav-item dropdown-item"><?php echo $this->render('/menu_dirs', array(), true)?></li>
+                                                        </ul>
+                                                    </div>
+                                                </nav>
                                             </div>
                                         </div>
                                     </h2>
@@ -256,7 +276,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/qty-type?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/qty-type?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -269,34 +289,18 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="far fa-file-alt mr-2" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'Reports') ?></h3>
                             </div>
-                            <div class="w-img text-right">
-                                <div class="w-img text-right">
-                                    <h2 style="color: #1b55e2;font-weight: bold">
-                                        <div class="dropdown mr-2 btn-drop">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown button<i class="fa fa-caret-down ml-2"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </h2>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/reports?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/reports?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -309,34 +313,18 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="far fa-file-alt mr-2" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'Composition') ?></h3>
                             </div>
-                            <div class="w-img text-right">
-                                <div class="w-img text-right">
-                                    <h2 style="color: #1b55e2;font-weight: bold">
-                                        <div class="dropdown mr-2 btn-drop">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown button<i class="fa fa-caret-down ml-2"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </h2>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/complectation?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/complectation?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -349,7 +337,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fa fa-credit-card mr-2" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'Payments') ?></h3>
@@ -359,12 +347,18 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                     <h2 style="color: #1b55e2;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown button<i class="fa fa-caret-down ml-2"></i>
+                                                <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+                                                    <div id="w3-collapse" class="collapse navbar-collapse">
+                                                        <ul id="w5" class="navbar-nav w-100 nav">
+                                                            <li class="nav-item dropdown-item"><a class="nav-link" href="/warehouse/payments?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Statistics'); ?></a></li>
+                                                            <li class="nav-item dropdown-item"><a class="nav-link" href="/warehouse/payments-log?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Payments'); ?></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </nav>
+
                                             </div>
                                         </div>
                                     </h2>
@@ -376,7 +370,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/payments?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/payments?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -389,26 +383,10 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-user-injured" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fa fa-users mr-2" style="color: #1b55e2;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3><?=   Yii::t('app', 'Users') ?></h3>
-                            </div>
-                            <div class="w-img text-right">
-                                <div class="w-img text-right">
-                                    <h2 style="color: #1b55e2;font-weight: bold">
-                                        <div class="dropdown mr-2 btn-drop">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown button<i class="fa fa-caret-down ml-2"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </h2>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -416,7 +394,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/users?lang=<?= $lang ?>" class="btn  text-white see mb-3">Դիտել</a></div>
+                    <div> <a href="/warehouse/users?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>

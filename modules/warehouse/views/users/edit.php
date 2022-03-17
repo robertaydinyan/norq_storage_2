@@ -17,7 +17,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
         <?php if (isset($controller_names)):
             foreach ($controller_names as $cname):
-                echo '<button class="accordion"><h5 style="margin-bottom: 20px;">' . $cname->controller_name . '</h5></button>
+                echo '<button class="accordion"><h5 style="margin-bottom: 20px;">' . Yii::t('app', $cname->controller_name) . '</h5></button>
                       <div class="row panel" style="margin-bottom: 20px;padding-top: 20px;"><div class="d-flex flex-wrap pt-2 ">';
                 foreach($cname->getByControllerName() as $action):
                     echo sprintf(

@@ -2,6 +2,7 @@
 
 return [
     'Warehouse' => 'Склад',
+    'warehouse' => 'Склад',
     'View' => 'Обзор',
     'Main warehouse' => 'Основной склад',
     'Warehouses' => 'Склады',
@@ -136,4 +137,6 @@ return [
     'search' => 'искать',
     'Previous' => 'Предыдущий',
     'Next' => 'Следующий',
+
+    'Menu' => 'Меню'
 ];
