@@ -5,7 +5,6 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\Warehouse */
 /* @var $dataUsers app\modules\warehouse\models\Warehouse */
-/* @var $address app\modules\warehouse\models\Warehouse */
 /* @var $warehouse_types app\modules\warehouse\models\Warehouse */
 
 $this->title = Yii::t('app', 'Change warehouse') . ': ' . $model->id;

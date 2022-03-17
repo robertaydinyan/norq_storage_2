@@ -38,6 +38,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                 'options' => ['class' => 'table table-hover'],
             'attributes' => [
                 'name_' . $lang,
+                'address',
                 [
                     'label' => Yii::t('app', 'Warehouse type'),
                     'value' => $model->getType($model->type)->{'name_' . $lang}
@@ -47,37 +48,6 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                     'value' => function ($model) {
                         $user = $model->getUser($model->responsible_id);
                         return $user->name.' '.$user->last_name;
-                    }
-                ],
-                [
-                    'label' => Yii::t('app', 'Country'),
-                    'value' => function ($model) {
-                        return $model->contactAddress->country->name;
-                    }
-                ],
-                [
-                    'label' => Yii::t('app', 'Region'),
-                    'value' => function ($model) {
-                        return $model->contactAddress->region->name;
-                    }
-                ],
-                [
-                    'label' => Yii::t('app', 'City'),
-                    'value' => function ($model) {
-                        return $model->contactAddress->city->name;
-                    }
-                ],
-                [
-                    'label' => Yii::t('app', 'Street'),
-                    'value' => function ($model) {
-                        return $model->contactAddress->fastStreet->name;
-                    }
-                ],
-
-                [
-                    'label' => Yii::t('app', 'House'),
-                    'value' => function ($model) {
-                        return $model->contactAddress->house;
                     }
                 ],
                 [
