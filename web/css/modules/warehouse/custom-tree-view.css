@@ -174,7 +174,7 @@ span{
 .warehouse-home{
     display:flex;
     flex-wrap:wrap;
-    justify-content: space-between;
+    justify-content:flex-start;
 }
 .warehouse-home a{
     color: #3b3f5c;
@@ -183,8 +183,9 @@ span{
     position: relative;
     border-radius: 10px;
     min-height:250px;
-    width:32%;
+    width:24%;
     box-shadow: 0 4px 6px 0 rgb(85 85 85 / 8%), 0 1px 20px 0 rgb(0 0 0 / 7%), 0px 1px 11px 0px rgb(0 0 0 / 7%);
+    margin-right: 1%;
 
 }
 .btn-drop button{
@@ -204,4 +205,8 @@ span{
     width: 96%;
     margin-left: 2%!important;
     padding: 15px 10px!important;
+}
+
+.border-right-blue {
+    border-right: 5px solid #1b55e2;
 }
