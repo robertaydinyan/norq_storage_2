@@ -29,7 +29,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 </style>
 
 <div  class="group-product-index">
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa fa-star-o ml-4"></i></span>
         <?php echo \app\rbac\WarehouseRule::can('group-product', 'create') ? ('<a style="float: right;margin-right: 10px;" class="btn btn-primary" 
         href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '">' . Yii::t('app', 'Create a group') . '</a>') : '' ?>
         <?php echo \app\rbac\WarehouseRule::can('product', 'index') ? ('<a href="/warehouse/product?lang=' . \Yii::$app->language .

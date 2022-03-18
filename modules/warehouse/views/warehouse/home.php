@@ -34,7 +34,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
             <div class="dropdown mr-2 btn-drop">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-bars mr-2"></i> Dropdown button<i class="fa fa-caret-down ml-2"></i>
+                    <i class="fa fa-bars mr-2"></i> History<i class="fa fa-caret-down ml-2"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                     <a class="dropdown-item" href="#">Action</a>

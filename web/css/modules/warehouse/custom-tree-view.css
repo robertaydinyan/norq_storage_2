@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Nunito";
+    src: url('/web/fonts/Nunito-Regular.ttf');
+}
 .dropdown-menu{
     height: 300px;
     overflow: hidden;

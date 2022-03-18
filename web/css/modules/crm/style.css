@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Nunito";
+    src: url('/web/fonts/Nunito-Regular.ttf');
+}
 #add-section{
     color:black;
 }

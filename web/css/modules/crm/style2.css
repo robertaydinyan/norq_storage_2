@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Nunito";
+    src: url('/web/fonts/Nunito-Regular.ttf');
+}
 /*body{*/
 /*    background-color: #f1f1f1;*/
 /*    font-family: "Exo 2", sans-serif;*/
@@ -479,4 +483,8 @@ a.addDellink {
     background: #0055a5!important;
     border: 0!important;
     color: #fff!important;
+}
+
+.star {
+    font-size: 30px;color: #1b55e2
 }

@@ -22,7 +22,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
     
 
     <div style="padding:20px;"  id="print">
-        <h4><?php echo $model->shippingtype->{'name_' . $lang};?> (<?= Html::encode($this->title) ?>)<a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a></h4>
+        <h4><?php echo $model->shippingtype->{'name_' . $lang};?> (<?= Html::encode($this->title) ?>)<span class="star" ><i class="fa fa-star-o ml-4"></i></span></h4>
         <br>
         <div class="row">
             <div class="col-sm-5">

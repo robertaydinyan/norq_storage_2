@@ -52,7 +52,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
 <div class="group-product-index">
 
-    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a>
+    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?><span class="star" ><i class="fa fa-star-o ml-4"></i></span>
     <?php echo \app\rbac\WarehouseRule::can('warehouse', 'create') ? '<a style="float: right" href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '" class="btn btn-primary "  >' .  Yii::t("app", "Create Warehouse") . '</a>' : ''; ?>
     </h1>
 

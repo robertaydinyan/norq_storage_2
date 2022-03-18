@@ -14,7 +14,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="group-product-index">
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a></h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa fa-star-o ml-4"></i></span></h1>
     <div style="padding:20px;" class="table">
         <table class="kv-grid-table table table-hover  kv-table-wrap">
             <?php foreach ($regions as $region => $region_val){ ?>

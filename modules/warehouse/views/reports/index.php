@@ -22,7 +22,7 @@ $this->title = Yii::t('app', 'Reports');
 
 <?php if(\app\rbac\WarehouseRule::can('reports', 'index')): ?>
 
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a></h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa fa-star-o ml-4"></i></span></h1>
 <div class="shipping-request-create group-product-index">
     <br>
 <form class="row" action="" id="report_form" method="get" style="padding: 20px;">
