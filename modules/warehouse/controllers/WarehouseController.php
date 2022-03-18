@@ -12,6 +12,7 @@ use app\modules\warehouse\models\SearchShippingType;
 use app\modules\warehouse\models\ShippingRequestSearch;
 use app\modules\warehouse\models\ShippingType;
 use app\modules\warehouse\models\SuppliersList;
+use app\modules\warehouse\models\UserHistory;
 use app\modules\warehouse\models\WarehouseGroups;
 use app\modules\warehouse\models\WarehouseTypes;
 use Yii;
@@ -61,7 +62,11 @@ class WarehouseController extends Controller {
     public function actionHome() {
 
         $shipping_types = ShippingType::find()->all();
-        return $this->render('home', [  'shipping_types' => $shipping_types]);
+        $history = UserHistory::find()->where(['user_id' => Yii::$app->user->id])->limit(20)->orderBy('time DESC')->all();
+        return $this->render('home', [
+            'shipping_types' => $shipping_types,
+            'history' => $history
+        ]);
     }
     public function actionShowByType() {
         $searchModel = new WarehouseSearch();
