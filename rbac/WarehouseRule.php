@@ -14,6 +14,12 @@ use Yii;
  */
 class WarehouseRule {
     static function can($controller = '', $action = '', $params = []) {
+        if (Yii::$app->user->isGuest) {
+            return false;
+        }
+        if (Yii::$app->user->identity->role == "admin") {
+            return true;
+        }
         $controller = $controller ?: Yii::$app->controller->id;
         $action = $action ?: Yii::$app->controller->action->id;
         $userID = Yii::$app->user->id;

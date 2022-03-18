@@ -68,7 +68,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
             <?php foreach ($warehouse_types as $ware_type => $ware_type_val){ ?>
             <tr>
 
-                <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'by-type') ? ('href="' . Url::to(['by-type', 'lang' => \Yii::$app->language]) . '&type=' . $ware_type_val->id) . '"' : '' ?>><?php echo $ware_type_val->{'name_' . $lang};?></a></td>
+                <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'show-by-type') ? ('href="' . Url::to(['show-by-type', 'lang' => \Yii::$app->language]) . '&type=' . $ware_type_val->id) . '"' : '' ?>><?php echo $ware_type_val->{'name_' . $lang};?></a></td>
                 <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'show-by-type') ? 'href="' . Url::to(['show-by-type', 'lang' => \Yii::$app->language]) . '&type=' . $ware_type_val->id . '">' . \Yii::t('app','View') : '>';?> (<?php echo $ware_type_val->count;?>)</a></td>
             </tr>
             <?php } ?>

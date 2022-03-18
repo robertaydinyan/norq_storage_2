@@ -241,9 +241,9 @@ class WarehouseController extends Controller {
     public function actionUpdate($id) {
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $model = $this->findModel($id);
-        $address = new ContactAdress();
         $model->updated_at = Carbon::now()
             ->toDateTimeString();
+
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
             ->asArray()
             ->all() , 'name', 'last_name', 'id');
@@ -262,59 +262,18 @@ class WarehouseController extends Controller {
         if ($model->load(Yii::$app
             ->request
             ->post())) {
-            $post = Yii::$app
-                ->request
-                ->post();
-            $C_C_address = $post['ContactAdress'];
-            if (!empty($C_C_address['country_id'])) {
-
-                foreach ($C_C_address['country_id'] as $k => $add) {
-                    $street = Streets::findOne(['id' => intval($C_C_address['street'][$k]) ]);
-                    $streetId = null;
-
-                    if (empty($street) || !$C_C_address['street'][$k]) {
-                        $new_street = new Streets();
-                        $new_street->name = $C_C_address['street'][$k];
-                        $new_street->city_id = $C_C_address['city_id'][$k];
-                        $new_street->community_id = $C_C_address['community_id'][$k];
-
-                        if ($new_street->save()) {
-                            $streetId = $new_street->id;
-                        }
-                    }
-                    else {
-                        $streetId = $street->id;
-                    }
-
-                    $addressForSave = new ContactAdress();
-
-                    if (isset($C_C_address['community_id'][$k])) {
-                        $addressForSave->community_id = $C_C_address['community_id'][$k];
-                    }
-                    else {
-                        $addressForSave->community_id = 0;
-                    }
-                    $addressForSave->country_id = $C_C_address['country_id'][$k];
-                    $addressForSave->region_id = $C_C_address['region_id'][$k];
-                    $addressForSave->city_id = $C_C_address['city_id'][$k];
-                    $addressForSave->street = $streetId;
-                    $addressForSave->house = $C_C_address['house'][$k];
-                    $addressForSave->housing = $C_C_address['housing'][$k];
-                    $addressForSave->apartment = $C_C_address['apartment'][$k];
-
-                    if ($addressForSave->save()) {
-                        $model->contact_address_id = $addressForSave->id;
-                        $model->save();
-                    }
-
-                }
-            }
+            $model->save(false);
             Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->{'name_' . $lang} . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
             Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->{'name_' . $lang} . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
             return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
-        return $this->render('update', ['model' => $model, 'dataUsers' => $dataUsers, 'responsiblePersons' => $responsiblePersons, 'address' => $address, 'lang' => \Yii::$app->language]);
+        return $this->render('update', [
+            'model' => $model,
+            'dataUsers' => $dataUsers,
+            'responsiblePersons' => $responsiblePersons,
+            'lang' => \Yii::$app->language
+        ]);
     }
 
     public function actionDelete($id) {

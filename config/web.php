@@ -12,7 +12,7 @@ $config = [
 //        return ;//;
 //    },
     'sourceLanguage' => 'en-US',
-    'defaultRoute' => '/fastnet/tariff',
+    'defaultRoute' => '/warehouse/warehouse/home',
     'timezone' => 'Asia/Yerevan',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',

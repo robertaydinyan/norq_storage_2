@@ -11,40 +11,6 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!--<style>-->
-<!--    .modal-content-custom{-->
-<!--        display: none;-->
-<!--        width: 90%;-->
-<!--        height: 100%;-->
-<!--        position: fixed;-->
-<!--        top: 0px;-->
-<!--        left: 110%;-->
-<!--        background: white !important;-->
-<!--        z-index: 100000;-->
-<!--        box-shadow: 2px 2px 2px 2px lightgray;-->
-<!--        /*   transition-duration: 500ms;*/-->
-<!---->
-<!--    }-->
-<!--    .modal-content-custom .page1{-->
-<!--        width: 100% !important;-->
-<!--        padding: 30px;-->
-<!--        max-height: 100vh;-->
-<!--        overflow: auto;-->
-<!--    }-->
-<!--    .modal-content-custom .close {-->
-<!--        position: absolute;-->
-<!--        top: 10%;-->
-<!--        left: -60px;-->
-<!--        min-width: 60px;-->
-<!--        border-radius: 20px 0px 0px 20px;-->
-<!--        color: white;-->
-<!--        background: #2fc6f6;-->
-<!--        opacity:1!important;-->
-<!--        cursor: pointer;-->
-<!--        padding: 5px 5px 5px 15px;-->
-<!--    }-->
-<!--</style>-->
-<?php if(\app\rbac\WarehouseRule::can('users', 'index')): ?>
 <div class="user-index">
 
     <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a>
@@ -71,8 +37,10 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <td><?php echo $user->email; ?></td>
                     <td>
                         <?php if(\app\rbac\WarehouseRule::can('users', 'edit')): ?>
-                        <a href="users/edit?lang=<?php echo Yii::$app->language; ?>&id=<?php echo $user->id; ?>"><i class="fas fa-pencil-alt"></i></a>
+                        <a href="<?php echo URL::to(['users/edit', 'lang' => Yii::$app->language, 'id' => $user->id]); ?>"><i class="fas fa-pencil-alt"></i></a>
                         <?php endif; ?>
+                        <?php if(\app\rbac\WarehouseRule::can('users', 'delete')): ?>
+                        <a onclick="return AreYouSure();" href="<?php echo URL::to(['users/delete', 'lang' => Yii::$app->language, 'id' => $user->id]); ?>"><i class="fas fa-trash-alt" style="color: red;"></i></a><?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach;
@@ -80,20 +48,9 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         </table>
     </div>
 </div>
-<?php endif; ?>
 
-
-<!--<script type="text/javascript">-->
-<!--    $('.show-modal').click(function(){-->
-<!--        var href = $(this).attr('data-modal');-->
-<!--        var html_ = $('#page-modal').html();-->
-<!---->
-<!--        $('.modal-content-custom').append(html_);-->
-<!--        $('.modal-content-custom').show().animate({left: '10%'}, {duration: 600});-->
-<!--        $('.modal-content-custom .close').click(function(){-->
-<!--            $('.modal-content-custom').animate({left: '110%'}, {duration: 600});-->
-<!--            $('.modal-content-custom .page1').remove();-->
-<!--        });-->
-<!--    });-->
-<!---->
-<!--</script>-->
+<script>
+    function AreYouSure() {
+        return window.confirm('Are you sure?');
+    }
+</script>

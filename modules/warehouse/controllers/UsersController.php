@@ -6,8 +6,6 @@ use app\models\User;
 use app\modules\warehouse\models\Action;
 use app\modules\warehouse\models\UserAction;
 use Yii;
-use app\modules\warehouse\models\StatusList;
-use app\modules\warehouse\models\SearchStatusList;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -25,10 +23,6 @@ class UsersController extends Controller
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-
-                ],
             ],
         ];
     }
@@ -72,5 +66,40 @@ class UsersController extends Controller
         } else {
             return UserAction::deleteAll(['action_id' => $actionID, 'user_id' => $userID]);
         }
+    }
+
+    public function actionCreate() {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $user = new User();
+        $request = Yii::$app->request;
+        if ($request->isPost) {
+            $user->load($request->post(), 'User');
+            $user->save(false);
+
+            $action = new UserAction();
+            $action->user_id = $user->id;
+            $action->action_id = 125;
+            $action->save(false);
+
+            return $this->redirect(['users/index', 'lang' => $lang]);
+        }
+        return $this->render('create', [
+            'user' => $user
+        ]);
+    }
+
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+        return $this->redirect(['users/index', 'lang' => \Yii::$app->language]);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = User::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }
