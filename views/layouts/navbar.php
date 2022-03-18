@@ -13,8 +13,10 @@ $lang = Yii::$app->request->get('lang');
 $flag = $flags[$lang] ?: 'en';
 
 ?>
+<input type="hidden" id="user-id" value="<?php echo YII::$app->user->id; ?>">
+<input type="hidden" id="user-link" value="<?php echo URL::current(); ?>">
 <nav class="topnav navbar navbar-expand shadow navbar-light" id="sidenavAccordion" style=" background:#0055a5!important;">
-    <a class="navbar-brand" href="/warehouse/warehouse/home?lang=<?php echo \Yii::$app->language; ?>" style="color:#fff!important">Warehouse</a>
+    <a class="navbar-brand" href="/warehouse/warehouse/home?lang=<?php echo \Yii::$app->language; ?>" style="color:#fff!important"><img src="/img/logo.png" style="width:35px;height: 35px;" class="mr-3">Warehouse</a>
     <?php
     //        if(Yii::$app->controller->module->id == 'fastnet'){
     Helper::constructMenu(Yii::$app->controller->module->id);

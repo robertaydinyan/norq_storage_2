@@ -22,11 +22,11 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
             <li class="breadcrumb-item"><a href="<?= Url::to(['index']) ?>"><?php echo Yii::t('app', 'Back'); ?></a></li>
         </ol>
     </nav>
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) .
+    <h3 style="padding: 20px;"><?= Html::encode($this->title) .
             (\app\rbac\WarehouseRule::can('warehouse', 'create') ?
             ('<a style="float: right" href="' . Url::to(['create', 'lang' => Yii::$app->language]) . '"  class="btn btn-sm btn-primary" >' .
-            Yii::t('app', 'Create Warehouse') . '</a>') : ''); ?>
-        </a></h4>
+            Yii::t('app', 'Create Warehouse') . '</a>') : ''); ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+        </a></h3>
         <div style="padding:20px;">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,

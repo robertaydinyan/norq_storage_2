@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Nunito";
+    src: url('/web/fonts/Nunito-Regular.ttf');
+}
 .dropdown-menu{
     height: 300px;
     overflow: hidden;
@@ -68,7 +72,6 @@ span{
     background: white;
     margin-top: 10px;
     border-radius: 5px;
-    border:1px dashed #007bff;
 }
 .btn-add-product{
     cursor: pointer;

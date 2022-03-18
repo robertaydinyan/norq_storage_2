@@ -14,7 +14,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 <?php if(\app\rbac\WarehouseRule::can('complectation-shipping', 'index')): ?>
 <div class="complectation-shipping-index group-product-index" >
 
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
         <?php if(\app\rbac\WarehouseRule::can('complectation-shipping', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել կոմպլեկտացիայի տեղափոխություն</a>
         <?php endif; ?>

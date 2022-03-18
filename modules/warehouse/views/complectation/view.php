@@ -27,7 +27,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
 <div class="group-product-index">
 
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?></h4>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h4>
 
     <div style="padding:20px;" >
         <div class="row">

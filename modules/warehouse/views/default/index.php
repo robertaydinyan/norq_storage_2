@@ -1,5 +1,5 @@
 <div class="warehouse-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
+    <h1><?= $this->context->action->uniqueId ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
     <p>
         This is the view content for action "<?= $this->context->action->id ?>".
         The action belongs to the controller "<?= get_class($this->context) ?>"

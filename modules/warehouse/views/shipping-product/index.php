@@ -15,7 +15,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 <?php if(\app\rbac\WarehouseRule::can('shipping-product', 'index')): ?>
 <div class="shipping-product-index group-product-index">
 
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
         <?php if(\app\rbac\WarehouseRule::can('shipping-product', 'create')): ?>
         <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել Ապրանքի տեղափոխություն</a>
         <?php endif; ?>

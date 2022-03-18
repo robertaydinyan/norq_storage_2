@@ -49,11 +49,13 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         padding: 5px 5px 5px 15px;
     }
 </style>
+
 <div class="group-product-index">
 
-    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?>
+    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
     <?php echo \app\rbac\WarehouseRule::can('warehouse', 'create') ? '<a style="float: right" href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '" class="btn btn-primary "  >' .  Yii::t("app", "Create Warehouse") . '</a>' : ''; ?>
     </h1>
+
     <div class="modal-content-custom">
         <div class="close"><i class="fa fa-close"></i></div>
     </div>

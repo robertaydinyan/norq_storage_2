@@ -13,9 +13,9 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="user-index">
 
-    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?>
+    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
         <?php if(\app\rbac\WarehouseRule::can('users', 'create')): ?>
-        <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create Warehouse'); ?></a>
+        <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create user'); ?></a>
         <?php endif; ?>
     </h1>
 
@@ -37,10 +37,11 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                     <td><?php echo $user->email; ?></td>
                     <td>
                         <?php if(\app\rbac\WarehouseRule::can('users', 'edit')): ?>
-                        <a href="<?php echo URL::to(['users/edit', 'lang' => Yii::$app->language, 'id' => $user->id]); ?>"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="<?php echo URL::to(['users/edit', 'lang' => Yii::$app->language, 'id' => $user->id]); ?>"><i class="fas fa-pencil-alt"></i></a>
                         <?php endif; ?>
                         <?php if(\app\rbac\WarehouseRule::can('users', 'delete')): ?>
-                        <a onclick="return AreYouSure();" href="<?php echo URL::to(['users/delete', 'lang' => Yii::$app->language, 'id' => $user->id]); ?>"><i class="fas fa-trash-alt" style="color: red;"></i></a><?php endif; ?>
+                            <a onclick="return AreYouSure();" href="<?php echo URL::to(['users/delete', 'lang' => Yii::$app->language, 'id' => $user->id]); ?>"><i class="fas fa-trash-alt" style="color: red;"></i></a>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach;
@@ -51,6 +52,6 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
 <script>
     function AreYouSure() {
-        return window.confirm('Are you sure?');
+        return window.confirm('Are you absolutely sure ? You will lose all the information about this user with this action.');
     }
 </script>

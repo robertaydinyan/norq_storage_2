@@ -14,7 +14,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="group-product-index">
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?></h4>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h4>
     <div style="padding:20px;" class="table">
         <table class="table">
             <?php foreach ($subs as $sub => $sub_val){ ?>

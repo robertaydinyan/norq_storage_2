@@ -27,7 +27,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 <?php if(\app\rbac\WarehouseRule::can('suppliers-list', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> </h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
     <div style="padding:20px;">
         <div>
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
@@ -98,3 +98,5 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
     </div>
 </div>
 <br>
+
+

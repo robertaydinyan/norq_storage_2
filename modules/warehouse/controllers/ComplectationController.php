@@ -2,7 +2,9 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
 use app\modules\warehouse\models\ComplectationProducts;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ShippingProducts;
@@ -46,12 +48,14 @@ class ComplectationController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $dataProvider = new ActiveDataProvider([
             'query' => Complectation::find(),
         ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -63,12 +67,14 @@ class ComplectationController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $id = intval($_GET['id']);
         $whProducts = ComplectationProducts::find()->where(['complectation_id'=>$id])->all();
 
         return $this->render('view', [
             'model' => $this->findModel($id),
             'whProducts' => $whProducts,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -79,6 +85,7 @@ class ComplectationController extends Controller
      */
     public function actionCreate()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $model = new Complectation();
         $model_products = new ComplectationProducts();
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
@@ -252,13 +259,14 @@ class ComplectationController extends Controller
                     }
                 }
             }
-            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index','isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', [
             'model' => $model,
             'model_products' => $model_products,
             'dataWarehouses' => $dataWarehouses,
+            'index','isFavorite' => $isFavorite,
         ]);
     }
 
@@ -271,6 +279,7 @@ class ComplectationController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -285,6 +294,7 @@ class ComplectationController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
         ]);
     }
 

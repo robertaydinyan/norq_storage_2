@@ -31,7 +31,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 </style>
 <div class="warehouse-view d-flex group-product-index" style="padding: 20px;">
     <div class="col-lg-4">
-        <h4><?= Html::encode($model->{'name_' . $lang}) ?> (<?php echo Yii::t('app', 'Warehouse'); ?>)</h4>
+        <h1 class="mb-5 d-flex"><?= Html::encode($model->{'name_' . $lang}) ?> (<?php echo Yii::t('app', 'Warehouse'); ?>)<span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <?php if($model->type != 2){ ?>
         <?= DetailView::widget([
             'model' => $model,

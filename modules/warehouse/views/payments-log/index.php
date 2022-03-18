@@ -24,7 +24,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             </ul>
         </div>
     </nav>
-    <h4 style="padding: 20px;" ><?= Html::encode($this->title) ?>
+    <h4 style="padding: 20px;" ><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
         <?php if(\app\rbac\WarehouseRule::can('payments-log', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'make a payment'); ?></a>
         <?php endif; ?>
