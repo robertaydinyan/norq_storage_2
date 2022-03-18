@@ -488,3 +488,6 @@ a.addDellink {
 .star {
     font-size: 30px;color: #1b55e2
 }
+.star i:hover {
+    cursor: pointer;
+}

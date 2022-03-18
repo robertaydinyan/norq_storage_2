@@ -27,7 +27,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     </nav>
 
     <div class="col-lg-4">
-        <h4 ><?php echo $model->shipping_type;?> (<?= Html::encode($this->title) ?>)<span class="star" ><i class="fa fa-star-o ml-4"></i></span></h4>
+        <h4 ><?php echo $model->shipping_type;?> (<?= Html::encode($this->title) ?>)<span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h4>
 
         <?= DetailView::widget([
             'model' => $model,

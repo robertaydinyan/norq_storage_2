@@ -13,7 +13,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="user-index">
 
-    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?><span class="star" ><i class="fa fa-star-o ml-4"></i></span>
+    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
         <?php if(\app\rbac\WarehouseRule::can('users', 'create')): ?>
         <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create user'); ?></a>
         <?php endif; ?>

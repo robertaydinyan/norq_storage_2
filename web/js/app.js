@@ -132,11 +132,23 @@ function ID_Name() {
 }
 
 $('.star').click(function () {
+    var status;
+
     if ($('.fa-star-o').hasClass('fa-star-o')){
+        status = 1;
         $('.fa-star-o').addClass('fa-star');
         $('.fa-star-o').removeClass('fa-star-o');
     }else  {
+        status = 0;
         $('.fa-star').addClass('fa-star-o');
         $('.fa-star').removeClass('fa-star');
     }
+
+    $.get('/warehouse/warehouse/change-favorite', {
+        'status': status,
+        'user_id': $('#user-id').val(),
+        'url': $('#user-link').val(),
+    }).done(function(res) {
+        console.log(res);
+    });
 });

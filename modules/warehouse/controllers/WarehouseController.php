@@ -1,6 +1,8 @@
 <?php
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
+use app\modules\warehouse\models\Favorite;
 use app\models\User;
 use app\modules\billing\models\Regions;
 use app\modules\fastnet\models\Streets;
@@ -53,9 +55,12 @@ class WarehouseController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $warehouse_types = WarehouseTypes::find()->all();
-        return $this->render('index', ['warehouse_types' => $warehouse_types, ]);
+        return $this->render('index', [
+            'warehouse_types' => $warehouse_types,
+            'isFavorite' => $isFavorite
+        ]);
     }
 
     public function actionHome() {
@@ -127,6 +132,7 @@ class WarehouseController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $id = intval($_GET['id']);
         $whProducts = Product::getWarehouseProducts($id);
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()
@@ -141,7 +147,7 @@ class WarehouseController extends Controller {
             $model = $this->findModel($id);
         }
 
-        return $this->render('view', ['model' => $this->findModel($id) , 'dataProvider' => $whProducts, 'suppliers' => $suppliers, 'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse,
+        return $this->render('view', ['model' => $this->findModel($id) , 'isFavorite' => $isFavorite, 'dataProvider' => $whProducts, 'suppliers' => $suppliers, 'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse,
 
         ]);
     }
@@ -376,6 +382,26 @@ class WarehouseController extends Controller {
                     })
                </script></div>';
         return $html;
+    }
+
+    public  function actionChangeFavorite(){
+        $request = $this->request;
+        if($request->isGet){
+            $userID = $request->get('user_id');
+            $url = $request->get('url');
+            $status = $request->get('status');
+            if($userID && $url){
+                if($status == 1){
+                    $favorite = new Favorite();
+                    $favorite->user_id = $userID;
+                    $favorite->link = $url;
+                    return $favorite->save();
+                }else {
+                    return Favorite::deleteAll(['user_id' => $userID,'link' => $url]);
+                }
+            }
+        }
+        return false;
     }
 }
 

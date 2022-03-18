@@ -2,6 +2,8 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
+use app\modules\warehouse\models\Favorite;
 use Yii;
 use app\modules\warehouse\models\ComplectationProducts;
 use yii\data\ActiveDataProvider;
@@ -35,12 +37,16 @@ class ComplectationProductsController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $dataProvider = new ActiveDataProvider([
             'query' => ComplectationProducts::find(),
         ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -84,6 +90,8 @@ class ComplectationProductsController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -92,6 +100,8 @@ class ComplectationProductsController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
