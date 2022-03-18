@@ -34,11 +34,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
             <div class="dropdown mr-2 btn-drop">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<<<<<<< HEAD
                     <i class="fa fa-bars mr-2"></i> History <i class="fa fa-caret-down ml-2"></i>
-=======
-                    <i class="fa fa-bars mr-2"></i> History<i class="fa fa-caret-down ml-2"></i>
->>>>>>> d57e4881471a5f91aeb6ccbea38a581c70d743b4
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                     <?php if (isset($history)):
@@ -50,16 +46,14 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
             </div>
             <div class="dropdown btn-drop">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<<<<<<< HEAD
                     <i class="fa fa-star mr-2"></i> Favorites <i class="fa fa-caret-down ml-2"></i>
-=======
-                    <i class="fa fa-star mr-2"></i> Favorite<i class="fa fa-caret-down ml-2"></i>
->>>>>>> d57e4881471a5f91aeb6ccbea38a581c70d743b4
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <?php if (isset($favorites)):
+                        foreach ($favorites as $f): ?>
+                            <a class="dropdown-item" href="<?php echo $f->link; ?>"><?php echo $f->title; ?></a>
+                        <?php endforeach;
+                    endif; ?>
                 </div>
             </div>
         </div>

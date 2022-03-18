@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use app\components\Helper;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\UserHistory;
 use app\widgets\Alert;
 use yii\helpers\Html;
@@ -16,7 +17,9 @@ use Yii;
 use View;
 use app\models\Notifications;
 $history = UserHistory::find()->where(['user_id' => Yii::$app->user->id])->limit(3)->orderBy('time DESC')->all();
+$favorites = Favorite::find()->where(['user_id' => Yii::$app->user->id])->all();
 AppAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -52,16 +55,24 @@ AppAsset::register($this);
             </div>
         <?php endif;?>
             <div class="wrap">
-                <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
-                    <div class="favorite" onclick="showPage('/warehouse/qty-type?lang=hy')">Տեղեկատուներ <i class="fa fa-times"></i></div>
-                    <div class="favorite" onclick="showPage('/warehouse/product?lang=hy')">Ապրանքներ <i class="fa fa-times"></i></div>
-                    <?php if ($history):
-                        foreach ($history as $h): ?>
-                            <div class="favorite" onclick="showPage('<?php echo $h->link . (strpos($h->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>')"><?php echo $h->title; ?></i></div>
-                        <?php endforeach;
-                    endif;?>
-                <?php endif; ?>
-
+                <div class="bookmarks d-flex">
+                    <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
+                        <div class="favorites" >
+                            <?php if ($favorites):
+                                foreach ($favorites as $f): ?>
+                                    <div class="favorite" data-url="<?php echo $f->link ?>" onclick="showPage('<?php echo $f->link ?>')"><?php echo $f->title; ?> <i class="fa fa-times remove-favorite"></i></div>
+                                <?php endforeach;
+                            endif;?>
+                        </div>
+                        <div class="histories" style="margin-left: 40px;">
+                            <?php if ($history):
+                                foreach ($history as $h): ?>
+                                    <div class="favorite" onclick="showPage('<?php echo $h->link . (strpos($h->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>')"><?php echo $h->title; ?></i></div>
+                                <?php endforeach;
+                            endif;?>
+                        </div>
+                    <?php endif; ?>
+                </div>
                 <!-- Navbar -->
 
                 <!--  --><?php

@@ -68,9 +68,11 @@ class WarehouseController extends Controller {
 
         $shipping_types = ShippingType::find()->all();
         $history = UserHistory::find()->where(['user_id' => Yii::$app->user->id])->limit(20)->orderBy('time DESC')->all();
+        $favorites = Favorite::find()->where(['user_id' => Yii::$app->user->id])->all();
         return $this->render('home', [
             'shipping_types' => $shipping_types,
-            'history' => $history
+            'history' => $history,
+            'favorites' => $favorites
         ]);
     }
     public function actionShowByType() {
@@ -396,12 +398,14 @@ class WarehouseController extends Controller {
         if($request->isGet){
             $userID = $request->get('user_id');
             $url = $request->get('url');
+            $title = $request->get('title');
             $status = $request->get('status');
             if($userID && $url){
                 if($status == 1){
                     $favorite = new Favorite();
                     $favorite->user_id = $userID;
                     $favorite->link = $url;
+                    $favorite->title = $title;
                     return $favorite->save();
                 }else {
                     return Favorite::deleteAll(['user_id' => $userID,'link' => $url]);

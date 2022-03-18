@@ -58,7 +58,7 @@ class WarehouseRule {
     public static function savePage($title) {
         $user_id = Yii::$app->user->id;
         $link = URL::current();
-        if ($link == "/site/error") return 0;
+        if (explode('?', $link)[0] == "/site/error") return 0;
         $st = preg_replace('/lang=[a-zA-Z]+&/', '', $link);
         if ($st == $link) {
             $st = preg_replace('/lang=[a-zA-Z]+/', '', $link);
