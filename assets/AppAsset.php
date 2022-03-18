@@ -38,6 +38,9 @@ class AppAsset extends AssetBundle
 
         //changes 11/26/2020
         'css/modules/crm/kanban.css',
+        'https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+
 
     ];
     public $js = [
@@ -60,6 +63,7 @@ class AppAsset extends AssetBundle
 
         'js/modules/crm/script2.js',
         'js/plugins/fullcalendar/fullcalendar.min.js',
+        'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'
 
     ];
     public $depends = [

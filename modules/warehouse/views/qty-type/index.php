@@ -17,7 +17,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 <?php if(\app\rbac\WarehouseRule::can('qty-type', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;" ><?= Html::encode($this->title) ?>
+    <h1 style="padding: 20px;" ><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a>
         <?php if(\app\rbac\WarehouseRule::can('qty-type', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create' ,'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a unit of measurement'); ?></a>
         <?php endif; ?>

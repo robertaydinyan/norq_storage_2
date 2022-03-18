@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php if(\app\rbac\WarehouseRule::can('complectation-products', 'index')): ?>
 <div class="complectation-products-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a></h1>
 
     <?php if(\app\rbac\WarehouseRule::can('complectation-products', 'create')): ?>
         <p>

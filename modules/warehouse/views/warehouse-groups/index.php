@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php if(\app\rbac\WarehouseRule::can('warehouse-groups', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a>
     <?php if(\app\rbac\WarehouseRule::can('warehouse-groups', 'create')): ?>
         <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'Create');?></a>
     <?php endif; ?>

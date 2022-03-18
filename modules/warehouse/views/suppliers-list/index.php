@@ -27,7 +27,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 <?php if(\app\rbac\WarehouseRule::can('suppliers-list', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> </h1>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> </h1><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a>
     <div style="padding:20px;">
         <div>
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">

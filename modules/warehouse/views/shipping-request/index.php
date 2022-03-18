@@ -28,7 +28,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
         </div>
     </nav>
 
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a>
     <?php if(\app\rbac\WarehouseRule::can('shipping-request', 'create')): ?>
 
         <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a query'); ?></a>

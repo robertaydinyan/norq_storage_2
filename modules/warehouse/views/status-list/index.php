@@ -15,7 +15,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 <?php if(\app\rbac\WarehouseRule::can('status-list', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?>
+    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a>
     <?php if(\app\rbac\WarehouseRule::can('status-list', 'create')): ?>
         <?= Html::a(Yii::t('app', 'Create'), ['create', 'lang' => \Yii::$app->language], ['class' => 'btn btn-primary float-right']) ?>
     <?php endif; ?>

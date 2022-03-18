@@ -47,7 +47,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 <?php if(\app\rbac\WarehouseRule::can('users', 'index')): ?>
 <div class="user-index">
 
-    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?>
+    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a>
         <?php if(\app\rbac\WarehouseRule::can('users', 'create')): ?>
         <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create Warehouse'); ?></a>
         <?php endif; ?>

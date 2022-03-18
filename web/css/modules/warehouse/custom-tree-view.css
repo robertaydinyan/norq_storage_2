@@ -68,7 +68,6 @@ span{
     background: white;
     margin-top: 10px;
     border-radius: 5px;
-    border:1px dashed #007bff;
 }
 .btn-add-product{
     cursor: pointer;
