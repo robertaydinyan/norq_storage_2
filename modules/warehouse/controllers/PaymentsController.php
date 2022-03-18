@@ -2,10 +2,12 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
 use app\models\query\BaseQuery;
 use app\models\User;
 use app\modules\billing\models\Regions;
 use app\modules\crm\models\ContactAdress;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\ProductImagesPath;
@@ -54,10 +56,13 @@ class PaymentsController extends Controller
      */
     public function actionIndex()
     {
-       $partners = SuppliersList::find()->asArray()->all();
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
+        $partners = SuppliersList::find()->asArray()->all();
         $tableTreePartners = $this->buildTree($partners);
         return $this->render('index', [
             'tableTreePartners' => $tableTreePartners,
+            'isFavorite' => $isFavorite,
         ]);
     }
     
@@ -84,6 +89,8 @@ class PaymentsController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $imagesPaths = ProductImagesPath::find()
             ->select([
                 'images_path'
@@ -93,7 +100,8 @@ class PaymentsController extends Controller
 
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'imagesPaths' => $imagesPaths
+            'imagesPaths' => $imagesPaths,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -115,6 +123,8 @@ class PaymentsController extends Controller
      */
     public function actionCreate($warehouseId = null)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new Product();
 
         $model->created_at = Carbon::now()->toDateTimeString();
@@ -165,12 +175,13 @@ class PaymentsController extends Controller
                     }
                 }
             }
-            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index', 'isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
 
         }
         return $this->render('create', [
             'model' => $model,
             'nProducts' => $nProducts,
+            'isFavorite' => $isFavorite,
             'physicalWarehouse' => $physicalWarehouse,
             'suppliers' => $suppliers,
         ]);

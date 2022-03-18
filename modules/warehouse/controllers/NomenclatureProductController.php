@@ -2,6 +2,8 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\QtyType;
 use Yii;
@@ -40,6 +42,8 @@ class NomenclatureProductController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $groups = GroupProduct::find()->asArray()->all();
         $tableTreeGroups = $this->buildTree($groups);
 
@@ -49,6 +53,7 @@ class NomenclatureProductController extends Controller
             'tableTreeGroups'=> $tableTreeGroups,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -60,8 +65,12 @@ class NomenclatureProductController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'isFavorite' => $isFavorite,
+
         ]);
     }
     public function buildTree(array $elements, $parentId = null) {
@@ -86,6 +95,8 @@ class NomenclatureProductController extends Controller
      */
     public function actionCreate()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new NomenclatureProduct();
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
         $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type');
@@ -120,7 +131,8 @@ class NomenclatureProductController extends Controller
                        Notifications::setNotification($value->id,"Ստեղծվել է նոր Նոմենկլատուրա ".$model->name,'/warehouse/nomenclature-product');
                     }
                 } 
-                return $this->redirect(['create', 'lang' => \Yii::$app->language]);
+                return $this->redirect(['create',            'isFavorite' => $isFavorite,
+                    'lang' => \Yii::$app->language]);
             }
         }
 
@@ -131,6 +143,8 @@ class NomenclatureProductController extends Controller
             'tableTreeGroups'=> $tableTreeGroups,
             'model' => $model,
             'groupProducts' => $groupProducts,
+            'isFavorite' => $isFavorite,
+
             'qtyTypes' => $qtyTypes
         ]);
     }
@@ -144,6 +158,8 @@ class NomenclatureProductController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $model = $this->findModel($id);
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
@@ -185,6 +201,7 @@ class NomenclatureProductController extends Controller
             'tableTreeGroups'=> $tableTreeGroups,
             'model' => $model,
             'groupProducts' => $groupProducts,
+            'isFavorite' => $isFavorite,
             'qtyTypes' => $qtyTypes
         ]);
     }

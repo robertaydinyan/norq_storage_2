@@ -2,6 +2,8 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ShippingProduct;
@@ -44,6 +46,8 @@ class ShippingController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $searchModel = new ShippingSearch();
 
         $userId = Yii::$app->user->identity->id;
@@ -54,6 +58,8 @@ class ShippingController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -65,6 +71,8 @@ class ShippingController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         if ($this->findModel($id)->status == 'Ուղղարկված' || $this->findModel($id)->status == 'Հաստատված' ){
             $searchModel = new ShippingProductSearch();
 
@@ -79,6 +87,7 @@ class ShippingController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,
+            'isFavorite' => $isFavorite,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -90,6 +99,8 @@ class ShippingController extends Controller
      */
     public function actionCreate()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new Shipping();
 
         $model->created_at  = Carbon::now()->toDateTimeString();
@@ -100,6 +111,7 @@ class ShippingController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -112,15 +124,20 @@ class ShippingController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         //varDumper('kejfdk');die;
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view',   'isFavorite' => $isFavorite,
+                'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 

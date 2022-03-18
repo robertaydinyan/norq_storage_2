@@ -2,8 +2,10 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
 use app\models\User;
 use app\modules\billing\models\Regions;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ShippingType;
 use app\modules\warehouse\models\Warehouse;
@@ -41,6 +43,8 @@ class ReportsController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $shipping_types=  ShippingType::find()->all();
         $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id', 'name_' . $lang);
@@ -59,6 +63,8 @@ class ReportsController extends Controller
             'users' =>$uersData,
             'regions' =>$regions,
             'groups' =>$groups,
+            'isFavorite' => $isFavorite,
+
             'data' =>$data,
         ]);
     }

@@ -2,6 +2,8 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
+use app\modules\warehouse\models\Favorite;
 use Yii;
 use app\modules\warehouse\models\ShippingType;
 use app\modules\warehouse\models\SearchShippingType;
@@ -38,12 +40,16 @@ class ShippingTypeController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $searchModel = new SearchShippingType();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -55,8 +61,12 @@ class ShippingTypeController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -67,6 +77,8 @@ class ShippingTypeController extends Controller
      */
     public function actionCreate()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
         $model = new ShippingType();
@@ -78,11 +90,12 @@ class ShippingTypeController extends Controller
                    Notifications::setNotification($value->id,"Ստեղծվել է տեղափոխության տեսակ ".$model->{'name_' . $lang},'/warehouse/shipping-type');
                 }
             }
-            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index','isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -95,6 +108,8 @@ class ShippingTypeController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
         $model = $this->findModel($id);
@@ -106,11 +121,12 @@ class ShippingTypeController extends Controller
                    Notifications::setNotification($value->id,"Փոփոխվել է տեղափոխության տեսակ ".$model->{'name_' . $lang},'/warehouse/shipping-type');
                 }
             }
-            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index','isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
         ]);
     }
 

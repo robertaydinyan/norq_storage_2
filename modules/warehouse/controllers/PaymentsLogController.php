@@ -2,6 +2,8 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
+use app\modules\warehouse\models\Favorite;
 use Yii;
 use app\modules\warehouse\models\ProviderPayments;
 use app\modules\warehouse\models\ProviderPaymentsSearch;
@@ -36,6 +38,7 @@ class PaymentsLogController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
         $searchModel = new ProviderPaymentsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -43,6 +46,7 @@ class PaymentsLogController extends Controller
             
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -54,8 +58,11 @@ class PaymentsLogController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -66,18 +73,21 @@ class PaymentsLogController extends Controller
      */
     public function actionCreate()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new ProviderPayments();
         $partners = SuppliersList::find()->asArray()->all();
         $tableTreePartners = $this->buildTree($partners);
 
         if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
-            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index','isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
         }
 
 
         return $this->render('create', [
             'model' => $model,
             'tableTreePartners'=>$tableTreePartners,
+            'isFavorite' => $isFavorite,
 
         ]);
     }
@@ -106,6 +116,8 @@ class PaymentsLogController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -114,6 +126,7 @@ class PaymentsLogController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
         ]);
     }
 

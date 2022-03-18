@@ -2,6 +2,8 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
+use app\modules\warehouse\models\Favorite;
 use Yii;
 use app\modules\warehouse\models\WarehouseGroups;
 use yii\data\ActiveDataProvider;
@@ -35,12 +37,16 @@ class WarehouseGroupsController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $dataProvider = new ActiveDataProvider([
             'query' => WarehouseGroups::find(),
         ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -51,14 +57,17 @@ class WarehouseGroupsController extends Controller
      */
     public function actionCreate()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new WarehouseGroups();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'lang' => Yii::$app->language]);
+            return $this->redirect(['index', 'isFavorite' => $isFavorite,'lang' => Yii::$app->language]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -71,14 +80,17 @@ class WarehouseGroupsController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'lang' => Yii::$app->language]);
+            return $this->redirect(['index', 'isFavorite' => $isFavorite,'lang' => Yii::$app->language]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
         ]);
     }
 

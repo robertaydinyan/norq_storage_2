@@ -1,8 +1,10 @@
 <?php
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
 use app\models\Notifications;
 use app\models\User;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\PartnersList;
 use app\modules\warehouse\models\Product;
@@ -39,6 +41,8 @@ class ShippingRequestController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
@@ -67,9 +71,13 @@ class ShippingRequestController extends Controller {
             'shipping_types' => $shipping_types,
             'warehouses' => $physicalWarehouse,
             'suppliers' => $suppliers,
+            'isFavorite' => $isFavorite,
+
             'users' => $dataUsers]);
     }
     public function actionDocuments() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
         $searchModel = new ShippingRequestSearch();
@@ -92,7 +100,8 @@ class ShippingRequestController extends Controller {
             ->where(['!=', 'id', 6])
             ->asArray()
             ->all());
-        return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
+        return $this->render('index', ['searchModel' => $searchModel,'isFavorite' => $isFavorite,
+            'dataProvider' => $dataProvider, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
     }
     /**
      * Displays a single ShippingRequest model.
@@ -101,9 +110,14 @@ class ShippingRequestController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id) {
-        return $this->render('view', ['model' => $this->findModel($id) , ]);
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
+        return $this->render('view', ['model' => $this->findModel($id) , 'isFavorite' => $isFavorite,
+        ]);
     }
     public function actionCreateProduct($warehouseId = null) {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new Product();
 
         $model->created_at = Carbon::now()
@@ -114,9 +128,12 @@ class ShippingRequestController extends Controller {
             ->asArray()
             ->all() , 'id', 'name');
 
-        return $this->renderAjax('create-product', ['model' => $model, 'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse, ]);
+        return $this->renderAjax('create-product', ['model' => $model,'isFavorite' => $isFavorite,
+            'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse, ]);
     }
     public function actionCreate() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new ShippingRequest();
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()
@@ -253,10 +270,10 @@ class ShippingRequestController extends Controller {
                         ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
                 }
             }
-            return $this->redirect(['index']);
+            return $this->redirect(['index','isFavorite' => $isFavorite,]);
         }
 
-        return $this->render('create', ['model' => $model, 'dataWarehouses' => $dataWarehouses, 'dataUsers' => $dataUsers, 'nProducts' => $nProducts, 'suppliers' => $suppliers, 'requests' => $requests, 'partners' => $partners, 'types' => $types]);
+        return $this->render('create', ['model' => $model,'isFavorite' => $isFavorite, 'dataWarehouses' => $dataWarehouses, 'dataUsers' => $dataUsers, 'nProducts' => $nProducts, 'suppliers' => $suppliers, 'requests' => $requests, 'partners' => $partners, 'types' => $types]);
     }
     public function buildTree(array $elements, $parentId = null) {
 
@@ -305,6 +322,8 @@ class ShippingRequestController extends Controller {
         }
     }
     public function actionUpdate($id) {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = $this->findModel($id);
 
         $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()
@@ -395,11 +414,13 @@ class ShippingRequestController extends Controller {
                     ->provider->name . "</b> - <b>" . $model
                     ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
-            return $this->redirect(['index']);
+            return $this->redirect(['index','isFavorite' => $isFavorite,
+            ]);
         }
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()
             ->all() , 'id', 'id');
-        return $this->render('update', ['model' => $model, 'dataWarehouses' => $dataWarehouses, 'dataUsers' => $dataUsers, 'suppliers' => $suppliers, 'requests' => $requests, 'nProducts' => $nProducts, 'partners' => $partners, 'types' => $types]);
+        return $this->render('update', ['model' => $model,'isFavorite' => $isFavorite,
+            'dataWarehouses' => $dataWarehouses, 'dataUsers' => $dataUsers, 'suppliers' => $suppliers, 'requests' => $requests, 'nProducts' => $nProducts, 'partners' => $partners, 'types' => $types]);
     }
     public function actionAccept() {
         $get = Yii::$app

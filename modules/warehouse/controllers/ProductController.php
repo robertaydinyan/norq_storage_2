@@ -2,10 +2,12 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
 use app\models\query\BaseQuery;
 use app\models\User;
 use app\modules\billing\models\Regions;
 use app\modules\crm\models\ContactAdress;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\ProductImagesPath;
@@ -54,6 +56,8 @@ class ProductController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new Product();
         $address = new ContactAdress();
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()->all(), 'id', 'name');
@@ -70,6 +74,7 @@ class ProductController extends Controller
             'dataProvider' => $dataProvider,
             'model' => $model,
             'address' => $address,
+            'isFavorite' => $isFavorite,
             'regions' => $regions,
             'users' => $users,
             'nProducts' => $nProducts,
@@ -87,6 +92,8 @@ class ProductController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $imagesPaths = ProductImagesPath::find()
             ->select([
                 'images_path'
@@ -96,6 +103,7 @@ class ProductController extends Controller
 
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'isFavorite' => $isFavorite,
             'imagesPaths' => $imagesPaths
         ]);
     }
@@ -137,6 +145,8 @@ class ProductController extends Controller
      */
     public function actionCreate($warehouseId = null)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new Product();
 
         $model->created_at = Carbon::now()->toDateTimeString();
@@ -187,12 +197,14 @@ class ProductController extends Controller
                     }
                 }
             }
-            return $this->redirect(['index']);
+            return $this->redirect(['index','isFavorite' => $isFavorite,]);
 
         }
         return $this->render('create', [
             'model' => $model,
             'nProducts' => $nProducts,
+            'isFavorite' => $isFavorite,
+
             'physicalWarehouse' => $physicalWarehouse,
             'suppliers' => $suppliers,
         ]);
@@ -207,6 +219,8 @@ class ProductController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = $this->findModel($id);
 
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()->all(), 'id', 'name');
@@ -218,6 +232,8 @@ class ProductController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
+
             'nProducts' => $nProducts,
             'physicalWarehouse' => $physicalWarehouse,
             'suppliers' => $suppliers,
