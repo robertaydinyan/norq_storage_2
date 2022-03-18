@@ -68,14 +68,14 @@ class WarehouseController extends Controller {
 
         $shipping_types = ShippingType::find()->all();
         $history = UserHistory::find()->where(['user_id' => Yii::$app->user->id])->limit(20)->orderBy('time DESC')->all();
-        $favorites = Favorite::find()->where(['user_id' => Yii::$app->user->id])->all();
         return $this->render('home', [
             'shipping_types' => $shipping_types,
-            'history' => $history,
-            'favorites' => $favorites
+            'history' => $history
         ]);
     }
     public function actionShowByType() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $searchModel = new WarehouseSearch();
         $dataProvider = $searchModel->search(Yii::$app
             ->request
@@ -84,6 +84,7 @@ class WarehouseController extends Controller {
 
         return $this->render('show-by-type', [
             'searchModel' => $searchModel,
+            'isFavorite' => $isFavorite,
             'dataProvider' => $dataProvider,
             'warehouse_types' => $warehouse_types,
         ]);
@@ -106,6 +107,8 @@ class WarehouseController extends Controller {
         }
     }
     public function actionByType() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $type = Yii::$app
             ->request
             ->get() ['type'];
@@ -120,17 +123,17 @@ class WarehouseController extends Controller {
                 }
                 else {
                     $communities = Warehouse::getByRegionCommunities($region);
-                    return $this->render('by-type-and-region', ['communities' => $communities, 'type' => $type, 'region' => $region]);
+                    return $this->render('by-type-and-region', ['communities' => $communities, 'isFavorite' => $isFavorite,'type' => $type, 'region' => $region]);
                 }
             }
             else {
                 $subs = WarehouseGroups::find()->all();
-                return $this->render('by-subs', ['subs' => $subs]);
+                return $this->render('by-subs', ['subs' => $subs,'isFavorite' => $isFavorite]);
             }
 
         }
         else {
-            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index','isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
         }
     }
 
@@ -141,6 +144,8 @@ class WarehouseController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $id = intval($_GET['id']);
         $whProducts = Product::getWarehouseProducts($id);
@@ -156,7 +161,7 @@ class WarehouseController extends Controller {
             $model = $this->findModel($id);
         }
 
-        return $this->render('view', ['model' => $this->findModel($id) , 'isFavorite' => $isFavorite, 'dataProvider' => $whProducts, 'suppliers' => $suppliers, 'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse,
+        return $this->render('view', ['model' => $this->findModel($id) , 'isFavorite' => $isFavorite,'isFavorite' => $isFavorite, 'dataProvider' => $whProducts, 'suppliers' => $suppliers, 'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse,
 
         ]);
     }
@@ -167,6 +172,8 @@ class WarehouseController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new Warehouse();
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $address = new ContactAdress();
@@ -240,10 +247,12 @@ class WarehouseController extends Controller {
 
             Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->{'name_' . $lang} .   "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
             Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->{'name_' . $lang} .  "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
-            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index','isFavorite' => $isFavorite,
+                'lang' => \Yii::$app->language]);
         }
 
-        return $this->render('create', ['model' => $model, 'dataUsers' => $dataUsers, 'address' => $address, 'warehouse_types' => $warehouse_types, 'warehouse_groups' => $warehouse_groups, ]);
+        return $this->render('create', ['model' => $model,'isFavorite' => $isFavorite,
+            'dataUsers' => $dataUsers, 'address' => $address, 'warehouse_types' => $warehouse_types, 'warehouse_groups' => $warehouse_groups, ]);
     }
 
     /**
@@ -254,6 +263,8 @@ class WarehouseController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id) {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $model = $this->findModel($id);
         $model->updated_at = Carbon::now()
@@ -280,11 +291,14 @@ class WarehouseController extends Controller {
             $model->save(false);
             Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->{'name_' . $lang} . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
             Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->{'name_' . $lang} . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
-            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
+            return $this->redirect(['view', 'id' => $model->id,'isFavorite' => $isFavorite,
+                'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
+
             'dataUsers' => $dataUsers,
             'responsiblePersons' => $responsiblePersons,
             'lang' => \Yii::$app->language
@@ -293,8 +307,8 @@ class WarehouseController extends Controller {
 
     public function actionDelete($id) {
         if (Yii::$app
-            ->user
-            ->identity->username === 'ashotfast') {
+                ->user
+                ->identity->username === 'ashotfast') {
             $this->findModel($id)->delete();
         }
         $this->redirect(['index', 'lang' => \Yii::$app->language]);
@@ -398,14 +412,12 @@ class WarehouseController extends Controller {
         if($request->isGet){
             $userID = $request->get('user_id');
             $url = $request->get('url');
-            $title = $request->get('title');
             $status = $request->get('status');
             if($userID && $url){
                 if($status == 1){
                     $favorite = new Favorite();
                     $favorite->user_id = $userID;
                     $favorite->link = $url;
-                    $favorite->title = $title;
                     return $favorite->save();
                 }else {
                     return Favorite::deleteAll(['user_id' => $userID,'link' => $url]);

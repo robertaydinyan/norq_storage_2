@@ -2,7 +2,9 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
 use app\models\Notifications;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\SuppliersList;
 use Yii;
@@ -40,6 +42,8 @@ class GroupProductController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
         if (Yii::$app->request->post()) {
@@ -61,7 +65,8 @@ class GroupProductController extends Controller
                 $model->name_en = $form_data['name_en'];
                 $model->save(false);
             }
-             return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+             return $this->redirect(['index','isFavorite' => $isFavorite,
+                 'lang' => \Yii::$app->language]);
         }
 
         $groupProducts = Product::find()->select([
@@ -93,6 +98,8 @@ class GroupProductController extends Controller
             'groupProducts' => $groupProducts,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
+
 
         ]);
     }
@@ -130,8 +137,12 @@ class GroupProductController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -147,6 +158,8 @@ class GroupProductController extends Controller
      */
     public function actionShowGroupProducts($group_id = null)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
         $haveProducts = Product::getGroupProducts($group_id);
@@ -180,6 +193,7 @@ class GroupProductController extends Controller
             'haveProducts' => $haveProducts,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
 
         ]);
     }
@@ -195,6 +209,7 @@ class GroupProductController extends Controller
      */
     public function actionCreate()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $model = new GroupProduct();
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name_' . $lang);
@@ -206,7 +221,8 @@ class GroupProductController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'groupProducts' => $groupProducts
+            'groupProducts' => $groupProducts,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -219,6 +235,7 @@ class GroupProductController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $model = $this->findModel($id);
 
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
@@ -230,7 +247,8 @@ class GroupProductController extends Controller
 
         return $this->render('update', [
             'model' => $model,
-            'groupProducts' => $groupProducts
+            'groupProducts' => $groupProducts,
+            'isFavorite' => $isFavorite,
         ]);
     }
 

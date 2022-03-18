@@ -58,8 +58,12 @@ class ComplectationProductsController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -70,6 +74,8 @@ class ComplectationProductsController extends Controller
      */
     public function actionCreate()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new ComplectationProducts();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -78,6 +84,8 @@ class ComplectationProductsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 

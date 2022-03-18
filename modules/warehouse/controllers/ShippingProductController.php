@@ -2,8 +2,10 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
 use app\models\query\BaseQuery;
 use app\models\User;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ShippingRequestSearch;
@@ -44,6 +46,8 @@ class ShippingProductController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $searchModel = new ShippingProductSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -52,6 +56,8 @@ class ShippingProductController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -63,8 +69,12 @@ class ShippingProductController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -75,6 +85,8 @@ class ShippingProductController extends Controller
      */
     public function actionCreate($shippingId = null)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new ShippingProduct();
 
         $shippingModel = new Shipping();
@@ -151,7 +163,8 @@ class ShippingProductController extends Controller
 
             }
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view','isFavorite' => $isFavorite,
+                'id' => $model->id]);
         }
         $searchModel = null;
         $dataProvider = null;
@@ -167,6 +180,8 @@ class ShippingProductController extends Controller
             'dataUsers'=>$dataUsers,
             'nProducts' => $nProducts,
             'searchModel' => $searchModel,
+            'isFavorite' => $isFavorite,
+
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -180,14 +195,19 @@ class ShippingProductController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view',            'isFavorite' => $isFavorite,
+                'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 

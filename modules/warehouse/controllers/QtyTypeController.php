@@ -2,6 +2,8 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
+use app\modules\warehouse\models\Favorite;
 use Yii;
 use app\modules\warehouse\models\QtyType;
 use app\modules\warehouse\models\QtyTypeSearch;
@@ -35,12 +37,16 @@ class QtyTypeController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $searchModel = new QtyTypeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -52,8 +58,12 @@ class QtyTypeController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -64,6 +74,8 @@ class QtyTypeController extends Controller
      */
     public function actionCreate()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new QtyType();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
@@ -71,6 +83,7 @@ class QtyTypeController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -83,6 +96,8 @@ class QtyTypeController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
@@ -90,6 +105,7 @@ class QtyTypeController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
         ]);
     }
 

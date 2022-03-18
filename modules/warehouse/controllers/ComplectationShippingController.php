@@ -2,9 +2,11 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
 use app\models\query\BaseQuery;
 use app\models\User;
 use app\modules\warehouse\models\Complectation;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\Warehouse;
@@ -43,12 +45,15 @@ class ComplectationShippingController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $searchModel = new ComplectationShippingSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -60,8 +65,12 @@ class ComplectationShippingController extends Controller
      */
     public function actionView($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -71,7 +80,10 @@ class ComplectationShippingController extends Controller
      * @return mixed
      */
     public function actionCreate()
+
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new ComplectationShipping();
 
         $complectationModel = new Complectation();
@@ -147,7 +159,8 @@ class ComplectationShippingController extends Controller
 
             }
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'isFavorite' => $isFavorite,
+                'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -157,6 +170,8 @@ class ComplectationShippingController extends Controller
             'dataUsers'=>$dataUsers,
             'nProducts' => $nProducts,
             'nProductsName' =>  $nProductsName,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -169,6 +184,8 @@ class ComplectationShippingController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -177,6 +194,8 @@ class ComplectationShippingController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 

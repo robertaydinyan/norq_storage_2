@@ -2,8 +2,10 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
 use app\models\User;
 use app\modules\warehouse\models\Action;
+use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\UserAction;
 use Yii;
 use yii\web\Controller;
@@ -38,18 +40,24 @@ class UsersController extends Controller
      * @return mixed
      */
     public function actionIndex() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $users = User::find()->all();
         return $this->render('index', [
-            'users' => $users
+            'users' => $users,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
     public function actionEdit($id) {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $user = User::findOne(['id' => $id]);
         $controller_names = Action::find()->select('DISTINCT `controller_name`')->all();
         return $this->render('edit', [
             'user' => $user,
-            'controller_names' => $controller_names
+            'controller_names' => $controller_names,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
@@ -69,6 +77,8 @@ class UsersController extends Controller
     }
 
     public function actionCreate() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $user = new User();
         $request = Yii::$app->request;
@@ -81,10 +91,11 @@ class UsersController extends Controller
             $action->action_id = 125;
             $action->save(false);
 
-            return $this->redirect(['users/index', 'lang' => $lang]);
+            return $this->redirect(['users/index','isFavorite' => $isFavorite, 'lang' => $lang]);
         }
         return $this->render('create', [
-            'user' => $user
+            'user' => $user,
+            'isFavorite' => $isFavorite,
         ]);
     }
 

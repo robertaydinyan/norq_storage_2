@@ -2,6 +2,8 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\components\Url;
+use app\modules\warehouse\models\Favorite;
 use Yii;
 use app\modules\warehouse\models\SuppliersList;
 use app\modules\warehouse\models\ShippingRequest;
@@ -38,6 +40,8 @@ class SuppliersListController extends Controller
      */
     public function actionIndex()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         if (Yii::$app->request->post()) {
 
             $form_data = Yii::$app->request->post();
@@ -57,12 +61,15 @@ class SuppliersListController extends Controller
                 $model->name_en = $form_data['name_en'];
                 $model->save(false);
             }
-            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index', 'isFavorite' => $isFavorite,
+                'lang' => \Yii::$app->language]);
         }
         $partners = SuppliersList::find()->asArray()->all();
         $tableTreePartners = $this->buildTree($partners);
         return $this->render('index', [
             'tableTreePartners' => $tableTreePartners,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -111,6 +118,8 @@ class SuppliersListController extends Controller
      */
     public function actionCreate()
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = new SuppliersList();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -120,11 +129,14 @@ class SuppliersListController extends Controller
                    Notifications::setNotification($value->id,"Ստեղծվել է նոր Գործընկեր ".$model->name,'/warehouse/suppliers-list');
                 }
             } 
-            return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index','isFavorite' => $isFavorite,
+                'lang' => \Yii::$app->language]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
+
         ]);
     }
 
@@ -137,6 +149,8 @@ class SuppliersListController extends Controller
      */
     public function actionUpdate($id)
     {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -146,11 +160,12 @@ class SuppliersListController extends Controller
                    Notifications::setNotification($value->id,"Փոփոխվել է Գործընկեր ".$model->name,'/warehouse/suppliers-list');
                 }
             } 
-            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
+            return $this->redirect(['view','isFavorite' => $isFavorite, 'id' => $model->id, 'lang' => \Yii::$app->language]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'isFavorite' => $isFavorite,
         ]);
     }
 
