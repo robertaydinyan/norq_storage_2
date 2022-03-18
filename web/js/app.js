@@ -130,3 +130,13 @@ function renderSelect2WithData(element, settings, data = null) {
 function ID_Name() {
     return '_' + Math.random().toString(36).substr(2, 9);
 }
+
+$('.star').click(function () {
+    if ($('.fa-star-o').hasClass('fa-star-o')){
+        $('.fa-star-o').addClass('fa-star');
+        $('.fa-star-o').removeClass('fa-star-o');
+    }else  {
+        $('.fa-star').addClass('fa-star-o');
+        $('.fa-star').removeClass('fa-star');
+    }
+});

@@ -249,7 +249,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
                                                 <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
                                                     <div id="w3-collapse" class="collapse navbar-collapse">
                                                         <ul id="w5" class="navbar-nav w-100 nav">
-                                                            <li class="nav-item dropdown-item"><?php echo $this->render('/menu_dirs', array(), true)?></li>
+                                                            <li class="nav-item dropdown-item"><?php echo $this->render('/menu-home', array(), true)?></li>
                                                         </ul>
                                                     </div>
                                                 </nav>
