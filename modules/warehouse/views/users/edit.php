@@ -13,7 +13,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
 <div class="user-edit-index">
     <input type="hidden" id="userID" value="<?php echo $user->id; ?>">
-    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?> </h1>
+    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a> </h1>
 
         <?php if (isset($controller_names)):
             foreach ($controller_names as $cname):

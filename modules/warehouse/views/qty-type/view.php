@@ -16,7 +16,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
 <div class="qty-type-view group-product-index">
 
-    <h4 style="padding: 20px;"><?php echo Yii::t('app', 'Quantity type'); ?> ։ <?= Html::encode($model->{'type_' . $lang}) ?></h4>
+    <h4 style="padding: 20px;"><?php echo Yii::t('app', 'Quantity type'); ?> ։ <?= Html::encode($model->{'type_' . $lang}) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a></h4>
 
 
 

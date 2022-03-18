@@ -14,7 +14,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 ?>
 <div class="group-product-index">
 
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?></h4>
+    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?><a href=""><i class="fa fa-star-o ml-4" style="font-size: 30px"></i></a></h4>
     <div style="padding:20px;">
 
     <?= $this->render('_form', [
