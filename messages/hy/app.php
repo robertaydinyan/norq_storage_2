@@ -139,5 +139,6 @@ return [
     'Previous' => 'Նախորդ',
     'Next' => 'Հաջորդ',
 
-    'Menu' => 'Մենյու'
+    'Menu' => 'Մենյու',
+    'Create Composition' => 'Ստեղծել կոմպոզիցիա'
 ];

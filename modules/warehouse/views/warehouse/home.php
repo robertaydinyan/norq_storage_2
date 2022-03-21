@@ -11,9 +11,9 @@ use yii\web\View;
 /* @var $searchModel app\modules\warehouse\models\WarehouseSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Warehouse');
+$this->title = array(Yii::t('app', 'Warehouse'), 'Warehouse');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $this->title[0];
 $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -22,7 +22,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
 <div class="group-product-index d-flex align-items-center justify-content-between">
 
-    <h1 style="padding: 20px;" class="show-modal"><?= Html::encode($this->title) ?> </h1>
+    <h1 style="padding: 20px;" class="show-modal" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?> </h1>
     <div class="mr-5">
         <div class="input-group rounded mb-3">
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />

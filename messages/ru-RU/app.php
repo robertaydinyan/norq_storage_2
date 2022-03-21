@@ -140,5 +140,6 @@ return [
     'Previous' => 'Предыдущий',
     'Next' => 'Следующий',
 
-    'Menu' => 'Меню'
+    'Menu' => 'Меню',
+    'Create Composition' => 'Создать композицию'
 ];

@@ -12,34 +12,3 @@
         </ul>
     </div>
 </nav>
-
-
-
-
-
-
-
-<!--
-
-controller
-
-
-use app\components\Url;
-
-use app\modules\warehouse\models\Favorite;
-
-
-$isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
-
-return
-
-'isFavorite' => $isFavorite,
-
- view
-
-
-<span class="star" ><i class="fa <?php /*echo $isFavorite ? 'fa-star' : 'fa-star-o' */?> ml-4"></i></span>
-
-
--->
