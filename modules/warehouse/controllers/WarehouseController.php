@@ -57,7 +57,7 @@ class WarehouseController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $warehouse_types = WarehouseTypes::find()->all();
         return $this->render('index', [
             'warehouse_types' => $warehouse_types,
