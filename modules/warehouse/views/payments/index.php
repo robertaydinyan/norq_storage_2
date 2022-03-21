@@ -8,8 +8,8 @@ use yii\helpers\Url;
 /* @var $searchModel app\modules\warehouse\models\SearchSuppliersList */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Payments');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title =  array(Yii::t('app', 'Payments'),'Payments');
+$this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
 <style>
@@ -23,7 +23,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
 </style>
 <?php if(\app\rbac\WarehouseRule::can('payments', 'index')): ?>
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
 <div class="group-product-index">
    <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
     <div id="w3-collapse" class="collapse navbar-collapse">

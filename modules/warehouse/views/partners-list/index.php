@@ -8,8 +8,8 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\modules\warehouse\models\SearchPartnersList */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Գործընկերներ';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = array(Yii::t('app', 'co-workers'), 'co-workers');
+$this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
 <?php if(\app\rbac\WarehouseRule::can('partners-list', 'index')): ?>
@@ -29,11 +29,11 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             </ul>
         </div>
     </nav>
-    <h4 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+    <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
     <?php if(\app\rbac\WarehouseRule::can('partners-list', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-sm btn-primary" >Ստեղծել</a>
     <?php endif; ?>
-    </h4>
+    </h1>
     <div style="padding:20px;" >
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

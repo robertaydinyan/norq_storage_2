@@ -11,9 +11,9 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 
-$this->title = $model->id;
+$this->title = array($model->id);
 $this->params['breadcrumbs'][] = ['label' => 'Shippings', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 \yii\web\YiiAsset::register($this);
 ?>
@@ -22,12 +22,12 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a  href="/warehouse/shipping">Տեղափոխություն</a></li>
-            <li class="breadcrumb-item "><a  href="#"><?php echo $model->shipping_type;?> (<?= Html::encode($this->title) ?>)</a></li>
+            <li class="breadcrumb-item "><a  href="#"><?php echo $model->shipping_type;?> (<?= Html::encode($this->title[0]) ?>)</a></li>
         </ol>
     </nav>
 
     <div class="col-lg-4">
-        <h4 ><?php echo $model->shipping_type;?> (<?= Html::encode($this->title) ?>)<span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h4>
+        <h1 data-title="<?php echo $this->title[1]; ?>" ><?php echo $model->shipping_type;?> (<?= Html::encode($this->title[0]) ?>)<span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
 
         <?= DetailView::widget([
             'model' => $model,

@@ -10,14 +10,14 @@ use yii\helpers\Url;
 
 $lang = explode('-', \Yii::$app->language)[0];
 $lang = $lang ?: 'us';
-$this->title = Yii::t('app', 'Unit of measurement');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = array(Yii::t('app', 'Unit of measurement'),'Unit of measurement');
+$this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
 <?php if(\app\rbac\WarehouseRule::can('qty-type', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;" ><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
         <?php if(\app\rbac\WarehouseRule::can('qty-type', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create' ,'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a unit of measurement'); ?></a>
         <?php endif; ?>

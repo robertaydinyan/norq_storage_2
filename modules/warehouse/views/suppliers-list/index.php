@@ -8,8 +8,8 @@ use yii\helpers\Url;
 /* @var $searchModel app\modules\warehouse\models\SearchSuppliersList */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'co-workers');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = array(Yii::t('app', 'co-workers'),'co-workers');
+$this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
@@ -27,7 +27,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 <?php if(\app\rbac\WarehouseRule::can('suppliers-list', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?> <span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?> <span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
     <div style="padding:20px;">
         <div>
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">

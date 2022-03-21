@@ -140,5 +140,10 @@ return [
     'Next' => 'Հաջորդ',
 
     'Menu' => 'Մենյու',
-    'Create Composition' => 'Ստեղծել կոմպոզիցիա'
+    'Create Composition' => 'Ստեղծել կոմպոզիցիա',
+    'Complectation Products' => 'Կոմպլեկտավորման արտադրանք',
+    'Create Complectation Products' => 'Ստեղծեք կոմպլեկտավորման արտադրանք',
+    'Update Complectation Products' => 'Համալրման արտադրանքների թարմացում',
+    'Create Partners List' => 'Ստեղծեք գործընկերների ցուցակ',
+    'Create a Product' =>'Ստեղծել Ապրանք'
 ];

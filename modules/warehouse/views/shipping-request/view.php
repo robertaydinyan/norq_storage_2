@@ -9,9 +9,9 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\ShippingRequest */
 
-$this->title = $model->id;
+$this->title = array($model->id);
 $this->params['breadcrumbs'][] = ['label' => 'Shipping Requests', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $this->title[0];
 \yii\web\YiiAsset::register($this);
 $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -22,7 +22,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
     
 
     <div style="padding:20px;"  id="print">
-        <h4><?php echo $model->shippingtype->{'name_' . $lang};?> (<?= Html::encode($this->title) ?>)<span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h4>
+        <h1 data-title="<?php echo $this->title[1]; ?>"><?php echo $model->shippingtype->{'name_' . $lang};?> (<?= Html::encode($this->title[0]) ?>)<span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <br>
         <div class="row">
             <div class="col-sm-5">

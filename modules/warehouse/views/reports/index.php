@@ -11,7 +11,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
-$this->title = Yii::t('app', 'Reports');
+$this->title = array(Yii::t('app', 'Reports'),'Reports');
+$this->params['breadcrumbs'][] =  $this->title[0];
 ?>
 
 <style>
@@ -22,7 +23,7 @@ $this->title = Yii::t('app', 'Reports');
 
 <?php if(\app\rbac\WarehouseRule::can('reports', 'index')): ?>
 
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
 <div class="shipping-request-create group-product-index">
     <br>
 <form class="row" action="" id="report_form" method="get" style="padding: 20px;">

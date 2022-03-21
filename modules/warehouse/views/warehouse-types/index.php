@@ -8,15 +8,15 @@ use yii\helpers\Url;
 /* @var $searchModel app\modules\warehouse\models\SearchWarehouseTypes */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Warehouse types');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = array(Yii::t('app', 'Warehouse types'),'Warehouse types');
+$this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 ?>
 <?php if(\app\rbac\WarehouseRule::can('warehouse-types', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+    <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
     <?php if(\app\rbac\WarehouseRule::can('warehouse-types', 'create')): ?>
         <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Type'); ?></a>
     <?php endif; ?>

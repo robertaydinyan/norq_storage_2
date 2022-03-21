@@ -6,13 +6,13 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Complectation Products';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = array(Yii::t('app', 'Complectation Products'), 'Complectation Products');
+$this->params['breadcrumbs'][] = $this->title[0];
 ?>
 <?php if(\app\rbac\WarehouseRule::can('complectation-products', 'index')): ?>
 <div class="complectation-products-index">
 
-    <h1><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+    <h1 data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
 
     <?php if(\app\rbac\WarehouseRule::can('complectation-products', 'create')): ?>
         <p>

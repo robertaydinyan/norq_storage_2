@@ -20,8 +20,8 @@ use app\modules\warehouse\models\Warehouse;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 
-$this->title = Yii::t('app', 'goods');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = array(Yii::t('app', 'goods'),'goods');
+$this->params['breadcrumbs'][] = $this->title[0];
 
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -45,7 +45,7 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
 
 <div class="group-product-index">
 
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+    <h1 style="padding: 20px;" data-title=" <?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
         <?php echo \app\rbac\WarehouseRule::can('group-product', 'show-group-products') ?
         '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary" style="float: right;">' .
         Yii::t('app', 'Groups') . '</a>' : '';

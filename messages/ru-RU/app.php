@@ -141,5 +141,10 @@ return [
     'Next' => 'Следующий',
 
     'Menu' => 'Меню',
-    'Create Composition' => 'Создать композицию'
+    'Create Composition' => 'Создать композицию',
+    'Complectation Products' => 'Комплектация Продукция',
+    'Create Complectation Products' => 'Создание продуктов комплектования',
+    'Update Complectation Products' => 'Обновление продуктов комплектации',
+    'Create Partners List' => 'Создать список партнеров',
+    'Create a Product' => 'Создать продукт'
 ];

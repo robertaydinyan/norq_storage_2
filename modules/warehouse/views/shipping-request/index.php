@@ -8,8 +8,8 @@ use kartik\date\DatePicker;
 /* @var $searchModel app\modules\warehouse\models\ShippingRequestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
-$this->title = Yii::t('app', 'Polls');
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = array(Yii::t('app', 'Polls'),'Polls');
+$this->params['breadcrumbs'][] = $this->title[0];
 $this->registerJsFile('@web/js/modules/crm/contact.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
@@ -28,7 +28,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
         </div>
     </nav>
 
-    <h1 style="padding: 20px;"><?= Html::encode($this->title) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
     <?php if(\app\rbac\WarehouseRule::can('shipping-request', 'create')): ?>
 
         <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a query'); ?></a>
