@@ -29,7 +29,7 @@ class Favorite extends \yii\db\ActiveRecord
         return [
             [['user_id'], 'required'],
             [['user_id'], 'integer'],
-            [['link'], 'string', 'max' => 255],
+            [['link', 'title'], 'string', 'max' => 255],
         ];
     }
 
@@ -42,6 +42,7 @@ class Favorite extends \yii\db\ActiveRecord
             'id' => 'ID',
             'link' => 'Link',
             'user_id' => 'User ID',
+            'title' => 'Title',
         ];
     }
 }

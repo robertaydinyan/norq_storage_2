@@ -138,7 +138,8 @@ $('.star').click(function () {
         status = 1;
         $('.fa-star-o').addClass('fa-star');
         $('.fa-star-o').removeClass('fa-star-o');
-    }else  {
+        $('.favorites').append('<div class="favorite" onclick="showPage("' + $('#user-link').val() + '")">' + $('h1').text().split('\n')[0] + ' <i class="fa fa-times star" data-remove="true"></i></div>')
+    } else  {
         status = 0;
         $('.fa-star').addClass('fa-star-o');
         $('.fa-star').removeClass('fa-star');
@@ -148,7 +149,18 @@ $('.star').click(function () {
         'status': status,
         'user_id': $('#user-id').val(),
         'url': $('#user-link').val(),
-    }).done(function(res) {
-        console.log(res);
+        'title': $('h1').text().split('\n')[0],
     });
 });
+
+$('.remove-favorite').on('click', function(e) {
+    e.stopPropagation();
+
+    $(this).parent().remove();
+
+    $.get('/warehouse/warehouse/change-favorite', {
+        'status': 0,
+        'user_id': $('#user-id').val(),
+        'url': $(this).parent().data('url'),
+    });
+})

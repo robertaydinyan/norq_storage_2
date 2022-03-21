@@ -307,8 +307,8 @@ class WarehouseController extends Controller {
 
     public function actionDelete($id) {
         if (Yii::$app
-            ->user
-            ->identity->username === 'ashotfast') {
+                ->user
+                ->identity->username === 'ashotfast') {
             $this->findModel($id)->delete();
         }
         $this->redirect(['index', 'lang' => \Yii::$app->language]);
