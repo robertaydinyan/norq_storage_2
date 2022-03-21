@@ -30,7 +30,7 @@ AppAsset::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php $this->registerCsrfMetaTags() ?>
         <title>Նորք <?= Html::encode($this->title[0]) ?></title>
-        <?php \app\rbac\WarehouseRule::savePage($this->title); ?>
+        <?php \app\rbac\WarehouseRule::savePage($this->title[1]); ?>
         <script src="https://api-maps.yandex.ru/2.1/?apikey=4c8b9626-0568-4074-9ac7-4c7cdd46f859&lang=ru_RU" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.2/datatables.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css"/>
@@ -60,14 +60,18 @@ AppAsset::register($this);
                         <div class="favorites" >
                             <?php if ($favorites):
                                 foreach ($favorites as $f): ?>
-                                    <div class="favorite" data-url="<?php echo $f->link ?>" onclick="showPage('<?php echo $f->link ?>')"><?php echo $f->title; ?> <i class="fa fa-times remove-favorite"></i></div>
+                                    <div class="favorite" data-url="<?php echo $f->link_no_lang ?>"
+                                         onclick='"<?php echo $f->link . (strpos($f->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>"'>
+                                        <?php echo Yii::t('app', $f->title); ?>
+                                        <i class="fa fa-times remove-favorite"></i>
+                                    </div>
                                 <?php endforeach;
                             endif;?>
                         </div>
                         <div class="histories" style="margin-left: 40px;">
                             <?php if ($history):
                                 foreach ($history as $h): ?>
-                                    <div class="favorite" onclick="showPage('<?php echo $h->link . (strpos($h->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>')"><?php echo $h->title; ?></i></div>
+                                    <div class="favorite" onclick="showPage('<?php echo $h->link . (strpos($h->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>')"><?php echo Yii::t('app', $h->title); ?></i></div>
                                 <?php endforeach;
                             endif;?>
                         </div>

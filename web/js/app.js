@@ -133,23 +133,30 @@ function ID_Name() {
 
 $('.star').click(function () {
     var status;
+    let title = $('h1').data('title').replace(/\s/g, '');
+    let title_tr = $('h1').text().split('\n')[0];
 
     if ($('.fa-star-o').hasClass('fa-star-o')){
         status = 1;
         $('.fa-star-o').addClass('fa-star');
         $('.fa-star-o').removeClass('fa-star-o');
-        $('.favorites').append('<div class="favorite" onclick="showPage("' + $('#user-link').val() + '")">' + $('h1').text().split('\n')[0] + ' <i class="fa fa-times star" data-remove="true"></i></div>')
+        $('.favorites').append('<div class="favorite" data-url="' + $('#user-link-no-lang').val() + '" onclick="showPage(\'' + $('#user-link').val() + '\')">' + title_tr + ' <i class="fa fa-times star" data-remove="true"></i></div>')
     } else  {
         status = 0;
         $('.fa-star').addClass('fa-star-o');
         $('.fa-star').removeClass('fa-star');
+        $.each($('.favorites').children(), function(i, v) {
+            if ($(v).data('url') === $('#user-link-no-lang').val()) {
+                $(v).remove();
+                return false;
+            }
+        });
     }
-
     $.get('/warehouse/warehouse/change-favorite', {
         'status': status,
         'user_id': $('#user-id').val(),
         'url': $('#user-link').val(),
-        'title': $('h1').text().split('\n')[0],
+        'title': title,
     });
 });
 

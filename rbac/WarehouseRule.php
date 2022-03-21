@@ -59,16 +59,7 @@ class WarehouseRule {
         $user_id = Yii::$app->user->id;
         $link = URL::current();
         if (explode('?', $link)[0] == "/site/error") return 0;
-        $st = preg_replace('/lang=[a-zA-Z]+&/', '', $link);
-        if ($st == $link) {
-            $st = preg_replace('/lang=[a-zA-Z]+/', '', $link);
-        }
-        if ($st == $link) {
-            $st = preg_replace('/lang=/', '', $link);
-        }
-        if (substr($st, -1) == "&" || substr($st, -1) == "?") {
-            $st = substr($st, 0, -1);
-        }
+        $st = WarehouseRule::removeLangFromLink($link);
 
         $time = strtotime("now");
         $h = UserHistory::find()->where(['link' => $st, 'user_id' => $user_id])->one();
@@ -79,6 +70,20 @@ class WarehouseRule {
             $h->title = $title;
         }
         $h->time = $time;
-        $h->save();
+        return $h->save();
+    }
+
+    public static function removeLangFromLink($link) {
+        $st = preg_replace('/lang=[a-zA-Z]+&/', '', $link);
+        if ($st == $link) {
+            $st = preg_replace('/lang=[a-zA-Z-]+/', '', $link);
+        }
+        if ($st == $link) {
+            $st = preg_replace('/lang=/', '', $link);
+        }
+        if (substr($st, -1) == "&" || substr($st, -1) == "?") {
+            $st = substr($st, 0, -1);
+        }
+        return $st;
     }
 }
