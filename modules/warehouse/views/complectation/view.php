@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\Complectation */
 
-$this->title = array($model->name);
+$this->title = array($model->name.  ' '  .$model->id, $model->name);
 $this->params['breadcrumbs'][] = ['label' => 'Complectations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 \yii\web\YiiAsset::register($this);

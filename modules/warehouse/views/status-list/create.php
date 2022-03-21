@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\StatusList */
 
-$this->title = array(Yii::t('app', 'Create') . ' ' .Yii::t('app', 'Status'),'Create Status');
+$this->title = array(Yii::t('app', 'Create Status'),'Create Status');
 $this->params['breadcrumbs'][] = ['label' => 'Status Lists', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
