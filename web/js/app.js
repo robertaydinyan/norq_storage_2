@@ -133,7 +133,7 @@ function ID_Name() {
 
 $('.star').click(function () {
     var status;
-    let title = $('h1').data('title').replace(/\s/g, '');
+    let title = $('h1').data('title').trim();
     let title_tr = $('h1').text().split('\n')[0];
 
     if ($('.fa-star-o').hasClass('fa-star-o')){

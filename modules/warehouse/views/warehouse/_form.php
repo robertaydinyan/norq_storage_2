@@ -21,8 +21,8 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
 ?>
 
 <div class="warehouse-form col-lg-4">
-
     <?php $form = ActiveForm::begin(); ?>
+
     <?= $form->field($model, 'type', [
         'options' => ['class' => 'form-group'],
     ])->widget(Select2::className(), [
