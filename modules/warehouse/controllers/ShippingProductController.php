@@ -11,6 +11,7 @@ use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ShippingRequestSearch;
 use app\modules\warehouse\models\Warehouse;
 use app\modules\warehouse\models\Shipping;
+use app\rbac\WarehouseRule;
 use Carbon\Carbon;
 use Yii;
 use app\modules\warehouse\models\ShippingProduct;
@@ -46,8 +47,7 @@ class ShippingProductController extends Controller
      */
     public function actionIndex()
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new ShippingProductSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -69,8 +69,7 @@ class ShippingProductController extends Controller
      */
     public function actionView($id)
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         return $this->render('view', [
             'model' => $this->findModel($id),
             'isFavorite' => $isFavorite,
@@ -85,8 +84,7 @@ class ShippingProductController extends Controller
      */
     public function actionCreate($shippingId = null)
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new ShippingProduct();
 
         $shippingModel = new Shipping();
@@ -195,8 +193,7 @@ class ShippingProductController extends Controller
      */
     public function actionUpdate($id)
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

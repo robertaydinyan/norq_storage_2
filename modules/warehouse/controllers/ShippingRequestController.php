@@ -13,6 +13,7 @@ use app\modules\warehouse\models\Balance;
 use app\modules\warehouse\models\ShippingType;
 use app\modules\warehouse\models\SuppliersList;
 use app\modules\warehouse\models\Warehouse;
+use app\rbac\WarehouseRule;
 use Carbon\Carbon;
 use Yii;
 use app\modules\warehouse\models\ShippingRequest;
@@ -41,8 +42,7 @@ class ShippingRequestController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
@@ -76,8 +76,7 @@ class ShippingRequestController extends Controller {
             'users' => $dataUsers]);
     }
     public function actionDocuments() {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
         $searchModel = new ShippingRequestSearch();
@@ -110,14 +109,12 @@ class ShippingRequestController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id) {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         return $this->render('view', ['model' => $this->findModel($id) , 'isFavorite' => $isFavorite,
         ]);
     }
     public function actionCreateProduct($warehouseId = null) {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new Product();
 
         $model->created_at = Carbon::now()
@@ -132,8 +129,7 @@ class ShippingRequestController extends Controller {
             'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse, ]);
     }
     public function actionCreate() {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new ShippingRequest();
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()
@@ -322,8 +318,7 @@ class ShippingRequestController extends Controller {
         }
     }
     public function actionUpdate($id) {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
 
         $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()

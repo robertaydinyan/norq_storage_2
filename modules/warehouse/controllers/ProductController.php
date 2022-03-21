@@ -15,6 +15,7 @@ use app\modules\warehouse\models\ProductShippingLog;
 use app\modules\warehouse\models\QtyType;
 use app\modules\warehouse\models\SuppliersList;
 use app\modules\warehouse\models\Warehouse;
+use app\rbac\WarehouseRule;
 use Carbon\Carbon;
 use Yii;
 use app\modules\warehouse\models\ShippingProducts;
@@ -56,8 +57,7 @@ class ProductController extends Controller
      */
     public function actionIndex()
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new Product();
         $address = new ContactAdress();
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()->all(), 'id', 'name');
@@ -92,8 +92,7 @@ class ProductController extends Controller
      */
     public function actionView($id)
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $imagesPaths = ProductImagesPath::find()
             ->select([
                 'images_path'
@@ -145,8 +144,7 @@ class ProductController extends Controller
      */
     public function actionCreate($warehouseId = null)
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new Product();
 
         $model->created_at = Carbon::now()->toDateTimeString();
@@ -219,8 +217,7 @@ class ProductController extends Controller
      */
     public function actionUpdate($id)
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
 
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()->all(), 'id', 'name');

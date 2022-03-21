@@ -75,7 +75,7 @@ class WarehouseController extends Controller {
         ]);
     }
     public function actionShowByType() {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
         $searchModel = new WarehouseSearch();
         $dataProvider = $searchModel->search(Yii::$app
@@ -108,8 +108,7 @@ class WarehouseController extends Controller {
         }
     }
     public function actionByType() {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $type = Yii::$app
             ->request
             ->get() ['type'];
@@ -145,10 +144,8 @@ class WarehouseController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView() {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-        $id = intval($_GET['id']);
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;        $id = intval($_GET['id']);
         $whProducts = Product::getWarehouseProducts($id);
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()
             ->all() , 'id', 'name');
@@ -173,8 +170,7 @@ class WarehouseController extends Controller {
      * @return mixed
      */
     public function actionCreate() {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new Warehouse();
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $address = new ContactAdress();
@@ -264,7 +260,7 @@ class WarehouseController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id) {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
         $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()
