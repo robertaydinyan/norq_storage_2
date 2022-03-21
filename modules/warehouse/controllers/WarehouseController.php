@@ -17,6 +17,7 @@ use app\modules\warehouse\models\SuppliersList;
 use app\modules\warehouse\models\UserHistory;
 use app\modules\warehouse\models\WarehouseGroups;
 use app\modules\warehouse\models\WarehouseTypes;
+use app\rbac\WarehouseRule;
 use Yii;
 use app\modules\warehouse\models\Warehouse;
 use app\modules\warehouse\models\WarehouseSearch;
@@ -412,14 +413,17 @@ class WarehouseController extends Controller {
         if($request->isGet){
             $userID = $request->get('user_id');
             $url = $request->get('url');
+            $title = $request->get('title');
             $status = $request->get('status');
             if($userID && $url){
                 if($status == 1){
                     $favorite = new Favorite();
                     $favorite->user_id = $userID;
                     $favorite->link = $url;
+                    $favorite->link_no_lang = WarehouseRule::removeLangFromLink($url);
+                    $favorite->title = $title;
                     return $favorite->save();
-                }else {
+                } else {
                     return Favorite::deleteAll(['user_id' => $userID,'link' => $url]);
                 }
             }

@@ -1,43 +1,43 @@
 $(document).ready(function(){
     $(window).on('load', function () {
-        $.ajax({
-            url: '/crm/lead/calendar-list',
-            type: 'post',
-            dataType: 'json',
-            success: function (res) {
-
-                $('#calendar').fullCalendar({
-                    lang: 'ru',
-                    buttonText: {
-                        //Here I make the button show French date instead of a text.
-                        today: 'Сегодня'
-                    },
-                    events: res,
-                    eventClick: function (calEvent, jsEvent, view) {
-                        showCrmModal(calEvent.title,calEvent.data_url);
-                    },
-                    eventRender: function (event, element) {
-                        var bg = event.status == 1 ? '#d9edf7' : '#ccc';
-                        element.addClass('ride_edit_'+event.id);
-                        element.css({
-                            'background-color': bg,
-                            'border-color': '#d9edf7',
-                            'color': '#333',
-                            'cursor': 'pointer'
-                        });
-                        if (event.icon) {
-                            var color = event.bus_id ? '#5cb85c' : '#e7502e';
-                            element.find(".fc-title").prepend("<i style='color: " + color + "' class='fa fa-" + event.icon + "'></i> ");
-                            if((event.payedTicketCount * 1) > 0){
-                                element.find(".fc-title").prepend("<span title='Количество проданных билетов' class='label label-success'>"+event.payedTicketCount+"</span>");
-                            }
-
-                        }
-                    }
-
-                });
-            }
-        });
+        // $.ajax({
+        //     url: '/crm/lead/calendar-list',
+        //     type: 'post',
+        //     dataType: 'json',
+        //     success: function (res) {
+        //
+        //         $('#calendar').fullCalendar({
+        //             lang: 'ru',
+        //             buttonText: {
+        //                 //Here I make the button show French date instead of a text.
+        //                 today: 'Сегодня'
+        //             },
+        //             events: res,
+        //             eventClick: function (calEvent, jsEvent, view) {
+        //                 showCrmModal(calEvent.title,calEvent.data_url);
+        //             },
+        //             eventRender: function (event, element) {
+        //                 var bg = event.status == 1 ? '#d9edf7' : '#ccc';
+        //                 element.addClass('ride_edit_'+event.id);
+        //                 element.css({
+        //                     'background-color': bg,
+        //                     'border-color': '#d9edf7',
+        //                     'color': '#333',
+        //                     'cursor': 'pointer'
+        //                 });
+        //                 if (event.icon) {
+        //                     var color = event.bus_id ? '#5cb85c' : '#e7502e';
+        //                     element.find(".fc-title").prepend("<i style='color: " + color + "' class='fa fa-" + event.icon + "'></i> ");
+        //                     if((event.payedTicketCount * 1) > 0){
+        //                         element.find(".fc-title").prepend("<span title='Количество проданных билетов' class='label label-success'>"+event.payedTicketCount+"</span>");
+        //                     }
+        //
+        //                 }
+        //             }
+        //
+        //         });
+        //     }
+        // });
     });
 });
 

@@ -9,6 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property string|null $link
+ * @property string|null $link_no_lang
+ * @property string|null $title
  * @property int $user_id
  */
 class Favorite extends \yii\db\ActiveRecord
@@ -29,7 +31,7 @@ class Favorite extends \yii\db\ActiveRecord
         return [
             [['user_id'], 'required'],
             [['user_id'], 'integer'],
-            [['link', 'title'], 'string', 'max' => 255],
+            [['link', 'link_no_lang', 'title'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,6 +43,7 @@ class Favorite extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'link' => 'Link',
+            'link_no_lang' => 'link_no_lang',
             'user_id' => 'User ID',
             'title' => 'Title',
         ];
