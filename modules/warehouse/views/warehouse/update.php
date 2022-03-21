@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $dataUsers app\modules\warehouse\models\Warehouse */
 /* @var $warehouse_types app\modules\warehouse\models\Warehouse */
 
-$this->title =array(Yii::t('app', 'Change warehouse') . ' : ' . $model->id, 'Change warehouse');
+$this->title = array(Yii::t('app', 'Change warehouse') . ' : ' . $model->id, 'Change warehouse' . ' : ' . $model->id);
 $this->params['breadcrumbs'][] = ['label' => 'Warehouses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -19,7 +19,6 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     <?= $this->render('_form', [
         'model' => $model,
         'dataUsers'=>$dataUsers,
-        'address' => $address,
         'warehouse_types' => $warehouse_types
     ]) ?>
     </div>

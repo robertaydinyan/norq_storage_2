@@ -59,10 +59,11 @@ AppAsset::register($this);
                     <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
                         <div class="favorites" >
                             <?php if ($favorites):
-                                foreach ($favorites as $f): ?>
+                                foreach ($favorites as $f):
+                                    $title = explode(":", $f->title); ?>
                                     <div class="favorite" data-url="<?php echo $f->link_no_lang ?>"
                                          onclick='"<?php echo $f->link . (strpos($f->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>"'>
-                                        <?php echo Yii::t('app', $f->title); ?>
+                                        <?php echo Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : ''); ?>
                                         <i class="fa fa-times remove-favorite"></i>
                                     </div>
                                 <?php endforeach;
@@ -70,8 +71,12 @@ AppAsset::register($this);
                         </div>
                         <div class="histories" style="margin-left: 40px;">
                             <?php if ($history):
-                                foreach ($history as $h): ?>
-                                    <div class="favorite" onclick="showPage('<?php echo $h->link . (strpos($h->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>')"><?php echo Yii::t('app', $h->title); ?></i></div>
+                                foreach ($history as $h):
+                                    $title = explode(":", $h->title); ?>
+                                    <div class="favorite"
+                                         onclick="showPage('<?php echo $h->link . (strpos($h->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>')">
+                                        <?php echo Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : ''); ?>
+                                    </div>
                                 <?php endforeach;
                             endif;?>
                         </div>

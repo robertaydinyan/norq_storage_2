@@ -63,7 +63,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                 'model' => $model,
                 'options' => ['class' => 'table table-hover'],
                 'attributes' => [
-                    'name',
+                    'name_' . $lang,
                     [
                         'label' => Yii::t('app', 'Warehouse type'),
                         'value' => $model->getType($model->type)->{'name_' . $lang}

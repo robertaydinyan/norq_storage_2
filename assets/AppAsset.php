@@ -63,7 +63,6 @@ class AppAsset extends AssetBundle
 
         'js/modules/crm/script2.js',
         'js/plugins/fullcalendar/fullcalendar.min.js',
-        'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'
 
     ];
     public $depends = [

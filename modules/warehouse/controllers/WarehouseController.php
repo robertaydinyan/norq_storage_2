@@ -267,6 +267,8 @@ class WarehouseController extends Controller {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()
+            ->all() , 'id', 'name_' . $lang);
         $model = $this->findModel($id);
         $model->updated_at = Carbon::now()
             ->toDateTimeString();
@@ -299,7 +301,7 @@ class WarehouseController extends Controller {
         return $this->render('update', [
             'model' => $model,
             'isFavorite' => $isFavorite,
-
+            'warehouse_types' => $warehouse_types,
             'dataUsers' => $dataUsers,
             'responsiblePersons' => $responsiblePersons,
             'lang' => \Yii::$app->language
@@ -424,7 +426,7 @@ class WarehouseController extends Controller {
                     $favorite->title = $title;
                     return $favorite->save();
                 } else {
-                    return Favorite::deleteAll(['user_id' => $userID,'link' => $url]);
+                    return Favorite::deleteAll(['user_id' => $userID,'link_no_lang' => WarehouseRule::removeLangFromLink($url)]);
                 }
             }
         }
