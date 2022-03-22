@@ -15,6 +15,14 @@ $flag = $flags[$lang] ?: 'en';
 ?>
 
 
+<div class="modal-content-custom">
+    <div class="close"><i class="fa fa-close"></i></div>
+</div>
+<div  id="page-modal" style="display: none;">
+    <div class="page1">
+
+    </div>
+</div>
 <input type="hidden" id="user-id" value="<?php echo YII::$app->user->id; ?>">
 <input type="hidden" id="user-link" value="<?php echo URL::current(); ?>">
 <input type="hidden" id="user-link-no-lang" value="<?php echo \app\rbac\WarehouseRule::removeLangFromLink(URL::current()); ?>">
