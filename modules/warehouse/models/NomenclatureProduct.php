@@ -82,8 +82,9 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
     }
     public function findWithInfo($id)
     {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         if(intval($id)) {
-            return Yii::$app->db->createCommand("SELECT s_nomenclature_product.*,s_qty_type.type as qty_type FROM s_nomenclature_product 
+            return Yii::$app->db->createCommand("SELECT s_nomenclature_product.*,s_qty_type.type_" . $lang . " as qty_type FROM s_nomenclature_product 
                                                   LEFT JOIN s_qty_type ON s_nomenclature_product.qty_type_id = s_qty_type.id 
                                                   WHERE s_nomenclature_product.id = $id")->queryOne();
         } else {

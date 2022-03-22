@@ -324,7 +324,7 @@ class ProductController extends Controller
                     ->where(['warehouse_id'=>$post['wId'],'status' => 1])
                     ->andWhere(['<=','created_at',date('Y-m-d',strtotime($post['date_']))])
                     ->andWhere(['>','count',0])
-                    ->groupBy('nomenclature_product_id')
+                    ->groupBy('id')
                     ->orderBy('created_at', 'desc')
                     ->asArray()->all();
                    // mac_address
@@ -336,7 +336,7 @@ class ProductController extends Controller
                     ->andWhere(['<=','created_at',date('Y-m-d',strtotime($post['date_']))])
                     ->andWhere(['>','count',0])
                     ->andWhere(['nomenclature_product_id'=>$nomenclature_id])
-                    ->groupBy('mac_address,nomenclature_product_id')
+                    ->groupBy('id')
                     ->orderBy('created_at', 'desc')
                     ->asArray()->all();
             } else {

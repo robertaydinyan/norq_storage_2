@@ -68,7 +68,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                             <?php if ($products['nProduct']['individual'] == 'false') : ?>
                                 <td><?= $products['n_product_count'] ?> <?= $products['nProduct']['qtyType']['type_' . $lang] ?></td>
                             <?php else : ?>
-                                <td><a href="#"  onclick="showLog('<?= $products->product['mac_address']?>')"><?= $products['n_product_count'] ?> <?= $products['nProduct']['qtyType']['type'] ?> </a></td>
+                                <td><a href="#"  onclick="showLog('<?= $products->product['mac_address']?>')"><?= $products['n_product_count'] ?> <?= $products['nProduct']['qtyType']['type_' . $lang] ?> </a></td>
                             <?php endif; ?>
                             <td  onclick="showLog('<?= $products->product['mac_address']?>')"><?= $products->product['mac_address']?></td>
                             <td><?php if($products['nProduct']['individual']=='true'){ echo 'Այո';} else { echo 'Ոչ';} ?></td>
