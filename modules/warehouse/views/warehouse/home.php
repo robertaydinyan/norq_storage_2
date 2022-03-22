@@ -61,6 +61,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 </div>
 <div class=" warehouse-home mt-5  " >
+    <?php if (\app\rbac\WarehouseRule::can('warehouse', 'view')): ?>
      <div class="warehouse-home-item mb-3">
             <div class="widget widget-card-two">
                 <div class="widget-content">
@@ -85,6 +86,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 </div>
             </div>
             </div>
+    <?php endif; ?>
+    <?php if (\app\rbac\WarehouseRule::can('warehouse', 'index')): ?>
     <div class="warehouse-home-item mb-3">
         <div class="widget widget-card-two">
             <div class="widget-content">
@@ -109,6 +112,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
         </div>
     </div>
+    <?php endif; ?>
+    <?php if (\app\rbac\WarehouseRule::can('product', 'index')): ?>
     <div class="warehouse-home-item mb-3">
         <div class="widget widget-card-two">
             <div class="widget-content">
@@ -133,6 +138,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
         </div>
     </div>
+    <?php endif; ?>
+    <?php if (\app\rbac\WarehouseRule::can('shippingRequest', 'index')): ?>
     <div class="warehouse-home-item mb-3">
         <div class="widget widget-card-two">
             <div class="widget-content">
@@ -181,6 +188,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
         </div>
     </div>
+    <?php endif; ?>
+    <?php if (\app\rbac\WarehouseRule::can('shippingRequest', 'index')): ?>
     <div class="warehouse-home-item mb-3">
         <div class="widget widget-card-two">
             <div class="widget-content">
@@ -229,6 +238,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
         </div>
     </div>
+    <?php endif; ?>
+    <?php if (\app\rbac\WarehouseRule::can('qtyType', 'index')): ?>
     <div class="warehouse-home-item mb-3">
         <div class="widget widget-card-two">
             <div class="widget-content">
@@ -273,6 +284,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
         </div>
     </div>
+    <?php endif; ?>
+    <?php if (\app\rbac\WarehouseRule::can('report', 'index')): ?>
     <div class="warehouse-home-item mb-3">
         <div class="widget widget-card-two">
             <div class="widget-content">
@@ -297,6 +310,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
         </div>
     </div>
+    <?php endif; ?>
+    <?php if (\app\rbac\WarehouseRule::can('complectation', 'index')): ?>
     <div class="warehouse-home-item mb-3">
         <div class="widget widget-card-two">
             <div class="widget-content">
@@ -321,6 +336,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
         </div>
     </div>
+    <?php endif; ?>
+    <?php if (\app\rbac\WarehouseRule::can('payment', 'index')): ?>
     <div class="warehouse-home-item mb-3">
         <div class="widget widget-card-two">
             <div class="widget-content">
@@ -367,30 +384,33 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
         </div>
     </div>
-    <div class="warehouse-home-item mb-3">
-        <div class="widget widget-card-two">
-            <div class="widget-content">
+    <?php endif; ?>
+    <?php if (\app\rbac\WarehouseRule::can('users', 'index')): ?>
+        <div class="warehouse-home-item mb-3">
+            <div class="widget widget-card-two">
+                <div class="widget-content">
 
-                <div class="media  p-4 align-items-center border-bottom" >
-                    <div class="media-body">
-                        <div class="media border-right-blue align-items-center">
-                            <div class="w-img">
-                                <i class="fa fa-users mr-2" style="color: #1b55e2;font-size: 46px;"></i>
-                            </div>
-                            <div class="media-body">
-                                <h3 class=""><?=   Yii::t('app', 'Users') ?></h3>
+                    <div class="media  p-4 align-items-center border-bottom" >
+                        <div class="media-body">
+                            <div class="media border-right-blue align-items-center">
+                                <div class="w-img">
+                                    <i class="fa fa-users mr-2" style="color: #1b55e2;font-size: 46px;"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h3 class=""><?=   Yii::t('app', 'Users') ?></h3>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
-                </div>
-
-                <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/users?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div class="card-bottom-section mt-5">
+                        <div> <a href="/warehouse/users?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
 
 </div>
 

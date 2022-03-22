@@ -279,18 +279,28 @@ class Helper
             if($newSHipping == 0){
                 $newSHipping = '';
             }
-            $warehouse = [
-               ['label' => Yii::t('app', 'Main warehouse'), 'url' => ['/warehouse/warehouse/view?id=20&lang=' . $lang]],
-                ['label' => Yii::t('app', 'Warehouses'), 'url' => ['/warehouse/warehouse?lang=' . $lang]],
-                ['label' => Yii::t('app', 'goods'), 'url' => ['/warehouse/product?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Documents'), 'url' => ['/warehouse/shipping-request/documents?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Polls'), 'url' => ['/warehouse/shipping-request?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Directory'), 'url' => ['/warehouse/qty-type?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Reports'), 'url' => ['/warehouse/reports?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Composition'), 'url' => ['/warehouse/complectation?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Payments'), 'url' => ['/warehouse/payments?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Users'), 'url' => ['/warehouse/users?lang=' . $lang]],
-            ];
+            $warehouse = array();
+
+            if (\app\rbac\WarehouseRule::can('warehouse', 'view'))
+                array_push($warehouse, ['label' => Yii::t('app', 'Main warehouse'), 'url' => ['/warehouse/warehouse/view?id=20&lang=' . $lang]]);
+            if (\app\rbac\WarehouseRule::can('warehouse', 'index'))
+                array_push($warehouse,['label' => Yii::t('app', 'Warehouses'), 'url' => ['/warehouse/warehouse?lang=' . $lang]]);
+            if (\app\rbac\WarehouseRule::can('product', 'index'))
+                array_push($warehouse,['label' => Yii::t('app', 'goods'), 'url' => ['/warehouse/product?lang=' . $lang]]);
+            if (\app\rbac\WarehouseRule::can('shippingRequest', 'index'))
+                array_push($warehouse,['label' => Yii::t('app', 'Documents'), 'url' => ['/warehouse/shipping-request/documents?lang=' . $lang]]);
+            if (\app\rbac\WarehouseRule::can('shippingRequest', 'index'))
+                array_push($warehouse,['label' => Yii::t('app', 'Polls'), 'url' => ['/warehouse/shipping-request?lang=' . $lang]]);
+            if (\app\rbac\WarehouseRule::can('qtyType', 'index'))
+                array_push($warehouse,['label' => Yii::t('app', 'Directory'), 'url' => ['/warehouse/qty-type?lang=' . $lang]]);
+            if (\app\rbac\WarehouseRule::can('report', 'index'))
+                array_push($warehouse,['label' => Yii::t('app', 'Reports'), 'url' => ['/warehouse/reports?lang=' . $lang]]);
+            if (\app\rbac\WarehouseRule::can('complectation', 'index'))
+                array_push($warehouse,['label' => Yii::t('app', 'Composition'), 'url' => ['/warehouse/complectation?lang=' . $lang]]);
+            if (\app\rbac\WarehouseRule::can('payment', 'index'))
+                array_push($warehouse,['label' => Yii::t('app', 'Payments'), 'url' => ['/warehouse/payments?lang=' . $lang]]);
+            if (\app\rbac\WarehouseRule::can('users', 'index'))
+                array_push($warehouse,['label' => Yii::t('app', 'Users'), 'url' => ['/warehouse/users?lang=' . $lang]]);
 
             $rbac = [
                 ['label' => Yii::t('app', 'Rule'), 'url' => ['/rbac/rule/index']],
