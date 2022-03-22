@@ -13,6 +13,8 @@ $lang = Yii::$app->request->get('lang');
 $flag = $flags[$lang] ?: 'en';
 
 ?>
+
+
 <input type="hidden" id="user-id" value="<?php echo YII::$app->user->id; ?>">
 <input type="hidden" id="user-link" value="<?php echo URL::current(); ?>">
 <input type="hidden" id="user-link-no-lang" value="<?php echo \app\rbac\WarehouseRule::removeLangFromLink(URL::current()); ?>">
@@ -32,13 +34,16 @@ $flag = $flags[$lang] ?: 'en';
             </div>
         </div>
     </form>-->
+
     <ul class="navbar-nav align-items-center ml-auto">
         <li class="nav-item dropdown no-caret mr-3 d-none d-md-inline">
             <a class="nav-link dropdown-toggle timer" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="d-none d-md-inline " style="color:#fff">
-                    <?php date_default_timezone_set('Asia/Yerevan');
-                            echo $timestamp = date('H:i');?>
-                </div>
+
+
+                <body onload="startTime()">
+                <div id="txt" style="color: #fff;"></div>
+                </body>
+
             </a>
             <div class="dropdown-menu dropdown-menu-right py-0 mr-sm-n15 mr-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
                 <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank">
