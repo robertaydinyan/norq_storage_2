@@ -51,7 +51,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
                     <?php if (isset($favorites)):
                         foreach ($favorites as $f): ?>
-                            <a class="dropdown-item" href="<?php echo $f->link; ?>"><?php echo $f->title; ?></a>
+                            <a class="dropdown-item" href="<?php echo $f->link; ?>"><?php echo yii::t('app',$f->title); ?></a>
                         <?php endforeach;
                     endif; ?>
                 </div>
