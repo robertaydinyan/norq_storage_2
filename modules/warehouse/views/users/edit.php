@@ -9,7 +9,7 @@ use yii\helpers\Url;
 
 $this->title = array(Yii::t('app', 'Edit') . ": (" . $user->name . ")",'Edit');
 $this->params['breadcrumbs'][] = $this->title[0];
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 <div class="user-edit-index">
     <input type="hidden" id="userID" value="<?php echo $user->id; ?>">

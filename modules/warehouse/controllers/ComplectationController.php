@@ -88,7 +88,7 @@ class ComplectationController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $model = new Complectation();
         $model_products = new ComplectationProducts();
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
         $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()->all(), 'id', 'name_' . $lang);
         $post = Yii::$app->request->post();

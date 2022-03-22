@@ -95,11 +95,12 @@ class NomenclatureProductController extends Controller
      */
     public function actionCreate()
     {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
         $model = new NomenclatureProduct();
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
-        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type');
+        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type_' . $lang);
 
         $post = Yii::$app->request->post();
          
@@ -128,7 +129,7 @@ class NomenclatureProductController extends Controller
             if ($model->save()) {
                  if(!empty($admins)){
                     foreach ($admins as $key => $value) {
-                       Notifications::setNotification($value->id,"Ստեղծվել է նոր Նոմենկլատուրա ".$model->name,'/warehouse/nomenclature-product');
+                       Notifications::setNotification($value->id,"Ստեղծվել է նոր Նոմենկլատուրա ".$model->{'name_' . $lang},'/warehouse/nomenclature-product');
                     }
                 } 
                 return $this->redirect(['create',            'isFavorite' => $isFavorite,
@@ -160,10 +161,10 @@ class NomenclatureProductController extends Controller
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $model = $this->findModel($id);
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
-        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type');
+        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type_' . $lang);
         $post = Yii::$app->request->post();
         if ((int)$post['NomenclatureProduct']['qty_type_id'] === 0 && $model->load(Yii::$app->request->post())) {
             $qtyModel = new QtyType();

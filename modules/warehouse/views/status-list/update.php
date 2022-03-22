@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\StatusList */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title = array(Yii::t('app', 'Change') . ' : ' .  $model->{'name_' . $lang}, 'Change');
 $this->params['breadcrumbs'][] = ['label' => 'Status Lists', 'url' => ['index']];

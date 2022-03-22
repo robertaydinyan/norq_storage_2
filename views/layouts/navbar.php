@@ -10,7 +10,7 @@ $flags = array(
     'hy' => 'hy',
 );
 $lang = Yii::$app->request->get('lang');
-$flag = $flags[$lang] ?: 'en';
+$flag = $flags[$lang] ?: 'hy';
 
 ?>
 <input type="hidden" id="user-id" value="<?php echo YII::$app->user->id; ?>">

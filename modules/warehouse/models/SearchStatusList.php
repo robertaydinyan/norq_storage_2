@@ -40,7 +40,7 @@ class SearchStatusList extends StatusList
      */
     public function search($params)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
         $query = StatusList::find();
 

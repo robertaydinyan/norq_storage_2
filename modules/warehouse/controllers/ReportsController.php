@@ -45,7 +45,7 @@ class ReportsController extends Controller
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $shipping_types=  ShippingType::find()->all();
         $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id', 'name_' . $lang);
         $regions = ArrayHelper::map(Regions::find()->asArray()->all(), 'id', 'name');

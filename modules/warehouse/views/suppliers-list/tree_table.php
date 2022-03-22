@@ -2,7 +2,7 @@
 
 /* @var $tableTreeGroup yii\data\ActiveDataProvider */
 /* @var $groupProducts yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 <?php if(array_key_exists('children', $tableTreePartner)) : ?>
     <?php foreach ($tableTreePartner['children'] as $tableTreePartner) : ?>

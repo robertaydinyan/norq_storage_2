@@ -3,7 +3,7 @@ use app\modules\warehouse\models\WarehouseTypes;
 use app\modules\billing\models\Regions;
 use app\modules\warehouse\models\WarehouseGroups;
 use yii\helpers\ArrayHelper;
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id','name_' . $lang);
 $regions = ArrayHelper::map(Regions::find()->asArray()->all(), 'id', 'name');
 $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'name_' . $lang);
@@ -26,31 +26,31 @@ $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'nam
                                 } ?>
                             </select>
                         </div>
-                        <div class="col-sm-12 hide region">
-                            <select name="region_id" class="form-control region_">
-                                <option value=""><?php echo Yii::t('app', 'District'); ?></option>
-                                <?php if(!empty($regions)){
-                                    foreach ($regions as $region =>$rg){
-                                        echo '<option  value="'.$region.'" >'.$rg.'</option>';
-                                    }
-                                } ?>
-                            </select>
-                        </div>
-                        <div class="col-sm-12 hide subgroup">
-                            <select name="virtual_type"  class="form-control virtual_type">
-                                <option value=""><?php echo Yii::t('app', 'Virtual (types)'); ?></option>
-                                <?php if(!empty($groups)){
-                                    foreach ($groups as $group =>$gr){
-                                        echo '<option  value="'.$group.'" >'.$gr.'</option>';
-                                    }
-                                } ?>
-                            </select>
-                        </div>
-                        <div class="col-sm-12 hide community">
-                            <select name="community_id" class="form-control community_select">
-                                <option value=""><?php echo Yii::t('app', 'Community'); ?></option>
-                            </select>
-                        </div>
+<!--                        <div class="col-sm-12 hide region">-->
+<!--                            <select name="region_id" class="form-control region_">-->
+<!--                                <option value="">--><?php //echo Yii::t('app', 'District'); ?><!--</option>-->
+<!--                                --><?php //if(!empty($regions)){
+//                                    foreach ($regions as $region =>$rg){
+//                                        echo '<option  value="'.$region.'" >'.$rg.'</option>';
+//                                    }
+//                                } ?>
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-12 hide subgroup">-->
+<!--                            <select name="virtual_type"  class="form-control virtual_type">-->
+<!--                                <option value="">--><?php //echo Yii::t('app', 'Virtual (types)'); ?><!--</option>-->
+<!--                                --><?php //if(!empty($groups)){
+//                                    foreach ($groups as $group =>$gr){
+//                                        echo '<option  value="'.$group.'" >'.$gr.'</option>';
+//                                    }
+//                                } ?>
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-12 hide community">-->
+<!--                            <select name="community_id" class="form-control community_select">-->
+<!--                                <option value="">--><?php //echo Yii::t('app', 'Community'); ?><!--</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
                         <div class="col-sm-12 hide ware">
                             <select name="supplier_warehouse_id" onchange="setWarehouse($(this).val(),$(this).find('option:selected').text())" class="form-control ware_select">
                                 <option value=""><?php echo Yii::t('app', 'Warehouse'); ?></option>

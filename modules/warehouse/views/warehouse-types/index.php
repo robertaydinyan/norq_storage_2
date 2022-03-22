@@ -11,7 +11,7 @@ use yii\helpers\Url;
 $this->title = array(Yii::t('app', 'Warehouse types'),'Warehouse types');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 <?php if(\app\rbac\WarehouseRule::can('warehouse-types', 'index')): ?>
 <div class="group-product-index">

@@ -40,7 +40,7 @@ class SearchWarehouseTypes extends WarehouseTypes
      */
     public function search($params)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $query = WarehouseTypes::find();
 
         // add conditions that should always apply here

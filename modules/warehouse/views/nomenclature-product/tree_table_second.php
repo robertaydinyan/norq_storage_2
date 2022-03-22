@@ -4,7 +4,7 @@ use app\modules\warehouse\models\NomenclatureProduct;
 use yii\helpers\Url;
 /* @var $tableTreeGroup yii\data\ActiveDataProvider */
 /* @var $groupProducts yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 <?php if(array_key_exists('children', $tableTreeGroup)) : ?>
     <?php foreach ($tableTreeGroup['children'] as $tableTreeGroup) : ?>

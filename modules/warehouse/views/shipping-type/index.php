@@ -6,7 +6,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\SearchShippingType */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title = array(Yii::t('app', 'Type of transfer'),'Type of transfer');
 $this->params['breadcrumbs'][] = $this->title[0];

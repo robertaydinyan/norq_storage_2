@@ -43,7 +43,7 @@ class ShippingRequestController extends Controller {
     public function actionIndex() {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
         $dataProvider = $searchModel->search(Yii::$app
@@ -78,7 +78,7 @@ class ShippingRequestController extends Controller {
     public function actionDocuments() {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
@@ -135,7 +135,7 @@ class ShippingRequestController extends Controller {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
         $model = new ShippingRequest();
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()
             ->all() , 'id', 'name');
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
@@ -567,7 +567,7 @@ class ShippingRequestController extends Controller {
             $products = ShippingProducts::find()->where(['shipping_id' => $model
                 ->id])
                 ->all();
-            $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+            $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             foreach ($products as $product => $prod_val) {
                 $product_full_data = $prod_val->findByProductId($prod_val->product_id) [0];
 
@@ -689,7 +689,7 @@ class ShippingRequestController extends Controller {
         return $this->redirect(['index']);
     }
     public function actionDecline() {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $get = Yii::$app
             ->request
             ->get();

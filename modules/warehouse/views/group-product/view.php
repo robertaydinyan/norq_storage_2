@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\GroupProduct */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $this->title = array($model->{'name_' . $lang});
 $this->params['breadcrumbs'][] = ['label' => 'Group Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];

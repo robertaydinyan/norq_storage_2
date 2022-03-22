@@ -13,7 +13,7 @@ use \app\modules\warehouse\models\Warehouse;
 $this->title = array(Yii::t('app', 'Warehouse'),'Warehouse');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title[0];
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 ?>
 <div class="group-product-index">

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\WarehouseTypes */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title =array(Yii::t('app', 'Warehouse type') . ' : ' .  $model->{'name_' . $lang}, 'Warehouse type');
 $this->params['breadcrumbs'][] = ['label' => 'Պահեստի տեսակ', 'url' => ['index']];

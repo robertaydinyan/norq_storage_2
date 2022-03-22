@@ -5,8 +5,9 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\NomenclatureProduct */
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
-$this->title = array($model->name);
+$this->title = array($model->{'name_' . $lang});
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Product Nomenclature'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -22,14 +23,32 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         'model' => $model,
         'attributes' => [
             'id',
-            'vendor_code',
-            'name',
-            'group',
+            'vendor_code_' . $lang,
+            'name_' . $lang,
+            [
+                'attribute' => 'group_id',
+                'label' => Yii::t('app', 'group'),
+                'value' => function ($model) {
+                    $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+                    return $model->getGroupProduct()->one()['name_' . $lang];
+                }
+            ],
             'production_date',
-            'type',
-            'individual',
-            'qty_type',
-            'group_id',
+            [
+                'attribute' => 'individual',
+                'label' => Yii::t('app', 'Individual'),
+                'value' => function ($model) {
+                    return $model->individual ? Yii::t('app', 'Yes') : Yii::t('app', 'No');
+                }
+            ],
+            [
+                'attribute' => 'qty_type',
+                'label' => Yii::t('app', 'Quantity type'),
+                'value' => function ($model) {
+                    $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+                    return $model->getQtyType()->one()['type_' . $lang];
+                }
+            ],
         ],
     ]) ?>
     </div>

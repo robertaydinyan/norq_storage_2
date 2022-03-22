@@ -44,7 +44,7 @@ class GroupProductController extends Controller
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
         if (Yii::$app->request->post()) {
 
@@ -160,7 +160,7 @@ class GroupProductController extends Controller
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
         $haveProducts = Product::getGroupProducts($group_id);
         $groupProducts = Product::find()->select([
@@ -211,7 +211,7 @@ class GroupProductController extends Controller
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
         $model = new GroupProduct();
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name_' . $lang);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

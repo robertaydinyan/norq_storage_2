@@ -581,44 +581,45 @@ window.onload = function(){
           //   });
 
         $('body').on('change','.warehouse_type',function () {
-             var vl = $(this).val();
-             $('.virtual_type').val(0);
-             if(vl == 2){
-                 $('.region').hide();
-                 $('.subgroup').show();
-                 $('.community').hide();
-             } else {
-                 $('.subgroup').hide();
-                 $('.region').show();
-             }
+            var type_ = $('.warehouse_type').val();
+            $('.ware').show();
+            $.ajax({
+                url: '/warehouse/warehouse/get-warehouses',
+                method: 'get',
+                dataType: 'html',
+                data: { type:type_},
+                success: function (data) {
+                    $('.ware_select').html(data);
+                }
+            });
         });
-        $('body').on('change','.region_',function(){
-                var reg_ = $(this).val();
-                $('.community').show();
-                $.ajax({
-                    url: '/warehouse/warehouse/get-community',
-                    method: 'get',
-                    dataType: 'html',
-                    data: { region_id: reg_},
-                    success: function (data) {
-                        $('.community_select').html(data);
-                    }
-                });
-            });
-            $('body').on('change','.community_select',function(){
-                var community_ = $(this).val();
-                var type_ = $('.warehouse_type').val();
-                $('.ware').show();
-                $.ajax({
-                    url: '/warehouse/warehouse/get-warehouses',
-                    method: 'get',
-                    dataType: 'html',
-                    data: { community: community_,type:type_},
-                    success: function (data) {
-                        $('.ware_select').html(data);
-                    }
-                });
-            });
+        // $('body').on('change','.region_',function(){
+        //         var reg_ = $(this).val();
+        //         $('.community').show();
+        //         $.ajax({
+        //             url: '/warehouse/warehouse/get-community',
+        //             method: 'get',
+        //             dataType: 'html',
+        //             data: { region_id: reg_},
+        //             success: function (data) {
+        //                 $('.community_select').html(data);
+        //             }
+        //         });
+        //     });
+        //     $('body').on('change','.community_select',function(){
+        //         var community_ = $(this).val();
+        //         var type_ = $('.warehouse_type').val();
+        //         $('.ware').show();
+        //         $.ajax({
+        //             url: '/warehouse/warehouse/get-warehouses',
+        //             method: 'get',
+        //             dataType: 'html',
+        //             data: { community: community_,type:type_},
+        //             success: function (data) {
+        //                 $('.ware_select').html(data);
+        //             }
+        //         });
+        //     });
             $('body').on('change','.virtual_type',function(){
                 var virtual_type_ = $(this).val();
                 var type_ = $('.warehouse_type').val();

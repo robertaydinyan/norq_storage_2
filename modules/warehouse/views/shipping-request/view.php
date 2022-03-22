@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\ShippingRequest */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title = array($model->shippingtype->{'name_' . $lang} . ' view '.$model->id, $model->shippingtype->name_en . ' view '.$model->id);
 $this->params['breadcrumbs'][] = ['label' => 'Shipping Requests', 'url' => ['index']];

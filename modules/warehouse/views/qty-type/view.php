@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Qty Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 \yii\web\YiiAsset::register($this);
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 <div class="qty-type-view group-product-index">
 

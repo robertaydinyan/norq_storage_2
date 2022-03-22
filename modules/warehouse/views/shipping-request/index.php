@@ -7,7 +7,7 @@ use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\ShippingRequestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $this->title = array(Yii::t('app', 'Polls'),'Polls');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerJsFile('@web/js/modules/crm/contact.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);

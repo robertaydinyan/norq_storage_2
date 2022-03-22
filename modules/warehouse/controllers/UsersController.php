@@ -79,7 +79,7 @@ class UsersController extends Controller
     public function actionCreate() {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $user = new User();
         $request = Yii::$app->request;
         if ($request->isPost) {

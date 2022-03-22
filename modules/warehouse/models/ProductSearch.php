@@ -81,9 +81,17 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
-        $whProductsCount = Yii::$app->db->createCommand("SELECT COUNT(`s_product`.id) as total_count FROM `s_product` LEFT JOIN `s_nomenclature_product` ON `s_product`.`nomenclature_product_id` = `s_nomenclature_product`.`id` LEFT JOIN `s_qty_type` ON `s_nomenclature_product`.`qty_type_id` = `s_qty_type`.`id` LEFT JOIN `s_warehouse` ON `s_product`.`warehouse_id` = `s_warehouse`.`id` WHERE `status`=1 AND s_product.count>0 GROUP BY `nomenclature_product_id`, `warehouse_id` ")->queryAll();
+        $whProductsCount = Yii::$app->db->createCommand("
+                SELECT COUNT(`s_product`.id) as total_count 
+                FROM `s_product` 
+                LEFT JOIN `s_nomenclature_product` ON `s_product`.`nomenclature_product_id` = `s_nomenclature_product`.`id` 
+                LEFT JOIN `s_qty_type` ON `s_nomenclature_product`.`qty_type_id` = `s_qty_type`.`id` 
+                LEFT JOIN `s_warehouse` ON `s_product`.`warehouse_id` = `s_warehouse`.`id` 
+                WHERE `status`=1 AND s_product.count>0 
+                GROUP BY `nomenclature_product_id`, `warehouse_id` "
+        )->queryAll();
         if (!isset ($_GET['page']) ) {  
             $page = 1;  
         } else {  

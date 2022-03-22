@@ -126,7 +126,7 @@ class Product extends \yii\db\ActiveRecord {
 
     public function findByData($data) {
         $sql = '';
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
         if ($data["virtual_type"]) {
             if (empty($sql)) {
@@ -238,7 +238,7 @@ class Product extends \yii\db\ActiveRecord {
 
     public function getWarehouseProducts($id) {
         if ($id) {
-            $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+            $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             $whProductsCount = Yii::$app
                 ->db
                 ->createCommand("SELECT COUNT(`s_product`.id) as total_count FROM `s_product` LEFT JOIN `s_nomenclature_product` ON `s_product`.`nomenclature_product_id` = `s_nomenclature_product`.`id` LEFT JOIN `s_qty_type` ON `s_nomenclature_product`.`qty_type_id` = `s_qty_type`.`id` LEFT JOIN `s_warehouse` ON `s_product`.`warehouse_id` = `s_warehouse`.`id` WHERE `warehouse_id`=$id AND `status`=1 AND s_product.count>0 GROUP BY `nomenclature_product_id`, `warehouse_id` ")->queryAll();
@@ -262,7 +262,7 @@ class Product extends \yii\db\ActiveRecord {
     }
 
     public function getGroupProducts($group_id = null) {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $sql = '';
         if ($group_id) {
             $sql = 'AND s_group_product.id = ' . $group_id;
@@ -301,7 +301,7 @@ class Product extends \yii\db\ActiveRecord {
         return self::$groups;
     }
     public function findForNotice() {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         return Yii::$app
             ->db
             ->createCommand("SELECT SUM(s_product.count) as pcount,s_nomenclature_product.min_qty as minqty,s_nomenclature_product.*,s_product.*,s_qty_type.type_" . $lang . " as qty_type

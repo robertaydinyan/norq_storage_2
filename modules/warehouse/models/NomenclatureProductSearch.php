@@ -41,7 +41,7 @@ class NomenclatureProductSearch extends NomenclatureProduct
      */
     public function search($params)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $query = NomenclatureProduct::find()
             ->joinWith('groupProduct');
 

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\ShippingType */
 
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $this->title =array(Yii::t('app', 'Update') . ' : ' .$model->{'name_' . $lang}, 'Update');
 $this->params['breadcrumbs'][] = ['label' => 'Shipping Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->{'name_' . $lang}, 'url' => ['view', 'id' => $model->id]];

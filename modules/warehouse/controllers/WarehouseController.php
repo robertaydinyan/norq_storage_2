@@ -69,9 +69,11 @@ class WarehouseController extends Controller {
 
         $shipping_types = ShippingType::find()->all();
         $history = UserHistory::find()->where(['user_id' => Yii::$app->user->id])->limit(20)->orderBy('time DESC')->all();
+        $favorites = Favorite::find()->where(['user_id' => Yii::$app->user->id])->all();
         return $this->render('home', [
             'shipping_types' => $shipping_types,
-            'history' => $history
+            'history' => $history,
+            'favorites' => $favorites
         ]);
     }
     public function actionShowByType() {
@@ -162,7 +164,7 @@ class WarehouseController extends Controller {
             $model = $this->findModel($id);
         }
 
-        return $this->render('view', ['model' => $this->findModel($id) , 'isFavorite' => $isFavorite,'isFavorite' => $isFavorite, 'dataProvider' => $whProducts, 'suppliers' => $suppliers, 'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse,
+        return $this->render('view', ['model' => $this->findModel($id) , 'isFavorite' => $isFavorite, 'dataProvider' => $whProducts, 'suppliers' => $suppliers, 'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse,
 
         ]);
     }
@@ -176,7 +178,7 @@ class WarehouseController extends Controller {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
         $model = new Warehouse();
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $address = new ContactAdress();
 
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
@@ -266,7 +268,7 @@ class WarehouseController extends Controller {
     public function actionUpdate($id) {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()
             ->all() , 'id', 'name_' . $lang);
         $model = $this->findModel($id);
@@ -352,6 +354,7 @@ class WarehouseController extends Controller {
         }
     }
     public function actionGetWarehouses() {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $query = Warehouse::find();
         if (isset($_GET['type'])) {
             $query->andFilterWhere(['s_warehouse.type' => intval($_GET['type']) , ]);
@@ -360,11 +363,11 @@ class WarehouseController extends Controller {
             $query->joinWith(['contactAdress']);
             $query->andFilterWhere(['contact_adress.community_id' => intval($_GET['community']) , ]);
         }
-        echo '<option value="">Պահեստ</option>';
+        echo '<option value="">' . Yii::t('app', 'Warehouse') . '</option>';
         $dataProvider = $query->all();
         if ($dataProvider) {
             foreach ($dataProvider as $warehouse => $ware_val) {
-                echo '<option value="' . $ware_val->id . '">' . $ware_val->name . '</option>';
+                echo '<option value="' . $ware_val->id . '">' . $ware_val->{'name_' . $lang} . '</option>';
             }
         }
     }

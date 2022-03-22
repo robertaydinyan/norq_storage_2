@@ -7,7 +7,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\NomenclatureProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title = array(Yii::t('app', 'Product Nomenclature'),'Product Nomenclature');
 $this->params['breadcrumbs'][] = $this->title[0];

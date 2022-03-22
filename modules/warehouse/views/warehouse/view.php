@@ -9,7 +9,7 @@ use yii\helpers\Url;
 /* @var $model app\modules\warehouse\models\Warehouse */
 /* @var $dataProvider app\modules\warehouse\models\Warehouse */
 /* @var $searchModel app\modules\warehouse\models\Warehouse */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title = array($model->id);
 $this->params['breadcrumbs'][] = ['label' => 'Warehouses', 'url' => ['index']];

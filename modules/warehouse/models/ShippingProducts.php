@@ -51,7 +51,7 @@ class ShippingProducts extends \yii\db\ActiveRecord
 
     public function findByShip($id)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         if(intval($id)) {
             return Yii::$app->db->createCommand("SELECT s_nomenclature_product.*,s_qty_type.type_" . $lang . " as qty_type,s_shipping_products.*,s_product.mac_address as mac,s_product.price as bay_price FROM s_shipping_products  
                                                      LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id            
@@ -64,7 +64,7 @@ class ShippingProducts extends \yii\db\ActiveRecord
     }
     public function findByShipReq($id)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
         if(intval($id)) {
             return Yii::$app->db->createCommand("SELECT s_nomenclature_product.*,s_qty_type.type_ " . $lang . " as qty_type,s_product_for_request.* FROM s_product_for_request          
@@ -77,7 +77,7 @@ class ShippingProducts extends \yii\db\ActiveRecord
     }
     public function findByProductId($id)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         if(intval($id)) {
             return Yii::$app->db->createCommand("SELECT s_nomenclature_product.*,s_qty_type.type_" . $lang . " as qty_type,s_shipping_products.*,s_product.mac_address as mac FROM s_shipping_products  
                                                      LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id            
