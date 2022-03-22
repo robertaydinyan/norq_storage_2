@@ -86,12 +86,13 @@ $(document).ready(function () {
                 dataType: 'json',
                 data: { wId: ware_id,date_: date_create},
                 success: function (data) {
+                    let lang = $('#lang').val();
                     $('.hide-block').hide();
                     var opt = '';
                     if(data.length) {
                         opt += '<option>Ընտրել</option>';
                         for (var i = 0; i<data.length; i++) {
-                            opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data.name + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ') </option>';
+                            opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data['name_' + lang] + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ') </option>';
                         }
                     }
                     $('#nomenclature_product').html(opt);
@@ -118,13 +119,14 @@ $(document).ready(function () {
                     dataType: 'json',
                     data: { wId: ware_id,date_: date_create,nid:product_id},
                     success: function (data) {
+                        let lang = $('#lang').val();
                         $('.hide-block').hide();
                         var opt = '';
                         if(data.length) {
                             opt += '<option>Ընտրել</option>';
                             for (var i = 0; i<data.length; i++) {
                                 if(data[i].namiclature_data.individual == 'true') {
-                                    opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data.name + ' - ' + data[i].mac_address + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ')</option>';
+                                    opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data['name_' + lang] + ' - ' + data[i].mac_address + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ')</option>';
                                 }
                             }
                         }

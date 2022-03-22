@@ -24,7 +24,7 @@ $this->registerJsFile('@web/js/modules/warehouse/shipping_new.js', ['depends' =>
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\bootstrap4\BootstrapAsset::className()],]);
 $lang = Yii::$app->language;
-$lang_s = explode('-', \Yii::$app->language)[0] ?: 'en';
+$lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data','novalidate'=>'novalidate']]); ?>
@@ -134,7 +134,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'en';
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
                 <?php foreach ($suppliers as $tableTreePartner) : ?>
                     <li class="file-tree-folder">
-                         <span data-name="<?= $tableTreePartner['name'] ?>" class="parent-block"><?= $tableTreePartner['name'] ?>
+                         <span data-name="<?= $tableTreePartner['name_' . $lang_s] ?>" class="parent-block"><?= $tableTreePartner['name_' . $lang_s] ?>
                         </span>
                         <ul style="display: block;">
                             <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/suppliers-list/tree_form_sup_table.php', [

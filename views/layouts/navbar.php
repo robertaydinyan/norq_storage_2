@@ -24,6 +24,7 @@ $flag = $flags[$lang] ?: 'hy';
     </div>
 </div>
 <input type="hidden" id="user-id" value="<?php echo YII::$app->user->id; ?>">
+<input type="hidden" id="lang" value="<?php echo explode('-', \Yii::$app->language)[0] ?: 'hy'; ?>">
 <input type="hidden" id="user-link" value="<?php echo URL::current(); ?>">
 <input type="hidden" id="user-link-no-lang" value="<?php echo \app\rbac\WarehouseRule::removeLangFromLink(URL::current()); ?>">
 <nav class="topnav navbar navbar-expand shadow navbar-light" id="sidenavAccordion" style=" background:#0055a5!important;">

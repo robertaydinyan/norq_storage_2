@@ -22,8 +22,14 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             'options' => ['class' => 'table table-hover'],
             'attributes' => [
                 'id',
-                'name',
-                'group_id',
+                'name_' . $lang,
+                [
+                    'attribute' => 'group_id',
+                    'label' => 'Group name',
+                    'value' => function ($model) {
+                        return $model->parentGroup->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'hy'};
+                    }
+                ],
             ],
         ]) ?>
     </div>
