@@ -5,9 +5,13 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\GroupProduct */
 /* @var $groupProducts app\modules\warehouse\models\GroupProduct */
-$this->title = array(Yii::t('app', 'Change'),'Change') . ' ' . array(Yii::t('app', 'Product group') . $model->name,'Product group');
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+$this->title = array(
+    Yii::t('app', 'Change Product group'),
+    'Change Product group'
+);
 $this->params['breadcrumbs'][] = ['label' => 'Group Products', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->{'name_' . $lang}, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
