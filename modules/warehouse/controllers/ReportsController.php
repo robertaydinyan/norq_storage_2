@@ -11,6 +11,7 @@ use app\modules\warehouse\models\ShippingType;
 use app\modules\warehouse\models\Warehouse;
 use app\modules\warehouse\models\WarehouseGroups;
 use app\modules\warehouse\models\WarehouseTypes;
+use app\rbac\WarehouseRule;
 use Yii;
 
 use yii\helpers\ArrayHelper;
@@ -43,9 +44,8 @@ class ReportsController extends Controller
      */
     public function actionIndex()
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $shipping_types=  ShippingType::find()->all();
         $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id', 'name_' . $lang);
         $regions = ArrayHelper::map(Regions::find()->asArray()->all(), 'id', 'name');

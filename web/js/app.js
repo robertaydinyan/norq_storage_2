@@ -131,6 +131,18 @@ function ID_Name() {
     return '_' + Math.random().toString(36).substr(2, 9);
 }
 
+$('.remove-favorite').on('click', function(e) {
+    e.stopPropagation();
+
+    $(this).parent().remove();
+
+    $.get('/warehouse/warehouse/change-favorite', {
+        'status': 0,
+        'user_id': $('#user-id').val(),
+        'url': $(this).parent().data('url'),
+    });
+})
+
 $('.star').click(function () {
     var status;
     let title = $('h1').data('title').trim();
@@ -160,14 +172,19 @@ $('.star').click(function () {
     });
 });
 
-$('.remove-favorite').on('click', function(e) {
-    e.stopPropagation();
 
-    $(this).parent().remove();
+function startTime() {
+    const today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =  h + ":" + m ;
+    setTimeout(startTime, 1000);
+}
 
-    $.get('/warehouse/warehouse/change-favorite', {
-        'status': 0,
-        'user_id': $('#user-id').val(),
-        'url': $(this).parent().data('url'),
-    });
-})
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}

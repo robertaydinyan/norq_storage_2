@@ -4,6 +4,8 @@ namespace app\modules\warehouse\controllers;
 
 use app\components\Url;
 use app\modules\warehouse\models\Favorite;
+use app\rbac\WarehouseRule;
+use Yii;
 use yii\web\Controller;
 
 /**
@@ -17,8 +19,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
         return $this->render('index',[
             'isFavorite' => $isFavorite,

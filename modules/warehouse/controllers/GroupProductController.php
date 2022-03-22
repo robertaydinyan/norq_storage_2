@@ -7,6 +7,7 @@ use app\models\Notifications;
 use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\SuppliersList;
+use app\rbac\WarehouseRule;
 use Yii;
 use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\GroupProductSearch;
@@ -42,7 +43,7 @@ class GroupProductController extends Controller
      */
     public function actionIndex()
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
@@ -137,7 +138,7 @@ class GroupProductController extends Controller
      */
     public function actionView($id)
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -158,7 +159,7 @@ class GroupProductController extends Controller
      */
     public function actionShowGroupProducts($group_id = null)
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
@@ -209,7 +210,7 @@ class GroupProductController extends Controller
      */
     public function actionCreate()
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new GroupProduct();
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name_' . $lang);
@@ -235,7 +236,7 @@ class GroupProductController extends Controller
      */
     public function actionUpdate($id)
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
 
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');

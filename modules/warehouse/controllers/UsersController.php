@@ -7,6 +7,7 @@ use app\models\User;
 use app\modules\warehouse\models\Action;
 use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\UserAction;
+use app\rbac\WarehouseRule;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,8 +41,7 @@ class UsersController extends Controller
      * @return mixed
      */
     public function actionIndex() {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $users = User::find()->all();
         return $this->render('index', [
             'users' => $users,
@@ -50,8 +50,7 @@ class UsersController extends Controller
     }
 
     public function actionEdit($id) {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $user = User::findOne(['id' => $id]);
         $controller_names = Action::find()->select('DISTINCT `controller_name`')->all();
         return $this->render('edit', [
@@ -77,9 +76,8 @@ class UsersController extends Controller
     }
 
     public function actionCreate() {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link' => URL::current()])->count() == 1;
-
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $user = new User();
         $request = Yii::$app->request;
         if ($request->isPost) {

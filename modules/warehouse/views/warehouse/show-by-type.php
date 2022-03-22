@@ -10,7 +10,7 @@ use \app\modules\warehouse\models\Warehouse;
 /* @var $searchModel app\modules\warehouse\models\WarehouseSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = array(Yii::t('app', 'Warehouse'),'Warehouse');
+$this->title = array(Yii::t('app', 'Warehouse type'),'Warehouse type');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title[0];
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';

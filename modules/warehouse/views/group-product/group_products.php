@@ -10,7 +10,7 @@ use yii\helpers\Url;
 /* @var $tableTreeGroups yii\data\ActiveDataProvider */
 /* @var $groupProducts yii\data\ActiveDataProvider */
 
-$this->title =  array(Yii::t('app', 'goods'),'goods');
+$this->title =  array(Yii::t('app', 'Product group'),'Product group');
 $this->params['breadcrumbs'][] = $this->title[0];
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
@@ -31,9 +31,9 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 <div  class="group-product-index">
     <h1 style="padding: 20px;"  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
         <?php echo \app\rbac\WarehouseRule::can('group-product', 'create') ? ('<a style="float: right;margin-right: 10px;" class="btn btn-primary" 
-        href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '">' . Yii::t('app', 'Create a group') . '</a>') : '' ?>
+        href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '">' . Yii::t('app', 'Create a Product Group') . '</a>') : '' ?>
         <?php echo \app\rbac\WarehouseRule::can('product', 'index') ? ('<a href="/warehouse/product?lang=' . \Yii::$app->language .
-        '" style="float: right;margin-right: 10px;" class="btn btn-primary">' . Yii::t('app', 'Warehouse') . '</a>') : '' ?>
+        '" style="float: right;margin-right: 10px;" class="btn btn-primary">' . Yii::t('app', 'goods') . '</a>') : '' ?>
         
     </h1>
 

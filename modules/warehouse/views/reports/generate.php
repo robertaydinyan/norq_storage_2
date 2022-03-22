@@ -17,7 +17,7 @@ if(!empty($data)){ ?>
     <div style="padding: 20px;">
         <table class="kv-grid-table table table-hover  kv-table-wrap" id="datatable">
             <thead>
-            <tr style="background:#474747;color:#fff;">
+            <tr style="background:#1b55e2;color:#fff;">
                 <?php if(@$_GET['show-series']){ ?>
                     <td><?php echo Yii::t('app', 'Series');?></td>
                 <?php } ?>
@@ -47,7 +47,7 @@ if(!empty($data)){ ?>
                 
                 ?>
                 <?php if(@$_GET['show-ware'] && $count_prods[$prod_val['nomenclature_product_id']]==1){  ?>
-                    <tr style="background:#474747;color:#fff;">
+                    <tr style="background:#1b55e2;color:#fff;">
                         <?php if(@$_GET['show-series']){ ?>
                             <td></td>
                         <?php } ?>
