@@ -83,7 +83,7 @@ $(document).ready(function () {
     $body.on('change', '#shippingrequest-provider_warehouse_id', function () {
         var ware_id = $(this).val();
         var date_create = $('#date_create').val();
-
+        let lang = $('#lang').val();
         if(ware_id){
 
             $.ajax({
@@ -98,9 +98,9 @@ $(document).ready(function () {
                         opt += '<option>Ընտրել</option>';
                         for (var i = 0; i<data.length; i++) {
                             if(data[i].namiclature_data.individual != 'true') {
-                                opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data.name + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ') </option>';
+                                opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data['name_' + lang] + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ') </option>';
                             } else {
-                                opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data.name + ' - ' + data[i].mac_address + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ')</option>';
+                                opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data['name_' + lang] + ' - ' + data[i].mac_address + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ')</option>';
                             }
                         }
                     }

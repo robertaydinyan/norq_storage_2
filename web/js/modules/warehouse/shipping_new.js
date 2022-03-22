@@ -181,7 +181,7 @@ $(document).ready(function () {
     $body.on('change', '[name="ShippingRequest[provider_warehouse_id]"]', function () {
         var ware_id = $(this).val();
         var date_create = $('#date_create').val();
-
+        let lang = $('#lang').val();
         if(ware_id){
 
             $.ajax({
@@ -195,7 +195,7 @@ $(document).ready(function () {
                     if(data.length) {
                         opt += '<option>Ընտրել</option>';
                         for (var i = 0; i<data.length; i++) {
-                            opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data.name + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ') </option>';
+                            opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data['name_' + lang] + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ') </option>';
                         }
                     }
                     $('#nomenclature_product').html(opt);
@@ -208,6 +208,7 @@ $(document).ready(function () {
 
     $body.on('change', '.nm_products', function (e) {
         e.preventDefault();
+        let lang = $('#lang').val();
         var product_id = $(this).val();
         _this = $(this);
         var ware_id = $('[name="ShippingRequest[provider_warehouse_id]"]').val();
@@ -222,13 +223,14 @@ $(document).ready(function () {
                     dataType: 'json',
                     data: { wId: ware_id,date_: date_create,nid:product_id},
                     success: function (data) {
+                        console.log(data)
                         $('.hide-block').hide();
                         var opt = '';
                         if(data.length) {
                             opt += '<option>Ընտրել</option>';
                             for (var i = 0; i<data.length; i++) {
                                 if(data[i].namiclature_data.individual == 'true') {
-                                    opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data.name + ' - ' + data[i].mac_address + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ')</option>';
+                                    opt += '<option data-max="' + data[i].count + '" data-individual="' + data[i].namiclature_data.individual + '" value="' + data[i].id + '">' + data[i].namiclature_data['name_' + lang] + ' - ' + data[i].mac_address + ' (' + data[i].count + ' ' + data[i].namiclature_data.qty_type + ')</option>';
                                 }
                             }
                         }
