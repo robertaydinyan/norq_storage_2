@@ -11,7 +11,7 @@ use yii\helpers\Url;
 /* @var $searchModel app\modules\warehouse\models\Warehouse */
 $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
 
-$this->title = array($model->id);
+$this->title = array(Yii::t('app', 'Main warehouse') , 'Main warehouse' );
 $this->params['breadcrumbs'][] = ['label' => 'Warehouses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 \yii\web\YiiAsset::register($this);
@@ -31,7 +31,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 </style>
 <div class="warehouse-view d-flex group-product-index" style="padding: 20px;">
     <div class="col-lg-4">
-        <h1 class="mb-5 d-flex" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($model->{'name_' . $lang}) ?> (<?php echo Yii::t('app', 'Warehouse'); ?>)<span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+        <h1 class="mb-5 d-flex" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($model->{'name_' . $lang}) ?> <?php echo Yii::t('app', 'Main warehouse'); ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <?php if($model->type != 2){ ?>
         <?= DetailView::widget([
             'model' => $model,
