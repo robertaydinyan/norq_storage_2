@@ -409,7 +409,7 @@ class WarehouseController extends Controller {
         return $html;
     }
 
-    public  function actionChangeFavorite(){
+    public function actionChangeFavorite() {
         $request = $this->request;
         if($request->isGet){
             $userID = $request->get('user_id');
@@ -430,6 +430,18 @@ class WarehouseController extends Controller {
             }
         }
         return false;
+    }
+
+    public function actionRemoveHistoryItem() {
+        $request = $this->request;
+        if($request->isGet) {
+            $id = $request->get('id');
+            UserHistory::deleteAll(['id' => $id]);
+            $hi =UserHistory::find()->where(['user_id' => Yii::$app->user->id])->offset(4)->orderBy('time DESC')->asArray()->one();
+            if ($hi)
+                $hi['title'] = Yii::t('app', $hi['title']);
+            return json_encode($hi);
+        }
     }
 }
 

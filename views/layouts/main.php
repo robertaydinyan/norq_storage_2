@@ -16,7 +16,7 @@ use app\assets\AppAsset;
 use Yii;
 use View;
 use app\models\Notifications;
-$history = UserHistory::find()->where(['user_id' => Yii::$app->user->id])->limit(3)->orderBy('time DESC')->all();
+$history = UserHistory::find()->where(['user_id' => Yii::$app->user->id])->limit(5)->orderBy('time DESC')->all();
 $favorites = Favorite::find()->where(['user_id' => Yii::$app->user->id])->all();
 AppAsset::register($this);
 
@@ -76,6 +76,7 @@ AppAsset::register($this);
                                     <div class="favorite"
                                          onclick="showPage('<?php echo $h->link . (strpos($h->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>')">
                                         <?php echo Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : ''); ?>
+                                        <i class="fa fa-times remove-history-item" data-id="<?php echo $h->id; ?>"></i>
                                     </div>
                                 <?php endforeach;
                             endif;?>
