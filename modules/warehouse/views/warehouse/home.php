@@ -416,17 +416,4 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 
 
-<script type="text/javascript">
-    $('.show-modal').click(function(){
-        var href = $(this).attr('data-modal');
-        var html_ = $('#page-modal').html();
 
-        $('.modal-content-custom').append(html_);
-        $('.modal-content-custom').show().animate({left: '10%'}, {duration: 600});
-        $('.modal-content-custom .close').click(function(){
-            $('.modal-content-custom').animate({left: '110%'}, {duration: 600});
-            $('.modal-content-custom .page1').remove();
-        });
-    });
-
-</script>

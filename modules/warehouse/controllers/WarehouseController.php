@@ -14,6 +14,7 @@ use app\modules\warehouse\models\SearchShippingType;
 use app\modules\warehouse\models\ShippingRequestSearch;
 use app\modules\warehouse\models\ShippingType;
 use app\modules\warehouse\models\SuppliersList;
+use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\UserHistory;
 use app\modules\warehouse\models\WarehouseGroups;
 use app\modules\warehouse\models\WarehouseTypes;
@@ -441,6 +442,53 @@ class WarehouseController extends Controller {
             if ($hi)
                 $hi['title'] = Yii::t('app', $hi['title']);
             return json_encode($hi);
+        }
+    }
+
+    public function actionGetTableRows() {
+        $request = $this->request;
+        if($request->isGet) {
+            $pageName = $request->get('page');
+            if (!TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id])->count() > 0) {
+                $modelName = 'app\modules\warehouse\models\\' . $pageName;
+                $w = new $modelName;
+                $k = 0;
+                foreach ($w->attributeLabels() as $i => $v) {
+                    $t = new TableRowsStatus();
+                    $t->page_name = $pageName;
+                    $t->row_name = $i;
+                    $t->userID = Yii::$app->user->id;
+                    $t->order = $k;
+                    $k++;
+                    $t->save(false);
+                }
+            }
+            $columnsActive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 1])->all();
+            $columnsPassive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 0])->all();
+            return $this->renderAjax('/modal/modal-table', [
+                'page' => $pageName,
+                'columnsActive' => $columnsActive,
+                'columnsPassive' => $columnsPassive,
+            ]);
+        }
+    }
+    public function actionChangeTableRows() {
+        $request = $this->request;
+        if ($request->isPost) {
+            $id = $request->post('row')['id'];
+            $name = $request->post('row')['name'];
+            $status = 1;
+            for ($i = 0; $i < count($id); $i++) {
+                if ($id[$i] == "passive-data") {
+                    $status = 0;
+                    continue;
+                }
+                $t = TableRowsStatus::find()->where(['id' => $id[$i]])->one();
+                $t->status = $status;
+                $t->order = $i;
+                $t->save(false);
+            }
+            return $this->goBack();
         }
     }
 }
