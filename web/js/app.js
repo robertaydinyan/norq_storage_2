@@ -192,6 +192,15 @@ $('.star').click(function () {
     });
 });
 
+$('.filter').on('click', function() {
+    let page = $(this).data('model');
+    $.get('/warehouse/warehouse/get-table-rows', {
+        'page': page,
+    }).done(function(res) {
+        $('#FilterModal').html(res);
+        $('#FilterModal').modal('show');
+    });
+});
 
 function startTime() {
     const today = new Date();

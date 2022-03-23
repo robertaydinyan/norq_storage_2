@@ -23,6 +23,9 @@ $flag = $flags[$lang] ?: 'hy';
 
     </div>
 </div>
+<div  id="FilterModal" class="modal" tabindex="-1" role="dialog">
+</div>
+<?php //echo $this->render('/modal/modal-table'); ?>
 <input type="hidden" id="user-id" value="<?php echo YII::$app->user->id; ?>">
 <input type="hidden" id="lang" value="<?php echo explode('-', \Yii::$app->language)[0] ?: 'hy'; ?>">
 <input type="hidden" id="user-link" value="<?php echo URL::current(); ?>">
