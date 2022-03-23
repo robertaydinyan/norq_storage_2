@@ -6,10 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\warehouse\models\GroupProduct */
 /* @var $groupProducts app\modules\warehouse\models\GroupProduct */
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-$this->title = array(
-    Yii::t('app', 'Change Product group'),
-    'Change Product group'
-);
+$this->title = array(Yii::t('app', 'Change Product group'), 'Change Product group');
 $this->params['breadcrumbs'][] = ['label' => 'Group Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->{'name_' . $lang}, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title[0];

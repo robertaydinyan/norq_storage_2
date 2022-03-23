@@ -49,7 +49,7 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
         <?php echo \app\rbac\WarehouseRule::can('group-product', 'show-group-products') ?
 
         '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary" style="float: right;">' .
-        Yii::t('app', 'Product group    ') . '</a>' : ''; ?>
+        Yii::t('app', 'Product group') . '</a>' : ''; ?>
     </h1>
 
 <div class="product-index " style="padding: 20px;">
