@@ -142,7 +142,27 @@ $('.remove-favorite').on('click', function(e) {
         'url': $(this).parent().data('url'),
     });
 })
+function removeHistoryItem() {
+    $('.remove-history-item').off().on('click', function(e) {
+        e.stopPropagation();
+        let id = $(this).data('id');
+        $(this).parent().remove();
 
+        $.get('/warehouse/warehouse/remove-history-item', {
+            'status': 0,
+            'id': id
+        }).done(function(res) {
+            res = JSON.parse(res);
+            if (res) {
+                let newH = $('.histories').children().last().clone().appendTo('.histories');
+                newH.attr('onclick', 'showPage(' + res['link'] + ')');
+                newH.html(res['title'] + ' <i class="fa fa-times remove-history-item" data-id="' + res['id'] +'"></i>')
+                removeHistoryItem()
+            }
+        });
+    })
+}
+removeHistoryItem();
 $('.star').click(function () {
     var status;
     let title = $('h1').data('title').trim();
