@@ -62,7 +62,7 @@ AppAsset::register($this);
                                 foreach ($favorites as $f):
                                     $title = explode(":", $f->title); ?>
                                     <div class="favorite" data-url="<?php echo $f->link_no_lang ?>"
-                                         onclick='"<?php echo $f->link . (strpos($f->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>"'>
+                                         onclick='showPage("<?php echo $f->link . (strpos($f->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>")'>
                                         <?php echo Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : ''); ?>
                                         <i class="fa fa-times remove-favorite"></i>
                                     </div>
