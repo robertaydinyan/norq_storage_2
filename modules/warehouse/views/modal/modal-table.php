@@ -1,42 +1,42 @@
-<div class="w-50 m-auto position-relative" role="document" style="top: 50px;">
+<div class="w-75 m-auto position-relative" role="document" style="top: 50px;">
     <div class="modal-content">
         <form method="post" action="/warehouse/warehouse/change-table-rows">
             <input type="hidden" name="_csrf" value="<?php echo Yii::$app->request->csrfToken; ?>">
             <input type="hidden" name="page" value="<?php echo $page; ?>">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-wrench mr-3"></i>Modal title</h5>
+                <h5 class="modal-title"><i class="fa fa-wrench mr-3"></i>Անհատականացրեք աղյուսակի պարամետրերը</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="d-flex justify-content-between" style="width: 98%;margin-left:1%">
                 <div class="d-flex flex-column " style="width: 22%;">
-                    <label>asas</label>
+                    <h6>Էջերի քանակը</h6>
                     <div class="input-group">
-                        <input type="number" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                        <input type="number" class="form-control" placeholder="0-50" aria-label="Input group example" aria-describedby="btnGroupAddon">
                         <div class="input-group-prepend">
-                            <div class="input-group-text" id="btnGroupAddon">count pages</div>
+                            <div class="input-group-text" id="btnGroupAddon">Տողերի քանակը</div>
                         </div>
                     </div>
-                    <p>asdasdasd</p>
+                    <p style="font-size: 13px">Թիվը 0-ից մինչև 50</p>
                 </div>
                 <div class="d-flex flex-column" style="width: 22%;">
-                    <label>asas</label>
+                    <h6>Աղյուսակի տեսք *</h6>
                     <input type="text" class="form-control">
-                    <p>asdasdasd</p>
+                    <p style="font-size: 13px">Ընտրեք թեման աղյուսակի տեսքի համար</p>
                 </div>
                 <div class="d-flex flex-column" style="width: 22%;">
-                    <label>asas</label>
+                    <h6>Հիմնական ֆիլտր</h6>
                     <input type="text" class="form-control">
-                    <p>asdasdasd</p>
+                    <p style="font-size: 13px">Սահմանեք աղյուսակի ֆիլտրի հիմնական չափանիշները</p>
                 </div>
                 <div class="d-flex flex-column" style="width: 22%;">
-                    <label>asas</label>
+                    <h6> Հիմնական տեսակավորում</h6>
                     <input type="text" class="form-control">
-                    <p>asdasdasd</p>
+                    <p style="font-size: 13px">Սահմանեք աղյուսակի տեսակավորման հիմնական չափանիշները</p>
                 </div>
             </div>
-            <label class=" text-center border-bottom border-top mt-3 p-2" style="width: 98%;margin-left:1%">kargavorumner</label>
+            <h6 class=" text-center border-bottom border-top mt-3 p-2" style="width: 98%;margin-left:1%">Կարգավորեք աղյուսակի սյունորի կարգը և ցուցադրումը</h6>
             <div class="modal-body d-flex justify-content-between" >
                 <div class="d-flex flex-column sortable connectedSortable modal-table" >
                     <label class="modal-label">Tesaneli syuner</label>
