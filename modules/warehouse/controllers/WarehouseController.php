@@ -79,7 +79,7 @@ class WarehouseController extends Controller {
     }
     public function actionShowByType() {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
-
+        $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $searchModel = new WarehouseSearch();
         $dataProvider = $searchModel->search(Yii::$app
             ->request
@@ -91,6 +91,7 @@ class WarehouseController extends Controller {
             'isFavorite' => $isFavorite,
             'dataProvider' => $dataProvider,
             'warehouse_types' => $warehouse_types,
+            'columns' => $columns
         ]);
     }
 
@@ -453,18 +454,19 @@ class WarehouseController extends Controller {
                 $modelName = 'app\modules\warehouse\models\\' . $pageName;
                 $w = new $modelName;
                 $k = 0;
-                foreach ($w->attributeLabels() as $i => $v) {
+                foreach ($w->attributeLabelsAll() as $i => $v) {
                     $t = new TableRowsStatus();
                     $t->page_name = $pageName;
                     $t->row_name = $i;
+                    $t->row_name_normal = $v;
                     $t->userID = Yii::$app->user->id;
                     $t->order = $k;
                     $k++;
                     $t->save(false);
                 }
             }
-            $columnsActive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 1])->all();
-            $columnsPassive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 0])->all();
+            $columnsActive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+            $columnsPassive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 0])->orderBy('order')->all();
             return $this->renderAjax('/modal/modal-table', [
                 'page' => $pageName,
                 'columnsActive' => $columnsActive,
@@ -476,19 +478,20 @@ class WarehouseController extends Controller {
         $request = $this->request;
         if ($request->isPost) {
             $id = $request->post('row')['id'];
-            $name = $request->post('row')['name'];
             $status = 1;
+            $ps = 0;
             for ($i = 0; $i < count($id); $i++) {
                 if ($id[$i] == "passive-data") {
+                    $ps = $i + 1;
                     $status = 0;
                     continue;
                 }
                 $t = TableRowsStatus::find()->where(['id' => $id[$i]])->one();
                 $t->status = $status;
-                $t->order = $i;
+                $t->order = $i - $ps;
                 $t->save(false);
             }
-            return $this->goBack();
+            return $this->redirect(Yii::$app->request->referrer);
         }
     }
 }

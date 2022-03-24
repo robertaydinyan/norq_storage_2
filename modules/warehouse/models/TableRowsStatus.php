@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $page_name
  * @property string $row_name
+ * @property string $row_name_normal
  * @property int $status
  * @property int $userID
  * @property int $order
@@ -32,7 +33,7 @@ class TableRowsStatus extends \yii\db\ActiveRecord
         return [
             [['page_name', 'row_name'], 'required'],
             [['status', 'userID', 'order'], 'integer'],
-            [['page_name', 'row_name'], 'string', 'max' => 255],
+            [['page_name', 'row_name', 'row_name_normal'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,6 +46,7 @@ class TableRowsStatus extends \yii\db\ActiveRecord
             'id' => 'ID',
             'page_name' => 'Page Name',
             'row_name' => 'Row Name',
+            'row_name_normal' => 'Row Name Normal',
             'status' => 'Status',
             'userID' => 'userID',
             'order' => 'Order',

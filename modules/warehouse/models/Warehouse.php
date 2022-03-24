@@ -72,6 +72,24 @@ class Warehouse extends \yii\db\ActiveRecord
             'contact_address_id' => 'contact_address_id',
             'group_id' => Yii::t('app', 'group'),
             'address' => Yii::t('app', 'address'),
+//            'storekeeper' => 'storekeeper'
+        ];
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' => 'ID',
+            'type' => 'Warehouse type',
+            'name_hy' => 'Name',
+            'responsible_id' => 'storekeeper',
+            'created_at' => 'Created',
+            'updated_at' => 'Updated at',
+            'group_id' => 'group',
+            'address' => 'address',
+            'products' => 'goods',
         ];
     }
 

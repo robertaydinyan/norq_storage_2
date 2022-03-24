@@ -13,7 +13,7 @@
                 <div class="d-flex flex-column sortable connectedSortable" style="min-width: 300px">
                     <?php if(isset($columnsActive)):
                         foreach ($columnsActive as $c): ?>
-                            <span class="ui-state-default"><?php echo $c->row_name; ?>
+                            <span class="ui-state-default"><?php echo Yii::t('app', $c->row_name_normal); ?>
                                 <input type="hidden" name="row[id][]" value="<?php echo $c->id; ?>">
                             </span>
                         <?php endforeach;
@@ -23,7 +23,7 @@
                 <div class="d-flex flex-column sortable connectedSortable" style="min-width: 300px">
                     <?php if(isset($columnsPassive)):
                         foreach ($columnsPassive as $c): ?>
-                            <span class="draggable ui-state-highlight" ><?php echo $c->row_name; ?>
+                            <span class="draggable ui-state-highlight" ><?php echo Yii::t('app', $c->row_name_normal); ?>
                                 <input type="hidden" name="row[id][]" value="<?php echo $c->id; ?>">
                             </span>
                         <?php endforeach;

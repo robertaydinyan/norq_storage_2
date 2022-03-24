@@ -8,6 +8,7 @@ use \app\modules\warehouse\models\Warehouse;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\WarehouseSearch */
+/* @var $columns app\modules\warehouse\models\TableRowsStatus[] */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = array(Yii::t('app', 'Warehouse type'),'Warehouse type');
@@ -15,11 +16,104 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 $this->params['breadcrumbs'][] = $this->title[0];
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
+$table_all_columns = [
+    'id' => 'id',
+    'type' => [
+        'label' => Yii::t('app', 'Warehouse type'),
+        'format'=>'html',
+        'value' => function ($model) {
+            switch ($model->type){
+                case 1:
+                    $icon = '<i  class="fa fa-warehouse"></i>';
+                    break;
+                case 3:
+                    $icon = '<i  class="fa fa-server"></i>';
+                    break;
+                case 4:
+                    $icon = '<i  class="fa fa-home"></i>';
+                    break;
+                case 2:
+                    $icon = '<i  class="fa fa-broadcast-tower"></i>';
+                    break;
+                default:
+                    $icon = '<i  class="fa fa-warehouse"></i>';
+                    break;
+            }
+            return $icon.'  '.$model->getType($model->type)->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+        }
+    ],
+    'name_hy' => [
+        'label' => Yii::t('app', 'Name'),
+        'value' => function ($model) {
+            if($model->type != 4){
+                return $model->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+            } else {
+                return Warehouse::getContactAddressById($model->contact_address_id);
+            }
+
+        }
+    ],
+    'responsible_id' => [
+        'label' => Yii::t('app', 'storekeeper'),
+        'value' => function ($model) {
+            $user = $model->getUser($model->responsible_id);
+            return $user->name.' '.$user->last_name;
+        }
+    ],
+    'products' => [
+        'label' => Yii::t('app', 'goods'),
+        'value' => function ($model) {
+            return '('.$model->productsCount.')';
+        }
+    ]
+];
+
+$actions = [
+    'class' => 'yii\grid\ActionColumn',
+    'header' => Yii::t('app', 'Action'),
+    'template' => '{view}{update}{delete}',
+    'buttons' => [
+        'view' => function ($url, $model) {
+            return \app\rbac\WarehouseRule::can('warehouse', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
+                'title' => Yii::t('app', 'View'),
+                'class' => 'btn text-primary btn-sm mr-2'
+            ]) : '';
+        },
+        'update' => function ($url, $model) {
+            return \app\rbac\WarehouseRule::can('warehouse', 'update') ?
+                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                    'title' => Yii::t('app', 'Update'),
+                    'class' => 'btn text-primary btn-sm mr-2'
+                ]) : '';
+        },
+        'delete' => function ($url, $model) {
+            return \app\rbac\WarehouseRule::can('warehouse', 'delete') ?
+                Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                    'title' => Yii::t('app', 'Delete'),
+                    'class' => 'btn text-danger btn-sm',
+                    'data' => [
+                        'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
+                        'method' => 'post',
+                    ],
+                ]) : '';
+        }
+    ]
+];
+
+$table_columns = [];
+if (isset($columns)) {
+    foreach ($columns as $column) {
+        if ($table_all_columns[$column->row_name]) {
+            array_push($table_columns, $table_all_columns[$column->row_name]);
+        }
+    }
+}
+array_push($table_columns, $actions);
 ?>
 <div class="group-product-index">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= Url::to(['index']) ?>"><?php echo Yii::t('app', 'Back'); ?></a></li>
+            <li class="breadcrumb-item"><a href="<?= Url::to(['index', 'lang' => Yii::$app->language]) ?>"><?php echo Yii::t('app', 'Back'); ?></a></li>
         </ol>
     </nav>
     <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) .
@@ -35,88 +129,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 'class' => 'table table-hover'
             ],
             'filterModel' => $searchModel,
-            'columns' => [
-                'id',
-                [
-                    'label' => Yii::t('app', 'Warehouse type'),
-                    'format'=>'html',
-                    'value' => function ($model) {
-                       switch ($model->type){
-                           case 1:
-                               $icon = '<i  class="fa fa-warehouse"></i>';
-                               break;
-                           case 3:
-                               $icon = '<i  class="fa fa-server"></i>';
-                               break;
-                           case 4:
-                               $icon = '<i  class="fa fa-home"></i>';
-                               break;
-                           case 2:
-                               $icon = '<i  class="fa fa-broadcast-tower"></i>';
-                               break;
-                           default:
-                               $icon = '<i  class="fa fa-warehouse"></i>';
-                               break;
-                       }
-                        return $icon.'  '.$model->getType($model->type)->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
-                    }
-                ],
-                [
-                    'label' => Yii::t('app', 'Name'),
-                    'value' => function ($model) {
-                        if($model->type != 4){
-                            return $model->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
-                        } else {
-                            return Warehouse::getContactAddressById($model->contact_address_id);
-                        }
-
-                    }
-                ],
-                [
-                    'label' => Yii::t('app', 'storekeeper'),
-                    'value' => function ($model) {
-                        $user = $model->getUser($model->responsible_id);
-                        return $user->name.' '.$user->last_name;
-                    }
-                ],
-                [
-                    'label' => Yii::t('app', 'goods'),
-                    'value' => function ($model) {
-                        return '('.$model->productsCount.')';
-                    }
-                ],
-                [
-                    'class' => 'yii\grid\ActionColumn',
-                    'header' => Yii::t('app', 'Action'),
-                    'template' => '{view}{update}{delete}',
-                    'buttons' => [
-                        'view' => function ($url, $model) {
-                            return \app\rbac\WarehouseRule::can('warehouse', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
-                                'title' => Yii::t('app', 'View'),
-                                'class' => 'btn text-primary btn-sm mr-2'
-                            ]) : '';
-                        },
-                        'update' => function ($url, $model) {
-                            return \app\rbac\WarehouseRule::can('warehouse', 'update') ?
-                                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
-                                    'title' => Yii::t('app', 'Update'),
-                                    'class' => 'btn text-primary btn-sm mr-2'
-                                ]) : '';
-                        },
-                        'delete' => function ($url, $model) {
-                            return \app\rbac\WarehouseRule::can('warehouse', 'delete') ?
-                                Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
-                                'title' => Yii::t('app', 'Delete'),
-                                'class' => 'btn text-danger btn-sm',
-                                'data' => [
-                                    'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
-                                    'method' => 'post',
-                                ],
-                            ]) : '';
-                        }
-                    ]
-                ],
-            ],
+            'columns' => $table_columns,
         ]); ?>
         </div>
 <button style="margin:20px;" onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary">Xls</button>
