@@ -194,7 +194,7 @@ $('.star').click(function () {
 
 $('.filter').on('click', function() {
     let page = $(this).data('model');
-    $.get('/warehouse/warehouse/get-table-rows', {
+    $.get('/warehouse/warehouse/get-table-rows?lang=' + $('html').attr('lang'), {
         'page': page,
     }).done(function(res) {
         $('#FilterModal').html(res);

@@ -9,6 +9,7 @@ use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ShippingProducts;
 use app\modules\warehouse\models\ShippingRequest;
+use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\Warehouse;
 
 use app\rbac\WarehouseRule;
@@ -52,10 +53,11 @@ class ComplectationController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;        $dataProvider = new ActiveDataProvider([
             'query' => Complectation::find(),
         ]);
-
+        $columns = TableRowsStatus::find()->where(['page_name' => 'Complectation', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'isFavorite' => $isFavorite,
+            'columns' => $columns,
         ]);
     }
 

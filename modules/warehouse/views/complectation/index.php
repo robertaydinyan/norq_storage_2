@@ -11,59 +11,79 @@ $this->title = array(Yii::t('app', 'Composition'), 'Composition');
 
 $this->params['breadcrumbs'][] =  $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
+
+    $actions = [
+        'class' => 'yii\grid\ActionColumn',
+        'header' => Yii::t('app', 'Action'),
+        'template' => '{view}{delete}',
+        'buttons' => [
+
+            'view' => function ($url, $model) {
+            return \app\rbac\WarehouseRule::can('complectation', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
+            'title' => Yii::t('app', 'View'),
+            'class' => 'btn text-primary btn-sm mr-2'
+            ]) : '';
+            },
+        'delete' => function ($url, $model) {
+            return \app\rbac\WarehouseRule::can('complectation', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+            'title' => Yii::t('app', 'Delete'),
+            'class' => 'btn text-danger btn-sm',
+            'data' => [
+            'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
+            'method' => 'post',
+            ],
+        ]) : '';
+        }
+
+        ]
+    ];
+
+$table_all_columns = [
+    'id' => 'id',
+    'price' => 'price',
+    'name' => 'name',
+    'count' => 'count',
+    'created_at' => 'created_at',
+];
+
+$table_columns = [];
+if (isset($columns)) {
+    foreach ($columns as $column) {
+        if ($table_all_columns[$column->row_name]) {
+            array_push($table_columns, $table_all_columns[$column->row_name]);
+        }
+    }
+}
+if (count($table_columns) == 0){
+    $table_columns = $table_all_columns;
+}
+
+array_push($table_columns, $actions);
 ?>
-<?php if(\app\rbac\WarehouseRule::can('complectation', 'index')): ?>
+?>
 <div class="group-product-index">
 
     <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></span>
     <?php if(\app\rbac\WarehouseRule::can('complectation', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a>
     <?php endif; ?>
+        <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-wrench"></i></button>
+        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Complectation"><i class="fa fa-list"></i></button></a>
     </h1>
+
 
     <?php Pjax::begin(); ?>
     <div style="padding:20px;" >
+
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'tableOptions' => [
             'class' => 'table table-hover'
         ],
-        'columns' => [
-            'id',
-            'price',
-            'name',
-            'count',
-            'created_at',
-            //'warehouse_id',
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'header' => Yii::t('app', 'Action'),
-                'template' => '{view}{delete}',
-                'buttons' => [
-
-                    'view' => function ($url, $model) {
-                        return \app\rbac\WarehouseRule::can('complectation', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
-                            'title' => Yii::t('app', 'View'),
-                            'class' => 'btn text-primary btn-sm mr-2'
-                        ]) : '';
-                    },
-                    'delete' => function ($url, $model) {
-                        return \app\rbac\WarehouseRule::can('complectation', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
-                            'title' => Yii::t('app', 'Delete'),
-                            'class' => 'btn text-danger btn-sm',
-                            'data' => [
-                                'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
-                                'method' => 'post',
-                            ],
-                        ]) : '';
-                    }
-
-                ]
-            ],
-        ],
+        'columns' => $table_columns,
     ]); ?>
     </div>
     <?php Pjax::end(); ?>
 
 </div>
-<?php endif; ?>

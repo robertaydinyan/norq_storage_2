@@ -22,8 +22,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
     <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;" class="show-modal"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
     <?php echo \app\rbac\WarehouseRule::can('warehouse', 'create') ? '<a style="float: right" href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '" class="btn btn-primary "  >' .  Yii::t("app", "Create Warehouse") . '</a>' : ''; ?>
-        <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-wrench"></i></button>
-        <button class="btn btn-primary mr-2" style="float: right" id="Filter" data-model="WarehouseTypes"><i class="fa fa-list"></i></button>
+       <!-- <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-wrench"></i></button>
+        <button class="btn btn-primary mr-2" style="float: right" id="Filter" data-model="WarehouseTypes"><i class="fa fa-list"></i></button>-->
     </h1>
 
     <div style="padding:20px;" class="table">

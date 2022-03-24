@@ -51,4 +51,14 @@ class Complectation extends \yii\db\ActiveRecord
             'warehouse_id' => Yii::t('app', 'Warehouse'),
         ];
     }
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' => 'ID',
+            'price' => 'Cost',
+            'name' => 'Name',
+            'count' => 'Count',
+            'created_at' => 'Date of creation',
+        ];
+    }
 }

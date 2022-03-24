@@ -108,6 +108,10 @@ if (isset($columns)) {
         }
     }
 }
+if (count($table_columns) == 0){
+    $table_columns = $table_all_columns;
+}
+
 array_push($table_columns, $actions);
 ?>
 <div class="group-product-index">
