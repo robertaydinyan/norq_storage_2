@@ -36,10 +36,10 @@
                     <p style="font-size: 13px">Սահմանեք աղյուսակի տեսակավորման հիմնական չափանիշները</p>
                 </div>
             </div>
-            <h6 class=" text-center border-bottom border-top mt-3 p-2" style="width: 98%;margin-left:1%">Կարգավորեք աղյուսակի սյունորի կարգը և ցուցադրումը</h6>
+            <h6 class=" text-center border-bottom border-top mt-3 p-2" style="width: 98%;margin-left:1%">Կարգավորեք աղյուսակի սյուների կարգը և ցուցադրումը</h6>
             <div class="modal-body d-flex justify-content-between" >
                 <div class="d-flex flex-column sortable connectedSortable modal-table" >
-                    <label class="modal-label">Tesaneli syuner</label>
+                    <label class="modal-label">Տեսանելի սյուներ</label>
                     <?php if(isset($columnsActive)):
                         foreach ($columnsActive as $c): ?>
                             <span><i class="fa fa-eye mr-2"></i><?php echo Yii::t('app', $c->row_name_normal); ?>
@@ -51,7 +51,7 @@
                 <input type="hidden" name="row[id][]" value="passive-data">
                 <div style="width: 5%;text-align: center"><i class='fas fa-arrows-alt-h' style="font-size: 35px"></i></div>
                 <div class="d-flex flex-column sortable connectedSortable modal-table" >
-                    <label class="modal-label">Antesaneli syuner</label>
+                    <label class="modal-label">Անտեսանելի սյուներ</label>
                     <?php if(isset($columnsPassive)):
                         foreach ($columnsPassive as $c): ?>
                             <span class="draggable " ><i class="fa fa-eye-slash mr-2"></i><?php echo Yii::t('app', $c->row_name_normal); ?>
