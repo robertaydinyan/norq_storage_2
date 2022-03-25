@@ -37,7 +37,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <td><?php echo $user->email; ?></td>
                     <td>
                         <?php if(\app\rbac\WarehouseRule::can('users', 'edit')): ?>
-                            <a href="<?php echo URL::to(['users/edit', 'lang' => Yii::$app->language, 'id' => $user->id]); ?>"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="<?php echo URL::to(['users/edit', 'lang' => Yii::$app->language, 'id' => $user->id]); ?>"><i class="fas fa-pencil-alt mr-3"></i></a>
                         <?php endif; ?>
                         <?php if(\app\rbac\WarehouseRule::can('users', 'delete')): ?>
                             <a onclick="return AreYouSure();" href="<?php echo URL::to(['users/delete', 'lang' => Yii::$app->language, 'id' => $user->id]); ?>"><i class="fas fa-trash-alt" style="color: red;"></i></a>

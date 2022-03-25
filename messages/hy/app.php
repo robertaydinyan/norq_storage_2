@@ -12,7 +12,7 @@ return [
     'Directory' => 'Տեղեկատուներ',
     'Reports' => 'Հաշվետվություններ',
     'Composition' => 'Կոմպլեկտացիա',
-    'Payments' => 'ՎՃարումներ',
+    'Payments' => 'Վճարումներ',
     'Warehouse type' => 'Պահեստի տեսակը',
     'storekeeper' => 'Պահեստապետ',
     'Country' => 'Երկիր',

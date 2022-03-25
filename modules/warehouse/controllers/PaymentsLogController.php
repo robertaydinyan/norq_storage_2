@@ -4,6 +4,7 @@ namespace app\modules\warehouse\controllers;
 
 use app\components\Url;
 use app\modules\warehouse\models\Favorite;
+use app\modules\warehouse\models\TableRowsStatus;
 use app\rbac\WarehouseRule;
 use Yii;
 use app\modules\warehouse\models\ProviderPayments;
@@ -40,6 +41,7 @@ class PaymentsLogController extends Controller
     public function actionIndex()
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
+        $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $searchModel = new ProviderPaymentsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
@@ -47,6 +49,7 @@ class PaymentsLogController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'isFavorite' => $isFavorite,
+            'columns' => $columns,
         ]);
     }
 
