@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
         <?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
         <div style="display: flex;float: right">
     <?php if(\app\rbac\WarehouseRule::can('shipping', 'edit-shipping-request')): ?>
-            <a style="margin-right: 10px;" href="<?= Url::to(['/warehouse/shipping-product']) ?>"  class="btn btn-sm btn-primary" >Ապրանքի տեղափոխություն</a>
+            <a style="margin-right: 10px;" href="<?= Url::to(['/warehouse/shipping-product']) ?>"  class="btn  btn-primary" >Ապրանքի տեղափոխություն</a>
     <?php endif; ?>
         </div>
     </h1>

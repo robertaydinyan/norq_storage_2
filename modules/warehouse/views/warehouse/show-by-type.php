@@ -122,10 +122,10 @@ array_push($table_columns, $actions);
     </nav>
     <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) .
             (\app\rbac\WarehouseRule::can('warehouse', 'create') ?
-            ('<a style="float: right" href="' . Url::to(['create', 'lang' => Yii::$app->language]) . '"  class="btn btn-sm btn-primary" >' .
+            ('<a style="float: right" href="' . Url::to(['create', 'lang' => Yii::$app->language]) . '"  class="btn btn-primary" >' .
             Yii::t('app', 'Create Warehouse') . '</a>') : ''); ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
-            <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-wrench"></i></button>
-            <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Warehouse"><i class="fa fa-list"></i></button></a></h1>
+            <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-list"></i></button>
+            <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Warehouse"><i class="fa fa-wrench "></i></button></a></h1>
         <div style="padding:20px;">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,

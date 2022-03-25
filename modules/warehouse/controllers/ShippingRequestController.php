@@ -12,6 +12,7 @@ use app\modules\warehouse\models\ProductShippingLog;
 use app\modules\warehouse\models\Balance;
 use app\modules\warehouse\models\ShippingType;
 use app\modules\warehouse\models\SuppliersList;
+use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\Warehouse;
 use app\rbac\WarehouseRule;
 use Carbon\Carbon;
@@ -43,6 +44,7 @@ class ShippingRequestController extends Controller {
      */
     public function actionIndex() {
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+        $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
@@ -72,13 +74,14 @@ class ShippingRequestController extends Controller {
             'warehouses' => $physicalWarehouse,
             'suppliers' => $suppliers,
             'isFavorite' => $isFavorite,
+            'columns' => $columns,
 
             'users' => $dataUsers]);
     }
     public function actionDocuments() {
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
-
+        $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
         $dataProvider = $searchModel->search(Yii::$app
@@ -99,7 +102,7 @@ class ShippingRequestController extends Controller {
             ->where(['!=', 'id', 6])
             ->asArray()
             ->all());
-        return $this->render('index', ['searchModel' => $searchModel,'isFavorite' => $isFavorite,
+        return $this->render('index', ['searchModel' => $searchModel,'isFavorite' => $isFavorite, 'columns' => $columns,
             'dataProvider' => $dataProvider, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
     }
     /**

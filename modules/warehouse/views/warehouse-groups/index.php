@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
     <?php echo $this->render('/menu_dirs', array(), true)?>
     <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
     <?php if(\app\rbac\WarehouseRule::can('warehouse-groups', 'create')): ?>
-        <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn btn-sm btn-primary" ><?php echo Yii::t('app', 'Create');?></a>
+        <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create');?></a>
     <?php endif; ?>
     </h1>
     <div style="padding:20px;">

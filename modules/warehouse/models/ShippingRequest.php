@@ -61,6 +61,22 @@ class ShippingRequest extends \yii\db\ActiveRecord {
             'user_id' => Yii::t('app', 'Responsible')
         ];
     }
+    public function attributeLabelsAll() {
+        return [
+            'id' => 'ID',
+            'count' => 'Count',
+            'created_at' => 'Created At',
+            'nomenclature_product_id' => 'Product Nomenclature',
+            'shipping_id' => 'Shipping ID',
+            'shipping_type' => 'Type',
+            'request_id' => 'Purchase request',
+            'provider_warehouse_id' =>  'Delivery warehouse',
+            'supplier_warehouse_id' =>  'Supplier warehouse',
+            'status' => 'Status',
+            'comment' =>'Comment',
+            'user_id' =>  'Responsible'
+        ];
+    }
 
     public function getNProduct() {
         return $this->hasOne(NomenclatureProduct::class , ['id' => 'nomenclature_product_id']);

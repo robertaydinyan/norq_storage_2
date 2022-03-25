@@ -33,6 +33,8 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
 
         <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a query'); ?></a>
     <?php endif; ?>
+        <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-wrench"></i></button>
+        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="ShippingRequest"><i class="fa fa-list"></i></button></a></h1>
     </h1>
     <div style="padding:20px;">
         <form class="row" action="" method="get">

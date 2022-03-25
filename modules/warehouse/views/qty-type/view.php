@@ -31,7 +31,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         ]) ?>
     </div>
     <p style="padding: 20px;">
-        <?= Html::a(Yii::t('app', 'Change'), ['update', 'id' => $model->id], ['class' => 'btn btn-sm btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Change'), ['update', 'id' => $model->id], ['class' => 'btn  btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-sm btn-danger',
             'data' => [

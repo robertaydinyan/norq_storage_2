@@ -34,7 +34,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         ]) ?>
     </div>
     <p style="padding:20px;">
-        <?= Html::a('Փոփոխել', ['update', 'id' => $model->id], ['class' => 'btn btn-sm btn-primary']) ?>
+        <?= Html::a('Փոփոխել', ['update', 'id' => $model->id], ['class' => 'btn  btn-primary']) ?>
         <?= Html::a('Ջնջել', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-sm btn-danger',
             'data' => [

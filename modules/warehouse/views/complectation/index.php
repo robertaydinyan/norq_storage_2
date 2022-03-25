@@ -60,15 +60,15 @@ if (count($table_columns) == 0){
 
 array_push($table_columns, $actions);
 ?>
-?>
+
 <div class="group-product-index">
 
     <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></span>
     <?php if(\app\rbac\WarehouseRule::can('complectation', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a>
     <?php endif; ?>
-        <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-wrench"></i></button>
-        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Complectation"><i class="fa fa-list"></i></button></a>
+        <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-list"></i></button>
+        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Complectation"><i class="fa fa-wrench "></i></button></a>
     </h1>
 
 
