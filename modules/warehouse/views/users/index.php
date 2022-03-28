@@ -17,6 +17,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         <?php if(\app\rbac\WarehouseRule::can('users', 'create')): ?>
         <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create user'); ?></a>
         <?php endif; ?>
+        <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-list"></i></button>
+        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="User"><i class="fa fa-wrench "></i></button></a></h1>
     </h1>
 
     <div style="padding:20px;" class="table">
