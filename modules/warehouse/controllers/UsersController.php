@@ -4,6 +4,7 @@ namespace app\modules\warehouse\controllers;
 
 use app\components\Url;
 use app\models\User;
+use app\models\UserSearch;
 use app\modules\warehouse\models\Action;
 use app\modules\warehouse\models\Complectation;
 use app\modules\warehouse\models\Favorite;
@@ -50,11 +51,16 @@ class UsersController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $columns = TableRowsStatus::find()->where(['page_name' => 'User', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $users = User::find()->all();
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search(Yii::$app
+            ->request
+            ->queryParams);
         return $this->render('index', [
             'users' => $users,
             'isFavorite' => $isFavorite,
             'dataProvider' => $dataProvider,
             'columns' => $columns,
+            'dataProvider' => $dataProvider
         ]);
     }
 

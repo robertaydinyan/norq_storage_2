@@ -68,48 +68,50 @@ $table_all_columns = [
     ]
 ];
 
-$actions = [
-    'class' => 'yii\grid\ActionColumn',
-    'header' => Yii::t('app', 'Action'),
-    'template' => '{view}{update}{delete}',
-    'buttons' => [
-        'view' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('warehouse', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
-                'title' => Yii::t('app', 'View'),
-                'class' => 'btn text-primary btn-sm mr-2'
-            ]) : '';
-        },
-        'update' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('warehouse', 'update') ?
-                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
-                    'title' => Yii::t('app', 'Update'),
+if (count($table_columns) == 0){
+    $actions = [
+        'class' => 'yii\grid\ActionColumn',
+        'header' => Yii::t('app', 'Action'),
+        'template' => '{view}{update}{delete}',
+        'buttons' => [
+            'view' => function ($url, $model) {
+                return \app\rbac\WarehouseRule::can('warehouse', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
+                    'title' => Yii::t('app', 'View'),
                     'class' => 'btn text-primary btn-sm mr-2'
                 ]) : '';
-        },
-        'delete' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('warehouse', 'delete') ?
-                Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
-                    'title' => Yii::t('app', 'Delete'),
-                    'class' => 'btn text-danger btn-sm',
-                    'data' => [
-                        'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
-                        'method' => 'post',
-                    ],
-                ]) : '';
-        }
-    ]
-];
+            },
+            'update' => function ($url, $model) {
+                return \app\rbac\WarehouseRule::can('warehouse', 'update') ?
+                    Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                        'title' => Yii::t('app', 'Update'),
+                        'class' => 'btn text-primary btn-sm mr-2'
+                    ]) : '';
+            },
+            'delete' => function ($url, $model) {
+                return \app\rbac\WarehouseRule::can('warehouse', 'delete') ?
+                    Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                        'title' => Yii::t('app', 'Delete'),
+                        'class' => 'btn text-danger btn-sm',
+                        'data' => [
+                            'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
+                            'method' => 'post',
+                        ],
+                    ]) : '';
+            }
+        ]
+    ];
 
-$table_columns = [];
-if (isset($columns)) {
-    foreach ($columns as $column) {
-        if ($table_all_columns[$column->row_name]) {
-            array_push($table_columns, $table_all_columns[$column->row_name]);
+    $table_columns = [];
+    if (isset($columns)) {
+        foreach ($columns as $column) {
+            if ($table_all_columns[$column->row_name]) {
+                array_push($table_columns, $table_all_columns[$column->row_name]);
+            }
         }
     }
-}
-if (count($table_columns) == 0){
-    $table_columns = $table_all_columns;
+    if (count($table_columns) == 0) {
+        $table_columns = $table_all_columns;
+    }
 }
 
 array_push($table_columns, $actions);

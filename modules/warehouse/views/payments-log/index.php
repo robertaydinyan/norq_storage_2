@@ -12,6 +12,57 @@ use app\modules\warehouse\models\SuppliersList;
 $this->title = array(Yii::t('app', 'Payments'),'Payments');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
+$table_all_columns = [
+    'id',
+    [
+        'label' => Yii::t('app', 'Supplier'),
+        'value' => function ($model) {
+            $provider = SuppliersList::findOne($model->provider_id);
+            return $provider->{'name_' . (explode('-', \Yii::$app->language)[0] ?: 'en')};
+        }
+    ],
+    'price',
+];
+$actions = [
+    'class' => 'yii\grid\ActionColumn',
+    'header' => Yii::t('app', 'Reference'),
+    'template' => '{update}{delete}',
+    'buttons' => [
+        'update' => function ($url, $model) {
+            return \app\rbac\WarehouseRule::can('payments-log', 'update') ?
+                Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
+                    'title' => Yii::t('app', 'Update'),
+                    'class' => 'btn text-primary btn-sm mr-2'
+                ]) : '';
+        },
+        'delete' => function ($url, $model) {
+            return  \app\rbac\WarehouseRule::can('payments-log', 'delete') ?
+                Html::a('<i class="fas fa-trash-alt"></i>', $url, [
+                    'title' => Yii::t('app', 'Delete'),
+                    'class' => 'btn text-danger btn-sm',
+                    'data' => [
+                        'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
+                        'method' => 'post',
+                    ],
+                ]) : '';
+        }
+
+    ]
+];
+
+$table_columns = [];
+if (isset($columns)) {
+    foreach ($columns as $column) {
+        if ($table_all_columns[$column->row_name]) {
+            array_push($table_columns, $table_all_columns[$column->row_name]);
+        }
+    }
+}
+if (count($table_columns) == 0){
+    $table_columns = $table_all_columns;
+}
+
+array_push($table_columns, $actions);
 ?>
 <?php if(\app\rbac\WarehouseRule::can('payments-log', 'index')): ?>
 <div class="group-product-index">
@@ -55,57 +106,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         ],
         'columns' => $table_columns,
     ]);
-    $table_all_columns = [
-        'id',
-        [
-            'label' => Yii::t('app', 'Supplier'),
-            'value' => function ($model) {
-                $provider = SuppliersList::findOne($model->provider_id);
-                return $provider->{'name_' . (explode('-', \Yii::$app->language)[0] ?: 'en')};
-            }
-        ],
-        'price',
-    ];
-    $actions = [
-        'class' => 'yii\grid\ActionColumn',
-        'header' => Yii::t('app', 'Reference'),
-        'template' => '{update}{delete}',
-        'buttons' => [
-            'update' => function ($url, $model) {
-                return \app\rbac\WarehouseRule::can('payments-log', 'update') ?
-                    Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
-                        'title' => Yii::t('app', 'Update'),
-                        'class' => 'btn text-primary btn-sm mr-2'
-                    ]) : '';
-            },
-            'delete' => function ($url, $model) {
-                return  \app\rbac\WarehouseRule::can('payments-log', 'delete') ?
-                    Html::a('<i class="fas fa-trash-alt"></i>', $url, [
-                        'title' => Yii::t('app', 'Delete'),
-                        'class' => 'btn text-danger btn-sm',
-                        'data' => [
-                            'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
-                            'method' => 'post',
-                        ],
-                    ]) : '';
-            }
 
-        ]
-    ];
-
-    $table_columns = [];
-    if (isset($columns)) {
-        foreach ($columns as $column) {
-            if ($table_all_columns[$column->row_name]) {
-                array_push($table_columns, $table_all_columns[$column->row_name]);
-            }
-        }
-    }
-    if (count($table_columns) == 0){
-        $table_columns = $table_all_columns;
-    }
-
-    array_push($table_columns, $actions);
     ?>
 
 

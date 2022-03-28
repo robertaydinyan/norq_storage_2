@@ -14,6 +14,7 @@ use app\modules\warehouse\models\ProductImagesPath;
 use app\modules\warehouse\models\ProductShippingLog;
 use app\modules\warehouse\models\QtyType;
 use app\modules\warehouse\models\SuppliersList;
+use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\Warehouse;
 use app\rbac\WarehouseRule;
 use Carbon\Carbon;
@@ -66,12 +67,16 @@ class ProductController extends Controller
         $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])->asArray()->all(), 'id', 'name');
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->post(),false);
+        $dataProvider2 = $searchModel->search_(Yii::$app->request->post());
         $requestSearch = Yii::$app->request->post();
         $regions = ArrayHelper::map(Regions::find()->asArray()->all(), 'id', 'name');
+        $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
 
         return $this->render('index', [
+            'columns' => $columns,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'dataProvider2' => $dataProvider2,
             'model' => $model,
             'address' => $address,
             'isFavorite' => $isFavorite,

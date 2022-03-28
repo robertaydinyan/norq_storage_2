@@ -451,9 +451,10 @@ class WarehouseController extends Controller {
         if($request->isGet) {
             $pageName = $request->get('page');
             if (!TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id])->count() > 0) {
-                $modelName = 'app\modules\warehouse\models\\' . $pageName;
+                $modelName = ($pageName == 'User' ? 'app\models\\' : 'app\modules\warehouse\models\\') . $pageName;
                 $w = new $modelName;
                 $k = 0;
+
                 foreach ($w->attributeLabelsAll() as $i => $v) {
                     $t = new TableRowsStatus();
                     $t->page_name = $pageName;

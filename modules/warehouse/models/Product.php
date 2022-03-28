@@ -46,6 +46,20 @@ class Product extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return ['id' => 'ID', 'images' => 'Արտադրանքի նկարները', 'price' => 'Գին', 'retail_price' => 'Մանրածախ գին', 'supplier_id' => 'Մատակարար', 'mac_address' => 'Mac հասցե', 'invoice' => 'Invoice', 'comment' => 'Մեկնաբանություն', 'count' => 'Քանակ', 'created_at' => 'Ստեղծվել է /ժամը/', 'warehouse_id' => 'Պահեստ', 'status' => 'Պահեստ', 'nomenclature_product_id' => 'Ապրանք', ];
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabelsAll() {
+        return [
+            'id' => 'ID',
+            'WarehouseName' => 'Warehouse Name',
+            'ProductName' => 'Product Name',
+            'ProductPicture' => 'Product Picture',
+            'Quantity' => 'Quantity',
+            'Individual' => 'Individual',
+
+        ];
+    }
     public function upload() {
         if ($this->validate()) {
             foreach ($this->images as $image) {
@@ -56,9 +70,6 @@ class Product extends \yii\db\ActiveRecord {
         else {
             return false;
         }
-    }
-    public function getWareHouse() {
-        return $this->hasOne(Warehouse::className() , ['id' => 'warehouse_id']);
     }
     public function MoveData($data, $nomiclature, $warehouse) {
         $start = date('Y-m-d', strtotime($data['from_created_at']));
@@ -232,9 +243,11 @@ class Product extends \yii\db\ActiveRecord {
                                                      LEFT JOIN contact_adress ON s_warehouse.contact_address_id = contact_adress.id 
                                                    $sql  $group_by ORDER BY s_product.nomenclature_product_id")->queryAll();
     }
+
     public function getNProduct() {
         return $this->hasOne(NomenclatureProduct::class , ['id' => 'nomenclature_product_id']);
     }
+
 
     public function getWarehouseProducts($id) {
         if ($id) {
@@ -312,5 +325,16 @@ class Product extends \yii\db\ActiveRecord {
                                               ")
             ->queryAll();
     }
+
+    public function getWarehouse() {
+        return $this->hasOne(Warehouse::class , ['id' => 'warehouse_id']);
+    }
+
+    public function getNomenclatureProduct() {
+        return $this->hasOne(NomenclatureProduct::class, ['id' => 'nomenclature_product_id']);
+    }
+//    public function getNomenclatureProduct() {
+//        return $this->hasOne(NomenclatureProduct::class, ['id' => 'nomenclature_product_id']);
+//    }
 }
 
