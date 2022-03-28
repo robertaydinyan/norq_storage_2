@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
@@ -22,6 +23,7 @@ use app\modules\warehouse\models\Warehouse;
 
 $this->title = array(Yii::t('app', 'goods'),'goods');
 $this->params['breadcrumbs'][] = $this->title[0];
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -30,6 +32,55 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 
+$table_all_columns = array(
+    'id' => 'id',
+    'WarehouseName' => [
+        'label' => Yii::t('app', 'Warehouse name'),
+        'value' => function($product) use ($lang) {
+            return $product->warehouse->{'name_' . $lang};
+//                        if($products['type'] != 4){ echo $products['wname'];} else {
+//                            echo Warehouse::getContactAddressById($products['contact_address_id']);
+//                        }
+        }
+    ],
+    'ProductName' => [
+        'label' => Yii::t('app', 'Product name'),
+        'value' => function($product) use ($lang) {
+            return $product->nomenclatureProduct->{'name_' . $lang};
+        }
+    ],
+    'ProductPicture' => [
+        'label' => Yii::t('app', 'Product Picture'),
+        'format' => 'html',
+        'value' => function($product) use ($lang) {
+            return '<a target="_blank" href="' . $product->nomenclatureProduct->img . '" ><img width="100" src="' . $product->nomenclatureProduct->img . '"></a>';
+        }
+    ],
+    'Quantity' => [
+        'label' => Yii::t('app', 'Quantity'),
+        'value' => function($product) use ($lang) {
+            return $product->nomenclatureProduct->individual == 'true' ? $product['count'] . ' ' . $product->nomenclatureProduct->qtyType->{'type_' . $lang}  : '';
+        }
+    ],
+    'Individual' => [
+        'label' => Yii::t('app', 'Individual'),
+        'value' => function($product) {
+            return Yii::t('app', $product->nomenclatureProduct->individual=='true' ? 'Yes' : 'No');
+        }
+    ]
+);
+
+$table_columns = [];
+if (isset($columns)) {
+    foreach ($columns as $column) {
+        if ($table_all_columns[$column->row_name]) {
+            array_push($table_columns, $table_all_columns[$column->row_name]);
+        }
+    }
+}
+if (count($table_columns) == 0) {
+    $table_columns = $table_all_columns;
+}
 ?>
 
 
@@ -50,54 +101,16 @@ $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\Jqu
 
         '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary" style="float: right;">' .
         Yii::t('app', 'Product group') . '</a>' : ''; ?>
+        <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-list"></i></button>
+        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Product"><i class="fa fa-wrench "></i></button></a>
     </h1>
 
 <div class="product-index " style="padding: 20px;">
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider2,
+            'columns' => $table_columns,
+        ]) ?>
 
-
-        <table  class="kv-grid-table table table-hover  kv-table-wrap" style="width:100%">
-            <thead>
-            <?php if (!empty($dataProvider['result'])) : ?>
-            <tr>
-                <th><?php echo Yii::t('app', 'Warehouse name'); ?> </th>
-                <th><?php echo Yii::t('app', 'Product name'); ?> </th>
-                <th><?php echo Yii::t('app', 'Product Picture'); ?> </th>
-                <th><?php echo Yii::t('app', 'Quantity'); ?> </th>
-                <th><?php echo Yii::t('app', 'Individual'); ?> </th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($dataProvider['result'] as $key => $products) : ?>
-                <tr>
-                     <td><?php if($products['type'] != 4){ echo $products['wname'];} else {
-                        echo Warehouse::getContactAddressById($products['contact_address_id']);
-                     } ?></td>
-                    <td><?= $products['nomeclature_name'] ?></td>
-                    <td><a target="_blank" href="<?= $products['img'] ?>" ><img width="100" src="<?= $products['img'] ?>"></a></td>
-                    <?php if ($products['individual'] == 'false') : ?>
-                        <td><?= $products['count_n_product'] ?> <?= $products['qtype'] ?></td>
-                    <?php else : ?>
-                        <td><a href="#" data-toggle="modal" data-target="#viewInfo" onclick="showInfo(<?= $products['nid'] ?>,<?php echo $products['id'];?>)"><?= $products['count_n_product'] ?> <?= $products['qtype'] ?> </a></td>
-                    <?php endif; ?>
-                      <td><?php if($products['individual']=='true'){ echo Yii::t('app', 'Yes');} else { echo Yii::t('app', 'No');} ?></td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-            <?php endif; ?>
-        </table>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <?php
-                for($page = 1; $page<= $dataProvider['total']; $page++) {
-                       $active = '';
-                       if(isset($_GET['page']) && $page == intval($_GET['page'])){
-                          $active = 'active';
-                       }
-                        echo '<li class="page-item '.$active.'"><a class="page-link " href="/warehouse/product?page=' . $page . '&lang=' . \Yii::$app->language . '">' . $page . '</a></li>';
-                    }
-               ?>
-          </ul>
-        </nav>
     </div>
 </div>
 

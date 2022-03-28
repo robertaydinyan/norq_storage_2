@@ -45,8 +45,9 @@ class ProviderPayments extends \yii\db\ActiveRecord
     public function attributeLabelsAll()
     {
         return [
+            'id' => 'id',
+            'provider_id' => 'Supplier',
             'price' => 'amount',
-            'provider_id' => 'Supplier'
         ];
     }
 
