@@ -138,8 +138,8 @@ $flag = $flags[$lang] ?: 'hy';
 <!--        </li>-->
         <li class="nav-item dropdown no-caret">
             <div class="dropdown">
-                <button class="g-btn flag" type="button dropdown-toggle" id="dropdownLangButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="/img/icons/flags/<?php echo $flag;?>.png" class="g-lang-flag g-lang-flag-show" alt="flag" width="20">
+                <button class="g-btn flag shadow-none" type="button dropdown-toggle" id="dropdownLangButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="/img/icons/flags/<?php echo $flag;?>.png" class="g-lang-flag g-lang-flag-show " alt="flag" width="20">
                 </button>
 
                 <ul class="dropdown-menu lang-dropdown-menu dropdown-menu-right g-navbar-buttons-drop" aria-labelledby="dropdownLangButton" x-placement="bottom-end" style="position: absolute; transform: translate3d(-126px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">

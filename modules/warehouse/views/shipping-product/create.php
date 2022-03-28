@@ -29,6 +29,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         'nProducts' => $nProducts,
         'searchModel' => $searchModel,
         'dataProvider' => $dataProvider,
+        'type' => 'create'
     ]) ?>
     </div>
 </div>

@@ -95,6 +95,9 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
     </div>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary check-counts']) ?>
+        <?php if(isset($type) && $type == 'create'): ?>
+            <?= Html::button(Yii::t('app', 'Save 2'), ['class' => 'btn btn-primary', 'onClick' => 'SaveForm($(this))'])  ?>
+        <?php endif; ?>
     </div>
     <?php ActiveForm::end(); ?>
 

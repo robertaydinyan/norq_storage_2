@@ -124,9 +124,15 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
     <?php if($modal->isNewRecord){ ?>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary','disabled'=>'disabled']) ?>
+        <?php if(isset($type) && $type == 'create'): ?>
+            <?= Html::button(Yii::t('app', 'Save 2'), ['class' => 'btn btn-primary', 'onClick' => 'SaveForm($(this))'])  ?>
+        <?php endif; ?>
     </div>
     <?php } else { ?>
          <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
+    <?php if(isset($type) && $type == 'create'): ?>
+        <?= Html::button(Yii::t('app', 'Save 2'), ['class' => 'btn btn-primary', 'onClick' => 'SaveForm($(this))'])  ?>
+    <?php endif; ?>
     <?php } ?>
     <?php ActiveForm::end(); ?>
 

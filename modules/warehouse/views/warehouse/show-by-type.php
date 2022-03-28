@@ -151,7 +151,7 @@ array_push($table_columns, $actions);
             'columns' => $table_columns,
         ]); ?>
         </div>
-<button style="margin:20px;" onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary">Xls</button>
+<button style="margin:20px;" onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary ">Xls</button>
 </div>
 
 <script>
