@@ -219,6 +219,29 @@ function checkTime(i) {
 }
 
 
+function SaveForm(el) {
+    el.remove();
+    localStorage.setItem('last_form', $('.form-data').html());
+    localStorage.setItem('last_form_title', $('h1').text().split('\n')[0]);
+    history.back()
+}
+
+function showPageByCache(){
+
+    var html_ = '<div class="close"><i class="fa fa-close"></i></div>'+localStorage.getItem(url);
+    $('.modal-content-custom').html(html_);
+    $('.modal-content-custom').show().animate({left: '10%'}, {duration: 300});
+    $('.modal-content-custom .close').click(function(){
+        $('.modal-content-custom').animate({left: '110%'}, {duration: 300});
+        $('.modal-content-custom .page1').remove();
+    });
+}
+let last = localStorage.getItem('last_form');
+let last_title = localStorage.getItem('last_form_title');
+if(last.length>0){
+    $('.bookmarks').prepend('<div class="favorite" onclick="showPageByCache()">' + last_title +'</div>');
+}
+
 var checkList = document.getElementById('list1');
 checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
     if (checkList.classList.contains('visible'))

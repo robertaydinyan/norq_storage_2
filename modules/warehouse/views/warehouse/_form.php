@@ -74,6 +74,7 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::button(Yii::t('app', 'Save'), ['class' => 'btn btn-primary', 'onClick' => 'SaveForm($(this))']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

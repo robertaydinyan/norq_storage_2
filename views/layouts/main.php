@@ -35,7 +35,8 @@ AppAsset::register($this);
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.2/datatables.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css"/>
-        <link rel="icon" type="image/x-icon" href="/img/logo.png"/>
+        <link rel="stylesheet" href="https://unpkg.com/7.css">
+        <link rel="icon" type="image/x-icon" href="/images/logo.svg"/>
 
 
         <?php $this->head() ?>
@@ -54,51 +55,51 @@ AppAsset::register($this);
                 <aside><?= $this->render('aside') ?></aside>
             </div>
         <?php endif;?>
-            <div class="wrap">
-                <div class="bookmarks d-flex">
-                    <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
-                        <div class="favorites" >
-                            <?php if ($favorites):
-                                foreach ($favorites as $f):
-                                    $title = explode(":", $f->title); ?>
-                                    <div class="favorite" data-url="<?php echo $f->link_no_lang ?>"
-                                         onclick='showPage("<?php echo $f->link . (strpos($f->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language ?>")'>
-                                        <?php echo Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : ''); ?>
-                                        <i class="fa fa-times remove-favorite"></i>
-                                    </div>
-                                <?php endforeach;
-                            endif;?>
-                        </div>
-                        <div class="histories" style="margin-left: 40px;">
-                            <?php if ($history):
-                                foreach ($history as $h):
-                                    $title = explode(":", $h->title); ?>
-                                    <div class="favorite"
-                                         onclick="showPage('<?php echo $h->link . (strpos($h->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language ?>')">
-                                        <?php echo Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : ''); ?>
-                                        <i class="fa fa-times remove-history-item" data-id="<?php echo $h->id; ?>"></i>
-                                    </div>
-                                <?php endforeach;
-                            endif;?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-                <!-- Navbar -->
-
-                <!--  --><?php
-                /*        //        if(Yii::$app->controller->module->id == 'fastnet'){
-                        Helper::constructMenu(Yii::$app->controller->module->id);
-                        //        }
-                        */?>
-                <!-- .end Navbar -->
-
-                <!-- Content -->
-                <div class="wrap-page-columns">
-                    <?= $content ?>
-                </div>
-                <!-- .end Content -->
-
+        <div class="wrap">
+            <div class="bookmarks d-flex">
+                <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
+                    <div class="favorites" style="margin-left: 40px;">
+                        <?php if ($favorites):
+                            foreach ($favorites as $f):
+                                $title = explode(":", $f->title); ?>
+                                <div class="favorite" data-url="<?php echo $f->link_no_lang ?>"
+                                     onclick='showPage("<?php echo $f->link . (strpos($f->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language ?>")'>
+                                    <?php echo Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : ''); ?>
+                                    <i class="fa fa-times remove-favorite"></i>
+                                </div>
+                            <?php endforeach;
+                        endif;?>
+                    </div>
+                    <div class="histories" style="margin-left: 40px;">
+                        <?php if ($history):
+                            foreach ($history as $h):
+                                $title = explode(":", $h->title); ?>
+                                <div class="favorite"
+                                     onclick="showPage('<?php echo $h->link . (strpos($h->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>')">
+                                    <?php echo Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : ''); ?>
+                                    <i class="fa fa-times remove-history-item" data-id="<?php echo $h->id; ?>"></i>
+                                </div>
+                            <?php endforeach;
+                        endif;?>
+                    </div>
+                <?php endif; ?>
             </div>
+            <!-- Navbar -->
+
+            <!--  --><?php
+            /*        //        if(Yii::$app->controller->module->id == 'fastnet'){
+                    Helper::constructMenu(Yii::$app->controller->module->id);
+                    //        }
+                    */?>
+            <!-- .end Navbar -->
+
+            <!-- Content -->
+            <div class="wrap-page-columns">
+                <?= $content ?>
+            </div>
+            <!-- .end Content -->
+
+        </div>
     </section>
 
     <div class="current-url" data-url="<?= Yii::$app->request->url; ?>"></div>
@@ -197,16 +198,27 @@ AppAsset::register($this);
         h3{
             font-size: 1.3rem !important;
         }
+
+
         .favorite{
             border:1px solid #1b55e2!important;
             padding:5px 20px;
             display:inline-block;
             cursor:pointer;
         }
+        .window{
+            z-index:1150 !important;
+        }
+        .zIndex{
+            z-index:1200 !important;
+        }
         .favorite i{
             color:#1b55e2!important;
         }
         <?php if(isset($_GET['show-header'])){ ?>
+        *:not('button'){
+            background:#f0f0f0 !important;
+        }
         .navbar {
             display:none;
         }
@@ -217,19 +229,46 @@ AppAsset::register($this);
     </style>
     <?php if(!isset($_GET['show-header'])){ ?>
         <script>
+            function maximaize(el_){
+                $(el_).closest('.window').css({'width':'100%','height':'100%','top':'0px','left':'0px'});
+                $(el_).closest('.window').find('iframe').css({'width':'100%','min-height':'100vh'});
+            }
             function showPage(url){
-
-                var html_ = '<div class="close"><i class="fa fa-close"></i></div><iframe src="'+url+'&show-header=false" style="width:100%;height:100%;border:0px;"></iframe>';
-                $('.modal-content-custom *').replaceWith(html_);
-                $('.modal-content-custom').show().animate({left: '10%'}, {duration: 300});
-                $('.modal-content-custom .close').click(function(){
-                    $('.modal-content-custom').animate({left: '110%'}, {duration: 300});
-                    $('.modal-content-custom .page1').remove();
+                $('.window').on('click',function(){
+                    $('.window').removeClass('zIndex');
+                    $(this).addClass('zIndex');
                 });
+
+
+                var html_ = '<iframe src="'+url+'&show-header=false" style="width:90vw;min-height:50vh;border:0px;"></iframe>';
+                var window_ = $('.window').first().clone().css({top:'20%',left:'5vw',position:'absolute'});
+                window_.find('.window-body').html(html_);
+                $('body').append(window_);
+                $( function() {
+                    $( ".window" ).draggable();
+                } );
+                // $('.modal-content-custom *').replaceWith(html_);
+                // $('.modal-content-custom').show().animate({left: '10%'}, {duration: 300});
+                // $('.modal-content-custom .close').click(function(){
+                //     $('.modal-content-custom').animate({left: '110%'}, {duration: 300});
+                //     $('.modal-content-custom .page1').remove();
+                // });
             }
         </script>
     <?php } ?>
     <?php $this->endBody() ?>
+    <div class="window" style="max-width: auto">
+        <div class="title-bar">
+            <div class="title-bar-text">Another window with contents</div>
+            <div class="title-bar-controls">
+                <button aria-label="Maximize" onclick="maximaize($(this))"></button>
+                <button aria-label="Close" onclick="$(this).closest('.window').remove()" ></button>
+            </div>
+        </div>
+        <div class="window-body">
+
+        </div>
+    </div>
     </body>
     </html>
 <?php $this->endPage() ?>
