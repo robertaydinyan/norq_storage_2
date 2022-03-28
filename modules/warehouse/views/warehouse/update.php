@@ -19,7 +19,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     <?= $this->render('_form', [
         'model' => $model,
         'dataUsers'=>$dataUsers,
-        'warehouse_types' => $warehouse_types
+        'warehouse_types' => $warehouse_types,
     ]) ?>
     </div>
 </div>
