@@ -246,3 +246,43 @@ span{
     cursor: pointer;
     padding: 5px 5px 5px 15px;
 }
+
+.dropdown-check-list {
+    display: inline-block;
+}
+
+.dropdown-check-list .anchor {
+    position: relative;
+    cursor: pointer;
+    display: revert;
+    color: #fff;
+}
+
+
+.dropdown-check-list .anchor:active:after {
+    right: 8px;
+    top: 21%;
+}
+
+.dropdown-check-list ul.items {
+    padding: 2px;
+    display: none;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.dropdown-check-list ul.items li {
+    list-style: none;
+}
+
+
+.dropdown-check-list.visible .items {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    line-height: 30px;
+}
+.visible {
+    text-align: left;
+}

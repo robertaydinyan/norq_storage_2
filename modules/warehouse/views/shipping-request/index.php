@@ -33,7 +33,18 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
 
         <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a query'); ?></a>
     <?php endif; ?>
-        <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-list"></i></button>
+        <button class="btn btn-primary mr-2" style="float: right">
+            <div id="list1" class="dropdown-check-list" tabindex="100" >
+                <span class="anchor"><i class="fa fa-list"></i></span>
+                <ul class="items">
+                    <?php if ($columns):
+                        foreach ($columns as $k): ?>
+                            <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
+                        <?php endforeach;
+                    endif;?>
+                </ul>
+            </div>
+        </button>
         <button class="btn btn-primary mr-2 filter" style="float: right" data-model="ShippingRequest"><i class="fa fa-wrench "></i></button></a></h1>
     </h1>
     <div style="padding:20px;">
@@ -574,29 +585,30 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
            ];
        }
 
-        $table_columns = [];
-        if (isset($columns)) {
-            foreach ($columns as $column) {
-                if ($table_all_columns[$column->row_name]) {
-                    array_push($table_columns, $table_all_columns[$column->row_name]);
-                }
+
+
+    $table_columns = [];
+    if (isset($columns)) {
+        foreach ($columns as $column) {
+            if ($table_all_columns[$column->row_name]) {
+                array_push($table_columns, $table_all_columns[$column->row_name]);
             }
         }
-        if (count($table_columns) == 0){
-            $table_columns = $table_all_columns;
-        }
+    }
+    if (count($table_columns) == 0){
+        $table_columns = $table_all_columns;
+    }
 
-        array_push($table_columns, $actions);
+    array_push($table_columns, $actions);
     ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'tableOptions' => [
-            'class' => 'table table-hover'
-        ],
-        'summary'=>'',
-        'columns' => $columns,
-    ]); ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'tableOptions' => [
+                'class' => 'table table-hover'
+            ],
+            'columns' => $table_columns,
+        ]); ?>
     </div>
     <div class="modal fade" id="viewInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

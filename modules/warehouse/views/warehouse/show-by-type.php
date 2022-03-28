@@ -124,7 +124,20 @@ array_push($table_columns, $actions);
             (\app\rbac\WarehouseRule::can('warehouse', 'create') ?
             ('<a style="float: right" href="' . Url::to(['create', 'lang' => Yii::$app->language]) . '"  class="btn btn-primary" >' .
             Yii::t('app', 'Create Warehouse') . '</a>') : ''); ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
-            <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-list"></i></button>
+
+
+            <button class="btn btn-primary mr-2" style="float: right">
+                <div id="list1" class="dropdown-check-list" tabindex="100" >
+                    <span class="anchor"><i class="fa fa-list"></i></span>
+                    <ul class="items">
+                        <?php if ($columns):
+                            foreach ($columns as $k): ?>
+                            <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
+                            <?php endforeach;
+                        endif;?>
+                    </ul>
+                </div>
+            </button>
             <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Warehouse"><i class="fa fa-wrench "></i></button></a></h1>
         <div style="padding:20px;">
         <?= GridView::widget([

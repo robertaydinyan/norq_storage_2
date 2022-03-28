@@ -125,6 +125,18 @@ class User extends ActiveRecord implements IdentityInterface
 
         ];
     }
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' =>  'ID',
+            'username' => 'Username',
+            'name' => 'Անուն',
+            'last_name' => 'Ազգանուն',
+            'email' =>  'Էլ․ փոստ',
+
+
+        ];
+    }
 
     /**
      * @return string[]

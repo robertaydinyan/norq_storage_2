@@ -5,11 +5,13 @@ namespace app\modules\warehouse\controllers;
 use app\components\Url;
 use app\models\User;
 use app\modules\warehouse\models\Action;
+use app\modules\warehouse\models\Complectation;
 use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\UserAction;
 use app\rbac\WarehouseRule;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -42,12 +44,16 @@ class UsersController extends Controller
      * @return mixed
      */
     public function actionIndex() {
+        $dataProvider = new ActiveDataProvider([
+            'query' => User::find(),
+        ]);
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
-        $columns = TableRowsStatus::find()->where(['page_name' => 'Complectation', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $columns = TableRowsStatus::find()->where(['page_name' => 'User', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $users = User::find()->all();
         return $this->render('index', [
             'users' => $users,
             'isFavorite' => $isFavorite,
+            'dataProvider' => $dataProvider,
             'columns' => $columns,
         ]);
     }

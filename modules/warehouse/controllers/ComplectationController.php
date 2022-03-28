@@ -50,7 +50,8 @@ class ComplectationController extends Controller
      */
     public function actionIndex()
     {
-        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;        $dataProvider = new ActiveDataProvider([
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
+        $dataProvider = new ActiveDataProvider([
             'query' => Complectation::find(),
         ]);
         $columns = TableRowsStatus::find()->where(['page_name' => 'Complectation', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();

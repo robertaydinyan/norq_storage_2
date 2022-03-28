@@ -44,7 +44,7 @@ class ShippingRequestController extends Controller {
      */
     public function actionIndex() {
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-        $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
@@ -81,7 +81,7 @@ class ShippingRequestController extends Controller {
     public function actionDocuments() {
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $lang = explode('-', \Yii::$app->language)[0] ?: 'en';
-        $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
         $dataProvider = $searchModel->search(Yii::$app

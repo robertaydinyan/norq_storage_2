@@ -67,7 +67,18 @@ array_push($table_columns, $actions);
     <?php if(\app\rbac\WarehouseRule::can('complectation', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a>
     <?php endif; ?>
-        <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-list"></i></button>
+        <button class="btn btn-primary mr-2" style="float: right">
+            <div id="list1" class="dropdown-check-list" tabindex="100" >
+                <span class="anchor"><i class="fa fa-list"></i></span>
+                <ul class="items">
+                    <?php if ($columns):
+                        foreach ($columns as $k): ?>
+                            <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
+                        <?php endforeach;
+                    endif;?>
+                </ul>
+            </div>
+        </button>
         <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Complectation"><i class="fa fa-wrench "></i></button></a>
     </h1>
 
