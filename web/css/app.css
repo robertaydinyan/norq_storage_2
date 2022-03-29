@@ -58,11 +58,13 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 .window-body {
-  min-height: calc(100% - 32px);
+  height: calc(100% - 32px);
 }
 
 iframe {
   width: 100% !important;
+  height: 100% !important;
+  min-height: auto !important;
 }
 
 body {

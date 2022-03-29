@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\Helper;
+use app\modules\warehouse\models\TableRowsStatus;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -142,5 +143,35 @@ class SiteController extends Controller
     public function actionGetLastFormHtml() {
         return $this->render('lastForm');
     }
+    public function actionGetTableRows() {
+        $request = $this->request;
+        if($request->isGet) {
+            $pageName = $request->get('page');
+            $type = $request->get('type') ?: null;
+            if (!TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'type' => $type])->count() > 0) {
+                $modelName = ($pageName == 'User' ? 'app\models\\' : 'app\modules\warehouse\models\\') . $pageName;
+                $w = new $modelName;
+                $k = 0;
 
+                foreach ($w->attributeLabelsAll($type) as $i => $v) {
+                    $t = new TableRowsStatus();
+                    $t->page_name = $pageName;
+                    $t->row_name = $i;
+                    $t->row_name_normal = $v;
+                    $t->userID = Yii::$app->user->id;
+                    $t->order = $k;
+                    $t->type = $type;
+                    $k++;
+                    $t->save(false);
+                }
+            }
+            $columnsActive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => $type])->orderBy('order')->all();
+            $columnsPassive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 0, 'type' => $type])->orderBy('order')->all();
+            return $this->renderAjax('/modal/modal-table', [
+                'page' => $pageName,
+                'columnsActive' => $columnsActive,
+                'columnsPassive' => $columnsPassive,
+            ]);
+        }
+    }
 }

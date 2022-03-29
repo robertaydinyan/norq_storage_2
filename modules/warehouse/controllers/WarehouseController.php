@@ -446,35 +446,6 @@ class WarehouseController extends Controller {
         }
     }
 
-    public function actionGetTableRows() {
-        $request = $this->request;
-        if($request->isGet) {
-            $pageName = $request->get('page');
-            if (!TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id])->count() > 0) {
-                $modelName = ($pageName == 'User' ? 'app\models\\' : 'app\modules\warehouse\models\\') . $pageName;
-                $w = new $modelName;
-                $k = 0;
-
-                foreach ($w->attributeLabelsAll() as $i => $v) {
-                    $t = new TableRowsStatus();
-                    $t->page_name = $pageName;
-                    $t->row_name = $i;
-                    $t->row_name_normal = $v;
-                    $t->userID = Yii::$app->user->id;
-                    $t->order = $k;
-                    $k++;
-                    $t->save(false);
-                }
-            }
-            $columnsActive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
-            $columnsPassive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 0])->orderBy('order')->all();
-            return $this->renderAjax('/modal/modal-table', [
-                'page' => $pageName,
-                'columnsActive' => $columnsActive,
-                'columnsPassive' => $columnsPassive,
-            ]);
-        }
-    }
     public function actionChangeTableRows() {
         $request = $this->request;
         if ($request->isPost) {
