@@ -128,7 +128,7 @@ return [
     'Final balance' => 'Վերջնական մնացորդ',
     'Cost' => 'Արժեք',
     'Date of creation' => 'Ստեղծման ամսաթիվ',
-    'make a payment' => 'տեղծել վճարում',
+    'make a payment' => 'Ստեղծել վճարում',
     'Change payment' => 'Փոփոխել Վճարում',
     'invoices' => 'Ինվոիս',
     'Users' => 'Օգտատերեր',
