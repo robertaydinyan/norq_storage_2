@@ -316,4 +316,9 @@ input[type=checkbox] {
 .modal-header .close {
     padding: 0!important;
     margin: 0!important;
+
+}
+
+input[type=checkbox]+label:before {
+    display: none;
 }
