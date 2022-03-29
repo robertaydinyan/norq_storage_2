@@ -4,6 +4,7 @@ use dmstr\helpers\Html;
 
 $this->title = array(Yii::t('app', 'Create user'),'Create user');
 $this->params['breadcrumbs'][] = $this->title[0];
+$this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
 
 <div class="user-create">

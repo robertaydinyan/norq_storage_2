@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] =  $this->title[0];
     <div class="col-sm-12" style="margin-bottom: 10px;">
         <div class="row">
             <div class="col-sm-2">
-                <select name="warehouse_type" class="form-control warehouse_type">
+                <select name="warehouse_type" class="form-control warehouse_type btn-primary">
                     <option value=""><?php echo Yii::t('app', 'Warehouse type'); ?></option>
                     <?php if(!empty($warehouse_types)){
                         foreach ($warehouse_types as $warehouse =>$wh){
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] =  $this->title[0];
                 </select>
             </div>
             <div class="col-sm-2 <?php if(@!$_GET['region_id']){ echo 'hide';}?> region">
-                <select name="region_id" class="form-control region_">
+                <select name="region_id" class="form-control region_  btn-primary">
                     <option value=""><?php echo Yii::t('app', 'District'); ?></option>
                     <?php if(!empty($regions)){
                         foreach ($regions as $region =>$rg){
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] =  $this->title[0];
                 </select>
             </div>
             <div class="col-sm-2 hide subgroup">
-                <select name="virtual_type" <?php if(@!$_GET['virtual_type']){ echo 'hide';}?> class="form-control virtual_type">
+                <select name="virtual_type" <?php if(@!$_GET['virtual_type']){ echo 'hide';}?> class="form-control virtual_type  btn-primary">
                     <option value=""><?php echo Yii::t('app', 'Virtual (types)'); ?></option>
                     <?php if(!empty($groups)){
                         foreach ($groups as $group =>$gr){
@@ -61,12 +61,12 @@ $this->params['breadcrumbs'][] =  $this->title[0];
                 </select>
             </div>
             <div class="col-sm-2 <?php if(@!$_GET['community_id']){ echo 'hide';}?> community">
-                <select name="community_id" class="form-control community_select">
+                <select name="community_id" class="form-control community_select btn-primary">
                     <option value=""><?php echo Yii::t('app', 'Community'); ?></option>
                 </select>
             </div>
             <div class="col-sm-2 hide ware" <?php if(@!$_GET['supplier_warehouse_id']){ echo 'hide';}?>>
-                <select name="supplier_warehouse_id" class="form-control ware_select">
+                <select name="supplier_warehouse_id" class="form-control ware_select btn-primary">
                     <option value=""><?php echo Yii::t('app', 'Warehouse'); ?></option>
                 </select>
             </div>

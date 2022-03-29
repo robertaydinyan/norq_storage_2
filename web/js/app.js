@@ -238,7 +238,7 @@ function showPageByCache(){
 }
 let last = localStorage.getItem('last_form');
 let last_title = localStorage.getItem('last_form_title');
-if(last.length>0){
+if(last){
     $('.bookmarks').prepend('<div class="favorite" onclick="showPageByCache()">' + last_title +'</div>');
 }
 

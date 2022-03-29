@@ -80,8 +80,8 @@ array_push($table_columns, $actions);
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'make a payment'); ?></a>
         <?php endif; ?>
         <button class="btn btn-primary mr-2" style="float: right">
-            <div id="list1" class="dropdown-check-list" tabindex="100" >
-                <span class="anchor"><i class="fa fa-list"></i></span>
+            <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
+                <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
                 <ul class="items">
                     <?php if ($columns):
                         foreach ($columns as $k): ?>

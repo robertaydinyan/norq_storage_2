@@ -70,7 +70,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
                         </div>
                          <div class="col-sm-3">
                             <div class="form-group counts-input sk-floating-label field-shippingrequest-count">
-                                <select name="ComplectationProducts[product_id][]" class="ns_products form-control" required="required" >
+                                <select name="ComplectationProducts[product_id][]" class="ns_products form-control btn-primary" required="required" >
                                     <option value=""></option>
                                 </select>
                              <label class="control-label" for="shippingrequest-count"><?php echo Yii::t('app', 'good') ?></label><div class="help-block"></div>

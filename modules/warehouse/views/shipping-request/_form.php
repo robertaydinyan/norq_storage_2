@@ -180,7 +180,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
              <div class="col-sm-3">
                 <div class="form-group counts-input sk-floating-label field-shippingrequest-count">
-                    <select name="ShippingRequest[nomenclature_product_id][]" class="ns_products form-control" required="required" >
+                    <select name="ShippingRequest[nomenclature_product_id][]" class="ns_products form-control btn-primary" required="required" >
                         <option value=""></option>
                     </select>
                  <label class="control-label" for="shippingrequest-count"><?php Yii::t('app', 'Product'); ?></label><div class="help-block"></div>
@@ -196,7 +196,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
              <div class="col-sm-2 hide">
                 <div class="form-group counts-input sk-floating-label field-shippingrequest-tp">
-                    <select name="ShippingRequest[action_type][]" class="tp form-control" required="required" >
+                    <select name="ShippingRequest[action_type][]" class="tp form-control btn-primary" required="required" >
                         <option value="1"><?php echo Yii::t('app', 'Internet'); ?></option>
                         <option value="2">Ip</option>
                         <option value="3">Tv</option>

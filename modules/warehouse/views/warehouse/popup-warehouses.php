@@ -17,7 +17,7 @@ $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'nam
                 </button>
                 <div class="mod-content">
                     <div class="col-sm-12">
-                        <select name="warehouse_type" class="form-control warehouse_type">
+                        <select name="warehouse_type" class="form-control warehouse_type btn-primary">
                                 <option value=""><?php echo Yii::t('app', 'Warehouse type'); ?></option>
                                 <?php if(!empty($warehouse_types)){
                                     foreach ($warehouse_types as $warehouse =>$wh){
@@ -52,7 +52,7 @@ $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'nam
 <!--                            </select>-->
 <!--                        </div>-->
                         <div class="col-sm-12 hide ware">
-                            <select name="supplier_warehouse_id" onchange="setWarehouse($(this).val(),$(this).find('option:selected').text())" class="form-control ware_select">
+                            <select name="supplier_warehouse_id" onchange="setWarehouse($(this).val(),$(this).find('option:selected').text())" class="form-control ware_select btn-primary">
                                 <option value=""><?php echo Yii::t('app', 'Warehouse'); ?></option>
                             </select>
                         </div>
