@@ -101,13 +101,27 @@ if (count($table_columns) == 0) {
 
         '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary" style="float: right;">' .
         Yii::t('app', 'Product group') . '</a>' : ''; ?>
-        <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-list"></i></button>
+        <button class="btn btn-primary mr-2" style="float: right">
+            <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
+                <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
+                <ul class="items">
+                    <?php if ($columns):
+                        foreach ($columns as $k): ?>
+                            <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
+                        <?php endforeach;
+                    endif;?>
+                </ul>
+            </div>
+        </button>
         <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Product"><i class="fa fa-wrench "></i></button></a>
     </h1>
 
 <div class="product-index " style="padding: 20px;">
         <?= GridView::widget([
             'dataProvider' => $dataProvider2,
+            'tableOptions' => [
+                'class' => 'table table-hover'
+            ],
             'columns' => $table_columns,
         ]) ?>
 

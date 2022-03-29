@@ -34,8 +34,8 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
         <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a query'); ?></a>
     <?php endif; ?>
         <button class="btn btn-primary mr-2" style="float: right">
-            <div id="list1" class="dropdown-check-list" tabindex="100" >
-                <span class="anchor"><i class="fa fa-list"></i></span>
+            <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
+                <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
                 <ul class="items">
                     <?php if ($columns):
                         foreach ($columns as $k): ?>
@@ -55,7 +55,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
             <div class="col-sm-4" style="margin-bottom: 10px;">
                 <div class="row">
                     <div class="col-sm-4">
-                        <select name="provider_warehouse_id" class="form-control">
+                        <select name="provider_warehouse_id" class="form-control btn-primary">
                             <option value=""><?php echo Yii::t('app', 'Provider warehouse'); ?></option>
                             <?php if(!empty($warehouses)){
                                 foreach ($warehouses as $warehouse =>$wh){
@@ -70,7 +70,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                         </select>
                     </div>
                     <div class="col-sm-4">
-                        <select name="supplier_warehouse_id" class="form-control">
+                        <select name="supplier_warehouse_id" class="form-control btn-primary">
                             <option value=""><?php echo Yii::t('app', 'Supplier warehouse'); ?></option>
                             <?php if(!empty($warehouses)){
                                 foreach ($warehouses as $warehouse =>$wh){
@@ -85,7 +85,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                         </select>
                     </div>
                     <div class="col-sm-4">
-                        <select name="user_id" class="form-control">
+                        <select name="user_id" class="form-control btn-primary">
                             <option value=""><?php echo Yii::t('app', 'Responsible'); ?></option>
                             <?php if(!empty($users)){
                                 foreach ($users as $user =>$usval){
@@ -130,7 +130,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                     ?>
             </div>
             <div class="col-sm-2">
-                <button type="button" class="btn btn-default" style="color:black;" data-toggle="modal" data-target="#suppliersModal"><?php echo Yii::t('app', 'Suppliers')?></button>
+                <button type="button" class="btn btn-primary form-control"  data-toggle="modal" data-target="#suppliersModal"><?php echo Yii::t('app', 'Suppliers')?></button>
                 <div class="modal fade" id="suppliersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

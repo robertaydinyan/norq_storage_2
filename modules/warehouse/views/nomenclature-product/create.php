@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
         'groupProducts' => $groupProducts,
         'qtyTypes' => $qtyTypes,
         'tableTreeGroups'=> $tableTreeGroups,
+        'type' => 'create'
     ]) ?>
     </div>
 </div>

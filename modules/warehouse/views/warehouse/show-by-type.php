@@ -129,8 +129,8 @@ array_push($table_columns, $actions);
 
 
             <button class="btn btn-primary mr-2" style="float: right">
-                <div id="list1" class="dropdown-check-list" tabindex="100" >
-                    <span class="anchor"><i class="fa fa-list"></i></span>
+                <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
+                    <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
                     <ul class="items">
                         <?php if ($columns):
                             foreach ($columns as $k): ?>
@@ -151,7 +151,7 @@ array_push($table_columns, $actions);
             'columns' => $table_columns,
         ]); ?>
         </div>
-<button style="margin:20px;" onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary">Xls</button>
+<button style="margin:20px;" onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary ">Xls</button>
 </div>
 
 <script>

@@ -16,6 +16,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         <div style="padding:20px;">
     <?= $this->render('_form', [
         'model' => $model,
+        'type' => 'create'
     ]) ?>
         </div>
 </div>
