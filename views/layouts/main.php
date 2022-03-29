@@ -233,14 +233,14 @@ AppAsset::register($this);
                 $(el_).closest('.window').css({'width':'100%','height':'100%','top':'0px','left':'0px'});
                 $(el_).closest('.window').find('iframe').css({'width':'100%','min-height':'100vh'});
             }
-            function showPage(url){
+
+            function showPage(url, header = true){
                 $('.window').on('click',function(){
                     $('.window').removeClass('zIndex');
                     $(this).addClass('zIndex');
                 });
 
-
-                var html_ = '<iframe src="'+url+'&show-header=false" style="width:90vw;min-height:50vh;border:0px;"></iframe>';
+                var html_ = '<iframe src="' + url + (header ? '&show-header=false' : '?show-header=false') + '" style="width:90vw;min-height:50vh;border:0px;"></iframe>';
                 var window_ = $('.window').first().clone().css({top:'20%',left:'5vw',position:'absolute'});
                 window_.find('.window-body').html(html_);
                 $('body').append(window_);

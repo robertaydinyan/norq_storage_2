@@ -139,4 +139,8 @@ class SiteController extends Controller
         return $this->renderAjax('notifications');
     }
 
+    public function actionGetLastFormHtml() {
+        return $this->render('lastForm');
+    }
+
 }
