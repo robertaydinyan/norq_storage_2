@@ -21,9 +21,9 @@ $actions = [
         'format' => 'html',
         'value' => function() {
             return ((\app\rbac\WarehouseRule::can('users', 'edit')) ?
-                ("<a href='" . URL::to(['users/edit', 'lang' => Yii::$app->language, 'id' => $user->id]) . "'><i class='fas fa-pencil-alt mr-3'></i></a>") : '') .
+                ("<a href='" . URL::to(['users/edit', 'lang' => Yii::$app->language, 'id' =>Yii::$app->user->id]) . "'><i class='fas fa-pencil-alt mr-3'></i></a>") : '') .
                 ((\app\rbac\WarehouseRule::can('users', 'delete')) ?
-                ("<a onclick='return AreYouSure();' href='" . URL::to(['users/delete', 'lang' => Yii::$app->language, 'id' => $user->id]) . "'><i class='fas fa-trash-alt' style='color: red;'></i></a>") : '');
+                ("<a onclick='return AreYouSure();' href='" . URL::to(['users/delete', 'lang' => Yii::$app->language, 'id' => Yii::$app->user->id]) . "'><i class='fas fa-trash-alt' style='color: red;'></i></a>") : '');
         }
 ];
 $table_columns = [];

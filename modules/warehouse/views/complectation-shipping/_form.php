@@ -124,7 +124,7 @@ $this->registerJsFile('@web/js/modules/warehouse/shipping.js', ['depends' => 'yi
     <div class="form-group">
         <?= Html::submitButton('Ստեղծել ', ['class' => 'btn btn-primary']) ?>
         <?php if(isset($type) && $type == 'create'): ?>
-            <?= Html::button(Yii::t('app', 'Save 2'), ['class' => 'btn btn-primary', 'onClick' => 'SaveForm($(this))'])  ?>
+            <?= Html::button(Yii::t('app', 'Save 2'), ['class' => 'btn btn-primary saveForm', 'onClick' => 'SaveForm($(this))'])  ?>
         <?php endif; ?>
     </div>
 
