@@ -233,7 +233,7 @@ function SaveForm(el) {
 
 let last_title = localStorage.getItem('last_form_title');
 let last_form_path = localStorage.getItem('last_form_path');
-if(last_form_path){
+if(last_form_path !== "null" && last_title !== "null"){
     $('.bookmarks').prepend('<div class="favorite" onclick="showPage(\'' + last_form_path + '\')">' + last_title +'</div>');
 }
 setTimeout(function() {
@@ -244,7 +244,7 @@ setTimeout(function() {
         $.each($('.form-data').find('input, select, textarea'), function(i, k) {
             $(k).val(values[i]).change();
         });
-        $('input[type=submit]').on('click', function() {
+        $('input[type=submit], button[type=submit]').on('click', function() {
             localStorage.setItem('last_form_title', null);
             localStorage.setItem('last_form', null);
             localStorage.setItem('last_form_path', null);
