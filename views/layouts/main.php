@@ -239,14 +239,15 @@ AppAsset::register($this);
                     $('.window').removeClass('zIndex');
                     $(this).addClass('zIndex');
                 });
-
                 var html_ = '<iframe src="' + url + (header ? '&show-header=false' : '?show-header=false') + '" style="width:90vw;min-height:50vh;border:0px;"></iframe>';
                 var window_ = $('.window').first().clone().css({top:'20%',left:'5vw',position:'absolute'});
                 window_.find('.window-body').html(html_);
                 $('body').append(window_);
                 $( function() {
                     $( ".window" ).draggable();
+                    $( ".window" ).resizable();
                 } );
+
                 // $('.modal-content-custom *').replaceWith(html_);
                 // $('.modal-content-custom').show().animate({left: '10%'}, {duration: 300});
                 // $('.modal-content-custom .close').click(function(){
