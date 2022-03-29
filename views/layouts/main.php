@@ -244,8 +244,8 @@ AppAsset::register($this);
                 window_.find('.window-body').html(html_);
                 $('body').append(window_);
                 $( function() {
+                    $( ".window" ).last().resizable();
                     $( ".window" ).draggable();
-                    $( ".window" ).resizable();
                 } );
 
                 // $('.modal-content-custom *').replaceWith(html_);

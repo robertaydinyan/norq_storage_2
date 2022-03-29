@@ -13,15 +13,15 @@ $this->title = array(Yii::t('app', 'Payments'),'Payments');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $table_all_columns = [
-    'id',
-    [
+    'id' => 'id',
+    'Supplier' => [
         'label' => Yii::t('app', 'Supplier'),
         'value' => function ($model) {
             $provider = SuppliersList::findOne($model->provider_id);
             return $provider->{'name_' . (explode('-', \Yii::$app->language)[0] ?: 'en')};
         }
     ],
-    'price',
+    'amount' => 'price',
 ];
 $actions = [
     'class' => 'yii\grid\ActionColumn',
@@ -58,10 +58,10 @@ if (isset($columns)) {
         }
     }
 }
+
 if (count($table_columns) == 0){
     $table_columns = $table_all_columns;
 }
-
 array_push($table_columns, $actions);
 ?>
 <?php if(\app\rbac\WarehouseRule::can('payments-log', 'index')): ?>
