@@ -61,21 +61,52 @@ class ShippingRequest extends \yii\db\ActiveRecord {
             'user_id' => Yii::t('app', 'Responsible')
         ];
     }
-    public function attributeLabelsAll() {
-        return [
-            'id' => 'ID',
-            'count' => 'Count',
-            'created_at' => 'Created At',
-            'nomenclature_product_id' => 'Product Nomenclature',
-            'shipping_id' => 'Shipping ID',
-            'shipping_type' => 'Type',
-            'request_id' => 'Purchase request',
-            'provider_warehouse_id' =>  'Delivery warehouse',
-            'supplier_warehouse_id' =>  'Supplier warehouse',
-            'status' => 'Status',
-            'comment' =>'Comment',
-            'user_id' =>  'Responsible'
-        ];
+    public function attributeLabelsAll($type) {
+        if (!$type || $type == 7) {
+            return [
+                'id' => 'ID',
+                'shippingType' => 'Shipping Type',
+                'providerWarehouse' => 'Provider Warehouse',
+                'supplierWarehouse' => 'Supplier Warehouse',
+                'supplier' => 'Supplier',
+                'totalAmount' => 'Total amount',
+                'created' => 'Created',
+                'status' => 'Status',
+            ];
+        } else if ($type == 6 || $type == 2 || $type == 5) {
+            return [
+                'id' => 'ID',
+                'shippingType' => 'Shipping Type',
+                'supplierWarehouse' => 'Supplier Warehouse',
+                'responsible' => 'Responsible',
+                'supplier' => 'Supplier',
+                'totalAmount' => 'Total amount',
+                'invoice' => 'Invoice',
+                'status' => 'Status',
+                'created' => 'Created',
+            ];
+        } else if ($_GET['type'] == 8 || $_GET['type'] == 10) {
+            return [
+                'id' => 'ID',
+                'shippingType' => 'Shipping Type',
+                'supplierWarehouse' => 'Supplier Warehouse',
+                'supplier' => 'Supplier',
+                'status' => 'Status',
+                'totalAmount' => 'totalAmount',
+                'created' => 'created',
+            ];
+        } else if ($_GET['type'] == 9) {
+            return [
+                'id' => 'ID',
+                'shippingType' => 'Shipping Type',
+                'supplierWarehouse' => 'Supplier Warehouse',
+                'responsible' => 'Responsible',
+                'supplier' => 'Supplier',
+                'status' => 'Status',
+                'totalAmount' => 'totalAmount',
+                'created' => 'created',
+            ];
+        }
     }
 
     public function getNProduct() {

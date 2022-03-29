@@ -194,8 +194,10 @@ $('.star').click(function () {
 
 $('.filter').on('click', function() {
     let page = $(this).data('model');
-    $.get('/warehouse/warehouse/get-table-rows?lang=' + $('html').attr('lang'), {
+    let type = $(this).data('type');
+    $.get('/site/get-table-rows?lang=' + $('html').attr('lang'), {
         'page': page,
+        'type': type
     }).done(function(res) {
         $('#FilterModal').html(res);
         $('#FilterModal').modal('show');
