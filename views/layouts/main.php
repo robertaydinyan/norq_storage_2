@@ -85,7 +85,7 @@ AppAsset::register($this);
                                 <div class="favorite"
                                     <?php echo sprintf(
                                         "onclick='showPage(\"%s\", \"%s\", %s)'>",
-                                        $f->link . (strpos($f->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language,
+                                        $h->link . (strpos($h->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language,
                                         $title,
                                         $f->id
                                     ) ?>

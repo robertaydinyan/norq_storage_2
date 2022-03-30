@@ -306,7 +306,7 @@ function showPage(url, title, id, header = true){
     let template = $('.slider-template');
     let new_item = template.clone();
     new_item.appendTo(template.parent()).removeClass('slider-template').attr('data-id', id)
-    new_item.find('button').text(title);
+    new_item.find('a').text(title);
     windowActions();
     // $('.modal-content-custom *').replaceWith(html_);
     // $('.modal-content-custom').show().animate({left: '10%'}, {duration: 300});
@@ -322,14 +322,14 @@ $('.show-modal').click(function(){
     var href = $(this).attr('data-modal');
     // var html_ = $('#page-modal').html();
 
-    $(".regular").slick({
-        dots: false,
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1
-    });
+    // $(".regular").slick({
+    //     dots: false,
+    //     infinite: true,
+    //     slidesToShow: 4,
+    //     slidesToScroll: 1
+    // });
     // $('.modal-content-custom').append(html_);
-    $('.modal-content-custom').show().animate({left: '10%'}, {duration: 600});
+    $('.modal-content-custom').show().animate({left: '80%'}, {duration: 600});
     $('.modal-content-custom .close').click(function(){
         $('.modal-content-custom').animate({left: '110%'}, {duration: 500});
         $('.modal-content-custom .page1').remove();
