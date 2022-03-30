@@ -44,7 +44,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 </ul>
 <div class="modal-content-custom">
     <div class="close"><i class="fa fa-close"></i></div>
-    <section class="regular slider" style="width: 80%;margin: auto;text-align: center;height: 100%">
+    <!--<section class="regular slider" style="width: 80%;margin: auto;text-align: center;height: 100%">
         <div >
             <div class="text">
                 <div style="width: 95%;min-height: 200px;background: #fff;border: 10px solid #007bff;border-top:20px solid #007bff;margin-top: 50px;border-radius: 20px;position:relative;">
@@ -91,7 +91,20 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         </div>
 
 
-    </section>
+    </section>-->
+
+
+
+    <ul style="list-style: none">
+        <li class="mt-2"><a href="#"><i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size:20px;"></i>Հաշվետվություններ</a><i class="fa fa-times ml-3" style="color: #710909;font-size: 20px;"></i></li>
+        <li class="mt-2"><a href="#"><i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size:20px;"></i>Հաշվետվություններ</a><i class="fa fa-times ml-3" style="color: #710909;font-size: 20px;"></i></li>
+        <li class="mt-2"><a href="#"><i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size:20px;"></i>Հաշվետվություններ</a><i class="fa fa-times ml-3" style="color: #710909;font-size: 20px;"></i></li>
+        <li class="mt-2"><a href="#"><i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size:20px;"></i>Հաշվետվություններ</a><i class="fa fa-times ml-3" style="color: #710909;font-size: 20px;"></i></li>
+        <li class="mt-2"><a href="#"><i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size:20px;"></i>Հաշվետվություններ</a><i class="fa fa-times ml-3" style="color: #710909;font-size: 20px;"></i></li>
+        <li class="mt-2"><a href="#"><i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size:20px;"></i>Հաշվետվություններ</a><i class="fa fa-times ml-3" style="color: #710909;font-size: 20px;"></i></li>
+    </ul>
+
+
 </div>
 
 
@@ -117,7 +130,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
     }
     .modal-content-custom .page1{
-        width: 100% !important;
+        width: 50% !important;
         padding: 30px;
         max-height: 100vh;
         overflow: auto;
