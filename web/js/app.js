@@ -277,7 +277,7 @@ $('.show-modal').click(function(){
     $(".regular").slick({
         dots: false,
         infinite: true,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1
     });
     // $('.modal-content-custom').append(html_);
