@@ -12690,3 +12690,7 @@ aside .nav-link.active {
 }
 
 /*# sourceMappingURL=app.css.map */
+
+.slider-template {
+  display: none !important;
+}

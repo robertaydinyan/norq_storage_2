@@ -44,38 +44,12 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 </ul>
 <div class="modal-content-custom">
     <div class="close"><i class="fa fa-close"></i></div>
-    <p>aa</p>
     <section class="regular slider">
-        <div>
+        <div class="slider slider-template">
             <div class="hover"></div>
             <div class="text">
                 <button style="background: #ca85ca;">Environment</button>
-                <h1>Making a Commitment to Environmental sustainability</h1>
-                <span>4 day ago</span>
-            </div>
-        </div>
-        <div>
-            <div class="hover"></div>
-            <div class="text">
-                <button style="background: #61c436;">Food</button>
-                <h1>Stunning Health Benefits of Eating Chocolates</h1>
-                <span>4 day ago</span>
-            </div>
-        </div>
-        <div>
-            <div class="hover"></div>
-            <div class="text">
-                <button style="background:#e54e7e;">Fashion</button>
-                <h1>Cool Car: Add Style And Class To Your Vehicle</h1>
-                <span>4 day ago</span>
-            </div>
-        </div>
-        <div>
-            <div class="hover"></div>
-            <div class="text">
-                <button style="background: #f4b23f;">Lifestyle</button>
-                <h1>What Will Natural Beauty Be Like In 100 Years?</h1>
-                <span>4 day ago</span>
+                <span class="remove-slider">remove</span>
             </div>
         </div>
 

@@ -62,10 +62,16 @@ AppAsset::register($this);
                     <div class="favorites" style="margin-left: 40px;">
                         <?php if ($favorites):
                             foreach ($favorites as $f):
-                                $title = explode(":", $f->title); ?>
+                                $title = explode(":", $f->title);
+                                $title = Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : '');?>
                                 <div class="favorite" data-url="<?php echo $f->link_no_lang ?>"
-                                     onclick='showPage("<?php echo $f->link . (strpos($f->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language ?>")'>
-                                    <?php echo Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : ''); ?>
+                                     <?php echo sprintf(
+                                             "onclick='showPage(\"%s\", \"%s\", %s)'>",
+                                            $f->link . (strpos($f->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language,
+                                            $title,
+                                            $f->id
+                                    ) ?>
+                                    <?php echo $title  ?>
                                     <i class="fa fa-times remove-favorite"></i>
                                 </div>
                             <?php endforeach;
@@ -74,10 +80,16 @@ AppAsset::register($this);
                     <div class="histories" style="margin-left: 40px;">
                         <?php if ($history):
                             foreach ($history as $h):
-                                $title = explode(":", $h->title); ?>
+                                $title = explode(":", $h->title);
+                                $title = Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : '');?>
                                 <div class="favorite"
-                                     onclick="showPage('<?php echo $h->link . (strpos($h->link, '?') ? '%' : '?') . 'lang=' . Yii::$app->language ?>')">
-                                    <?php echo Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : ''); ?>
+                                    <?php echo sprintf(
+                                        "onclick='showPage(\"%s\", \"%s\", %s)'>",
+                                        $f->link . (strpos($f->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language,
+                                        $title,
+                                        $f->id
+                                    ) ?>
+                                    <?php echo $title; ?>
                                     <i class="fa fa-times remove-history-item" data-id="<?php echo $h->id; ?>"></i>
                                 </div>
                             <?php endforeach;
@@ -235,27 +247,7 @@ AppAsset::register($this);
                 $(el_).closest('.window').find('iframe').css({'width':'100%','min-height':'100vh'});
             }
 
-            function showPage(url, header = true){
-                $('.window').on('click',function(){
-                    $('.window').removeClass('zIndex');
-                    $(this).addClass('zIndex');
-                });
-                var html_ = '<iframe src="' + url + (header ? '&show-header=false' : '?show-header=false') + '" style="width:90vw;min-height:50vh;border:0px;"></iframe>';
-                var window_ = $('.window').first().clone().css({top:'20%',left:'5vw',position:'absolute'});
-                window_.find('.window-body').html(html_);
-                $('body').append(window_);
-                $( function() {
-                    $( ".window" ).last().resizable();
-                    $( ".window" ).draggable();
-                } );
 
-                // $('.modal-content-custom *').replaceWith(html_);
-                // $('.modal-content-custom').show().animate({left: '10%'}, {duration: 300});
-                // $('.modal-content-custom .close').click(function(){
-                //     $('.modal-content-custom').animate({left: '110%'}, {duration: 300});
-                //     $('.modal-content-custom .page1').remove();
-                // });
-            }
         </script>
     <?php } ?>
     <?php $this->endBody() ?>
@@ -264,7 +256,7 @@ AppAsset::register($this);
             <div class="title-bar-text">Another window with contents</div>
             <div class="title-bar-controls">
                 <button aria-label="Maximize" onclick="maximaize($(this))"></button>
-                <button aria-label="Close" onclick="$(this).closest('.window').remove()" ></button>
+                <button aria-label="Close" class="remove-window" ></button>
             </div>
         </div>
         <div class="window-body">
