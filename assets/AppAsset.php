@@ -35,6 +35,8 @@ class AppAsset extends AssetBundle
         'css/modules/crm/jquery-ui.min.css',
         'css/plugins/fontawesome/all.min.css',
         'css/modules/crm/ui-kit.css',
+        'slick/slick.css',
+        'slick/slick-theme.css',
 
         //changes 11/26/2020
         'css/modules/crm/kanban.css',
@@ -60,9 +62,13 @@ class AppAsset extends AssetBundle
         'js/plugins/table/script.js',
         'js/modules/crm/arrow_sliders.js',
         'js/modules/crm/KANBAN/kanban.js',
+        'slick/slick.js',
+
 
         'js/modules/crm/script2.js',
         'js/plugins/fullcalendar/fullcalendar.min.js',
+
+
 
     ];
     public $depends = [
