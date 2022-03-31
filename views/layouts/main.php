@@ -58,6 +58,7 @@ AppAsset::register($this);
         <div class="wrap">
 
             <div class="bookmarks d-flex">
+
                 <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
                     <div class="favorites" style="margin-left: 40px;">
                         <?php if ($favorites):

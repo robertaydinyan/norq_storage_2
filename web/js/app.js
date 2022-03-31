@@ -336,3 +336,6 @@ $('.show-modal').click(function(){
         $('.modal-content-custom .page1').remove();
     });
 });
+
+
+

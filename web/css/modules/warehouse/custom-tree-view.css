@@ -322,6 +322,3 @@ input[type=checkbox] {
 input[type=checkbox]+label:before {
     display: none;
 }
-.favorite-btn,.history-btn {
-    display: none;
-}

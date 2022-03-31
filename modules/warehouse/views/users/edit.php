@@ -13,7 +13,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 <div class="user-edit-index">
     <input type="hidden" id="userID" value="<?php echo $user->id; ?>">
-    <h1 style="padding: 20px;" class="show-modal" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?>
+    <h1 style="padding: 20px;" class="" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?>
 <!--        <span class="star" ><i class="fa --><?php //echo $isFavorite ? 'fa-star' : 'fa-star-o' ?><!-- ml-4"></i></span> -->
     </h1>
 
