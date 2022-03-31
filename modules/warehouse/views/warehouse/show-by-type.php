@@ -127,7 +127,7 @@ array_push($table_columns, $actions);
             ('<a style="float: right" href="' . Url::to(['create', 'lang' => Yii::$app->language]) . '"  class="btn btn-primary" >' .
             Yii::t('app', 'Create Warehouse') . '</a>') : ''); ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
 
-
+        <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
             <button class="btn btn-primary mr-2" style="float: right">
                 <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
                     <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
@@ -151,8 +151,7 @@ array_push($table_columns, $actions);
             'columns' => $table_columns,
         ]); ?>
         </div>
-<button style="margin:20px;" onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary ">Xls</button>
-</div>
+
 
 <script>
     window.onload = function(){

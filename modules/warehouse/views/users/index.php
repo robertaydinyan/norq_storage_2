@@ -48,6 +48,7 @@ array_push($table_columns, $actions);
         <?php if(\app\rbac\WarehouseRule::can('users', 'create')): ?>
         <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create user'); ?></a>
         <?php endif; ?>
+        <button  onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
         <button class="btn btn-primary mr-2" style="float: right">
             <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
                 <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
@@ -60,7 +61,8 @@ array_push($table_columns, $actions);
                 </ul>
             </div>
         </button>
-        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="User"><i class="fa fa-wrench "></i></button></a></h1>
+        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="User"><i class="fa fa-wrench "></i></button>
+        </a></h1>
     </h1>
 
 
@@ -75,6 +77,8 @@ array_push($table_columns, $actions);
 
     </div>
 </div>
+
+
 
 <script>
     function AreYouSure() {

@@ -67,6 +67,7 @@ array_push($table_columns, $actions);
     <?php if(\app\rbac\WarehouseRule::can('complectation', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a>
     <?php endif; ?>
+        <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
         <button class="btn btn-primary mr-2 px-1" style="float: right">
             <div id="list1" class="dropdown-check-list " tabindex="100"  style="width: -webkit-fill-available;">
                 <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
@@ -81,6 +82,7 @@ array_push($table_columns, $actions);
         </button>
         <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Complectation"><i class="fa fa-wrench "></i></button></a>
     </h1>
+
 
 
     <?php Pjax::begin(); ?>
@@ -98,3 +100,6 @@ array_push($table_columns, $actions);
     <?php Pjax::end(); ?>
 
 </div>
+
+</div>
+
