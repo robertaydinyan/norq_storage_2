@@ -35,13 +35,13 @@ class AppAsset extends AssetBundle
         'css/modules/crm/jquery-ui.min.css',
         'css/plugins/fontawesome/all.min.css',
         'css/modules/crm/ui-kit.css',
-        'slick/slick.css',
-        'slick/slick-theme.css',
+       /* 'slick/slick.css',
+        'slick/slick-theme.css',*/
 
         //changes 11/26/2020
         'css/modules/crm/kanban.css',
         'https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+        /*'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'*/
 
 
     ];
@@ -62,7 +62,7 @@ class AppAsset extends AssetBundle
         'js/plugins/table/script.js',
         'js/modules/crm/arrow_sliders.js',
         'js/modules/crm/KANBAN/kanban.js',
-        'slick/slick.js',
+       /* 'slick/slick.js',*/
 
 
         'js/modules/crm/script2.js',

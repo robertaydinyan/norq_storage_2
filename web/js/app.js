@@ -262,6 +262,7 @@ setTimeout(function() {
 function windowActions() {
     $('.slider').off().on('click', function() {
         let id = $(this).data('id');
+        console.log(id)
         if (id) {
             $('.window').removeClass('zIndex')
             $('.window[data-id=' + id + ']').addClass('zIndex')
@@ -280,13 +281,13 @@ function windowActions() {
         $(this).closest('.slider').remove();
     });
 }
-// var checkList = document.getElementById('list1');
-// checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
-//     if (checkList.classList.contains('visible'))
-//         checkList.classList.remove('visible');
-//     else
-//         checkList.classList.add('visible');
-// }
+ var checkList = document.getElementById('list1');
+ checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+     if (checkList.classList.contains('visible'))
+         checkList.classList.remove('visible');
+     else
+         checkList.classList.add('visible');
+ }
 
 
 function showPage(url, title, id, header = true){

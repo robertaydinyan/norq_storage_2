@@ -70,7 +70,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                         <div class="media-body">
                             <div class="media border-right-blue align-items-center">
                                 <div class="w-img">
-                                    <i class='fas fa-warehouse mr-2'  style="color: #1b55e2;font-size: 35px;"></i>
+                                    <i class='fas fa-warehouse mr-2'  style="color: #007bff;font-size: 35px;"></i>
                                 </div>
                                 <div class="media-body">
                                     <h3 class=""><?=   Yii::t('app', 'Main warehouse') ?><h3>
@@ -96,7 +96,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <div class="media-body">
                         <div class="media border-right-blue align-items-center">
                             <div class="w-img">
-                                <i class='fas fa-shipping-fast mr-2'  style="color: #1b55e2;font-size: 35px;"></i>
+                                <i class='fas fa-shipping-fast mr-2'  style="color: #007bff;font-size: 35px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3 class=""><?=   Yii::t('app', 'Warehouses') ?></h3>
@@ -122,7 +122,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <div class="media-body">
                         <div class="media border-right-blue align-items-center">
                             <div class="w-img">
-                                <i class='fas fa-box-open mr-2' style="color: #1b55e2;font-size: 40px;"></i>
+                                <i class='fas fa-box-open mr-2' style="color: #007bff;font-size: 40px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3 class=""><?=   Yii::t('app', 'goods') ?></h3>
@@ -148,14 +148,14 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <div class="media-body">
                         <div class="media border-right-blue align-items-center">
                             <div class="w-img">
-                                <i class="fa fa-file-text mr-2" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fa fa-file-text mr-2" style="color: #007bff;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3 class=""><?=   Yii::t('app', 'Documents') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
-                                    <h2 style="color: #1b55e2;font-weight: bold">
+                                    <h2 style="color: #007bff;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
@@ -198,14 +198,14 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <div class="media-body">
                         <div class="media border-right-blue align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-poll-h mr-2" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fas fa-poll-h mr-2" style="color: #007bff;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3 class=""><?=   Yii::t('app', 'Polls') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
-                                    <h2 style="color: #1b55e2;font-weight: bold">
+                                    <h2 style="color: #007bff;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
@@ -248,14 +248,14 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <div class="media-body">
                         <div class="media border-right-blue align-items-center">
                             <div class="w-img">
-                                <i class="fa fa-newspaper mr-2" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fa fa-newspaper mr-2" style="color: #007bff;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3 class=""><?=   Yii::t('app', 'Directory') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
-                                    <h2 style="color: #1b55e2;font-weight: bold">
+                                    <h2 style="color: #007bff;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
@@ -294,7 +294,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <div class="media-body">
                         <div class="media border-right-blue align-items-center">
                             <div class="w-img">
-                                <i class="far fa-file-alt mr-2" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="far fa-file-alt mr-2" style="color: #007bff;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3 class=""><?=   Yii::t('app', 'Reports') ?></h3>
@@ -320,7 +320,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <div class="media-body">
                         <div class="media align-items-center">
                             <div class="w-img">
-                                <i class="fas fa-file-signature mr-2" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fas fa-file-signature mr-2" style="color: #007bff;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3 class=""><?=   Yii::t('app', 'Composition') ?></h3>
@@ -346,14 +346,14 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <div class="media-body">
                         <div class="media border-right-blue align-items-center">
                             <div class="w-img">
-                                <i class="fa fa-credit-card mr-2" style="color: #1b55e2;font-size: 46px;"></i>
+                                <i class="fa fa-credit-card mr-2" style="color: #007bff;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
                                 <h3 class=""><?=   Yii::t('app', 'Payments') ?></h3>
                             </div>
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
-                                    <h2 style="color: #1b55e2;font-weight: bold">
+                                    <h2 style="color: #007bff;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
@@ -394,7 +394,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                         <div class="media-body">
                             <div class="media border-right-blue align-items-center">
                                 <div class="w-img">
-                                    <i class="fa fa-users mr-2" style="color: #1b55e2;font-size: 46px;"></i>
+                                    <i class="fa fa-users mr-2" style="color: #007bff;font-size: 46px;"></i>
                                 </div>
                                 <div class="media-body">
                                     <h3 class=""><?=   Yii::t('app', 'Users') ?></h3>

@@ -486,7 +486,7 @@ a.addDellink {
 }
 
 .star {
-    font-size: 30px;color: #1b55e2
+    font-size: 30px;color: #007bff;
 }
 .star i:hover {
     cursor: pointer;

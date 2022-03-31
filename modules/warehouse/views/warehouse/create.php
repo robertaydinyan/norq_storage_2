@@ -51,7 +51,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 <div style="width: 95%;min-height: 200px;background: #fff;border: 10px solid #007bff;border-top:20px solid #007bff;margin-top: 50px;border-radius: 20px;position:relative;">
                     <button class="mt-3" style="color: #fff">Հաշվետվություններ</button>
                     <h1 style="text-align: center;padding-left: 20px;" class="d-flex align-items-center justify-content-center mt-5">
-                        <i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size: 35px;"></i>Հաշվետվություններ
+                        <i class="fas fa-warehouse mr-3" style="color: #007bff;font-size: 35px;"></i>Հաշվետվություններ
                     </h1>
                     <i class="fa fa-times" style="color: #710909;font-size: 24px;position: absolute;top: 0px;right: 3px;"></i>
                 </div>
@@ -62,7 +62,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 <div style="width: 95%;min-height: 200px;background: #fff;border: 10px solid #007bff;border-top:20px solid #007bff;margin-top: 50px;border-radius: 20px;position:relative;">
                     <button class="mt-3" style="color: #fff">Հաշվետվություններ</button>
                     <h1 style="text-align: center;padding-left: 20px;" class="d-flex align-items-center justify-content-center mt-5">
-                        <i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size: 35px;"></i>Հաշվետվություններ
+                        <i class="fas fa-warehouse mr-3" style="color: #007bff;font-size: 35px;"></i>Հաշվետվություններ
                     </h1>
                     <i class="fa fa-times" style="color: #710909;font-size: 24px;position: absolute;top: 0px;right: 3px;"></i>
                 </div>
@@ -73,7 +73,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 <div style="width: 95%;min-height: 200px;background: #fff;border: 10px solid #007bff;border-top:20px solid #007bff;margin-top: 50px;border-radius: 20px;position:relative;">
                     <button class="mt-3" style="color: #fff">Հաշվետվություններ</button>
                     <h1 style="text-align: center;padding-left: 20px;" class="d-flex align-items-center justify-content-center mt-5">
-                        <i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size: 35px;"></i>Հաշվետվություններ
+                        <i class="fas fa-warehouse mr-3" style="color: #007bff;font-size: 35px;"></i>Հաշվետվություններ
                     </h1>
                     <i class="fa fa-times" style="color: #710909;font-size: 24px;position: absolute;top: 0px;right: 3px;"></i>
                 </div>
@@ -84,7 +84,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 <div style="width: 95%;min-height: 200px;background: #fff;border: 10px solid #007bff;border-top:20px solid #007bff;margin-top: 50px;border-radius: 20px;position:relative;">
                     <button class="mt-3" style="color: #fff">Հաշվետվություններ</button>
                     <h1 style="text-align: center;padding-left: 20px;" class="d-flex align-items-center justify-content-center mt-5">
-                        <i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size: 35px;"></i>Հաշվետվություններ
+                        <i class="fas fa-warehouse mr-3" style="color: #007bff;font-size: 35px;"></i>Հաշվետվություններ
                     </h1>
                     <i class="fa fa-times" style="color: #710909;font-size: 24px;position: absolute;top: 0px;right: 3px;"></i>
                 </div>
@@ -99,7 +99,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
     <ul style="list-style: none">
         <li class="mt-2 slider slider-template">
-            <i class="fas fa-warehouse mr-3" style="color: #1b55e2;font-size:20px;"></i>
+            <i class="fas fa-warehouse mr-3" style="color: #007bff;font-size:20px;"></i>
             <a href="#">
                 Հաշվետվություններ
             </a>
@@ -155,7 +155,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         min-width: 60px;
         border-radius: 20px 0px 0px 20px;
         color: white;
-        background: rgb(47,198,246);
+        background: #007bff;
         cursor: pointer;
         padding: 5px 5px 5px 15px;
 
