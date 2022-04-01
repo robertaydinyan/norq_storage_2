@@ -17,6 +17,9 @@
     .main-header2 {
         display: none!important;
     }
+    .menu-media {
+        display: block;
+    }
 
 }
 @media only screen and (max-width: 1200px) {
