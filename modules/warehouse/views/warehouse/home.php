@@ -19,15 +19,14 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<div class="mr-5 position-relative float-right" style="top: -45px">
-    <div class="input-group rounded mb-3">
+<div class="mr-5 mt-4  d-flex justify-content-between" >
+    <div class="input-group rounded mb-3 w-75 mr-2">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
         <span class="input-group-text border-0" id="search-addon">
                 <i class="fas fa-search"></i>
-              </span>
+         </span>
     </div>
     <div class="d-flex">
-
         <div class="dropdown mr-2 btn-drop">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-bars mr-2"></i> History <i class="fa fa-caret-down ml-2"></i>
@@ -55,12 +54,12 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     </div>
 </div>
 
-<div class="group-product-index d-flex align-items-center justify-content-between">
-    <h1 style="padding: 20px;" class="show-modal" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?> </h1>
+<!--<div class="group-product-index d-flex align-items-center justify-content-between">
+    <h1 style="padding: 20px;" class="show-modal" data-title="<?php /*echo $this->title[1]; */?>"><?/*= Html::encode($this->title[0]) */?> </h1>
 
 
-</div>
-<div class=" warehouse-home mt-5  " >
+</div>-->
+<div class=" warehouse-home mt-3  " >
     <?php if (\app\rbac\WarehouseRule::can('warehouse', 'view')): ?>
      <div class="warehouse-home-item mb-3">
             <div class="widget widget-card-two">

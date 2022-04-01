@@ -31,12 +31,15 @@ $flag = $flags[$lang] ?: 'hy';
 <input type="hidden" id="user-link" value="<?php echo URL::current(); ?>">
 <input type="hidden" id="user-link-no-lang" value="<?php echo \app\rbac\WarehouseRule::removeLangFromLink(URL::current()); ?>">
 <nav class="topnav navbar navbar-expand shadow navbar-light" id="sidenavAccordion" style=" background:#0055a5!important;">
+    <span style="font-size:30px;cursor:pointer;color: #fff" onclick="openNav()" class="px-3 menu-media">&#9776; </span>
     <a class="navbar-brand" href="/warehouse/warehouse/home?lang=<?php echo \Yii::$app->language; ?>" style="color:#fff!important"><img src="/img/logo.png" style="width:35px;height: 35px;" class="mr-3">Warehouse</a>
+    <div class="main-header2 ">
     <?php
     //        if(Yii::$app->controller->module->id == 'fastnet'){
     Helper::constructMenu(Yii::$app->controller->module->id);
     //        }
     ?>
+    </div>
 
     <!--<form class="form-inline mr-auto d-none d-md-block w-100">
         <div class="form-group">
@@ -48,7 +51,7 @@ $flag = $flags[$lang] ?: 'hy';
     </form>-->
 
     <ul class="navbar-nav align-items-center ml-auto">
-        <li class="nav-item dropdown no-caret mr-3 d-none d-md-inline">
+        <li class="nav-item dropdown no-caret mr-3  d-md-inline">
             <a class="nav-link dropdown-toggle timer" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div id="txt" style="color: #fff;"></div>
             </a>
@@ -221,7 +224,10 @@ $flag = $flags[$lang] ?: 'hy';
         <?php endif; ?>
     </ul>
 </nav>
-<div style="background: red">
+
+
+<div id="mySidenav" class="sidenav mt-5">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="font-size: 30px">&times;</a>
     <?php
     //        if(Yii::$app->controller->module->id == 'fastnet'){
     Helper::constructMenu(Yii::$app->controller->module->id);
@@ -229,12 +235,5 @@ $flag = $flags[$lang] ?: 'hy';
     ?>
 </div>
 
-<style>
-    .btn-success{
-        background:#474747 !important;
-         border:2px solid #474747 !important;
-    }
-    }
-</style>
 
 
