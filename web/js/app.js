@@ -171,7 +171,7 @@ $('.star').click(function () {
     var status;
     let title = $('h1').data('title').trim();
     let title_tr = $('h1').text().split('\n')[0];
-
+    status = $('.fa-star-o').hasClass('fa-star-o') ? 1 : 0;
 
     $.get('/warehouse/warehouse/change-favorite', {
         'status': status,
@@ -181,18 +181,15 @@ $('.star').click(function () {
     }).done((res) => {
         res = JSON.parse(res);
         if ($('.fa-star-o').hasClass('fa-star-o')){
-            status = 1;
             $('.fa-star-o').addClass('fa-star');
             $('.fa-star-o').removeClass('fa-star-o');
-            $('.favorites').append('<div class="favorite" data-url="' + $('#user-link-no-lang').val() + '" onclick="showPage(\'' + $('#user-link').val() + '\', \'' + title_tr + '\', \'' + res['id'] + ', false)">' + title_tr + ' <i class="fa fa-times star" data-remove="true"></i></div>')
+            $('.favorites').children().eq(1).append('<div class="favorite" data-url="' + $('#user-link-no-lang').val() + '" onclick="showPage(\'' + $('#user-link').val() + '\', \'' + title_tr + '\', \'' + res['id'] + ', false)">' + title_tr + ' <i class="fa fa-times star" data-remove="true"></i></div>')
         } else  {
-            status = 0;
             $('.fa-star').addClass('fa-star-o');
             $('.fa-star').removeClass('fa-star');
             $.each($('.favorites').children(), function(i, v) {
                 if ($(v).data('url') === $('#user-link-no-lang').val()) {
                     $(v).remove();
-                    return false;
                 }
             });
         }
