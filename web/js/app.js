@@ -243,7 +243,7 @@ function SaveForm(el) {
 let last_title = localStorage.getItem('last_form_title');
 let last_form_path = localStorage.getItem('last_form_path');
 if(last_form_path !== "null" && last_title !== "null" && last_title){
-    $('.bookmarks').prepend('<div class="favorite" onclick="showPage(\'' + last_form_path + '\', \'' + last_title + '\', \'form\')">' + last_title +'</div>');
+    $('.bookmarks').prepend('<div class="favorite mt-0" style="max-width: 220px;max-height: 36px" onclick="showPage(\'' + last_form_path + '\', \'' + last_title + '\', \'form\')">' + last_title +'</div>');
 }
 setTimeout(function() {
     if (last_form_path + '&show-header=false' === $('#user-link').val()) {
