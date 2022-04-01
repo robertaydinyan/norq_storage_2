@@ -28,7 +28,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     </div>
     <div class="d-flex">
         <div class="dropdown mr-2 btn-drop">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle bg-white bg-white" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-bars mr-2"></i> History <i class="fa fa-caret-down ml-2"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
@@ -40,7 +40,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
         </div>
         <div class="dropdown btn-drop">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle bg-white bg-white" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-star mr-2"></i> Favorites <i class="fa fa-caret-down ml-2"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
@@ -156,7 +156,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                 <div class="w-img text-right">
                                     <h2 style="color:#0055a5;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle bg-white" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
@@ -206,7 +206,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                 <div class="w-img text-right">
                                     <h2 style="color:#0055a5;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle bg-white" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
@@ -256,7 +256,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                 <div class="w-img text-right">
                                     <h2 style="color:#0055a5;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle bg-white" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
@@ -354,7 +354,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                 <div class="w-img text-right">
                                     <h2 style="color:#0055a5;font-weight: bold">
                                         <div class="dropdown mr-2 btn-drop">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle bg-white" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">

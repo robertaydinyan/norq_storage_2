@@ -289,18 +289,18 @@ span{
 
  button,select {
     font: 9pt Segoe UI,sans-serif;
-    border: 1px solid #007bff;
+    border: 1px solid #0055a5!important;
     min-width: 75px;
     min-height: 23px;
     padding: 0 12px;
     text-align: center;
-    background: #007bff;
-    box-shadow: inset 0 -1px 1px #007bff, inset 0 1px 1px #007bff;
+    background: #0055a5!important;
+    box-shadow: inset 0 -1px 1px #0055a5!important;, inset 0 1px 1px #0055a5!important;
 }
 .button:not(:disabled).active, .button:not(:disabled):active, button:not(:disabled).active, button:not(:disabled):active,.button:not(:disabled):hover, button:not(:disabled):hover,
 select:not(:disabled).active, select:not(:disabled):focus,.button:not(:disabled):hover, select:not(:disabled):hover
 {
-    background: #007bff;
+    background: #0055a5;
 }
 input[type="email"], input[type="number"], input[type="password"], input[type="text"] {
     height: 37px;
@@ -323,3 +323,36 @@ input[type=checkbox]+label:before {
     display: none;
 }
 
+.accordion {
+    min-width: 200px;
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 5px 20px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+ .accordion:hover, .accordion:active, .accordion:focus {
+    background-color: #ccc;
+    color: #0055a5!important;
+}
+
+.panel {
+    padding: 0;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+}
+
+.panel2 {
+    z-index: 1000;
+    background: rgb(255, 255, 255);
+    margin-top: 5px;
+    max-height: 232px;
+    overflow-y: auto;
+}

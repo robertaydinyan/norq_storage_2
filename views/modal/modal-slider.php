@@ -77,7 +77,7 @@
         min-width: 60px;
         border-radius: 20px 0px 0px 20px;
         color: white;
-        background: rgb(47,198,246);
+        background: #0055a5;
         cursor: pointer;
         padding: 5px 5px 5px 15px;
 

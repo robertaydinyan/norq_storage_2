@@ -4,6 +4,7 @@
 //
 // })(jQuery);
 
+
 let categoryTreeToggler = document.getElementsByClassName("caret");
 let i;
 
@@ -376,3 +377,6 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
+
+
+

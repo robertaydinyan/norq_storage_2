@@ -60,7 +60,10 @@ AppAsset::register($this);
             <div class="bookmarks d-flex">
 
                 <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
+
                     <div class="favorites" style="margin-left: 40px;">
+                        <button class="accordion bg-white" style="background: #fff;">Favorite</button>
+                        <div class="panel panel2">
                         <?php if ($favorites):
                             foreach ($favorites as $f):
                                 $title = explode(":", $f->title);
@@ -77,8 +80,11 @@ AppAsset::register($this);
                                 </div>
                             <?php endforeach;
                         endif;?>
+                        </div>
                     </div>
                     <div class="histories" style="margin-left: 40px;">
+                        <button class="accordion bg-white" style="background: #fff">History (5)</button>
+                        <div class="panel panel2">
                         <?php if ($history):
                             foreach ($history as $h):
                                 $title = explode(":", $h->title);
@@ -95,6 +101,7 @@ AppAsset::register($this);
                                 </div>
                             <?php endforeach;
                         endif;?>
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>
@@ -220,8 +227,10 @@ AppAsset::register($this);
         .favorite{
             border:1px solid #0055a5!important;
             padding:5px 20px;
-            display:inline-block;
+            margin-top: 10px;
             cursor:pointer;
+            display: flex;
+            justify-content: space-between;
         }
         .window{
             z-index:1150 !important;
@@ -231,6 +240,7 @@ AppAsset::register($this);
         }
         .favorite i{
             color:#0055a5!important;
+            margin-left: 10px;
         }
         <?php if(isset($_GET['show-header'])){ ?>
         *:not('button'){
@@ -272,6 +282,19 @@ AppAsset::register($this);
 <?php $this->endPage() ?>
 
 
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var j;
 
-
-
+    for (j = 0; j < acc.length; j++) {
+        acc[j].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>
