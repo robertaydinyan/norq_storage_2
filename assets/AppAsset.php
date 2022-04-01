@@ -35,6 +35,7 @@ class AppAsset extends AssetBundle
         'css/modules/crm/jquery-ui.min.css',
         'css/plugins/fontawesome/all.min.css',
         'css/modules/crm/ui-kit.css',
+        'css/modules/media/media.css',
        /* 'slick/slick.css',
         'slick/slick-theme.css',*/
 

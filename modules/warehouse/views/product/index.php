@@ -117,11 +117,11 @@ if (count($table_columns) == 0) {
         <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Product"><i class="fa fa-wrench "></i></button></a>
     </h1>
 
-<div class="product-index " style="padding: 20px;">
+<div class="product-index table-scroll" style="padding: 20px;">
         <?= GridView::widget([
             'dataProvider' => $dataProvider2,
             'tableOptions' => [
-                'class' => 'table table-hover'
+                'class' => 'table table-hover '
             ],
             'columns' => $table_columns,
         ]) ?>

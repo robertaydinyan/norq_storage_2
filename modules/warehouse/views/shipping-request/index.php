@@ -68,7 +68,7 @@ $table_all_columns = array();
                 <?php if (isset($_GET['type'])) { ?>
                     <input type="hidden" name="type" value="<?php echo $_GET['type']; ?>">
                 <?php } ?>
-                <div class="col-sm-4" style="margin-bottom: 10px;">
+                <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-5" style="margin-bottom: 10px;">
                     <div class="row">
                         <div class="col-sm-4">
                             <select name="provider_warehouse_id" class="form-control btn-primary">
@@ -118,7 +118,7 @@ $table_all_columns = array();
                     </div>
 
                 </div>
-                <div class="col-sm-2">
+                <div class="col-6	col-sm-6	col-md-3 col-lg-3	col-xl-2">
                     <?php
                     echo DatePicker::widget([
                         'name' => 'from_created_at',
@@ -132,7 +132,7 @@ $table_all_columns = array();
                     ?>
 
                 </div>
-                <div class="col-sm-2">
+                <div class="col-6	col-sm-6	col-md-3 col-lg-3	col-xl-2">
                     <?php
                     echo DatePicker::widget([
                         'name' => 'to_created_at',
@@ -145,7 +145,7 @@ $table_all_columns = array();
                     ]);
                     ?>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-10	col-sm-10	col-md-4 col-lg-4	col-xl-2">
                     <button type="button" class="btn btn-primary form-control" data-toggle="modal"
                             data-target="#suppliersModal"><?php echo Yii::t('app', 'Suppliers') ?></button>
                     <div class="modal fade" id="suppliersModal" tabindex="-1" role="dialog"
@@ -180,7 +180,7 @@ $table_all_columns = array();
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-1">
+                <div class="col-2	col-sm-2	col-md-2 col-lg-2	col-xl-1">
                     <button type="submit" class="btn btn-primary b-none">
                         <i class="fas fa-search"></i>
                     </button>
@@ -617,7 +617,7 @@ $table_all_columns = array();
             array_push($table_columns, $actions);
             //var_dump($table_columns);die();
             ?>
-
+<div class="table-scroll">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'tableOptions' => [
@@ -625,6 +625,7 @@ $table_all_columns = array();
                 ],
                 'columns' => $table_columns,
             ]); ?>
+</div>
         </div>
         <div class="modal fade" id="viewInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">

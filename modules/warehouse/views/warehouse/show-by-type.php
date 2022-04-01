@@ -141,7 +141,7 @@ array_push($table_columns, $actions);
                 </div>
             </button>
             <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Warehouse"><i class="fa fa-wrench "></i></button></a></h1>
-        <div style="padding:20px;">
+        <div style="padding:20px;" class="table-scroll">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'tableOptions' => [

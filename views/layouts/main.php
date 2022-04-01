@@ -215,7 +215,7 @@ AppAsset::register($this);
 
 
         .favorite{
-            border:1px solid #007bff!important;
+            border:1px solid #0055a5!important;
             padding:5px 20px;
             display:inline-block;
             cursor:pointer;
@@ -227,7 +227,7 @@ AppAsset::register($this);
             z-index:1200 !important;
         }
         .favorite i{
-            color:#007bff!important;
+            color:#0055a5!important;
         }
         <?php if(isset($_GET['show-header'])){ ?>
         *:not('button'){

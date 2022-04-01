@@ -66,7 +66,7 @@ array_push($table_columns, $actions);
     </h1>
 
 
-    <div style="padding:20px;" class="table">
+    <div style="padding:20px;" class="table table-scroll">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'tableOptions' => [

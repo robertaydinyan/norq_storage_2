@@ -169,7 +169,7 @@ class Helper
                 'brandLabel' => false, // название организации
                 'brandUrl' => \Yii::$app->homeUrl, // ссылка на главную страницу сайта
                 'options' => [
-                    'class' => 'main-header navbar navbar-expand  main-header2', // стили главной панели
+                    'class' => 'main-header navbar navbar-expand  main-header2 ', // стили главной панели
                 ],
                 'renderInnerContainer' => false,
             ]);

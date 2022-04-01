@@ -83,15 +83,15 @@ $flag = $flags[$lang] ?: 'hy';
             </div>
         </li>
         <li class="nav-item dropdown no-caret mr-3 d-md-none">
-            <a class="btn btn-icon btn-transparent-dark dropdown-toggle p-0 rounded-circle" id="searchDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>
+           <!-- <a class="btn btn-icon btn-transparent-dark dropdown-toggle p-0 rounded-circle" id="searchDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>-->
             <!-- Dropdown - Search-->
             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--fade-in-up" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100">
                     <div class="input-group input-group-joined input-group-solid">
                         <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
+                       <!-- <div class="input-group-append">
                             <div class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
-                        </div>
+                        </div>-->
                     </div>
                 </form>
             </div>
@@ -223,6 +223,7 @@ $flag = $flags[$lang] ?: 'hy';
         <?php endif; ?>
     </ul>
 </nav>
+
 <style>
     .btn-success{
         background:#474747 !important;

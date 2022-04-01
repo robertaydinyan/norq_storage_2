@@ -192,26 +192,26 @@ span{
 
 }
 .btn-drop button{
-    border:1px solid #007bff;
+    border:1px solid #0055a5;
     background:#fff;
-    color:#007bff;
+    color:#0055a5;
 }
 .btn-drop button:focus,.btn-drop button:hover,.btn-drop button:active{
-    border:1px solid #007bff!important;
+    border:1px solid #0055a5!important;
     background:#fff!important;
-    color:#007bff!important;
+    color:#0055a5!important;
 }
 .see {
     position: absolute;
     bottom: 10px;
-    background:#007bff!important;
+    background:#0055a5!important;
     width: 96%;
     margin-left: 2%!important;
     padding: 15px 10px!important;
 }
 
 .border-right-blue {
-    border-right: 5px solid #007bff;
+    border-right: 5px solid #0055a5;
 }
 
 
@@ -322,3 +322,4 @@ input[type=checkbox] {
 input[type=checkbox]+label:before {
     display: none;
 }
+

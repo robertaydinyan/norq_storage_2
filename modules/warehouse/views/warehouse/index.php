@@ -19,13 +19,15 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 
 <div class="group-product-index">
-
-    <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
-    <?php echo \app\rbac\WarehouseRule::can('warehouse', 'create') ? '<a style="float: right" href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '" class="btn btn-primary "  >' .  Yii::t("app", "Create Warehouse") . '</a>' : ''; ?>
-       <!-- <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-wrench"></i></button>
-        <button class="btn btn-primary mr-2" style="float: right" id="Filter" data-model="WarehouseTypes"><i class="fa fa-list"></i></button>-->
-        <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
-    </h1>
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+        <div>
+            <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary  mr-2">Xls</button>
+            <?php echo \app\rbac\WarehouseRule::can('warehouse', 'create') ? '<a  href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '" class="btn btn-primary "  >' .  Yii::t("app", "Create Warehouse") . '</a>' : ''; ?>
+            <!-- <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-wrench"></i></button>
+             <button class="btn btn-primary mr-2" style="float: right" id="Filter" data-model="WarehouseTypes"><i class="fa fa-list"></i></button>-->
+        </div>
+    </div>
 
     <div style="padding:20px;" class="table">
         <table class="kv-grid-table table table-hover  kv-table-wrap">

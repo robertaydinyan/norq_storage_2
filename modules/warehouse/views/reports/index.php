@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] =  $this->title[0];
     <input type="hidden" name="lang" value="<?php echo Yii::$app->language; ?>">
     <div class="col-sm-12" style="margin-bottom: 10px;">
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2 ">
                 <select name="warehouse_type" class="form-control warehouse_type btn-primary">
                     <option value=""><?php echo Yii::t('app', 'Warehouse type'); ?></option>
                     <?php if(!empty($warehouse_types)){
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] =  $this->title[0];
                     } ?>
                 </select>
             </div>
-            <div class="col-sm-2 <?php if(@!$_GET['region_id']){ echo 'hide';}?> region">
+            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2 <?php if(@!$_GET['region_id']){ echo 'hide';}?> region">
                 <select name="region_id" class="form-control region_  btn-primary">
                     <option value=""><?php echo Yii::t('app', 'District'); ?></option>
                     <?php if(!empty($regions)){
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] =  $this->title[0];
                     } ?>
                 </select>
             </div>
-            <div class="col-sm-2 hide subgroup">
+            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2 hide subgroup">
                 <select name="virtual_type" <?php if(@!$_GET['virtual_type']){ echo 'hide';}?> class="form-control virtual_type  btn-primary">
                     <option value=""><?php echo Yii::t('app', 'Virtual (types)'); ?></option>
                     <?php if(!empty($groups)){
@@ -60,17 +60,17 @@ $this->params['breadcrumbs'][] =  $this->title[0];
                     } ?>
                 </select>
             </div>
-            <div class="col-sm-2 <?php if(@!$_GET['community_id']){ echo 'hide';}?> community">
+            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2 <?php if(@!$_GET['community_id']){ echo 'hide';}?> community">
                 <select name="community_id" class="form-control community_select btn-primary">
                     <option value=""><?php echo Yii::t('app', 'Community'); ?></option>
                 </select>
             </div>
-            <div class="col-sm-2 hide ware" <?php if(@!$_GET['supplier_warehouse_id']){ echo 'hide';}?>>
+            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2 hide ware" <?php if(@!$_GET['supplier_warehouse_id']){ echo 'hide';}?>>
                 <select name="supplier_warehouse_id" class="form-control ware_select btn-primary">
                     <option value=""><?php echo Yii::t('app', 'Warehouse'); ?></option>
                 </select>
             </div>
-            <div class="col-sm-2">
+            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2">
                  <?php 
                     echo DatePicker::widget([
                         'name' => 'from_created_at', 
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] =  $this->title[0];
                     ?>
                
             </div>
-            <div class="col-sm-2">
+            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2">
                 <?php 
                     echo DatePicker::widget([
                         'name' => 'to_created_at', 
@@ -103,9 +103,9 @@ $this->params['breadcrumbs'][] =  $this->title[0];
         </div>
     </div>
     <?php if(\app\rbac\WarehouseRule::can('reports', 'generate')): ?>
-    <div class="col-sm-2">
+    <div class="col-12	col-sm-6	col-md-3 col-lg-3	col-xl-2">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <button type="submit" class="btn btn-primary form-control">
                     <?php echo Yii::t('app', 'Collect'); ?>
                 </button>
@@ -113,16 +113,16 @@ $this->params['breadcrumbs'][] =  $this->title[0];
         </div>
     </div>
     <?php endif; ?>
-    <div class="col-sm-2">
+    <div class="col-12	col-sm-6	col-md-3 col-lg-3	col-xl-2">
         <div>
             <a href="#" onclick="selectProduct()" style="margin-top:5px;display: block;"><?php echo Yii::t('app', 'By Products'); ?></a>
         </div>
         <div id="showProducts"></div>
     </div>
-    <div class="col-sm-2">
+    <div class="col-12	col-sm-6	col-md-3 col-lg-3	col-xl-2">
         <input type="checkbox" <?php if(@$_GET['show-ware']){ echo 'checked';}; ?> name="show-ware" value="1" id="ware"> <label class="ml-1"  for="ware"><?php echo Yii::t('app', 'By warehouses'); ?></label>
     </div>
-    <div class="col-sm-2">
+    <div class="col-12	col-sm-6	col-md-3 col-lg-3	col-xl-2">
         <input type="checkbox" <?php if(@$_GET['show-series']){ echo 'checked';}; ?> name="show-series" id="series" value="1"><label class="ml-1" for="series"><?php echo Yii::t('app', 'By series'); ?></label>
     </div>
 

@@ -86,7 +86,7 @@ array_push($table_columns, $actions);
 
 
     <?php Pjax::begin(); ?>
-    <div style="padding:20px;" >
+    <div style="padding:20px;" class="table-scroll">
 
 
     <?= GridView::widget([
