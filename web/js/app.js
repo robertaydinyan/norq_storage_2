@@ -220,6 +220,7 @@ function startTime() {
     document.getElementById('txt').innerHTML =  h + ":" + m ;
     setTimeout(startTime, 1000);
 }
+startTime()
 
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10

@@ -160,6 +160,7 @@ class SiteController extends Controller
                     $t->row_name_normal = $v;
                     $t->userID = Yii::$app->user->id;
                     $t->order = $k;
+                    $t->status = 1;
                     $t->type = $type;
                     $k++;
                     $t->save(false);

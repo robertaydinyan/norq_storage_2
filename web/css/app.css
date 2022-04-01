@@ -55,6 +55,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 .window {
   width: 50%;
+  height: 50%;
 }
 
 .window-body {
@@ -12693,4 +12694,42 @@ aside .nav-link.active {
 
 .slider-template {
   display: none !important;
+}
+
+.slick-prev,.slick-next{
+  background: #007bff;
+  color: #fff;
+  z-index: 200;
+}
+.modal-content-custom{
+  display: none;
+  width: 90%;
+  height: 30%;
+  position: fixed;
+  top: 70%;
+  bottom: 0px;
+  left: 110%;
+  background: white !important;
+  z-index: 100000;
+  box-shadow: 2px 2px 2px 2px lightgray;
+  /*   transition-duration: 500ms;*/
+
+}
+.modal-content-custom .page1{
+  width: 50% !important;
+  padding: 30px;
+  max-height: 100vh;
+  overflow: auto;
+}
+.modal-content-custom .close{
+  position: absolute;
+  top: 10%;
+  left: -60px;
+  min-width: 60px;
+  border-radius: 20px 0px 0px 20px;
+  color: white;
+  background: rgb(47,198,246);
+  cursor: pointer;
+  padding: 5px 5px 5px 15px;
+
 }

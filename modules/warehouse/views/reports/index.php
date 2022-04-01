@@ -40,16 +40,16 @@ $this->params['breadcrumbs'][] =  $this->title[0];
                     } ?>
                 </select>
             </div>
-            <div class="col-sm-2 <?php if(@!$_GET['region_id']){ echo 'hide';}?> region">
-                <select name="region_id" class="form-control region_  btn-primary">
-                    <option value=""><?php echo Yii::t('app', 'District'); ?></option>
-                    <?php if(!empty($regions)){
-                        foreach ($regions as $region =>$rg){
-                            echo '<option  value="'.$region.'" >'.$rg.'</option>';
-                        }
-                    } ?>
-                </select>
-            </div>
+<!--            <div class="col-sm-2 --><?php //if(@!$_GET['region_id']){ echo 'hide';}?><!-- region">-->
+<!--                <select name="region_id" class="form-control region_  btn-primary">-->
+<!--                    <option value="">--><?php //echo Yii::t('app', 'District'); ?><!--</option>-->
+<!--                    --><?php //if(!empty($regions)){
+//                        foreach ($regions as $region =>$rg){
+//                            echo '<option  value="'.$region.'" >'.$rg.'</option>';
+//                        }
+//                    } ?>
+<!--                </select>-->
+<!--            </div>-->
             <div class="col-sm-2 hide subgroup">
                 <select name="virtual_type" <?php if(@!$_GET['virtual_type']){ echo 'hide';}?> class="form-control virtual_type  btn-primary">
                     <option value=""><?php echo Yii::t('app', 'Virtual (types)'); ?></option>
