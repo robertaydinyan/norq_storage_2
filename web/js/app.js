@@ -285,13 +285,6 @@ function windowActions() {
         $(this).closest('.slider').remove();
     });
 }
- var checkList = document.getElementById('list1');
- checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
-     if (checkList.classList.contains('visible'))
-         checkList.classList.remove('visible');
-     else
-         checkList.classList.add('visible');
- }
 
 
 function showPage(url, title, id, header = true){
@@ -326,7 +319,6 @@ function showPage(url, title, id, header = true){
 $('.show-modal').click(function(){
     var href = $(this).attr('data-modal');
     // var html_ = $('#page-modal').html();
-
     // $(".regular").slick({
     //     dots: false,
     //     infinite: true,
@@ -344,9 +336,7 @@ $('.show-modal').click(function(){
 
 
 
-window.onload = function(){
-    $('table').attr('id','tbl');
-}
+$('table').attr('id','tbl');
 var tableToExcel = (function() {
     var uri = 'data:application/vnd.ms-excel;base64,'
         , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
@@ -368,6 +358,27 @@ var tableToExcel = (function() {
         downloadURI(resuri, fileName);
     }
 })();
+var checkList = document.getElementById('list1');
+if (checkList) {
+    checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+        if (checkList.classList.contains('visible'))
+            checkList.classList.remove('visible');
+        else
+            checkList.classList.add('visible');
+    }
+}
+
+$('.change-site-status').on('click', function() {
+    let status = parseInt($(this).attr('data-status'));
+    if (window.confirm('Համոզված եք')) {
+        $.post('/site/change-site-status', {
+            status: status
+        }).done(() => {
+            $(this).find('i').attr('class', status === 1 ? 'fa fa-hand-paper-o' : 'fas fa-car');
+            $(this).attr('data-status', 1 - status);
+        })
+    }
+});
 
 
 function openNav() {
@@ -377,6 +388,3 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
-
-
-

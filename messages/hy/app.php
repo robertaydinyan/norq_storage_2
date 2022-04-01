@@ -145,5 +145,6 @@ return [
     'Create Complectation Products' => 'Ստեղծեք կոմպլեկտավորման արտադրանք',
     'Update Complectation Products' => 'Համալրման արտադրանքների թարմացում',
     'Create Partners List' => 'Ստեղծեք գործընկերների ցուցակ',
-    'Create a Product' =>'Ստեղծել Ապրանք'
+    'Create a Product' => 'Ստեղծել Ապրանք',
+    'Notifications' => 'Ծանուցումներ',
 ];

@@ -245,5 +245,5 @@ class Notifications extends \yii\db\ActiveRecord
             return json_encode(array('status'=>false,'message'=>'Wrong notification id type'));
         }
     }
+
 }
-?>

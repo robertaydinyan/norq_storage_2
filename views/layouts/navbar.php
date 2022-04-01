@@ -3,6 +3,7 @@
 use app\components\Url;
 
 use app\components\Helper;
+use app\modules\warehouse\models\SiteSettings;
 
 $flags = array(
     'ru-RU' => 'ru',
@@ -11,6 +12,7 @@ $flags = array(
 );
 $lang = Yii::$app->request->get('lang');
 $flag = $flags[$lang] ?: 'hy';
+$s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
 
 ?>
 
@@ -83,6 +85,11 @@ $flag = $flags[$lang] ?: 'hy';
                 </a>
             </div>
         </li>
+        <?php if(Yii::$app->user->identity->role == "admin"):?>
+            <a href="javascript:void(0);" class="change-site-status" style="color: white; font-size: 20px;" data-status="0">
+                <i class="<?php echo $s ? 'fa fa-hand-paper-o' : 'fas fa-car'?>"></i></a>
+            </a>
+        <?php endif; ?>
         <li class="nav-item dropdown no-caret mr-3 d-md-none">
            <!-- <a class="btn btn-icon btn-transparent-dark dropdown-toggle p-0 rounded-circle" id="searchDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>-->
             <!-- Dropdown - Search-->
@@ -185,11 +192,11 @@ $flag = $flags[$lang] ?: 'hy';
                         <div class="dropdown-notifications-item-content-details">Diane Chambers · 2d</div>
                     </div>
                 </a>
-                <a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
+                <a class="dropdown-item dropdown-notifications-footer" href="/notifications">Read All Messages</a>
             </div>
         </li>
 
-     
+
 
         <!-- Если пользователь гость, показыаем ссылку "Вход", если он авторизовался "Выход" -->
         <?php if (!Yii::$app->user->isGuest) : ?>
