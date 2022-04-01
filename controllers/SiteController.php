@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\Helper;
+use app\modules\warehouse\models\SiteSettings;
 use app\modules\warehouse\models\TableRowsStatus;
 use Yii;
 use yii\filters\AccessControl;
@@ -131,10 +132,12 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
     public function actionNotifications()
     {
        return Notifications::updateNotificationStatus(intval($_POST['id']));
     }
+
     public function actionNotificationsUpdate()
     {
         return $this->renderAjax('notifications');
@@ -174,5 +177,18 @@ class SiteController extends Controller
                 'columnsPassive' => $columnsPassive,
             ]);
         }
+    }
+
+    public function actionChangeSiteStatus() {
+        $request = $this->request;
+        $isAdmin = Yii::$app->user->identity->role == "admin";
+        if ($request->isPost && $isAdmin) {
+            $status = $request->post('status');
+            var_dump($status);
+            $s = SiteSettings::find()->where(['name' => 'page-status'])->one();
+            $s->value = $status;
+            return $s->save();
+        }
+        return $this->redirect('/site/error');
     }
 }

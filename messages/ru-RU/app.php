@@ -146,5 +146,6 @@ return [
     'Create Complectation Products' => 'Создание продуктов комплектования',
     'Update Complectation Products' => 'Обновление продуктов комплектации',
     'Create Partners List' => 'Создать список партнеров',
-    'Create a Product' => 'Создать продукт'
+    'Create a Product' => 'Создать продукт',
+    'Notifications' => 'Уведомления',
 ];

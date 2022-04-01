@@ -19,7 +19,6 @@ use app\models\Notifications;
 $history = UserHistory::find()->where(['user_id' => Yii::$app->user->id])->limit(5)->orderBy('time DESC')->all();
 $favorites = Favorite::find()->where(['user_id' => Yii::$app->user->id])->all();
 AppAsset::register($this);
-
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -45,7 +44,7 @@ AppAsset::register($this);
 
     <?php $this->beginBody() ?>
 
-    <?php if(!Yii::$app->user->isGuest) : ?>
+    <?php if(!Yii::$app->user->isGuest) :?>
         <?= $this->render('navbar') ?>
     <?php endif;?>
 

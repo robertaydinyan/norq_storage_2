@@ -163,7 +163,7 @@ class Helper
         $modules = ['billing', 'crm', 'task', 'hr', 'fastnet', 'rbac', 'warehouse'];
         $lang = Yii::$app->request->get('lang');
 
-        if (in_array($module, $modules)) {
+//        if (in_array($module, $modules)) {
 
             NavBar::begin([ // отрываем виджет
                 'brandLabel' => false, // название организации
@@ -309,33 +309,29 @@ class Helper
                 ['label' => Yii::t('app', 'Item'), 'url' => ['/rbac/item/index']],
             ];
 
-            switch ($module) {
-                case $modules[0]:
-                    $result = $billing;
-                    break;
-                case $modules[1]:
-                    $result = $crm;
-                    break;
-                case $modules[2]:
-                    $result = $task;
-                    break;
-                case $modules[3]:
-                    $result = $hr;
-                    break;
-                case $modules[4]:
-                    $result = $fastnet;
-                    break;
-                case $modules[5]:
-                    $result = $rbac;
-                    break;
-                case $modules[6]:
-                    $result = $warehouse;
-                    break;
-                default:
-                    $result = $billing;
-                    break;
-            }
-
+//            switch ($module) {
+//                case $modules[0]:
+//                    $result = $billing;
+//                    break;
+//                case $modules[1]:
+//                    $result = $crm;
+//                    break;
+//                case $modules[2]:
+//                    $result = $task;
+//                    break;
+//                case $modules[3]:
+//                    $result = $hr;
+//                    break;
+//                case $modules[4]:
+//                    $result = $fastnet;
+//                    break;
+//                case $modules[5]:
+//                    $result = $rbac;
+//                    break;
+//                case $modules[6]:
+            $result = $warehouse;
+//                    break;
+//                default:
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav w-100'], // стили ul
                 'items' => $result
@@ -343,7 +339,6 @@ class Helper
 
             NavBar::end(); // закрываем виджет
 
-        }
     }
 
     /**

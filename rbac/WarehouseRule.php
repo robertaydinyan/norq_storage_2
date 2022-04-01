@@ -5,6 +5,7 @@ namespace app\rbac;
 use app\components\Url;
 use app\modules\warehouse\models\Action;
 use app\modules\warehouse\models\ActionDep;
+use app\modules\warehouse\models\SiteSettings;
 use app\modules\warehouse\models\UserAction;
 use app\modules\warehouse\models\UserHistory;
 use Yii;
@@ -22,7 +23,13 @@ class WarehouseRule {
         $controller = $controller ?: Yii::$app->controller->id;
         $action = $action ?: Yii::$app->controller->action->id;
         $userID = Yii::$app->user->id;
-        if (!($controller == 'site' && $action == "error") && Yii::$app->user->identity->role != "admin") {
+        $isAdmin = Yii::$app->user->identity->role == "admin";
+        $page_status = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
+
+        // page down
+        if (!$isAdmin && !$page_status) return false;
+
+        if (!($controller == 'site' && $action == "error") && !$isAdmin) {
             $access = WarehouseRule::hasAccess($controller, $action, $userID);
             if ($access == 0) {
                 $depID = ActionDep::find()->where('action_name = "' . $action . '" AND controller_name = "' . $controller . '"')->one()->depID;
