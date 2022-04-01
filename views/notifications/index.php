@@ -68,7 +68,7 @@ $tp = ceil($nc / $count_per_page);
         <?php if ($tp - $page > 1): ?>
             <a href="#">...</a>
         <?php endif; ?>
-        <?php if ($tp != $page): ?>
+        <?php if ($tp > $page): ?>
             <a href="<?php echo Url::current(['page' => $tp]) ?>"><?php echo $tp ?></a>
             <a href="<?php echo Url::current(['page' => $page + 1]) ?>">&raquo;</a>
         <?php endif; ?>

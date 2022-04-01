@@ -178,20 +178,9 @@ $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail mr-2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     Message Center
                 </h6>
-                <a class="dropdown-item dropdown-notifications-item" href="#!">
-<!--                    <img class="dropdown-notifications-item-img" src="https://source.unsplash.com/vTL_qy03D1I/60x60">-->
-                    <div class="dropdown-notifications-item-content">
-                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                        <div class="dropdown-notifications-item-content-details">Emily Fowler · 58m</div>
-                    </div>
-                </a>
-                <a class="dropdown-item dropdown-notifications-item" href="#!">
-<!--                    <img class="dropdown-notifications-item-img" src="https://source.unsplash.com/4ytMf8MgJlY/60x60">-->
-                    <div class="dropdown-notifications-item-content">
-                        <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                        <div class="dropdown-notifications-item-content-details">Diane Chambers · 2d</div>
-                    </div>
-                </a>
+                <div class="nots">
+
+                </div>
                 <a class="dropdown-item dropdown-notifications-footer" href="/notifications">Read All Messages</a>
             </div>
         </li>

@@ -157,7 +157,7 @@ AppAsset::register($this);
 
     $this->registerJs("$('#sidenavAccordion .fa-bell').closest('.dropdown-toggle').append('<small class=\"badge notifications-count badge-primary\" style=\"top:-10px;font-size:50%;\">".$notification_count."</small>');
             $('.dropdown-notifications').on('click', 
-                    function() { 
+                    function() {
                         $('.nots').html(`".$string."`);                      
                         $('.dropdown-notifications-item').on('click',
                                 function() {
