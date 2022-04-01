@@ -50,9 +50,7 @@ $flag = $flags[$lang] ?: 'hy';
     <ul class="navbar-nav align-items-center ml-auto">
         <li class="nav-item dropdown no-caret mr-3 d-none d-md-inline">
             <a class="nav-link dropdown-toggle timer" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <body onload="startTime()">
                 <div id="txt" style="color: #fff;"></div>
-                </body>
             </a>
             <div class="dropdown-menu dropdown-menu-right py-0 mr-sm-n15 mr-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
                 <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank">
@@ -223,6 +221,13 @@ $flag = $flags[$lang] ?: 'hy';
         <?php endif; ?>
     </ul>
 </nav>
+<div style="background: red">
+    <?php
+    //        if(Yii::$app->controller->module->id == 'fastnet'){
+    Helper::constructMenu(Yii::$app->controller->module->id);
+    //        }
+    ?>
+</div>
 
 <style>
     .btn-success{
