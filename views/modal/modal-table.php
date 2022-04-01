@@ -85,7 +85,7 @@
         margin-bottom: 5px;
         padding-left: 10px;
         color: #fff;
-        background: #1b55e2;
+        background: #007bff ;
         font-size: 18px;
         line-height: 40px;
     }

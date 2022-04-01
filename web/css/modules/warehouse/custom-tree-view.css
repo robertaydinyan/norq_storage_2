@@ -156,13 +156,13 @@ span{
     margin-right: .25rem;
     vertical-align: middle;
     font-size: 1rem;
-    color: #1b55e2;
+    color: #007bff;
     /*content: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="%232b50ed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>');*/
 }
 .file-tree li::before {
     /*content: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="%232b50ed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>');*/
     font-size: 1rem;
-    color: #1b55e2;
+    color: #007bff;
     margin-right: 9px;
     position: relative;
     top: 2px;
@@ -192,26 +192,26 @@ span{
 
 }
 .btn-drop button{
-    border:1px solid #007bff;
+    border:1px solid #0055a5;
     background:#fff;
-    color:#007bff;
+    color:#0055a5;
 }
 .btn-drop button:focus,.btn-drop button:hover,.btn-drop button:active{
-    border:1px solid #007bff!important;
+    border:1px solid #0055a5!important;
     background:#fff!important;
-    color:#007bff!important;
+    color:#0055a5!important;
 }
 .see {
     position: absolute;
     bottom: 10px;
-    background:#1b55e2!important;
+    background:#0055a5!important;
     width: 96%;
     margin-left: 2%!important;
     padding: 15px 10px!important;
 }
 
 .border-right-blue {
-    border-right: 5px solid #1b55e2;
+    border-right: 5px solid #0055a5;
 }
 
 
@@ -322,3 +322,4 @@ input[type=checkbox] {
 input[type=checkbox]+label:before {
     display: none;
 }
+

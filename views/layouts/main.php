@@ -58,6 +58,7 @@ AppAsset::register($this);
         <div class="wrap">
 
             <div class="bookmarks d-flex">
+
                 <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
                     <div class="favorites" style="margin-left: 40px;">
                         <?php if ($favorites):
@@ -217,7 +218,7 @@ AppAsset::register($this);
 
 
         .favorite{
-            border:1px solid #1b55e2!important;
+            border:1px solid #0055a5!important;
             padding:5px 20px;
             display:inline-block;
             cursor:pointer;
@@ -229,7 +230,7 @@ AppAsset::register($this);
             z-index:1200 !important;
         }
         .favorite i{
-            color:#1b55e2!important;
+            color:#0055a5!important;
         }
         <?php if(isset($_GET['show-header'])){ ?>
         *:not('button'){

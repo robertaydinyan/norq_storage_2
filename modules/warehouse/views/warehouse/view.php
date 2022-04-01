@@ -29,8 +29,8 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
         width: 100%;
     }
 </style>
-<div class="warehouse-view d-flex group-product-index" style="padding: 20px;">
-    <div class="col-lg-4">
+<div class="warehouse-view d-flex flex-wrap group-product-index" style="padding: 20px;">
+    <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-4">
         <h1 class="mb-5 d-flex" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($model->{'name_' . $lang}) ?> <?php echo Yii::t('app', 'Main warehouse'); ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <?php if($model->type != 2){ ?>
         <?= DetailView::widget([
@@ -92,9 +92,9 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
         </p>
        <?php } ?>
     </div>
-    <div class="col-lg-7" style="margin-left: 50px;margin-top:36px;">
+    <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-7 table-scroll" style="margin-top:36px;">
 
-        <table  class="table table-hover  detail-view" style="width:100%">
+        <table   class="table table-hover  detail-view " style="width:100%">
             <thead>
             <?php if (!empty($dataProvider['result'])) : ?>
             <tr>

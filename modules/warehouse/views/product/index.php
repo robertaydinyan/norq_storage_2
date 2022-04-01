@@ -101,6 +101,7 @@ if (count($table_columns) == 0) {
 
         '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary" style="float: right;">' .
         Yii::t('app', 'Product group') . '</a>' : ''; ?>
+        <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
         <button class="btn btn-primary mr-2" style="float: right">
             <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
                 <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
@@ -116,11 +117,11 @@ if (count($table_columns) == 0) {
         <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Product"><i class="fa fa-wrench "></i></button></a>
     </h1>
 
-<div class="product-index " style="padding: 20px;">
+<div class="product-index table-scroll" style="padding: 20px;">
         <?= GridView::widget([
             'dataProvider' => $dataProvider2,
             'tableOptions' => [
-                'class' => 'table table-hover'
+                'class' => 'table table-hover '
             ],
             'columns' => $table_columns,
         ]) ?>
@@ -141,6 +142,11 @@ if (count($table_columns) == 0) {
 
         </div>
     </div>
+
+
+
+
+
 <script>
     function showInfo(id,wid){
     if(id){

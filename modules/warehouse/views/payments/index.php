@@ -20,6 +20,10 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     div.dataTables_wrapper {
         width: 95%;
     }
+    small{
+        margin-left: 0px!important;
+        line-height: 40px;
+    }
 
 </style>
 <?php if(\app\rbac\WarehouseRule::can('payments', 'index')): ?>

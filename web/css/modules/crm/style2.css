@@ -475,8 +475,17 @@ a.addDellink {
     border-radius: 6px;
     border-bottom: 1px solid #dee2e6 !important;;
 }
+.main-header2 {
+    width: 80%;
+}
+.main-header2 ul {
+    flex-wrap: nowrap;
+    padding: 0px!important;
+}
 .main-header2 ul li a {
     color:#fff!important;
+    font-size: 16px;
+    padding-right: 0px!important;
 }
 
 .flag {
@@ -486,8 +495,16 @@ a.addDellink {
 }
 
 .star {
-    font-size: 30px;color: #1b55e2
+    font-size: 30px;color: #0055a5;
 }
 .star i:hover {
     cursor: pointer;
+}
+
+.navbar {
+    padding: 0px!important;
+}
+.menu4 {
+    background: red;
+    text-align: center;
 }
