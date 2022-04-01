@@ -33,7 +33,6 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
 
 
-<button style="position: fixed; bottom: 70px;right: 20px;color: #fff;"  class="show-modal"   data-modal='page-modal'>Slider</button>
 <ul class="nav">
     <li class="d-flex ">
         <div class="modal-content-custom">
@@ -159,6 +158,5 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         cursor: pointer;
         padding: 5px 5px 5px 15px;
 
-    }
 </style>
 

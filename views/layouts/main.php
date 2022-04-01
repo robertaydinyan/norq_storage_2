@@ -88,7 +88,7 @@ AppAsset::register($this);
                                         "onclick='showPage(\"%s\", \"%s\", %s)'>",
                                         $h->link . (strpos($h->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language,
                                         $title,
-                                        $f->id
+                                        $h->id
                                     ) ?>
                                     <?php echo $title; ?>
                                     <i class="fa fa-times remove-history-item" data-id="<?php echo $h->id; ?>"></i>
@@ -197,6 +197,9 @@ AppAsset::register($this);
         echo '</div>';
         ?>
     </div>
+
+    <?php echo $this->render('window-manager'); ?>
+
     <style>
         .dropdown-menu{
             max-height:300px;

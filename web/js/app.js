@@ -220,6 +220,7 @@ function startTime() {
     document.getElementById('txt').innerHTML =  h + ":" + m ;
     setTimeout(startTime, 1000);
 }
+startTime()
 
 startTime();
 

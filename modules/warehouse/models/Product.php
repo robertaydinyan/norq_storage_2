@@ -240,7 +240,6 @@ class Product extends \yii\db\ActiveRecord {
                                                      LEFT JOIN s_nomenclature_product ON s_nomenclature_product.id = s_product.nomenclature_product_id
                                                      LEFT JOIN s_qty_type ON s_nomenclature_product.qty_type_id = s_qty_type.id 
                                                      LEFT JOIN s_warehouse ON s_warehouse.id = s_product.warehouse_id 
-                                                     LEFT JOIN contact_adress ON s_warehouse.contact_address_id = contact_adress.id 
                                                    $sql  $group_by ORDER BY s_product.nomenclature_product_id")->queryAll();
     }
 

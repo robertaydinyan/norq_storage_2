@@ -48,7 +48,7 @@ class ReportsController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $shipping_types=  ShippingType::find()->all();
         $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id', 'name_' . $lang);
-        $regions = ArrayHelper::map(Regions::find()->asArray()->all(), 'id', 'name');
+//        $regions = ArrayHelper::map(Regions::find()->asArray()->all(), 'id', 'name');
         $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'name_' . $lang);
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])->all(), 'id', 'name');
 
@@ -61,7 +61,6 @@ class ReportsController extends Controller
             'shipping_types' => $shipping_types,
             'warehouse_types' => $warehouse_types,
             'users' =>$uersData,
-            'regions' =>$regions,
             'groups' =>$groups,
             'isFavorite' => $isFavorite,
 
