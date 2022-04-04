@@ -122,13 +122,15 @@ array_push($table_columns, $actions);
             <li class="breadcrumb-item"><a href="<?= Url::to(['index', 'lang' => Yii::$app->language]) ?>"><?php echo Yii::t('app', 'Back'); ?></a></li>
         </ol>
     </nav>
-    <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) .
-            (\app\rbac\WarehouseRule::can('warehouse', 'create') ?
-            ('<a style="float: right" href="' . Url::to(['create', 'lang' => Yii::$app->language]) . '"  class="btn btn-primary" >' .
-            Yii::t('app', 'Create Warehouse') . '</a>') : ''); ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span> </h1>
 
-        <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
-            <button class="btn btn-primary mr-2" style="float: right">
+      <div>
+          <?php echo  (\app\rbac\WarehouseRule::can('warehouse', 'create') ?
+              ('<a  href="' . Url::to(['create', 'lang' => Yii::$app->language]) . '"  class="btn btn-primary" >' .
+                  Yii::t('app', 'Create Warehouse') . '</a>') : ''); ?>
+          <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary mr-2">Xls</button>
+            <button class="btn btn-primary mr-2" >
                 <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
                     <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
                     <ul class="items">
@@ -140,8 +142,10 @@ array_push($table_columns, $actions);
                     </ul>
                 </div>
             </button>
-            <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Warehouse"><i class="fa fa-wrench "></i></button></a></h1>
-        <div style="padding:20px;" class="table-scroll">
+            <button class="btn btn-primary mr-2 filter"  data-model="Warehouse"><i class="fa fa-wrench "></i></button></a>
+      </div>
+    </div>
+    <div style="padding:20px;" class="table-scroll">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'tableOptions' => [

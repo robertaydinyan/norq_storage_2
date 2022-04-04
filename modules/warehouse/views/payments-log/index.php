@@ -75,30 +75,33 @@ array_push($table_columns, $actions);
             </ul>
         </div>
     </nav>
-    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
-        <?php if(\app\rbac\WarehouseRule::can('payments-log', 'create')): ?>
-        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'make a payment'); ?></a>
-        <?php endif; ?>
-        <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
-        <button class="btn btn-primary mr-2" style="float: right">
-            <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
-                <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
-                <ul class="items">
-                    <?php if ($columns):
-                        foreach ($columns as $k): ?>
-                            <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
-                        <?php endforeach;
-                    endif;?>
-                </ul>
+        <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+            <div>
+            <?php if(\app\rbac\WarehouseRule::can('payments-log', 'create')): ?>
+            <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'make a payment'); ?></a>
+            <?php endif; ?>
+            <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
+            <button class="btn btn-primary mr-2" style="float: right">
+                <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
+                    <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
+                    <ul class="items">
+                        <?php if ($columns):
+                            foreach ($columns as $k): ?>
+                                <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
+                            <?php endforeach;
+                        endif;?>
+                    </ul>
+                </div>
+            </button>
+            <button class="btn btn-primary mr-2 filter" style="float: right" data-model="ProviderPayments"><i class="fa fa-wrench "></i></button></a></h1>
             </div>
-        </button>
-        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="ProviderPayments"><i class="fa fa-wrench "></i></button></a></h1>
-    </h1>
+        </div>
 
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <div style="padding: 20px;">
+    <div style="padding: 20px;" class="table-scroll">
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

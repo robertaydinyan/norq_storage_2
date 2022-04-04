@@ -104,10 +104,10 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 </script>
 <script>
     var acc = document.getElementsByClassName("accordion");
-    var i;
+    var c;
 
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
+    for (c = 0; c < acc.length; c++) {
+        acc[c].addEventListener("click", function() {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
             if (panel.style.display === "block") {

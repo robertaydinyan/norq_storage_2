@@ -62,27 +62,28 @@ array_push($table_columns, $actions);
 ?>
 
 <div class="group-product-index">
-
-    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></span>
-    <?php if(\app\rbac\WarehouseRule::can('complectation', 'create')): ?>
-        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a>
-    <?php endif; ?>
-        <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
-        <button class="btn btn-primary mr-2 px-1" style="float: right">
-            <div id="list1" class="dropdown-check-list " tabindex="100"  style="width: -webkit-fill-available;">
-                <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
-                <ul class="items">
-                    <?php if ($columns):
-                        foreach ($columns as $k): ?>
-                            <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
-                        <?php endforeach;
-                    endif;?>
-                </ul>
-            </div>
-        </button>
-        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Complectation"><i class="fa fa-wrench "></i></button></a>
-    </h1>
-
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></span></h1>
+        <div>
+            <?php if(\app\rbac\WarehouseRule::can('complectation', 'create')): ?>
+                <a style="margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a>
+            <?php endif; ?>
+                <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary  mr-2">Xls</button>
+                <button class="btn btn-primary mr-2 px-1" >
+                    <div id="list1" class="dropdown-check-list " tabindex="100"  style="width: -webkit-fill-available;">
+                        <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
+                        <ul class="items">
+                            <?php if ($columns):
+                                foreach ($columns as $k): ?>
+                                    <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
+                                <?php endforeach;
+                            endif;?>
+                        </ul>
+                    </div>
+                </button>
+                <button class="btn btn-primary mr-2 filter "  data-model="Complectation"><i class="fa fa-wrench "></i></button></a>
+        </div>
+</div>
 
 
     <?php Pjax::begin(); ?>

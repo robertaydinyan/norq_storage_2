@@ -31,7 +31,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
     <div style="padding:20px;" >
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-4 table-scroll">
                 <?= DetailView::widget([
                     'model' => $model,
                     'options' => ['class' => 'table table-hover'],
@@ -49,7 +49,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     ],
                 ]) ?>
             </div>
-            <div class="col-sm-7" style="margin-left: 50px;margin-top:50px;">
+            <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-7 table-scroll" style="margin-top:50px;">
                 <table id="products" class="display nowrap" style="width:100%;">
                     <thead>
                     <?php if (!empty($whProducts)) : ?>
@@ -106,6 +106,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             buttons: [
                'csv', 'excel'
             ],
+            className: 'text-white',
             "oLanguage": {
                 "sSearch": "<?php echo Yii::t('app', 'search'); ?>"
             },

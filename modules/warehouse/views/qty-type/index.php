@@ -17,15 +17,18 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 <?php if(\app\rbac\WarehouseRule::can('qty-type', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span> </h1>
+        <div>
         <?php if(\app\rbac\WarehouseRule::can('qty-type', 'create')): ?>
-        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create' ,'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a unit of measurement'); ?></a>
+        <a style="margin-right: 10px;" href="<?= Url::to(['create' ,'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a unit of measurement'); ?></a>
         <?php endif; ?>
-        <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
-    </h1>
+        <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary  mr-2">Xls</button>
+        </div>
+    </div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <div style="padding: 20px;">
+    <div style="padding: 20px;" class="table-scroll">
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

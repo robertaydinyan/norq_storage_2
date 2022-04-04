@@ -17,11 +17,15 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
 <?php if(\app\rbac\WarehouseRule::can('nomenclature-product', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+    <div>
     <?php if(\app\rbac\WarehouseRule::can('nomenclature-product', 'create')): ?>
         <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create product nomenclature'); ?></a>
     <?php endif; ?>
-    </h1>
+    </div>
+</div>
+
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <div style="padding:20px;" >

@@ -44,7 +44,9 @@ array_push($table_columns, $actions);
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="user-index">
-    <h1 style="padding: 20px;" class="" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <h1 style="padding: 20px;" class="" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+        <div>
         <?php if(\app\rbac\WarehouseRule::can('users', 'create')): ?>
         <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary "  ><?php echo Yii::t('app', 'Create user'); ?></a>
         <?php endif; ?>
@@ -62,8 +64,9 @@ array_push($table_columns, $actions);
             </div>
         </button>
         <button class="btn btn-primary mr-2 filter" style="float: right" data-model="User"><i class="fa fa-wrench "></i></button>
-        </a></h1>
-    </h1>
+        </div>
+
+    </div>
 
 
     <div style="padding:20px;" class="table table-scroll">

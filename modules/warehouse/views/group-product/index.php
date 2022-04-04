@@ -30,7 +30,10 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 </style>
 <div class="group-product-index" >
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span> <p style="float: right;"><button class="btn  btn-primary"  onclick="addPopup(0)"><?php echo Yii::t('app', 'Create a Product Group'); ?></button></p></h1>
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+        <p><button class="btn  btn-primary"  onclick="addPopup(0)"><?php echo Yii::t('app', 'Create a Product Group'); ?></button></p>
+    </div>
     <div style="display: flex">
         <div class="col-lg-12">
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">

@@ -95,8 +95,9 @@ if (count($table_columns) == 0) {
 </style>
 
 <div class="group-product-index">
-
-    <h1 style="padding: 20px;" data-title=" <?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <h1 style="padding: 20px;" data-title=" <?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+        <div>
         <?php echo \app\rbac\WarehouseRule::can('group-product', 'show-group-products') ?
 
         '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary" style="float: right;">' .
@@ -115,7 +116,8 @@ if (count($table_columns) == 0) {
             </div>
         </button>
         <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Product"><i class="fa fa-wrench "></i></button></a>
-    </h1>
+        </div>
+    </div>
 
 <div class="product-index table-scroll" style="padding: 20px;">
         <?= GridView::widget([

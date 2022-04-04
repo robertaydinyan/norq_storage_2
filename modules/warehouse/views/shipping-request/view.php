@@ -25,7 +25,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         <h1 data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <br>
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-5 table-scroll5">
                 <table class="table table-hover">
                     <?php if($model->provider->{'name_' . $lang}){ ?>
                     <tr>
@@ -95,7 +95,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                     </tr>
                 </table>
             </div>
-            <div class="col-sm-7">
+            <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-7 table-scroll">
                 <?php
                   if($model->shippingtype->id != 5){
                      $products = ShippingProducts::findByShip($model->id);
