@@ -166,8 +166,8 @@ $table_all_columns = array();
                                         style="border:1px solid #dee2e6;padding-left: 35px;padding-top: 5px;margin-top:0px;">
                                         <?php foreach ($suppliers as $tableTreePartner) : ?>
                                             <li class="file-tree-folder">
-                         <span data-name="<?= $tableTreePartner['name'] ?>"
-                               class="parent-block"><?= $tableTreePartner['name'] ?>
+                         <span data-name="<?= $tableTreePartner['name_' . $lang] ?>"
+                               class="parent-block"><?= $tableTreePartner['name_' . $lang] ?>
                         </span>
                                                 <ul style="display: block;">
                                                     <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/suppliers-list/tree_form_sup_table.php', [
@@ -616,12 +616,12 @@ $table_all_columns = array();
             if (count($table_columns) == 0) {
                 $table_columns = $table_all_columns;
             }
-
-            array_push($table_columns, $actions);
-            //var_dump($table_columns);die();
+            if ($actions)
+                array_push($table_columns, $actions);
             ?>
 <div class="table-scroll">
-            <?= GridView::widget([
+            <?php
+            echo GridView::widget([
                 'dataProvider' => $dataProvider,
                 'tableOptions' => [
                     'class' => 'table table-hover'

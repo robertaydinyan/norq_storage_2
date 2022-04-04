@@ -128,7 +128,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
     </div>
     <div class="form-group field-product-supplier_id hide for_bay">
-        <label class="control-label" for="product-supplier_id"><?php echo Yii::t('app', 'Supplier'); ?> <?php if(!$model->isNewRecord){ echo '`'.$model->supplierp['name'];}?></label>
+        <label class="control-label" for="product-supplier_id"><?php echo Yii::t('app', 'Supplier'); ?> <?php if(!$model->isNewRecord){ echo '`'.$model->supplierp['name' . $lang];}?></label>
 
         <div>
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">

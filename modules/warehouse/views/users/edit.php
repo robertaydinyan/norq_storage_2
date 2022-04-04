@@ -82,7 +82,6 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         cursor: pointer;
     }
 </style>
-<!--
 <script>
     window.onload = () => {
         $('.action').on('click', function() {
@@ -103,6 +102,8 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         })
     }
 </script>
+<!--
+
 <script>
     var acc = document.getElementsByClassName("accordion");
     var c;

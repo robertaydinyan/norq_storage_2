@@ -412,6 +412,7 @@ class ShippingRequestController extends Controller {
                     ->provider->name . "</b> - <b>" . $model
                     ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
+
             return $this->redirect(['index','isFavorite' => $isFavorite,
             ]);
         }

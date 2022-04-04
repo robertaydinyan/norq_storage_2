@@ -178,7 +178,6 @@ class WarehouseController extends Controller {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new Warehouse();
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-        $address = new ContactAdress();
 
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
             ->asArray()
@@ -192,60 +191,11 @@ class WarehouseController extends Controller {
             $dataUsers[$key] = $value[array_key_first($value) ] . ' ' . array_key_first($value);
         }
 
-        if ($model->load(Yii::$app
-            ->request
-            ->post())) {
-            $post = Yii::$app
-                ->request
-                ->post();
-            $C_C_address = $post['ContactAdress'];
+        if ($model->load(Yii::$app->request->post())) {
 
-            if (!empty($C_C_address['country_id']['0'])) {
-                foreach ($C_C_address['country_id'] as $k => $add) {
-                    $street = Streets::findOne(['id' => intval($C_C_address['street'][$k]) ]);
-                    $streetId = null;
-                    if (empty($street) || !$C_C_address['street'][$k]) {
-                        $new_street = new Streets();
-                        $new_street->name = $C_C_address['street'][$k];
-                        $new_street->city_id = $C_C_address['city_id'][$k];
-                        $new_street->community_id = $C_C_address['community_id'][$k];
-                        if ($new_street->save()) {
-                            $streetId = $new_street->id;
-                        }
-                    }
-                    else {
-                        $streetId = $street->id;
-                    }
-
-                    $addressForSave = new ContactAdress();
-                    if (isset($C_C_address['community_id'][$k])) {
-                        $addressForSave->community_id = $C_C_address['community_id'][$k];
-                    }
-                    else {
-                        $addressForSave->community_id = 0;
-                    }
-                    $addressForSave->country_id = $C_C_address['country_id'][$k];
-                    $addressForSave->region_id = $C_C_address['region_id'][$k];
-                    $addressForSave->city_id = $C_C_address['city_id'][$k];
-                    $addressForSave->street = $streetId;
-                    $addressForSave->house = $C_C_address['house'][$k];
-                    $addressForSave->housing = $C_C_address['housing'][$k];
-                    $addressForSave->apartment = $C_C_address['apartment'][$k];
-
-                    if ($addressForSave->save(false)) {
-                        $model->created_at = Carbon::now()
-                            ->toDateTimeString();
-                        $model->contact_address_id = $addressForSave->id;
-                        $model->save(false);
-                    }
-
-                }
-            }
-            else {
-                $model->created_at = Carbon::now()
-                    ->toDateTimeString();
-                $model->save();
-            }
+            $model->created_at = Carbon::now()
+                ->toDateTimeString();
+            $model->save();
 
             Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->{'name_' . $lang} .   "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
             Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->{'name_' . $lang} .  "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
