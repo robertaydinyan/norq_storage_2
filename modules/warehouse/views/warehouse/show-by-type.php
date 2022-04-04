@@ -122,12 +122,12 @@ array_push($table_columns, $actions);
             <li class="breadcrumb-item"><a href="<?= Url::to(['index', 'lang' => Yii::$app->language]) ?>"><?php echo Yii::t('app', 'Back'); ?></a></li>
         </ol>
     </nav>
-    <div class="d-flex flex-wrap justify-content-between align-items-center">
-    <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span> </h1>
+    <div class="d-flex flex-wrap justify-content-between">
+    <h1 data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span> </h1>
 
-      <div>
+      <div class="d-flex align-items-start pt-2">
           <?php echo  (\app\rbac\WarehouseRule::can('warehouse', 'create') ?
-              ('<a  href="' . Url::to(['create', 'lang' => Yii::$app->language]) . '"  class="btn btn-primary" >' .
+              ('<a  href="' . Url::to(['create', 'lang' => Yii::$app->language]) . '"  class="btn btn-primary mr-2" >' .
                   Yii::t('app', 'Create Warehouse') . '</a>') : ''); ?>
           <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary mr-2">Xls</button>
             <button class="btn btn-primary mr-2" >

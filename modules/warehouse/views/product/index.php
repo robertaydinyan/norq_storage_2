@@ -95,12 +95,12 @@ if (count($table_columns) == 0) {
 </style>
 
 <div class="group-product-index">
-    <div class="d-flex flex-wrap justify-content-between align-items-center">
-    <h1 style="padding: 20px;" data-title=" <?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
-        <div>
+    <div class="d-flex flex-wrap justify-content-between ">
+    <h1  data-title=" <?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+        <div class="d-flex align-items-start pt-2">
         <?php echo \app\rbac\WarehouseRule::can('group-product', 'show-group-products') ?
 
-        '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary" style="float: right;">' .
+        '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary mr-2" style="float: right;">' .
         Yii::t('app', 'Product group') . '</a>' : ''; ?>
         <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
         <button class="btn btn-primary mr-2" style="float: right">

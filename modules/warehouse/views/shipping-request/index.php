@@ -38,14 +38,14 @@ $table_all_columns = array();
                 </ul>
             </div>
         </nav>
-        <div class="d-flex flex-wrap justify-content-between align-items-center">
-            <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span
+        <div class="d-flex flex-wrap justify-content-between mt-3">
+            <h1  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span
                         class="star"><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
-            <div style="padding-left: 20px">
+            <div style="padding-left: 20px" class="d-flex align-items-start pt-2">
                 <?php if (\app\rbac\WarehouseRule::can('shipping-request', 'create')): ?>
 
                     <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"
-                       class="btn btn-primary"><?php echo Yii::t('app', 'Create a query'); ?></a>
+                       class="btn btn-primary mr-2"><?php echo Yii::t('app', 'Create a query'); ?></a>
                 <?php endif; ?>
                 <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
                 <button class="btn btn-primary mr-2" style="float: right">

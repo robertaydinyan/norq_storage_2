@@ -62,11 +62,11 @@ array_push($table_columns, $actions);
 ?>
 
 <div class="group-product-index">
-    <div class="d-flex flex-wrap justify-content-between align-items-center">
-    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></span></h1>
-        <div>
+    <div class="d-flex flex-wrap justify-content-between ">
+    <h1  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></span></h1>
+        <div class="d-flex align-items-start pt-2">
             <?php if(\app\rbac\WarehouseRule::can('complectation', 'create')): ?>
-                <a style="margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a>
+                <a style="margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary mr-2" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a>
             <?php endif; ?>
                 <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary  mr-2">Xls</button>
                 <button class="btn btn-primary mr-2 px-1" >

@@ -323,8 +323,13 @@ $('.show-modal').click(function(){
     //     slidesToScroll: 1
     // });
     // $('.modal-content-custom').append(html_);
-    $('.modal-content-custom').show().animate({left: '80%'}, {duration: 600});
-    $('.modal-content-custom .close').click(function(){
+    if (window.matchMedia("(max-width: 990px)").matches) {
+        $('.modal-content-custom').show().animate({left: '55%'}, {duration: 600});
+    } else {
+        $('.modal-content-custom').show().animate({left: '70%'}, {duration: 600});
+    }
+
+        $('.modal-content-custom .close').click(function(){
         $('.modal-content-custom').animate({left: '110%'}, {duration: 500});
         $('.modal-content-custom .page1').remove();
     });

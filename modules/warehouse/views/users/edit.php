@@ -10,6 +10,8 @@ use yii\helpers\Url;
 $this->title = array(Yii::t('app', 'Edit') . ": (" . $user->name . ")",'Edit');
 $this->params['breadcrumbs'][] = $this->title[0];
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+
+$this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
 <div class="user-edit-index">
     <input type="hidden" id="userID" value="<?php echo $user->id; ?>">
@@ -19,11 +21,11 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
         <?php if (isset($controller_names)):
             foreach ($controller_names as $cname):
-                echo '<button class="accordion bg-white" style="background: #fff"><h5 style="margin-bottom: 20px;">' . Yii::t('app', $cname->controller_name) . '<i class=\'fas fa-chevron-down ml-4\' style="font-size: 14px"></i></h5></button>
+                echo '<button class="accordion bg-white mb-3" style="background: #fff"><h5 >' . Yii::t('app', $cname->controller_name) . '<i class=\'fas fa-chevron-down ml-4\' style="font-size: 14px"></i></h5></button>
                       <div class="row panel" style="margin-bottom: 20px;padding-top: 20px;"><div class="d-flex flex-wrap pt-2 ">';
                 foreach($cname->getByControllerName() as $action):
                     echo sprintf(
-                            '<div class="col-2" style="margin-bottom: 48px;"><span class="action %s" data-id="%s">%s</span></div>',
+                            '<div class="mr-3" style="margin-bottom: 48px;"><span class="action %s" data-id="%s">%s</span></div>',
                             !$action->hasAccess($user->id) ? 'passive' : '',
                             $action->id,
                             $action->action_name
@@ -43,7 +45,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         background-color: #eee;
         color: #444;
         cursor: pointer;
-        padding: 18px;
+        padding: 10px;
         width: 100%;
         border: none;
         text-align: left;
@@ -74,14 +76,13 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     }
 
     .action {
-        margin: 20px;
-        padding: 20px;
+        padding: 10px;
         background-color: rgba(0, 85, 165, 1);
         color: white;
         cursor: pointer;
     }
 </style>
-
+<!--
 <script>
     window.onload = () => {
         $('.action').on('click', function() {
@@ -117,4 +118,4 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             }
         });
     }
-</script>
+</script>-->

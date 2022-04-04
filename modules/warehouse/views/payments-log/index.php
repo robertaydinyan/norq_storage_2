@@ -75,11 +75,11 @@ array_push($table_columns, $actions);
             </ul>
         </div>
     </nav>
-        <div class="d-flex flex-wrap justify-content-between align-items-center">
-        <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
-            <div>
+        <div class="d-flex flex-wrap justify-content-between mt-3">
+        <h1  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+            <div class="d-flex align-items-start pt-2">
             <?php if(\app\rbac\WarehouseRule::can('payments-log', 'create')): ?>
-            <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'make a payment'); ?></a>
+            <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn  btn-primary mr-2" ><?php echo Yii::t('app', 'make a payment'); ?></a>
             <?php endif; ?>
             <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
             <button class="btn btn-primary mr-2" style="float: right">
