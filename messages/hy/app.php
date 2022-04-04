@@ -147,4 +147,6 @@ return [
     'Create Partners List' => 'Ստեղծեք գործընկերների ցուցակ',
     'Create a Product' => 'Ստեղծել Ապրանք',
     'Notifications' => 'Ծանուցումներ',
-];
+    'Favorite' => 'Սիրված էջեր',
+    'History' => 'Պատմություն'
+ ];

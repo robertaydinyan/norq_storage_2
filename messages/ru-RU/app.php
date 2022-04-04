@@ -148,4 +148,6 @@ return [
     'Create Partners List' => 'Создать список партнеров',
     'Create a Product' => 'Создать продукт',
     'Notifications' => 'Уведомления',
+    'Favorite' => 'Любимые страницы',
+    'History' => 'История'
 ];

@@ -15,11 +15,15 @@ $this->params['breadcrumbs'][] = $this->title[0];
 <?php if(\app\rbac\WarehouseRule::can('warehouse-groups', 'index')): ?>
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
-    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
-    <?php if(\app\rbac\WarehouseRule::can('warehouse-groups', 'create')): ?>
-        <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create');?></a>
-    <?php endif; ?>
-    </h1>
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+        <div>
+            <?php if(\app\rbac\WarehouseRule::can('warehouse-groups', 'create')): ?>
+                <a  href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create');?></a>
+            <?php endif; ?>
+                <button  onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary ">Xls</button>
+        </div>
+    </div>
     <div style="padding:20px;">
         <?php Pjax::begin(); ?>
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -64,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
 </div>
 <?php endif; ?>
 
-<button style="margin:20px;" onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary ">Xls</button>
+
 
 
 <script>window.onload = function(){

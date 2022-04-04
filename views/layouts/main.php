@@ -56,12 +56,12 @@ AppAsset::register($this);
         <?php endif;?>
         <div class="wrap">
 
-            <div class="bookmarks d-flex">
+            <div class="bookmarks d-flex row ">
 
                 <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
 
-                    <div class="favorites" style="margin-left: 40px;">
-                        <button class="accordion bg-white" style="background: #fff;">Favorite</button>
+                    <div class="favorites col-12	col-sm-12	col-md-4 col-lg-4	col-xl-2 mb-3" >
+                        <button class="accordion bg-white" style="background: #fff;"><?= Yii::t('app','Favorite') ?></button>
                         <div class="panel panel2">
                         <?php if ($favorites):
                             foreach ($favorites as $f):
@@ -81,8 +81,8 @@ AppAsset::register($this);
                         endif;?>
                         </div>
                     </div>
-                    <div class="histories" style="margin-left: 40px;">
-                        <button class="accordion bg-white" style="background: #fff">History (5)</button>
+                    <div class="histories col-12	col-sm-12	col-md-4 col-lg-4	col-xl-2 mb-3" >
+                        <button class="accordion bg-white" style="background: #fff"><?= Yii::t('app','History') ?> (5)</button>
                         <div class="panel panel2">
                         <?php if ($history):
                             foreach ($history as $h):

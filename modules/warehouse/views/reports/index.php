@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] =  $this->title[0];
     <input type="hidden" name="lang" value="<?php echo Yii::$app->language; ?>">
     <div class="col-sm-12" style="margin-bottom: 10px;">
         <div class="row">
-            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2 ">
+            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2 mb-3">
                 <select name="warehouse_type" class="form-control warehouse_type btn-primary">
                     <option value=""><?php echo Yii::t('app', 'Warehouse type'); ?></option>
                     <?php if(!empty($warehouse_types)){
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] =  $this->title[0];
                     <option value=""><?php echo Yii::t('app', 'Warehouse'); ?></option>
                 </select>
             </div>
-            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2">
+            <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2 ">
                  <?php 
                     echo DatePicker::widget([
                         'name' => 'from_created_at', 

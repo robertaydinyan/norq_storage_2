@@ -19,8 +19,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<div class="mr-5 mt-4  d-flex justify-content-between" >
-    <div class="input-group rounded mb-3 w-75 mr-2">
+<div class="mr-5 mt-4  d-flex flex-wrap justify-content-between" >
+    <div class="input-group rounded mb-3 w-50 mr-2">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
         <span class="input-group-text border-0" id="search-addon">
                 <i class="fas fa-search"></i>
@@ -29,7 +29,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     <div class="d-flex">
         <div class="dropdown mr-2 btn-drop">
             <button class="btn btn-secondary dropdown-toggle bg-white bg-white" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-bars mr-2"></i> History <i class="fa fa-caret-down ml-2"></i>
+                <i class="fa fa-bars mr-2"></i> <?= Yii::t('app','History') ?> <i class="fa fa-caret-down ml-2"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                 <?php if (isset($history)):
@@ -41,7 +41,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         </div>
         <div class="dropdown btn-drop">
             <button class="btn btn-secondary dropdown-toggle bg-white bg-white" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-star mr-2"></i> Favorites <i class="fa fa-caret-down ml-2"></i>
+                <i class="fa fa-star mr-2"></i> <?= Yii::t('app','Favorite') ?> <i class="fa fa-caret-down ml-2"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
                 <?php if (isset($favorites)):
