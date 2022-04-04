@@ -356,3 +356,6 @@ input[type=checkbox]+label:before {
     max-height: 232px;
     overflow-y: auto;
 }
+input[type=checkbox]:checked+label:after{
+    display: none;
+}

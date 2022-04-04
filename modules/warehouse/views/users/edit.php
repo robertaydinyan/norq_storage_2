@@ -69,8 +69,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
 
     .action.passive {
-        margin: 20px;
-        padding: 20px;
+        padding: 10px;
         background-color: rgba(0, 85, 165, 0.5);
         color: white;
     }
