@@ -104,7 +104,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $('#products').DataTable( {
             dom: 'Bfrtip',
             buttons: [
-               'csv', 'excel'
+               'csv', 'excel',
             ],
             className: 'text-white',
             "oLanguage": {

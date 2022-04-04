@@ -14,7 +14,7 @@ if(!empty($data)){ ?>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.2/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
-    <div style="padding: 20px;">
+    <div style="padding: 20px;" class="table-scroll">
         <table class="kv-grid-table table table-hover  kv-table-wrap" id="datatable">
             <thead>
             <tr style="background:#007bff;color:#fff;">
