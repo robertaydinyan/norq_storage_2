@@ -19,6 +19,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     <?php endforeach; ?>
 
 <?php else : ?>
+
     <ul style="display: block;padding-left:0px;">
         <div class="form-row">
                 <input type="radio"
