@@ -80,6 +80,7 @@ class ShippingRequestController extends Controller {
     }
     public function actionDocuments() {
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+        TableRowsStatus::checkRows('ShippingRequest');
         $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app->request->get('type')])->orderBy('order')->all();
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();

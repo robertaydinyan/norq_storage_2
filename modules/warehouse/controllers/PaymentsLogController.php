@@ -41,6 +41,7 @@ class PaymentsLogController extends Controller
     public function actionIndex()
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
+        TableRowsStatus::checkRows('ProviderPayments');
         $columns = TableRowsStatus::find()->where(['page_name' => 'ProviderPayments', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $searchModel = new ProviderPaymentsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

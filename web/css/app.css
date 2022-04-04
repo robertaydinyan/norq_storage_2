@@ -12775,3 +12775,7 @@ aside .nav-link.active {
 .menu-media {
   display: none;
 }
+
+.hidden-item {
+  display: none;
+}

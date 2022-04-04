@@ -151,24 +151,7 @@ class SiteController extends Controller
         if($request->isGet) {
             $pageName = $request->get('page');
             $type = $request->get('type') ?: null;
-            if (!TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'type' => $type])->count() > 0) {
-                $modelName = ($pageName == 'User' ? 'app\models\\' : 'app\modules\warehouse\models\\') . $pageName;
-                $w = new $modelName;
-                $k = 0;
-
-                foreach ($w->attributeLabelsAll($type) as $i => $v) {
-                    $t = new TableRowsStatus();
-                    $t->page_name = $pageName;
-                    $t->row_name = $i;
-                    $t->row_name_normal = $v;
-                    $t->userID = Yii::$app->user->id;
-                    $t->order = $k;
-                    $t->status = 1;
-                    $t->type = $type;
-                    $k++;
-                    $t->save(false);
-                }
-            }
+            TableRowsStatus::checkRows($pageName, $type);
             $columnsActive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => $type])->orderBy('order')->all();
             $columnsPassive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 0, 'type' => $type])->orderBy('order')->all();
             return $this->renderAjax('/modal/modal-table', [

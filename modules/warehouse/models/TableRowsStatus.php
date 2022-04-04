@@ -54,4 +54,24 @@ class TableRowsStatus extends \yii\db\ActiveRecord
             'type' => 'Type',
         ];
     }
+    public static function checkRows($pageName, $type = null) {
+        if (!TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id])->count() > 0) {
+            $modelName = ($pageName == 'User' ? 'app\models\\' : 'app\modules\warehouse\models\\') . $pageName;
+            $w = new $modelName;
+            $k = 0;
+
+            foreach ($w->attributeLabelsAll($type) as $i => $v) {
+                $t = new TableRowsStatus();
+                $t->page_name = $pageName;
+                $t->row_name = $i;
+                $t->row_name_normal = $v;
+                $t->userID = Yii::$app->user->id;
+                $t->order = $k;
+                $t->status = 1;
+                $t->type = $type;
+                $k++;
+                $t->save(false);
+            }
+        }
+    }
 }

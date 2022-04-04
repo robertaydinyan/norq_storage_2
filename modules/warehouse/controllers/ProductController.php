@@ -61,6 +61,7 @@ class ProductController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new ProductSearch();
         $dataProvider2 = $searchModel->search_(Yii::$app->request->post());
+        TableRowsStatus::checkRows('Product');
         $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
 
         return $this->render('index', [

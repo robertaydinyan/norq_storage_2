@@ -79,6 +79,7 @@ class WarehouseController extends Controller {
     }
     public function actionShowByType() {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
+        TableRowsStatus::checkRows('Warehouse');
         $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $searchModel = new WarehouseSearch();
         $dataProvider = $searchModel->search(Yii::$app

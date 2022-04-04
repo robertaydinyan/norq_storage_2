@@ -85,11 +85,11 @@ class Warehouse extends \yii\db\ActiveRecord
             'type' => 'Warehouse type',
             'name_hy' => 'Name',
             'responsible_id' => 'storekeeper',
-            'created_at' => 'Created',
-            'updated_at' => 'Updated at',
-            'group_id' => 'group',
-            'address' => 'address',
-            'products' => 'goods',
+//            'created_at' => 'Created',
+//            'updated_at' => 'Updated at',
+//            'group_id' => 'group',
+//            'address' => 'address',
+//            'products' => 'goods',
         ];
     }
 

@@ -54,6 +54,7 @@ class ComplectationController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => Complectation::find(),
         ]);
+        TableRowsStatus::checkRows('Complectation');
         $columns = TableRowsStatus::find()->where(['page_name' => 'Complectation', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         return $this->render('index', [
             'dataProvider' => $dataProvider,

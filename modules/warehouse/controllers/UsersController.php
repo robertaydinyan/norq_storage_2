@@ -49,6 +49,7 @@ class UsersController extends Controller
             'query' => User::find(),
         ]);
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
+        TableRowsStatus::checkRows('User');
         $columns = TableRowsStatus::find()->where(['page_name' => 'User', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $users = User::find()->all();
         $searchModel = new UserSearch();
@@ -60,7 +61,6 @@ class UsersController extends Controller
             'isFavorite' => $isFavorite,
             'dataProvider' => $dataProvider,
             'columns' => $columns,
-            'dataProvider' => $dataProvider
         ]);
     }
 

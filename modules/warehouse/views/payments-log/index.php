@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $table_all_columns = [
     'id' => 'id',
-    'Supplier' => [
+    'provider_id' => [
         'label' => Yii::t('app', 'Supplier'),
         'value' => function ($model) {
             $provider = SuppliersList::findOne($model->provider_id);
@@ -87,8 +87,8 @@ array_push($table_columns, $actions);
                     <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
                     <ul class="items">
                         <?php if ($columns):
-                            foreach ($columns as $k): ?>
-                                <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
+                            foreach ($columns as $i => $k): ?>
+                                <li><input type="checkbox" class="hide-row" data-queue="<?php echo $i; ?>"  checked/><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
                             <?php endforeach;
                         endif;?>
                     </ul>

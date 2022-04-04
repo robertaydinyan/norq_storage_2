@@ -4,7 +4,7 @@
 //
 // })(jQuery);
 
-
+$('.main-header2').eq(2).removeClass('main-header2')
 let categoryTreeToggler = document.getElementsByClassName("caret");
 let i;
 
@@ -348,14 +348,17 @@ var tableToExcel = (function() {
     }
         , downloadURI = function(uri, name) {
         var link = document.createElement("a");
-        link.download = name;
+        link.download = $('h1').text();
         link.href = uri;
         link.click();
     }
 
     return function(table, name, fileName) {
-        if (!table.nodeType) table = document.getElementById(table)
-        var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+        table = $('#' + table).clone();
+        table.find('.hidden-item').remove();
+        table.find('.action-column').remove();
+        table.find('#w0-filters').remove();
+        var ctx = {worksheet: $('h1').text() || 'Worksheet', table: table.html()}
         var resuri = uri + base64(format(template, ctx))
         downloadURI(resuri, fileName);
     }
@@ -390,3 +393,14 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
+
+$('.hide-row').on('click', function() {
+    let queue = $(this).data('queue');
+    $.each($('#tbl > tbody, thead').children(), (i, k) => {
+        if ($(this).prop('checked'))
+            $(k).children().eq(queue).removeClass('hidden-item');
+        else
+            $(k).children().eq(queue).addClass('hidden-item');
+    });
+    // $('#tbl > thead').children().eq(queue).hide();
+});

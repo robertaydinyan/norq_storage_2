@@ -148,5 +148,6 @@ return [
     'Create a Product' => 'Ստեղծել Ապրանք',
     'Notifications' => 'Ծանուցումներ',
     'Favorite' => 'Սիրված էջեր',
-    'History' => 'Պատմություն'
- ];
+    'History' => 'Պատմություն',
+    'Analogs' => 'Անալոգներ',
+];

@@ -9,6 +9,7 @@
             <li class="nav-item"><a class="nav-link" href="/warehouse/suppliers-list?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'co-workers'); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="/warehouse/group-product?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Product group'); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="/warehouse/nomenclature-product?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Product Nomenclature'); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="/warehouse/analogs?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Analogs'); ?></a></li>
         </ul>
     </div>
 </nav>

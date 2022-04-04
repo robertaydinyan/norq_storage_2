@@ -149,5 +149,6 @@ return [
     'Create a Product' => 'Создать продукт',
     'Notifications' => 'Уведомления',
     'Favorite' => 'Любимые страницы',
-    'History' => 'История'
+    'History' => 'История',
+    'Analogs' => 'Аналоги',
 ];

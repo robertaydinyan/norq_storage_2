@@ -74,8 +74,8 @@ array_push($table_columns, $actions);
                         <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
                         <ul class="items">
                             <?php if ($columns):
-                                foreach ($columns as $k): ?>
-                                    <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
+                                foreach ($columns as $i => $k): ?>
+                                    <li><input type="checkbox" class="hide-row" data-queue="<?php echo $i; ?>"  checked/><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
                                 <?php endforeach;
                             endif;?>
                         </ul>

@@ -47,7 +47,7 @@ class ProviderPayments extends \yii\db\ActiveRecord
         return [
             'id' => 'id',
             'provider_id' => 'Supplier',
-            'price' => 'amount',
+            'amount' => 'amount',
         ];
     }
 

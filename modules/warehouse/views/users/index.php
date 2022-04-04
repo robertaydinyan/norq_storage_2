@@ -17,14 +17,19 @@ $table_all_columns = [
 ];
 
 $actions = [
-        'label' => Yii::t('app', 'Action'),
-        'format' => 'html',
-        'value' => function() {
-            return ((\app\rbac\WarehouseRule::can('users', 'edit')) ?
-                ("<a href='" . URL::to(['users/edit', 'lang' => Yii::$app->language, 'id' =>Yii::$app->user->id]) . "'><i class='fas fa-pencil-alt mr-3'></i></a>") : '') .
-                ((\app\rbac\WarehouseRule::can('users', 'delete')) ?
-                ("<a onclick='return AreYouSure();' href='" . URL::to(['users/delete', 'lang' => Yii::$app->language, 'id' => Yii::$app->user->id]) . "'><i class='fas fa-trash-alt' style='color: red;'></i></a>") : '');
-        }
+        'class' => 'yii\grid\ActionColumn',
+        'header' => Yii::t('app', 'Action'),
+        'template' => '{edit}{delete}',
+        'buttons' => [
+            'edit' => function() {
+                return ((\app\rbac\WarehouseRule::can('users', 'edit')) ?
+                    ("<a href='" . URL::to(['users/edit', 'lang' => Yii::$app->language, 'id' =>Yii::$app->user->id]) . "'><i class='fas fa-pencil-alt mr-3'></i></a>") : '');
+            },
+            'delete' => function() {
+                return ((\app\rbac\WarehouseRule::can('users', 'delete')) ?
+                    ("<a onclick='return AreYouSure();' href='" . URL::to(['users/delete', 'lang' => Yii::$app->language, 'id' => Yii::$app->user->id]) . "'><i class='fas fa-trash-alt' style='color: red;'></i></a>") : '');
+            }
+        ]
 ];
 $table_columns = [];
 
@@ -56,8 +61,8 @@ array_push($table_columns, $actions);
                 <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
                 <ul class="items">
                     <?php if ($columns):
-                        foreach ($columns as $k): ?>
-                            <li><input type="checkbox" /><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
+                        foreach ($columns as $i => $k): ?>
+                            <li><input type="checkbox"  class="hide-row" data-queue="<?php echo $i; ?>"  checked/><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
                         <?php endforeach;
                     endif;?>
                 </ul>
