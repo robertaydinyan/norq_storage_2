@@ -19,19 +19,20 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     <?php endforeach; ?>
 
 <?php else : ?>
+
     <ul style="display: block;padding-left:0px;">
         <div class="form-row">
-                <input type="radio"
-                       value= <?=$tableTreePartner['id']; ?>
-                       id="<?php echo $tableTreePartner['id']; ?>"
-                       class="form-control ck"
-                      <?php if($checked == $tableTreePartner['id']){ echo 'checked';}?>
-                       name="ShippingRequest[supplier_id]" >
-                <label class="has-star" for="<?php echo $tableTreePartner['id']; ?>"><?= Yii::t('app', 'Ընտրել') ?></label>
-                <div class="help-block invalid-feedback"></div>
+            <input type="radio"
+                   value= <?=$tableTreePartner['id']; ?>
+                   id="<?php echo $tableTreePartner['id']; ?>"
+                   class="form-control ck"
+                <?php if($checked == $tableTreePartner['id']){ echo 'checked';}?>
+                   name="ShippingRequest[supplier_id]" >
+            <label class="has-star" for="<?php echo $tableTreePartner['id']; ?>"><?= Yii::t('app', 'Ընտրել') ?></label>
+            <div class="help-block invalid-feedback"></div>
         </div>
     </ul>
- 
+
 <?php endif; ?>
 
 

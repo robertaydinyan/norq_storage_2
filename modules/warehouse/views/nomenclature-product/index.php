@@ -44,12 +44,15 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                     <?php endforeach; ?>
                 </ul>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-12 table-scroll">
                  <?php if(isset($_GET['id'])){?>
                 <br>
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
+                         'tableOptions' => [
+                             'class' => 'table table-hover'
+                         ],
                     'columns' => [
                         'id',
                          [
