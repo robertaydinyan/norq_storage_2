@@ -54,8 +54,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                <button type="button" class="float-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"style="color: #fff">×</span>
                 </button>
                 <div class="mod-content">
                     <input type="hidden" name="nomiclature_id" id="nomiclature_id">
