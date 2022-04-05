@@ -364,3 +364,7 @@ input[type=radio]:checked+label:after {
     top: 7px!important;
     left: 5px!important;
 }
+
+.dt-button>span {
+    color: #fff!important;
+}
