@@ -151,4 +151,5 @@ return [
     'Favorite' => 'Любимые страницы',
     'History' => 'История',
     'Analogs' => 'Аналоги',
+    'Temporary storage' => 'Временное хранение'
 ];
