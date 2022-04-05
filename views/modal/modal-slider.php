@@ -1,4 +1,4 @@
-<button style="position: fixed; bottom: 70px;right: 20px;color: #fff;"  class="show-modal"   data-modal='page-modal'>Slider</button>
+<button style="position: fixed; bottom: 70px;right: 20px;color: #fff;font-size: 15px"  class="show-modal"   data-modal='page-modal'>Slider</button>
 <ul class="nav">
     <li class="d-flex ">
         <div class="modal-content-custom">
