@@ -359,3 +359,8 @@ input[type=checkbox]+label:before {
 input[type=checkbox]:checked+label:after{
     display: none;
 }
+
+input[type=radio]:checked+label:after {
+    top: 7px!important;
+    left: 5px!important;
+}
