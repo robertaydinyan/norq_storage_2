@@ -150,5 +150,4 @@ return [
     'Favorite' => 'Սիրված էջեր',
     'History' => 'Պատմություն',
     'Analogs' => 'Անալոգներ',
-    'Temporary storage' => 'Ժամանակավոր պահպանում'
 ];

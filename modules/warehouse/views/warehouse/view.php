@@ -109,16 +109,10 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                 
             <?php foreach ($dataProvider['result'] as $key => $products) : ?>
                 <tr>
-                     <td><?php if($products['type'] != 4){ echo $products['wname'];} else {
-                        echo Warehouse::getContactAddressById($products['contact_address_id']);
-                     } ?></td>
+                     <td><?php echo $products['wname'];?></td>
                     <td><?= $products['nomeclature_name'] ?></td>
                     <td><a target="_blank" href="<?= $products['img'] ?>" ><img width="100" src="<?= $products['img'] ?>"></a></td>
-                    <?php if ($products['individual'] == 'false') : ?>
-                        <td><?= $products['count_n_product'] ?> <?= $products['qtype'] ?></td>
-                    <?php else : ?>
-                        <td><a href="#" data-toggle="modal" data-target="#viewInfo" onclick="showInfo(<?= $products['nid'] ?>,<?php echo $products['id'];?>)"><?= $products['count_n_product'] ?> <?= $products['qtype'] ?> </a></td>
-                    <?php endif; ?>
+                     <td><a href="#" data-toggle="modal" data-target="#viewInfo" onclick="showInfo(<?= $products['nid'] ?>,<?php echo $products['id'];?>)"><?= $products['count_n_product'] ?> <?= $products['qtype'] ?> </a></td>
                       <td><?php if($products['individual']=='true'){ echo Yii::t('app', 'Yes');} else { echo Yii::t('app', 'No');} ?></td>
                 </tr>
             <?php endforeach; ?>

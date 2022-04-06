@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string|null $vendor_code
- * @property string $name
+ * @property string $name_hy
  * @property string|null $group
  * @property string|null $production_date
  * @property int|null $is_vip

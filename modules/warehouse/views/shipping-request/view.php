@@ -125,7 +125,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                             <tr>
 
                                 <td><?php echo $prod_val['id'];?></td>
-                                <td><?php echo $prod_val['name'];?></td>
+                                <td><?php echo $prod_val['name_'.$lang];?></td>
                                 <td><a target="_blank" href="<?= $prod_val['img'] ?>" ><img width="100" src="<?= $prod_val['img'] ?>"></a></td>
                                 <td><?php echo $prod_val['count'];?> <?php echo $prod_val['qty_type'];?></td>
                                 <?php if($model->shipping_type == 9){ ?>

@@ -150,6 +150,7 @@ class WarehouseController extends Controller {
      */
     public function actionView() {
 
+   
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;        $id = intval($_GET['id']);
         $whProducts = Product::getWarehouseProducts($id);
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()
@@ -160,9 +161,8 @@ class WarehouseController extends Controller {
             ->where(['id' => $id])->asArray()
             ->all() , 'id', 'name');
 
-        if ($this->findModel($id)->contact_address_id !== null) {
-            $model = $this->findModel($id);
-        }
+        $model = $this->findModel($id);
+  
 
         return $this->render('view', ['model' => $this->findModel($id) , 'isFavorite' => $isFavorite, 'dataProvider' => $whProducts, 'suppliers' => $suppliers, 'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse,
 

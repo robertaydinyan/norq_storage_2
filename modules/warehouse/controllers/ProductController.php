@@ -108,7 +108,7 @@ class ProductController extends Controller
         $mac = Yii::$app->request->get()['mac'];
 
         if($mac) {
-            $logs = ProductShippingLog::find()->where(['mac_address'=>$mac])->all();
+            $logs = ProductShippingLog::find()->where(['product_id'=>$mac])->all();
             return $this->renderAjax('log-popup', ['logs' => $logs]);
         }
     }

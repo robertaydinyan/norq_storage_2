@@ -1,6 +1,9 @@
 <?php
-
+use app\modules\warehouse\models\Warehouse;
+use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\WarehouseSearch;
+use app\modules\warehouse\models\ShippingRequest;
+use app\models\User;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -16,18 +19,27 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 $this->params['breadcrumbs'][] = $this->title[0];
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
+<?php if(!empty($_GET['search'])){ ?>
+    <style>
+        .card-bottom-section{
+            display: none;
+        }
+    </style>
+<?php } else {
+    unset($_GET['search']);
+} ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="mr-5 mt-4  d-flex flex-wrap justify-content-between" >
-    <div class="input-group rounded mb-3 w-50 mr-2">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <span class="input-group-text border-0" id="search-addon">
-                <i class="fas fa-search"></i>
-         </span>
-    </div>
+    <form action="" method="get" class="input-group rounded mb-3 w-50 mr-2">
+        <input name="search" value="<?php echo $_GET['search'];?>" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <button id="search-addon">
+                <i style="color:white;" class="fas fa-search"></i>
+         </button>
+    </form>
     <div class="d-flex">
-        <div class="dropdown mr-2 btn-drop">
+      <!--   <div class="dropdown mr-2 btn-drop">
             <button class="btn btn-secondary dropdown-toggle bg-white bg-white" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-bars mr-2"></i> <?= Yii::t('app','History') ?> <i class="fa fa-caret-down ml-2"></i>
             </button>
@@ -50,7 +62,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <?php endforeach;
                 endif; ?>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -72,14 +84,15 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                     <i class='fas fa-warehouse mr-2'  style="color:#0055a5;font-size: 35px;"></i>
                                 </div>
                                 <div class="media-body">
-                                    <h3 class=""><?=   Yii::t('app', 'Main warehouse') ?><h3>
+                                    <h3 class=""><?= Yii::t('app', 'Main warehouse') ?><h3>
                                 </div>
                             </div>
                         </div>
-
+                      
                     </div>
 
                     <div class="card-bottom-section mt-5">
+                         
                         <div> <a href="/warehouse/warehouse/view?id=20&lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                     </div>
                 </div>
@@ -104,7 +117,16 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     </div>
 
                 </div>
-
+                  <div style="padding-left:20px;max-height: 200px;overflow:auto;">
+                      <?php if(isset($_GET['search'])){ 
+                            $warehouses = Warehouse::find()->where(['LIKE','name_'.$lang,$_GET['search']])->all();
+                            if(!empty($warehouses)){
+                                foreach($warehouses as $warehouse_ => $warehouse_val){
+                                     echo '<a target="_blank" href="/warehouse/warehouse/view?id='.$warehouse_val->id.'&lang=">'.$warehouse_val->{'name_'.$lang}.'</a><br>';
+                                }
+                            }
+                         } ?>
+                    </div>
                 <div class="card-bottom-section mt-5">
                     <div> <a href="/warehouse/warehouse?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
@@ -130,7 +152,18 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     </div>
 
                 </div>
-
+                 <div style="padding-left:20px;max-height: 200px;overflow:auto;">
+                      <?php if(isset($_GET['search'])){ 
+                            $products = Product::findByData($_GET);
+                            if(!empty($products)){
+                                foreach($products as $product_ => $product_val){
+                                    if($product_val['pcount']){
+                                     echo '<a target="_blank" href="/warehouse/warehouse/view?id='.$product_val['wid'].'&lang=">'.$product_val['wname'].'-'.$product_val['name_'.$lang].'( '.$product_val['pcount'].$product_val['qty_type'].')</a><br>';
+                                    }
+                                }
+                            }
+                         } ?>
+                    </div>
                 <div class="card-bottom-section mt-5">
                     <div> <a  href="/warehouse/product?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
@@ -152,6 +185,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                             <div class="media-body">
                                 <h3 class=""><?=   Yii::t('app', 'Documents') ?></h3>
                             </div>
+
                             <div class="w-img text-right">
                                 <div class="w-img text-right">
                                     <h2 style="color:#0055a5;font-weight: bold">
@@ -178,9 +212,18 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                             </div>
                         </div>
                     </div>
-
+                      
                 </div>
-
+                <div style="padding-left:20px;max-height: 200px;overflow:auto;">
+                  <?php if(isset($_GET['search'])){ 
+                        $documents = ShippingRequest::find()->where(['LIKE','comment',$_GET['search']])->andWhere(['status'=>3])->all();
+                        if(!empty($documents)){
+                            foreach($documents as $document_ => $document_val){
+                                 echo '<a target="_blank" href="/warehouse/shipping-request/view?id='.$document_val->id.'&lang=">'.$document_val->shippingtype->{'name_'.$lang}.'</a><br>';
+                            }
+                        }
+                     } ?>
+                </div>
                 <div class="card-bottom-section mt-5">
                     <div> <a href="/warehouse/shipping-request/documents?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
@@ -230,7 +273,16 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     </div>
 
                 </div>
-
+                 <div style="padding-left:20px;max-height: 200px;overflow:auto;">
+                  <?php if(isset($_GET['search'])){ 
+                        $documents = ShippingRequest::find()->where(['LIKE','comment',$_GET['search']])->andWhere(['status'=>5])->all();
+                        if(!empty($documents)){
+                            foreach($documents as $document_ => $document_val){
+                                 echo '<a target="_blank" href="/warehouse/shipping-request/view?id='.$document_val->id.'&lang=">'.$document_val->shippingtype->{'name_'.$lang}.'</a><br>';
+                            }
+                        }
+                     } ?>
+                </div>
                 <div class="card-bottom-section mt-5">
                     <div> <a href="/warehouse/shipping-request?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
@@ -402,7 +454,16 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                         </div>
 
                     </div>
-
+                    <div style="padding-left:20px;max-height: 200px;overflow:auto;">
+                      <?php if(isset($_GET['search'])){ 
+                            $users = User::find()->where(['LIKE','name',$_GET['search']])->all();
+                            if(!empty($users)){
+                                foreach($users as $user_ => $user_val){
+                                     echo '<a target="_blank" href="/warehouse/users/edit?id='.$user_val->id.'&lang=">'.$user_val->name.'</a><br>';
+                                }
+                            }
+                         } ?>
+                    </div>
                     <div class="card-bottom-section mt-5">
                         <div> <a href="/warehouse/users?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                     </div>

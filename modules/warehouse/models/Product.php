@@ -135,10 +135,10 @@ class Product extends \yii\db\ActiveRecord {
         return ['closing' => $closing, 'sell_in' => $sell_in, 'sell_out' => $sell_out, 'opening' => $opening];
     }
 
-    public function findByData($data) {
+    public static function findByData($data) {
         $sql = '';
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-
+        
         if ($data["virtual_type"]) {
             if (empty($sql)) {
                 $sql = 'WHERE `s_warehouse`.`group_id` =' . intval($data["virtual_type"]);
@@ -147,28 +147,21 @@ class Product extends \yii\db\ActiveRecord {
                 $sql .= ' AND `s_warehouse`.`group_id` =' . intval($data["virtual_type"]);
             }
         }
+       
+        if ($_GET["search"]) {
+            if (empty($sql)) {
+                $sql = 'WHERE (`s_nomenclature_product`.`name_hy` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name_en` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name_ru` LIKE "%' .$_GET["search"].'%")';
+            }
+            else {
+                $sql .= ' AND (`s_nomenclature_product`.`name_hy` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name_en` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name_ru` LIKE "%' .$_GET["search"].'%")';
+            }
+        }
         if ($data["warehouse_type"]) {
             if (empty($sql)) {
                 $sql = 'WHERE `s_warehouse`.`type` =' . intval($data["warehouse_type"]);
             }
             else {
                 $sql .= ' AND `s_warehouse`.`type` =' . intval($data["warehouse_type"]);
-            }
-        }
-        if ($data["region_id"]) {
-            if (empty($sql)) {
-                $sql = 'WHERE `contact_adress`.`region_id` =' . intval($data["region_id"]);
-            }
-            else {
-                $sql .= ' AND `contact_adress`.`region_id` =' . intval($data["region_id"]);
-            }
-        }
-        if ($data["community_id"]) {
-            if (empty($sql)) {
-                $sql = 'WHERE `contact_adress`.`community_id` =' . intval($data["community_id"]);
-            }
-            else {
-                $sql .= ' AND `contact_adress`.`community_id` =' . intval($data["community_id"]);
             }
         }
         if ($data["supplier_warehouse_id"]) {
@@ -180,15 +173,6 @@ class Product extends \yii\db\ActiveRecord {
             }
         }
 
-        if ($data["serias"]) {
-            $serias = substr($data["serias"], 0, -1);
-            if (empty($sql)) {
-                $sql = 'WHERE `s_product`.`mac_address` IN(' . $serias . ')';
-            }
-            else {
-                $sql .= ' AND `s_product`.`mac_address` IN(' . $serias . ')';
-            }
-        }
         if (!$data["serias"] && $data['nomiclature_id']) {
             $serias = substr($data["serias"], 0, -1);
 
@@ -224,23 +208,16 @@ class Product extends \yii\db\ActiveRecord {
             $group_by = 'GROUP BY s_product.id,s_product.warehouse_id';
         }
 
-        if (!isset($data['show-series'])) {
-            if (!isset($data['show-ware'])) {
-                // change
-                $group_by = 'GROUP BY s_product.id';
-            }
-            else {
-                $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
-            }
-        }
-      
+        $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
+    
         return Yii::$app
             ->db
-            ->createCommand("SELECT SUM(s_product.count) as pcount,SUM(s_product.price * s_product.count) as pprice,AVG(s_product.price) as avgprice,s_warehouse.name_" . $lang . " as wname,s_nomenclature_product.*,s_qty_type.type_" . $lang . " as qty_type,s_product.*,s_product.mac_address as mac FROM s_product            
+            ->createCommand("SELECT SUM(s_product.count) as pcount,SUM(s_product.price * s_product.count) as pprice,AVG(s_product.price) as avgprice,s_warehouse.name_" . $lang . " as wname,s_warehouse.id as wid,s_nomenclature_product.*,s_qty_type.type_" . $lang . " as qty_type,s_product.*,s_product.mac_address as mac FROM s_product            
                                                      LEFT JOIN s_nomenclature_product ON s_nomenclature_product.id = s_product.nomenclature_product_id
                                                      LEFT JOIN s_qty_type ON s_nomenclature_product.qty_type_id = s_qty_type.id 
                                                      LEFT JOIN s_warehouse ON s_warehouse.id = s_product.warehouse_id 
                                                    $sql  $group_by ORDER BY s_product.nomenclature_product_id")->queryAll();
+            
     }
 
     public function getNProduct() {
@@ -265,7 +242,7 @@ class Product extends \yii\db\ActiveRecord {
             $number_of_page = ceil(count($whProductsCount) / $results_per_page);
             $whProducts = Yii::$app
                 ->db
-                ->createCommand("SELECT s_warehouse.name_" . $lang . " as wname,s_nomenclature_product.img,s_nomenclature_product.id as nid,s_qty_type.type_" . $lang . " as qtype,s_nomenclature_product.individual,s_nomenclature_product.name_" . $lang . " as nomeclature_name,s_warehouse.id,s_warehouse.contact_address_id,s_warehouse.type,nomenclature_product_id, sum(count) AS `count_n_product` FROM `s_product` LEFT JOIN `s_nomenclature_product` ON `s_product`.`nomenclature_product_id` = `s_nomenclature_product`.`id` LEFT JOIN `s_qty_type` ON `s_nomenclature_product`.`qty_type_id` = `s_qty_type`.`id` LEFT JOIN `s_warehouse` ON `s_product`.`warehouse_id` = `s_warehouse`.`id` WHERE `warehouse_id`=$id AND  `status`=1 AND s_product.count>0 GROUP BY `nomenclature_product_id`, `warehouse_id` ORDER BY `count_n_product` LIMIT " . $page_first_result . ',' . $results_per_page)->queryAll();
+                ->createCommand("SELECT s_warehouse.name_" . $lang . " as wname,s_nomenclature_product.img,s_nomenclature_product.id as nid,s_qty_type.type_" . $lang . " as qtype,s_nomenclature_product.individual,s_nomenclature_product.name_" . $lang . " as nomeclature_name,s_warehouse.id,s_warehouse.type,nomenclature_product_id, sum(count) AS `count_n_product` FROM `s_product` LEFT JOIN `s_nomenclature_product` ON `s_product`.`nomenclature_product_id` = `s_nomenclature_product`.`id` LEFT JOIN `s_qty_type` ON `s_nomenclature_product`.`qty_type_id` = `s_qty_type`.`id` LEFT JOIN `s_warehouse` ON `s_product`.`warehouse_id` = `s_warehouse`.`id` WHERE `warehouse_id`=$id AND  `status`=1 AND s_product.count>0 GROUP BY `nomenclature_product_id`, `warehouse_id` ORDER BY `count_n_product` LIMIT " . $page_first_result . ',' . $results_per_page)->queryAll();
             return ['result' => $whProducts, 'params' => $params, 'total' => $number_of_page];
         }
         else {

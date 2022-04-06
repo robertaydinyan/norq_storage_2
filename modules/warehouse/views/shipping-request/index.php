@@ -16,7 +16,6 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $table_all_columns = array();
 ?>
-
 <?php if (\app\rbac\WarehouseRule::can('shipping-request', 'index')): ?>
     <div class="shipping-request-index group-product-index">
         <nav id="w5" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">

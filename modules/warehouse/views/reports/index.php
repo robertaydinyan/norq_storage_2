@@ -19,10 +19,6 @@ $this->params['breadcrumbs'][] =  $this->title[0];
     .select2-results__options--nested{
         padding-left: 10px;
     }
-    a {
-        border: none!important;
-        background: inherit!important;
-    }
 </style>
 
 <?php if(\app\rbac\WarehouseRule::can('reports', 'index')): ?>
