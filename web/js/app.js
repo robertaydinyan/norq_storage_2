@@ -326,7 +326,7 @@ $('.show-modal').click(function(){
     if (window.matchMedia("(max-width: 990px)").matches) {
         $('.modal-content-custom').show().animate({left: '55%'}, {duration: 600});
     } else {
-        $('.modal-content-custom').show().animate({left: '70%'}, {duration: 600});
+        $('.modal-content-custom').show().animate({left: '85%'}, {duration: 600});
     }
 
         $('.modal-content-custom .close').click(function(){

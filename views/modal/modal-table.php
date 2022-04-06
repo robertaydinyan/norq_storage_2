@@ -1,6 +1,6 @@
 <div class="w-75 m-auto position-relative" role="document" style="top: 50px;">
     <div class="modal-content">
-        <form method="post" action="/warehouse/warehouse/change-table-rows">
+        <form method="post" action="/warehouse/warehouse/change-table-rows" class="pt-4 pb-3">
             <input type="hidden" name="_csrf" value="<?php echo Yii::$app->request->csrfToken; ?>">
             <input type="hidden" name="page" value="<?php echo $page; ?>">
             <div class="modal-header">
@@ -9,7 +9,7 @@
                     <span aria-hidden="true" style="color: #fff!important;">&times;</span>
                 </button>
             </div>
-            <div class="d-flex justify-content-between row" style="width: 98%;margin-left:1%">
+            <div class="d-flex justify-content-between row bg-white" style="width: 98%;margin-left:1%">
                 <div class="d-flex flex-column col-12	col-sm-12	col-md-12 col-lg-6	col-xl-3" style="width: 22%;">
                     <h6>Էջերի քանակը</h6>
                     <div class="input-group">
@@ -36,7 +36,7 @@
                     <p style="font-size: 13px">Սահմանեք աղյուսակի տեսակավորման հիմնական չափանիշները</p>
                 </div>
             </div>
-            <h6 class=" text-center border-bottom border-top mt-3 p-2" style="width: 98%;margin-left:1%">Կարգավորեք աղյուսակի սյուների կարգը և ցուցադրումը</h6>
+            <h6 class=" text-center border-bottom border-top  p-2 mb-0" style="width: 98%;margin-left:1%;background: #fff!important;">Կարգավորեք աղյուսակի սյուների կարգը և ցուցադրումը</h6>
             <div class="modal-body d-flex justify-content-between row" >
                 <div class="d-flex flex-column sortable connectedSortable modal-table col-12 col-sm-12	col-md-12 col-lg-5	col-xl-5" >
                     <label class="modal-label">Տեսանելի սյուներ</label>

@@ -12815,11 +12815,12 @@ div {
 }
 
 .modal-header {
-  width: 94%;
+  width: 98%;
   margin: auto ;
   padding: 5px!important;
-  justify-content: flex-end!important;
+  justify-content: space-between!important;
   border-bottom: none!important;
+  background: #fff!important;
 }
 .modal-header button {
   background: #fff!important;
@@ -12830,9 +12831,8 @@ div {
   font-size: 17px;
 }
 .modal-body {
-  border: 1px solid #000;
-  width: 94%;
-  margin: 0px auto 10px auto;
+  width: 98%;
+  margin: auto !important;
   position: relative;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -12841,6 +12841,7 @@ div {
   /* background: linear-gradient(90deg,hsla(0,0%,100%,.4),rgba(0,0,0,.1),hsla(0,0%,100%,.2)),linear-gradient(55deg,transparent,rgba(0,0,0,.1) 20%,rgba(0,0,0,.1) 50%,transparent 53%),#4580c4; */
 }
 .modal-content {
+  padding: 10px;
   border: 1px solid #000;
   /* position: relative; */
   display: -ms-flexbox;
@@ -12854,4 +12855,9 @@ div {
   border-radius: 0.3rem;
   outline: 0;
   background: linear-gradient(90deg,hsla(0,0%,100%,.4),rgba(0,0,0,.1),hsla(0,0%,100%,.2)),linear-gradient(55deg,transparent,rgba(0,0,0,.1) 20%,rgba(0,0,0,.1) 50%,transparent 53%),#4580c4!important;
+}
+.modal-footer {
+  background: #fff;
+  width: 98%;
+  margin: auto;
 }
