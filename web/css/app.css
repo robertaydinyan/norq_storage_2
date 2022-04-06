@@ -12813,3 +12813,45 @@ aside .nav-link.active {
 div {
   border-radius: 0!important;
 }
+
+.modal-header {
+  width: 94%;
+  margin: auto ;
+  padding: 5px!important;
+  justify-content: flex-end!important;
+  border-bottom: none!important;
+}
+.modal-header button {
+  background: #fff!important;
+}
+.modal-header button>span {
+  color: #000!important;
+  font-weight:600;
+  font-size: 17px;
+}
+.modal-body {
+  border: 1px solid #000;
+  width: 94%;
+  margin: 0px auto 10px auto;
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  /* padding: 1rem; */
+  background: #fff;
+  /* background: linear-gradient(90deg,hsla(0,0%,100%,.4),rgba(0,0,0,.1),hsla(0,0%,100%,.2)),linear-gradient(55deg,transparent,rgba(0,0,0,.1) 20%,rgba(0,0,0,.1) 50%,transparent 53%),#4580c4; */
+}
+.modal-content {
+  border: 1px solid #000;
+  /* position: relative; */
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 0.3rem;
+  outline: 0;
+  background: linear-gradient(90deg,hsla(0,0%,100%,.4),rgba(0,0,0,.1),hsla(0,0%,100%,.2)),linear-gradient(55deg,transparent,rgba(0,0,0,.1) 20%,rgba(0,0,0,.1) 50%,transparent 53%),#4580c4!important;
+}

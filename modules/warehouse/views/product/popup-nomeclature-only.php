@@ -53,10 +53,13 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 <div class="modal fade" id="viewInfoNom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true" style="display: block;">
     <div class="modal-dialog " role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="float-right" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"style="color: #fff">×</span>
+            <div class="modal-header">
+                <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
                 </button>
+            </div>
+            <div class="modal-body">
+
                 <div class="mod-content">
                     <input type="hidden" name="nomiclature_id" id="nomiclature_id">
                     <script>
@@ -71,7 +74,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     </script>
                     <TABLE border=0 height=600px align=left>
                         <TR>
-                            <TD width=460px align=left valign=top style="BORDER-RIGHT: #999999 1px dashed">
+                            <TD width=460px align=left valign=top >
                                 <ul id="tree" class="ztree" style="width:460px; overflow:auto;"></ul>
                             </TD>
                             <TD align=left valign=top>

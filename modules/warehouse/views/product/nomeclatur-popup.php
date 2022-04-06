@@ -74,7 +74,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     </script>
                     <TABLE border=0 height=600px align=left>
                         <TR>
-                            <TD width=260px align=left valign=top style="BORDER-RIGHT: #999999 1px dashed">
+                            <TD width=260px align=left valign=top >
                                 <ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
                             </TD>
                             <TD align=left valign=top>
