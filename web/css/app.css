@@ -12808,3 +12808,8 @@ aside .nav-link.active {
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem #0055a5!important;
 }
+
+
+div {
+  border-radius: 0!important;
+}

@@ -32,12 +32,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="mr-5 mt-4  d-flex flex-wrap justify-content-between" >
-    <form action="" method="get" class="input-group rounded mb-3 w-50 mr-2">
-        <input name="search" value="<?php echo $_GET['search'];?>" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button id="search-addon">
-                <i style="color:white;" class="fas fa-search"></i>
-         </button>
-    </form>
+
     <div class="d-flex">
       <!--   <div class="dropdown mr-2 btn-drop">
             <button class="btn btn-secondary dropdown-toggle bg-white bg-white" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

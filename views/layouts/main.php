@@ -58,9 +58,10 @@ AppAsset::register($this);
 
             <div class="bookmarks d-flex row ">
 
+
                 <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
 
-                    <div class="favorites col-12	col-sm-12	col-md-4 col-lg-4	col-xl-2 mb-3" >
+                    <div class="favorites col-12	col-sm-12	col-md-3 col-lg-4	col-xl-2 mb-3" >
                         <button class="accordion bg-white" style="background: #fff;"><?= Yii::t('app','Favorite') ?></button>
                         <div class="panel panel2">
                         <?php if ($favorites):
@@ -81,7 +82,7 @@ AppAsset::register($this);
                         endif;?>
                         </div>
                     </div>
-                    <div class="histories col-12	col-sm-12	col-md-4 col-lg-4	col-xl-2 mb-3" >
+                    <div class="histories col-12	col-sm-12	col-md-3 col-lg-3	col-xl-2 mb-3" >
                         <button class="accordion bg-white" style="background: #fff"><?= Yii::t('app','History') ?> (5)</button>
                         <div class="panel panel2">
                         <?php if ($history):
@@ -101,6 +102,14 @@ AppAsset::register($this);
                             <?php endforeach;
                         endif;?>
                         </div>
+                    </div>
+                    <div class="col-12	col-sm-12	col-md-3 col-lg-3	col-xl-3 mb-3">
+                        <form action="" method="get" class="input-group rounded ">
+                            <input name="search" value="<?php echo $_GET['search'];?>" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                            <button id="search-addon" style="background: #0055a5!important;">
+                                <i style="color:white;" class="fas fa-search"></i>
+                            </button>
+                        </form>
                     </div>
                 <?php endif; ?>
             </div>
