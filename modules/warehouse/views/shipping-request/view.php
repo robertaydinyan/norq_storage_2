@@ -93,6 +93,10 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                         <th scope="col"><?php echo Yii::t('app', 'Total amount'); ?></th>
                         <td><?php echo number_format($model->totalsum,0,',','.');?>  <?php echo Yii::t('app', 'dram'); ?></td>
                     </tr>
+                    <tr>
+                        <th scope="col"><?php echo Yii::t('app', 'document_type'); ?></th>
+                        <td><?php echo Yii::t('app', $model->document_type == 1 ? 'Basic' : ($model->document_type == 2 ? 'Commission' : '')); ?></td>
+                    </tr>
                 </table>
             </div>
             <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-7 table-scroll">

@@ -208,8 +208,7 @@ class Product extends \yii\db\ActiveRecord {
             $group_by = 'GROUP BY s_product.id,s_product.warehouse_id';
         }
 
-        $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
-    
+//        $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
         return Yii::$app
             ->db
             ->createCommand("SELECT SUM(s_product.count) as pcount,SUM(s_product.price * s_product.count) as pprice,AVG(s_product.price) as avgprice,s_warehouse.name_" . $lang . " as wname,s_warehouse.id as wid,s_nomenclature_product.*,s_qty_type.type_" . $lang . " as qty_type,s_product.*,s_product.mac_address as mac FROM s_product            

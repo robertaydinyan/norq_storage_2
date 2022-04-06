@@ -1,0 +1,16 @@
+.erp-arrow-slides .on-hover-scroll {
+    position: absolute;
+    z-index: 1;
+    width: 20px;
+    height: 100%;
+}
+.erp-arrow-slides .on-hover-scroll:hover{
+    opacity: 0.7;
+}
+.erp-arrow-slides .on-hover-scroll.on-hover-table-scroll-left {
+    left: -20px;
+}
+
+.erp-arrow-slides .on-hover-scroll.on-hover-table-scroll-right {
+    right: -20px;
+}

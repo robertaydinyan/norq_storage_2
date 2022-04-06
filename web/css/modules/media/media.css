@@ -1,0 +1,35 @@
+@media only screen and (max-width: 1700px) {
+    .main-header2 ul li a {
+        font-size: 13px;
+    }
+}
+@media only screen and (max-width: 1500px) {
+    .warehouse-home-item {
+        width: 32%;
+    }
+    .table-scroll{
+        overflow-x: auto;
+    }
+
+    #txt {
+        font-size: 20px;
+    }
+    .main-header2 {
+        display: none!important;
+    }
+    .menu-media {
+        display: block;
+    }
+
+}
+@media only screen and (max-width: 1200px) {
+    .warehouse-home-item {
+        width: 49%;
+    }
+}
+@media only screen and (max-width: 780px) {
+    .warehouse-home-item {
+        width: 100%;
+    }
+
+}

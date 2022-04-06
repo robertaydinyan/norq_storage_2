@@ -1,0 +1,427 @@
+.knbn-new-task-popup {
+    /*position: fixed;*/
+    width: 100%;
+    /*top:0;*/
+    /*right: 0;*/
+    background-color: #F3F3F3;
+    /*z-index: 300;*/
+    height: 100%;
+}
+
+.knbn-nwe-task-popup-close-div{
+    left: -73px;
+}
+
+.knbn-new-task-temp{
+    height: calc(100vh - 100px);
+    padding: 20px 20px 60px 20px;
+    overflow-x: auto;
+    box-shadow: -10px 0 12px 3px rgba(173,173,173,0.5);
+}
+.knbn-new-task-temp * {
+    font-family: "Exo 2", sans-serif;
+    font-size: 13px;
+}
+.knbn-new-ttc-top{
+    /*height: 100%;*/
+    width: 100%;
+    /*overflow-y: auto;*/
+    padding: 8px 5px 0 0;
+}
+
+.knbn-new-ttc-left{
+    width: 100%;
+}
+
+.knbn-new-ttc-top > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 45px;
+}
+
+.knbn-new-ttc-top > div:nth-child(4) {
+    /*border-bottom: 1px solid #dddfe1;*/
+}
+
+.knbn-new-task-textarea-box{
+
+}
+.knt-task-start-date, .knt-task-end-date {
+    position: relative;
+}
+.knbn-new-task-textarea-box textarea{
+    height: 90px;
+}
+
+.knbn-new-task-textarea{
+    height: inherit;
+}
+
+.task-date-picker-container {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 7px 64px rgba(0, 0, 0, 0.07);
+    border-radius: 5px;
+    top: 40px;
+    left: 0;
+    padding: 15px;
+    z-index: 30;
+    width: 350px;
+}
+.xdsoft_datetimepicker.xdsoft_inline {
+    box-shadow: none;
+}
+.knt-add-deadline, .knt-add-startend {
+    height: 37px;
+    min-width: 390px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 15px;
+}
+.knt-add-startend {
+    min-width: 200px;
+}
+.knt-date-span {
+    margin-left: 15px;
+}
+.knbn-new-task-input-box{
+    flex-grow: 1;
+}
+.knt-border-div >input {
+    border: none;
+}
+.responsible-plane-duration-box input  {
+
+}
+.knbn-new-task-pr-box{
+    margin-left: 15px;
+    width: 87px;
+}
+
+.knbn-new-task-fire{
+    font-size: 22px;
+    margin-left: 5px;
+}
+
+.knbn-new-task-fire-active{
+    color: #F2C94C;
+}
+
+.knbn-new-task-responsible-area{
+    margin-top: 15px;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 6px 3px rgba(173,173,173,0.5);
+    border-radius: 5px;
+}
+
+.knbn-new-task-responsible-row{
+    display: grid;
+    grid-template-columns: 10% 70%;
+    align-items: center;
+    padding: 15px 0;
+}
+.knbn-new-task-responsible-row > div {
+    display:flex ;
+    align-items: center;
+}
+.knbn-new-task-responsible-row:first-child{
+    border-bottom: 1px solid #dddfe1;
+}
+.knt-add-employee {
+    min-width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 3px;
+    padding-top:3px;
+}
+
+.knt-add-employee-name{
+    height: 30px;
+    background-color: #007bff;
+    border-radius: 5px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    margin-right:5px;
+    margin-bottom: 3px;
+}
+.knt-add-employee-name > span:last-child{
+    cursor:pointer;
+    font-size: 14px;
+}
+.knt-add-employee-name-cont {
+    display: flex;
+    flex-wrap: wrap;
+}
+.knt-add-employee-name > span:last-child {
+    margin-left: 5px;
+}
+
+.knt-add-new-employee-type-observer, .knt-add-new-employee-type-executor, .knt-add-new-employee-type-producer {
+    display: none;
+}
+.knt-add-employee-add-change {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    color:#007bff;
+    font-weight: 800;
+    margin-left: 10px;
+}
+.knt-add-employee-popup {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    padding: 10px;
+    background-color: #FFFFFF;
+    display: none;
+    box-shadow: 0 0 6px 3px rgba(173,173,173,0.5);
+    z-index: 10;
+    width: 600px;
+}
+
+/*.responsible-row-item{*/
+/*    margin-right: 15px;*/
+/*}*/
+.knbn-new-task-responsible-row > .knt-plane-box {
+    display: none;
+}
+.new-task-responsible-plane-box{
+    display: none;
+    padding: 15px;
+    position: relative;
+    width: max-content;
+}
+
+.new-task-responsible-plane-box:hover .new-task-responsible-plane-chooser{
+    visibility: visible;
+}
+
+.new-task-responsible-plane-row{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-top: 1px solid #dddfe1;
+    padding: 15px 0;
+    width: 100%;
+}
+
+.new-task-responsible-plane-row > div{
+    margin-right: 25px;
+}
+
+.responsible-plane-duration-buttons .duration-btn{
+    margin-right: 5px;
+}
+
+.responsible-plane-duration-buttons .duration-btn:last-child{
+    margin-right: 0;
+}
+.responsible-plane-duration-buttons .duration-btn-active{
+    font-weight: 800;
+}
+
+
+.new-task-responsible-plane-row > div:last-child{
+    margin-right: 0;
+}
+
+
+
+.new-task-responsible-more-box{
+    display: none;
+    padding: 0 15px 0;
+    position: relative;
+    width: max-content;
+}
+
+.new-task-responsible-more-box:hover .new-task-responsible-chooser{
+    visibility: visible;
+}
+
+.new-task-responsible-more-checkboxes{
+    margin-left: 150px;
+    width: max-content;
+    border-top: 1px solid #dddfe1;
+    padding: 5px 40px 0 0;
+}
+
+.responsible-more-checkbox-item{
+    padding: 3px;
+}
+.knbn-new-task-responsible-buttons {
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+}
+.knbn-new-task-responsible-buttons button{
+    margin-right: 5px;
+}
+
+.new-task-responsible-chooser,
+.new-task-responsible-plane-chooser{
+    position: absolute;
+    top: 26px;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transform: rotate(45deg);
+    cursor: pointer;
+    visibility: hidden;
+}
+
+.new-task-responsible-chooser-checked,
+.new-task-responsible-plane-chooser-checked{
+    transform: rotate(0);
+}
+.responsible-plane-duration-box{
+    display: flex;
+    flex-direction: column;
+}
+.responsible-plane-duration-box .knt-border-div {
+    height: 35px;
+}
+.knt-duration {
+    height:30px ;
+    width: inherit;
+}
+.knbn-new-task-additionally-box{
+
+}
+
+.additionally-box-head{
+    cursor: pointer;
+    padding: 15px;
+}
+
+.additionally-box-head-title{
+    font-weight: 600;
+}
+
+.additionally-box-head-text{
+    color: #ced4da;
+}
+
+.additionally-box-body{
+    background-color: #F8F9FA;
+    display: none;
+}
+
+.additionally-box-head-title-icon svg{
+    transition: .3s;
+}
+
+.additionally-box-head-title-icon-rotate svg{
+    transform: rotate(180deg);
+}
+
+.knbn-additionally-box-item-wrap{
+    position: relative;
+    padding: 15px;
+    border-bottom: 1px solid #dddfe1;
+
+}
+
+.knbn-additionally-box-item{
+    display: flex;
+    /*align-items: center;*/
+    position: relative;
+}
+
+.additionally-box-item-title{
+    font-weight: 600;
+    position: absolute;
+}
+
+.additionally-box-item-content{
+    margin-left: 240px;
+    display: flex;
+    align-items: center;
+}
+
+.additionally-add-project{
+    margin-left: 4px;
+}
+
+.additionally-box-item-text{
+    margin-left: 5px;
+}
+
+.knbn-additionally-show-field{
+    margin-left: 80px;
+}
+
+.bnbn-aditionally-times-box{
+    /*display: none;*/
+    margin-left: 15px;
+}
+
+.bnbn-aditionally-times-box .c-floating-label{
+    margin: 0 4px 0 0;
+    display: inline-block;
+}
+
+.knbn-additionally-regular-box{
+    display: none;
+}
+
+.item-content-flex{
+    flex-direction: column;
+    align-items: start;
+    height: 100%;
+}
+
+.knbn-additionally-user-field{
+    margin-bottom: 7px;
+}
+
+.knbn-additionally-user-field-delete{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.knbn-add-task-date-btns{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.knt-border-div {
+    position: relative;
+    border: 1px solid #dddfe1;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+.knbn-new-task-popup-save-container {
+    position: absolute;
+    bottom: 0;
+    padding: 15px;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 -6px 12px 0 rgba(173,173,173,0.5);
+}
+.knbn-new-task-checklist-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+.knbn-task-all-tags {
+    margin-top: 10px;
+    padding: 5px;
+    color: #007bff;
+    display: flex;
+    flex-wrap: wrap;
+}
+.knbn-task-all-tags span {
+    padding: 5px;
+}

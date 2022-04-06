@@ -239,6 +239,12 @@ $table_all_columns = array();
                             return $model->status_->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                         }
                     ],
+                    'document_type' => [
+                        'label' => Yii::t('app', 'document_type'),
+                        'value' => function ($model) {
+                            return Yii::t('app', $model->document_type == 1 ? 'Basic' : ($model->document_type == 2 ? 'Commission' : ''));
+                        }
+                    ]
                 ];
                 $actions = [
                     'class' => 'yii\grid\ActionColumn',

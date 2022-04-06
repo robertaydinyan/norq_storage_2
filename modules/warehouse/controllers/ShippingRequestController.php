@@ -174,6 +174,7 @@ class ShippingRequestController extends Controller {
             $model->shipping_type = $request['ShippingRequest']['shipping_type'];
             $model->provider_warehouse_id = $request['ShippingRequest']['provider_warehouse_id'];
             $model->supplier_warehouse_id = $request['ShippingRequest']['supplier_warehouse_id'];
+            $model->document_type = $request['ShippingRequest']['document_type'];
             $model->invoice = $request['ShippingRequest']['invoice'];
             $model->request_id = $request['ShippingRequest']['request_id'];
             $model->comment = $request['ShippingRequest']['comment'];
@@ -354,6 +355,7 @@ class ShippingRequestController extends Controller {
                 ->request
                 ->post();
 
+            $model->document_type = $request['ShippingRequest']['document_type'];
             $model->invoice = $request['ShippingRequest']['invoice'];
             $model->supplier_id = $request['ShippingRequest']['supplier_id'];
             $model->created_at = date('Y-m-d', strtotime($request['ShippingRequest']['date_create']));

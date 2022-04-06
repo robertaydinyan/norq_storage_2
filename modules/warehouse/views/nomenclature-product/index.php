@@ -29,9 +29,9 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <div style="padding:20px;" >
-        <div class="row">
-            <div class="col-12">
-                <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
+        <div class="">
+            <div class="row">
+                <ul class="file-tree col-3" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
                     <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
                         <li class="file-tree-folder"> <span data-name="l<?= $tableTreeGroup['name_' . $lang] ?>"> <?= $tableTreeGroup['name_' . $lang] ?> </span>
                             <ul style="display: block;">
@@ -42,88 +42,90 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                             <br>
                         </li>
                     <?php endforeach; ?>
+
                 </ul>
+                <div class="col-sm-9">
+                    <?php if(isset($_GET['id'])){?>
+                        <br>
+                        <?= GridView::widget([
+                            'dataProvider' => $dataProvider,
+                            'filterModel' => $searchModel,
+                            'tableOptions' => [
+                                'class' => 'table table-hover'
+                            ],
+                            'columns' => [
+                                'id',
+                                [
+                                    'label' => Yii::t('app', 'Image'),
+                                    'format'=>'html',
+                                    'value' => function ($model) {
+                                        if($model->img){
+                                            return '<a target="_blank" href="'.$model->img.'" ><img width="100" src="'.$model->img.'"></a>';
+                                        } else {
+                                            return '';
+                                        }
+                                    }
+                                ],
+                                [
+                                    'attribute' => 'vendor_code_' . $lang,
+                                    'label' => Yii::t('app', 'Vendor code')
+                                ],
+                                [
+                                    'attribute' => 'name_' . $lang,
+                                    'label' => Yii::t('app', 'Name')
+                                ],
+                                //'groupProduct.name',
+                                [
+                                    'attribute' => 'groupName',
+                                    'label' => Yii::t('app', 'Group'),
+                                    'value' => function ($model) {
+                                        return $model->groupProduct->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                                    }
+                                ],
+                                'production_date',
+                                //'type',
+                                //'individual',
+                                //'qty_type',
+                                //'group_id',
+
+                                [
+                                    'class' => 'yii\grid\ActionColumn',
+                                    'header' => Yii::t('app', 'Action'),
+                                    'template' => '{view}{update}{delete}',
+                                    'buttons' => [
+                                        'view' => function ($url, $model) {
+                                            return \app\rbac\WarehouseRule::can('nomenclature-product', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                                                'title' => Yii::t('app', 'View'),
+                                                'class' => 'btn text-primary btn-sm mr-2'
+                                            ]) : '';
+                                        },
+
+                                        'update' => function ($url, $model) {
+                                            return
+                                                \app\rbac\WarehouseRule::can('nomenclature-product', 'update') ?   Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                                    'title' => Yii::t('app', 'Update'),
+                                                    'class' => 'btn text-primary btn-sm mr-2'
+                                                ]) : '';
+                                        },
+                                        'delete' => function ($url, $model) {
+                                            return \app\rbac\WarehouseRule::can('nomenclature-product', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                                'title' => Yii::t('app', 'Delete'),
+                                                'class' => 'btn text-danger btn-sm',
+                                                'data' => [
+                                                    'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
+                                                    'method' => 'post',
+                                                ],
+                                            ]) : '';
+                                        }
+
+                                    ]
+                                ],
+                            ],
+                        ]); ?>
+                    <?php } ?>
+                </div>
             </div>
-            <div class="col-sm-12 table-scroll">
-                 <?php if(isset($_GET['id'])){?>
-                <br>
-                <?= GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                         'tableOptions' => [
-                             'class' => 'table table-hover'
-                         ],
-                    'columns' => [
-                        'id',
-                         [
-                           'label' => Yii::t('app', 'Image'),
-                           'format'=>'html',
-                           'value' => function ($model) {
-                            if($model->img){
-                               return '<a target="_blank" href="'.$model->img.'" ><img width="100" src="'.$model->img.'"></a>';
-                            } else {
-                                return '';
-                            }
-                           }
-                         ],
-                        [
-                            'attribute' => 'vendor_code_' . $lang,
-                            'label' => Yii::t('app', 'Vendor code')
-                        ],
-                        [
-                            'attribute' => 'name_' . $lang,
-                            'label' => Yii::t('app', 'Name')
-                        ],
-                        //'groupProduct.name',
-                        [
-                            'attribute' => 'groupName',
-                            'label' => Yii::t('app', 'Group'),
-                            'value' => function ($model) {
-                                return $model->groupProduct->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
-                            }
-                        ],
-                        'production_date',
-                        //'type',
-                        //'individual',
-                        //'qty_type',
-                        //'group_id',
 
-                        [
-                            'class' => 'yii\grid\ActionColumn',
-                            'header' => Yii::t('app', 'Action'),
-                            'template' => '{view}{update}{delete}',
-                            'buttons' => [
-                                'view' => function ($url, $model) {
-                                    return \app\rbac\WarehouseRule::can('nomenclature-product', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
-                                        'title' => Yii::t('app', 'View'),
-                                        'class' => 'btn text-primary btn-sm mr-2'
-                                    ]) : '';
-                                },
-
-                                'update' => function ($url, $model) {
-                                    return
-                                        \app\rbac\WarehouseRule::can('nomenclature-product', 'update') ?   Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
-                                            'title' => Yii::t('app', 'Update'),
-                                            'class' => 'btn text-primary btn-sm mr-2'
-                                        ]) : '';
-                                },
-                                'delete' => function ($url, $model) {
-                                    return \app\rbac\WarehouseRule::can('nomenclature-product', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . Yii::$app->language, [
-                                        'title' => Yii::t('app', 'Delete'),
-                                        'class' => 'btn text-danger btn-sm',
-                                        'data' => [
-                                            'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
-                                            'method' => 'post',
-                                        ],
-                                    ]) : '';
-                                }
-
-                            ]
-                        ],
-                    ],
-                ]); ?>
-                <?php } ?>
-            </div>
         </div>
     </div>
 

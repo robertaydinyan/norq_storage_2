@@ -47,20 +47,23 @@ class SuppliersListController extends Controller
             $form_data = Yii::$app->request->post();
             if(!isset($form_data['update_button'])) {
                 $model = new SuppliersList();
-                $model->name_hy = $form_data['name_hy'];
-                $model->name_ru = $form_data['name_ru'];
-                $model->name_en = $form_data['name_en'];
                 if ($form_data['parent_id']) {
                     $model->parent_id = $form_data['parent_id'];
                 }
-                $model->save(false);
             } else {
                 $model = SuppliersList::find()->where(['id'=>$form_data['id']])->one();
-                $model->name_hy = $form_data['name_hy'];
-                $model->name_ru = $form_data['name_ru'];
-                $model->name_en = $form_data['name_en'];
-                $model->save(false);
             }
+            $model->name_hy = $form_data['name_hy'];
+            $model->name_ru = $form_data['name_ru'];
+            $model->name_en = $form_data['name_en'];
+            $model->vat = $form_data['vat'];
+            $model->legal_address = $form_data['legal_address'];
+            $model->business_address = $form_data['business_address'];
+            $model->phone = $form_data['phone'];
+            $model->email = $form_data['email'];
+            $model->comment = $form_data['comment'];
+            $model->contract_type = $form_data['contract_type'];
+            $model->save(false);
             return $this->redirect(['index', 'isFavorite' => $isFavorite,
                 'lang' => \Yii::$app->language]);
         }

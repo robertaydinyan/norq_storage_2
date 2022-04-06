@@ -1,0 +1,760 @@
+/*@mixin pointerB {
+  content: "";
+  position: absolute;
+  right: -15px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 0 15px 10px;
+  border-color: transparent transparent transparent #ffffff;
+}*/
+.main-content-tab-wrap {
+    overflow-x: auto;
+    overflow-y: hidden
+}
+.ui-widget-content {
+    border: none;
+    background: none;
+}
+
+.div {
+    background-color: lightgray;
+    margin-bottom: 15px;
+}
+
+.header-div {
+    display: flex;
+}
+
+.left-head-div {
+    /*display: inline-block;*/
+    /*width: 25%;*/
+    height: 22px;
+    background-color: lightgrey;
+    border-radius: 4px;
+}
+
+.left-head-div-child {
+    margin-top: 5px;
+    height: 12px;
+    /*background-color: #007bff;*/
+}
+
+.mid-head-div {
+    /*display: inline-block;*/
+    /*width: 25%;*/
+    height: 22px;
+}
+
+.mid-head-div-child {
+    margin-top: 5px;
+    height: 12px;
+    /*background-color: #007bff;*/
+}
+
+.right-head-div {
+    /*display: inline-block;*/
+    /*width: 25%;*/
+    height: 22px;
+}
+
+.right-head-div-child {
+    margin-top: 5px;
+    height: 12px;
+    /*background-color: #007bff;*/
+}
+
+.right-head-div-dop {
+    /*display: inline-block;*/
+    /*width: 25%;*/
+    height: 22px;
+}
+
+.right-head-div-child-dop {
+    margin-top: 5px;
+    height: 12px;
+    /*background-color: #007bff;*/
+}
+
+.line-for-left-relation {
+    position: absolute;
+    border-bottom: 2px solid red;
+    border-right: 2px solid red;
+    border-top: 2px solid red;
+    right: -6px;
+    height: 39px;
+    top: -19px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.line-for-right-relation {
+    position: absolute;
+    border-bottom: 2px solid red;
+    border-left: 2px solid red;
+    border-top: 2px solid red;
+    left: -6px;
+    height: 39px;
+    top: -19px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.parent-div-line {
+    position: absolute;
+    top: -21px;
+    height: 41px;
+    left: -10px;
+}
+
+.first-sm-div {
+    border-top: 2px solid red;
+    border-right: 1px solid red;
+}
+
+.second-sm-div {
+    border-left: 1px solid red;
+    border-bottom: 2px solid red;
+}
+
+.parent-div-line-second {
+    position: absolute;
+    top: -20px;
+    height: 39px;
+    right: -10px;
+}
+
+.first-sm-div-second {
+    border-bottom: 2px solid red;
+    border-right: 1px solid red;
+}
+
+.second-sm-div-second {
+    border-left: 1px solid red;
+    border-top: 2px solid red;
+}
+
+.on-border-normative {
+    position: absolute;
+    bottom: -7px;
+    background-color: #fff;
+    padding: 0 3px;
+    font-size: 10px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.gant {
+    overflow: hidden;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0 15px 15px;
+    height: calc(100% - 90px);
+}
+
+.ui-resizable-helper {
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.append-place {
+    display: inline-block;
+    background: #FFFFFF;
+    width: 100%;
+}
+
+.append-place:hover .delete-cicle-icon-gantt {
+    /*display: block;*/
+}
+
+.clicked-gantt {
+    display: inline-block !important;
+    position: relative;
+}
+
+.create-cicle-icon-box {
+    text-align: right;
+    display: none;
+    margin-bottom: 20px;
+}
+
+.create-cicle-icon-gantt {
+    margin-right: 15px;
+}
+
+.input-create-gantt-with-icon {
+    margin-bottom: 20px;
+    background: white !important;
+    display: inline-block;
+    width: 100%;
+}
+
+.delete-cicle-icon-gantt {
+    position: absolute;
+    top: 1px;
+    background: #e8e7e6;
+    color: #334d6e;
+    right: 15px;
+    height: 0;
+    z-index: 1000;
+    cursor: pointer;
+    font-size: 10px;
+    margin-top: 3px;
+    display: none;
+}
+
+.datetimepicker table tr td.active {
+    background-color: #007bff;
+}
+
+.header-place-for-gantt {
+    flex-grow: 1;
+    background-color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 1200px;
+}
+.mid-head-div .status_1,.mid-head-div .status_5{
+    background: rgb(183, 209, 186);
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 22px !important;
+    top: -5px;
+}
+.mid-head-div .status_2{
+    background:  rgb(202, 198, 194);
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 22px !important;
+    top: -5px;
+}
+.mid-head-div .status_1 span{
+    display: inline-block;
+    height: 12px;
+    background: rgb(37, 175, 54);
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 5px;
+}
+.mid-head-div .status_2 span{
+    display: inline-block;
+    height: 12px;
+    background: grey;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 5px;
+}
+.mid-head-div .status_5 span{
+    display: inline-block;
+    height: 12px;
+    background: rgb(37, 175, 54);
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 5px;
+}
+
+
+.right-head-div .status_1, .right-head-div .status_5{
+    background: rgb(236,205,170);
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 22px !important;
+    top: -5px;
+}
+
+
+.right-head-div .status_2{
+    background: rgb(202, 198, 194);
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 22px !important;
+    top: -5px;
+}
+.right-head-div .status_1 span{
+    display: inline-block;
+    height: 12px;
+    background: #eb9636;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 5px;
+}
+.right-head-div .status_2 span{
+    display: inline-block;
+    height: 12px;
+    background: grey;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 5px;
+}
+.right-head-div .status_5 span{
+    display: inline-block;
+    height: 12px;
+    background: #eb9636;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 5px;
+}
+
+
+
+ .status_3{
+     background: #FFFFFF;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height:22px !important;
+    top: -5px;
+}
+
+ .status_3 span{
+    display: inline-block;
+    height: 1px;
+    background: red;
+    width: 100%;
+    left:0px;
+    position: absolute;
+    top: 10.5px;
+ }
+
+
+.inline-place-for-gantt {
+    height: 100%
+}
+
+.rowDivInCalendar {
+    display: inline-block;
+    border-right: 1px solid #e8e7e6;
+    width: 19px;
+    position: relative;
+}
+
+.resHtmlNum {
+    position: absolute;
+    font-size: 10px;
+}
+
+.place-rows-date {
+    width: max-content;
+    position: relative;
+    padding: 15px;
+    margin-left: 30px;
+    display: none
+}
+
+.start-date-date-top {
+    position: absolute;
+    top: -5px;
+    height: 41px;
+    padding-left: 5px;
+}
+
+.end-date-date-top {
+    position: absolute;
+    top: -5px;
+    right: -101px;
+    height: 41px;
+    padding-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.date-top-gantt-place:first-child {
+    border-right: 1px solid #e8e7e6;
+}
+
+.endtDate {
+    border-left: 1px solid #e8e7e6;
+}
+
+.over-div {
+    display: inline-block;
+}
+
+.left_relation_grup {
+    display: inline-block;
+    position: relative;
+}
+
+.left_relation_grup .firstLeftRelation {
+    width: 19px;
+    position: absolute;
+    top: -7px;
+    height: 17px;
+    left: -19px;
+}
+
+.left_relation_grup .secondLeftRelation {
+    position: absolute;
+    left: -19px;
+    width: 19px;
+    top: 11px;
+}
+
+.right_relation_grup {
+    display: inline-block;
+    position: relative;
+}
+
+.right_relation_grup .firstRightRelation {
+    position: absolute;
+    top: -11px;
+    width: 19px;
+}
+
+.right_relation_grup .secondRightRelation {
+    position: absolute;
+    top: 10px;
+    width: 19px;
+    height: 19px;
+}
+
+.border-view1 {
+    border-left: 1px solid #e8e7e6;
+    border-bottom: 1px solid #e8e7e6;
+    border-bottom-left-radius: 5px;
+}
+
+.border-view2 {
+    border-right: 1px solid #e8e7e6;
+    border-bottom: 1px solid #e8e7e6;
+    border-bottom-right-radius: 5px;
+}
+
+.border-view3 {
+    border-left: 1px solid #e8e7e6;
+    border-top: 1px solid #e8e7e6;
+    border-top-left-radius: 5px;
+}
+
+.border-view4 {
+    border-right: 1px solid #e8e7e6;
+    border-top: 1px solid #e8e7e6;
+    border-top-right-radius: 5px;
+}
+
+.border-view5to7 {
+    border-left: 1px solid #e8e7e6;
+    border-top: 1px solid #e8e7e6;
+    border-bottom: 1px solid #e8e7e6;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.border-view6to8 {
+    border-right: 1px solid #e8e7e6;
+    border-top: 1px solid #e8e7e6;
+    border-bottom: 1px solid #e8e7e6;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.select-type-of-math {
+    height: 34px;
+    margin-top: -0.5px;
+}
+
+.big-div-leftBAr {
+    height: 821px;
+}
+
+.supportNames {
+    border-bottom: 1px solid #e8e7e6;
+    height: 20px;
+}
+
+.firstSup {
+    margin-top: 24px;
+}
+
+.headSupport {
+    font-size: 16px;
+    height: 131px;
+}
+
+
+.gatnSToolTip {
+    display: block;
+    position: absolute;
+    z-index: 20;
+    top: 18px;
+}
+
+.gatnSToolTip .c-toolType-header {
+    margin: 0;
+}
+
+.modalCustom {
+    background-color: #ffffff !important;
+    /*min-width: 400px !important;*/
+}
+
+.gantModalInputs {
+    width: unset !important;
+}
+
+
+
+/*# sourceMappingURL=gantt.css.map */
+
+
+
+.gantt-left-cols-box{
+    display: flex;
+}
+
+.gantt-left-col{
+    box-sizing: border-box;
+    background-color: #fff;
+    width: 150px;
+    display: none;
+    margin-top:10px;
+}
+.gantt-left-col:last-of-type{
+    border:0px !important;
+}
+.gantt-col-list{
+    height: inherit;
+    /*margin-top: 25px;*/
+    padding: 0px;
+}
+.gantt-col-list-item>span{
+    padding-left:13px;
+}
+.gantt-col-list .gantt-col-list-item {
+    padding: 10px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    position: relative;
+}
+
+.gantt-col-list .gantt-col-list-item:hover{
+    background-color: #FBFBFB;
+}
+
+
+/*.gantt-col-1-list .gantt-col-list-item:hover {
+    height: 19px;
+}
+
+.gantt-col-1-list .gantt-col-list-item:hover span {
+    background-color: #fff;
+    z-index: 3;
+}*/
+
+.gantt-left-col .gantt-col-title{
+    padding: 15px 10px;
+    text-align: center;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+}
+
+.gantt-col-title .gantt-col-title-icon{
+    margin-left: 4px;
+}
+
+.lateLineGant {
+    width: 150px;
+    height: 50%;
+    border-bottom: 1px solid red;
+}
+/*Set background color append-place light red*/
+.backLineAppendplace {
+    background-color:   #f996a1;
+}
+
+.beforeGantLateLine {
+    background: red;
+    height: 1px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lateLineGantInItems {
+    position: absolute;
+    width: inherit;
+    background: none !important;
+    border-top: 1px solid red;
+    top: 50%;
+}
+.gant-start-height:first-of-type{
+    height: 48px;
+}
+.gantt-left-col-2{
+    width: 45px;
+}
+.gantt-left-col{
+    overflow: hidden;
+}
+
+.gantt-left-col-4{
+    width: 45px;
+}
+.gantt-col-list-item:nth-child(odd){
+    background: #F7F7F7;
+}
+.gantt-left-col-3{
+    border-right: none;
+}
+.gantt-col-4-title{
+    padding-top: 14px !important;
+}
+.set-date-type{
+    border:0px;
+    background: none;
+}
+.gantt-left-arrow{
+    margin: 25px 6px;
+    cursor: pointer;
+}
+.gant2{
+    padding-left: 37px !important;
+}
+.orange-head-div {
+    background-color: rgb(236, 205, 170);
+    border-radius: 0 !important;
+}
+
+.orange-head-div-child {
+    background-color: #007bff;
+    position: relative;
+    height: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.beforeGantLateHorizonLineGray,.afterGantLateHorizonLineGray{
+    background: gray;
+    height: 100%;
+    width: 2px;
+    display: none;
+
+}
+.beforeGantLateLineGray,.afterGantLateLineGray{
+    background: darkgray;
+    height: 3px;
+    display: none;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.main-content-tab-wrap .gantt-all-page{
+    display: grid;
+    grid-template-columns: 400px auto;
+    grid-gap: 20px;
+    height: calc(100vh - 300px);
+    position: relative;
+}
+.main-content-tab-wrap .border{
+    height: 74%;
+    border-left:1px solid #f0f0f0;
+    position: absolute;
+    width: 60px;
+    margin-left: -2px;
+}
+
+.main-content-tab-wrap .gantt-left-cols-box{
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+    overflow: hidden;
+    background: white;
+}
+.main-content-tab-wrap .z963{
+    border:none;
+}
+
+.main-content-tab-wrap .inline-place-for-gantt{
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+    overflow: hidden;
+}
+.filter-button{
+    width: 100%;
+    -webkit-box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,0.18);
+    -moz-box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,0.18);
+    box-shadow: inset 0px 0px 8px 0px rgba(0,0,0,0.18);
+
+}
+.filter-modal{
+    background: white;
+    position: absolute;
+    width: 155px;
+    right: 5px;
+    padding: 0px 10px;
+    z-index: 100002;
+    border-radius: 5px;
+    top: 55px;
+    border: 1px solid lightgrey;
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 17px 5px;
+}
+.filter-button>button{
+    width: 100%;
+    border:0px;
+    background: none;
+    height: 50px;
+    cursor: pointer;
+}
+
+.filter-button .overlay{
+    position: fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    height: 100%;
+    z-index: 10001;
+    display: none;
+}
+.op_title{
+    display: inline-block;
+    margin: 0px;
+    font-size: 20px;
+    margin-top:-4px;
+}
+
+.h-100 {
+    height: 100% !important;
+}
+
+.ui-widget-content {
+    background: none !important;
+    border: none !important;
+}
+
+.ui-resizable-helper {
+    background: none !important;
+    border: none !important;
+}
+.gant.gant2 {
+    overflow: hidden;
+}
+
+.right-head-div-dop {
+    background-color: red;
+    height: 100%;
+}
+
+.arrowForRelations  {
+    position: absolute;
+    z-index: 999;
+    left: -11.5px;
+    top: 4px;
+}

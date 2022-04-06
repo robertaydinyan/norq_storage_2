@@ -25,6 +25,7 @@ use app\modules\warehouse\models\ProductForRequest;
  * @property string|null $invoice
  * @property string|null $comment
  * @property string|null $request_id
+ * @property integer|null $document_type
  */
 
 class ShippingRequest extends \yii\db\ActiveRecord {
@@ -58,9 +59,11 @@ class ShippingRequest extends \yii\db\ActiveRecord {
             'supplier_warehouse_id' => Yii::t('app', 'Supplier warehouse'),
             'status' => Yii::t('app', 'Status'),
             'comment' => Yii::t('app', 'Comment'),
-            'user_id' => Yii::t('app', 'Responsible')
+            'user_id' => Yii::t('app', 'Responsible'),
+            'document_type' => Yii::t('app', 'Document type')
         ];
     }
+
     public function attributeLabelsAll($type) {
         if (!$type || $type == 7) {
             return [
@@ -72,6 +75,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                 'totalAmount' => 'Total amount',
                 'created' => 'Created',
                 'status' => 'Status',
+                'document_type' => Yii::t('app', 'Document type')
             ];
         } else if ($type == 6 || $type == 2 || $type == 5) {
             return [

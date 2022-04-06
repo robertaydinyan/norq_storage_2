@@ -25,6 +25,10 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             'id',
             'vendor_code_' . $lang,
             'name_' . $lang,
+            'expenditure_article',
+            'is_vat',
+            'manufacturer_name',
+            'other',
             [
                 'attribute' => 'group_id',
                 'label' => Yii::t('app', 'group'),

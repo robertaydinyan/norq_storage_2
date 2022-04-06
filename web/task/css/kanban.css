@@ -1,0 +1,94 @@
+.kanban {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+}
+.kanban * {
+    font-family: "Exo 2", sans-serif;
+    font-size: 13px;
+}
+.knbn-main {
+    width: inherit;
+    margin: 0 auto;
+    height: calc(100vh - 280px);
+    overflow-x: auto;
+}
+.knbn-main  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.knbn-lead-body, .knbn-task-body, .knbn-deal-body  {
+    display: flex;
+    height: 100%;
+}
+.knbn-task-body > li, .knbn-lead-body > li, .knbn-deal-body >li {
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+}
+
+.knbn-resp-cont-popup {
+    position: absolute;
+    padding: 10px;
+    background-color: #FFFFFF;
+    display: none;
+    box-shadow: 0 3px 6px 0 rgba(173,173,173,0.5);
+    z-index: 2;
+    width: 600px;
+}
+
+/*================ header start=======================*/
+.knbn-header, .knbn-header-hidden, .knbn-plus-btn {
+    height: 30px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.knbn-plus-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.knbn-plus-btn:hover {
+    transition: .3s;
+    background: #2fc6f6;
+}
+
+.knbn-plus-btn .knbn-plus-icon{
+    color: #838383;
+}
+.knbn-lead-step, .knbn-task-step, .knbn-deal-step {
+    height: 100%;
+    line-height: 30px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: relative;
+    border-radius: 5px;
+    user-select: none;
+}
+
+.knbn-step-span {
+    color: #fff;
+}
+
+.knbn-col {
+    text-align: center;
+}
+
+.knbn-column-placeholder {
+    background-color: #F3F3F3;
+}
+
+.knbn-item-placeholder {
+    display: block;
+    margin: 0 auto 5px;
+    height: 100px;
+    width: calc(100% - 10px);
+    border:1px dashed #c2cad4;
+}

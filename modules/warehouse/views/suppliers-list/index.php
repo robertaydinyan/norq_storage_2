@@ -62,12 +62,41 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 </button>
                 <form method="post" action="">
                     <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
+
                     <label for="fname"><?php echo Yii::t('app', 'Name(Armenian)'); ?></label><br>
                     <input type="text" class="form-control" id="fname" name="name_hy"><br>
+
                     <label for="fname2"><?php echo Yii::t('app', 'Name(Russian)'); ?></label><br>
                     <input type="text" class="form-control" id="fname2" name="name_ru"><br>
+
                     <label for="fname3"><?php echo Yii::t('app', 'Name(English)'); ?></label><br>
                     <input type="text" class="form-control" id="fname3" name="name_en"><br>
+
+                    <label for="vat"><?php echo Yii::t('app', 'Vat'); ?></label><br>
+                    <input type="text" class="form-control" id="vat" name="vat"><br>
+
+                    <label for="legal_address"><?php echo Yii::t('app', 'Legal Address'); ?></label><br>
+                    <input type="text" class="form-control" id="legal_address" name="legal_address"><br>
+
+                    <label for="business_address"><?php echo Yii::t('app', 'Business Address'); ?></label><br>
+                    <input type="text" class="form-control" id="business_address" name="business_address"><br>
+
+                    <label for="phone"><?php echo Yii::t('app', 'Phone'); ?></label><br>
+                    <input type="text" class="form-control" id="phone" name="phone"><br>
+
+                    <label for="email"><?php echo Yii::t('app', 'Email'); ?></label><br>
+                    <input type="text" class="form-control" id="email" name="email"><br>
+
+                    <label for="comment"><?php echo Yii::t('app', 'Comment'); ?></label><br>
+                    <input type="text" class="form-control" id="comment" name="comment"><br>
+
+                    <label for="contract_type"><?php echo Yii::t('app', 'Contract Type'); ?></label><br>
+                    <select class="form-control" id="contract_type" name="contract_type">
+                        <option selected disabled value=""></option>
+                        <option value="1">Հիմնական</option>
+                        <option value="2">Կոմիսիոն</option>
+                    </select><br>
+
                     <input type="hidden" id="group_id" name="parent_id">
                     <button class="btn btn-primary"><?php echo Yii::t('app', 'Save'); ?></button>
                 </form>
@@ -84,12 +113,41 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 </button>
                 <form method="post" action="">
                     <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
+
                     <label for="fname__"><?php echo Yii::t('app', 'Name(Armenian)'); ?></label><br>
                     <input type="text" class="form-control" id="fname__" name="name_hy"><br>
+
                     <label for="fname2__"><?php echo Yii::t('app', 'Name(Russian)'); ?></label><br>
                     <input type="text" class="form-control" id="fname2__" name="name_ru"><br>
+
                     <label for="fname3__"><?php echo Yii::t('app', 'Name(English)'); ?></label><br>
                     <input type="text" class="form-control" id="fname3__" name="name_en"><br>
+
+                    <label for="vat_"><?php echo Yii::t('app', 'Vat'); ?></label><br>
+                    <input type="text" class="form-control" id="vat_" name="vat"><br>
+
+                    <label for="legal_address_"><?php echo Yii::t('app', 'Legal Address'); ?></label><br>
+                    <input type="text" class="form-control" id="legal_address_" name="legal_address"><br>
+
+                    <label for="business_address_"><?php echo Yii::t('app', 'Business Address'); ?></label><br>
+                    <input type="text" class="form-control" id="business_address_" name="business_address"><br>
+
+                    <label for="phone_"><?php echo Yii::t('app', 'Phone'); ?></label><br>
+                    <input type="text" class="form-control" id="phone_" name="phone"><br>
+
+                    <label for="email_"><?php echo Yii::t('app', 'Email'); ?></label><br>
+                    <input type="text" class="form-control" id="email_" name="email"><br>
+
+                    <label for="comment_"><?php echo Yii::t('app', 'Comment'); ?></label><br>
+                    <input type="text" class="form-control" id="comment_" name="comment"><br>
+
+                    <label for="contract_type_"><?php echo Yii::t('app', 'Contract Type'); ?></label><br>
+                    <select class="form-control" id="contract_type_" name="contract_type">
+                        <option selected disabled value=""></option>
+                        <option value="1">Հիմնական</option>
+                        <option value="2">Կոմիսիոն</option>
+                    </select><br>
+
                     <input type="hidden" id="id" name="id">
                     <button class="btn btn-primary" type="submit" name="update_button"><?php echo Yii::t('app', 'Save'); ?></button>
                 </form>

@@ -1,0 +1,104 @@
+.modal.sk-rtl-modal .modal-dialog {
+  position: fixed;
+  margin: auto;
+  width: 85%;
+  max-width: 85%;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+  right: 0;
+
+  .modal-content {
+    height: 100%;
+    overflow-y: auto;
+    background-color: $body-color;
+
+    .modal-header {
+      border: 0;
+      display: contents;
+
+      button {
+        position: fixed;
+        left: -2.15rem;
+        top: 2rem;
+        background: $primary;
+        opacity: 1;
+        padding: .25rem .75rem;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+
+        &:focus {
+          outline: 0;
+        }
+
+        i {
+          font-size: 18px;
+          color: $white;
+          text-shadow: none;
+        }
+      }
+    }
+
+    .modal-body {
+      padding: 15px 15px 80px;
+    }
+  }
+
+  &.fade {
+    .modal-dialog {
+      left: -85%;
+      -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+      -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+      -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+      transition: opacity 0.3s linear, right 0.3s ease-out;
+    }
+
+    .in {
+      .modal-dialog {
+        left: 0;
+      }
+    }
+  }
+}
+
+.service-img {
+  padding: 1.5rem 0;
+
+  img {
+    width: 150px;
+    border: 1px dashed $primary;
+    border-radius: 5px;
+    padding: 1rem;
+  }
+}
+
+.module-service-form-card {
+  border: 1px dashed $primary;
+  border-radius: 5px;
+  padding: 1.55rem .75rem;
+
+  &.border-muted {
+    border: 1px dashed #ccc;
+  }
+
+  .module-component-content-card-title-inset {
+    position: absolute;
+    top: -12px;
+    background-color: #fff;
+    padding: 0 .25rem;
+  }
+
+  .module-service-price-title {
+    font-size: 12px;
+  }
+}
+
+.modal-header-options {
+  i {
+    font-size: 20px;
+    padding: .5rem;
+    color: #c6c6c6;
+  }
+}

@@ -18,6 +18,10 @@ use Yii;
  * @property int|null $min_qty
  * @property int|null $qty_for_notice
  * @property int $group_id
+ * @property string|null $expenditure_article
+ * @property int|null $is_vat
+ * @property string|null $manufacturer_name
+ * @property string|null $other
  */
 class NomenclatureProduct extends \yii\db\ActiveRecord
 {
@@ -37,8 +41,21 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
         return [
             [['group_id'], 'required'],
             [['production_date'], 'safe'],
-            [['group_id', 'qty_type_id','qty_for_notice','min_qty'], 'integer'],
-            [['vendor_code_hy', 'vendor_code_ru', 'vendor_code_en', 'name_hy', 'name_en', 'name_ru', 'group', 'individual','img'], 'string', 'max' => 255],
+            [['group_id', 'qty_type_id','qty_for_notice','min_qty', 'is_vat', 'is_vat'], 'integer'],
+            [[
+                'vendor_code_hy',
+                'vendor_code_ru',
+                'vendor_code_en',
+                'name_hy',
+                'name_en',
+                'name_ru',
+                'group',
+                'individual',
+                'img',
+                'expenditure_article',
+                'manufacturer_name',
+                'other',
+            ], 'string', 'max' => 255],
         ];
     }
 
@@ -62,6 +79,10 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             'is_vip' => 'Vip',
             'qty_type_id' => Yii::t('app', 'Quantity type'),
             'group_id' => Yii::t('app', 'Group'),
+            'expenditure_article' => Yii::t('app', 'Expenditure Article'),
+            'is_vat' => Yii::t('app', 'Vat'),
+            'manufacturer_name' => Yii::t('app', 'Manufacturer Name'),
+            'other' => Yii::t('app', 'Other'),
         ];
     }
     public function getProducts()

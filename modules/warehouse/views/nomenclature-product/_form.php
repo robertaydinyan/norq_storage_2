@@ -37,6 +37,15 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
 
         <?= $form->field($model, 'min_qty')->textInput() ?>
 
+        <?= $form->field($model, 'expenditure_article')->textInput() ?>
+
+        <?= $form->field($model, 'is_vat')->textInput() ?>
+
+        <?= $form->field($model, 'manufacturer_name')->textInput() ?>
+
+        <?= $form->field($model, 'other')->textInput() ?>
+
+
         <?= $form->field($model, 'qty_for_notice')->textInput() ?>
     <div class="form-row" style="margin-left:10px;">
             <div class="c-checkbox">
