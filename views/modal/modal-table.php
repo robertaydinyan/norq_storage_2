@@ -1,6 +1,6 @@
 <div class="w-75 m-auto position-relative" role="document" style="top: 50px;">
     <div class="modal-content">
-        <form method="post" action="/warehouse/warehouse/change-table-rows" class="pt-4 pb-3">
+        <form method="post" action="/warehouse/warehouse/change-table-rows" class=" pb-3">
             <input type="hidden" name="_csrf" value="<?php echo Yii::$app->request->csrfToken; ?>">
             <input type="hidden" name="page" value="<?php echo $page; ?>">
             <div class="modal-header">
