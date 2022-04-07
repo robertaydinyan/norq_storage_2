@@ -103,7 +103,7 @@ AppAsset::register($this);
                         endif;?>
                         </div>
                     </div>
-                    <div class="col-12	col-sm-12	col-md-3 col-lg-3	col-xl-3 mb-3">
+                    <div class="col-12	col-sm-12	col-md-4 col-lg-5	col-xl-8 mb-3">
                         <form action="" method="get" class="input-group rounded ">
                             <input name="search" value="<?php echo $_GET['search'];?>" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                             <button id="search-addon" style="background: #0055a5!important;">
