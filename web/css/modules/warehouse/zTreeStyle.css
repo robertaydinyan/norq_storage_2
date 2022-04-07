@@ -74,7 +74,7 @@ website:	http://code.google.com/p/jquerytree/
 .ztree li span.button.noline_open{background-position:-92px -72px}
 .ztree li span.button.noline_close{background-position:-74px -72px}
 .ztree li span.button.root_docu{ background:none;}
-.ztree li span.button.roots_docu{background-position:-56px 0}
+.ztree li span.button.roots_docu{display: none}
 .ztree li span.button.center_docu{
 	display: none;}
 .ztree li span.button.bottom_docu{

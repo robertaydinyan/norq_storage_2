@@ -15,34 +15,34 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
 
 ?>
  <div id="showProducts"></div>
-<div class="row product-form module-service-form-card" style="position:relative;">
-    <div class="col-sm-4">
-        <div class="form-group field-product-nomenclature_product_id required">
+<div class="row product-form module-service-form-card justify-content-between align-items-center" style="position:relative;">
+    <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-4 d-flex justify-content-between align-items-center">
+        <div class="form-group field-product-nomenclature_product_id required col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6">
             <label class="control-label" for="product-nomenclature_product_id">Ապրանք</label>
-             <input type="text" class="form-control"   onfocus="selectProductNamiclature($(this))" required="required"><br style="margin:0px;">
+             <input type="text" class="form-control"   onfocus="selectProductNamiclature($(this))" required="required">
              <input type="hidden" name="Product[nomenclature_product_id][]" class="namiclature_id">
         </div>
-        <div class="form-group field-product-price" style="margin-top:-21px;">
+        <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6" >
             <label class="control-label" for="product-price">Գին</label>
             <input type="number"  class="form-control price__" onchange="showTotal($(this))" name="Product[price][]" autocomplete="off">
         </div>
         <input type="hidden"  class="form-control" name="Product[retail_price][]" autocomplete="off">
     </div>
-    <div class="col-sm-4">
+    <div class=" row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-4 d-flex justify-content-between align-items-center">
 
-        <div class="form-group field-product-comment">
+        <div class="form-group field-product-comment col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6">
             <label class="control-label" for="product-comment">Մեկնաբանություն</label>
             <input type="text" id="product-comment" class="form-control" name="Product[comment][]" maxlength="255" novalidate autocomplete="off">
         </div>
-        <div class="form-group field-product-count">
+        <div class="form-group field-product-count col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6">
             <label class="control-label" for="product-count">Քանակ</label>
             <input type="text"  class="form-control product-count" onchange="showTotal($(this))" name="Product[count][]" autocomplete="off">
         </div>
        
     </div>
-    <div class="col-lg-4">
+    <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-2 d-flex justify-content-between align-items-center">
         <div class="rem hide" style="position: absolute;right:-5px;top:-20px;cursor:pointer;" onclick="$(this).closest('.product-form').remove()"><i style="color:red;font-size:30px;" class="fa fa-times"></i></div>
-        <div class="form-group field-product-mac_address hide">
+        <div class="form-group field-product-mac_address hide col-sm-6">
             <label class="control-label" for="product-count">Mac հասցե</label>
             <div class="row cloned-mac">
                 <div class="col-sm-9">
@@ -57,12 +57,12 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
             </div>
         </div>
         <input type="hidden" name="Product[notice_if_move][]" class="is_vip" value="0">
-         <div class="form-group field-product-count">
+         <div class="form-group field-product-count col-sm-12">
             <label class="control-label" for="product-count">Ընդանուր</label>
             <input type="text"  class="form-control product-price-total" onchange="showTotal($(this))" autocomplete="off">
         </div>
     </div>
-    <div class="col-sm-12">
+    <div class=" row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-2">
         <button class="btn btn-primary clone-product" type="button"><i class="fa fa-plus"></i></button>
     </div>
 </div>
