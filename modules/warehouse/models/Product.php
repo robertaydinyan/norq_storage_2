@@ -52,8 +52,8 @@ class Product extends \yii\db\ActiveRecord {
     public function attributeLabelsAll() {
         return [
             'id' => 'ID',
-            'WarehouseName' => 'Warehouse Name',
-            'ProductName' => 'Product Name',
+            'WarehouseName' => 'Warehouse name',
+            'ProductName' => 'Product name',
             'ProductPicture' => 'Product Picture',
             'Quantity' => 'Quantity',
             'Individual' => 'Individual',

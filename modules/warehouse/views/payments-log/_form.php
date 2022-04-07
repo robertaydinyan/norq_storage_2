@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="qty-type-form">
     <?php $form = ActiveForm::begin(); ?>
-
+    <input type="radio" class="form-control">
      <div style="padding:20px;">
         <div>
             <?php foreach ($tableTreePartners as $tableTreePartner) : ?>
@@ -41,3 +41,9 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+<style>
+    input[type=radio] {
+        appearance: auto;
+        opacity: inherit;
+    }
+</style>

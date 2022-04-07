@@ -202,7 +202,7 @@ $table_all_columns = array();
                     ],
                     'providerWarehouse' => [
                         'attribute' => 'providerWarehouse',
-                        'label' => Yii::t('app', 'Type of transportation'),
+                        'label' => Yii::t('app', 'Transfer warehouse'),
                         'value' => function ($model) {
                             return $model->provider->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
                         }
@@ -240,7 +240,7 @@ $table_all_columns = array();
                         }
                     ],
                     'document_type' => [
-                        'label' => Yii::t('app', 'document_type'),
+                        'label' => Yii::t('app', 'Document type'),
                         'value' => function ($model) {
                             return Yii::t('app', $model->document_type == 1 ? 'Basic' : ($model->document_type == 2 ? 'Commission' : ''));
                         }
