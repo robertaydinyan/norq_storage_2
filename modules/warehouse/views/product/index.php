@@ -24,7 +24,7 @@ use app\modules\warehouse\models\Warehouse;
 $this->title = array(Yii::t('app', 'goods'),'goods');
 $this->params['breadcrumbs'][] = $this->title[0];
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-
+$hostname = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER[HTTP_HOST];
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 
@@ -52,8 +52,8 @@ $table_all_columns = array(
     'ProductPicture' => [
         'label' => Yii::t('app', 'Product Picture'),
         'format' => 'html',
-        'value' => function($product) use ($lang) {
-            return '<a target="_blank" href="' . $product->nomenclatureProduct->img . '" ><img width="100" src="' . $product->nomenclatureProduct->img . '"></a>';
+        'value' => function($product) use ($lang, $hostname) {
+            return '<a target="_blank" href="' . $hostname . $product->nomenclatureProduct->img . '" ><img width="100" src="' . $hostname . $product->nomenclatureProduct->img . '"></a>';
         }
     ],
     'Quantity' => [

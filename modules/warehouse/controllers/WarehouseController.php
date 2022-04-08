@@ -414,8 +414,8 @@ class WarehouseController extends Controller {
                 $t->order = $i - $ps;
                 $t->save(false);
             }
-            return $this->redirect(Yii::$app->request->referrer);
         }
+        echo '<script>history.go(-1)</script>';
     }
 }
 
