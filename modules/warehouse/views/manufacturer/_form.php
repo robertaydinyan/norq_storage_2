@@ -11,13 +11,17 @@ use yii\widgets\ActiveForm;
 <div class="manufacturer-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <div class="form-group col-3 ">
+         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
+    <div class="form-group col">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+
+
+

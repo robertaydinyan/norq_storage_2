@@ -14,21 +14,54 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php if(\app\rbac\WarehouseRule::can('currency', 'index')): ?>
     <div class="currency-index">
         <?php echo $this->render('/menu_dirs', array(), true)?>
-
-        <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span> </h1>
+    <div class="d-flex flex-wrap justify-content-between mt-3 mb-3">
+        <h1  data-title="<?php echo $this->title[1]; ?>" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span> </h1>
         <div>
             <?php if(\app\rbac\WarehouseRule::can('currency', 'create')): ?>
                 <?= Html::a(Yii::t('app', 'Create Currency'), ['create'], ['class' => 'btn btn-primary']) ?>
             <?php endif; ?>
             <button onclick="tableToExcel('tbl','test','currency.xls')" class="btn btn-primary  mr-2">Xls</button>
         </div>
+
+    </div>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
+            'tableOptions' => [
+                'class' => 'table table-hover'
+            ],
             'columns' => [
                 'id',
                 'symbol',
 
-                ['class' => 'yii\grid\ActionColumn'],
+                ['class' => 'yii\grid\ActionColumn',
+                    'header' => Yii::t('app', 'Action'),
+                    'template' => '{view}{update}{delete}',
+                    'buttons' => [
+                        'view' => function ($url, $model) {
+                            return \app\rbac\WarehouseRule::can('currency', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
+                                'title' => Yii::t('app', 'View'),
+                                'class' => 'btn text-primary btn-sm mr-2'
+                            ]) : '';
+                        },
+                        'update' => function ($url, $model) {
+                            return \app\rbac\WarehouseRule::can('currency', 'update') ?
+                                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                                    'title' => Yii::t('app', 'Update'),
+                                    'class' => 'btn text-primary btn-sm mr-2'
+                                ]) : '';
+                        },
+                        'delete' => function ($url, $model) {
+                            return \app\rbac\WarehouseRule::can('currency', 'delete') ?
+                                Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                                    'title' => Yii::t('app', 'Delete'),
+                                    'class' => 'btn text-danger btn-sm',
+                                    'data' => [
+                                        'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
+                                        'method' => 'post',
+                                    ],
+                                ]) : '';
+                        }
+                    ]],
             ],
         ]); ?>
 

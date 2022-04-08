@@ -12,7 +12,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 ?>
 <div class="currency-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
