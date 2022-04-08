@@ -150,7 +150,7 @@ return [
     'Favorite' => 'Սիրված էջեր',
     'History' => 'Պատմություն',
     'Analogs' => 'Անալոգներ',
-    'Manufacturer' => 'Արտադրող',
+    'Manufacturers' => 'Արտադրող',
     'Temporary storage' => 'Ժամանակավոր պահպանում',
     'Legal Address' => 'Իրավաբանական հասցե',
     'Business Address' => 'Բիզնեսի հասցե',
@@ -168,4 +168,6 @@ return [
     'Symbol' => 'նշան',
     'Create Currency' => 'Ստեղծել արժույթ',
     'Update Currency' => 'Թարմացնել արժույթը',
+    'Create Manufacturer' => 'Ստեղծել արտադրող',
+    'Update Manufacturer' => 'Թարմացնել արտադրող',
 ];

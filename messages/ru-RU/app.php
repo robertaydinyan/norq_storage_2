@@ -151,7 +151,7 @@ return [
     'Favorite' => 'Любимые страницы',
     'History' => 'История',
     'Analogs' => 'Аналоги',
-    'Manufacturer' => 'Производитель',
+    'Manufacturers' => 'Производитель',
     'Temporary storage' => 'Временное хранение',
     'Legal Address' => 'Юридический адрес',
     'Business Address' => 'Рабочий адрес',
@@ -169,4 +169,6 @@ return [
     'Symbol' => 'Символ',
     'Create Currency' => 'Создать валюту',
     'Update Currency' => 'Обновить валюту',
+    'Create Manufacturer' => 'Создать производителя',
+    'Update Manufacturer' => 'Обновить производителя',
 ];

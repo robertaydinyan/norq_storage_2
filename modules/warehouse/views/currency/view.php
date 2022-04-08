@@ -13,27 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="currency-view">
 
-    <h1 data-title="Html::encode($this->title[1]"><?= Html::encode($this->title[0]) ?></h1>
+    <h1 data-title="Html::encode($this->title[1]" style="padding: 20px;"><?= Html::encode($this->title[0]) ?></h1>
 
-    <p>
-        <?php
-            if (\app\rbac\WarehouseRule::can('currency', 'update')) {
-                echo Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
-            }
-        ?>
-        <?php if (\app\rbac\WarehouseRule::can('currency', 'delete')) {
-            echo Html::a('Delete', ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => 'Are you sure you want to delete this item?',
-                    'method' => 'post',
-                ],
-            ]);
-        } ?>
-    </p>
+
 
     <?= DetailView::widget([
         'model' => $model,
+        'options' => ['class' => 'table table-hover'],
         'attributes' => [
             'id',
             'symbol',

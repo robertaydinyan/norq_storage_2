@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <div class="form-group col-1">
+    <div class="form-group col-3 " >
         <?= $form->field($model, 'symbol')->textInput(['maxlength' => true]) ?>
     </div>
     <div class="form-group col">

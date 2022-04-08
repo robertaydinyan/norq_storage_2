@@ -9,6 +9,7 @@ $this->title = array(Yii::t('app', 'Update Currency') . ': ' . $model->symbol, '
 $this->params['breadcrumbs'][] = ['label' => 'Currencies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
+$this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>
 <div class="currency-update">
 
