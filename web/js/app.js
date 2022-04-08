@@ -404,3 +404,8 @@ $('.hide-row').on('click', function() {
     });
     // $('#tbl > thead').children().eq(queue).hide();
 });
+
+
+
+$(".loader").fadeOut();
+$("#preloder").delay(400).fadeOut("slow");

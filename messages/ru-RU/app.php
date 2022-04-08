@@ -151,6 +151,7 @@ return [
     'Favorite' => 'Любимые страницы',
     'History' => 'История',
     'Analogs' => 'Аналоги',
+    'Manufacturer' => 'Производитель',
     'Temporary storage' => 'Временное хранение',
     'Legal Address' => 'Юридический адрес',
     'Business Address' => 'Рабочий адрес',
