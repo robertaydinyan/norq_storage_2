@@ -150,6 +150,7 @@ return [
     'Favorite' => 'Սիրված էջեր',
     'History' => 'Պատմություն',
     'Analogs' => 'Անալոգներ',
+    'Manufacturer' => 'Արտադրող',
     'Temporary storage' => 'Ժամանակավոր պահպանում',
     'Legal Address' => 'Իրավաբանական հասցե',
     'Business Address' => 'Բիզնեսի հասցե',
