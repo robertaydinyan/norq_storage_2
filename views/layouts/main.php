@@ -21,7 +21,6 @@ $favorites = Favorite::find()->where(['user_id' => Yii::$app->user->id])->all();
 AppAsset::register($this);
 ?>
 
-
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
@@ -45,6 +44,7 @@ AppAsset::register($this);
     <body>
 
     <?php $this->beginBody() ?>
+    <?= $this->render('loading') ?>
 
     <?php if(!Yii::$app->user->isGuest) :?>
         <?= $this->render('navbar') ?>
