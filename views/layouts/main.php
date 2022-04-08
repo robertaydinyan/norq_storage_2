@@ -59,7 +59,7 @@ AppAsset::register($this);
             <div class="bookmarks d-flex row ">
 
 
-                <?php if (Yii::$app->request->pathInfo != "site/error"): ?>
+                <?php if (Yii::$app->request->pathInfo != "site/error" && !Yii::$app->user->isGuest): ?>
 
                     <div class="favorites col-12	col-sm-12	col-md-3 col-lg-4	col-xl-2 mb-3" >
                         <button class="accordion bg-white" style="background: #fff;"><?= Yii::t('app','Favorite') ?></button>
@@ -104,7 +104,7 @@ AppAsset::register($this);
                         </div>
                     </div>
                     <div class="col-12	col-sm-12	col-md-3 col-lg-3	col-xl-3 mb-3">
-                        <form action="<?php echo URL::to('warehouse/home')?>" method="get" class="input-group rounded ">
+                        <form action="<?php echo URL::to('/warehouse/warehouse/home')?>" method="get" class="input-group rounded ">
                             <input name="search" value="<?php echo $_GET['search'];?>" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                             <button id="search-addon" style="background: #0055a5!important;">
                                 <i style="color:white;" class="fas fa-search"></i>

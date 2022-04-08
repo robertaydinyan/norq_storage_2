@@ -270,6 +270,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
                         <th><?php echo Yii::t('app', 'Product') ?></th>
                         <th><?php echo Yii::t('app', 'Count') ?></th>
                         <th><?php echo Yii::t('app', 'Individual') ?></th>
+<!--                        <th>--><?php //echo Yii::t('app', 'Currency') ?><!--</th>-->
                         <th><?php echo Yii::t('app', 'Delete') ?></th>
                     </tr>
                     </thead>
@@ -283,6 +284,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                 <td><?php if ($prod_val->nProduct->individual == 'true' && isset($prod_val['mac_address'])) {
                                         echo @$prod_val['mac_address'];
                                     } ?></td>
+<!--                                <td>--><?php //echo $prod_val->curren->symbol; ?><!--</td>-->
                                 <td>
                                     <?php if ($model->shipping_type != 5) { ?>
                                         <button type="button" class="btn btn-sm btn-danger"
@@ -370,7 +372,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
         <div class="form-group">
             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary check-counts']) ?>
             <?php if (isset($type) && $type == 'create'): ?>
-                <?= Html::button(Yii::t('app', 'Save 2'), ['class' => 'btn btn-primary saveForm', 'onClick' => 'SaveForm($(this))']) ?>
+                <?= Html::button(Yii::t('app', 'Temporary storage'), ['class' => 'btn btn-primary saveForm', 'onClick' => 'SaveForm($(this))']) ?>
             <?php endif; ?>
         </div>
     </div>

@@ -13,6 +13,7 @@ use Yii;
  * @property int|null $count
  * @property string $created_at
  * @property int|null $action_type
+ * @property int|null currency
  */
 class ShippingProducts extends \yii\db\ActiveRecord
 {
@@ -30,7 +31,7 @@ class ShippingProducts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['shipping_id','shipping_type','action_type', 'product_id', 'count'], 'integer'],
+            [['shipping_id','shipping_type','action_type', 'product_id', 'count', 'currency'], 'integer'],
             [['created_at'], 'safe'],
         ];
     }
@@ -46,6 +47,7 @@ class ShippingProducts extends \yii\db\ActiveRecord
             'product_id' => 'Product ID',
             'count' => 'Count',
             'created_at' => 'Created At',
+            'currency' => 'Currency',
         ];
     }
 

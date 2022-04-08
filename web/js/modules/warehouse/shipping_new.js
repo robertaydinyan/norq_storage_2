@@ -28,7 +28,7 @@ function showInvoices(id){
 }
 function setNomiclature(id,name){
    el.val(name);
-   el.next().next().val(id);
+   el.next().val(id);
    $.ajax({
         url: '/warehouse/product/get-product-info',
         method: 'get',

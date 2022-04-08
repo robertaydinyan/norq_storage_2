@@ -156,14 +156,14 @@ class ShippingRequest extends \yii\db\ActiveRecord {
         if ($this->shipping_type != 5) {
             $products = Yii::$app
                 ->db
-                ->createCommand("SELECT count,price FROM s_shipping_products WHERE shipping_id = $this->id")
+                ->createCommand("SELECT count,price, currency FROM s_shipping_products WHERE shipping_id = $this->id")
                 ->queryAll();
             $sum = 0;
             if (!empty($products)) {
                 foreach ($products as $product => $prod_val) {
                     $sum += $prod_val['price'] * $prod_val['count'];
                 }
-                return $sum;
+                return $sum . ' ' . Currency::getCurrencyByID($products[0]['currency']);
             }
             else {
                 return 0;
@@ -191,16 +191,19 @@ class ShippingRequest extends \yii\db\ActiveRecord {
 
         $products = Yii::$app
             ->db
-            ->createCommand("SELECT s_shipping_products.count,s_shipping_products.price FROM s_shipping_products LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id WHERE s_shipping.supplier_id = $id")->queryAll();
+            ->createCommand("SELECT s_shipping_products.count,s_shipping_products.price, s_shipping_products.currency FROM s_shipping_products LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id WHERE s_shipping.supplier_id = $id")->queryAll();
         $sum = 0;
         $pays = Yii::$app
             ->db
             ->createCommand("SELECT SUM(price) as total FROM s_provider_payments WHERE provider_id = $id")->queryOne();
+//        $currency = ProviderPayments::find()->where(['id' => $id])->one();
+//        $currency = $currency ? $currency->currencySymbol->symbol : '';
+
         if (!empty($products)) {
             foreach ($products as $product => $prod_val) {
                 $sum += $prod_val['price'] * $prod_val['count'];
             }
-            return $sum - $pays['total'];
+            return $sum - $pays['total'] . " " . Currency::getCurrencyByID(end($products)['currency']);
         }
         else {
             return 0;
@@ -287,7 +290,6 @@ class ShippingRequest extends \yii\db\ActiveRecord {
     }
 
     public function addShippingProducts($model, $request) {
-
         if ($model->shipping_type != 2 && $model->shipping_type != 6 && $model->shipping_type != 5) {
             if (isset($request['ShippingRequest']['nomenclature_product_id']) && !empty($request['ShippingRequest']['nomenclature_product_id'])) {
                 foreach ($request['ShippingRequest']['nomenclature_product_id'] as $key => $nProductId) {
@@ -302,12 +304,12 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                                 ->all();
                             $total = intval($request['ShippingRequest']['count'][$key]);
                             foreach ($products as $produst => $prodval) {
-
                                 if ($prodval->count >= $total) {
                                     $prodval->count = $prodval->count - $total;
                                     $prodval->save(false);
                                     $ShippingProduct = new ShippingProducts();
                                     $ShippingProduct->product_id = $prodval->id;
+                                    $ShippingProduct->currency = $prodval->currency;
                                     $ShippingProduct->created_at = $model->created_at;
                                     $ShippingProduct->count = $total;
                                     if (($model->shipping_type == 7 || $model->shipping_type == 8) && isset($request['ShippingRequest']['action_type'][$key])) {
@@ -328,6 +330,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                                     $total = $total - $prodval->count;
                                     $ShippingProduct = new ShippingProducts();
                                     $ShippingProduct->product_id = $prodval->id;
+                                    $ShippingProduct->currency = $prodval->currency;
                                     $ShippingProduct->created_at = $model->created_at;
                                     $ShippingProduct->count = $prodval->count;
                                     $ShippingProduct->shipping_type = $model->shipping_type;
@@ -384,6 +387,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                         }
                         $product = new Product();
                         $product->price = $request['Product']['price'][$i];
+                        $product->currency = $request['Product']['currency'][$i];
                         $product->supplier_id = $model->supplier_id;
                         $product->invoice = $model->invoice;
                         $product->count = 1;
@@ -397,6 +401,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                         $product->save(false);
 
                         $ShippingProduct = new ShippingProducts();
+                        $ShippingProduct->currency = $request['Product']['currency'][$i];
                         $ShippingProduct->product_id = $product->id;
                         $ShippingProduct->created_at = $model->created_at;
                         $ShippingProduct->shipping_type = $model->shipping_type;
@@ -409,6 +414,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                 else if ($request['Product']['nomenclature_product_id'][0]) {
                     $product = new Product();
                     $product->price = $request['Product']['price'][$i];
+                    $product->currency = $request['Product']['currency'][$i];
                     $product->supplier_id = $model->supplier_id;
                     $product->invoice = $model->invoice;
                     $product->status = 0;
@@ -422,6 +428,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                     $product->save(false);
 
                     $ShippingProduct = new ShippingProducts();
+                    $ShippingProduct->currency = $request['Product']['currency'][$i];
                     $ShippingProduct->product_id = $product->id;
                     $ShippingProduct->created_at = $model->created_at;
                     $ShippingProduct->count = $request['Product']['count'][$i];
@@ -438,6 +445,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                 $product->price = $request['Product']['price'][$i];
                 $product->supplier_id = $model->supplier_id;
                 $product->invoice = $model->invoice;
+                $product->currency = $request['Product']['currency'][$i];
                 $product->count = $request['Product']['count'][$i];
                 $product->comment = $request['Product']['comment'][$i];
                 $product->status = 0;

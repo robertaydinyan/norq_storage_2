@@ -75,5 +75,40 @@ class ReportsController extends Controller
         }
       return $this->renderAjax('generate', ['data' =>$data]);
     }
+      public function actionGenerateSellout(){
+        $get = Yii::$app->request->get();
+        $data = false;
+        if(!empty($get)){
+            $data = Product::findBySellOut($get);
+        }
+     
+      return $this->renderAjax('generate_sellout', ['data' =>$data]);
+    }
+    public function actionGenerateOpening(){
+        $get = Yii::$app->request->get();
+        $data = false;
+        if(!empty($get)){
+            $data = Product::findByOpening($get);
+        }
+     
+      return $this->renderAjax('generate_sellout', ['data' =>$data]);
+    }
+       public function actionGenerateClosing(){
+        $get = Yii::$app->request->get();
+        $data = false;
+        if(!empty($get)){
+            $data = Product::findByClosing($get);
+        }
+      return $this->renderAjax('generate_sellout', ['data' =>$data]);
+    }
+     public function actionGenerateSellin(){
+        $get = Yii::$app->request->get();
+        $data = false;
+        if(!empty($get)){
+            $data = Product::findBySellin($get);
+        }
+     
+      return $this->renderAjax('generate_sellout', ['data' =>$data]);
+    }
 
 }

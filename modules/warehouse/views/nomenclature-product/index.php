@@ -39,7 +39,6 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                                     'tableTreeGroup' => $tableTreeGroup,
                                 ]); ?>
                             </ul>
-                            <br>
                         </li>
                     <?php endforeach; ?>
 
@@ -49,12 +48,10 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                         <br>
                         <?= GridView::widget([
                             'dataProvider' => $dataProvider,
-                            'filterModel' => $searchModel,
                             'tableOptions' => [
                                 'class' => 'table table-hover'
                             ],
                             'columns' => [
-                                'id',
                                 [
                                     'label' => Yii::t('app', 'Image'),
                                     'format'=>'html',
@@ -69,10 +66,6 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                                 [
                                     'attribute' => 'vendor_code_' . $lang,
                                     'label' => Yii::t('app', 'Vendor code')
-                                ],
-                                [
-                                    'attribute' => 'name_' . $lang,
-                                    'label' => Yii::t('app', 'Name')
                                 ],
                                 //'groupProduct.name',
                                 [
@@ -130,5 +123,9 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
     </div>
 
 </div>
-
+<style>
+    .summary{
+        margin-bottom:20px;
+    }
+</style>
 <?php endif; ?>

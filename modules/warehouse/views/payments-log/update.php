@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\QtyType */
+/* @var $currencies app\modules\warehouse\models\Currency[] */
 
 $this->title = array(Yii::t('app', 'Change payment'),'Change payment');
 $this->params['breadcrumbs'][] = ['label' => 'Qty Types', 'url' => ['index']];
@@ -18,6 +19,9 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
     <?= $this->render('_form', [
         'model' => $model,
+        'currencies' => $currencies,
+        'tableTreePartners' => null,
+        'type' => 'update'
     ]) ?>
     </div>
 </div>

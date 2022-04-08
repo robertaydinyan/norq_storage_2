@@ -26,6 +26,12 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'id',
                 'price',
                 'invoice',
+                [
+                    'label' => Yii::t('app', 'Currency'),
+                    'value' => function ($model) {
+                        return $model->currencySymbol->symbol;
+                    }
+                ],
             ],
         ]) ?>
     </div>

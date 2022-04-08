@@ -27,7 +27,6 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $hostname = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER[HTTP_HOST];
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
-
 $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerJsFile('@web/js/plugins/locations.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
@@ -38,9 +37,6 @@ $table_all_columns = array(
         'label' => Yii::t('app', 'Warehouse name'),
         'value' => function($product) use ($lang) {
             return $product->warehouse->{'name_' . $lang};
-//                        if($products['type'] != 4){ echo $products['wname'];} else {
-//                            echo Warehouse::getContactAddressById($products['contact_address_id']);
-//                        }
         }
     ],
     'ProductName' => [
@@ -59,7 +55,7 @@ $table_all_columns = array(
     'Quantity' => [
         'label' => Yii::t('app', 'Quantity'),
         'value' => function($product) use ($lang) {
-            return $product->nomenclatureProduct->individual == 'true' ? $product['count'] . ' ' . $product->nomenclatureProduct->qtyType->{'type_' . $lang}  : '';
+            return  $product->count . ' ' . $product->nProduct->qtyType->{'type_' . $lang};
         }
     ],
     'Individual' => [

@@ -12860,3 +12860,98 @@ div {
   width: 98%;
   margin: auto;
 }
+
+.panel {
+  position: absolute;
+  width: 90%;
+}
+
+.btn-primary:hover {
+  background: #fff!important;
+  color: #0055a5;
+}
+button,select ,.btn-primary{
+  font: 9pt Segoe UI,sans-serif;
+  border: 1px solid #d4d9df !important;
+  min-width: 75px;
+  min-height: 23px;
+  padding: 0 12px;
+  text-align: center;
+  background: #fff!important;
+  color: #0055a5!important;
+  box-shadow: none !important;
+}
+.button:not(:disabled).active, .button:not(:disabled):active, button:not(:disabled).active, button:not(:disabled):active,.button:not(:disabled):hover,
+select:not(:disabled).active, select:not(:disabled):focus
+{
+  background: #fff!important;
+  color: #0055a5;
+}
+
+.close {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 17px!important;
+  float: right;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff!important;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 1!important;
+  background: #0055a5!important;
+  margin-bottom: 10px;
+}
+.close>span {
+  color: #fff!important;
+}
+.dropdown-check-list .anchor {
+  color: #0055a5 !important;
+}
+
+.panel {
+  padding: 0;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+
+.panel2 {
+  z-index: 1000;
+  background: rgb(255, 255, 255);
+  margin-top: 5px;
+  max-height: 232px;
+  overflow-y: auto;
+}
+input[type=checkbox]:checked+label:after{
+  display: none;
+}
+
+input[type=radio]:checked+label:after {
+  top: 7px!important;
+  left: 5px!important;
+}
+
+.dt-button>span {
+  color: #fff!important;
+}
+
+
+.accordion {
+  min-width: 200px;
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 5px 20px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.accordion:hover, .accordion:active, .accordion:focus {
+  background-color: #ccc;
+  color: #0055a5!important;
+}

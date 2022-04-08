@@ -4,6 +4,7 @@ namespace app\modules\warehouse\controllers;
 use app\components\Url;
 use app\models\Notifications;
 use app\models\User;
+use app\modules\warehouse\models\Currency;
 use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\PartnersList;
@@ -120,6 +121,8 @@ class ShippingRequestController extends Controller {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new Product();
 
+        $currencies = Currency::find()->all();
+
         $model->created_at = Carbon::now()
             ->toDateTimeString();
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()
@@ -128,8 +131,13 @@ class ShippingRequestController extends Controller {
             ->asArray()
             ->all() , 'id', 'name');
 
-        return $this->renderAjax('create-product', ['model' => $model,'isFavorite' => $isFavorite,
-            'nProducts' => $nProducts, 'physicalWarehouse' => $physicalWarehouse, ]);
+        return $this->renderAjax('create-product', [
+            'model' => $model,
+            'isFavorite' => $isFavorite,
+            'nProducts' => $nProducts,
+            'physicalWarehouse' => $physicalWarehouse,
+            'currencies' => $currencies
+        ]);
     }
     public function actionCreate() {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;

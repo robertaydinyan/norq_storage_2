@@ -28,7 +28,7 @@ class ProviderPayments extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'provider_id','price'], 'integer'],['invoice','string']
+            [[ 'provider_id','price', 'currency'], 'integer'],['invoice','string']
         ];
     }
 
@@ -39,7 +39,8 @@ class ProviderPayments extends \yii\db\ActiveRecord
     {
         return [
             'price' => Yii::t('app', 'amount'),
-            'provider_id' => Yii::t('app', 'Supplier')
+            'provider_id' => Yii::t('app', 'Supplier'),
+            'currency' => Yii::t('app', 'Currency'),
         ];
     }
     public function attributeLabelsAll()
@@ -48,7 +49,12 @@ class ProviderPayments extends \yii\db\ActiveRecord
             'id' => 'id',
             'provider_id' => 'Supplier',
             'amount' => 'amount',
+            'currency' => 'Currency',
         ];
+    }
+
+    public function getCurrencySymbol() {
+        return $this->hasOne(Currency::class, ['id' => 'currency']);
     }
 
 }

@@ -19,6 +19,7 @@ use yii\web\UploadedFile;
  * @property int $shipping_id
  * @property int $nomenclature_product_id
  * @property int $status
+ * @property int $currency
  */
 class Product extends \yii\db\ActiveRecord {
     /**
@@ -37,14 +38,29 @@ class Product extends \yii\db\ActiveRecord {
      * {@inheritdoc}
      */
     public function rules() {
-        return [[['price', 'retail_price', 'shipping_id', 'min_qty', 'notice_if_move', 'status'], 'number'], [['created_at', 'warehouse_id', 'nomenclature_product_id'], 'required'], [['warehouse_id', 'nomenclature_product_id'], 'integer'], [['supplier_id', 'mac_address', 'invoice', 'comment', 'used', 'created_at'], 'string', 'max' => 255], [['images'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4], ];
+        return [[['price', 'retail_price', 'shipping_id', 'min_qty', 'notice_if_move', 'status', 'currency'], 'number'], [['created_at', 'warehouse_id', 'nomenclature_product_id'], 'required'], [['warehouse_id', 'nomenclature_product_id'], 'integer'], [['supplier_id', 'mac_address', 'invoice', 'comment', 'used', 'created_at'], 'string', 'max' => 255], [['images'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4], ];
     }
 
     /**
      * {@inheritdoc}
      */
     public function attributeLabels() {
-        return ['id' => 'ID', 'images' => 'Արտադրանքի նկարները', 'price' => 'Գին', 'retail_price' => 'Մանրածախ գին', 'supplier_id' => 'Մատակարար', 'mac_address' => 'Mac հասցե', 'invoice' => 'Invoice', 'comment' => 'Մեկնաբանություն', 'count' => 'Քանակ', 'created_at' => 'Ստեղծվել է /ժամը/', 'warehouse_id' => 'Պահեստ', 'status' => 'Պահեստ', 'nomenclature_product_id' => 'Ապրանք', ];
+        return [
+            'id' => 'ID',
+            'images' => 'Արտադրանքի նկարները',
+            'price' => 'Գին',
+            'currency' => 'Գին',
+            'retail_price' => 'Մանրածախ գին',
+            'supplier_id' => 'Մատակարար',
+            'mac_address' => 'Mac հասցե',
+            'invoice' => 'Invoice',
+            'comment' => 'Մեկնաբանություն',
+            'count' => 'Քանակ',
+            'created_at' => 'Ստեղծվել է /ժամը/',
+            'warehouse_id' => 'Պահեստ',
+            'status' => 'Պահեստ',
+            'nomenclature_product_id' => 'Ապրանք',
+        ];
     }
     /**
      * {@inheritdoc}
@@ -208,7 +224,8 @@ class Product extends \yii\db\ActiveRecord {
             $group_by = 'GROUP BY s_product.id,s_product.warehouse_id';
         }
 
-//        $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
+        $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
+    
         return Yii::$app
             ->db
             ->createCommand("SELECT SUM(s_product.count) as pcount,SUM(s_product.price * s_product.count) as pprice,AVG(s_product.price) as avgprice,s_warehouse.name_" . $lang . " as wname,s_warehouse.id as wid,s_nomenclature_product.*,s_qty_type.type_" . $lang . " as qty_type,s_product.*,s_product.mac_address as mac FROM s_product            
@@ -223,6 +240,9 @@ class Product extends \yii\db\ActiveRecord {
         return $this->hasOne(NomenclatureProduct::class , ['id' => 'nomenclature_product_id']);
     }
 
+    public function getCurren() {
+        return $this->hasOne(Currency::class , ['id' => 'currency']);
+    }
 
     public function getWarehouseProducts($id) {
         if ($id) {
@@ -308,8 +328,117 @@ class Product extends \yii\db\ActiveRecord {
     public function getNomenclatureProduct() {
         return $this->hasOne(NomenclatureProduct::class, ['id' => 'nomenclature_product_id']);
     }
-//    public function getNomenclatureProduct() {
-//        return $this->hasOne(NomenclatureProduct::class, ['id' => 'nomenclature_product_id']);
-//    }
-}
+     public function findByOpening($data){
+        $end = date('Y-m-d', strtotime($data['from_created_at']));
+        $start = date('Y-m-d', strtotime($data['to_created_at']));
+        $warehouse_id = intval($data['supplier_warehouse_id']);
+        $nomeclature_id = intval($data['nomeclature_id']);
+        $warehouse = intval($data['wid']);
 
+         if (!$warehouse_id) {
+            $wSql = "";
+         } else {
+            $wSql = "AND s_shipping.supplier_warehouse_id = $warehouse_id";
+         }
+         $opening_ = Yii::$app
+                ->db
+                ->createCommand("SELECT s_product.mac_address FROM s_shipping_products            
+                                                     LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
+                                                     LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
+                                                  WHERE  s_product.nomenclature_product_id = $nomeclature_id AND s_shipping.provider_warehouse_id = $warehouse   AND s_shipping.shipping_type IN(8,9,7,10)  AND `s_shipping_products`.`created_at` < '$start'")-> queryAll();
+          $not_in = '';
+          if(!empty($opening_)){
+             foreach($opening_ as $product => $product_simple){
+                $not_in.="'".$product_simple['mac_address']."',";
+             }
+          }
+          if($not_in){
+            $not_in = substr($not_in,0,-1);
+            $not_in = " s_product.mac_address NOT IN($not_in) AND";
+          }
+         $opening = Yii::$app
+                ->db
+                ->createCommand("SELECT s_shipping.*,s_product.mac_address FROM s_shipping_products            
+                                                     LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
+                                                     LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
+                                                  WHERE $not_in  s_product.nomenclature_product_id = $nomeclature_id AND s_shipping.supplier_warehouse_id = $warehouse   AND s_shipping.shipping_type IN(2,6,7)  AND `s_shipping_products`.`created_at` < '$start'")->queryAll();
+            
+          
+       return $opening;
+    }
+     public function findByClosing($data){
+        $end = date('Y-m-d', strtotime($data['from_created_at']));
+        $start = date('Y-m-d', strtotime($data['to_created_at']));
+        $warehouse_id = intval($data['supplier_warehouse_id']);
+        $nomeclature_id = intval($data['nomeclature_id']);
+        $warehouse = intval($data['wid']);
+
+         if (!$warehouse_id) {
+            $wSql = "";
+         } else {
+            $wSql = "AND s_shipping.supplier_warehouse_id = $warehouse_id";
+         }
+         $closing_ = Yii::$app
+                ->db
+                ->createCommand("SELECT s_product.mac_address FROM s_shipping_products            
+                                     LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
+                                     LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
+                                  WHERE  s_product.nomenclature_product_id = $nomeclature_id AND s_shipping.provider_warehouse_id = $warehouse   AND s_shipping.shipping_type IN(8,9,7,10)  AND `s_shipping_products`.`created_at` < '$end'")-> queryAll();
+          $not_in = '';
+          if(!empty($closing_)){
+             foreach($closing_ as $product => $product_simple){
+                $not_in.="'".$product_simple['mac_address']."',";
+             }
+          }
+          if($not_in){
+            $not_in = substr($not_in,0,-1);
+            $not_in = " s_product.mac_address NOT IN($not_in) AND";
+          }
+
+         $closing = Yii::$app
+                ->db
+                ->createCommand("SELECT s_shipping.*,s_product.mac_address FROM s_shipping_products            
+                                                     LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
+                                                     LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
+                                                  WHERE $not_in  s_product.nomenclature_product_id = $nomeclature_id AND s_shipping.supplier_warehouse_id = $warehouse   AND s_shipping.shipping_type IN(2,6,7)  AND `s_shipping_products`.`created_at` < '$end'")->queryAll();     
+      
+       return $closing;
+    }
+    public function findBySellOut($data){
+        $end = date('Y-m-d', strtotime($data['to_created_at']));
+        $start = date('Y-m-d', strtotime($data['from_created_at']));
+        $warehouse_id = intval($data['supplier_warehouse_id']);
+        $nomeclature_id = intval($data['nomeclature_id']);
+        $warehouse = intval($data['wid']);
+       
+         if (!$warehouse_id) {
+            $wSql = "";
+         } else {
+            $wSql = "AND s_shipping.supplier_warehouse_id = $warehouse_id";
+         }
+         $sell_out = Yii::$app
+            ->db
+            ->createCommand("SELECT s_shipping.*,s_product.mac_address FROM s_shipping_products            
+                         LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id 
+                         LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
+                      WHERE  s_product.nomenclature_product_id = $nomeclature_id AND s_shipping.provider_warehouse_id = $warehouse $wSql AND s_shipping.shipping_type IN(8,9,7,10) AND  `s_shipping_products`.`created_at` >= '$start' AND `s_shipping_products`.`created_at` <= '$end'")->queryAll();
+         return $sell_out;
+       
+    }
+     public function findBySellin($data){
+        $end = date('Y-m-d', strtotime($data['to_created_at']));
+        $start = date('Y-m-d', strtotime($data['from_created_at']));
+        $warehouse_id = intval($data['supplier_warehouse_id']);
+        $nomeclature_id = intval($data['nomeclature_id']);
+        $warehouse = intval($data['wid']);
+       
+        $sell_out = Yii::$app->db
+         ->createCommand("SELECT s_shipping.*,s_product.mac_address FROM s_shipping_products            
+                         LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id 
+                         LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
+                      WHERE  s_product.nomenclature_product_id = $nomeclature_id AND s_shipping.supplier_warehouse_id = $warehouse AND  s_shipping.shipping_type IN(2,5,6,7) AND  `s_shipping_products`.`created_at` >= '$start' AND `s_shipping_products`.`created_at` <= '$end'")->queryAll();
+         
+         return $sell_out;
+       
+    }
+}

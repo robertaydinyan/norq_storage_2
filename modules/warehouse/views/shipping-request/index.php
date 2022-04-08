@@ -224,7 +224,8 @@ $table_all_columns = array();
                     'totalAmount' => [
                         'label' => Yii::t('app', 'Total amount'),
                         'value' => function ($model) {
-                            return number_format($model->totalsum, '0', '.', ',') . ' դր․';
+                            $s = explode(' ', $model->totalsum);
+                            return number_format($s[0], '0', '.', ',') . ' ' . $s[1];
                         }
                     ],
                     'created' => [

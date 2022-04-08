@@ -1,10 +1,12 @@
 <?php
 
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\QtyType */
+/* @var $currencies app\modules\warehouse\models\Currency[] */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -13,16 +15,18 @@ use yii\widgets\ActiveForm;
     <input type="radio" class="form-control">
      <div style="padding:20px;">
         <div>
-            <?php foreach ($tableTreePartners as $tableTreePartner) : ?>
-                <?php if($tableTreePartner['id'] != 7){
-                    continue;
-                } ?>
-                    <ul style="display: block;" class="file-tree">
-                        <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/payments-log/tree_table.php', [
-                            'tableTreePartner' => $tableTreePartner,
-                        ]); ?>
-                    </ul>
-            <?php endforeach; ?>
+            <?php if (isset($tableTreePartners)):
+                foreach ($tableTreePartners as $tableTreePartner) : ?>
+                    <?php if($tableTreePartner['id'] != 7){
+                        continue;
+                    } ?>
+                        <ul style="display: block;" class="file-tree">
+                            <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/payments-log/tree_table.php', [
+                                'tableTreePartner' => $tableTreePartner,
+                            ]); ?>
+                        </ul>
+                <?php endforeach;
+            endif; ?>
         </div>
     </div>
     <div class="col-lg-4 hide">
@@ -31,10 +35,28 @@ use yii\widgets\ActiveForm;
     <div class="col-lg-4">
         <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
     </div>
+
+    <div class="col-lg-4">
+        <?= $form->field($model, 'currency', [
+            'options' => ['class' => 'form-group'],
+        ])->widget(Select2::className(), [
+            'theme' => Select2::THEME_KRAJEE,
+            'data' => $currencies,
+            'maintainOrder' => true,
+            'hideSearch' => true,
+            'options' => [
+                'placeholder' => Yii::t('app', 'Select'),
+            ],
+            'pluginOptions' => [
+                'allowClear' => true,
+            ],
+        ]) ?>
+    </div>
+
     <div style="padding-left: 15px;">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
         <?php if(isset($type) && $type == 'create'): ?>
-            <?= Html::button(Yii::t('app', 'Save 2'), ['class' => 'btn btn-primary saveForm', 'onClick' => 'SaveForm($(this))'])  ?>
+            <?= Html::button(Yii::t('app', 'Temporary storage'), ['class' => 'btn btn-primary saveForm', 'onClick' => 'SaveForm($(this))'])  ?>
         <?php endif; ?>
     </div>
 

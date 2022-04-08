@@ -162,4 +162,9 @@ return [
     'Document type' => 'Փաստաթղթի տեսակը',
     'Basic' => 'Հիմնական',
     'Commission' => 'Կոմիսիոն',
+    'Currency' => 'Արժույթ',
+    'Currencies' => 'Արժույթներ',
+    'Symbol' => 'նշան',
+    'Create Currency' => 'Ստեղծել արժույթ',
+    'Update Currency' => 'Թարմացնել արժույթը',
 ];

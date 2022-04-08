@@ -16,15 +16,31 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
 ?>
  <div id="showProducts"></div>
 <div class="row product-form module-service-form-card justify-content-between align-items-center" style="position:relative;">
-    <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-4 d-flex justify-content-between align-items-center">
-        <div class="form-group field-product-nomenclature_product_id required col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6">
+    <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6 d-flex justify-content-between align-items-center">
+        <div class="form-group field-product-nomenclature_product_id required col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4">
             <label class="control-label" for="product-nomenclature_product_id">Ապրանք</label>
-             <input type="text" class="form-control"   onfocus="selectProductNamiclature($(this))" required="required">
+             <input type="text" class="form-control" onfocus="selectProductNamiclature($(this))" required="required">
              <input type="hidden" name="Product[nomenclature_product_id][]" class="namiclature_id">
         </div>
-        <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6" >
+        <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4" >
             <label class="control-label" for="product-price">Գին</label>
             <input type="number"  class="form-control price__" onchange="showTotal($(this))" name="Product[price][]" autocomplete="off">
+        </div>
+        <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4" >
+            <label class="control-label" for="product-price">Արժույթ</label>
+            <select class="form-control currency__" name="Product[currency][]" id="">
+                <option value="" disabled selected></option>
+                <?php var_dump($currencies); if (isset($currencies)) {
+                    foreach ($currencies as $currency) {
+                        echo sprintf(
+                            '<option value="%s">%s</option>',
+
+                            $currency->id,
+                            $currency->symbol
+                        );
+                    }
+                }?>
+            </select>
         </div>
         <input type="hidden"  class="form-control" name="Product[retail_price][]" autocomplete="off">
     </div>

@@ -21,6 +21,12 @@ $table_all_columns = [
             return $provider->{'name_' . (explode('-', \Yii::$app->language)[0] ?: 'en')};
         }
     ],
+    'currency' => [
+        'label' => Yii::t('app', 'Currency'),
+        'value' => function ($model) {
+            return $model->currencySymbol->symbol;
+        }
+    ],
     'amount' => 'price',
 ];
 $actions = [

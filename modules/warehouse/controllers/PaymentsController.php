@@ -60,6 +60,7 @@ class PaymentsController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $partners = SuppliersList::find()->asArray()->all();
         $tableTreePartners = $this->buildTree($partners);
+
         return $this->render('index', [
             'tableTreePartners' => $tableTreePartners,
             'isFavorite' => $isFavorite,

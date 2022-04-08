@@ -4,6 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\QtyType */
+/* @var $tableTreePartners [] */
+/* @var $currencies app\modules\warehouse\models\Currency[] */
 
 $this->title = array(Yii::t('app', 'make a payment'),'make a payment');
 $this->params['breadcrumbs'][] = ['label' => 'Qty Types', 'url' => ['index']];
@@ -16,8 +18,9 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
     <div style="padding: 20px;">
     <?= $this->render('_form', [
         'model' => $model,
-        'tableTreePartners'=>$tableTreePartners,
-        'type' => 'create'
+        'tableTreePartners'=> $tableTreePartners,
+        'type' => 'create',
+        'currencies' => $currencies
     ]) ?>
     </div>
 </div>

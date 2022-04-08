@@ -3,6 +3,7 @@
 namespace app\modules\warehouse\controllers;
 
 use app\components\Url;
+use app\modules\warehouse\models\Currency;
 use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\TableRowsStatus;
 use app\rbac\WarehouseRule;
@@ -10,6 +11,7 @@ use Yii;
 use app\modules\warehouse\models\ProviderPayments;
 use app\modules\warehouse\models\ProviderPaymentsSearch;
 use app\modules\warehouse\models\SuppliersList;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -45,8 +47,8 @@ class PaymentsLogController extends Controller
         $columns = TableRowsStatus::find()->where(['page_name' => 'ProviderPayments', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $searchModel = new ProviderPaymentsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
-            
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'isFavorite' => $isFavorite,
@@ -80,17 +82,19 @@ class PaymentsLogController extends Controller
         $model = new ProviderPayments();
         $partners = SuppliersList::find()->asArray()->all();
         $tableTreePartners = $this->buildTree($partners);
+        $currencies = ArrayHelper::map(Currency::find()
+            ->asArray()
+            ->all() , 'id', 'symbol');
 
         if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
             return $this->redirect(['index','isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
         }
 
-
         return $this->render('create', [
             'model' => $model,
             'tableTreePartners'=>$tableTreePartners,
             'isFavorite' => $isFavorite,
-
+            'currencies' => $currencies
         ]);
     }
     
@@ -120,6 +124,9 @@ class PaymentsLogController extends Controller
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
+        $currencies = ArrayHelper::map(Currency::find()
+            ->asArray()
+            ->all() , 'id', 'symbol');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
@@ -128,6 +135,7 @@ class PaymentsLogController extends Controller
         return $this->render('update', [
             'model' => $model,
             'isFavorite' => $isFavorite,
+            'currencies' => $currencies
         ]);
     }
 

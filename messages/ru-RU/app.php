@@ -163,4 +163,9 @@ return [
     'Document type' => 'Тип документа',
     'Basic' => 'Базовый',
     'Commission' => 'Комиссия',
+    'Currency' => 'Валюта',
+    'Currencies' => 'Валюты',
+    'Symbol' => 'Символ',
+    'Create Currency' => 'Создать валюту',
+    'Update Currency' => 'Обновить валюту',
 ];
