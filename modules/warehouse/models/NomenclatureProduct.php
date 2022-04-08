@@ -41,7 +41,7 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
         return [
             [['group_id'], 'required'],
             [['production_date'], 'safe'],
-            [['group_id', 'qty_type_id','qty_for_notice','min_qty', 'is_vat', 'is_vat'], 'integer'],
+            [['group_id', 'qty_type_id','qty_for_notice','min_qty', 'is_vat', 'is_vat', 'manufacturer'], 'integer'],
             [[
                 'vendor_code_hy',
                 'vendor_code_ru',
@@ -83,6 +83,7 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             'is_vat' => Yii::t('app', 'Vat'),
             'manufacturer_name' => Yii::t('app', 'Manufacturer Name'),
             'other' => Yii::t('app', 'Other'),
+            'manufacturer' => Yii::t('app', 'Manufacturer'),
         ];
     }
     public function getProducts()

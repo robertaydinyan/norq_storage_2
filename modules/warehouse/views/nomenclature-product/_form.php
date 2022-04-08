@@ -10,6 +10,7 @@ use kartik\date\DatePicker;
 /* @var $groupProducts app\modules\warehouse\models\NomenclatureProduct */
 /* @var $qtyTypes app\modules\warehouse\models\NomenclatureProduct */
 /* @var $tableTreeGroups app\modules\warehouse\models\NomenclatureProduct */
+/* @var $manufacturers app\modules\warehouse\models\Manufacturer[] */
 /* @var $form yii\widgets\ActiveForm */
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
@@ -41,7 +42,20 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
 
         <?= $form->field($model, 'is_vat')->textInput() ?>
 
-        <?= $form->field($model, 'manufacturer_name')->textInput() ?>
+        <?= $form->field($model, 'manufacturer', [
+            'options' => ['class' => 'form-group'],
+        ])->widget(Select2::className(), [
+            'theme' => Select2::THEME_KRAJEE,
+            'data' => $manufacturers,
+            'maintainOrder' => true,
+            'hideSearch' => true,
+            'options' => [
+                'placeholder' => Yii::t('app', 'Select'),
+            ],
+            'pluginOptions' => [
+                'allowClear' => true,
+            ],
+        ]) ?>
 
         <?= $form->field($model, 'other')->textInput() ?>
 
@@ -130,19 +144,20 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
     </div>
     </div>
     <br>
-    <?php if($modal->isNewRecord){ ?>
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary','disabled'=>'disabled']) ?>
-        <?php if(isset($type) && $type == 'create'): ?>
-            <?= Html::button(Yii::t('app', 'Temporary storage'), ['class' => 'btn btn-primary saveForm', 'onClick' => 'SaveForm($(this))'])  ?>
-        <?php endif; ?>
-    </div>
-    <?php } else { ?>
+<!--    --><?php //if($modal->isNewRecord){ ?>
+<!--    <div class="form-group">-->
+<!--        --><?//= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary','disabled'=>'disabled']) ?>
+<!--        --><?php //if(isset($type) && $type == 'create'): ?>
+<!--            --><?//= Html::button(Yii::t('app', 'Temporary storage'), ['class' => 'btn btn-primary saveForm', 'onClick' => 'SaveForm($(this))'])  ?>
+<!--        --><?php //endif; ?>
+<!--    </div>-->
+<!--    --><?php //} else { ?>
+<!--    --><?php //} ?>
+
          <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
     <?php if(isset($type) && $type == 'create'): ?>
         <?= Html::button(Yii::t('app', 'Temporary storage'), ['class' => 'btn btn-primary saveForm', 'onClick' => 'SaveForm($(this))'])  ?>
     <?php endif; ?>
-    <?php } ?>
     <?php ActiveForm::end(); ?>
 
 </div>

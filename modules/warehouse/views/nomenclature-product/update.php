@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $groupProducts app\modules\warehouse\models\NomenclatureProduct */
 /* @var $qtyTypes app\modules\warehouse\models\NomenclatureProduct */
 /* @var $tableTreeGroups app\modules\warehouse\models\NomenclatureProduct */
+/* @var $manufacturers app\modules\warehouse\models\Manufacturer */
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title = array(Yii::t('app', 'Update') .  ': ' . $model->{'name_' . $lang},'Update');
@@ -23,7 +24,9 @@ $this->params['breadcrumbs'][] = $this->title[0];
         'model' => $model,
         'groupProducts' => $groupProducts,
         'tableTreeGroups'=> $tableTreeGroups,
-        'qtyTypes' => $qtyTypes
+        'qtyTypes' => $qtyTypes,
+        'manufacturers' => $manufacturers,
+        'type' => 'update',
     ]) ?>
     </div>
 </div>

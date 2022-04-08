@@ -5,6 +5,7 @@ namespace app\modules\warehouse\controllers;
 use app\components\Url;
 use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\GroupProduct;
+use app\modules\warehouse\models\Manufacturer;
 use app\modules\warehouse\models\QtyType;
 use app\rbac\WarehouseRule;
 use Yii;
@@ -94,6 +95,7 @@ class NomenclatureProductController extends Controller
      */
     public function actionCreate()
     {
+        $manufacturers = ArrayHelper::map(Manufacturer::find()->asArray()->all(), 'id', 'name');
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new NomenclatureProduct();
@@ -143,7 +145,7 @@ class NomenclatureProductController extends Controller
             'model' => $model,
             'groupProducts' => $groupProducts,
             'isFavorite' => $isFavorite,
-
+            'manufacturers' => $manufacturers,
             'qtyTypes' => $qtyTypes
         ]);
     }
@@ -157,6 +159,7 @@ class NomenclatureProductController extends Controller
      */
     public function actionUpdate($id)
     {
+        $manufacturers = ArrayHelper::map(Manufacturer::find()->asArray()->all(), 'id', 'name');
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
@@ -200,7 +203,8 @@ class NomenclatureProductController extends Controller
             'model' => $model,
             'groupProducts' => $groupProducts,
             'isFavorite' => $isFavorite,
-            'qtyTypes' => $qtyTypes
+            'qtyTypes' => $qtyTypes,
+            'manufacturers' => $manufacturers,
         ]);
     }
 
