@@ -418,3 +418,20 @@ select:not(:disabled).active, select:not(:disabled):focus
     color: #0055a5 !important;
 }
 
+a{
+    border-bottom: none!important;
+}
+.has-star:after {
+    left: -12px!important;
+    top: 5px;
+    height: 4px;
+    width: 9px;
+    border-left: 2px solid #000!important;
+    border-bottom: 2px solid #000!important;
+    transform: rotate(-45deg);
+}
+.has-star:hover:after {
+    opacity: 1!important;
+}
+
+

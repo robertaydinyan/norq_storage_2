@@ -20,6 +20,8 @@ $history = UserHistory::find()->where(['user_id' => Yii::$app->user->id])->limit
 $favorites = Favorite::find()->where(['user_id' => Yii::$app->user->id])->all();
 AppAsset::register($this);
 ?>
+
+
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
@@ -35,7 +37,7 @@ AppAsset::register($this);
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css"/>
         <link rel="stylesheet" href="https://unpkg.com/7.css">
-        <link rel="icon" type="image/x-icon" href="/images/logo.svg"/>
+        <link rel="icon" type="image/x-icon" href="/img/logo.png"/>
 
 
         <?php $this->head() ?>

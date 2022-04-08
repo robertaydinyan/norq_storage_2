@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
     <div style="padding-left: 15px;">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
         <?php if(isset($type) && $type == 'create'): ?>
-            <?= Html::button(Yii::t('app', 'Save 2'), ['class' => 'btn btn-primary saveForm', 'onClick' => 'SaveForm($(this))'])  ?>
+            <?= Html::button(Yii::t('app', 'Temporary storage'), ['class' => 'btn btn-primary saveForm', 'onClick' => 'SaveForm($(this))'])  ?>
         <?php endif; ?>
     </div>
 
