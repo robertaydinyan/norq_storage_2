@@ -11,6 +11,7 @@ use Yii;
  * @property int|null $provider_id
  * @property string|null $invoice
  * @property int|null $price
+ * @property int|null $currency
  */
 class ProviderPayments extends \yii\db\ActiveRecord
 {

@@ -163,7 +163,8 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                 foreach ($products as $product => $prod_val) {
                     $sum += $prod_val['price'] * $prod_val['count'];
                 }
-                return $sum . ' ' . Currency::getCurrencyByID($products[0]['currency']);
+                //$c = Currency::getCurrencyByID($products[0]['currency']);
+                return $sum . ' ' . '֏';//$c['symbol'];
             }
             else {
                 return 0;
@@ -203,7 +204,8 @@ class ShippingRequest extends \yii\db\ActiveRecord {
             foreach ($products as $product => $prod_val) {
                 $sum += $prod_val['price'] * $prod_val['count'];
             }
-            return $sum - $pays['total'] . " " . Currency::getCurrencyByID(end($products)['currency']);
+            $c = Currency::getCurrencyByID(end($products));
+            return $sum - $pays['total'] . " " . $c['symbol'];
         }
         else {
             return 0;
@@ -323,6 +325,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                                         $ShippingProduct->price = $prodval->price;
                                     }
                                     $ShippingProduct->shipping_id = $model->id;
+                                    $ShippingProduct->price = $ShippingProduct->price * Currency::getCurrencyByID($ShippingProduct->currency)['value'];
                                     $ShippingProduct->save(false);
                                     break;
                                 }
@@ -344,9 +347,11 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                                         $ShippingProduct->price = $prodval->price;
                                     }
                                     $ShippingProduct->shipping_id = $model->id;
+                                    $ShippingProduct->price = $ShippingProduct->price * Currency::getCurrencyByID($ShippingProduct->currency);
                                     $ShippingProduct->save(false);
 
                                     $prodval->count = 0;
+                                    $ShippingProduct->price = $ShippingProduct->price * Currency::getCurrencyByID($ShippingProduct->currency)['value'];
                                     $prodval->save(false);
                                 }
                             }
@@ -367,6 +372,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                             }
                             $ShippingProduct->shipping_id = $model->id;
                             $ShippingProduct->shipping_type = $model->shipping_type;
+                            $ShippingProduct->price = $ShippingProduct->price * Currency::getCurrencyByID($ShippingProduct->currency)['value'];
                             $ShippingProduct->save(false);
                             if ($Origin_product) {
                                 $Origin_product->count = 0;
@@ -398,6 +404,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                         $product->nomenclature_product_id = $request['Product']['nomenclature_product_id'][$i];
                         $product->comment = $request['Product']['comment'][$i];
                         $product->mac_address = $request['Product']['mac_address'][$i][$j];
+                        $product->price = $product->price * Currency::getCurrencyByID($product->currency)['value'];
                         $product->save(false);
 
                         $ShippingProduct = new ShippingProducts();
@@ -408,6 +415,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                         $ShippingProduct->count = $request['Product']['count'][$i];
                         $ShippingProduct->price = $request['Product']['price'][$i];
                         $ShippingProduct->shipping_id = $model->id;
+                        $ShippingProduct->price = $ShippingProduct->price * Currency::getCurrencyByID($ShippingProduct->currency)['value'];
                         $ShippingProduct->save(false);
                     }
                 }
@@ -425,6 +433,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                     $product->comment = $request['Product']['comment'][$i];
                     $product->warehouse_id = $model->supplier_warehouse_id;
                     $product->nomenclature_product_id = $request['Product']['nomenclature_product_id'][$i];
+                    $product->price = $product->price * Currency::getCurrencyByID($product->currency)['value'];
                     $product->save(false);
 
                     $ShippingProduct = new ShippingProducts();
@@ -435,6 +444,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                     $ShippingProduct->price = $request['Product']['price'][$i];
                     $ShippingProduct->shipping_type = $model->shipping_type;
                     $ShippingProduct->shipping_id = $model->id;
+                    $ShippingProduct->price = $ShippingProduct->price * Currency::getCurrencyByID($ShippingProduct->currency)['value'];
                     $ShippingProduct->save(false);
                 }
             }
@@ -453,6 +463,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                 $product->shipping_id = $model->id;
                 $product->warehouse_id = $model->supplier_warehouse_id;
                 $product->nomenclature_product_id = $request['Product']['nomenclature_product_id'][$i];
+                $product->price = $product->price * Currency::getCurrencyByID($product->currency)['value'];
                 $product->save(false);
             }
         }

@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\warehouse\models\Currency;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
@@ -226,7 +227,15 @@ $table_all_columns = array();
                         'value' => function ($model) {
                             $s = explode(' ', $model->totalsum);
                             return number_format($s[0], '0', '.', ',') . ' ' . $s[1];
-                        }
+                        },
+                        'contentOptions' => function($model) {
+                            $s = explode(' ', $model->totalsum)[0];
+
+                            return [
+                                'title' => Currency::fromDram($s)
+                            ];
+                        },
+
                     ],
                     'created' => [
                         'label' => Yii::t('app', 'Created'),

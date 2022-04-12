@@ -77,7 +77,8 @@ class ShippingRequestController extends Controller {
             'isFavorite' => $isFavorite,
             'columns' => $columns,
 
-            'users' => $dataUsers]);
+            'users' => $dataUsers
+        ]);
     }
     public function actionDocuments() {
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';

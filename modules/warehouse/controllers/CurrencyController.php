@@ -5,6 +5,8 @@ namespace app\modules\warehouse\controllers;
 use app\components\Url;
 use app\modules\warehouse\models\Favorite;
 use app\rbac\WarehouseRule;
+use fedemotta\cronjob\models\CronJob;
+use SoapClient;
 use Yii;
 use app\modules\warehouse\models\Currency;
 use yii\data\ActiveDataProvider;
@@ -128,5 +130,24 @@ class CurrencyController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionStartCron(){
+        return $this->actionUpdateCurrenciesValues(date("Y-m-d"), date("Y-m-d"));
+    }
+    public function actionUpdateCurrenciesValues($from, $to) {
+        if(!defined('STDOUT')) define('STDOUT', fopen('php://stdout', 'wb'));
+        $dates  = CronJob::getDateRange($from, $to);
+        $command = CronJob::run($this->id, $this->action->id, 0, CronJob::countDateRange($dates));
+        if ($command === false){
+            return 0;
+        }else{
+            foreach ($dates as $date) {
+                //this is the function to execute for each day
+                Currency::updateCurrenciesValues();
+            }
+            $command->finish();
+            return 1;
+        }
     }
 }

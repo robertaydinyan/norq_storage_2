@@ -8,6 +8,8 @@
 namespace app\commands;
 
 use app\models\Cron;
+use app\modules\warehouse\controllers\CurrencyController;
+use app\modules\warehouse\models\Currency;
 use fedemotta\cronjob\models\CronJob;
 use yii\console\Controller;
 use yii\console\ExitCode;
@@ -22,29 +24,17 @@ use yii\console\ExitCode;
  */
 class CronController extends Controller
 {
-    public function actionInit($from, $to){
+    public function actionIndex(){
 
-        $dates  = CronJob::getDateRange($from, $to);
-        $command = CronJob::run($this->id, $this->action->id, 0, CronJob::countDateRange($dates));
+        $command = CronJob::run($this->id, $this->action->id, 0, 0);
         if ($command === false){
             return Controller::EXIT_CODE_ERROR;
         }else{
-            foreach ($dates as $date) {
-                //this is the function to execute for each day
-                $cron = new Cron();
-                $cron->some_method((string) $date);
-            }
+            Currency::updateCurrenciesValues();
+            sleep(24 * 60 * 60);
+
             $command->finish();
             return Controller::EXIT_CODE_NORMAL;
         }
-    }
-    /**
-     * This command echoes what you have entered as the message.
-     * @param string $message the message to be echoed.
-     * @return int Exit code
-     */
-    public function actionIndex($message = 'hello world')
-    {
-        return $this->actionInit(date("Y-m-d"), date("Y-m-d"));
     }
 }

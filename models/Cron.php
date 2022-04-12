@@ -48,10 +48,10 @@ class Cron extends \yii\db\ActiveRecord
 
 
 
-    public  function some_method () {
+    public  function save_date () {
         $this->name = 'test';
         $this->start = date('y-m-d h:m');
         $this->save();
-        var_dump(Cron::find()->all());
+        Cron::find()->all();
     }
 }

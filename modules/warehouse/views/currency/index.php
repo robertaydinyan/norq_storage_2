@@ -32,6 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 'id',
                 'symbol',
+                'code',
+                'value',
 
                 ['class' => 'yii\grid\ActionColumn',
                     'header' => Yii::t('app', 'Action'),

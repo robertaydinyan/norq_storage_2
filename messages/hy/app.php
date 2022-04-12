@@ -109,6 +109,7 @@ return [
     'There are no products' => 'Ապրանքներ չկան',
     'Price' => 'Գին',
     'Vendor code' => 'Լրիվ անուն',
+    'code' => 'կոդ',
     'Vendor code(Armenian)' => 'Լրիվ անուն(հայերեն)',
     'Vendor code(Russian)' => 'Լրիվ անուն(ռուսերեն)',
     'Vendor code(English)' => 'Լրիվ անուն(Անգլերեն)',

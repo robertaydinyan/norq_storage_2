@@ -35,24 +35,24 @@ use yii\widgets\ActiveForm;
     <div class="col-lg-4">
         <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
     </div>
-
-    <div class="col-lg-4">
-        <?= $form->field($model, 'currency', [
-            'options' => ['class' => 'form-group'],
-        ])->widget(Select2::className(), [
-            'theme' => Select2::THEME_KRAJEE,
-            'data' => $currencies,
-            'maintainOrder' => true,
-            'hideSearch' => true,
-            'options' => [
-                'placeholder' => Yii::t('app', 'Select'),
-            ],
-            'pluginOptions' => [
-                'allowClear' => true,
-            ],
-        ]) ?>
-    </div>
-
+    <?php if ($type == "create"): ?>
+        <div class="col-lg-4">
+            <?= $form->field($model, 'currency', [
+                'options' => ['class' => 'form-group'],
+            ])->widget(Select2::className(), [
+                'theme' => Select2::THEME_KRAJEE,
+                'data' => $currencies,
+                'maintainOrder' => true,
+                'hideSearch' => true,
+                'options' => [
+                    'placeholder' => Yii::t('app', 'Select'),
+                ],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                ],
+            ]) ?>
+        </div>
+    <?php endif; ?>
     <div style="padding-left: 15px;">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
         <?php if(isset($type) && $type == 'create'): ?>

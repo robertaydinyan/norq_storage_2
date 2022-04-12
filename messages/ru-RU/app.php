@@ -110,6 +110,7 @@ return [
     'There are no products' => 'Нет продуктов',
     'Price' => 'Цена',
     'Vendor code' => 'Полное имя',
+    'code' => 'код',
     'Vendor code(Armenian)' => 'Полное имя(Армянский)',
     'Vendor code(Russian)' => 'Полное имя(русский)',
     'Vendor code(English)' => 'Полное имя(английский)',

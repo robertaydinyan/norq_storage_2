@@ -224,7 +224,7 @@ class Product extends \yii\db\ActiveRecord {
             $group_by = 'GROUP BY s_product.id,s_product.warehouse_id';
         }
 
-        $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
+//        $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
     
         return Yii::$app
             ->db

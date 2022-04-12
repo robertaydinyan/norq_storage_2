@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\warehouse\models\Currency;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
@@ -27,7 +28,19 @@ $table_all_columns = [
             return $model->currencySymbol->symbol;
         }
     ],
-    'amount' => 'price',
+    'amount' => [
+        'label' => Yii::t('app', 'Price'),
+        'value' => function ($model) {
+            return $model->price . ' ֏';
+        },
+        'contentOptions' => function($model) {
+            $s = explode(' ', $model->price)[0];
+
+            return [
+                'title' => Currency::fromDram($s)
+            ];
+        },
+    ]
 ];
 $actions = [
     'class' => 'yii\grid\ActionColumn',

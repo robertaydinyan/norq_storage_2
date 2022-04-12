@@ -24,18 +24,19 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         </div>
         <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4" >
             <label class="control-label" for="product-price">Գին</label>
-            <input type="number"  class="form-control price__" onchange="showTotal($(this))" name="Product[price][]" autocomplete="off">
+            <input type="number"  class="form-control price__" onchange="showTotal($(this)" name="Product[price][]" autocomplete="off">
         </div>
         <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4" >
             <label class="control-label" for="product-price">Արժույթ</label>
-            <select class="form-control currency__" name="Product[currency][]" id="">
+            <select class="form-control currency__ currency-input" onchange="showTotal($(this))" name="Product[currency][]" id="">
                 <option value="" disabled selected></option>
-                <?php var_dump($currencies); if (isset($currencies)) {
+                <?php if (isset($currencies)) {
                     foreach ($currencies as $currency) {
                         echo sprintf(
-                            '<option value="%s">%s</option>',
+                            '<option value="%s" data-value="%s">%s</option>',
 
                             $currency->id,
+                            $currency->value,
                             $currency->symbol
                         );
                     }
@@ -88,6 +89,7 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
            var ct = el_.closest('.product-form').find('.product-count').val();
            var pr = el_.closest('.product-form').find('.product-price-total').val();
            var tot = el_.closest('.product-form').find('.price__').val();
+           // var curr = el_.closest('.product-form').find('.currency__').find('option:selected').data('value');
            if(ct && pr){
             el_.closest('.product-form').find('.price__').val(pr/ct);
            } else if(tot && pr){

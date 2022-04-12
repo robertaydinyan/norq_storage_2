@@ -28,6 +28,7 @@ function checkMac(el_){
 }
 
 $(document).ready(function () {
+
            let $body = $('body');
            $body.on('change','.product-nomenclature_product_id',function(){
             var th = $(this);
@@ -367,7 +368,7 @@ window.onload = function(){
                 $('.price-input').closest('.col-sm-12').addClass('hide');
             }
 
-           if($(this).val() == 2 || $(this).val() == 6 || $(this).val() == 5){
+            if($(this).val() == 2 || $(this).val() == 6 || $(this).val() == 5){
             var tp = $(this).val();
                $.get( "/warehouse/shipping-request/create-product", function( data ) {
                    $( "#product-add-block" ).html( data );
