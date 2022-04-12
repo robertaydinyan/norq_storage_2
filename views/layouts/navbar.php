@@ -78,8 +78,8 @@ $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
             </div>
         </li>
         <?php if(Yii::$app->user->identity->role == "admin"):?>
-            <a href="javascript:void(0);" class="change-site-status" style="color: white; font-size: 20px;" data-status="0">
-                <i class="<?php echo $s ? 'fa fa-hand-paper-o' : 'fas fa-car'?>"></i></a>
+            <a href="javascript:void(0);" class="change-site-status" style="color: white; font-size: 20px;" data-status="0" title="<?php echo Yii::t('app', ($s ? 'Stop website' : 'Start website')); ?>">
+                <i class="<?php echo $s ? 'fa fa-ban' : 'fas fa-car'?>"></i></a>
             </a>
         <?php endif; ?>
         <li class="nav-item dropdown no-caret mr-3 d-md-none">

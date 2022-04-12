@@ -222,19 +222,19 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
                             'template' => '{input}{label}{error}{hint}'
                         ])->textInput(['maxlength' => true, 'type' => 'number', 'required' => 'required']) ?>
                     </div>
-                    <div class="col-sm-2 hide">
-                        <div class="form-group counts-input sk-floating-label field-shippingrequest-tp">
-                            <select name="ShippingRequest[action_type][]" class="tp form-control btn-primary"
-                                    required="required">
-                                <option value="1"><?php echo Yii::t('app', 'Internet'); ?></option>
-                                <option value="2">Ip</option>
-                                <option value="3">Tv</option>
-                            </select>
-                            <label class="control-label"
-                                   for="shippingrequest-tp"><?php Yii::t('app', 'Transaction type'); ?></label>
-                            <div class="help-block"></div>
-                        </div>
-                    </div>
+<!--                    <div class="col-sm-2 hide">-->
+<!--                        <div class="form-group counts-input sk-floating-label field-shippingrequest-tp">-->
+<!--                            <select name="ShippingRequest[action_type][]" class="tp form-control btn-primary"-->
+<!--                                    required="required">-->
+<!--                                <option value="1">--><?php //echo Yii::t('app', 'Internet'); ?><!--</option>-->
+<!--                                <option value="2">Ip</option>-->
+<!--                                <option value="3">Tv</option>-->
+<!--                            </select>-->
+<!--                            <label class="control-label"-->
+<!--                                   for="shippingrequest-tp">--><?php //Yii::t('app', 'Transaction type'); ?><!--</label>-->
+<!--                            <div class="help-block"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="col-sm-12 hide">
                         <div class="form-group price-input sk-floating-label field-shippingrequest-price">
                             <input type="number" id="shippingrequest-price" class="form-control"

@@ -172,4 +172,6 @@ return [
     'Update Currency' => 'Обновить валюту',
     'Create Manufacturer' => 'Создать производителя',
     'Update Manufacturer' => 'Обновить производителя',
+    'Stop website' => 'Остановить веб-сайт',
+    'Start website' => 'Запустить веб-сайт',
 ];

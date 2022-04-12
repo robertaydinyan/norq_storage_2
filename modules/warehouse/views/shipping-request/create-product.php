@@ -16,7 +16,7 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
 ?>
  <div id="showProducts"></div>
 <div class="row product-form module-service-form-card justify-content-between align-items-center" style="position:relative;">
-    <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6 d-flex justify-content-between align-items-center">
+    <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6 d-flex justify-content-between align-items-center" style="padding: 0">
         <div class="form-group field-product-nomenclature_product_id required col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4">
             <label class="control-label" for="product-nomenclature_product_id">Ապրանք</label>
              <input type="text" class="form-control" onfocus="selectProductNamiclature($(this))" required="required">
@@ -45,7 +45,7 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         </div>
         <input type="hidden"  class="form-control" name="Product[retail_price][]" autocomplete="off">
     </div>
-    <div class=" row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-4 d-flex justify-content-between align-items-center">
+    <div class=" row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-4 d-flex justify-content-between align-items-center" style="padding: 0">
 
         <div class="form-group field-product-comment col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6">
             <label class="control-label" for="product-comment">Մեկնաբանություն</label>
@@ -57,8 +57,7 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         </div>
        
     </div>
-    <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-2 d-flex justify-content-between align-items-center">
-        <div class="rem hide" style="position: absolute;right:-5px;top:-20px;cursor:pointer;" onclick="$(this).closest('.product-form').remove()"><i style="color:red;font-size:30px;" class="fa fa-times"></i></div>
+    <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-2 d-flex justify-content-between align-items-center" style="padding: 0">
         <div class="form-group field-product-mac_address hide col-sm-6">
             <label class="control-label" for="product-count">Mac հասցե</label>
             <div class="row cloned-mac">
@@ -79,7 +78,8 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
             <input type="text"  class="form-control product-price-total" onchange="showTotal($(this))" autocomplete="off">
         </div>
     </div>
-    <div class=" row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-2">
+    <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-2" style="padding: 0; position: absolute; width: 90px; top: 2px; right: 4px;">
+        <div class="rem hide" style="position: absolute; right: 100px; cursor:pointer;" onclick="$(this).closest('.product-form').remove()"><i style="color:red;font-size:30px;" class="fa fa-times"></i></div>
         <button class="btn btn-primary clone-product" type="button"><i class="fa fa-plus"></i></button>
     </div>
 </div>

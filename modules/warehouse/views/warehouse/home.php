@@ -399,28 +399,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                             <div class="media-body">
                                 <h3 class=""><?=   Yii::t('app', 'Payments') ?></h3>
                             </div>
-                            <div class="w-img text-right">
-                                <div class="w-img text-right">
-                                    <h2 style="color:#0055a5;font-weight: bold">
-                                        <div class="dropdown mr-2 btn-drop">
-                                            <button class="btn btn-secondary dropdown-toggle bg-white" type="button" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <?=   Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-                                                    <div id="w3-collapse" class="collapse navbar-collapse">
-                                                        <ul id="w5" class="navbar-nav w-100 nav">
-                                                            <li class="nav-item dropdown-item"><a class="nav-link" href="/warehouse/payments?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Statistics'); ?></a></li>
-                                                            <li class="nav-item dropdown-item"><a class="nav-link" href="/warehouse/payments-log?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Payments'); ?></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </nav>
 
-                                            </div>
-                                        </div>
-                                    </h2>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -428,6 +407,33 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
                 <div class="card-bottom-section mt-5">
                     <div> <a href="/warehouse/payments?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if (\app\rbac\WarehouseRule::can('Statistics', 'index')): ?>
+    <div class="warehouse-home-item mb-3">
+        <div class="widget widget-card-two">
+            <div class="widget-content">
+
+                <div class="media p-4 align-items-center border-bottom" >
+                    <div class="media-body">
+                        <div class="media border-right-blue align-items-center">
+                            <div class="w-img">
+                                <i class="fa fa-bar-chart mr-2" style="color:#0055a5;font-size: 46px;"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3 class=""><?=   Yii::t('app', 'Statistics') ?></h3>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-bottom-section mt-5">
+                    <div> <a href="/warehouse/statistics?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>

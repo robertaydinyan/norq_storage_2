@@ -171,4 +171,6 @@ return [
     'Update Currency' => 'Թարմացնել արժույթը',
     'Create Manufacturer' => 'Ստեղծել արտադրող',
     'Update Manufacturer' => 'Թարմացնել արտադրող',
+    'Stop website' => 'անջատել էջը օգտատերերի համար',
+    'Start website' => 'միացնել էջը օգտատերերի համար',
 ];
