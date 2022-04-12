@@ -9,6 +9,7 @@ use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ShippingProducts;
 use app\modules\warehouse\models\ShippingRequest;
+use app\modules\warehouse\models\TableRowsCount;
 use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\Warehouse;
 
@@ -56,6 +57,9 @@ class ComplectationController extends Controller
         ]);
         TableRowsStatus::checkRows('Complectation');
         $columns = TableRowsStatus::find()->where(['page_name' => 'Complectation', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'Complectation', 'userID' => Yii::$app->user->id])->one();
+        $dataProvider->pagination->pageSize = $rows_count['count'];
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'isFavorite' => $isFavorite,

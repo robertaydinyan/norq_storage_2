@@ -13,6 +13,7 @@ use app\modules\warehouse\models\ProductShippingLog;
 use app\modules\warehouse\models\Balance;
 use app\modules\warehouse\models\ShippingType;
 use app\modules\warehouse\models\SuppliersList;
+use app\modules\warehouse\models\TableRowsCount;
 use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\Warehouse;
 use app\rbac\WarehouseRule;
@@ -45,8 +46,10 @@ class ShippingRequestController extends Controller {
      */
     public function actionIndex() {
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+        TableRowsStatus::checkRows('ShippingRequest');
         $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' =>Yii::$app
             ->request->get('type')])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
@@ -68,6 +71,8 @@ class ShippingRequestController extends Controller {
             ->where(['!=', 'id', 6])
             ->asArray()
             ->all());
+        $dataProvider->pagination->pageSize = $rows_count['count'];
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -84,6 +89,7 @@ class ShippingRequestController extends Controller {
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         TableRowsStatus::checkRows('ShippingRequest');
         $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app->request->get('type')])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->all();
         $dataProvider = $searchModel->search(Yii::$app
@@ -94,8 +100,8 @@ class ShippingRequestController extends Controller {
         $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
             ->all();
         $dataUsers = [];
+        $dataProvider->pagination->pageSize = $rows_count['count'];
 
-        
         foreach ($uersData as $key => $value) {
             $dataUsers[$value
                 ->id] = $value->name . ' ' . $value->last_name;

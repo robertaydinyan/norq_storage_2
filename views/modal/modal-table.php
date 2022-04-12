@@ -13,28 +13,28 @@
                 <div class="d-flex flex-column col-12	col-sm-12	col-md-12 col-lg-6	col-xl-3" style="width: 22%;">
                     <h6>Էջերի քանակը</h6>
                     <div class="input-group">
-                        <input type="number" class="form-control" placeholder="0-50" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                        <input name="rows-count" type="number" class="form-control" placeholder="0-50" aria-label="Input group example" aria-describedby="btnGroupAddon" value="<?php echo $rows_count->count; ?>">
                         <div class="input-group-prepend">
                             <div class="input-group-text" id="btnGroupAddon">Տողերի քանակը</div>
                         </div>
                     </div>
                     <p style="font-size: 13px">Թիվը 0-ից մինչև 50</p>
                 </div>
-                <div class="d-flex flex-column col-12	col-sm-12	col-md-12 col-lg-6	col-xl-3" style="width: 22%;">
-                    <h6>Աղյուսակի տեսք *</h6>
-                    <input type="text" class="form-control">
-                    <p style="font-size: 13px">Ընտրեք թեման աղյուսակի տեսքի համար</p>
-                </div>
-                <div class="d-flex flex-column col-12	col-sm-12	col-md-12 col-lg-6	col-xl-3" style="width: 22%;">
-                    <h6>Հիմնական ֆիլտր</h6>
-                    <input type="text" class="form-control">
-                    <p style="font-size: 13px">Սահմանեք աղյուսակի ֆիլտրի հիմնական չափանիշները</p>
-                </div>
-                <div class="d-flex flex-column col-12	col-sm-12	col-md-12 col-lg-6	col-xl-3" style="width: 22%;">
-                    <h6> Հիմնական տեսակավորում</h6>
-                    <input type="text" class="form-control">
-                    <p style="font-size: 13px">Սահմանեք աղյուսակի տեսակավորման հիմնական չափանիշները</p>
-                </div>
+<!--                <div class="d-flex flex-column col-12	col-sm-12	col-md-12 col-lg-6	col-xl-3" style="width: 22%;">-->
+<!--                    <h6>Աղյուսակի տեսք *</h6>-->
+<!--                    <input type="text" class="form-control">-->
+<!--                    <p style="font-size: 13px">Ընտրեք թեման աղյուսակի տեսքի համար</p>-->
+<!--                </div>-->
+<!--                <div class="d-flex flex-column col-12	col-sm-12	col-md-12 col-lg-6	col-xl-3" style="width: 22%;">-->
+<!--                    <h6>Հիմնական ֆիլտր</h6>-->
+<!--                    <input type="text" class="form-control">-->
+<!--                    <p style="font-size: 13px">Սահմանեք աղյուսակի ֆիլտրի հիմնական չափանիշները</p>-->
+<!--                </div>-->
+<!--                <div class="d-flex flex-column col-12	col-sm-12	col-md-12 col-lg-6	col-xl-3" style="width: 22%;">-->
+<!--                    <h6> Հիմնական տեսակավորում</h6>-->
+<!--                    <input type="text" class="form-control">-->
+<!--                    <p style="font-size: 13px">Սահմանեք աղյուսակի տեսակավորման հիմնական չափանիշները</p>-->
+<!--                </div>-->
             </div>
             <h6 class=" text-center border-bottom border-top  p-2 mb-0" style="width: 98%;margin-left:1%;background: #fff!important;">Կարգավորեք աղյուսակի սյուների կարգը և ցուցադրումը</h6>
             <div class="modal-body d-flex justify-content-between row" >

@@ -14,6 +14,7 @@ use app\modules\warehouse\models\SearchShippingType;
 use app\modules\warehouse\models\ShippingRequestSearch;
 use app\modules\warehouse\models\ShippingType;
 use app\modules\warehouse\models\SuppliersList;
+use app\modules\warehouse\models\TableRowsCount;
 use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\UserHistory;
 use app\modules\warehouse\models\WarehouseGroups;
@@ -81,10 +82,12 @@ class WarehouseController extends Controller {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         TableRowsStatus::checkRows('Warehouse');
         $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id])->one();
         $searchModel = new WarehouseSearch();
         $dataProvider = $searchModel->search(Yii::$app
             ->request
             ->queryParams);
+        $dataProvider->pagination->pageSize = $rows_count['count'];
         $warehouse_types = WarehouseTypes::find()->all();
 
         return $this->render('show-by-type', [
@@ -195,7 +198,7 @@ class WarehouseController extends Controller {
 
             $model->created_at = Carbon::now()
                 ->toDateTimeString();
-            $model->save();
+            $model->save(false);
 
             Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->{'name_' . $lang} .   "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
             Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->{'name_' . $lang} .  "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
@@ -414,6 +417,14 @@ class WarehouseController extends Controller {
                 $t->order = $i - $ps;
                 $t->save(false);
             }
+            $t = TableRowsCount::find()->where(['page_name' => $request->post('page')])->one();
+            if (!$t) {
+                $t = new TableRowsCount();
+                $t->page_name = $request->post('page');
+                $t->userID = Yii::$app->user->id;
+            }
+            $t->count = $request->post('rows-count');
+            $t->save(false);
         }
         echo '<script>history.go(-1)</script>';
     }

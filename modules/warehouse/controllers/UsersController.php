@@ -8,6 +8,7 @@ use app\models\UserSearch;
 use app\modules\warehouse\models\Action;
 use app\modules\warehouse\models\Complectation;
 use app\modules\warehouse\models\Favorite;
+use app\modules\warehouse\models\TableRowsCount;
 use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\UserAction;
 use app\rbac\WarehouseRule;
@@ -51,11 +52,14 @@ class UsersController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         TableRowsStatus::checkRows('User');
         $columns = TableRowsStatus::find()->where(['page_name' => 'User', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'User', 'userID' => Yii::$app->user->id])->one();
         $users = User::find()->all();
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app
             ->request
             ->queryParams);
+        $dataProvider->pagination->pageSize = $rows_count['count'];
+
         return $this->render('index', [
             'users' => $users,
             'isFavorite' => $isFavorite,

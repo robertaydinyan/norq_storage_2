@@ -468,6 +468,39 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             </div>
         </div>
     <?php endif; ?>
+    <div class="warehouse-home-item mb-3">
+        <div class="widget widget-card-two">
+            <div class="widget-content">
+
+                <div class="media  p-4 align-items-center border-bottom" >
+                    <div class="media-body">
+                        <div class="media border-right-blue align-items-center">
+                            <div class="w-img">
+                                <i class="fa fa-bell mr-2" style="color:#0055a5;font-size: 46px;"></i>
+                            </div>
+                            <div class="media-body">
+                                <h3 class=""><?=   Yii::t('app', 'Notifications') ?></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+<!--                <div style="padding-left:20px;max-height: 200px;overflow:auto;">-->
+<!--                  --><?php //if(isset($_GET['search'])){
+//                        $users = User::find()->where(['LIKE','name',$_GET['search']])->all();
+//                        if(!empty($users)){
+//                            foreach($users as $user_ => $user_val){
+//                                 echo '<a target="_blank" href="/warehouse/users/edit?id='.$user_val->id.'&lang=">'.$user_val->name.'</a><br>';
+//                            }
+//                        }
+//                     } ?>
+<!--                </div>-->
+                <div class="card-bottom-section mt-5">
+                    <div> <a href="/notifications?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 

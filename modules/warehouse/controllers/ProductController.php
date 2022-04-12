@@ -14,6 +14,7 @@ use app\modules\warehouse\models\ProductImagesPath;
 use app\modules\warehouse\models\ProductShippingLog;
 use app\modules\warehouse\models\QtyType;
 use app\modules\warehouse\models\SuppliersList;
+use app\modules\warehouse\models\TableRowsCount;
 use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\Warehouse;
 use app\rbac\WarehouseRule;
@@ -63,6 +64,8 @@ class ProductController extends Controller
         $dataProvider2 = $searchModel->search_(Yii::$app->request->post());
         TableRowsStatus::checkRows('Product');
         $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id])->one();
+        $dataProvider2->pagination->pageSize = $rows_count['count'];
 
         return $this->render('index', [
             'columns' => $columns,

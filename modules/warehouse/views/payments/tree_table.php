@@ -12,7 +12,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             <?php if(!array_key_exists('children', $tableTreePartner)){
                 $s = explode(' ', ShippingRequest::getPartnerTotalAmount($tableTreePartner['id']));
                 ?>
-               <?php echo ' <small style="margin-left:20px;">' . Yii::t('app', 'Debt') . '`'.number_format($s[0],0,'.',',') . ' ' . $s[1] .'  <span style="cursor:pointer;" onclick="showInvoices('.$tableTreePartner['id'].')" data-toggle="modal" data-target="#viewInfo">(' . Yii::t("app", "invoices") . ')</span><samll>'; ?>
+               <?php echo ' <small style="margin-left:20px;">' . Yii::t('app', 'Debt') . '`'.number_format($s[0],0,'.',',') . ' ֏  <span style="cursor:pointer;" onclick="showInvoices('.$tableTreePartner['id'].')" data-toggle="modal" data-target="#viewInfo">(' . Yii::t("app", "invoices") . ')</span><samll>'; ?>
             <?php } ?>
             </span>
             <ul style="display: block;">

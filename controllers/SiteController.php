@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\components\Helper;
 use app\modules\warehouse\models\SiteSettings;
+use app\modules\warehouse\models\TableRowsCount;
 use app\modules\warehouse\models\TableRowsStatus;
 use Yii;
 use yii\filters\AccessControl;
@@ -153,12 +154,15 @@ class SiteController extends Controller
             $pageName = $request->get('page');
             $type = $request->get('type') ?: null;
             TableRowsStatus::checkRows($pageName, $type);
+            $rows_count = TableRowsCount::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id])->one();
             $columnsActive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => $type])->orderBy('order')->all();
             $columnsPassive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 0, 'type' => $type])->orderBy('order')->all();
+
             return $this->renderAjax('/modal/modal-table', [
                 'page' => $pageName,
                 'columnsActive' => $columnsActive,
                 'columnsPassive' => $columnsPassive,
+                'rows_count' => $rows_count
             ]);
         }
     }
