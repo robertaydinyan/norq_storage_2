@@ -127,8 +127,8 @@ array_push($table_columns, $actions);
               ('<a  href="' . Url::to(['create', 'lang' => Yii::$app->language]) . '"  class="btn btn-primary mr-2" >' .
                   Yii::t('app', 'Create Warehouse') . '</a>') : ''); ?>
           <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary mr-2">Xls</button>
-            <button class="btn btn-primary mr-2" >
-                <div id="list1" class="dropdown-check-list" tabindex="100" style="width: -webkit-fill-available;">
+            <button class="btn btn-primary mr-2 position-relative" >
+                <div id="list1" class="dropdown-check-list" tabindex="100" >
                     <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
                     <ul class="items">
                         <?php if ($columns):
