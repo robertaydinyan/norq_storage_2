@@ -87,9 +87,9 @@ class Product extends \yii\db\ActiveRecord {
             return false;
         }
     }
-    public function MoveData($data, $nomiclature, $warehouse) {
-        $start = date('Y-m-d', strtotime($data['from_created_at']));
+     public function MoveData($data, $nomiclature, $warehouse) {
         $end = date('Y-m-d', strtotime($data['to_created_at']));
+        $start = date('Y-m-d', strtotime($data['from_created_at']));
         $warehouse_id = intval($data['supplier_warehouse_id']);
 
         if (!$warehouse_id) {
@@ -99,12 +99,29 @@ class Product extends \yii\db\ActiveRecord {
                                                      LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
                                                      LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
                                                   WHERE   s_product.nomenclature_product_id = $nomiclature AND s_shipping.supplier_warehouse_id = $warehouse   AND s_shipping.shipping_type IN(2,6,7)  AND `s_shipping_products`.`created_at` < '$start'")->queryOne() ['pcount']);
+            $opening_ = intval(Yii::$app
+                ->db
+                ->createCommand("SELECT SUM(s_shipping_products.count) as pcount FROM s_shipping_products            
+                                                     LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
+                                                     LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
+                                                  WHERE   s_product.nomenclature_product_id = $nomiclature AND s_shipping.provider_warehouse_id = $warehouse   AND s_shipping.shipping_type IN(8,9,7,10)  AND `s_shipping_products`.`created_at` < '$start'")->queryOne() ['pcount']);
+            $opening = $opening - $opening_;
             $closing = intval(Yii::$app
                 ->db
                 ->createCommand("SELECT SUM(s_shipping_products.count) as pcount FROM s_shipping_products            
                                                      LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
                                                      LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
                                                   WHERE   s_product.nomenclature_product_id = $nomiclature AND s_shipping.supplier_warehouse_id = $warehouse   AND s_shipping.shipping_type IN(2,6,7)  AND `s_shipping_products`.`created_at` <= '$end'")->queryOne() ['pcount']);
+
+            $closing_ = intval(Yii::$app
+                ->db
+                ->createCommand("SELECT SUM(s_shipping_products.count) as pcount FROM s_shipping_products            
+                                                     LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
+                                                     LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
+                                                  WHERE   s_product.nomenclature_product_id = $nomiclature AND s_shipping.provider_warehouse_id = $warehouse   AND s_shipping.shipping_type IN(8,9,7,10)  AND `s_shipping_products`.`created_at` <= '$end'")->queryOne() ['pcount']);
+
+            $closing = $closing - $closing_;
+       
             $sell_in = intval(Yii::$app
                 ->db
                 ->createCommand("SELECT SUM(s_shipping_products.count) as pcount FROM s_shipping_products            
@@ -119,20 +136,38 @@ class Product extends \yii\db\ActiveRecord {
                                                      LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
                                                   WHERE  s_product.nomenclature_product_id = $nomiclature AND s_shipping.provider_warehouse_id = $warehouse  AND s_shipping.shipping_type IN(8,9,7,10) AND  `s_shipping_products`.`created_at` >= '$start' AND `s_shipping_products`.`created_at` <= '$end'")->queryOne() ['pcount']);
 
+
         }
         else {
-            $opening = intval(Yii::$app
+             $opening = intval(Yii::$app
                 ->db
                 ->createCommand("SELECT SUM(s_shipping_products.count) as pcount FROM s_shipping_products            
                                                      LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
                                                      LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
-                                                  WHERE   s_product.nomenclature_product_id = $nomiclature AND s_shipping.supplier_warehouse_id = $warehouse AND s_shipping.supplier_warehouse_id = $warehouse_id   AND s_shipping.shipping_type IN(2,6,7)  AND `s_shipping_products`.`created_at` < '$start'")->queryOne() ['pcount']);
+                                                  WHERE   s_product.nomenclature_product_id = $nomiclature AND s_shipping.supplier_warehouse_id = $warehouse_id   AND s_shipping.shipping_type IN(2,6,7)  AND `s_shipping_products`.`created_at` < '$start'")->queryOne() ['pcount']);
+            $opening_ = intval(Yii::$app
+                ->db
+                ->createCommand("SELECT SUM(s_shipping_products.count) as pcount FROM s_shipping_products            
+                                                     LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
+                                                     LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
+                                                  WHERE   s_product.nomenclature_product_id = $nomiclature AND s_shipping.provider_warehouse_id = $warehouse_id   AND s_shipping.shipping_type IN(8,9,7,10)  AND `s_shipping_products`.`created_at` < '$start'")->queryOne() ['pcount']);
+            $opening = $opening - $opening_;
+
             $closing = intval(Yii::$app
                 ->db
                 ->createCommand("SELECT SUM(s_shipping_products.count) as pcount FROM s_shipping_products            
                                                      LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
                                                      LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
-                                                  WHERE   s_product.nomenclature_product_id = $nomiclature AND s_shipping.supplier_warehouse_id = $warehouse AND s_shipping.supplier_warehouse_id = $warehouse_id   AND s_shipping.shipping_type IN(2,6,7)  AND `s_shipping_products`.`created_at` <= '$end'")->queryOne() ['pcount']);
+                                                  WHERE   s_product.nomenclature_product_id = $nomiclature AND s_shipping.supplier_warehouse_id = $warehouse_id   AND s_shipping.shipping_type IN(2,6,7)  AND `s_shipping_products`.`created_at` < '$end'")->queryOne() ['pcount']);
+          
+            $closing_ = intval(Yii::$app
+                ->db
+                ->createCommand("SELECT SUM(s_shipping_products.count) as pcount FROM s_shipping_products            
+                                                     LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
+                                                     LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
+                                                  WHERE   s_product.nomenclature_product_id = $nomiclature AND s_shipping.provider_warehouse_id = $warehouse_id   AND s_shipping.shipping_type IN(8,9,7,10)  AND `s_shipping_products`.`created_at` < '$end'")->queryOne() ['pcount']);
+
+            $closing = $closing - $closing_;
             $sell_in = intval(Yii::$app
                 ->db
                 ->createCommand("SELECT SUM(s_shipping_products.count) as pcount FROM s_shipping_products            
@@ -145,7 +180,7 @@ class Product extends \yii\db\ActiveRecord {
                 ->createCommand("SELECT SUM(s_shipping_products.count) as pcount FROM s_shipping_products            
                                                      LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id 
                                                      LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
-                                                  WHERE  s_product.nomenclature_product_id = $nomiclature AND s_shipping.provider_warehouse_id = $warehouse AND s_shipping.supplier_warehouse_id = $warehouse_id  AND s_shipping.shipping_type IN(8,9,7,10) AND  `s_shipping_products`.`created_at` >= '$start' AND `s_shipping_products`.`created_at` <= '$end'")->queryOne() ['pcount']);
+                                                  WHERE  s_product.nomenclature_product_id = $nomiclature  AND s_shipping.provider_warehouse_id = $warehouse_id  AND s_shipping.shipping_type IN(8,9,7,10) AND  `s_shipping_products`.`created_at` >= '$start' AND `s_shipping_products`.`created_at` <= '$end'")->queryOne() ['pcount']);
            
         }
         return ['closing' => $closing, 'sell_in' => $sell_in, 'sell_out' => $sell_out, 'opening' => $opening];
@@ -212,20 +247,22 @@ class Product extends \yii\db\ActiveRecord {
         }
 
         if (empty($sql)) {
-            $sql .= ' WHERE s_product.status != 0';
+            $sql .= ' WHERE s_product.status != 0 AND s_product.count > 0 ';
         }
         else {
-            $sql .= ' AND s_product.status != 0';
+            $sql .= ' AND s_product.status != 0 AND s_product.count > 0 ';
         }
         if (!isset($data['show-ware'])) {
-            $group_by = 'GROUP BY s_product.id';
+            $group_by = 'GROUP BY s_product.nomenclature_product_id';
         }
         else {
-            $group_by = 'GROUP BY s_product.id,s_product.warehouse_id';
+            $group_by = 'GROUP BY s_product.warehouse_id,s_product.nomenclature_product_id';
         }
-
-//        $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
-    
+        if (isset($data['show-series'])) {
+            $group_by = 'GROUP BY s_product.warehouse_id,s_product.id'; 
+        }
+        // $group_by = 'GROUP BY s_product.nomenclature_product_id,s_product.warehouse_id ';
+        
         return Yii::$app
             ->db
             ->createCommand("SELECT SUM(s_product.count) as pcount,SUM(s_product.price * s_product.count) as pprice,AVG(s_product.price) as avgprice,s_warehouse.name_" . $lang . " as wname,s_warehouse.id as wid,s_nomenclature_product.*,s_qty_type.type_" . $lang . " as qty_type,s_product.*,s_product.mac_address as mac FROM s_product            
@@ -240,9 +277,6 @@ class Product extends \yii\db\ActiveRecord {
         return $this->hasOne(NomenclatureProduct::class , ['id' => 'nomenclature_product_id']);
     }
 
-    public function getCurren() {
-        return $this->hasOne(Currency::class , ['id' => 'currency']);
-    }
 
     public function getWarehouseProducts($id) {
         if ($id) {
@@ -329,8 +363,8 @@ class Product extends \yii\db\ActiveRecord {
         return $this->hasOne(NomenclatureProduct::class, ['id' => 'nomenclature_product_id']);
     }
      public function findByOpening($data){
-        $end = date('Y-m-d', strtotime($data['from_created_at']));
-        $start = date('Y-m-d', strtotime($data['to_created_at']));
+        $end = date('Y-m-d', strtotime($data['to_created_at']));
+        $start = date('Y-m-d', strtotime($data['from_created_at']));
         $warehouse_id = intval($data['supplier_warehouse_id']);
         $nomeclature_id = intval($data['nomeclature_id']);
         $warehouse = intval($data['wid']);
@@ -367,8 +401,8 @@ class Product extends \yii\db\ActiveRecord {
        return $opening;
     }
      public function findByClosing($data){
-        $end = date('Y-m-d', strtotime($data['from_created_at']));
-        $start = date('Y-m-d', strtotime($data['to_created_at']));
+         $end = date('Y-m-d', strtotime($data['to_created_at']));
+        $start = date('Y-m-d', strtotime($data['from_created_at']));
         $warehouse_id = intval($data['supplier_warehouse_id']);
         $nomeclature_id = intval($data['nomeclature_id']);
         $warehouse = intval($data['wid']);
@@ -401,7 +435,7 @@ class Product extends \yii\db\ActiveRecord {
                                                      LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id
                                                      LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
                                                   WHERE $not_in  s_product.nomenclature_product_id = $nomeclature_id AND s_shipping.supplier_warehouse_id = $warehouse   AND s_shipping.shipping_type IN(2,6,7)  AND `s_shipping_products`.`created_at` < '$end'")->queryAll();     
-      
+   
        return $closing;
     }
     public function findBySellOut($data){
@@ -418,7 +452,7 @@ class Product extends \yii\db\ActiveRecord {
          }
          $sell_out = Yii::$app
             ->db
-            ->createCommand("SELECT s_shipping.*,s_product.mac_address FROM s_shipping_products            
+            ->createCommand("SELECT s_shipping.*,s_product.mac_address,s_shipping_products.count as Pcount FROM s_shipping_products            
                          LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id 
                          LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
                       WHERE  s_product.nomenclature_product_id = $nomeclature_id AND s_shipping.provider_warehouse_id = $warehouse $wSql AND s_shipping.shipping_type IN(8,9,7,10) AND  `s_shipping_products`.`created_at` >= '$start' AND `s_shipping_products`.`created_at` <= '$end'")->queryAll();
@@ -433,7 +467,7 @@ class Product extends \yii\db\ActiveRecord {
         $warehouse = intval($data['wid']);
        
         $sell_out = Yii::$app->db
-         ->createCommand("SELECT s_shipping.*,s_product.mac_address FROM s_shipping_products            
+         ->createCommand("SELECT s_shipping.*,s_product.mac_address,s_shipping_products.count as Pcount FROM s_shipping_products            
                          LEFT JOIN s_shipping ON s_shipping_products.shipping_id = s_shipping.id 
                          LEFT JOIN s_product ON s_product.id = s_shipping_products.product_id
                       WHERE  s_product.nomenclature_product_id = $nomeclature_id AND s_shipping.supplier_warehouse_id = $warehouse AND  s_shipping.shipping_type IN(2,5,6,7) AND  `s_shipping_products`.`created_at` >= '$start' AND `s_shipping_products`.`created_at` <= '$end'")->queryAll();
@@ -441,4 +475,5 @@ class Product extends \yii\db\ActiveRecord {
          return $sell_out;
        
     }
+
 }

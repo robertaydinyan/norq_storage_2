@@ -100,5 +100,3 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
         }
     </script>
 </div>
-
-

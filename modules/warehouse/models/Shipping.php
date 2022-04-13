@@ -50,10 +50,6 @@ class Shipping extends \yii\db\ActiveRecord
             'user_id' => 'Պետք է հաստատի',
             'status' => 'Կարգավիճակ',
             'partner_id' => 'Գործընկեր',
-            'invoice' => 'Գործընկեր',
-            'comment' => 'Գործընկեր',
-            'request_id' => 'Գործընկեր',
-            'document_type' => 'Գործընկեր',
 
         ];
     }

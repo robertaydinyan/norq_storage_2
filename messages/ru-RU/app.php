@@ -153,6 +153,7 @@ return [
     'History' => 'История',
     'Analogs' => 'Аналоги',
     'Manufacturers' => 'Производитель',
+    'Manufacturer' => 'Производитель',
     'Temporary storage' => 'Временное хранение',
     'Legal Address' => 'Юридический адрес',
     'Business Address' => 'Рабочий адрес',

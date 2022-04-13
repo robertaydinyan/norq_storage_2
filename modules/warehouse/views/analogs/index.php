@@ -18,14 +18,11 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         <?php endif; ?>
     </h1>
     <div style="padding: 20px;">
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'tableOptions' => [
             'class' => 'table table-hover'
         ],
-        'filterModel' => $searchModel,
         'columns' => [
             'id',
             [

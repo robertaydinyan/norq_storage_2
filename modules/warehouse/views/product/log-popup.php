@@ -21,14 +21,15 @@
                             <tbody>
 
                             <?php foreach ($logs as $log => $log_val){?>
-                                <?php $type = \app\modules\warehouse\models\ShippingType::findOne(['id'=>$log_val['shipping_type']]); ?>
+                                <?php $type = \app\modules\warehouse\models\ShippingType::findOne(['id'=>$log_val['shipping_type']]);?>
+                              
                                 <tr>
                                     <td><?php echo $log_val['id'];?></td>
-                                    <td><?php echo $type->name;?></td>
+                                    <td><?php echo $type->name_hy;?></td>
                                     <td><?php echo $log_val['from_'];?></td>
                                     <td><?php echo $log_val['to_'];?></td>
                                     <td><?php echo date('d.m.Y',strtotime($log_val['date_create']));?></td>
-                                    <td><a target="_blank" href="/warehouse/shipping-request/view?id=<?php echo $log_val['request_id'];?>"><?php echo $type->name;?></a></td>
+                                    <td><a target="_blank" href="/warehouse/shipping-request/view?id=<?php echo $log_val['request_id'];?>"><?php echo $type->name_hy;?></a></td>
                                 </tr>
                             <?php } ?>
 

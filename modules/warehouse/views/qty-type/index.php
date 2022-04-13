@@ -35,7 +35,6 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         'tableOptions' => [
             'class' => 'table table-hover'
         ],
-        'filterModel' => $searchModel,
         'columns' => [
             'id',
             [

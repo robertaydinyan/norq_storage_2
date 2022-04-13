@@ -31,11 +31,57 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
 </style>
 <div class="warehouse-view d-flex flex-wrap group-product-index" style="padding: 20px;">
     <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-4">
-        <h1 class="mb-5 d-flex" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($model->{'name_' . $lang}) ?> <?php echo Yii::t('app', 'Main warehouse'); ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
-        <?php if($model->type != 2){ ?>
+        <h1 class="mb-5 d-flex" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($model->{'name_' . $lang}) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+<!--        --><?php //if($model->type != 2){ ?>
+<!--        --><?//= DetailView::widget([
+//            'model' => $model,
+//                'options' => ['class' => 'table table-hover'],
+//            'attributes' => [
+//                'name_' . $lang,
+//                'address',
+//                [
+//                    'label' => Yii::t('app', 'Warehouse type'),
+//                    'value' => $model->getType($model->type)->{'name_' . $lang}
+//                ],
+//                [
+//                    'label' => Yii::t('app', 'storekeeper'),
+//                    'value' => function ($model) {
+//                        $user = $model->getUser($model->responsible_id);
+//                        return $user->name.' '.$user->last_name;
+//                    }
+//                ],
+//                [
+//                    'label' => Yii::t('app', 'Created'),
+//                    'value' => function ($model) {
+//                        return date('d.m.Y',strtotime($model->created_at));
+//                    }
+//                ],
+//            ],
+//        ]) ?>
+<!--        --><?php //} else {
+//            echo DetailView::widget([
+//                'model' => $model,
+//                'options' => ['class' => 'table table-hover'],
+//                'attributes' => [
+//                    'name_' . $lang,
+//                    [
+//                        'label' => Yii::t('app', 'Warehouse type'),
+//                        'value' => $model->getType($model->type)->{'name_' . $lang}
+//                    ],
+//                    [
+//                        'label' => Yii::t('app', 'storekeeper'),
+//                        'value' => function ($model) {
+//                            $user = $model->getUser($model->responsible_id);
+//                            return $user->name . ' ' . $user->last_name;
+//                        }
+//                    ],
+//                    'created_at',
+//                ],
+//            ]);
+//        } ?>
         <?= DetailView::widget([
             'model' => $model,
-                'options' => ['class' => 'table table-hover'],
+            'options' => ['class' => 'table table-hover'],
             'attributes' => [
                 'name_' . $lang,
                 'address',
@@ -58,27 +104,6 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                 ],
             ],
         ]) ?>
-        <?php } else {
-            echo DetailView::widget([
-                'model' => $model,
-                'options' => ['class' => 'table table-hover'],
-                'attributes' => [
-                    'name_' . $lang,
-                    [
-                        'label' => Yii::t('app', 'Warehouse type'),
-                        'value' => $model->getType($model->type)->{'name_' . $lang}
-                    ],
-                    [
-                        'label' => Yii::t('app', 'storekeeper'),
-                        'value' => function ($model) {
-                            $user = $model->getUser($model->responsible_id);
-                            return $user->name . ' ' . $user->last_name;
-                        }
-                    ],
-                    'created_at',
-                ],
-            ]);
-        } ?>
         <?php if(\Yii::$app->user->can('admin')){ ?>
         <p>
             <?= Html::a(Yii::t('app', 'Change'), ['update', 'id' => $model->id, 'lang' => \Yii::$app->language], ['class' => 'btn btn-primary']) ?>
@@ -108,9 +133,10 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
             <tbody>
                 
             <?php foreach ($dataProvider['result'] as $key => $products) : ?>
-                <tr>
+           
+                <tr> 
                      <td><?php echo $products['wname'];?></td>
-                    <td><?= $products['nomeclature_name'] ?></td>
+                    <td><a href="/warehouse/nomenclature-product/view?id=<?= $products['nomenclature_product_id'] ?>" target="_blank"><?= $products['nomeclature_name'] ?></a></td>
                     <td><a target="_blank" href="<?= $products['img'] ?>" ><img width="100" src="<?= $products['img'] ?>"></a></td>
                      <td><a href="#" data-toggle="modal" data-target="#viewInfo" onclick="showInfo(<?= $products['nid'] ?>,<?php echo $products['id'];?>)"><?= $products['count_n_product'] ?> <?= $products['qtype'] ?> </a></td>
                       <td><?php if($products['individual']=='true'){ echo Yii::t('app', 'Yes');} else { echo Yii::t('app', 'No');} ?></td>
@@ -129,7 +155,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                        if(isset($_GET['page']) && $page == intval($_GET['page'])){
                           $active = 'active';
                        }
-                        echo '<li class="page-item '.$active.'"><a class="page-link " href="/warehouse/product?page=' . $page . '&lang=' . Yii::$app->language . '">' . $page . '</a></li>';
+                        echo '<li class="page-item '.$active.'"><a class="page-link " href="/warehouse/warehouse/view?id='.$model->id.'&page=' . $page . '&lang=' . Yii::$app->language . '">' . $page . '</a></li>';
                     }
                ?>
           </ul>

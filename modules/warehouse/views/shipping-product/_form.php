@@ -181,4 +181,3 @@ $this->registerJsFile('@web/js/modules/warehouse/shipping.js', ['depends' => 'yi
     </div>
 
 </div>
-

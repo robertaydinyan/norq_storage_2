@@ -148,7 +148,6 @@ array_push($table_columns, $actions);
             'tableOptions' => [
                 'class' => 'table table-hover'
             ],
-            'filterModel' => $searchModel,
             'columns' => $table_columns,
         ]); ?>
         </div>

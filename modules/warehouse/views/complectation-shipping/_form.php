@@ -131,5 +131,3 @@ $this->registerJsFile('@web/js/modules/warehouse/shipping.js', ['depends' => 'yi
     <?php ActiveForm::end(); ?>
 
 </div>
-
-

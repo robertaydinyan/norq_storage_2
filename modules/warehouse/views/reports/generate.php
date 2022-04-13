@@ -11,7 +11,7 @@ if(!empty($data)){ ?>
 
         <table class="kv-grid-table table table-hover table-bordered table-striped kv-table-wrap" id="datatable">
             <thead>
-            <tr style="background:#474747;color:#fff;">
+            <tr style="background:#0055a5!important;color:#fff;">
                 <?php if(@$_GET['show-series']){ ?>
                     <td>Սերիա</td>
                 <?php } ?>
@@ -52,7 +52,7 @@ if(!empty($data)){ ?>
                 ?>
 
                 <?php if(@$_GET['show-ware'] && $count_prods[$prod_val['nomenclature_product_id']]==1){  ?>
-                    <tr style="background:#474747;color:#fff;">
+                    <tr style="background:#0055a5 !important;color:#fff;">
                         <?php if(@$_GET['show-series']){ ?>
                             <td></td>
                         <?php } ?>
@@ -78,9 +78,9 @@ if(!empty($data)){ ?>
                     <?php if(@$_GET['show-series']){ ?>
                         <td onclick="showLog('<?php echo $prod_val['mac'];?>')"><a href="javascript:void(0)" ><?php echo $prod_val['mac'];?></a></td>
                     <?php } ?>
-                    <td><?php echo $prod_val['name_hy'];?></td>
+                    <td><a href="#" onclick="showPage('/warehouse/nomenclature-product/view?id=<?php echo $prod_val['nomenclature_product_id'];?>&lang=hy','<?php echo $prod_val['name_hy'];?>')"><?php echo $prod_val['name_hy'];?></a></td>
                     <?php if(@$_GET['show-ware']){ ?>
-                        <td> <?php echo $prod_val['wname'];?></td>
+                        <td><a href="#" onclick="showPage('/warehouse/warehouse/view?id=<?php echo $prod_val['wname'];?>&lang=hy','<?php echo $prod_val['name_hy'];?>')"><?php echo $prod_val['wname'];?></a></td>
                     <?php } ?>
                      <?php if(!$_GET['from_created_at'] || !$_GET['to_created_at'] || @!$_GET['show-ware']){ ?>
                         <td> <?php echo $prod_val['pcount'];?> <?php echo $prod_val['qty_type'];?></td>
@@ -110,6 +110,7 @@ if(!empty($data)){ ?>
             </tbody>
         </table>
     </div>
+  
    <script>
        setTimeout(function(){
            $('#datatable').DataTable( {

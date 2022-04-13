@@ -18,7 +18,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     <?php
        $products = NomenclatureProduct::find()->where(['group_id'=>$id])->all();
        foreach ($products as $product =>$prod_val){ ?>
-           {id: <?= $prod_val->id ?>, pId: <?=$id?>, name: "<?=$prod_val->{'name_' . $lang }?>",click:'getProducts(<?= $prod_val->id ?>)'},
+           {id: 1000<?= $prod_val->id ?>, pId: <?=$id?>, name: "<?=$prod_val->{'name_' . $lang }?>",click:'getProducts(<?= $prod_val->id ?>)'},
     <?php }
     ?>
 

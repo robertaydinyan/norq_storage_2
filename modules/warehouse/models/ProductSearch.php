@@ -104,11 +104,10 @@ class ProductSearch extends Product
             "SELECT s_warehouse.name_" . $lang . " as wname,
                         s_nomenclature_product.img,
                         s_nomenclature_product.id as nid,
-                        s_qty_type.type_" . $lang . " as qtype,
+                        s_qty_type.type_" . $lang . ",
                         s_nomenclature_product.individual,
                         s_nomenclature_product.name_" . $lang . " as nomeclature_name,
                         s_warehouse.id,
-                        s_warehouse.contact_address_id,
                         s_warehouse.type,
                         nomenclature_product_id, 
                         sum(count) AS `count_n_product` 
@@ -118,11 +117,12 @@ class ProductSearch extends Product
             WHERE `status`=1 AND s_product.count>0 GROUP BY `nomenclature_product_id`, `warehouse_id` 
             ORDER BY `count_n_product` 
             LIMIT " . $page_first_result . ',' . $results_per_page)->queryAll();
+        
         return ['result' => $whProducts, 'params' => $params,'total'=>$number_of_page];
     }
 
     public function search_($params) {
-        $query = Product::find()->indexBy('id'); // where `id` is your primary key
+        $query = Product::find()->where(['>','count',0])->andWhere(['>','warehouse_id',0])->indexBy('id'); // where `id` is your primary key
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

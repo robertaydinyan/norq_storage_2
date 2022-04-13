@@ -258,10 +258,22 @@ AppAsset::register($this);
         *:not('button'){
             background:#f0f0f0 !important;
         }
-        .navbar {
-            display:none;
+        .wrap{
+            padding: 0px !important;
+            margin-bottom: 0px;
         }
-        #page-content .favorite{
+        .group-product-index div{
+            padding: 0px !important;
+            padding-left: 10px !important;
+        }
+        .window-body{
+            padding: 0px !important;
+        }
+        .window{
+            width: 75%;
+            height: 75%;
+        }
+        #page-content .favorite,.bookmarks,.navbar,.show-modal,.star,h1{
             display:none !important;
         }
         <?php } ?>

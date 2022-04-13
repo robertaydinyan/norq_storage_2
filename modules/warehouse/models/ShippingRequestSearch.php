@@ -79,7 +79,7 @@ class ShippingRequestSearch extends ShippingRequest
             ]);
         }
         if(\Yii::$app->user->can('technician') && !\Yii::$app->user->can('admin')) {
-            $warehouseId = Warehouse::find()->where(['responsible_id'=>Yii::$app->user->getId()])->one()->id;
+            $warehouseId = Warehouse::find()->where(['user_id'=>Yii::$app->user->getId()])->one()->id;
                 $query->AndWhere(['or',
                     ['supplier_warehouse_id' => $warehouseId],
                     ['provider_warehouse_id' => $warehouseId]
@@ -101,7 +101,7 @@ class ShippingRequestSearch extends ShippingRequest
         }
         if(isset($_GET['user_id'])){
             $query->andFilterWhere([
-                'responsible_id' => $_GET['user_id'],
+                'user_id' => $_GET['user_id'],
             ]);
         }
         if($is_doc){

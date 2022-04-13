@@ -122,4 +122,7 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
         }
     }
 
+    public function getManufacturerName() {
+        return $this->hasOne(Manufacturer::class, ['id' => 'manufacturer']);
+    }
 }

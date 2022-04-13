@@ -22,6 +22,11 @@
     }
 
 }
+.table .fas{
+    border: 1px solid lightgray !important;
+    padding: 5px;
+
+}
 @media only screen and (max-width: 1200px) {
     .warehouse-home-item {
         width: 49%;
@@ -32,4 +37,31 @@
         width: 100%;
     }
 
+}
+.nots{
+    width: 295px;
+}
+.table a,table th{
+        color: black;
+        font-size: 14px !important;
+}
+
+.dt-button{
+    background: #0055a5!important;
+}
+.table thead tr {
+    background-color: #0055a5!important;
+    
+    text-align: left;
+}
+.table thead th,.table thead th a{
+    color: #ffffff !important;
+}
+.table thead th{
+     border: 1px solid #dee2e6;
+}
+.table th,
+.table td {
+    border: 1px solid #dee2e6;
+    padding: 12px 15px;
 }

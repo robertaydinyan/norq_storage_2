@@ -14,6 +14,8 @@
                             <th>Փաստաթուղտ</th>
                             <th>Որտեղից</th>
                             <th>Ուր</th>
+                            <th>Քանակ</th>
+                            <th>Մեկնաբանություն</th>
                             <th>Ամսաթիվ</th>
                         </tr>
                         </thead>
@@ -22,16 +24,25 @@
 
                             <?php foreach ($data as $log => $log_val){?>
                                 <?php
+                                 
                                     $type = \app\modules\warehouse\models\ShippingType::findOne(['id'=>$log_val['shipping_type']]); 
-                                    $from = \app\modules\warehouse\models\Warehouse::find()->where(['id'=>$log_val['provider_warehouse_id']])->one();
+                                    
                                     $to = \app\modules\warehouse\models\Warehouse::find()->where(['id'=>$log_val['supplier_warehouse_id']])->one();
+                                    if($log_val['shipping_type'] == 5 || $log_val['shipping_type'] == 6){
+                                        $from = \app\modules\warehouse\models\SuppliersList::find()->where(['id'=>$log_val['supplier_id']])->one();
+                                    } else {
+                                        $from = \app\modules\warehouse\models\Warehouse::find()->where(['id'=>$log_val['provider_warehouse_id']])->one();
+                                    }
                                 ?>
                                 <tr>
+
                                     <td><?php echo $log_val['id'];?></td>
-                                     <td><?php echo $log_val['mac_address'];?></td>
+                                    <th><a onclick="showLog('<?php echo $log_val['mac_address'];?>')" href="javascript:void(0)"><?php echo $log_val['mac_address'];?></a></td>
                                     <td><a target="_blank" href="/warehouse/shipping-request/view?id=<?php echo $log_val['id'];?>"><?php echo $type->name_hy;?></a></td>
                                     <td><?php echo $from->name_hy;?></td>
                                     <td><?php echo $to->name_hy;?></td>
+                                    <td><?php echo $log_val['Pcount'];?></td>
+                                    <th><?php echo $log_val['comment'];?></th>
                                     <td><?php echo date('d.m.Y',strtotime($log_val['created_at']));?></td>
                                 </tr>
                             <?php } ?>

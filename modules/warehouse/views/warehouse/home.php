@@ -32,42 +32,6 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-<div class="mr-5 mt-4  d-flex flex-wrap justify-content-between" >
-
-    <div class="d-flex">
-      <!--   <div class="dropdown mr-2 btn-drop">
-            <button class="btn btn-secondary dropdown-toggle bg-white bg-white" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-bars mr-2"></i> <?= Yii::t('app','History') ?> <i class="fa fa-caret-down ml-2"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                <?php if (isset($history)):
-                    foreach ($history as $h): ?>
-                        <a class="dropdown-item" href="<?php echo $h->link; ?>"><?php echo $h->title . " " . date("m/d/Y H:i:s", $h->time); ?></a>
-                    <?php endforeach;
-                endif; ?>
-            </div>
-        </div>
-        <div class="dropdown btn-drop">
-            <button class="btn btn-secondary dropdown-toggle bg-white bg-white" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-star mr-2"></i> <?= Yii::t('app','Favorite') ?> <i class="fa fa-caret-down ml-2"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                <?php if (isset($favorites)):
-                    foreach ($favorites as $f): ?>
-                        <a class="dropdown-item" href="<?php echo $f->link; ?>"><?php echo yii::t('app',$f->title); ?></a>
-                    <?php endforeach;
-                endif; ?>
-            </div>
-        </div> -->
-    </div>
-</div>
-
-<!--<div class="group-product-index d-flex align-items-center justify-content-between">
-    <h1 style="padding: 20px;" class="show-modal" data-title="<?php /*echo $this->title[1]; */?>"><?/*= Html::encode($this->title[0]) */?> </h1>
-
-
-</div>-->
 <div class=" warehouse-home mt-3  " >
     <?php if (\app\rbac\WarehouseRule::can('warehouse', 'view')): ?>
      <div class="warehouse-home-item mb-3">
@@ -127,6 +91,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 <div class="card-bottom-section mt-5">
                     <div> <a href="/warehouse/warehouse?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
+                <h6><span class="badge badge-primary new-badge" style="position: absolute;top:0px;right: 0px;">12 <i class="fas fa-bell" style="color:#fff"></i></span></h6>
             </div>
         </div>
     </div>
@@ -433,7 +398,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/statistics?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="/warehouse/payments-log?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -509,8 +474,3 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     </div>
 
 </div>
-
-
-
-
-

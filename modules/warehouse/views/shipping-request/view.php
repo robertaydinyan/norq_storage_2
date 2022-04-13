@@ -10,7 +10,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\warehouse\models\ShippingRequest */
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
-$this->title = array($model->shippingtype->{'name_' . $lang} . ' view '.$model->id, $model->shippingtype->name_en . ' view '.$model->id);
+$this->title = array($model->shippingtype->{'name_' . $lang} . '  #'.$model->id, $model->shippingtype->name_en . ' '.$model->id);
 $this->params['breadcrumbs'][] = ['label' => 'Shipping Requests', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 \yii\web\YiiAsset::register($this);
@@ -22,7 +22,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     
 
     <div style="padding:20px;"  id="print">
-        <h1 data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+        <h1 data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?> <?php echo ' <small><sup>'.date('d.m.Y',strtotime($model->created_at)).'</sup></small>';?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <br>
         <div class="row">
             <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-5 table-scroll5">
@@ -86,7 +86,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 
                         <tr>
                             <th scope="col"><?php echo Yii::t('app', 'Comment'); ?></th>
-                            <td><?php echo $model->comment;?></td>
+                            <td wrap style="max-width: 100%;"><?php echo $model->comment;?></td>
                         </tr>
           
                     <tr>

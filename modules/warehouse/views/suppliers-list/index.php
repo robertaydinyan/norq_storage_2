@@ -91,7 +91,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <input type="text" class="form-control" id="comment" name="comment"><br>
 
                     <label for="contract_type"><?php echo Yii::t('app', 'Contract Type'); ?></label><br>
-                    <select class="form-control" id="contract_type" name="contract_type">
+                    <select class="" id="contract_type" name="contract_type">
                         <option selected disabled value=""></option>
                         <option value="1">Հիմնական</option>
                         <option value="2">Կոմիսիոն</option>
@@ -142,7 +142,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <input type="text" class="form-control" id="comment_" name="comment"><br>
 
                     <label for="contract_type_"><?php echo Yii::t('app', 'Contract Type'); ?></label><br>
-                    <select class="form-control" id="contract_type_" name="contract_type">
+                    <select class="" id="contract_type_" name="contract_type">
                         <option selected disabled value=""></option>
                         <option value="1">Հիմնական</option>
                         <option value="2">Կոմիսիոն</option>
@@ -156,5 +156,3 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     </div>
 </div>
 <br>
-
-

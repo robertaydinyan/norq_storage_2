@@ -112,6 +112,9 @@ class ProductController extends Controller
 
         if($mac) {
             $logs = ProductShippingLog::find()->where(['product_id'=>$mac])->all();
+            if(empty($logs)){
+               $logs = ProductShippingLog::find()->where(['mac_address'=>$mac])->all();
+            }
             return $this->renderAjax('log-popup', ['logs' => $logs]);
         }
     }
