@@ -410,3 +410,22 @@ $('.hide-row').on('click', function() {
 
 $(".loader").fadeOut();
 $("#preloder").delay(400).fadeOut("slow");
+
+// import lightGallery from "https://cdn.skypack.dev/lightgallery@2.0.0-beta.3";
+//
+// lightGallery($('.table'), {
+//     speed: 500,
+//     // Append caption inside the slide item
+//     // to apply some animation for the captions (Optional)
+//     appendSubHtmlTo: ".lg-item",
+//     // Delay slide transition to complete captions animations
+//     // before navigating to different slides (Optional)
+//     // You can find caption animation demo on the captions demo page
+//     slideDelay: 400,
+//     // plugins: [lgZoom]
+// });
+if ($('#lightgallery').length) {
+    lightGallery(document.getElementById('lightgallery'), {
+        selector: '.image'
+    });
+}

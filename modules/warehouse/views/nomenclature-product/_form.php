@@ -61,19 +61,16 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
 
 
         <?= $form->field($model, 'qty_for_notice')->textInput() ?>
-    <div class="form-row" style="margin-left:10px;">
-            <div class="c-checkbox">
-                <input type="checkbox"
-                       value="1"
-                       id="vip-status"
-                       class="form-control"
-                       name="NomenclatureProduct[is_vip]"
-                    <?= $model->is_vip == 1 ? 'checked' : ''; ?>>
-                <label class="has-star" for="vip-status"><?= Yii::t('app', 'Vip') ?></label>
-                <div class="help-block invalid-feedback"></div>
-            </div>
 
-        </div>
+
+    <div class="form-row" style="margin-left:10px;">
+        <?= $form->field($model, 'is_vip')
+            ->checkBox([
+                'label' => 'Vip',
+                'style' => 'margin-bottom:4px;',
+                'id' => 'vip-status'
+            ]); ?>
+    </div>
     <?php $model->production_date = date('Y-m-d', strtotime($model->production_date));  ?>
     <?= $form->field($model, 'production_date',[
         'options' => ['class' => 'form-group']
@@ -87,19 +84,15 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
         'changeYear'     => true,
         'changeMonth'    => true,
     ]]); ?>
-        <div class="form-row" style="margin-left:10px;">
-            <div class="c-checkbox">
-                <input type="checkbox"
-                       value="true"
-                       id="individual-status"
-                       class="form-control"
-                       name="NomenclatureProduct[individual]"
-                    <?= $model->individual == 'true' ? 'checked' : ''; ?>>
-                <label class="has-star" for="individual-status"><?= Yii::t('app', 'Individual') ?></label>
-                <div class="help-block invalid-feedback"></div>
-            </div>
 
-        </div>
+    <div class="form-row" style="margin-left:10px;">
+        <?= $form->field($model, 'individual')
+            ->checkBox([
+                'label' => Yii::t('app', 'Individual'),
+                'style' => 'margin-bottom:4px;',
+                'id' => 'individual-status'
+            ]); ?>
+    </div>
 
         <?= $form->field($model, 'qty_type_id', [
             'options' => ['class' => 'form-group'],

@@ -13,6 +13,8 @@ $this->title = array(Yii::t('app', 'Product Nomenclature'),'Product Nomenclature
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
+$this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
+$this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 ?>
 <?php if(\app\rbac\WarehouseRule::can('nomenclature-product', 'index')): ?>
 <div class="group-product-index">
@@ -43,7 +45,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                     <?php endforeach; ?>
 
                 </ul>
-                <div class="col-sm-9">
+                <div class="col-sm-9" id="lightgallery">
                     <?php if(isset($_GET['id'])){?>
                         <br>
                         <?= GridView::widget([
@@ -55,6 +57,14 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                                 [
                                     'label' => Yii::t('app', 'Image'),
                                     'format'=>'html',
+                                    'contentOptions' => function($model) use ($lang) {
+                                        return [
+                                            'data-responsive' => "https://sachinchoolur.github.io/lightgallery.js/static/img/13-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/13-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/13.jpg 800",
+                                            'data-sub-html' => "<h4 style='color: white'>" . $model->{'vendor_code_' . $lang} . "</h4>",
+                                            'class' => 'image',
+                                            'data-src' => $model->img
+                                        ];
+                                    },
                                     'value' => function ($model) {
                                         if($model->img){
                                             return '<a target="_blank" href="'.$model->img.'" ><img width="100" src="'.$model->img.'"></a>';

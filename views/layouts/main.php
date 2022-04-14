@@ -109,7 +109,7 @@ AppAsset::register($this);
                         <form action="<?php echo URL::to('/warehouse/warehouse/home')?>" method="get" class="input-group rounded ">
                             <input name="search" value="<?php echo $_GET['search'];?>" type="search"
                                    class="form-control rounded" placeholder="<?php echo Yii::t('app', 'search'); ?>"
-                                   aria-label="Search" aria-describedby="search-addon" />
+                                   aria-label="Search" style="height: 35px;border-radius: 0px !important;" aria-describedby="search-addon" />
                             <button id="search-addon" style="background: #0055a5!important;">
                                 <i style="color:white;" class="fas fa-search"></i>
                             </button>
@@ -220,13 +220,18 @@ AppAsset::register($this);
     <?php echo $this->render('window-manager'); ?>
 
     <style>
+        .window {
+            width: 65% !important;
+            height: 65% !important;
+            box-shadow:none  !important;
+        }
         .dropdown-menu{
             max-height:300px;
             width:auto !important;
             max-width:300px;
             min-width:10rem !important;
             height:auto !important;
-            overflow: scroll !important;
+            overflow: auto !important;
         }
         h1{
             font-size: 1.6rem !important;
@@ -257,6 +262,7 @@ AppAsset::register($this);
         <?php if(isset($_GET['show-header'])){ ?>
         *:not('button'){
             background:#f0f0f0 !important;
+
         }
         .wrap{
             padding: 0px !important;
@@ -269,10 +275,7 @@ AppAsset::register($this);
         .window-body{
             padding: 0px !important;
         }
-        .window{
-            width: 75%;
-            height: 75%;
-        }
+
         #page-content .favorite,.bookmarks,.navbar,.show-modal,.star,h1{
             display:none !important;
         }

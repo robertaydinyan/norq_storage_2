@@ -103,7 +103,7 @@ class NomenclatureProductController extends Controller
         $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type_' . $lang);
 
         $post = Yii::$app->request->post();
-         
+
 
         if ((int)$post['NomenclatureProduct']['qty_type_id'] === 0 && $model->load(Yii::$app->request->post())) {
             $qtyModel = new QtyType();
@@ -118,21 +118,23 @@ class NomenclatureProductController extends Controller
         }
         
         if ($model->load(Yii::$app->request->post()) ) {
-
-            if(!empty($_FILES['image'])){
-                $file_name = '/var/www/fastnet/modules/warehouse/uploads/'.time().$_FILES['tmp_name'];
-                move_uploaded_file($_FILES['tmp_name'], '/var/www/fastnet/modules/warehouse/uploads/'.time().$_FILES['tmp_name']);
+            if($_FILES['image']['size'] > 0){
+                $file_name = '/uploads/'.time().$_FILES['image']['name'];
+                move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.time().$_FILES['image']['name']);
                 $model->img = $file_name;
             }
+
             $admins = User::find()->where(['role'=>'admin'])->all();
             $model->production_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));
+            $model->is_vip = $post['NomenclatureProduct']['is_vip'];
+
             if ($model->save()) {
                  if(!empty($admins)){
                     foreach ($admins as $key => $value) {
                        Notifications::setNotification($value->id,"Ստեղծվել է նոր Նոմենկլատուրա ".$model->{'name_' . $lang},'/warehouse/nomenclature-product');
                     }
                 } 
-                return $this->redirect(['create',            'isFavorite' => $isFavorite,
+                return $this->redirect(['index',            'isFavorite' => $isFavorite,
                     'lang' => \Yii::$app->language]);
             }
         }
@@ -178,7 +180,7 @@ class NomenclatureProductController extends Controller
         
         if ($model->load(Yii::$app->request->post())) {
             $admins = User::find()->where(['role'=>'admin'])->all();
-             if(!empty($_FILES['image'])){
+            if($_FILES['image']['size'] > 0){
                 $file_name = '/uploads/'.time().$_FILES['image']['name'];
                 $r = move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.time().$_FILES['image']['name']);
              
@@ -190,6 +192,7 @@ class NomenclatureProductController extends Controller
                 }
             } 
             $model->production_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));
+            $model->is_vip = $post['NomenclatureProduct']['is_vip'];
             if ($model->save()) {
                 return $this->redirect(['index', 'lang' => \Yii::$app->language]);
             }
