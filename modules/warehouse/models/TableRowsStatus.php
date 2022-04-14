@@ -55,7 +55,7 @@ class TableRowsStatus extends \yii\db\ActiveRecord
         ];
     }
     public static function checkRows($pageName, $type = null) {
-        if (!TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id])->count() > 0) {
+        if (TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'type' => $type])->count() == 0) {
             $modelName = ($pageName == 'User' ? 'app\models\\' : 'app\modules\warehouse\models\\') . $pageName;
             $w = new $modelName;
             $k = 0;

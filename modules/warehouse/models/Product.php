@@ -65,16 +65,18 @@ class Product extends \yii\db\ActiveRecord {
     /**
      * {@inheritdoc}
      */
-    public function attributeLabelsAll() {
-        return [
-            'id' => 'ID',
-            'WarehouseName' => 'Warehouse name',
-            'ProductName' => 'Product name',
-            'ProductPicture' => 'Product Picture',
-            'Quantity' => 'Quantity',
-            'Individual' => 'Individual',
+    public function attributeLabelsAll($type) {
+        if ($type == 1) {
+            return [
+                'id' => 'ID',
+                'WarehouseName' => 'Warehouse name',
+                'ProductName' => 'Product name',
+                'ProductPicture' => 'Product Picture',
+                'Quantity' => 'Quantity',
+                'Individual' => 'Individual',
 
-        ];
+            ];
+        }
     }
     public function upload() {
         if ($this->validate()) {

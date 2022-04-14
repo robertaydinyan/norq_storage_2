@@ -46,8 +46,8 @@ class ShippingRequestController extends Controller {
      */
     public function actionIndex() {
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-        TableRowsStatus::checkRows('ShippingRequest');
-        $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' =>Yii::$app
+        TableRowsStatus::checkRows('ShippingRequest', Yii::$app->request->get('type'));
+        $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app
             ->request->get('type')])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;

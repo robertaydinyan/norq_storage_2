@@ -113,6 +113,11 @@ if (count($table_columns) == 0) {
 
         '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary mr-2" style="float: right;">' .
         Yii::t('app', 'Product group') . '</a>' : ''; ?>
+
+        <a href="/warehouse/product/product-more?lang=<?php echo  Yii::$app->language ?>" class="btn btn-primary mr-2" style="float: right;">
+            <?php echo  Yii::t('app', 'Product') ?>
+        </a>
+
         <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
         <button class="btn btn-primary mr-2 position-relative" style="float: right">
             <div id="list1" class="dropdown-check-list" tabindex="100" >

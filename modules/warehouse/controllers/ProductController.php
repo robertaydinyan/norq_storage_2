@@ -62,7 +62,7 @@ class ProductController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new ProductSearch();
         $dataProvider2 = $searchModel->search_(Yii::$app->request->post());
-        TableRowsStatus::checkRows('Product');
+        TableRowsStatus::checkRows('Product', 1);
         $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id])->one();
         $dataProvider2->pagination->pageSize = $rows_count['count'];
@@ -382,5 +382,15 @@ class ProductController extends Controller
         }
         return $branch;
 
+    }
+
+    public function actionProductMore() {
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search_(Yii::$app->request->post());
+        TableRowsStatus::checkRows('Product', 2);
+
+        return $this->render('product-more', [
+            'dataProvider' => $dataProvider
+        ]);
     }
 }

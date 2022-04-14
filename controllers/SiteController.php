@@ -179,4 +179,8 @@ class SiteController extends Controller
         }
         return $this->redirect('/site/error');
     }
+
+    public function actionLastForm() {
+        return $this->renderAjax('lastForm');
+    }
 }

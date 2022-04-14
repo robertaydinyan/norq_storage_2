@@ -3,7 +3,6 @@
 //
 //
 // })(jQuery);
-
 $('.main-header2').eq(2).removeClass('main-header2')
 let categoryTreeToggler = document.getElementsByClassName("caret");
 let i;
@@ -215,12 +214,13 @@ function startTime() {
     let s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
-    document.getElementById('txt').innerHTML =  h + ":" + m ;
-    setTimeout(startTime, 1000);
+    if (document.getElementById('txt')) {
+        document.getElementById('txt').innerHTML =  h + ":" + m ;
+        setTimeout(startTime, 1000);
+    }
 }
 startTime()
 
-startTime();
 
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
@@ -230,36 +230,39 @@ function checkTime(i) {
 
 function SaveForm(el) {
     el.remove();
-    let arr = [];
-    $.each($('.form-data').find('input, select, textarea'), function(i, k) {
-        arr.push($(k).val())
-    });
     localStorage.setItem('last_form_title', $('h1').text().split('/n')[0]);
-    localStorage.setItem('last_form', JSON.stringify(arr));
-    localStorage.setItem('last_form_path', $('#user-link').val());
+    let html = $('html');
+    $("input, select").each(function () {
+        $(this).attr("value", $(this).val());
+    });
+    $("textarea").each(function () {
+        $(this).attr("value", $(this).text());
+    });
+    html.find('.navbar').remove();
+    html.find('.bookmarks').remove();
+    html.find('.window').remove();
+    localStorage.setItem('last_form', html.html());
     history.back()
 }
-
 let last_title = localStorage.getItem('last_form_title');
-let last_form_path = localStorage.getItem('last_form_path');
-if(last_form_path !== "null" && last_title !== "null" && last_title){
-    $('.bookmarks').prepend('<div class="favorites  mt-0 col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 mb-3" onclick="showPage(\'' + last_form_path + '\', \'' + last_title + '\', \'form\')"><button class="accordion bg-white">' + last_title +'</button></div>');
+if(last_title !== "null" && last_title){
+    $('.bookmarks').prepend('<div class="favorites  mt-0 col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 mb-3" onclick="showPage(\'/site/last-form\', \'' + last_title + '\', \'form\', false)"><button class="accordion bg-white">' + last_title +'</button></div>');
 }
-setTimeout(function() {
-    if (last_form_path + '&show-header=false' === $('#user-link').val()) {
-        let values = JSON.parse(localStorage.getItem('last_form'));
-        $('.saveForm').remove();
-
-        $.each($('.form-data').find('input, select, textarea'), function(i, k) {
-            $(k).val(values[i]).change();
-        });
-        $('input[type=submit], button[type=submit]').on('click', function() {
-            localStorage.setItem('last_form_title', null);
-            localStorage.setItem('last_form', null);
-            localStorage.setItem('last_form_path', null);
-        })
-    }
-}, 1500);
+// setTimeout(function() {
+//     if (last_form_path + '&show-header=false' === $('#user-link').val()) {
+//         let values = JSON.parse(localStorage.getItem('last_form'));
+//         $('.saveForm').remove();
+//
+//         $.each($('.form-data').find('input, select, textarea'), function(i, k) {
+//             $(k).val(values[i]).change();
+//         });
+//         $('input[type=submit], button[type=submit]').on('click', function() {
+//             localStorage.setItem('last_form_title', null);
+//             localStorage.setItem('last_form', null);
+//             localStorage.setItem('last_form_path', null);
+//         })
+//     }
+// }, 1500);
 function windowActions() {
     $('.slider').off().on('click', function() {
         let id = $(this).data('id');

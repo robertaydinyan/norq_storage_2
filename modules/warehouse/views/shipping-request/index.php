@@ -68,6 +68,22 @@ $table_all_columns = array();
 
         </div>
         <div style="padding:20px;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <form class="row" action="" method="get">
                 <?php if (isset($_GET['type'])) { ?>
                     <input type="hidden" name="type" value="<?php echo $_GET['type']; ?>">
@@ -190,6 +206,41 @@ $table_all_columns = array();
                     </button>
                 </div>
             </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <br>
             <?php if (!isset($_GET['type']) || $_GET['type'] == 7) {
                 $table_all_columns = [
