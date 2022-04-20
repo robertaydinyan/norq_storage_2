@@ -474,16 +474,16 @@ window.onload = function(){
         $('body').on('change','.mac',function (){
             checkMac($(this));
          });
-        $('body').on('click','.clone-product',function (){
-            var el_ = $(this).closest('.product-form').clone();
-            el_.find('input,select').val(null);
-            el_.find('.rem').removeClass('hide');
-            var ct = $('.product-form').length;
-            el_.find('.mac').attr('name','Product[mac_address]['+ct+'][]');
-            el_.find('.cloned').remove();
-            $('#product-add-block').append('<br/>');
-            $('#product-add-block').append(el_);
-        });
+        // $('body').on('click','.clone-product',function (){
+        //     var el_ = $(this).closest('.product-form').clone();
+        //     el_.find('input,select').val(null);
+        //     el_.find('.rem').removeClass('hide');
+        //     var ct = $('.product-form').length;
+        //     el_.find('.mac').attr('name','Product[mac_address]['+ct+'][]');
+        //     el_.find('.cloned').remove();
+        //     $('#product-add-block').append('<br/>');
+        //     $('#product-add-block').append(el_);
+        // });
         $('#shippingrequest-supplier_warehouse_id').on('change', function(){
             if($(this).val() != '' &&  $('#shippingrequest-shipping_type').val() != 6) {
                 $('.check-counts').removeAttr('disabled');

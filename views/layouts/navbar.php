@@ -56,7 +56,8 @@ $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
             </a>
         </li>
         <?php if(Yii::$app->user->identity->role == "admin"):?>
-            <a href="javascript:void(0);" class="change-site-status" style="color: white; font-size: 20px;" data-status="0" title="<?php echo Yii::t('app', ($s ? 'Stop website' : 'Start website')); ?>">
+            <a href="javascript:void(0);" class="change-site-status" style="color: white; font-size: 20px;"
+               data-status="<?php echo 1 - intval($s); ?>" title="<?php echo Yii::t('app', ($s ? 'Stop website' : 'Start website')); ?>">
                 <i class="<?php echo $s ? 'fa fa-ban' : 'fas fa-car'?>"></i></a>
             </a>
         <?php endif; ?>

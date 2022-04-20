@@ -19,7 +19,7 @@ $table_all_columns = [
 $actions = [
         'class' => 'yii\grid\ActionColumn',
         'header' => Yii::t('app', 'Action'),
-        'template' => '{edit}{delete}',
+        'template' => '{edit}{delete}{block}',
         'buttons' => [
             'edit' => function($model) use ($lang) {
                 return ((\app\rbac\WarehouseRule::can('users', 'edit')) ?
@@ -27,7 +27,15 @@ $actions = [
             },
             'delete' => function($model) use ($lang) {
                 return ((\app\rbac\WarehouseRule::can('users', 'delete')) ?
-                    ("<a onclick='return AreYouSure();' href='" . $model . '&lang=' . $lang . "'><i class='fas fa-trash-alt' style='color: red;'></i></a>") : '');
+                    ("<a onclick='return AreYouSure();' href='" . $model . '&lang=' . $lang . "'><i class='fas fa-trash-alt mr-3' style='color: red;'></i></a>") : '');
+            },
+            'block' => function($url, $model) {
+                return ((Yii::$app->user->identity->role == "admin") ?
+                    ("<a class='change-site-status' 
+                        onclick='href=\"javascript:void(0);\"'
+                        data-user-id='" . $model->id . "'
+                        data-status='" . (1 - $model->blocked) . "'
+                    ><i class='fas " . ($model->blocked ? 'fa-ban' : 'fa-car') . "' style='color: red;'></i></a>") : '');
             }
         ]
 ];

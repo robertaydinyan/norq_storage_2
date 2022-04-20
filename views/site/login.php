@@ -9,6 +9,8 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('app', 'Вход в систему');
 $this->params['breadcrumbs'][] = $this->title;
+var_dump(Yii::$app->getSecurity()->generatePasswordHash('testtest'));
+var_dump(Yii::$app->getSecurity()->validatePassword('123123', '$2y$13$zfWn6DmlmnZIPnYHhkzDYuZdP.GU3m3HPeuPysvX5ITa8HXuH2gSK'));
 ?>
 <style>
     .login-input {

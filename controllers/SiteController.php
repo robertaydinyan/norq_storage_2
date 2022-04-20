@@ -6,6 +6,7 @@ use app\components\Helper;
 use app\modules\warehouse\models\SiteSettings;
 use app\modules\warehouse\models\TableRowsCount;
 use app\modules\warehouse\models\TableRowsStatus;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -172,10 +173,16 @@ class SiteController extends Controller
         $isAdmin = Yii::$app->user->identity->role == "admin";
         if ($request->isPost && $isAdmin) {
             $status = $request->post('status');
-            var_dump($status);
-            $s = SiteSettings::find()->where(['name' => 'page-status'])->one();
-            $s->value = $status;
-            return $s->save();
+            $userID = 23;//$request->post('userID');
+            if ($userID) {
+                $s = User::find()->where(['id' => $userID])->one();
+                $s->blocked = $status;
+            } else {
+                $s = SiteSettings::find()->where(['name' => 'page-status'])->one();
+                $s->value = $status;
+            }
+            $s->save();
+            die();
         }
         return $this->redirect('/site/error');
     }

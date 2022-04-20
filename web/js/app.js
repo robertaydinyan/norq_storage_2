@@ -384,12 +384,14 @@ if (checkList) {
 }
 
 $('.change-site-status').on('click', function() {
+    let userID = $(this).data('user-id');
     let status = parseInt($(this).attr('data-status'));
     if (window.confirm('Համոզված եք')) {
         $.post('/site/change-site-status', {
-            status: status
+            status: status,
+            userID: userID
         }).done(() => {
-            $(this).find('i').attr('class', status === 1 ? 'fa fa-hand-paper-o' : 'fas fa-car');
+            $(this).find('i').attr('class', status === 1 ? 'fas fa-ban' : 'fas fa-car');
             $(this).attr('data-status', 1 - status);
         })
     }

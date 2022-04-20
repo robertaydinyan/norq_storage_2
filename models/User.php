@@ -26,6 +26,7 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  * @property string $ref_password
+ * @property integer $blocked
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -79,6 +80,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['updated_at', 'created_at', 'role', 'ref_password'], 'safe'],
             [['auth_key', 'access_token'], 'string', 'max' => 255],
             ['password_hash', 'string', 'min' => 6],
+            ['blocked', 'integer'],
             [['password_hash', 'password_confirmation'], 'required', 'on' => 'create'],
             ['password_confirmation', 'compare', 'compareAttribute' => 'password_hash', 'skipOnEmpty' => true]
         ];
@@ -93,7 +95,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if (parent::beforeSave($insert)) {
             $this->setPassword($this->password_hash);
-            $this->auth_key = \Yii::$app->security->generateRandomString();
+//            $this->auth_key = \Yii::$app->security->generateRandomString();
         } else {
             if (!empty($this->password_hash)) {
                 $this->setPassword($this->password_hash);

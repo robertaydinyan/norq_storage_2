@@ -25,7 +25,7 @@ class WarehouseRule {
         $userID = Yii::$app->user->id;
         $isAdmin = Yii::$app->user->identity->role == "admin";
         $page_status = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
-
+        if (!Yii::$app->user->identity->blocked) return false;
         // page down
         if (!$isAdmin && !$page_status) return false;
 
