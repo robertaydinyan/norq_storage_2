@@ -324,6 +324,7 @@ $(document).ready(function () {
 });
 
 window.onload = function(){
+
         $('body').on('click','.clone-mac',function (){
             var el_ = $(this).closest('.cloned-mac').clone();
             el_.addClass('cloned').css('padding-top','10px');

@@ -65,3 +65,7 @@
     border: 1px solid #dee2e6;
     padding: 12px 15px;
 }
+#page-content{
+   background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,1) 35%, rgba(255,255,255,0) 100%, rgba(0,212,255,0.10968137254901966) 100%);
+}

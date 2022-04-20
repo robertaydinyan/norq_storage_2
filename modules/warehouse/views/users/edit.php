@@ -21,14 +21,16 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
         <?php if (isset($controller_names)):
             foreach ($controller_names as $cname):
-                echo '<button class="accordion bg-white mb-3" style="background: #fff"><h5 >' . Yii::t('app', $cname->controller_name) . '<i class=\'fas fa-chevron-down ml-4\' style="font-size: 14px"></i></h5></button>
+                $actions = $cname->getByControllerName();
+                echo '<button class="accordion bg-white mb-3" style="background: #fff"><h5 >' . Yii::t('app', explode(' _ ', $actions[0]->name)[0]) . '<i class=\'fas fa-chevron-down ml-4\' style="font-size: 14px"></i></h5></button>
                       <div class="row panel-user-edit" style="margin-bottom: 20px;padding-top: 20px;"><div class="d-flex flex-wrap pt-2 ">';
-                foreach($cname->getByControllerName() as $action):
+                foreach($actions as $action):
+                    $name = explode(' _ ', $action->name);
                     echo sprintf(
                             '<div class="mr-3" style="margin-bottom: 48px;"><span class="action %s" data-id="%s">%s</span></div>',
                             !$action->hasAccess($user->id) ? 'passive' : '',
                             $action->id,
-                            $action->action_name
+                            Yii::t('app', trim($name[1]))
                         );
                 endforeach;
                 echo '</div></div>';

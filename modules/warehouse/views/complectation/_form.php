@@ -24,73 +24,19 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
         <div class="col-sm-6">
             <label class="control-label"   for="namiclature_id"><?php echo Yii::t('app', 'Nomenclature'); ?></label>
             <div id="showProducts"></div>
-           <input type="text" class="form-control"   onfocus="selectProductNamiclature($(this))" required="required"><br>
-           <input type="hidden" name="namiclature_id" class="namiclature_id">
+           <input type="text" class="form-control" readonly value="Ծառայություններ"><br>
+           <input type="hidden" name="namiclature_id" class="namiclature_id" value="10">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'count')->input('number') ?>
+            <input type="hidden" value="1"  name="Complectation[count]" autocomplete="off" aria-invalid="false">
             <?= $form->field($model, 'created_at')->textInput(['class'=>'datepicker form-control']) ?>
-            <?= $form->field($model, 'warehouse_id', [
-                'options' => ['class' => 'form-group provider_warehouse'],
-            ])->widget(Select2::className(), [
-                'theme' => Select2::THEME_KRAJEE,
-                'data' => $dataWarehouses,
-                'maintainOrder' => true,
-                'hideSearch' => true,
-                'options' => [
-                    'placeholder' => Yii::t('app', 'Select'),
-                ],
-                'pluginOptions' => [
-                    'allowClear' => true,
-                    'disabled' => !$model->isNewRecord
-                ],
-            ]) ?>
+            <?= $form->field($model, 'other_cost')->input('number') ?>
+          
         </div>
         <div class="shipping-request-form col-sm-6">
             <?php if($model->isNewRecord){ ?>
-                <div class="hide-block"></div>
-                <div id="deal-addresses"  class="module-service-form-card border-primary position-relative col-md-12 mt-3">
-                    <div class="row product-block" >
-                         <div class="col-sm-4">
-                            <?= $form->field($model_products, 'product_id[]', [
-                                'template' => '{input}{label}{error}{hint}',
-                                'options' => ['class' => 'form-group sk-floating-label nm_products'],
-                            ])->widget(Select2::className(), [
-                                'theme' => Select2::THEME_KRAJEE,
-                                'data' => $nProducts,
-                                'maintainOrder' => true,
-                                'options' => [
-                                    'id' => 'nomenclature_product',
-                                    'class'=>'nm_products',
-                                    'placeholder' => Yii::t('app', 'Select')
-                                ],
-                                'pluginOptions' => [
-                                    'allowClear' => true
-                                ],
-                            ]) ?>
-                        </div>
-                         <div class="col-sm-3">
-                            <div class="form-group counts-input sk-floating-label field-shippingrequest-count">
-                                <select name="ComplectationProducts[product_id][]" class="ns_products form-control btn-primary" required="required" >
-                                    <option value=""></option>
-                                </select>
-                             <label class="control-label" for="shippingrequest-count"><?php echo Yii::t('app', 'good') ?></label><div class="help-block"></div>
-                            </div>            
-                        </div>
-                       
-                 
-                        <div class="col-sm-3">
-                            <?= $form->field($model_products, 'n_product_count[]', [
-                                'options' => ['class' => 'form-group counts-input sk-floating-label'],
-                                'template' => '{input}{label}{error}{hint}'
-                            ])->textInput(['maxlength' => true,'type' => 'number','required'=>'required']) ?>
-                        </div>
-                      
-                    </div>
-                    <div class="add-address">
-                        <span class="btn-add-product"><?php echo Yii::t('app', 'Add');?></span>
-                    </div>
-                </div>
+                <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/shipping-request/create-product.php'); ?>
             <?php }  ?>
+
         </div>
     </div>
     <div class="form-group">
@@ -102,3 +48,12 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
     <?php ActiveForm::end(); ?>
 
 </div>
+<script>
+        setTimeout(function () {
+            $('.currency__').closest('.field-product-price').remove();
+            $('.field-product-nomenclature_product_id').removeClass('col-lg-4');
+            $('.field-product-nomenclature_product_id').removeClass('col-xl-4');
+            $('.field-product-nomenclature_product_id').addClass('col-lg-8');
+            $('.field-product-nomenclature_product_id').addClass('col-xl-8');
+        }, 500);
+</script>

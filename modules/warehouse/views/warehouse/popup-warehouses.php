@@ -9,10 +9,11 @@ $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'nam
 <div class="modal fade" id="viewInfoWr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true" style="display: block;">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
             <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
+                
                 <div class="mod-content">
                     <div class="col-sm-12">
                         <select name="warehouse_type" class="form-control warehouse_type btn-primary">
@@ -48,6 +49,7 @@ $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'nam
     </div>
 </div>
 <script>
+
     $('#viewInfoWr').modal('show');
 
 </script>

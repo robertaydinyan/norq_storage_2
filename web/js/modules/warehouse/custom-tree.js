@@ -126,7 +126,11 @@ var folder = $('.file-tree li.file-tree-folder'),
 treeBtn.on("click", function(a) {
     $(this).parent("li").children('ul').slideToggle(100, function() {
         $(this).parent("li").toggleClass("open");
+        let last_form = localStorage['last_form'];
+        let last_form_title = localStorage['last_form_title'];
         localStorage.clear();
+        localStorage['last_form'] = last_form;
+        localStorage['last_form_title'] = last_form_title;
         $('.file-tree-folder').not('.open').each(function(){
             var key_ = $(this).find('span').first().attr('data-name');
             localStorage.setItem(key_, true);

@@ -276,8 +276,11 @@ AppAsset::register($this);
             padding: 0px !important;
         }
 
-        #page-content .favorite,.bookmarks,.navbar,.show-modal,.star,h1{
+        #page-content .favorite,.bookmarks,.navbar,.show-modal,.star{
             display:none !important;
+        }
+        h1{
+            font-size: 14px !important;
         }
         <?php } ?>
     </style>
@@ -317,10 +320,12 @@ AppAsset::register($this);
         acc[j].addEventListener("click", function() {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                panel.style.display = "block";
+            if (panel) {
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
             }
         });
     }

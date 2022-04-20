@@ -10,7 +10,6 @@ use Yii;
  * @property int $id
  * @property int|null $n_product_count
  * @property int $complectation_id
- * @property int $product_id
  * @property int $numiclature_id
  * @property int $price
  */
@@ -30,7 +29,7 @@ class ComplectationProducts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['n_product_count', 'complectation_id', 'product_id','numiclature_id','price'], 'integer'],
+            [['n_product_count', 'complectation_id','numiclature_id','price'], 'integer'],
             [['complectation_id', 'product_id'], 'required'],
         ];
     }
@@ -44,13 +43,9 @@ class ComplectationProducts extends \yii\db\ActiveRecord
             'id' => 'ID',
             'n_product_count' => Yii::t('app', 'Count'),
             'complectation_id' => 'Complectation ID',
-            'product_id' => Yii::t('app', 'good'),
         ];
     }
-    public function getProduct()
-    {
-        return $this->hasOne(Product::class, ['id' => 'product_id']);
-    }
+ 
     public function getNProduct()
     {
         return $this->hasOne(NomenclatureProduct::class, ['id' => 'numiclature_id']);

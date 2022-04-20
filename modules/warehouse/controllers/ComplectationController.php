@@ -59,7 +59,7 @@ class ComplectationController extends Controller
         $columns = TableRowsStatus::find()->where(['page_name' => 'Complectation', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Complectation', 'userID' => Yii::$app->user->id])->one();
         $dataProvider->pagination->pageSize = $rows_count['count'];
-
+        
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'isFavorite' => $isFavorite,
@@ -102,16 +102,16 @@ class ComplectationController extends Controller
 
         if ($model->load($post)) {
             $total_price = 0;
-            if (isset($post['ShippingRequest']['nomenclature_product_id']) && !empty($post['ShippingRequest']['nomenclature_product_id'])) {
-                foreach ($post['ShippingRequest']['nomenclature_product_id'] as $key => $nProductId) {
-                     if ($post['ComplectationProducts']['n_product_count'][$key]) {
+            if (isset($post['Product']['nomenclature_product_id']) && !empty($post['Product']['nomenclature_product_id'])) {
+                foreach ($post['Product']['nomenclature_product_id'] as $key => $nProductId) {
+                     if ($post['Product']['count'][$key]) {
                         $Origin_product = Product::findOne($nProductId);
-                        $total_price += (intval($post['ComplectationProducts']['n_product_count'][$key])*intval($Origin_product->price));
+                        $total_price += (intval($post['Product']['count'][$key])*intval($post['Product']['price'][$key]));
                     }
                 }
             }
-  
-            $model->price = $total_price;
+          
+            $model->price = $total_price+$model->other_cost;
             $model->created_at = date('Y-m-d',strtotime($post['Complectation']['created_at']));
             $model->save(false);
             $admins = User::find()->where(['role'=>'admin'])->all();
@@ -120,149 +120,17 @@ class ComplectationController extends Controller
                    Notifications::setNotification($value->id,"Ստեղծվել է նոր կոմպլեկտացիա  ".$model->name,'/warehouse/complectation/view?id='.$model->id);
                 }
             } 
-       
-
-            $model_product = new Product();
-            $model_product->nomenclature_product_id = $post['namiclature_id'];
-            $model_product->warehouse_id = $post['Complectation']['warehouse_id'];
-            $model_product->retail_price = $post['Complectation']['price'];
-            if(isset($post['Complectation']['count'])){
-                $model_product->price = @$total_price/intval($post['Complectation']['count']);
-                $model_product->count = $post['Complectation']['count'];
-            } else {
-                $model_product->price = @$total_price;
-                $model_product->count = 1;
-            }
-            $model_product->created_at = date('Y-m-d',strtotime($post['Complectation']['created_at']));
-            $model_product->status = 1;
-            $model_product->save(false);
-
-            $ShippingRequest = new ShippingRequest();
-            $ShippingRequest->shipping_type = 2;
-            $ShippingRequest->provider_warehouse_id = 0;
-            $ShippingRequest->supplier_warehouse_id = $post['Complectation']['warehouse_id'];
-            $ShippingRequest->invoice = null;
-            $ShippingRequest->count = intval($post['Complectation']['count']);
-            $ShippingRequest->supplier_id = 0;
-            $ShippingRequest->status = 3;
-            if($post['Complectation']['created_at']) {
-                $ShippingRequest->created_at = date('Y-m-d', strtotime($post['Complectation']['created_at']));
-            } else {
-                $ShippingRequest->created_at = date('Y-m-d');
-            }
-            $for_notice = 0;
-            $ShippingRequest->user_id = Yii::$app->user->getId();
-            $ShippingRequest->save(false);
-
-            $ShippingProduct = new ShippingProducts();
-            $ShippingProduct->product_id = $model_product->id;
-            $ShippingProduct->created_at = $model->created_at;
-             if(isset($post['Complectation']['count'])){
-                $ShippingProduct->count = $post['Complectation']['count'];
-            } else {
-                 $ShippingProduct->count = 1;
-            }
-            $ShippingProduct->shipping_type = 7;
-            $ShippingProduct->price =  $model_product->price;
-            $ShippingProduct->shipping_id = $ShippingRequest->id;
-            $ShippingProduct->save(false);
-            // for old products 
-            $ShippingRequestF = new ShippingRequest();
-            $ShippingRequestF->shipping_type = 7;
-            $ShippingRequestF->provider_warehouse_id = $post['Complectation']['warehouse_id'];
-            $ShippingRequestF->supplier_warehouse_id = 0;
-            $ShippingRequestF->invoice = null;
-            $ShippingRequestF->count = intval($post['Complectation']['count']);
-            $ShippingRequestF->supplier_id = 0;
-            $ShippingRequestF->status = 3;
-            if($post['Complectation']['created_at']) {
-                $ShippingRequestF->created_at = date('Y-m-d', strtotime($post['Complectation']['created_at']));
-            } else {
-                $ShippingRequestF->created_at = date('Y-m-d');
-            }
-            $for_notice = 0;
-            $ShippingRequestF->user_id = Yii::$app->user->getId();
-            $ShippingRequestF->save(false);
-
             
-            if (isset($post['ShippingRequest']['nomenclature_product_id']) && !empty($post['ShippingRequest']['nomenclature_product_id'])) {
-                foreach ($post['ShippingRequest']['nomenclature_product_id'] as $key => $nProductId) {
-                    if ($post['ComplectationProducts']['n_product_count'][$key]) {
-                        $Origin_product = Product::findOne($nProductId);
-                        if($Origin_product->nProduct->individual == 'false'){
-                            $products = Product::find()->where(['nomenclature_product_id'=>$Origin_product->nomenclature_product_id,'warehouse_id'=>$Origin_product->warehouse_id,'status'=>1])
-                                ->andWhere(['<=','created_at',$model->created_at])->orderBy(['created_at'=>SORT_ASC])->all();
-                            $total = intval($post['ComplectationProducts']['n_product_count'][$key]);
-                            
-                            foreach ($products as $produst => $prodval){
-                                if($prodval->count >= $total){
 
-                                    $prodval->count = $prodval->count - $total;
-                                    $prodval->save(false);
-
-                                    $ComplectationProduct = new ComplectationProducts();
-                                    $ComplectationProduct->product_id = $prodval->id;
-                                    $ComplectationProduct->n_product_count = $total;
-                                    $ComplectationProduct->price = $prodval->price;
-                                    $ComplectationProduct->numiclature_id = $prodval->nomenclature_product_id;
-                                    $ComplectationProduct->complectation_id = $model->id;
-                                    $ComplectationProduct->save(false);
-
-                                    $ShippingProductN = new ShippingProducts();
-                                    $ShippingProductN->product_id = $prodval->id;
-                                    $ShippingProductN->created_at = $model->created_at;
-                                    $ShippingProductN->count = $total;
-                                    $ShippingProductN->shipping_type = 7;
-                                    $ShippingProductN->price =  $prodval->price;
-                                    $ShippingProductN->shipping_id = $ShippingRequestF->id;
-                                    $ShippingProductN->save(false);
-
-                                    break;
-                                } else {
-                                    $total = $total - $prodval->count;
-                                    $ComplectationProduct = new ComplectationProducts();
-                                    $ComplectationProduct->product_id = $prodval->id;
-                                    $ComplectationProduct->n_product_count = $total;
-                                    $ComplectationProduct->price = $prodval->price;
-                                    $ComplectationProduct->numiclature_id = $prodval->nomenclature_product_id;
-                                    $ComplectationProduct->complectation_id = $model->id;
-                                    $ComplectationProduct->save(false);
-                                    
-                                    $ShippingProductN = new ShippingProducts();
-                                    $ShippingProductN->product_id =  $prodval->id;
-                                    $ShippingProductN->created_at = $model->created_at;
-                                    $ShippingProductN->count = $total;
-                                    $ShippingProductN->shipping_type = 7;
-                                    $ShippingProductN->price =  $prodval->price;
-                                    $ShippingProductN->shipping_id = $ShippingRequestF->id;
-                                    $ShippingProductN->save(false);
-
-                                    $prodval->count = 0;
-                                    $prodval->save(false);
-                                }
-                            }
-                        } else {
-                            $ComplectationProduct = new ComplectationProducts();
-                            $ComplectationProduct->product_id = $Origin_product->id;
-                            $ComplectationProduct->n_product_count = 1;
-                            $ComplectationProduct->price = $Origin_product->price;
-                            $ComplectationProduct->numiclature_id = $Origin_product->nomenclature_product_id;
-                            $ComplectationProduct->complectation_id = $model->id;
-                            $ComplectationProduct->save(false);
-
-                            $ShippingProductN = new ShippingProducts();
-                            $ShippingProductN->product_id = $prodval->id;;
-                            $ShippingProductN->created_at = $model->created_at;
-                            $ShippingProductN->count = $total;
-                            $ShippingProductN->shipping_type = 7;
-                            $ShippingProductN->price =  $prodval->price;
-                            $ShippingProductN->shipping_id = $ShippingRequestF->id;
-                            $ShippingProductN->save(false);
-
-                            //original product reset
-                            $Origin_product->count = 0;
-                            $Origin_product->save(false);
-                        }
+            if (isset($post['Product']['nomenclature_product_id']) && !empty($post['Product']['nomenclature_product_id'])) {
+                foreach ($post['Product']['nomenclature_product_id'] as $key => $nProductId) {
+                    if ($post['Product']['count'][$key]) {
+                        $ComplectationProduct = new ComplectationProducts();
+                        $ComplectationProduct->n_product_count = $post['Product']['count'][$key];
+                        $ComplectationProduct->price = $post['Product']['price'][$key];
+                        $ComplectationProduct->numiclature_id = $nProductId;
+                        $ComplectationProduct->complectation_id = $model->id;
+                        $ComplectationProduct->save(false);
                     }
                 }
             }

@@ -2,7 +2,7 @@
 // https://github.com/bgrins/spectrum
 // Author: Brian Grinstead
 // License: MIT
-
+alert('a');
 (function (factory) {
 	"use strict";
 
@@ -484,7 +484,6 @@
 		function updateSelectionPaletteFromStorage() {
 
 			if (localStorageKey && window.localStorage) {
-
 				// Migrate old palettes over to new format.  May want to remove this eventually.
 				try {
 					var oldPalette = window.localStorage[localStorageKey].split(",#");

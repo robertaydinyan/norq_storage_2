@@ -3,7 +3,8 @@ function initSelect2Loading(a,b){ initS2Loading(a,b); }
 function initSelect2DropStyle(id, kvClose, ev){ initS2Open(id, kvClose, ev); }
 
 $(function () {
-   $('[data-toggle="tooltip"]').tooltip()
+   if ($('[data-toggle="tooltip"]').length > 0)
+      $('[data-toggle="tooltip"]').tooltip()
 })
 
 $(document).ready(function(){

@@ -21,13 +21,13 @@ $actions = [
         'header' => Yii::t('app', 'Action'),
         'template' => '{edit}{delete}',
         'buttons' => [
-            'edit' => function() {
+            'edit' => function($model) use ($lang) {
                 return ((\app\rbac\WarehouseRule::can('users', 'edit')) ?
-                    ("<a href='" . URL::to(['users/edit', 'lang' => Yii::$app->language, 'id' =>Yii::$app->user->id]) . "'><i class='fas fa-pencil-alt mr-3'></i></a>") : '');
+                    ("<a href='" . $model . '&lang=' . $lang . "'><i class='fas fa-pencil-alt mr-3'></i></a>") : '');
             },
-            'delete' => function() {
+            'delete' => function($model) use ($lang) {
                 return ((\app\rbac\WarehouseRule::can('users', 'delete')) ?
-                    ("<a onclick='return AreYouSure();' href='" . URL::to(['users/delete', 'lang' => Yii::$app->language, 'id' => Yii::$app->user->id]) . "'><i class='fas fa-trash-alt' style='color: red;'></i></a>") : '');
+                    ("<a onclick='return AreYouSure();' href='" . $model . '&lang=' . $lang . "'><i class='fas fa-trash-alt' style='color: red;'></i></a>") : '');
             }
         ]
 ];

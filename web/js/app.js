@@ -233,7 +233,13 @@ function SaveForm(el) {
     localStorage.setItem('last_form_title', $('h1').text().split('/n')[0]);
     let html = $('html');
     $("input, select").each(function () {
-        $(this).attr("value", $(this).val());
+        if ($(this).attr('type') === "checkbox" || $(this).attr('type') === "radio") {
+            if ($(this).is(':checked')) {
+                $(this).attr('checked', 'checked');
+            }
+        } else {
+            $(this).attr("value", $(this).val());
+        }
     });
     $("textarea").each(function () {
         $(this).attr("value", $(this).text());

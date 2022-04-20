@@ -1,5 +1,4 @@
 <?php
-
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ProductForRequest;
 use app\modules\warehouse\models\ShippingProducts;
@@ -42,7 +41,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                     <?php if($model->request_id){ ?>
                     <tr>
                         <th scope="col"><?php echo Yii::t('app', 'Purchase request'); ?></th>
-                        <td><a href="/warehouse/shipping-request/view?id=<?php echo $model->request_id;?>"><?php echo Yii::t('app', 'Purchase request'); ?> (<?php echo $model->request_id;?>)</a></td>
+                        <td><a href="#" onclick="showPage('/warehouse/shipping-request/view?id=<?php echo $model->request_id;?>','<?php echo Yii::t('app', 'Purchase request'); ?> (<?php echo $model->request_id;?>')"><?php echo Yii::t('app', 'Purchase request'); ?> (<?php echo $model->request_id;?>)</a></td>
                     </tr>
                     <?php } ?>
                     <?php if($model->supplierp->{'name_' . $lang} && $model->shipping_type != 9){ ?>

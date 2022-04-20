@@ -54,7 +54,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
                     <div class="card-bottom-section mt-5">
                          
-                        <div> <a href="/warehouse/warehouse/view?id=20&lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                        <div> <a href="#" onclick="showPage('/warehouse/warehouse/view?id=20&lang=<?= $lang ?>','<?= Yii::t('app', 'Main warehouse') ?>')" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                     </div>
                 </div>
             </div>
@@ -83,15 +83,15 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                             $warehouses = Warehouse::find()->where(['LIKE','name_'.$lang,$_GET['search']])->all();
                             if(!empty($warehouses)){
                                 foreach($warehouses as $warehouse_ => $warehouse_val){
-                                     echo '<a target="_blank" href="/warehouse/warehouse/view?id='.$warehouse_val->id.'&lang=">'.$warehouse_val->{'name_'.$lang}.'</a><br>';
+                                     echo '<a href="#" onclick="showPage(\'/warehouse/warehouse/view?id='.$warehouse_val->id.'&lang=\',\''.$warehouse_val->{'name_'.$lang}.'\')">'.$warehouse_val->{'name_'.$lang}.'</a><br>';
                                 }
                             }
                          } ?>
                     </div>
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/warehouse?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="#" onclick="showPage('/warehouse/warehouse?lang=<?= $lang ?>','Պահեստներ')" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
-                <h6><span class="badge badge-primary new-badge" style="position: absolute;top:0px;right: 0px;">12 <i class="fas fa-bell" style="color:#fff"></i></span></h6>
+                <!-- <h6><span class="badge badge-primary new-badge" style="position: absolute;top:0px;right: 0px;">12 <i class="fas fa-bell" style="color:#fff"></i></span></h6> -->
             </div>
         </div>
     </div>
@@ -127,7 +127,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                          } ?>
                     </div>
                 <div class="card-bottom-section mt-5">
-                    <div> <a  href="/warehouse/product?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a  href="#"  onclick="showPage('/warehouse/product?lang=<?= $lang ?>','Ապրանքներ')" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -162,7 +162,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                                             <?php $uri = explode('?',$_SERVER['REQUEST_URI']); ?>
                                                             <li class="nav-item dropdown-item"><a class="nav-link <?php if(!isset($_GET['type'])){ echo 'active';} ?>" href="<?php echo '/warehouse/shipping-request/documents' . '?lang=' . \Yii::$app->language; ?>"><?php echo Yii::t('app', 'All'); ?></a></li>
                                                             <?php foreach ($shipping_types as $shp_type => $shp_type_val){ ?>
-                                                                <li class="nav-item dropdown-item"><a class="nav-link <?php if(isset($_GET['type']) && ($_GET['type']==$shp_type_val->id)){ echo 'active';} ?>" href="/warehouse/shipping-request/documents?type=<?php echo $shp_type_val->id;?>&lang=<?php echo \Yii::$app->language; ?>"><?php echo $shp_type_val->{'name_' . $lang};?></a></li>
+                                                                <li class="nav-item dropdown-item"><a class="nav-link <?php if(isset($_GET['type']) && ($_GET['type']==$shp_type_val->id)){ echo 'active';} ?>" href="#" onclick="showPage('/warehouse/shipping-request/documents?type=<?php echo $shp_type_val->id;?>&lang=<?php echo \Yii::$app->language; ?>','<?php echo $shp_type_val->{'name_' . $lang};?>')"><?php echo $shp_type_val->{'name_' . $lang};?></a></li>
                                                             <?php } ?>
                                                         </ul>
                                                     </div>
@@ -221,7 +221,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                                             <?php $uri = explode('?',$_SERVER['REQUEST_URI']); ?>
                                                             <li class="nav-item dropdown-item"><a class="nav-link <?php if(!isset($_GET['type'])){ echo 'active';} ?>" href="<?php echo '/warehouse/shipping-request/documents' . '?lang=' . \Yii::$app->language; ?>"><?php echo Yii::t('app', 'All'); ?></a></li>
                                                             <?php foreach ($shipping_types as $shp_type => $shp_type_val){ ?>
-                                                                <li class="nav-item dropdown-item"><a class="nav-link <?php if(isset($_GET['type']) && ($_GET['type']==$shp_type_val->id)){ echo 'active';} ?>" href="/warehouse/shipping-request?type=<?php echo $shp_type_val->id;?>&lang=<?php echo \Yii::$app->language; ?>"><?php echo $shp_type_val->{'name_' . $lang};?></a></li>
+                                                                <li class="nav-item dropdown-item"><a class="nav-link <?php if(isset($_GET['type']) && ($_GET['type']==$shp_type_val->id)){ echo 'active';} ?>" href="#" onclick="showPage('/warehouse/shipping-request?type=<?php echo $shp_type_val->id;?>&lang=<?php echo \Yii::$app->language; ?>','<?php echo $shp_type_val->{'name_' . $lang};?>')"><?php echo $shp_type_val->{'name_' . $lang};?></a></li>
                                                             <?php } ?>
                                                         </ul>
                                                     </div>
@@ -277,7 +277,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                                 <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
                                                     <div id="w3-collapse" class="collapse navbar-collapse">
                                                         <ul id="w5" class="navbar-nav w-100 nav">
-                                                            <li class="nav-item dropdown-item"><?php echo $this->render('/menu-home', array(), true)?></li>
+                                                            <li class="nav-item dropdown-item"><?php echo $this->render('/menu-home-async', array(), true)?></li>
                                                         </ul>
                                                     </div>
                                                 </nav>
@@ -336,7 +336,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                 <i class="fas fa-file-signature mr-2" style="color:#0055a5;font-size: 46px;"></i>
                             </div>
                             <div class="media-body">
-                                <h3 class=""><?=   Yii::t('app', 'Composition') ?></h3>
+                                <h3 class=""><?=   Yii::t('app', 'Services') ?></h3>
                             </div>
                         </div>
                     </div>

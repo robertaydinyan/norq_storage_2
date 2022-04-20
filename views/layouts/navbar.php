@@ -10,6 +10,11 @@ $flags = array(
     'en-US' => 'en',
     'hy' => 'hy',
 );
+$names = array(
+    'ru-RU' => 'Рус',
+    'en-US' => 'Eng',
+    'hy' => 'Հայ',
+);
 $lang = Yii::$app->request->get('lang');
 $flag = $flags[$lang] ?: 'hy';
 $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
@@ -49,33 +54,6 @@ $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
             <a class="nav-link dropdown-toggle timer" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div id="txt" style="color: #fff;"></div>
             </a>
-            <div class="dropdown-menu dropdown-menu-right py-0 mr-sm-n15 mr-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
-                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank">
-                    <div class="icon-stack bg-primary-soft text-primary mr-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">Documentation</div>
-                        Usage instructions and reference
-                    </div>
-                </a>
-                <div class="dropdown-divider m-0"></div>
-                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components" target="_blank">
-                    <div class="icon-stack bg-primary-soft text-primary mr-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
-                    <div>
-                        <div class="small text-gray-500">Components</div>
-                        Code snippets and reference
-                    </div>
-                </a>
-                <div class="dropdown-divider m-0"></div>
-                <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog" target="_blank">
-                    <div class="icon-stack bg-primary-soft text-primary mr-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
-                    <div>
-                        <div class="small text-gray-500">Changelog</div>
-                        Updates and changes
-                    </div>
-                </a>
-            </div>
         </li>
         <?php if(Yii::$app->user->identity->role == "admin"):?>
             <a href="javascript:void(0);" class="change-site-status" style="color: white; font-size: 20px;" data-status="0" title="<?php echo Yii::t('app', ($s ? 'Stop website' : 'Start website')); ?>">
@@ -94,24 +72,24 @@ $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
 
         <li class="nav-item dropdown no-caret">
             <div class="dropdown">
-                <button class="g-btn flag shadow-none" type="button dropdown-toggle" id="dropdownLangButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="/img/icons/flags/<?php echo $flag;?>.png" class="g-lang-flag g-lang-flag-show " alt="flag" width="20">
-                </button>
+                <a href="#" class="g-btn flag shadow-none nav-link" type="button dropdown-toggle" id="dropdownLangButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <?php echo $names[$lang]; ?>
+                </a>
 
                 <ul class="dropdown-menu lang-dropdown-menu dropdown-menu-right g-navbar-buttons-drop" aria-labelledby="dropdownLangButton" x-placement="bottom-end" style="position: absolute; transform: translate3d(-126px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
                     <li>
                         <a class="dropdown-item" rel="alternate" hreflang="en" href="<?php echo Url::current(['lang' => 'en-US']) ?>">
-                            <img src="/img/icons/flags/en.png" class="g-lang-flag" alt="flag" width="20"> English
+                            <!-- <img src="/img/icons/flags/en.png" class="g-lang-flag" alt="flag" width="20"> --> English
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" rel="alternate" hreflang="ru" href="<?php echo Url::current(['lang' => 'ru-RU']) ?>">
-                            <img src="/img/icons/flags/ru.png" class="g-lang-flag" alt="flag" width="20"> русский
+                            <!-- <img src="/img/icons/flags/ru.png" class="g-lang-flag" alt="flag" width="20"> --> Русский
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" rel="alternate" hreflang="hy" href="<?php echo Url::current(['lang' => 'hy']) ?>">
-                            <img src="/img/icons/flags/hy.png" class="g-lang-flag" alt="flag" width="20"> Հայերեն
+                            <!-- <img src="/img/icons/flags/hy.png" class="g-lang-flag" alt="flag" width="20"> --> Հայերեն
                         </a>
                     </li>
                 </ul>
@@ -135,7 +113,7 @@ $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
         <?php if (!Yii::$app->user->isGuest) : ?>
             <li class="nav-item dropdown no-caret mr-2 dropdown-user">
                 <a class="btn btn-icon btn-transparent-dark dropdown-toggle p-0 rounded-circle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="img-fluid" src="<?= Yii::getAlias('@web/img/user/user.png') ?>"></a>
+                    <img style="width: 30px;" class="img-fluid" src="<?= Yii::getAlias('@web/img/user/user.png') ?>"></a>
                 <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
                     <h6 class="dropdown-header d-flex align-items-center">
                         <div class="dropdown-user-details">

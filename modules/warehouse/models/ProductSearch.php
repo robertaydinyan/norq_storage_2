@@ -90,7 +90,7 @@ class ProductSearch extends Product
                 LEFT JOIN `s_qty_type` ON `s_nomenclature_product`.`qty_type_id` = `s_qty_type`.`id` 
                 LEFT JOIN `s_warehouse` ON `s_product`.`warehouse_id` = `s_warehouse`.`id` 
                 WHERE `status`=1 AND s_product.count>0 
-                GROUP BY `nomenclature_product_id`, `warehouse_id` "
+                GROUP BY `s_product`.`warehouse_id`,`s_product`.`nomenclature_product_id`  "
         )->queryAll();
         if (!isset ($_GET['page']) ) {  
             $page = 1;  
@@ -114,7 +114,7 @@ class ProductSearch extends Product
             FROM `s_product` LEFT JOIN `s_nomenclature_product` ON `s_product`.`nomenclature_product_id` = `s_nomenclature_product`.`id` 
             LEFT JOIN `s_qty_type` ON `s_nomenclature_product`.`qty_type_id` = `s_qty_type`.`id` 
             LEFT JOIN `s_warehouse` ON `s_product`.`warehouse_id` = `s_warehouse`.`id` 
-            WHERE `status`=1 AND s_product.count>0 GROUP BY `nomenclature_product_id`, `warehouse_id` 
+            WHERE `status`=1 AND s_product.count>0 GROUP BY  `s_product`.`warehouse_id`,`s_product`.`nomenclature_product_id` 
             ORDER BY `count_n_product` 
             LIMIT " . $page_first_result . ',' . $results_per_page)->queryAll();
         

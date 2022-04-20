@@ -46,12 +46,23 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 'disabled' => !$model->isNewRecord,
             ],
         ]) ?>
-        <div class="form-group field-shippingrequest-request_id hide ">
-            <label class="control-label" for="product-invoice"><?php echo Yii::t('app', 'Purchase request'); ?></label>
-            <input type="text" id="product-invoice" value="<?php echo $model->request_id; ?>" class="form-control"
-                   name="ShippingRequest[request_id]" maxlength="255">
+         <div class="form-group field-shippingrequest-request_id hide ">
+             <?= $form->field($model, 'request_id', [
+            'options' => ['class' => 'form-group'],
+            ])->widget(Select2::className(), [
+                'theme' => Select2::THEME_KRAJEE,
+                'data' => $requests,
+                'maintainOrder' => true,
+                'hideSearch' => true,
+                'options' => [
+                    'placeholder' => Yii::t('app', 'Գնման հայտ'),
+                ],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                    'disabled' => !$model->isNewRecord,
+                ],
+            ]) ?>
         </div>
-
         <div class="form-group date_">
             <label class="control-label" for="product-invoice"><?php echo Yii::t('app', 'Date'); ?></label>
             <?php if (!$model->isNewRecord) { ?>

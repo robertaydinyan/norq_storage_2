@@ -303,6 +303,14 @@ class ProductController extends Controller
         }
         return '';
     }
+     public function actionGetOrderProductsInfo() {
+        $post = Yii::$app->request->get();
+        if($post['order_id']) {
+            $products =  ProductForRequest::find()->where(['shipping_id'=>$post['order_id']])->all();
+            return $this->renderAjax('order', ['products'=> $products]);
+        }
+        return '';
+    }
     public function actionGetProductInfo() {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $post = Yii::$app->request->get();

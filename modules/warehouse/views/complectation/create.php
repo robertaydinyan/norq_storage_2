@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model_products app\modules\warehouse\models\ComplectationProducts */
 /* @var $dataWarehouses app\modules\warehouse\models\Warehouse */
 
-$this->title = array(Yii::t('app', 'Create Composition'),'Create Composition');
+$this->title = array(Yii::t('app', 'Create'),'Create');
 
 
 $this->params['breadcrumbs'][] = ['label' => 'Complectations', 'url' => ['index']];

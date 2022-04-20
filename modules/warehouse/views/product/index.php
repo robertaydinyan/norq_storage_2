@@ -21,6 +21,8 @@ use app\modules\warehouse\models\Warehouse;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 
+
+
 $this->title = array(Yii::t('app', 'goods'),'goods');
 $this->params['breadcrumbs'][] = $this->title[0];
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
@@ -37,14 +39,28 @@ $table_all_columns = array(
     'id' => 'id',
     'WarehouseName' => [
         'label' => Yii::t('app', 'Warehouse name'),
+        'format' => 'raw',
         'value' => function($product) use ($lang) {
-            return $product->warehouse->{'name_' . $lang};
+
+            return
+            Html::a( $product->warehouse->{'name_' . $lang},    
+                                ['#'],
+                                ['onclick'=>"showPage('/warehouse/warehouse/view?id=".$product->warehouse->{'id'}."','".$product->warehouse->{'name_' . $lang}."')"]
+                    );
+             
         }
     ],
     'ProductName' => [
         'label' => Yii::t('app', 'Product name'),
+        'format' => 'raw',
         'value' => function($product) use ($lang) {
-            return $product->nomenclatureProduct->{'name_' . $lang};
+            return           
+
+            Html::a( $product->nomenclatureProduct->{'name_' . $lang},    
+                                ['#'],
+                                ['onclick'=>"showPage('/warehouse/nomenclature-product/view?id=".$product->nomenclatureProduct->{'id'}."','".$product->nomenclatureProduct->{'name_' . $lang}."')"]
+                    );
+      
         }
     ],
     'ProductPicture' => [
@@ -82,6 +98,7 @@ $table_all_columns = array(
 );
 
 $table_columns = [];
+
 if (isset($columns)) {
     foreach ($columns as $column) {
         if ($table_all_columns[$column->row_name]) {

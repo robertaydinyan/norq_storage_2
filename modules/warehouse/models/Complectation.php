@@ -12,7 +12,7 @@ use Yii;
  * @property string|null $name
  * @property int|null $count
  * @property string|null $created_at
- * @property int|null $warehouse_id
+ * @property int|null $other_cost
  */
 class Complectation extends \yii\db\ActiveRecord
 {
@@ -31,7 +31,7 @@ class Complectation extends \yii\db\ActiveRecord
     {
         return [
             [['price'], 'number'],
-            [['count', 'warehouse_id'], 'integer'],
+            [['count', 'other_cost'], 'integer'],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
         ];
@@ -48,7 +48,7 @@ class Complectation extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'count' => Yii::t('app', 'Count'),
             'created_at' => Yii::t('app', 'Date of creation'),
-            'warehouse_id' => Yii::t('app', 'Warehouse'),
+            'other_cost' => Yii::t('app', 'Other Cost'),
         ];
     }
     public function attributeLabelsAll()

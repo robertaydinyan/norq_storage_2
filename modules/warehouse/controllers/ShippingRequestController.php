@@ -52,11 +52,11 @@ class ShippingRequestController extends Controller {
         $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new ShippingRequestSearch();
-        $shipping_types = ShippingType::find()->all();
+        $shipping_types = ShippingType::find()->orderBy(['order_'=>SORT_ASC])->all();
         $dataProvider = $searchModel->search(Yii::$app
             ->request
             ->queryParams);
-        $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => [1, 2]])
+        $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])
             ->asArray()
             ->all() , 'id', 'name_' . $lang);
         $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
@@ -91,10 +91,10 @@ class ShippingRequestController extends Controller {
         $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app->request->get('type')])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
         $searchModel = new ShippingRequestSearch();
-        $shipping_types = ShippingType::find()->all();
+        $shipping_types = ShippingType::find()->orderBy(['order_'=>SORT_ASC])->all();
         $dataProvider = $searchModel->search(Yii::$app
             ->request->queryParams, null, true);
-        $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => [1, 2]])
+        $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])
             ->asArray()
             ->all() , 'id', 'name_' . $lang);
         $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
@@ -111,6 +111,37 @@ class ShippingRequestController extends Controller {
             ->asArray()
             ->all());
         return $this->render('index', ['searchModel' => $searchModel,'isFavorite' => $isFavorite, 'columns' => $columns,
+            'dataProvider' => $dataProvider, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
+    }
+
+    public function actionCalendar() {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+        TableRowsStatus::checkRows('ShippingRequest');
+        $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app->request->get('type')])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
+        $searchModel = new ShippingRequestSearch();
+        $shipping_types = ShippingType::find()->orderBy(['order_'=>SORT_ASC])->all();
+        $dataProvider = $searchModel->search(Yii::$app
+            ->request->queryParams, null, true);
+        $date = date('Y-m-d');
+        var_dump($date);die();
+        $dataProvider->query->andWhere('>','created_at','01.05.2022');        
+        $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])
+            ->asArray()
+            ->all() , 'id', 'name_' . $lang);
+        $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
+            ->all();
+        $dataUsers = [];             
+        $dataProvider->pagination->pageSize = $rows_count['count'];        
+        foreach ($uersData as $key => $value) {
+            $dataUsers[$value
+                ->id] = $value->name . ' ' . $value->last_name;
+        }
+        $suppliers = $this->buildTree(SuppliersList::find()
+            ->where(['!=', 'id', 6])
+            ->asArray()
+            ->all());
+        return $this->render('calendar', ['searchModel' => $searchModel,'isFavorite' => $isFavorite, 'columns' => $columns,
             'dataProvider' => $dataProvider, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
     }
     /**

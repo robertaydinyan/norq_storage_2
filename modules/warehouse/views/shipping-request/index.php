@@ -1,5 +1,6 @@
 <?php
 
+
 use app\modules\warehouse\models\Currency;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -43,6 +44,8 @@ $table_all_columns = array();
             <h1  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span
                         class="star"><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
             <div style="padding-left: 20px" class="d-flex align-items-start pt-2">
+                <a  style="float: right" href="<?= Url::to(['calendar', 'lang' => Yii::$app->language]) ?>"
+                       class="btn btn-primary mr-2"><?php echo Yii::t('app', 'Calendar'); ?></a>
                 <?php if (\app\rbac\WarehouseRule::can('shipping-request', 'create')): ?>
 
                     <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"

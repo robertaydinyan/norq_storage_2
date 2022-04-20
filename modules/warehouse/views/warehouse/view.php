@@ -144,8 +144,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
             <?php foreach ($dataProvider['result'] as $key => $products) : ?>
                 <tr data-src="https://sachinchoolur.github.io/lightgallery.js/static/img/1-1600.jpg">
                     <td><?php echo $products['wname']; ?></td>
-                    <td><a href="/warehouse/nomenclature-product/view?id=<?= $products['nomenclature_product_id'] ?>"
-                           target="_blank"><?= $products['nomeclature_name'] ?></a></td>
+                    <td><a href="#" onclick="showPage('/warehouse/nomenclature-product/view?id=<?= $products['nomenclature_product_id'] ?>','<?= $products['nomeclature_name'] ?>')"
+                          ><?= $products['nomeclature_name'] ?></a></td>
                     <td class="image"
                         data-responsive="https://sachinchoolur.github.io/lightgallery.js/static/img/13-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/13-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/13.jpg 800"
                         data-src="<?= $products['img'] ?>"

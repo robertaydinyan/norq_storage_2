@@ -2,7 +2,6 @@
 // https://github.com/bgrins/spectrum
 // Author: Brian Grinstead
 // License: MIT
-
 (function (factory) {
 	"use strict";
 

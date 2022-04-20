@@ -420,32 +420,34 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                     }
                 }
                 else if ($request['Product']['nomenclature_product_id'][0]) {
-                    $product = new Product();
-                    $product->price = $request['Product']['price'][$i];
-                    $product->currency = $request['Product']['currency'][$i];
-                    $product->supplier_id = $model->supplier_id;
-                    $product->invoice = $model->invoice;
-                    $product->status = 0;
-                    $product->created_at = $model->created_at;
-                    $product->shipping_id = $model->id;
+                    if(!empty($request['Product']['nomenclature_product_id'][$i])){
+                        $product = new Product();
+                        $product->price = $request['Product']['price'][$i];
+                        $product->currency = $request['Product']['currency'][$i];
+                        $product->supplier_id = $model->supplier_id;
+                        $product->invoice = $model->invoice;
+                        $product->status = 0;
+                        $product->created_at = $model->created_at;
+                        $product->shipping_id = $model->id;
 
-                    $product->count = $request['Product']['count'][$i];
-                    $product->comment = $request['Product']['comment'][$i];
-                    $product->warehouse_id = $model->supplier_warehouse_id;
-                    $product->nomenclature_product_id = $request['Product']['nomenclature_product_id'][$i];
-                    $product->price = $product->price * Currency::getCurrencyByID($product->currency)['value'];
-                    $product->save(false);
+                        $product->count = $request['Product']['count'][$i];
+                        $product->comment = $request['Product']['comment'][$i];
+                        $product->warehouse_id = $model->supplier_warehouse_id;
+                        $product->nomenclature_product_id = $request['Product']['nomenclature_product_id'][$i];
+                        $product->price = $product->price * Currency::getCurrencyByID($product->currency)['value'];
+                        $product->save(false);
 
-                    $ShippingProduct = new ShippingProducts();
-                    $ShippingProduct->currency = $request['Product']['currency'][$i];
-                    $ShippingProduct->product_id = $product->id;
-                    $ShippingProduct->created_at = $model->created_at;
-                    $ShippingProduct->count = $request['Product']['count'][$i];
-                    $ShippingProduct->price = $request['Product']['price'][$i];
-                    $ShippingProduct->shipping_type = $model->shipping_type;
-                    $ShippingProduct->shipping_id = $model->id;
-                    $ShippingProduct->price = $ShippingProduct->price * Currency::getCurrencyByID($ShippingProduct->currency)['value'];
-                    $ShippingProduct->save(false);
+                        $ShippingProduct = new ShippingProducts();
+                        $ShippingProduct->currency = $request['Product']['currency'][$i];
+                        $ShippingProduct->product_id = $product->id;
+                        $ShippingProduct->created_at = $model->created_at;
+                        $ShippingProduct->count = $request['Product']['count'][$i];
+                        $ShippingProduct->price = $request['Product']['price'][$i];
+                        $ShippingProduct->shipping_type = $model->shipping_type;
+                        $ShippingProduct->shipping_id = $model->id;
+                        $ShippingProduct->price = $ShippingProduct->price * Currency::getCurrencyByID($ShippingProduct->currency)['value'];
+                        $ShippingProduct->save(false);
+                    }
                 }
             }
         }

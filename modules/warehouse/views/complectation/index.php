@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = array(Yii::t('app', 'Composition'), 'Composition');
+$this->title = array(Yii::t('app', 'Services'), 'Services');
 
 $this->params['breadcrumbs'][] =  $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -42,7 +42,7 @@ $table_all_columns = [
     'id' => 'id',
     'price' => 'price',
     'name' => 'name',
-    'count' => 'count',
+    'other_cost' => 'other_cost',
     'created_at' => 'created_at',
 ];
 
@@ -66,7 +66,7 @@ array_push($table_columns, $actions);
     <h1  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></span></h1>
         <div class="d-flex align-items-start pt-2">
             <?php if(\app\rbac\WarehouseRule::can('complectation', 'create')): ?>
-                <a style="margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary mr-2" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Composition'); ?></a>
+                <a style="margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary mr-2" ><?php echo Yii::t('app', 'Create'); ?></a>
             <?php endif; ?>
                 <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary  mr-2">Xls</button>
                 <button class="btn btn-primary mr-2 px-1 position-relative" >

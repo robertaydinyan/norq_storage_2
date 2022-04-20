@@ -268,7 +268,14 @@ class GroupProductController extends Controller
         $this->findModel($id)->delete();
         return $this->redirect(['/warehouse/group-product', 'lang' => Yii::$app->language]);
     }
-
+    public function actionDeleteGroup()
+    {
+        $form_data = Yii::$app->request->get();
+        $id = intval($form_data['id']);
+        Notifications::setNotification(1,"Ջնջվել է ապրանքի խումբ ՝ <b>".$id."</b> ",'/warehouse/group-product');
+        $this->findModel($id)->delete();
+        return $this->redirect(['/warehouse/group-product', 'lang' => Yii::$app->language]);
+    }
     /**
      * Finds the GroupProduct model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
