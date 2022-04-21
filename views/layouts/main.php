@@ -58,11 +58,8 @@ AppAsset::register($this);
         <?php endif;?>
         <div class="wrap">
 
-            <div class="bookmarks d-flex row ">
-
-
-                <?php if (Yii::$app->request->pathInfo != "site/error" && !Yii::$app->user->isGuest): ?>
-
+            <?php if (Yii::$app->request->pathInfo != "site/error" && !Yii::$app->user->isGuest): ?>
+                <div class="bookmarks d-flex row ">
                     <div class="favorites col-12	col-sm-12	col-md-3 col-lg-4	col-xl-2 mb-3" >
                         <button class="accordion bg-white" style="background: #fff;"><?= Yii::t('app','Favorite') ?></button>
                         <div class="panel panel2">
@@ -115,8 +112,8 @@ AppAsset::register($this);
                             </button>
                         </form>
                     </div>
-                <?php endif; ?>
-            </div>
+                </div>
+        <?php endif; ?>
             <!-- Navbar -->
 
             <!--  --><?php
