@@ -209,13 +209,13 @@ $('.filter').on('click', function() {
 
 function startTime() {
     const today = new Date();
+    let Y = today.getFullYear();
+    let mh = checkTime(today.getMonth());
+    let d = checkTime(today.getDay());
     let h = today.getHours();
-    let m = today.getMinutes();
-    let s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
+    let m = checkTime(today.getMinutes());
     if (document.getElementById('txt')) {
-        document.getElementById('txt').innerHTML =  h + ":" + m ;
+        document.getElementById('txt').innerHTML = d + "/" + mh + "/" + Y + " " + h + ":" + m ;
         setTimeout(startTime, 1000);
     }
 }

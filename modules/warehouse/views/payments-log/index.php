@@ -35,7 +35,6 @@ $table_all_columns = [
         },
         'contentOptions' => function($model) {
             $s = explode(' ', $model->price)[0];
-
             return [
                 'title' => Currency::fromDram($s)
             ];

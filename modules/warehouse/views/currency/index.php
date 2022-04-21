@@ -33,7 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id',
                 'symbol',
                 'code',
-                'value',
+                [
+                    'label' => Yii::t('app', 'Value'),
+                    'value' => function($model) {
+                        return $model->getCurrencyValue($model->id);
+                    }
+                ],
 
                 ['class' => 'yii\grid\ActionColumn',
                     'header' => Yii::t('app', 'Action'),

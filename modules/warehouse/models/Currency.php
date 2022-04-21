@@ -51,13 +51,22 @@ class Currency extends \yii\db\ActiveRecord
         return Currency::find()->where(['id' => $id])->one();
     }
 
+    public static function getCurrencyValue($id) {
+        if ($id == 3) return 1;
+        return CurrencyValue::find()->where(['currencyID' => $id, 'date' => date("Y/m/d")])->one()->value;
+    }
+
     public static function updateCurrenciesValues() {
         $currencies = Currency::find()->all();
         $values = Currency::loadCurrencyConverterXML();
         foreach ($currencies as $c) {
             if ($c->code != 'AMD') {
-                $c->value = floatval($values[$c->code]);
-                $c->save();
+                $cv = new CurrencyValue();
+                $cv->value = $values[$c->code];
+                $cv->currencyID = $c->id;
+                $cv->code_ = $c->code;
+                $cv->date = date("Y/m/d");
+                $cv->save(false);
             }
         }
     }
@@ -93,12 +102,14 @@ class Currency extends \yii\db\ActiveRecord
         return $arCurrency;
     }
 
-    public static function fromDram($n): string {
+    public static function fromDram($n, $date = null): string {
         $currencies = Currency::find()->all();
         $res = '';
         foreach ($currencies as $c) {
-            $res .= number_format($n / $c->value, '0', '.', ',') . $c->symbol . '
-';
+            $date = $date ? $date : date("Y/m/d");
+            $value = CurrencyValue::find()->where(['date' => $date, 'currencyID' => $c->id])->one()->value;
+            $res .= $value ? (number_format($n / $value, '0', '.', ',') . $c->symbol . '
+') : '';
         }
 
         return $res;

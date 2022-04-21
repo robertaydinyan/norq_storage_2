@@ -286,7 +286,7 @@ $table_all_columns = array();
                             $s = explode(' ', $model->totalsum)[0];
 
                             return [
-                                'title' => Currency::fromDram($s)
+                                'title' => Currency::fromDram($s, $model->created_at)
                             ];
                         },
 
