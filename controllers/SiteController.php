@@ -173,7 +173,7 @@ class SiteController extends Controller
         $isAdmin = Yii::$app->user->identity->role == "admin";
         if ($request->isPost && $isAdmin) {
             $status = $request->post('status');
-            $userID = 23;//$request->post('userID');
+            $userID = $request->post('userID');
             if ($userID) {
                 $s = User::find()->where(['id' => $userID])->one();
                 $s->blocked = $status;

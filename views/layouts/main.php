@@ -221,8 +221,10 @@ AppAsset::register($this);
 
     <style>
         .window {
-            width: 65% !important;
-            height: 65% !important;
+            width: 65%;
+            height: 65%;
+            min-width: 200px;
+            min-height: 200px;
             box-shadow:none  !important;
         }
         .dropdown-menu{
@@ -295,7 +297,7 @@ AppAsset::register($this);
         </script>
     <?php } ?>
     <?php $this->endBody() ?>
-    <div class="window" style="max-width: auto">
+    <div class="window" style="max-width: auto; display: none">
         <div class="title-bar">
             <div class="title-bar-text">Another window with contents</div>
             <div class="title-bar-controls">

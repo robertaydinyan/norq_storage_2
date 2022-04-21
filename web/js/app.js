@@ -299,12 +299,12 @@ function showPage(url, title, id, header = true){
         $(this).addClass('zIndex');
     });
     var html_ = '<iframe src="' + url + (header ? '&show-header=false' : '?show-header=false') + '" style="width:90vw;min-height:50vh;border:0px;"></iframe>';
-    var window_ = $('.window').first().clone().css({top:'20%',left:'5vw',position:'absolute'}).attr('data-id', id);
+    var window_ = $('.window').first().clone().css({display: 'block', top:'20%',left:'5vw',position:'absolute'}).attr('data-id', id);
     $(window_).find('.title-bar-text').text(title);
     window_.find('.window-body').html(html_);
     $('body').append(window_);
     $( function() {
-        $( ".window" ).last().resizable();
+        $( ".window" ).resizable();
         $( ".window" ).draggable();
     } );
 
