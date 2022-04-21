@@ -18,16 +18,16 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
 <div class="row product-form module-service-form-card justify-content-between align-items-center" style="position:relative;">
     <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6 d-flex justify-content-between align-items-center" style="padding: 0">
         <div class="form-group field-product-nomenclature_product_id required col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4">
-            <label class="control-label" for="product-nomenclature_product_id">Ապրանք</label>
+            <label class="control-label" for="product-nomenclature_product_id"><?php echo Yii::t('app', 'good'); ?></label>
              <input type="text" class="form-control" onfocus="selectProductNamiclature($(this))" required="required">
              <input type="hidden" name="Product[nomenclature_product_id][]" class="namiclature_id">
         </div>
         <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4" >
-            <label class="control-label" for="product-price">Գին</label>
+            <label class="control-label" for="product-price"><?php echo Yii::t('app', 'Price'); ?></label>
             <input type="number"  class="form-control price__" onchange="showTotal($(this)" name="Product[price][]" autocomplete="off">
         </div>
         <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4" >
-            <label class="control-label" for="product-price">Արժույթ</label>
+            <label class="control-label" for="product-price"><?php echo Yii::t('app', 'Currency'); ?></label>
             <select class="form-control currency__ currency-input" onchange="showTotal($(this))" name="Product[currency][]" id="">
                 <option value="" disabled selected></option>
                 <?php if (isset($currencies)) {
@@ -47,11 +47,11 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
     <div class=" row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-4 d-flex justify-content-between align-items-center" style="padding: 0">
 
         <div class="form-group field-product-comment col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6">
-            <label class="control-label" for="product-comment">Մեկնաբանություն</label>
+            <label class="control-label" for="product-comment"><?php echo Yii::t('app', 'Comment'); ?></label>
             <input type="text" id="product-comment" class="form-control" name="Product[comment][]" maxlength="255" novalidate autocomplete="off">
         </div>
         <div class="form-group field-product-count col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6">
-            <label class="control-label" for="product-count">Քանակ</label>
+            <label class="control-label" for="product-count"><?php echo Yii::t('app', 'Quantity'); ?></label>
             <input type="text"  class="form-control product-count" onchange="showTotal($(this))" name="Product[count][]" autocomplete="off">
         </div>
        
@@ -73,7 +73,7 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         </div>
         <input type="hidden" name="Product[notice_if_move][]" class="is_vip" value="0">
          <div class="form-group field-product-count col-sm-12">
-            <label class="control-label" for="product-count">Ընդանուր</label>
+            <label class="control-label" for="product-count"><?php echo Yii::t('app', 'General'); ?></label>
             <input type="text"  class="form-control product-price-total" onchange="showTotal($(this))" autocomplete="off">
         </div>
     </div>
@@ -97,32 +97,32 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
               el_.closest('.product-form').find('.product-price-total').val(tot*ct);
            }
         }
-        $('body').on('change','.namiclature_id',function(){
-            var pId = $(this).val();
-            var th_ = $(this);
-            if($('#shippingrequest-shipping_type').val() != 5){
-                if(pId) {
-                    $.ajax({
-                        url: '/warehouse/product/get-product-info',
-                        method: 'get',
-                        dataType: 'json',
-                        data: {id: pId},
-                        success: function (data) {
-                            if(data.individual == 'true'){
-                                th_.closest('.product-form').find('.field-product-mac_address').show();
-                                th_.closest('.product-form').find('.product-count').val(1).closest('.field-product-count').hide();
-                                th_.closest('.product-form').find('.is_vip').val(1);
-                            } else {
-                                th_.closest('.product-form').find('.field-product-mac_address').hide();
-                                th_.closest('.product-form').find('.product-count').val('').closest('.field-product-count').show();
-                                th_.closest('.product-form').find('.is_vip').val(0);
-                            }
-                        }
-                    });
-                }
-            } else {
-                 th_.closest('.product-form').find('.product-count').show();
-            }
-        });
+        // $('body').on('change','.namiclature_id',function(){
+        //     var pId = $(this).val();
+        //     var th_ = $(this);
+        //     if($('#shippingrequest-shipping_type').val() != 5){
+        //         if(pId) {
+        //             $.ajax({
+        //                 url: '/warehouse/product/get-product-info',
+        //                 method: 'get',
+        //                 dataType: 'json',
+        //                 data: {id: pId},
+        //                 success: function (data) {
+        //                     if(data.individual == 'true'){
+        //                         th_.closest('.product-form').find('.field-product-mac_address').show();
+        //                         th_.closest('.product-form').find('.product-count').val(1).closest('.field-product-count').hide();
+        //                         th_.closest('.product-form').find('.is_vip').val(1);
+        //                     } else {
+        //                         th_.closest('.product-form').find('.field-product-mac_address').hide();
+        //                         th_.closest('.product-form').find('.product-count').val('').closest('.field-product-count').show();
+        //                         th_.closest('.product-form').find('.is_vip').val(0);
+        //                     }
+        //                 }
+        //             });
+        //         }
+        //     } else {
+        //          th_.closest('.product-form').find('.product-count').show();
+        //     }
+        // });
 
 </script>

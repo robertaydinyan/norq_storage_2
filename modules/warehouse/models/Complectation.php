@@ -59,6 +59,7 @@ class Complectation extends \yii\db\ActiveRecord
             'name' => 'Name',
             'count' => 'Count',
             'created_at' => 'Date of creation',
+            'other_cost' => Yii::t('app', 'Other Cost'),
         ];
     }
 }

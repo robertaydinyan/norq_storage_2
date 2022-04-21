@@ -9,7 +9,7 @@ use app\modules\warehouse\models\SuppliersList;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\QtyTypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $this->title = array(Yii::t('app', 'Payments'),'Payments');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -48,14 +48,14 @@ $actions = [
     'buttons' => [
         'update' => function ($url, $model) {
             return \app\rbac\WarehouseRule::can('payments-log', 'update') ?
-                Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
+                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
                     'title' => Yii::t('app', 'Update'),
                     'class' => 'btn text-primary btn-sm mr-2'
                 ]) : '';
         },
         'delete' => function ($url, $model) {
             return  \app\rbac\WarehouseRule::can('payments-log', 'delete') ?
-                Html::a('<i class="fas fa-trash-alt"></i>', $url, [
+                Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
                     'title' => Yii::t('app', 'Delete'),
                     'class' => 'btn text-danger btn-sm',
                     'data' => [

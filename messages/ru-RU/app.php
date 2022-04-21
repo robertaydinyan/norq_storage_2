@@ -206,4 +206,8 @@ return [
     'generate' => 'генерировать',
     'edit shipping request' => 'отредактировать запрос на доставку',
     'confirm shipping' => 'подтвердить доставку',
+    'Services' => 'Услуги',
+    'Value' => 'стоимость',
+    'Code' => 'Код',
+    'Other Cost' => 'Прочие расходы',
 ];

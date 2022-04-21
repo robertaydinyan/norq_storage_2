@@ -15,7 +15,7 @@ $names = array(
     'en-US' => 'Eng',
     'hy' => 'Հայ',
 );
-$lang = Yii::$app->request->get('lang');
+$lang = Yii::$app->request->get('lang') ?: 'hy';
 $flag = $flags[$lang] ?: 'hy';
 $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
 

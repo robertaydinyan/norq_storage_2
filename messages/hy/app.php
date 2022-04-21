@@ -205,4 +205,8 @@ return [
     'generate' => 'առաջացնել',
     'edit shipping request' => 'խմբագրել առաքման հարցումը',
     'confirm shipping' => 'հաստատել առաքումը',
+    'Services' => 'Ծառայություններ',
+    'Value' => 'Արժեք',
+    'Code' => 'Կոդ',
+    'Other Cost' => 'Այլ ծախսեր',
 ];

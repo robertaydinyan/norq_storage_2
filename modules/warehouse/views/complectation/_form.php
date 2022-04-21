@@ -24,7 +24,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
         <div class="col-sm-6">
             <label class="control-label"   for="namiclature_id"><?php echo Yii::t('app', 'Nomenclature'); ?></label>
             <div id="showProducts"></div>
-           <input type="text" class="form-control" readonly value="Ծառայություններ"><br>
+           <input type="text" class="form-control" readonly value="<?php echo Yii::t('app', 'Services'); ?>"><br>
            <input type="hidden" name="namiclature_id" class="namiclature_id" value="10">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             <input type="hidden" value="1"  name="Complectation[count]" autocomplete="off" aria-invalid="false">
@@ -32,7 +32,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
             <?= $form->field($model, 'other_cost')->input('number') ?>
           
         </div>
-        <div class="shipping-request-form col-sm-6">
+        <div class="shipping-request-form col-sm-6" id="product-add-block">
             <?php if($model->isNewRecord){ ?>
                 <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/shipping-request/create-product.php'); ?>
             <?php }  ?>
