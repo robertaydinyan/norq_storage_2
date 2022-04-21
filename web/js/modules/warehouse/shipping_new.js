@@ -510,7 +510,7 @@ window.onload = function(){
 
            if($(this).val() == 2 || $(this).val() == 6 || $(this).val() == 5){
             var tp = $(this).val();
-               $.get( "/warehouse/shipping-request/create-product", function( data ) {
+               $.get( "/warehouse/shipping-request/create-product?lang=" + $('html').attr('lang'), function( data ) {
                    $( "#product-add-block" ).html( data );
 
                    $('#deal-addresses').hide();
@@ -557,7 +557,7 @@ window.onload = function(){
 
         if ($('#shippingrequest-shipping_type').val() == 2 || $('#shippingrequest-shipping_type').val() == 6 || $('#shippingrequest-shipping_type').val() == 5) {
             var tp = $('#shippingrequest-shipping_type').val();
-            $.get( "/warehouse/shipping-request/create-product", function( data ) {
+            $.get( "/warehouse/shipping-request/create-product?lang=" + $('html').attr('lang'), function( data ) {
                 $( "#product-add-block" ).html( data );
                 $('#deal-addresses').hide();
                 $('.hide-block').hide();
