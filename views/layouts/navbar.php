@@ -150,6 +150,3 @@ $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
        Helper::constructMenu(Yii::$app->controller->module->id);
     ?>
 </div>
-
-
-

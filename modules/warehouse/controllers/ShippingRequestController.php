@@ -1,6 +1,6 @@
 <?php
 namespace app\modules\warehouse\controllers;
-
+use yii\data\ArrayDataProvider;
 use app\components\Url;
 use app\models\Notifications;
 use app\models\User;
@@ -115,24 +115,60 @@ class ShippingRequestController extends Controller {
     }
 
     public function actionCalendar() {
+
+        
+       
         $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         TableRowsStatus::checkRows('ShippingRequest');
         $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app->request->get('type')])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
-        $searchModel = new ShippingRequestSearch();
+      
         $shipping_types = ShippingType::find()->orderBy(['order_'=>SORT_ASC])->all();
-        $dataProvider = $searchModel->search(Yii::$app
-            ->request->queryParams, null, true);
-        $date = date('Y-m-d');
-        var_dump($date);die();
-        $dataProvider->query->andWhere('>','created_at','01.05.2022');        
+      
+        $date_start = date('01-m-Y');
+        $date_end = date('31-m-Y');
+        if(!isset($_GET['type'])){
+             $res = ShippingRequest::find()->where(['>=','created_at',$date_start]);
+             $res->where(['>=','created_at',$date_start]);
+             $res->andWhere(['<=','created_at',$date_end]);
+             
+            if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
+                       $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
+                    }
+            if (isset($_GET['supplier_warehouse_id']) && !empty($_GET['supplier_warehouse_id'])) {
+                       $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
+                    }
+            if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+                       $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
+                    }           
+                 $l =   $res->all();
+                    
+
+            
+        } else {
+             $res = ShippingRequest::find();          
+             $res->where(['>=','created_at',$date_start]);
+             $res->andWhere(['<=','created_at',$date_end]);
+             $res->andWhere(['=','shipping_type',intval($_GET['type'])]);
+             if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
+                       $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
+                    }
+            if (isset($_GET['supplier_warehouse_id']) && !empty($_GET['supplier_warehouse_id'])) {
+                       $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
+                    }
+            if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+                       $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
+                    }  
+              $l = $res->all();
+
+        }
+
         $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])
             ->asArray()
             ->all() , 'id', 'name_' . $lang);
         $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
             ->all();
-        $dataUsers = [];             
-        $dataProvider->pagination->pageSize = $rows_count['count'];        
+        $dataUsers = [];
         foreach ($uersData as $key => $value) {
             $dataUsers[$value
                 ->id] = $value->name . ' ' . $value->last_name;
@@ -140,9 +176,88 @@ class ShippingRequestController extends Controller {
         $suppliers = $this->buildTree(SuppliersList::find()
             ->where(['!=', 'id', 6])
             ->asArray()
-            ->all());
+            ->all());       
+
+
+       
+
         return $this->render('calendar', ['searchModel' => $searchModel,'isFavorite' => $isFavorite, 'columns' => $columns,
-            'dataProvider' => $dataProvider, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
+            'dataProvider' => $l, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
+    }
+
+     public function actionCalendarAjax() {
+        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+              
+        $month = $_POST['month_ajax'];
+      
+        $date_start = date('Y-'.$month.'-01');
+        $date_end = date('Y-'.$month.'-31');
+
+      
+        
+        
+        if(!isset($_GET['type'])){
+             $res = ShippingRequest::find()->where(['>=','created_at',$date_start]);
+             $res->where(['>=','created_at',$date_start]);
+             $res->andWhere(['<=','created_at',$date_end]);
+             
+            if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
+                       $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
+                    }
+            if (isset($_GET['supplier_warehouse_id']) && !empty($_GET['supplier_warehouse_id'])) {
+                       $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
+                    }
+            if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+                       $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
+                    }           
+                 $l =   $res->all();
+                    
+
+            
+        } else {
+             $res = ShippingRequest::find();          
+             $res->where(['>=','created_at',$date_start]);
+             $res->andWhere(['<=','created_at',$date_end]);
+             $res->andWhere(['=','shipping_type',intval($_GET['type'])]);
+             if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
+                       $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
+                    }
+            if (isset($_GET['supplier_warehouse_id']) && !empty($_GET['supplier_warehouse_id'])) {
+                       $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
+                    }
+            if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+                       $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
+                    }  
+              $l = $res->all();
+
+        }       
+        
+
+
+        
+        $color = [];
+        $i = 0;
+        $colors = ['#49851b','#a410e8','#b64280','#c3a115','#ab4a16','#0cff09','#f562e0','#6d1d5d','#3fe03d','#67610a','#2ffd32','#52775d'];
+
+
+        foreach($l as $values){
+            if ($i>0) {
+               if(isset($color[$values->shipping_type])){
+                continue;
+               }
+            }            
+        $color[$values->shipping_type] = $colors[$i];
+        $i++;
+        }
+
+        $js_events = [];
+        foreach($l as $value){
+            $js_events[] = ['title'=>$value->shippingtype->{'name_'.$lang}.' '.'#'.$value->id,'start'=>$value->created_at,'url'=>'/warehouse/shipping-request/view?id='.$value->id.'?lang='.$lang,'color'=>$color[$value->shipping_type]];
+        }
+        
+        return json_encode($js_events);
+       
+
     }
     /**
      * Displays a single ShippingRequest model.

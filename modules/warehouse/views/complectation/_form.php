@@ -49,11 +49,11 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends' => 'yii
 
 </div>
 <script>
-        setTimeout(function () {
-            $('.currency__').closest('.field-product-price').remove();
-            $('.field-product-nomenclature_product_id').removeClass('col-lg-4');
-            $('.field-product-nomenclature_product_id').removeClass('col-xl-4');
-            $('.field-product-nomenclature_product_id').addClass('col-lg-8');
-            $('.field-product-nomenclature_product_id').addClass('col-xl-8');
-        }, 500);
+   setTimeout(function(){
+      $('.currency__').closest('.field-product-price').remove();
+      $('.field-product-nomenclature_product_id').removeClass('col-lg-4');
+      $('.field-product-nomenclature_product_id').removeClass('col-xl-4');
+      $('.field-product-nomenclature_product_id').addClass('col-lg-8');
+      $('.field-product-nomenclature_product_id').addClass('col-xl-8');
+   },500);
 </script>

@@ -88,6 +88,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 </div>
 <script>
     $(document).ready(function () {
+console.log(zNodes)
         var t = $("#tree");
         t = $.fn.zTree.init(t, setting, zNodes);
         demoIframe = $("#testIframe");
@@ -101,6 +102,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         //         // $(this).removeAttr('href');
         //     });
         // },1200);
+
     });
     $('#viewInfoNom').modal('show');
 </script>

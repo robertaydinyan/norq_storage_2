@@ -58,8 +58,8 @@ $table_all_columns = array();
                     <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"
                        class="btn btn-primary mr-2"><?php echo Yii::t('app', 'Create a query'); ?></a>
                 <?php endif; ?>
-                <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
-                <button class="btn btn-primary mr-2 position-relative" style="float: right">
+                <!-- <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button> -->
+               <!--  <button class="btn btn-primary mr-2 position-relative" style="float: right">
                     <div id="list1" class="dropdown-check-list" tabindex="100" >
                         <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
                         <ul class="items">
@@ -70,9 +70,9 @@ $table_all_columns = array();
                             endif; ?>
                         </ul>
                     </div>
-                </button>
-                <button class="btn btn-primary mr-2 filter" style="float: right" data-type="<?php echo $_GET['type']; ?>"
-                        data-model="ShippingRequest"><i class="fa fa-wrench "></i></button>
+                </button> -->
+                <!-- <button class="btn btn-primary mr-2 filter" style="float: right" data-type="<?php echo $_GET['type']; ?>"
+                        data-model="ShippingRequest"><i class="fa fa-wrench "></i></button> -->
                 </a>
             </div>
 
@@ -148,33 +148,7 @@ $table_all_columns = array();
                     </div>
 
                 </div>
-                <div class="col-6	col-sm-6	col-md-3 col-lg-3	col-xl-2">
-                    <?php
-                    echo DatePicker::widget([
-                        'name' => 'from_created_at',
-                        'value' => $_GET['from_created_at'],
-                        'options' => ['placeholder' => Yii::t('app', 'Start')],
-                        'pluginOptions' => [
-                            'format' => 'dd-mm-yyyy',
-                            'todayHighlight' => true
-                        ]
-                    ]);
-                    ?>
-
-                </div>
-                <div class="col-6	col-sm-6	col-md-3 col-lg-3	col-xl-2">
-                    <?php
-                    echo DatePicker::widget([
-                        'name' => 'to_created_at',
-                        'value' => $_GET['to_created_at'],
-                        'options' => ['placeholder' => Yii::t('app', 'End')],
-                        'pluginOptions' => [
-                            'format' => 'dd-mm-yyyy',
-                            'todayHighlight' => true
-                        ]
-                    ]);
-                    ?>
-                </div>
+           
                 <div class="col-10	col-sm-10	col-md-4 col-lg-4	col-xl-2">
                     <button type="button" class="btn btn-primary form-control" data-toggle="modal"
                             data-target="#suppliersModal"><?php echo Yii::t('app', 'Suppliers') ?></button>
@@ -696,28 +670,15 @@ $table_all_columns = array();
             if ($actions)
                 array_push($table_columns, $actions);
             ?>
-<!-- <div class="table-scroll"> -->
-             <?php
-            // echo GridView::widget([
-                // 'dataProvider' => $dataProvider,
-                // 'tableOptions' => [
-                    // 'class' => 'table table-hover'
-                // ],
-                // 'columns' => $table_columns,
-            // ]); ?>
-<!-- </div> -->
 
 
-<?php 
-var_dump(GridView::widget(['dataProvider' => $dataProvider]));die();
- ?>
+
+
 
 <div id='calendar-container'>
     <div id='calendar'></div>
   </div>
     
-    
-
 
         </div>
         <div class="modal fade" id="viewInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -736,10 +697,40 @@ var_dump(GridView::widget(['dataProvider' => $dataProvider]));die();
         </div>
 
     </div>
+
+
 <?php endif; ?>
 
 
+<?php 
+
+
+$js_events = [];
+$color = [];
+$i = 0;
+$colors = ['#49851b','#a410e8','#b64280','#c3a115','#ab4a16','#0cff09','#f562e0','#6d1d5d','#3fe03d','#67610a','#2ffd32','#52775d'];
+foreach($dataProvider as $value){
+    if ($i>0) {
+       if(isset($color[$value->shipping_type])){
+        continue;
+       }
+    }
+    
+$color[$value->shipping_type] = $colors[$i];
+$i++;
+}
+
+foreach($dataProvider as $value){
+    
+    $js_events[] = ['title'=>$value->shippingtype->{'name_'.$lang}.' '.'#'.$value->id,'start'=>$value->created_at,'url'=>'/warehouse/shipping-request/view?id='.$value->id.'?lang='.$lang,'color'=>$color[$value->shipping_type]];
+    
+}
+
+?>
+
     <script>
+
+
 
 const months = {
   January: '01',
@@ -754,15 +745,15 @@ const months = {
   October: '10',
   November: '11',
   December: '12',
-}
-
-      document.addEventListener('DOMContentLoaded', function() {
+}   
 
 
+window.onload = function() {
 
+    var $x = <?php echo json_encode($js_events); ?>;
     var today = new Date();
     var calendarEl = document.getElementById('calendar');    
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    var new_var_cal = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
       height: 'parent',
       header: {
@@ -775,43 +766,157 @@ const months = {
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2022-04-18',
-        },        
-      ]
+
+      events: $x,
+      textColor : '#FFFFFF',
+      
+      eventClick: function(info) {
+    info.jsEvent.preventDefault(); // don't let the browser navigate
+    if (info.event.url) {       
+      showPage(info.event.url,info.event._def.title);
+       }
+    },
+    
     });
 
-    calendar.render();
+    new_var_cal.render();
 
 
 
-  });
-
-        
-
-        document.addEventListener('DOMContentLoaded', function() {
-            $(".fc-next-button" ).click(function() {
+$(document).on('click','.fc-next-button', function() {
                 
                 var current_month = $('.fc-center').find('h2').text();     
                 current_month = current_month.split(' ');                             
-                console.log(months[current_month[0]]);
-                             
+                var month_ajax = months[current_month[0]];
+                var events;
+                var pathname = window.location.href.split('/')[5].split('calendar')[1];
+                
+                        
+                 
+                  $.ajax({
+                            url: "/warehouse/shipping-request/calendar-ajax"+pathname+"",
+                                type: "post",
+                                data: {month_ajax: month_ajax},
+                                dataType: "json",
+                                success: function (response) {
+                                     if($.isEmptyObject(response)){
+                                        events = '';
+                                    }else{
+                                        events = response;
+                                    }
+                                        
+
+                                        new_var_cal.destroy();
+                                        var today = new Date();                                        
+                                        day =  today.getDate(),
+                                        year = today.getFullYear();                                                                               
+                                        var calendarEl = document.getElementById('calendar');    
+                                        new_var_cal = new FullCalendar.Calendar(calendarEl, {
+                                          plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+                                          height: 'parent',
+                                          header: {
+                                            left: 'prev,next',
+                                            center: 'title',
+                                            right: ''
+                                          },
+                                          defaultView: 'dayGridMonth',
+                                          defaultDate:  year+'-'+month_ajax+'-'+day,
+                                          navLinks: true, // can click day/week names to navigate views
+                                          editable: true,
+                                          eventLimit: true, // allow "more" link when too many events
+                                          events: events,
+                                          
+                                           eventClick: function(info) {
+                                            info.jsEvent.preventDefault(); // don't let the browser navigate
+                                            if (info.event.url) {
+                                              
+                                              showPage(info.event.url,info.event._def.title);
+                                               }
+                                            }
+                                        });
+                                        new_var_cal.render();
+                            },
+                                error: function() {
+                                  
+                                }
+                            });
+                                                       
             });
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            $(".fc-prev-button" ).click(function() {
+        
+        
+            $(document).on('click','.fc-prev-button', function() {
+                var events;
                 var current_month = $('.fc-center').find('h2').text();
                 current_month = current_month.split(' ');                               
-                console.log(months[current_month[0]]);
+                var month_ajax = months[current_month[0]];
+                var pathname = window.location.href.split('/')[5].split('calendar')[1];
+               
+                
+               
+                $.ajax({
+                            url: "/warehouse/shipping-request/calendar-ajax"+pathname+"",
+                                type: "post",
+                                data: {month_ajax: month_ajax},
+                                dataType: "json",
+                                success: function (response) {
+                                    if($.isEmptyObject(response)){
+                                        events = '';
+                                    }else{
+                                        events = response;
+                                    } 
+                                   
+
+
+                                    
+                                        
+                                        new_var_cal.destroy();
+                                        var today = new Date();                                        
+                                        day =  today.getDate(),
+                                        year = today.getFullYear();                                        
+                                        var calendarEl = document.getElementById('calendar');    
+                                        new_var_cal = new FullCalendar.Calendar(calendarEl, {
+                                          plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+                                          height: 'parent',
+                                          header: {
+                                            left: 'prev,next',
+                                            center: 'title',
+                                            right: ''
+                                          },
+                                          defaultView: 'dayGridMonth',
+                                          defaultDate: year+'-'+month_ajax+'-'+day,
+                                          navLinks: true, // can click day/week names to navigate views
+                                          editable: true,
+                                          eventLimit: true, // allow "more" link when too many events
+                                          events: events,
+                                          
+                                           eventClick: function(info) {
+                                             info.jsEvent.preventDefault(); // don't let the browser navigate
+                                             if (info.event.url) {
+                                               
+                                               showPage(info.event.url,info.event._def.title);
+                                                }
+                                             }
+                                        });
+                                        new_var_cal.render();
+                                },
+                                error: function() {
+                                  
+                                }
+                            });
             });
-        });
 
+            
 
-     
+}
 
     </script>
+    <style type="text/css">
+        .fc-title{
+            color: white;
+        }
+    </style>
+
+
 
 
 

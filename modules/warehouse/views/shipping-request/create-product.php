@@ -24,7 +24,7 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         </div>
         <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4" >
             <label class="control-label" for="product-price">Գին</label>
-            <input type="number"  class="form-control price__" onchange="showTotal($(this))" name="Product[price][]" autocomplete="off">
+            <input type="number"  class="form-control price__" onchange="showTotal($(this)" name="Product[price][]" autocomplete="off">
         </div>
         <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4" >
             <label class="control-label" for="product-price">Արժույթ</label>
@@ -121,7 +121,8 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
                     });
                 }
             } else {
-                th_.closest('.product-form').find('.product-count').show();
+                 th_.closest('.product-form').find('.product-count').show();
             }
         });
+
 </script>

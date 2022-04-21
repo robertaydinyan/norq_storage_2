@@ -52,5 +52,4 @@ class Action extends \yii\db\ActiveRecord
     public function getByControllerName() {
         return $this->hasMany(Action::class, ['controller_name' => 'controller_name'])->all();
     }
-
 }

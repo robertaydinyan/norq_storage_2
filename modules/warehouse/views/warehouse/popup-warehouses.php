@@ -49,7 +49,6 @@ $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'nam
     </div>
 </div>
 <script>
-
     $('#viewInfoWr').modal('show');
 
 </script>
