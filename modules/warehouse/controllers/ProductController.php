@@ -63,7 +63,7 @@ class ProductController extends Controller
         $searchModel = new ProductSearch();
         $dataProvider2 = $searchModel->search_(Yii::$app->request->post());
         TableRowsStatus::checkRows('Product', 1);
-        $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id])->one();
         $dataProvider2->pagination->pageSize = $rows_count['count'];
 
@@ -396,9 +396,13 @@ class ProductController extends Controller
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search_(Yii::$app->request->post());
         TableRowsStatus::checkRows('Product', 2);
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
+        $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => 2])->orderBy('order')->all();
 
         return $this->render('product-more', [
-            'dataProvider' => $dataProvider
+            'columns' => $columns,
+            'dataProvider' => $dataProvider,
+            'isFavorite' => $isFavorite
         ]);
     }
 }

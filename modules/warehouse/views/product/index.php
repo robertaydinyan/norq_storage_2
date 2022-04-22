@@ -19,9 +19,7 @@ use app\modules\warehouse\models\Warehouse;
 /* @var $groups app\modules\warehouse\models\ProductSearch */
 /* @var $rols app\modules\warehouse\models\ProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
-
-
+/* @var $dataProvider2 yii\data\ActiveDataProvider */
 
 $this->title = array(Yii::t('app', 'goods'),'goods');
 $this->params['breadcrumbs'][] = $this->title[0];
@@ -124,35 +122,35 @@ if (count($table_columns) == 0) {
 
 <div class="group-product-index">
     <div class="d-flex flex-wrap justify-content-between ">
-    <h1  data-title=" <?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+        <h1  data-title=" <?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <div class="d-flex align-items-start pt-2">
-        <?php echo \app\rbac\WarehouseRule::can('group-product', 'show-group-products') ?
+            <?php echo \app\rbac\WarehouseRule::can('group-product', 'show-group-products') ?
 
-        '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary mr-2" style="float: right;">' .
-        Yii::t('app', 'Product group') . '</a>' : ''; ?>
+            '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary mr-2" style="float: right;">' .
+            Yii::t('app', 'Product group') . '</a>' : ''; ?>
 
-        <a href="/warehouse/product/product-more?lang=<?php echo  Yii::$app->language ?>" class="btn btn-primary mr-2" style="float: right;">
-            <?php echo  Yii::t('app', 'Product') ?>
-        </a>
+            <a href="/warehouse/product/product-more?lang=<?php echo  Yii::$app->language ?>" class="btn btn-primary mr-2" style="float: right;">
+                <?php echo  Yii::t('app', 'More about product') ?>
+            </a>
 
-        <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
-        <button class="btn btn-primary mr-2 position-relative" style="float: right">
-            <div id="list1" class="dropdown-check-list" tabindex="100" >
-                <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
-                <ul class="items">
-                    <?php if ($columns):
-                        foreach ($columns as $i => $k): ?>
-                            <li><input type="checkbox" class="hide-row" data-queue="<?php echo $i; ?>"  checked/><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
-                        <?php endforeach;
-                    endif;?>
-                </ul>
-            </div>
-        </button>
-        <button class="btn btn-primary mr-2 filter" style="float: right" data-model="Product"><i class="fa fa-wrench "></i></button></a>
+            <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
+            <button class="btn btn-primary mr-2 position-relative" style="float: right">
+                <div id="list1" class="dropdown-check-list" tabindex="100" >
+                    <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
+                    <ul class="items">
+                        <?php if ($columns):
+                            foreach ($columns as $i => $k): ?>
+                                <li><input type="checkbox" class="hide-row" data-queue="<?php echo $i; ?>"  checked/><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
+                            <?php endforeach;
+                        endif;?>
+                    </ul>
+                </div>
+            </button>
+            <button class="btn btn-primary mr-2 filter" style="float: right" data-type="1" data-model="Product"><i class="fa fa-wrench "></i></button>
         </div>
     </div>
 
-<div class="product-index table-scroll" id="lightgallery" style="padding: 20px;">
+    <div class="product-index table-scroll" id="lightgallery" style="padding: 20px;">
         <?= GridView::widget([
             'dataProvider' => $dataProvider2,
             'tableOptions' => [

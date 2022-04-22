@@ -59,7 +59,6 @@ class TableRowsStatus extends \yii\db\ActiveRecord
             $modelName = ($pageName == 'User' ? 'app\models\\' : 'app\modules\warehouse\models\\') . $pageName;
             $w = new $modelName;
             $k = 0;
-
             foreach ($w->attributeLabelsAll($type) as $i => $v) {
                 $t = new TableRowsStatus();
                 $t->page_name = $pageName;

@@ -141,7 +141,6 @@ return [
     'search' => 'искать',
     'Previous' => 'Предыдущий',
     'Next' => 'Следующий',
-
     'Menu' => 'Меню',
     'Create Composition' => 'Создать композицию',
     'Complectation Products' => 'Комплектация Продукция',
@@ -212,4 +211,7 @@ return [
     'Other Cost' => 'Прочие расходы',
     'Account' => 'Аккаунт',
     'Logout' => 'выйти',
+    'Product Movement' => 'Движение продукта',
+    'Product balance' => 'Остаток продукта',
+    'More about product' => 'Подробнее о продукте',
 ];

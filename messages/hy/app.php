@@ -152,7 +152,6 @@ return [
     'search' => 'փնտրել',
     'Previous' => 'Նախորդ',
     'Next' => 'Հաջորդ',
-
     'Menu' => 'Մենյու',
     'Create Composition' => 'Ստեղծել կոմպոզիցիա',
     'Complectation Products' => 'Կոմպլեկտավորման արտադրանք',
@@ -211,4 +210,7 @@ return [
     'Other Cost' => 'Այլ ծախսեր',
     'Account' => 'Հաշիվ',
     'Logout' => 'դուրս գալ',
+    'Product Movement' => 'Ապրանքի շարժ',
+    'Product balance' => 'Ապրանքի մնացորդ',
+    'More about product' => 'Ավելին ապրանքի մասին',
 ];

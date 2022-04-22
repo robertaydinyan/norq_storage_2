@@ -158,7 +158,6 @@ class SiteController extends Controller
             $rows_count = TableRowsCount::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id])->one();
             $columnsActive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => $type])->orderBy('order')->all();
             $columnsPassive = TableRowsStatus::find()->where(['page_name' => $pageName, 'userID' => Yii::$app->user->id, 'status' => 0, 'type' => $type])->orderBy('order')->all();
-
             return $this->renderAjax('/modal/modal-table', [
                 'page' => $pageName,
                 'columnsActive' => $columnsActive,

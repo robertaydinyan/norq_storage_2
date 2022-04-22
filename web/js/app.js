@@ -393,6 +393,7 @@ $('.change-site-status').on('click', function() {
         }).done(() => {
             $(this).find('i').attr('class', status === 1 ? 'fas fa-ban' : 'fas fa-car');
             $(this).attr('data-status', 1 - status);
+            $(this).attr('title', status === 1 ? $(this).data('stop') : $(this).data('start'));
         })
     }
 });

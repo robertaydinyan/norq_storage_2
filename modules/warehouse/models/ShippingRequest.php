@@ -68,9 +68,9 @@ class ShippingRequest extends \yii\db\ActiveRecord {
         if (!$type || $type == 7) {
             return [
                 'id' => 'ID',
-                'shippingType' => 'Shipping Type',
-                'providerWarehouse' => 'Provider Warehouse',
-                'supplierWarehouse' => 'Supplier Warehouse',
+                'shippingType' => 'shipping type',
+                'providerWarehouse' => 'Provider warehouse',
+                'supplierWarehouse' => 'Supplier warehouse',
                 'supplier' => 'Supplier',
                 'totalAmount' => 'Total amount',
                 'created' => 'Created',
@@ -80,8 +80,8 @@ class ShippingRequest extends \yii\db\ActiveRecord {
         } else if ($type == 6 || $type == 2 || $type == 5) {
             return [
                 'id' => 'ID',
-                'shippingType' => 'Shipping Type',
-                'supplierWarehouse' => 'Supplier Warehouse',
+                'shippingType' => 'shipping type',
+                'supplierWarehouse' => 'Supplier warehouse',
                 'responsible' => 'Responsible',
                 'supplier' => 'Supplier',
                 'totalAmount' => 'Total amount',
@@ -92,8 +92,8 @@ class ShippingRequest extends \yii\db\ActiveRecord {
         } else if ($_GET['type'] == 8 || $_GET['type'] == 10) {
             return [
                 'id' => 'ID',
-                'shippingType' => 'Shipping Type',
-                'supplierWarehouse' => 'Supplier Warehouse',
+                'shippingType' => 'shipping type',
+                'supplierWarehouse' => 'Supplier warehouse',
                 'supplier' => 'Supplier',
                 'status' => 'Status',
                 'totalAmount' => 'totalAmount',
@@ -102,8 +102,8 @@ class ShippingRequest extends \yii\db\ActiveRecord {
         } else if ($_GET['type'] == 9) {
             return [
                 'id' => 'ID',
-                'shippingType' => 'Shipping Type',
-                'supplierWarehouse' => 'Supplier Warehouse',
+                'shippingType' => 'shipping type',
+                'supplierWarehouse' => 'Supplier warehouse',
                 'responsible' => 'Responsible',
                 'supplier' => 'Supplier',
                 'status' => 'Status',

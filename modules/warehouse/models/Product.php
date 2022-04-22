@@ -48,18 +48,18 @@ class Product extends \yii\db\ActiveRecord {
         return [
             'id' => 'ID',
             'images' => 'Արտադրանքի նկարները',
-            'price' => 'Գին',
-            'currency' => 'Գին',
+            'price' => Yii::t('app', 'Price'),
+            'currency' => Yii::t('app', 'Currency'),
             'retail_price' => 'Մանրածախ գին',
-            'supplier_id' => 'Մատակարար',
+            'supplier_id' => Yii::t('app', 'Supplier'),
             'mac_address' => 'Mac հասցե',
             'invoice' => 'Invoice',
-            'comment' => 'Մեկնաբանություն',
-            'count' => 'Քանակ',
-            'created_at' => 'Ստեղծվել է /ժամը/',
-            'warehouse_id' => 'Պահեստ',
-            'status' => 'Պահեստ',
-            'nomenclature_product_id' => 'Ապրանք',
+            'comment' => Yii::t('app', 'Comment'),
+            'count' => Yii::t('app', 'Count'),
+            'created_at' => Yii::t('app', 'Created'),
+            'warehouse_id' => Yii::t('app', 'Warehouse'),
+            'status' => Yii::t('app', 'Status'),
+            'nomenclature_product_id' => Yii::t('app', 'Product'),
         ];
     }
     /**
@@ -76,7 +76,21 @@ class Product extends \yii\db\ActiveRecord {
                 'Individual' => 'Individual',
 
             ];
+        } else if ($type == 2) {
+            return [
+                'id' => 'id',
+                'WarehouseName' => 'Warehouse name',
+                'ProductName' => 'Product name',
+                'ProductPicture' => 'Product Picture',
+                'price' => 'Price',
+                'currency' => 'Currency',
+                'comment' => 'Comment',
+                'created' => 'Created',
+                'invoice' => 'invoice',
+            ];
         }
+
+        return [];
     }
     public function upload() {
         if ($this->validate()) {
@@ -89,6 +103,11 @@ class Product extends \yii\db\ActiveRecord {
             return false;
         }
     }
+
+    public function getCurrencyData() {
+        return $this->hasOne(Currency::class, ['id' => 'currency']);
+    }
+
      public function MoveData($data, $nomiclature, $warehouse) {
         $end = date('Y-m-d', strtotime($data['to_created_at']));
         $start = date('Y-m-d', strtotime($data['from_created_at']));
