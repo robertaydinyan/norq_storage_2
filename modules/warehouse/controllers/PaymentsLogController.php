@@ -86,8 +86,8 @@ class PaymentsLogController extends Controller
             ->asArray()
             ->all() , 'id', 'symbol');
         if (Yii::$app->request->isPost) {
-            $model->load(Yii::$app->request->post()); // * Currency::getCurrencyByID($model->currency)['value']
-            $model->price = $model->price * Currency::getCurrencyValue($model->currency);
+            $model->load(Yii::$app->request->post());
+            $model->price = $model->price * Currency::getCurrencyByID($model->currency)['value'];
             if ($model->save(false)) {
                 return $this->redirect(['index','isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
             }

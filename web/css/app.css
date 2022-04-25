@@ -12334,6 +12334,14 @@ aside .nav-link.active {
   top: 3.5rem !important;
 }
 
+.dropdown-notifications-footer {
+  position: fixed !important;
+  top: 366px !important;
+  background: #0084f4 !important;
+  width: 294px !important;
+  color: white !important;
+}
+
 .dropdown-notifications .dropdown-menu {
   position: static;
   float: none;

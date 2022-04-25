@@ -215,7 +215,7 @@ function startTime() {
     let h = today.getHours();
     let m = checkTime(today.getMinutes());
     if (document.getElementById('txt')) {
-        document.getElementById('txt').innerHTML = d + "/" + mh + "/" + Y + " " + h + ":" + m ;
+        document.getElementById('txt').innerHTML = d + "." + mh + "." + Y + " " + h + ":" + m ;
         setTimeout(startTime, 1000);
     }
 }

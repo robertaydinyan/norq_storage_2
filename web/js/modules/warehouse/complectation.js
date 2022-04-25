@@ -322,19 +322,19 @@ $(document).ready(function () {
     });
 
 });
-// $('.clone-product').off().on('click', function() {
-//     alert('aaa')
-//     var el_ = $(this).closest('.product-form').clone();
-//     el_.find('input,select').val(null);
-//     var ct = $('.product-form').length;
-//     el_.find('.mac').attr('name','Product[mac_address]['+ct+'][]');
-//     el_.find('.cloned').remove();
-//     $('#product-add-block').append('<br/>');
-//     $('#product-add-block').append(el_);
-// });
+
 
 window.onload = function(){
+$('.clone-product').on('click', function() {
 
+    var el_ = $(this).closest('.product-form').clone();
+    el_.find('input,select').val(null);
+    var ct = $('.product-form').length;
+    el_.find('.mac').attr('name','Product[mac_address]['+ct+'][]');
+    el_.find('.cloned').remove();
+    $('#product-add-block').append('<br/>');
+    $('#product-add-block').append(el_);
+});
         $('body').on('click','.clone-mac',function (){
             var el_ = $(this).closest('.cloned-mac').clone();
             el_.addClass('cloned').css('padding-top','10px');

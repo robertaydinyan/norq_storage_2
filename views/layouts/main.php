@@ -114,16 +114,7 @@ AppAsset::register($this);
                     </div>
                 </div>
         <?php endif; ?>
-            <!-- Navbar -->
-
-            <!--  --><?php
-            /*        //        if(Yii::$app->controller->module->id == 'fastnet'){
-                    Helper::constructMenu(Yii::$app->controller->module->id);
-                    //        }
-                    */?>
-            <!-- .end Navbar -->
-
-            <!-- Content -->
+         
             <div class="wrap-page-columns">
                 <?= $content ?>
             </div>
@@ -180,16 +171,7 @@ AppAsset::register($this);
                                 }            
                         ); 
                     }
-            );   
-            setInterval(function() {
-                $.ajax({
-                    url: '/site/notifications-update',
-                    method:'GET',
-                    success:function(data){
-                        $('.nots').html(data);
-                    }
-                });                            
-            },25000);   
+            );     
         ");
     ?>
     <div class=<?= $options['class'] ?> >
@@ -218,8 +200,8 @@ AppAsset::register($this);
 
     <style>
         .window {
-            width: 65% !important;
-            height: 65% !important;
+            width: 65%;
+            height: 65%;
             box-shadow:none  !important;
         }
         .dropdown-menu{
@@ -273,7 +255,7 @@ AppAsset::register($this);
             padding: 0px !important;
         }
 
-        #page-content .favorite,.bookmarks,.navbar,.show-modal,.star{
+         #page-content .favorite,.bookmarks,.navbar,.show-modal, .star{
             display:none !important;
         }
         h1{
@@ -287,12 +269,10 @@ AppAsset::register($this);
                 $(el_).closest('.window').css({'width':'100%','height':'100%','top':'0px','left':'0px'});
                 $(el_).closest('.window').find('iframe').css({'width':'100%','min-height':'100vh'});
             }
-
-
         </script>
     <?php } ?>
     <?php $this->endBody() ?>
-    <div class="window" style="max-width: auto">
+    <div class="window" style="max-width: auto;display: none;position: fixed;">
         <div class="title-bar">
             <div class="title-bar-text">Another window with contents</div>
             <div class="title-bar-controls">

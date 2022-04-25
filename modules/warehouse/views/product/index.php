@@ -42,7 +42,7 @@ $table_all_columns = array(
 
             return
             Html::a( $product->warehouse->{'name_' . $lang},    
-                                ['#'],
+                                '#',
                                 ['onclick'=>"showPage('/warehouse/warehouse/view?id=".$product->warehouse->{'id'}."','".$product->warehouse->{'name_' . $lang}."')"]
                     );
              
@@ -55,7 +55,7 @@ $table_all_columns = array(
             return           
 
             Html::a( $product->nomenclatureProduct->{'name_' . $lang},    
-                                ['#'],
+                                '#',
                                 ['onclick'=>"showPage('/warehouse/nomenclature-product/view?id=".$product->nomenclatureProduct->{'id'}."','".$product->nomenclatureProduct->{'name_' . $lang}."')"]
                     );
       

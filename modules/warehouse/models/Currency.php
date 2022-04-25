@@ -108,7 +108,7 @@ class Currency extends \yii\db\ActiveRecord
         foreach ($currencies as $c) {
             $date = $date ? $date : date("Y/m/d");
             $value = CurrencyValue::find()->where(['date' => $date, 'currencyID' => $c->id])->one()->value;
-            $res .= $value ? (number_format($n / $value, '0', '.', ',') . $c->symbol . '
+            $res .= $value ? (number_format($n / $value, '1', '.', ',') . $c->symbol . '
 ') : '';
         }
 

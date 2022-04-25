@@ -417,7 +417,7 @@ class WarehouseController extends Controller {
                 $t->order = $i - $ps;
                 $t->save(false);
             }
-            $t = TableRowsCount::find()->where(['page_name' => $request->post('page')])->one();
+            $t = TableRowsCount::find()->where(['page_name' => $request->post('page'), 'userID' => Yii::$app->user->id])->one();
             if (!$t) {
                 $t = new TableRowsCount();
                 $t->page_name = $request->post('page');
@@ -429,4 +429,3 @@ class WarehouseController extends Controller {
         echo '<script>history.go(-1)</script>';
     }
 }
-
