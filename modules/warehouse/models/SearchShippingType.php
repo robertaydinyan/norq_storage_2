@@ -18,7 +18,7 @@ class SearchShippingType extends ShippingType
     {
         return [
             [['id'], 'integer'],
-            [['name_hy', 'name_ru', 'name_en'], 'safe'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -40,7 +40,6 @@ class SearchShippingType extends ShippingType
      */
     public function search($params)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $query = ShippingType::find();
 
         // add conditions that should always apply here
@@ -62,7 +61,7 @@ class SearchShippingType extends ShippingType
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name_' . $lang, $this->{'name_' . $lang}]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

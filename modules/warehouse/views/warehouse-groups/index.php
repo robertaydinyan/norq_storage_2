@@ -6,7 +6,6 @@ use yii\widgets\Pjax;
 use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->title = array(Yii::t('app', 'Virtual (types)'),'Virtual (types)');
@@ -35,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
             'filterModel' => $searchModel,
             'columns' => [
                 'id',
-                'name_' . $lang,
+                'name',
                 ['class' => 'yii\grid\ActionColumn',
                     'template' => '{update}{delete}',
                     'buttons' => [

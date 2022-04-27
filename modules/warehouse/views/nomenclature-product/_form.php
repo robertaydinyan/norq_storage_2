@@ -12,7 +12,6 @@ use kartik\date\DatePicker;
 /* @var $tableTreeGroups app\modules\warehouse\models\NomenclatureProduct */
 /* @var $manufacturers app\modules\warehouse\models\Manufacturer[] */
 /* @var $form yii\widgets\ActiveForm */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 
@@ -184,7 +183,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 <label><?php echo Yii::t('app', 'Group'); ?></label>
                 <ul class="file-tree" style="border:1px solid lightgrey;padding: 20px;padding-left: 30px;">
                     <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
-                        <li class="file-tree-folder"><span> <?= $tableTreeGroup['name_' . $lang] ?></span>
+                        <li class="file-tree-folder"><span> <?= $tableTreeGroup['name'] ?></span>
                             <ul style="display: block;">
                                 <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/nomenclature-product/tree_table.php', [
                                     'tableTreeGroup' => $tableTreeGroup,

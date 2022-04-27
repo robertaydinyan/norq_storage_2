@@ -40,7 +40,6 @@ class SearchWarehouseTypes extends WarehouseTypes
      */
     public function search($params)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $query = WarehouseTypes::find();
 
         // add conditions that should always apply here
@@ -62,7 +61,7 @@ class SearchWarehouseTypes extends WarehouseTypes
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name_' . $lang, $this->{'name_' . $lang}]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

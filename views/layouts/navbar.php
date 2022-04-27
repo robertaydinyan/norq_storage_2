@@ -15,8 +15,6 @@ $names = array(
     'en-US' => 'Eng',
     'hy' => 'Հայ',
 );
-$lang = Yii::$app->request->get('lang') ?: 'hy';
-$flag = $flags[$lang] ?: 'hy';
 $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
 
 ?>
@@ -73,31 +71,6 @@ $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
             </div>
         </li>
 
-        <li class="nav-item dropdown no-caret">
-            <div class="dropdown">
-                <a href="#" class="g-btn flag shadow-none nav-link" type="button dropdown-toggle" id="dropdownLangButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?php echo $names[$lang]; ?>
-                </a>
-
-                <ul class="dropdown-menu lang-dropdown-menu dropdown-menu-right g-navbar-buttons-drop" aria-labelledby="dropdownLangButton" x-placement="bottom-end" style="position: absolute; transform: translate3d(-126px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                    <li>
-                        <a class="dropdown-item" rel="alternate" hreflang="en" href="<?php echo Url::current(['lang' => 'en-US']) ?>">
-                            <!-- <img src="/img/icons/flags/en.png" class="g-lang-flag" alt="flag" width="20"> --> English
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" rel="alternate" hreflang="ru" href="<?php echo Url::current(['lang' => 'ru-RU']) ?>">
-                            <!-- <img src="/img/icons/flags/ru.png" class="g-lang-flag" alt="flag" width="20"> --> Русский
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" rel="alternate" hreflang="hy" href="<?php echo Url::current(['lang' => 'hy']) ?>">
-                            <!-- <img src="/img/icons/flags/hy.png" class="g-lang-flag" alt="flag" width="20"> --> Հայերեն
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
         <li class="nav-item dropdown no-caret dropdown-notifications">
             <a class="btn btn-icon btn-transparent-dark dropdown-toggle p-0 rounded-circle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell" style="color:#fff"></i>

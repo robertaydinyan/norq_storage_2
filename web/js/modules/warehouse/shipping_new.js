@@ -89,10 +89,10 @@ function selectProductNamiclature(el_){
         }
     });
 }
-function selectWarehouse(el_, lang){
+function selectWarehouse(el_){
     el = el_;
     $.ajax({
-        url: '/warehouse/warehouse/get-warehouses-popup?lang=' + lang,
+        url: '/warehouse/warehouse/get-warehouses-popup',
         method: 'get',
         dataType: 'html',
         success: function (data) {

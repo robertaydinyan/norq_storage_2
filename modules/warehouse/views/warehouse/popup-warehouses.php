@@ -2,9 +2,8 @@
 use app\modules\warehouse\models\WarehouseTypes;
 use app\modules\warehouse\models\WarehouseGroups;
 use yii\helpers\ArrayHelper;
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-$warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id','name_' . $lang);
-$groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'name_' . $lang);
+$warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id','name');
+$groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'name');
 ?>
 <div class="modal fade" id="viewInfoWr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true" style="display: block;">
     <div class="modal-dialog modal-sm" role="document">

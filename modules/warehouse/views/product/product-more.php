@@ -8,19 +8,18 @@ use yii\grid\GridView;
 
 $this->title = array(Yii::t('app', 'More about product'), 'More about product');
 $this->params['breadcrumbs'][] = $this->title[0];
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $hostname = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER[HTTP_HOST];
 $table_all_columns = array(
     'id' => 'id',
     'WarehouseName' => [
         'label' => Yii::t('app', 'Warehouse name'),
         'format' => 'raw',
-        'value' => function($product) use ($lang) {
+        'value' => function($product) {
 
             return
-                Html::a( $product->warehouse->{'name_' . $lang},
+                Html::a( $product->warehouse->name,
                     ['#'],
-                    ['onclick'=>"showPage('/warehouse/warehouse/view?id=".$product->warehouse->{'id'}."','".$product->warehouse->{'name_' . $lang}."')"]
+                    ['onclick' => "showPage('/warehouse/warehouse/view?id=" . $product->warehouse->{'id'} . "','".$product->warehouse->name."')"]
                 );
 
         }
@@ -28,34 +27,14 @@ $table_all_columns = array(
     'ProductName' => [
         'label' => Yii::t('app', 'Product name'),
         'format' => 'raw',
-        'value' => function($product) use ($lang) {
+        'value' => function($product) {
             return
-                Html::a( $product->nomenclatureProduct->{'name_' . $lang},
+                Html::a( $product->nomenclatureProduct->name,
                     ['#'],
-                    ['onclick'=>"showPage('/warehouse/nomenclature-product/view?id=".$product->nomenclatureProduct->{'id'}."','".$product->nomenclatureProduct->{'name_' . $lang}."')"]
+                    ['onclick'=>"showPage('/warehouse/nomenclature-product/view?id=".$product->nomenclatureProduct->{'id'}."','".$product->nomenclatureProduct->name."')"]
                 );
 
         }
-    ],
-    'ProductPicture' => [
-        'label' => Yii::t('app', 'Product Picture'),
-        'format' => 'html',
-        'contentOptions' => function($model) use ($lang, $hostname) {
-            return [
-                'data-responsive' => "https://sachinchoolur.github.io/lightgallery.js/static/img/13-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/13-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/13.jpg 800",
-                'data-sub-html' => "<h4 style='color: white'>" . $model->nomenclatureProduct->{'name_' . $lang} . "</h4>",
-                'class' => 'image',
-                'data-src' => $hostname . $model->nomenclatureProduct->img
-            ];
-        },
-        'value' => function($product) use ($lang, $hostname) {
-            return sprintf('<img class="img-responsive"   width="100" src="%s">',
-
-                $hostname . $product->nomenclatureProduct->img
-
-            );
-        },
-
     ],
     'price' => 'price',
     'currency' => [

@@ -45,8 +45,6 @@ class GroupProductController extends Controller
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-
         if (Yii::$app->request->post()) {
 
             $form_data = Yii::$app->request->post();
@@ -78,11 +76,11 @@ class GroupProductController extends Controller
             's_product.mac_address',
             's_product.comment',
             's_product.created_at',
-            's_nomenclature_product.name_' . $lang . ' as n_product_name',
+            's_nomenclature_product.name as n_product_name',
             's_nomenclature_product.production_date as n_product_production_date',
             's_nomenclature_product.individual as n_product_individual',
             's_nomenclature_product.qty_type_id as n_product_qty_type',
-            's_group_product.name_' . $lang . ' as group_name',
+            's_group_product.name as group_name',
             's_group_product.id as group_id',
             's_warehouse.type as warehouse_type'
         ])
@@ -161,8 +159,6 @@ class GroupProductController extends Controller
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-
         $haveProducts = Product::getGroupProducts($group_id);
         $groupProducts = Product::find()->select([
             's_product.id',
@@ -172,11 +168,11 @@ class GroupProductController extends Controller
             's_product.mac_address',
             's_product.comment',
             's_product.created_at',
-            's_nomenclature_product.name_' . $lang . ' as n_product_name',
+            's_nomenclature_product.name as n_product_name',
             's_nomenclature_product.production_date as n_product_production_date',
             's_nomenclature_product.individual as n_product_individual',
             's_nomenclature_product.qty_type_id as n_product_qty_type',
-            's_group_product.name_' . $lang . ' as group_name',
+            's_group_product.name as group_name',
             's_group_product.id as group_id',
             's_warehouse.type as warehouse_type'
         ])
@@ -212,11 +208,10 @@ class GroupProductController extends Controller
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new GroupProduct();
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-        $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name_' . $lang);
+        $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Notifications::setNotification(1,"Ստեղծվել է ապրանքի խումբ ՝ <b>".$model->{'name_' . $lang} ."</b> ",'/warehouse/group-product');
+            Notifications::setNotification(1,"Ստեղծվել է ապրանքի խումբ ՝ <b>".$model->name ."</b> ",'/warehouse/group-product');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

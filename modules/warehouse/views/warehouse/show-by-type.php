@@ -14,7 +14,6 @@ use \app\modules\warehouse\models\Warehouse;
 $this->title = array(Yii::t('app', 'Warehouse type'),'Warehouse type');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title[0];
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $table_all_columns = [
     'id' => 'id',
@@ -39,20 +38,10 @@ $table_all_columns = [
                     $icon = '<i  class="fa fa-warehouse"></i>';
                     break;
             }
-            return $icon.'  '.$model->getType($model->type)->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+            return $icon.'  '.$model->getType($model->type)->name;
         }
     ],
-    'name_hy' => [
-        'label' => Yii::t('app', 'Name'),
-        'value' => function ($model) {
-            if($model->type != 4){
-                return $model->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
-            } else {
-                return Warehouse::getContactAddressById($model->contact_address_id);
-            }
-
-        }
-    ],
+    'name',
     'responsible_id' => [
         'label' => Yii::t('app', 'storekeeper'),
         'value' => function ($model) {
@@ -87,21 +76,21 @@ $actions = [
     'buttons' => [
         'view' => function ($url, $model) {
             return \app\rbac\WarehouseRule::can('warehouse', 'view') ?
-                Html::a('<i class="fas fa-eye"></i>', URL::to($url), [
+                Html::a('<i class="fas fa-eye"></i>', $url, [
                     'title' => Yii::t('app', 'View'),
                     'class' => 'btn text-primary btn-sm mr-2'
                 ]) : '';
         },
         'update' => function ($url, $model) {
             return \app\rbac\WarehouseRule::can('warehouse', 'update') ?
-                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                     'title' => Yii::t('app', 'Update'),
                     'class' => 'btn text-primary btn-sm mr-2'
                 ]) : '';
         },
         'delete' => function ($url, $model) {
             return \app\rbac\WarehouseRule::can('warehouse', 'delete') ?
-                Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                Html::a('<i class="fas fa-trash-alt"></i>', $url, [
                     'title' => Yii::t('app', 'Delete'),
                     'class' => 'btn text-danger btn-sm',
                     'data' => [

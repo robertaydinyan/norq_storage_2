@@ -4,8 +4,6 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 
-$lang = explode('-', \Yii::$app->language)[0];
-$lang = $lang ?: 'us';
 $this->title = array(Yii::t('app', 'Analogs'),'Analogs');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);

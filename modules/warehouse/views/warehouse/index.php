@@ -12,7 +12,6 @@ use yii\helpers\Url;
 $this->title = array(Yii::t('app', 'Warehouse type'),'Warehouse type');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title[0];
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -37,7 +36,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             <tr>
                 <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'show-by-type') ?
                         ('href="' . Url::to(['show-by-type', 'type' => $ware_type_val->id]) . '"') : '' ?>>
-                        <?php echo $ware_type_val->{'name_' . $lang};?></a></td>
+                        <?php echo $ware_type_val->name;?></a></td>
                 <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'show-by-type') ?
                         'href="' . Url::to(['show-by-type', 'type' => $ware_type_val->id]) . '">' . \Yii::t('app','View') : '>';?>
                        (<?php echo $ware_type_val->count;?>)

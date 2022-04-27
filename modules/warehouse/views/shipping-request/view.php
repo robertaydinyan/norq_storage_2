@@ -7,9 +7,9 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\ShippingRequest */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
-$this->title = array($model->shippingtype->{'name_' . $lang} . '  #'.$model->id, $model->shippingtype->name_en . ' '.$model->id);
+$this->title = array($model->shippingtype->
+    name . '  #'.$model->id, $model->shippingtype->name_en . ' '.$model->id);
 $this->params['breadcrumbs'][] = ['label' => 'Shipping Requests', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 \yii\web\YiiAsset::register($this);
@@ -26,16 +26,16 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         <div class="row">
             <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-5 table-scroll5">
                 <table class="table table-hover">
-                    <?php if($model->provider->{'name_' . $lang}){ ?>
+                    <?php if($model->provider->name){ ?>
                     <tr>
                         <th scope="col"><?php echo Yii::t('app', 'Delivery warehouse'); ?></th>
-                        <td><?php echo $model->provider->{'name_' . $lang};?></td>
+                        <td><?php echo $model->provider->name;?></td>
                     </tr>
                     <?php } ?>
-                    <?php if($model->supplier->{'name_' . $lang}){ ?>
+                    <?php if($model->supplier->name){ ?>
                     <tr>
                         <th scope="col"><?php echo Yii::t('app', 'Supplier warehouse'); ?></th>
-                        <td><?php echo $model->supplier->{'name_' . $lang};?></td>
+                        <td><?php echo $model->supplier->name;?></td>
                     </tr>
                     <?php } ?>
                     <?php if($model->request_id){ ?>
@@ -44,19 +44,19 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                         <td><a href="#" onclick="showPage('/warehouse/shipping-request/view?id=<?php echo $model->request_id;?>','<?php echo Yii::t('app', 'Purchase request'); ?> (<?php echo $model->request_id;?>')"><?php echo Yii::t('app', 'Purchase request'); ?> (<?php echo $model->request_id;?>)</a></td>
                     </tr>
                     <?php } ?>
-                    <?php if($model->supplierp->{'name_' . $lang} && $model->shipping_type != 9){ ?>
+                    <?php if($model->supplierp->name && $model->shipping_type != 9){ ?>
                         <tr>
                             <th scope="col"><?php echo Yii::t('app', 'Supplier'); ?></th>
-                            <td><?php echo $model->supplierp->{'name_' . $lang};?></td>
+                            <td><?php echo $model->supplierp->name;?></td>
                         </tr>
                     <?php } ?>
-                    <?php if($model->supplierp->{'name_' . $lang} && $model->shipping_type == 9){ ?>
+                    <?php if($model->supplierp->name && $model->shipping_type == 9){ ?>
                         <tr>
                             <th scope="col"><?php echo Yii::t('app', 'Partner'); ?></th>
-                            <td><?php echo $model->supplierp->{'name_' . $lang};?> <?php echo @$model->supplierp->surname;?></td>
+                            <td><?php echo $model->supplierp->name;?> <?php echo @$model->supplierp->surname;?></td>
                         </tr>
                     <?php } ?>
-                    <?php if($model->partner->{'name_' . $lang}){ ?>
+                    <?php if($model->partner->name){ ?>
                         <tr>
                             <th scope="col"><?php echo Yii::t('app', 'Partner'); ?></th>
                             <td><?php echo $model->partner->name;?></td>
@@ -65,7 +65,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
                     <tr>
                         <th scope="col"><?php echo Yii::t('app', 'Status'); ?></th>
-                        <td><?php echo $model->status_->{'name_' . $lang};?></td>
+                        <td><?php echo $model->status->name;?></td>
                     </tr>
                     <tr>
                         <th scope="col"><?php echo Yii::t('app', 'Created'); ?></th>
@@ -128,7 +128,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                             <tr>
 
                                 <td><?php echo $prod_val['id'];?></td>
-                                <td><?php echo $prod_val['name_'.$lang];?></td>
+                                <td><?php echo $prod_val['name'];?></td>
                                 <td><a target="_blank" href="<?= $prod_val['img'] ?>" ><img width="100" src="<?= $prod_val['img'] ?>"></a></td>
                                 <td><?php echo $prod_val['count'];?> <?php echo $prod_val['qty_type'];?></td>
                                 <?php if($model->shipping_type == 9){ ?>

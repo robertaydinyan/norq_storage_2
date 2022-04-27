@@ -12,7 +12,6 @@ $this->params['breadcrumbs'][] = $this->title[0];
 \yii\web\YiiAsset::register($this);
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 
 <div class="group-product-index">
@@ -47,9 +46,9 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <?php foreach ($whProducts as $products) : ?>
                    
                         <tr>
-                            <td><?= $products['nProduct']['name_' . $lang] ?></td>
+                            <td><?= $products['nProduct']['name'] ?></td>
                             <td>
-                                <?= $products['n_product_count'] ?> <?= $products['nProduct']['qtyType']['type_' . $lang] ?>
+                                <?= $products['n_product_count'] ?> <?= $products['nProduct']['qtyType']['type'] ?>
                             </td>
                             <td><?= $products['price']?>Դ</td>
 

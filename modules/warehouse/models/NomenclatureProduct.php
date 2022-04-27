@@ -69,12 +69,8 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'vendor_code_hy' => Yii::t('app', 'Vendor code(Armenian)'),
-            'vendor_code_ru' => Yii::t('app', 'Vendor code(Russian)'),
-            'vendor_code_en' => Yii::t('app', 'Vendor code(English)'),
-            'name_hy' => Yii::t('app', 'Name(Armenian)'),
-            'name_ru' => Yii::t('app', 'Name(Russian)'),
-            'name_en' => Yii::t('app', 'Name(English)'),
+            'vendor_code' => Yii::t('app', 'Vendor code'),
+            'name' => Yii::t('app', 'Name'),
             'series' => Yii::t('app', 'Series'),
             'production_date' => Yii::t('app', 'Production date'),
             'expiration_date' => Yii::t('app', 'Expiration date'),
@@ -108,9 +104,8 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
     }
     public function findWithInfo($id)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         if(intval($id)) {
-            return Yii::$app->db->createCommand("SELECT s_nomenclature_product.*,s_qty_type.type_" . $lang . " as qty_type FROM s_nomenclature_product 
+            return Yii::$app->db->createCommand("SELECT s_nomenclature_product.*,s_qty_type.type as qty_type FROM s_nomenclature_product 
                                                   LEFT JOIN s_qty_type ON s_nomenclature_product.qty_type_id = s_qty_type.id 
                                                   WHERE s_nomenclature_product.id = $id")->queryOne();
         } else {

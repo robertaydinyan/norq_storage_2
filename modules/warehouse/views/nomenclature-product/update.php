@@ -9,11 +9,10 @@ use yii\helpers\Html;
 /* @var $tableTreeGroups app\modules\warehouse\models\NomenclatureProduct */
 /* @var $manufacturers app\modules\warehouse\models\Manufacturer */
 /* @var $barcodes app\modules\warehouse\models\Barcode[] */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
-$this->title = array(Yii::t('app', 'Update') .  ': ' . $model->{'name_' . $lang},'Update');
+$this->title = array(Yii::t('app', 'Update') .  ': ' . $model->name,'Update');
 $this->params['breadcrumbs'][] = ['label' => 'Nomenclature Products', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->{'name_' . $lang}, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title[0];
 ?>

@@ -7,7 +7,6 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\NomenclatureProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title = array(Yii::t('app', 'Product Nomenclature'),'Product Nomenclature');
 $this->params['breadcrumbs'][] = $this->title[0];
@@ -35,7 +34,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
             <div class="row">
                 <ul class="file-tree col-3" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
                     <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
-                        <li class="file-tree-folder"> <span data-name="l<?= $tableTreeGroup['name_' . $lang] ?>"> <?= $tableTreeGroup['name_' . $lang] ?> </span>
+                        <li class="file-tree-folder"> <span data-name="l<?= $tableTreeGroup['name'] ?>"> <?= $tableTreeGroup['name'] ?> </span>
                             <ul style="display: block;">
                                 <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/nomenclature-product/tree_table_second.php', [
                                     'tableTreeGroup' => $tableTreeGroup,
@@ -54,27 +53,9 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
                                 'class' => 'table table-hover'
                             ],
                             'columns' => [
-//                                [
-//                                    'label' => Yii::t('app', 'Image'),
-//                                    'format'=>'html',
-//                                    'contentOptions' => function($model) use ($lang) {
-//                                        return [
-//                                            'data-responsive' => "https://sachinchoolur.github.io/lightgallery.js/static/img/13-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/13-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/13.jpg 800",
-//                                            'data-sub-html' => "<h4 style='color: white'>" . $model->{'vendor_code_' . $lang} . "</h4>",
-//                                            'class' => 'image',
-//                                            'data-src' => $model->img
-//                                        ];
-//                                    },
-//                                    'value' => function ($model) {
-//                                        if($model->img){
-//                                            return '<a target="_blank" href="'.$model->img.'" ><img width="100" src="'.$model->img.'"></a>';
-//                                        } else {
-//                                            return '';
-//                                        }
-//                                    }
-//                                ],
+//
                                 [
-                                    'attribute' => 'vendor_code_' . $lang,
+                                    'attribute' => 'vendor_code',
                                     'label' => Yii::t('app', 'Vendor code')
                                 ],
                                 //'groupProduct.name',
@@ -82,7 +63,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
                                     'attribute' => 'groupName',
                                     'label' => Yii::t('app', 'Group'),
                                     'value' => function ($model) {
-                                        return $model->groupProduct->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                                        return $model->groupProduct->name;
                                     }
                                 ],
                                 'production_date',

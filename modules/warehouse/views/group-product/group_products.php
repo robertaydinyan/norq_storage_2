@@ -12,7 +12,6 @@ use yii\helpers\Url;
 
 $this->title =  array(Yii::t('app', 'Product group'),'Product group');
 $this->params['breadcrumbs'][] = $this->title[0];
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
@@ -50,7 +49,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
         <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-3" style="padding: 1px 5px 5px 40px;">
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
                 <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
-                    <li class="file-tree-folder"> <span> <?= $tableTreeGroup['name_' . $lang] ?></span>
+                    <li class="file-tree-folder"> <span> <?= $tableTreeGroup['name'] ?></span>
                         <ul style="display: block;">
                             <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/group-product/tree_table.php', [
                                 'tableTreeGroup' => $tableTreeGroup,

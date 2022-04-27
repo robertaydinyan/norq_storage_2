@@ -36,8 +36,8 @@ class SuppliersList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name_hy', 'name_ru', 'name_en'], 'required'],
-            [['name_hy', 'name_ru', 'name_en', 'vat', 'legal_address', 'business_address', 'phone', 'email', 'comment'], 'string', 'max' => 255],
+            [['name'], 'required'],
+            [['name', 'vat', 'legal_address', 'business_address', 'phone', 'email', 'comment'], 'string', 'max' => 255],
             [['contract_type'], 'integer']
         ];
     }
@@ -49,9 +49,7 @@ class SuppliersList extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name_hy' => Yii::t('app', 'Name(Armenian)'),
-            'name_ru' => Yii::t('app', 'Name(Russian)'),
-            'name_en' => Yii::t('app', 'Name(English)'),
+            'name' => Yii::t('app', 'Name'),
             'vat' => Yii::t('app', 'Vat'),
             'legal_address' =>  Yii::t('app', 'Legal Address'),
             'business_address' =>  Yii::t('app', 'Business Address'),

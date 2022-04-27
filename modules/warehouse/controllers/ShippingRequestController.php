@@ -45,7 +45,6 @@ class ShippingRequestController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         TableRowsStatus::checkRows('ShippingRequest', Yii::$app->request->get('type'));
         $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app
             ->request->get('type')])->orderBy('order')->all();
@@ -58,7 +57,7 @@ class ShippingRequestController extends Controller {
             ->queryParams);
         $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])
             ->asArray()
-            ->all() , 'id', 'name_' . $lang);
+            ->all() , 'id', 'name');
         $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
             ->all();
         $dataUsers = [];
@@ -86,7 +85,6 @@ class ShippingRequestController extends Controller {
         ]);
     }
     public function actionDocuments() {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         TableRowsStatus::checkRows('ShippingRequest');
         $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app->request->get('type')])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
@@ -96,7 +94,7 @@ class ShippingRequestController extends Controller {
             ->request->queryParams, null, true);
         $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])
             ->asArray()
-            ->all() , 'id', 'name_' . $lang);
+            ->all() , 'id', 'name');
         $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
             ->all();
         $dataUsers = [];
@@ -118,7 +116,6 @@ class ShippingRequestController extends Controller {
 
         
        
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         TableRowsStatus::checkRows('ShippingRequest');
         $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app->request->get('type')])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
@@ -165,7 +162,7 @@ class ShippingRequestController extends Controller {
 
         $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])
             ->asArray()
-            ->all() , 'id', 'name_' . $lang);
+            ->all() , 'id', 'name');
         $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
             ->all();
         $dataUsers = [];
@@ -186,8 +183,7 @@ class ShippingRequestController extends Controller {
     }
 
      public function actionCalendarAjax() {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-              
+
         $month = $_POST['month_ajax'];
       
         $date_start = date('Y-'.$month.'-01');
@@ -252,7 +248,7 @@ class ShippingRequestController extends Controller {
 
         $js_events = [];
         foreach($l as $value){
-            $js_events[] = ['title'=>$value->shippingtype->{'name_'.$lang}.' '.'#'.$value->id,'start'=>$value->created_at,'url'=>'/warehouse/shipping-request/view?id='.$value->id.'?lang='.$lang,'color'=>$color[$value->shipping_type]];
+            $js_events[] = ['title'=>$value->shippingtype->name.' '.'#'.$value->id,'start'=>$value->created_at,'url'=>'/warehouse/shipping-request/view?id='.$value->id,'color'=>$color[$value->shipping_type]];
         }
         
         return json_encode($js_events);
@@ -295,14 +291,13 @@ class ShippingRequestController extends Controller {
     public function actionCreate() {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new ShippingRequest();
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()
             ->all() , 'id', 'name');
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
             ->asArray()
             ->all() , 'name', 'last_name', 'id');
         $types = ArrayHelper::map(ShippingType::find()->asArray()
-            ->all() , 'id', 'name_' . $lang);
+            ->all() , 'id', 'name');
 
         $suppliers = $this->buildTree(SuppliersList::find()
             ->where(['!=', 'id', 6])
@@ -729,7 +724,6 @@ class ShippingRequestController extends Controller {
             $products = ShippingProducts::find()->where(['shipping_id' => $model
                 ->id])
                 ->all();
-            $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             foreach ($products as $product => $prod_val) {
                 $product_full_data = $prod_val->findByProductId($prod_val->product_id) [0];
 
@@ -741,10 +735,10 @@ class ShippingRequestController extends Controller {
                     }
                     else {
                         $log->from_ = $model
-                            ->provider->{'name_' . $lang};
+                            ->provider->name;
                     }
                     $log->to_ = $model
-                        ->supplier->{'name_' . $lang};
+                        ->supplier->name;
                     $log->mac_address = $product_full_data['mac'];
                     $log->shipping_type = $model->shipping_type;
                     $log->request_id = $model->id;
@@ -756,21 +750,21 @@ class ShippingRequestController extends Controller {
 
             Notifications::setNotification($model
                 ->provider->responsible_id, "Հաստատվել է " . $model
-                ->shippingtype->{'name_' . $lang} . " <b>" . $model
-                ->provider->{'name_' . $lang} . "</b> -  <b>" . $model
-                ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> -  <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->supplier->responsible_id, "Հաստատվել է " . $model
-                ->shippingtype->{'name_' . $lang} . " <b>" . $model
-                ->provider->{'name_' . $lang} . "</b> - <b>" . $model
-                ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> - <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             if (($model
                 ->supplier->responsible_id != $model->user_id) && ($model
                 ->provider->responsible_id != $model->user_id)) {
                 Notifications::setNotification($model->user_id, "Հաստատվել է " . $model
-                    ->shippingtype->{'name_' . $lang} . " <b>" . $model
-                    ->provider->{'name_' . $lang} . "</b> - <b>" . $model
-                    ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> - <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
         }
         return $this->redirect(['index']);
@@ -851,7 +845,6 @@ class ShippingRequestController extends Controller {
         return $this->redirect(['index']);
     }
     public function actionDecline() {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $get = Yii::$app
             ->request
             ->get();
@@ -880,21 +873,21 @@ class ShippingRequestController extends Controller {
             }
             Notifications::setNotification($model
                 ->provider->responsible_id, "Մերժվել է " . $model
-                ->shippingtype->{'name_' . $lang} . " <b>" . $model
-                ->provider->{'name_' . $lang} . "</b> -  <b>" . $model
-                ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> -  <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->supplier->responsible_id, "Մերժվել է " . $model
-                ->shippingtype->{'name_' . $lang} . " <b>" . $model
-                ->provider->{'name_' . $lang} . "</b> - <b>" . $model
-                ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> - <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             if (($model
                 ->supplier->responsible_id != $model->user_id) && ($model
                 ->provider->responsible_id != $model->user_id)) {
                 Notifications::setNotification($model->user_id, "Մերժվել է " . $model
-                    ->shippingtype->{'name_' . $lang} . " <b>" . $model
-                    ->provider->{'name_' . $lang} . "</b> - <b>" . $model
-                    ->supplier->{'name_' . $lang} . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> - <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
 
         }

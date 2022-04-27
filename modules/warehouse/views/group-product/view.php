@@ -5,8 +5,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\GroupProduct */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-$this->title = array($model->{'name_' . $lang});
+$this->title = array($model->name);
 $this->params['breadcrumbs'][] = ['label' => 'Group Products', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -22,7 +21,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             'options' => ['class' => 'table table-hover'],
             'attributes' => [
                 'id',
-                'name_' . $lang,
+                'name',
                 [
                     'attribute' => 'group_id',
                     'label' => 'Group name',

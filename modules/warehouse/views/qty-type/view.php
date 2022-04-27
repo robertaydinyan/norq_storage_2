@@ -12,11 +12,10 @@ $this->params['breadcrumbs'][] = ['label' => 'Qty Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 \yii\web\YiiAsset::register($this);
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 <div class="qty-type-view group-product-index">
 
-    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?php echo Yii::t('app', 'Quantity type'); ?> ։ <?= Html::encode($model->{'type_' . $lang}) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?php echo Yii::t('app', 'Quantity type'); ?> ։ <?= Html::encode($model->type) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
 
 
 
@@ -26,7 +25,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             'options' => ['class' => 'table table-hover'],
             'attributes' => [
                 'id',
-                'type_' . $lang,
+                'type',
             ],
         ]) ?>
     </div>

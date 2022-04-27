@@ -10,7 +10,6 @@ use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\ShippingRequestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $this->title = array(Yii::t('app', 'Polls'), 'Polls');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerJsFile('@web/js/modules/crm/contact.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
@@ -34,14 +33,14 @@ $table_all_columns = array();
                     <li class="nav-item "><a class="nav-link <?php if (!isset($_GET['type'])) {
                             echo 'active';
                         } ?>"
-                                             href="<?php echo $uri[0] . '?lang=' . \Yii::$app->language; ?>"><?php echo Yii::t('app', 'All'); ?></a>
+                                             href="<?php echo $uri[0] ?>"><?php echo Yii::t('app', 'All'); ?></a>
                     </li>
                     <?php foreach ($shipping_types as $shp_type => $shp_type_val) { ?>
                         <li class="nav-item "><a
                                     class="nav-link <?php if (isset($_GET['type']) && ($_GET['type'] == $shp_type_val->id)) {
                                         echo 'active';
                                     } ?>"
-                                    href="?type=<?php echo $shp_type_val->id; ?>&lang=<?php echo \Yii::$app->language; ?>"><?php echo $shp_type_val->{'name_' . $lang}; ?></a>
+                                    href="?type=<?php echo $shp_type_val->id; ?>"><?php echo $shp_type_val->name; ?></a>
                         </li>
                     <?php } ?>
                 </ul>
@@ -51,11 +50,11 @@ $table_all_columns = array();
             <h1  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span
                         class="star"><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
             <div style="padding-left: 20px" class="d-flex align-items-start pt-2">
-                <a  style="float: right" href="<?= Url::to(['documents', 'lang' => Yii::$app->language]) ?>"
+                <a  style="float: right" href="<?= Url::to(['documents']) ?>"
                        class="btn btn-primary mr-2"><?php echo Yii::t('app', 'Documents'); ?></a>
                 <?php if (\app\rbac\WarehouseRule::can('shipping-request', 'create')): ?>
 
-                    <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"
+                    <a style="float: right" href="<?= Url::to(['create']) ?>"
                        class="btn btn-primary mr-2"><?php echo Yii::t('app', 'Create a query'); ?></a>
                 <?php endif; ?>
                 <!-- <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button> -->
@@ -167,8 +166,8 @@ $table_all_columns = array();
                                         style="border:1px solid #dee2e6;padding-left: 35px;padding-top: 5px;margin-top:0px;">
                                         <?php foreach ($suppliers as $tableTreePartner) : ?>
                                             <li class="file-tree-folder">
-                         <span data-name="<?= $tableTreePartner['name_' . $lang] ?>"
-                               class="parent-block"><?= $tableTreePartner['name_' . $lang] ?>
+                         <span data-name="<?= $tableTreePartner['name'] ?>"
+                               class="parent-block"><?= $tableTreePartner['name'] ?>
                         </span>
                                                 <ul style="display: block;">
                                                     <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/suppliers-list/tree_form_sup_table.php', [
@@ -233,21 +232,21 @@ $table_all_columns = array();
                         'attribute' => 'shippingType',
                         'label' => Yii::t('app', 'Type of transportation'),
                         'value' => function ($model) {
-                            return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->shippingtype->name;
                         }
                     ],
                     'providerWarehouse' => [
                         'attribute' => 'providerWarehouse',
                         'label' => Yii::t('app', 'Transfer warehouse'),
                         'value' => function ($model) {
-                            return $model->provider->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->provider->name;
                         }
                     ],
                     'supplierWarehouse' => [
                         'attribute' => 'supplierWarehouse',
                         'label' => Yii::t('app', 'Supplier warehouse'),
                         'value' => function ($model) {
-                            return $model->supplier->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->supplier->name;
                         }
                     ],
                     'supplier' => [
@@ -281,7 +280,7 @@ $table_all_columns = array();
                     'status' => [
                         'label' => Yii::t('app', 'Status'),
                         'value' => function ($model) {
-                            return $model->status_->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->status->name;
                         }
                     ],
                     'document_type' => [
@@ -353,14 +352,14 @@ $table_all_columns = array();
                         'attribute' => 'shippingType',
                         'label' => Yii::t('app', 'Type of transportation'),
                         'value' => function ($model) {
-                            return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->shippingtype->name;
                         }
                     ],
                     'supplierWarehouse' => [
                         'attribute' => 'supplierWarehouse',
                         'label' => Yii::t('app', 'Supplier warehouse'),
                         'value' => function ($model) {
-                            return $model->supplier->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->supplier->name;
                         }
                     ],
                     'responsible' => [
@@ -374,7 +373,7 @@ $table_all_columns = array();
                         'attribute' => 'supplier',
                         'label' => Yii::t('app', 'Supplier'),
                         'value' => function ($model) {
-                            return $model->supplierp->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};;
+                            return $model->supplierp->name;;
                         }
                     ],
                     'totalAmount' => [
@@ -393,7 +392,7 @@ $table_all_columns = array();
                     'status' => [
                         'label' => Yii::t('app', 'Status'),
                         'value' => function ($model) {
-                            return $model->status_->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->status->name;
                         }
                     ],
                     'created' => [
@@ -453,14 +452,14 @@ $table_all_columns = array();
                         'attribute' => 'shippingType',
                         'label' => Yii::t('app', 'Type of transportation'),
                         'value' => function ($model) {
-                            return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->shippingtype->name;
                         }
                     ],
                     'supplierWarehouse' => [
                         'attribute' => 'supplierWarehouse',
                         'label' => Yii::t('app', 'Supplier warehouse'),
                         'value' => function ($model) {
-                            return $model->provider->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->provider->name;
                         }
                     ],
                     'supplier' => [
@@ -473,7 +472,7 @@ $table_all_columns = array();
                     'status' => [
                         'label' => Yii::t('app', 'Status'),
                         'value' => function ($model) {
-                            return $model->status_->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->status->name;
                         }
                     ],
                     'totalAmount' => [
@@ -551,7 +550,7 @@ $table_all_columns = array();
                         'attribute' => 'shippingType',
                         'label' => Yii::t('app', 'Type of transportation'),
                         'value' => function ($model) {
-                            return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->shippingtype->name;
                         }
                     ],
                     'supplierWarehouse' => [
@@ -582,7 +581,7 @@ $table_all_columns = array();
                     'status' => [
                         'label' => Yii::t('app', 'Status'),
                         'value' => function ($model) {
-                            return $model->status_->name;
+                            return $model->status->name;
                         }
                     ],
                     'totalAmount' => [
@@ -722,7 +721,7 @@ $i++;
 
 foreach($dataProvider as $value){
     
-    $js_events[] = ['title'=>$value->shippingtype->{'name_'.$lang}.' '.'#'.$value->id,'start'=>$value->created_at,'url'=>'/warehouse/shipping-request/view?id='.$value->id.'?lang='.$lang,'color'=>$color[$value->shipping_type]];
+    $js_events[] = ['title'=>$value->shippingtype->name.' '.'#'.$value->id,'start'=>$value->created_at,'url'=>'/warehouse/shipping-request/view?id='.$value->id,'color'=>$color[$value->shipping_type]];
     
 }
 

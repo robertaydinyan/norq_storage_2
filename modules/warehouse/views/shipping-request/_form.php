@@ -23,8 +23,6 @@ use \app\modules\warehouse\models\Warehouse;
 $this->registerJsFile('@web/js/modules/warehouse/shipping_new.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\bootstrap4\BootstrapAsset::className()],]);
-$lang = Yii::$app->language;
-$lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'novalidate' => 'novalidate']]); ?>
@@ -89,7 +87,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 <label class="control-label"
                        for="shippingrequest-provider_warehouse_id"><?php echo Yii::t('app', 'Transfer warehouse'); ?></label>
                 <input type="text" id="shippingrequest-provider_warehouse_id"
-                       onfocus="selectWarehouse($(this), '<?php echo $lang; ?>')" disabled class="form-control">
+                       onfocus="selectWarehouse($(this))" disabled class="form-control">
                 <input type="hidden" name="ShippingRequest[provider_warehouse_id]" value="<?php echo $warehouseId; ?>">
             </div>
             <script>
@@ -104,7 +102,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 <label class="control-label"
                        for="shippingrequest-provider_warehouse_id"><?php echo Yii::t('app', 'Transfer warehouse'); ?></label>
                 <input type="text" id="shippingrequest-provider_warehouse_id"
-                       onfocus="selectWarehouse($(this), '<?php echo $lang; ?>')" class="form-control">
+                       onfocus="selectWarehouse($(this))" class="form-control">
                 <input type="hidden" name="ShippingRequest[provider_warehouse_id]">
             </div>
         <?php } ?>
@@ -113,7 +111,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
             <label class="control-label"
                    for="shippingrequest-supplier_warehouse_id"><?php echo Yii::t('app', 'Supplier warehouse'); ?></label>
             <input type="text" id="shippingrequest-supplier_warehouse_id"
-                   onfocus="selectWarehouse($(this), '<?php echo $lang; ?>')" class="form-control">
+                   onfocus="selectWarehouse($(this))" class="form-control">
             <input type="hidden" name="ShippingRequest[supplier_warehouse_id]">
         </div>
 
@@ -161,15 +159,15 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
         <div class="form-group field-product-supplier_id hide for_bay">
             <label class="control-label"
                    for="product-supplier_id"><?php echo Yii::t('app', 'Supplier'); ?><?php if (!$model->isNewRecord) {
-                    echo '`' . $model->supplierp['name_' . $lang_s];
+                    echo '`' . $model->supplierp['name'];
                 } ?></label>
 
             <div>
                 <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
                     <?php foreach ($suppliers as $tableTreePartner) : ?>
                         <li class="file-tree-folder">
-                         <span data-name="<?= $tableTreePartner['name_' . $lang_s] ?>"
-                               class="parent-block"><?= $tableTreePartner['name_' . $lang_s] ?>
+                         <span data-name="<?= $tableTreePartner['name'] ?>"
+                               class="parent-block"><?= $tableTreePartner['name'] ?>
                         </span>
                             <ul style="display: block;">
                                 <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/suppliers-list/tree_form_sup_table.php', [
@@ -290,7 +288,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
                         <?php foreach ($products as $product => $prod_val) { ?>
                             <tr>
                                 <td><?php echo $prod_val['id']; ?></td>
-                                <td><?php echo $prod_val->nProduct->{'name_' . $lang_s}; ?></td>
+                                <td><?php echo $prod_val->nProduct->name; ?></td>
                                 <td><?php echo $prod_val['count']; ?></td>
                                 <td><?php if ($prod_val->nProduct->individual == 'true' && isset($prod_val['mac_address'])) {
                                         echo @$prod_val['mac_address'];
@@ -355,7 +353,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
                                 <label class="control-label"
                                        style="margin-bottom: 0px !important;"><?php echo Yii::t('app', 'Product Nomenclature'); ?></label>
                                 <input type="text" class="form-control"
-                                       value="<?php echo $prod->nProduct->{'name_' . $lang_s}; ?>" disabled="true"
+                                       value="<?php echo $prod->nProduct->name; ?>" disabled="true"
                                        required="required" autocomplete="off">
                             </div>
                             <br>

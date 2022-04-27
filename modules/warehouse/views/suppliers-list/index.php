@@ -12,7 +12,6 @@ $this->title = array(Yii::t('app', 'co-workers'),'co-workers');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 <style>
     thead input {
@@ -33,7 +32,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
                 <?php foreach ($tableTreePartners as $tableTreePartner) : ?>
                     <li class="file-tree-folder">
-                         <span data-name="<?= $tableTreePartner['name_' . $lang] ?>" class="parent-block"><?= $tableTreePartner['name_' . $lang] ?>
+                         <span data-name="<?= $tableTreePartner['name'] ?>" class="parent-block"><?= $tableTreePartner['name'] ?>
                              <?php if(\app\rbac\WarehouseRule::can('suppliers-list', 'create')): ?>
                             <i class="fa fa-plus" onclick="addPopup(<?= $tableTreePartner['id'] ?>)"></i>
                              <?php endif; ?>

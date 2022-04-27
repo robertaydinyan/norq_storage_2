@@ -95,7 +95,6 @@ class UsersController extends Controller
     }
 
     public function actionCreate() {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $user = new User();
         $request = Yii::$app->request;
@@ -108,7 +107,7 @@ class UsersController extends Controller
             $action->action_id = 125;
             $action->save(false);
 
-            return $this->redirect(['users/index','isFavorite' => $isFavorite, 'lang' => $lang]);
+            return $this->redirect(['users/index','isFavorite' => $isFavorite]);
         }
         return $this->render('create', [
             'user' => $user,

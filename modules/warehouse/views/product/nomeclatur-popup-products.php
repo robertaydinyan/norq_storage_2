@@ -1,5 +1,4 @@
 <?php
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 <table class="table table-striped">
 
@@ -13,8 +12,8 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         if(!empty($products)) {
             foreach ($products as $product => $prod_val) { ?>
                <tr>
-                    <td><input type="checkbox" data-mac="<?php echo $prod_val->mac_address;?>" value="<?php echo $prod_val->nProduct->{'name_' . $lang};?>" class="form-check-input chks"></td>
-                    <td><?php echo $prod_val->nProduct->{'name_' . $lang};?></td>
+                    <td><input type="checkbox" data-mac="<?php echo $prod_val->mac_address;?>" value="<?php echo $prod_val->nProduct->name;?>" class="form-check-input chks"></td>
+                    <td><?php echo $prod_val->nProduct->name;?></td>
                     <td><?php echo $prod_val->mac_address;?></td>
                </tr>
             <?php   }

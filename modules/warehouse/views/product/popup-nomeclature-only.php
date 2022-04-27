@@ -1,7 +1,6 @@
 <?php
 $this->registerCssFile('@web/css/modules/warehouse/zTreeStyle.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/jquery.ztree.core.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 
     <SCRIPT type="text/javascript">
@@ -62,7 +61,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     <script>
                         var zNodes = [
                              <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
-                             {id: <?= $tableTreeGroup['id'] ?>, pId: 0, name: "<?= $tableTreeGroup['name_' . $lang] ?>", open: false},
+                             {id: <?= $tableTreeGroup['id'] ?>, pId: 0, name: "<?= $tableTreeGroup['name'] ?>", open: false},
                                         <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/product/tree_table_nom_only.php', [
                                             'tableTreeGroup' => $tableTreeGroup,
                                         ]); ?>

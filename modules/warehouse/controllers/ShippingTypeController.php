@@ -76,7 +76,6 @@ class ShippingTypeController extends Controller
      */
     public function actionCreate()
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
         $model = new ShippingType();
@@ -85,7 +84,7 @@ class ShippingTypeController extends Controller
             $admins = User::find()->where(['role'=>'admin'])->all();
             if(!empty($admins)){
                 foreach ($admins as $key => $value) {
-                   Notifications::setNotification($value->id,"Ստեղծվել է տեղափոխության տեսակ ".$model->{'name_' . $lang},'/warehouse/shipping-type');
+                   Notifications::setNotification($value->id,"Ստեղծվել է տեղափոխության տեսակ ".$model->name,'/warehouse/shipping-type');
                 }
             }
             return $this->redirect(['index','isFavorite' => $isFavorite]);
@@ -106,7 +105,6 @@ class ShippingTypeController extends Controller
      */
     public function actionUpdate($id)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
         $model = $this->findModel($id);
@@ -115,7 +113,7 @@ class ShippingTypeController extends Controller
              $admins = User::find()->where(['role'=>'admin'])->all();
             if(!empty($admins)){
                 foreach ($admins as $key => $value) {
-                   Notifications::setNotification($value->id,"Փոփոխվել է տեղափոխության տեսակ ".$model->{'name_' . $lang},'/warehouse/shipping-type');
+                   Notifications::setNotification($value->id,"Փոփոխվել է տեղափոխության տեսակ ".$model->name,'/warehouse/shipping-type');
                 }
             }
             return $this->redirect(['index','isFavorite' => $isFavorite]);

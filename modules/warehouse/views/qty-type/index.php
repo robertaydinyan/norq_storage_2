@@ -8,8 +8,6 @@ use yii\helpers\Url;
 /* @var $searchModel app\modules\warehouse\models\QtyTypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$lang = explode('-', \Yii::$app->language)[0];
-$lang = $lang ?: 'us';
 $this->title = array(Yii::t('app', 'Unit of measurement'),'Unit of measurement');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -21,7 +19,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span> </h1>
         <div>
         <?php if(\app\rbac\WarehouseRule::can('qty-type', 'create')): ?>
-        <a style="margin-right: 10px;" href="<?= Url::to(['create' ,'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a unit of measurement'); ?></a>
+        <a style="margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a unit of measurement'); ?></a>
         <?php endif; ?>
         <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary  mr-2">Xls</button>
         </div>
@@ -39,7 +37,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             'id',
             [
                 'header' => Yii::t('app', 'Unit of measurement'),
-                'attribute' => 'type_' . $lang
+                'attribute' => 'type'
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
@@ -48,14 +46,14 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'buttons' => [
                     'update' => function ($url, $model) {
                         return \app\rbac\WarehouseRule::can('qty-type', 'update') ?
-                            Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language , [
+                            Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                 'title' => Yii::t('app', 'Update'),
                                 'class' => 'btn text-primary btn-sm mr-2'
                             ]) : '';
                     },
                     'delete' => function ($url, $model) {
                         return \app\rbac\WarehouseRule::can('qty-type', 'delete') ?
-                            Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                            Html::a('<i class="fas fa-trash-alt"></i>', $url, [
                             'title' => Yii::t('app', 'Delete'),
                             'class' => 'btn text-danger btn-sm',
                             'data' => [

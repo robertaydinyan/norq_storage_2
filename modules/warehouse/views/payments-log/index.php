@@ -9,7 +9,6 @@ use app\modules\warehouse\models\SuppliersList;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\QtyTypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $this->title = array(Yii::t('app', 'Payments'),'Payments');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -19,7 +18,7 @@ $table_all_columns = [
         'label' => Yii::t('app', 'Supplier'),
         'value' => function ($model) {
             $provider = SuppliersList::findOne($model->provider_id);
-            return $provider->{'name_' . (explode('-', \Yii::$app->language)[0] ?: 'en')};
+            return $provider->name;
         }
     ],
     'currency' => [

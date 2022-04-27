@@ -40,8 +40,6 @@ class QtyTypeSearch extends QtyType
      */
     public function search($params)
     {
-        $lang = explode('-', \Yii::$app->language)[0];
-        $lang = $lang ?: 'en';
         $query = QtyType::find();
         // add conditions that should always apply here
 
@@ -61,7 +59,7 @@ class QtyTypeSearch extends QtyType
         $query->andFilterWhere([
             'id' => $this->id,
         ]);
-        $query->andFilterWhere(['like', 'type_' . $lang, $this->{'type_' . $lang}]);
+        $query->andFilterWhere(['like', 'type', $this->type]);
 
         return $dataProvider;
     }

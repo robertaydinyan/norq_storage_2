@@ -9,7 +9,6 @@ use yii\helpers\Url;
 /* @var $model app\modules\warehouse\models\Warehouse */
 /* @var $dataProvider app\modules\warehouse\models\Warehouse */
 /* @var $searchModel app\modules\warehouse\models\Warehouse */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title = array(Yii::t('app', 'Main warehouse'), 'Main warehouse');
 $this->params['breadcrumbs'][] = ['label' => 'Warehouses', 'url' => ['index']];
@@ -38,18 +37,18 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
 <div class="warehouse-view d-flex flex-wrap group-product-index" style="padding: 20px;">
     <div class="col-12	col-sm-12	col-md-12 col-lg-12	col-xl-4">
         <h1 class="mb-5 d-flex"
-            data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($model->{'name_' . $lang}) ?><span
+            data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($model->name) ?><span
                     class="star"><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <!--        --><?php //if($model->type != 2){ ?>
         <!--        --><? //= DetailView::widget([
         //            'model' => $model,
         //                'options' => ['class' => 'table table-hover'],
         //            'attributes' => [
-        //                'name_' . $lang,
+        //                'name',
         //                'address',
         //                [
         //                    'label' => Yii::t('app', 'Warehouse type'),
-        //                    'value' => $model->getType($model->type)->{'name_' . $lang}
+        //                    'value' => $model->getType($model->type)->{'name'}
         //                ],
         //                [
         //                    'label' => Yii::t('app', 'storekeeper'),
@@ -71,10 +70,10 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
         //                'model' => $model,
         //                'options' => ['class' => 'table table-hover'],
         //                'attributes' => [
-        //                    'name_' . $lang,
+        //                    'name',
         //                    [
         //                        'label' => Yii::t('app', 'Warehouse type'),
-        //                        'value' => $model->getType($model->type)->{'name_' . $lang}
+        //                        'value' => $model->getType($model->type)->{'name'}
         //                    ],
         //                    [
         //                        'label' => Yii::t('app', 'storekeeper'),
@@ -91,11 +90,11 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
             'model' => $model,
             'options' => ['class' => 'table table-hover'],
             'attributes' => [
-                'name_' . $lang,
+                'name',
                 'address',
                 [
                     'label' => Yii::t('app', 'Warehouse type'),
-                    'value' => $model->getType($model->type)->{'name_' . $lang}
+                    'value' => $model->getType($model->type)->name
                 ],
                 [
                     'label' => Yii::t('app', 'storekeeper'),

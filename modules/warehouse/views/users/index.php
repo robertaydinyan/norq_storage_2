@@ -6,7 +6,6 @@ use yii\helpers\Url;
 
 $this->title = array(Yii::t('app', 'Users'),'Users');
 $this->params['breadcrumbs'][] = $this->title[0];
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 
 $table_all_columns = [
@@ -21,11 +20,11 @@ $actions = [
         'header' => Yii::t('app', 'Action'),
         'template' => '{edit}{delete}{block}',
         'buttons' => [
-            'edit' => function($url) use ($lang) {
+            'edit' => function($url) {
                 return ((\app\rbac\WarehouseRule::can('users', 'edit')) ?
                     ("<a href='" . URL::to($url) . "'><i class='fas fa-pencil-alt mr-3'></i></a>") : '');
             },
-            'delete' => function($url) use ($lang) {
+            'delete' => function($url) {
                 return ((\app\rbac\WarehouseRule::can('users', 'delete')) ?
                     ("<a onclick='return AreYouSure();' href='" . URL::to($url) . "'><i class='fas fa-trash-alt mr-3' style='color: red;'></i></a>") : '');
             },

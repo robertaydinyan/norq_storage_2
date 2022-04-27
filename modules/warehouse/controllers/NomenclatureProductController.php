@@ -102,11 +102,10 @@ class NomenclatureProductController extends Controller
     public function actionCreate()
     {
         $manufacturers = ArrayHelper::map(Manufacturer::find()->asArray()->all(), 'id', 'name');
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new NomenclatureProduct();
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
-        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type_' . $lang);
+        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type');
 
         $post = Yii::$app->request->post();
 
@@ -137,7 +136,7 @@ class NomenclatureProductController extends Controller
             if ($model->save()) {
                  if(!empty($admins)){
                     foreach ($admins as $key => $value) {
-                       Notifications::setNotification($value->id,"Ստեղծվել է նոր Նոմենկլատուրա ".$model->{'name_' . $lang},'/warehouse/nomenclature-product');
+                       Notifications::setNotification($value->id,"Ստեղծվել է նոր Նոմենկլատուրա ".$model->name,'/warehouse/nomenclature-product');
                     }
                 }
 //                NomenclatureProduct::saveBarcodes($post['Barcodes'], $post['BarcodesNew'], $model->id);
@@ -169,11 +168,10 @@ class NomenclatureProductController extends Controller
     public function actionUpdate($id)
     {
         $manufacturers = ArrayHelper::map(Manufacturer::find()->asArray()->all(), 'id', 'name');
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
-        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type_' . $lang);
+        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type');
         $post = Yii::$app->request->post();
 //        $barcodes = Barcode::find()->where(['numenclature_id' => $id])->all();
         if ((int)$post['NomenclatureProduct']['qty_type_id'] === 0 && $model->load(Yii::$app->request->post())) {
@@ -196,7 +194,7 @@ class NomenclatureProductController extends Controller
             }
             if(!empty($admins)){
                 foreach ($admins as $key => $value) {
-                   Notifications::setNotification($value->id,"Փոփոխվել է Նոմենկլատուրա ".$model->{'name_' . $lang},'/warehouse/nomenclature-product');
+                   Notifications::setNotification($value->id,"Փոփոխվել է Նոմենկլատուրա ".$model->name,'/warehouse/nomenclature-product');
                 }
             } 
             $model->production_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));

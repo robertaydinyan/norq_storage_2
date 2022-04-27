@@ -10,7 +10,6 @@ use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\ShippingRequestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 $this->title = array(Yii::t('app', 'Polls'), 'Polls');
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerJsFile('@web/js/modules/crm/contact.js', ['depends' => 'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
@@ -33,7 +32,7 @@ $table_all_columns = array();
                         <li class="nav-item ">
                             <a class="nav-link <?php if (isset($_GET['type']) && ($_GET['type'] == $shp_type_val->id)) { echo 'active'; } ?>"
                                 href="<?php echo URL::to([$uri[0], 'type' => $shp_type_val->id]); ?>">
-                                <?php echo $shp_type_val->{'name_' . $lang}; ?>
+                                <?php echo $shp_type_val->name; ?>
                             </a>
                         </li>
                     <?php } ?>
@@ -170,8 +169,8 @@ $table_all_columns = array();
                                         style="border:1px solid #dee2e6;padding-left: 35px;padding-top: 5px;margin-top:0px;">
                                         <?php foreach ($suppliers as $tableTreePartner) : ?>
                                             <li class="file-tree-folder">
-                         <span data-name="<?= $tableTreePartner['name_' . $lang] ?>"
-                               class="parent-block"><?= $tableTreePartner['name_' . $lang] ?>
+                         <span data-name="<?= $tableTreePartner['name'] ?>"
+                               class="parent-block"><?= $tableTreePartner['name'] ?>
                         </span>
                                                 <ul style="display: block;">
                                                     <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/suppliers-list/tree_form_sup_table.php', [
@@ -201,21 +200,21 @@ $table_all_columns = array();
                         'attribute' => 'shippingType',
                         'label' => Yii::t('app', 'Type of transportation'),
                         'value' => function ($model) {
-                            return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->shippingtype->name;
                         }
                     ],
                     'providerWarehouse' => [
                         'attribute' => 'providerWarehouse',
                         'label' => Yii::t('app', 'Transfer warehouse'),
                         'value' => function ($model) {
-                            return $model->provider->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->provider->name;
                         }
                     ],
                     'supplierWarehouse' => [
                         'attribute' => 'supplierWarehouse',
                         'label' => Yii::t('app', 'Supplier warehouse'),
                         'value' => function ($model) {
-                            return $model->supplier->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->supplier->name;
                         }
                     ],
                     'supplier' => [
@@ -249,7 +248,7 @@ $table_all_columns = array();
                     'status' => [
                         'label' => Yii::t('app', 'Status'),
                         'value' => function ($model) {
-                            return $model->status_->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->status->name;
                         }
                     ],
                     'document_type' => [
@@ -321,14 +320,14 @@ $table_all_columns = array();
                         'attribute' => 'shippingType',
                         'label' => Yii::t('app', 'Type of transportation'),
                         'value' => function ($model) {
-                            return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->shippingtype->name;
                         }
                     ],
                     'supplierWarehouse' => [
                         'attribute' => 'supplierWarehouse',
                         'label' => Yii::t('app', 'Supplier warehouse'),
                         'value' => function ($model) {
-                            return $model->supplier->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->supplier->name;
                         }
                     ],
                     'responsible' => [
@@ -342,7 +341,7 @@ $table_all_columns = array();
                         'attribute' => 'supplier',
                         'label' => Yii::t('app', 'Supplier'),
                         'value' => function ($model) {
-                            return $model->supplierp->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};;
+                            return $model->supplierp->name;;
                         }
                     ],
                     'totalAmount' => [
@@ -361,7 +360,7 @@ $table_all_columns = array();
                     'status' => [
                         'label' => Yii::t('app', 'Status'),
                         'value' => function ($model) {
-                            return $model->status_->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->status->name;
                         }
                     ],
                     'created' => [
@@ -421,14 +420,14 @@ $table_all_columns = array();
                         'attribute' => 'shippingType',
                         'label' => Yii::t('app', 'Type of transportation'),
                         'value' => function ($model) {
-                            return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->shippingtype->name;
                         }
                     ],
                     'supplierWarehouse' => [
                         'attribute' => 'supplierWarehouse',
                         'label' => Yii::t('app', 'Supplier warehouse'),
                         'value' => function ($model) {
-                            return $model->provider->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->provider->name;
                         }
                     ],
                     'supplier' => [
@@ -441,7 +440,7 @@ $table_all_columns = array();
                     'status' => [
                         'label' => Yii::t('app', 'Status'),
                         'value' => function ($model) {
-                            return $model->status_->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->status->name;
                         }
                     ],
                     'totalAmount' => [
@@ -519,7 +518,7 @@ $table_all_columns = array();
                         'attribute' => 'shippingType',
                         'label' => Yii::t('app', 'Type of transportation'),
                         'value' => function ($model) {
-                            return $model->shippingtype->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'en'};
+                            return $model->shippingtype->name;
                         }
                     ],
                     'supplierWarehouse' => [
@@ -550,7 +549,7 @@ $table_all_columns = array();
                     'status' => [
                         'label' => Yii::t('app', 'Status'),
                         'value' => function ($model) {
-                            return $model->status_->name;
+                            return $model->status->name;
                         }
                     ],
                     'totalAmount' => [

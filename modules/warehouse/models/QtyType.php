@@ -22,8 +22,8 @@ class QtyType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_hy', 'type_ru', 'type_en'], 'required'],
-            [['type_hy', 'type_ru', 'type_en'], 'string', 'max' => 255],
+            [['type',], 'required'],
+            [['type',], 'string', 'max' => 255],
         ];
     }
 
@@ -34,9 +34,7 @@ class QtyType extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type_hy' => Yii::t('app', 'Unit of measurement(Armenian)'),
-            'type_ru' => Yii::t('app', 'Unit of measurement(Russian)'),
-            'type_en' => Yii::t('app', 'Unit of measurement(English)'),
+            'type' => Yii::t('app', 'Unit of measurement'),
         ];
     }
 

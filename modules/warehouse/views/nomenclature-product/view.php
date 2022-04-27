@@ -7,9 +7,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\NomenclatureProduct */
 /* @var $dataProvider yii\data\ArrayDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
-$this->title = array($model->{'name_' . $lang});
+$this->title = array($model->name);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Product Nomenclature'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
@@ -26,25 +25,24 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'attributes' => [
                     'id',
                     [
-                        'attribute' => 'vendor_code_' . $lang,
+                        'attribute' => 'vendor_code',
                         'label' => Yii::t('app', 'Vendor code'),
-                        'value' => function($model) use ($lang) {
-                            return $model->{'vendor_code_' . $lang};
+                        'value' => function($model) {
+                            return $model->vendor_code;
                         }
                     ],
                     [
-                        'attribute' => 'name_' . $lang,
+                        'attribute' => 'name',
                         'label' => Yii::t('app', 'Name'),
-                        'value' => function($model) use ($lang) {
-                            return $model->{'name_' . $lang};
+                        'value' => function($model) {
+                            return $model->name;
                         }
                     ],
                     [
                         'attribute' => 'group_id',
                         'label' => Yii::t('app', 'Group'),
                         'value' => function ($model) {
-                            $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
-                            return $model->getGroupProduct()->one()['name_' . $lang];
+                            return $model->getGroupProduct()->one()['name'];
                         }
                     ],
                     [
@@ -73,8 +71,8 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                     [
                         'attribute' => 'qty_type',
                         'label' => Yii::t('app', 'Quantity type'),
-                        'value' => function ($model) use ($lang) {
-                            return $model->getQtyType()->one()['type_' . $lang];
+                        'value' => function ($model) {
+                            return $model->getQtyType()->one()['type'];
                         }
                     ],
                     'is_vat',

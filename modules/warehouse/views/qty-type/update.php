@@ -5,10 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\QtyType */
 
-$lang = explode('-', \Yii::$app->language)[0];
-$lang = $lang ?: 'en';
-
-$this->title = array(Yii::t('app', 'Change') . ' ' . Yii::t('app', 'Unit of measurement') . ': ' . $model->{'type_' . $lang},'Unit of measurement');
+$this->title = array(Yii::t('app', 'Change') . ' ' . Yii::t('app', 'Unit of measurement') . ': ' . $model->type,'Unit of measurement');
 $this->params['breadcrumbs'][] = ['label' => 'Qty Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title[0];

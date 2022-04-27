@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 ?>
 <style>
     thead input {
@@ -38,7 +37,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         <div class="col-lg-12">
             <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
                 <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
-                    <li class="file-tree-folder" data-id="<?= $tableTreeGroup['id'] ?>"> <span data-name="<?= $tableTreeGroup['name_' . $lang] ?>" class="parent-block"> <?= $tableTreeGroup['name_' . $lang] ?>
+                    <li class="file-tree-folder" data-id="<?= $tableTreeGroup['id'] ?>"> <span data-name="<?= $tableTreeGroup['name'] ?>" class="parent-block"> <?= $tableTreeGroup['name'] ?>
                             <i class="fa fa-plus" onclick="addPopup(<?= $tableTreeGroup['id'] ?>)"></i>
                             <i style="margin-left:5px;" class="fa fa-pencil" onclick="editPopup(<?= $tableTreeGroup['id'] ?>,$(this), 'group-product/get-group')"></i>
                             <i style="margin-left:5px;" class="fa fa-trash" onclick="deletePopup(<?= $tableTreeGroup['id'] ?>,$(this))"></i>

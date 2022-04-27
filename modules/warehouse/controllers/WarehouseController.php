@@ -180,15 +180,14 @@ class WarehouseController extends Controller {
     public function actionCreate() {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new Warehouse();
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
             ->asArray()
             ->all() , 'name', 'last_name', 'id');
         $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()
-            ->all() , 'id', 'name_' . $lang);
+            ->all() , 'id', 'name');
         $warehouse_groups = ArrayHelper::map(WarehouseGroups::find()->asArray()
-            ->all() , 'id', 'name_' . $lang);
+            ->all() , 'id', 'name');
         $dataUsers = [];
         foreach ($uersData as $key => $value) {
             $dataUsers[$key] = $value[array_key_first($value) ] . ' ' . array_key_first($value);
@@ -200,8 +199,8 @@ class WarehouseController extends Controller {
                 ->toDateTimeString();
             $model->save(false);
 
-            Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->{'name_' . $lang} .   "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
-            Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->{'name_' . $lang} .  "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
+            Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->name .   "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
+            Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->name .  "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
             return $this->redirect(['index','isFavorite' => $isFavorite,
                 'lang' => \Yii::$app->language]);
         }
@@ -220,9 +219,8 @@ class WarehouseController extends Controller {
     public function actionUpdate($id) {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
 
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()
-            ->all() , 'id', 'name_' . $lang);
+            ->all() , 'id', 'name');
         $model = $this->findModel($id);
         $model->updated_at = Carbon::now()
             ->toDateTimeString();
@@ -246,8 +244,8 @@ class WarehouseController extends Controller {
             ->request
             ->post())) {
             $model->save(false);
-            Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->{'name_' . $lang} . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
-            Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->{'name_' . $lang} . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
+            Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
+            Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
             return $this->redirect(['view', 'id' => $model->id,'isFavorite' => $isFavorite,
                 'lang' => \Yii::$app->language]);
         }
@@ -306,7 +304,6 @@ class WarehouseController extends Controller {
         }
     }
     public function actionGetWarehouses() {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $query = Warehouse::find();
         if (isset($_GET['type'])) {
             $query->andFilterWhere(['s_warehouse.type' => intval($_GET['type']) , ]);
@@ -319,7 +316,7 @@ class WarehouseController extends Controller {
         $dataProvider = $query->all();
         if ($dataProvider) {
             foreach ($dataProvider as $warehouse => $ware_val) {
-                echo '<option value="' . $ware_val->id . '">' . $ware_val->{'name_' . $lang} . '</option>';
+                echo '<option value="' . $ware_val->id . '">' . $ware_val->name . '</option>';
             }
         }
     }

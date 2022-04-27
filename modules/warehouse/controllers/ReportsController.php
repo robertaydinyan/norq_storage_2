@@ -44,12 +44,11 @@ class ReportsController extends Controller
      */
     public function actionIndex()
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $shipping_types=  ShippingType::find()->all();
-        $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id', 'name_' . $lang);
+        $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()->all(), 'id', 'name');
 //        $regions = ArrayHelper::map(Regions::find()->asArray()->all(), 'id', 'name');
-        $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'name_' . $lang);
+        $groups = ArrayHelper::map(WarehouseGroups::find()->asArray()->all(), 'id', 'name');
         $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])->all(), 'id', 'name');
 
         $get = Yii::$app->request->get();

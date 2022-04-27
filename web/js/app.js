@@ -436,8 +436,8 @@ $("#preloder").delay(400).fadeOut("slow");
 //     slideDelay: 400,
 //     // plugins: [lgZoom]
 // });
-if ($('#lightgallery').length) {
-    lightGallery(document.getElementById('lightgallery'), {
-        selector: '.image'
-    });
-}
+// if ($('#lightgallery').length) {
+//     lightGallery(document.getElementById('lightgallery'), {
+//         selector: '.image'
+//     });
+// }

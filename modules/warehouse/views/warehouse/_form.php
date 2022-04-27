@@ -23,6 +23,8 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
 <div class="warehouse-form col-lg-4">
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'type', [
         'options' => ['class' => 'form-group'],
     ])->widget(Select2::className(), [
@@ -51,9 +53,6 @@ $this->registerJsFile('@web/js/modules/warehouse/formWarehouse.js', ['depends'=>
             'allowClear' => true
         ],
     ]) ?>
-    <?= $form->field($model, 'name_hy')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'name_ru')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'name_en')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'responsible_id', [

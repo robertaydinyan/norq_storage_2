@@ -161,7 +161,6 @@ class Helper
     {
 
         $modules = ['billing', 'crm', 'task', 'hr', 'fastnet', 'rbac', 'warehouse'];
-        $lang = Yii::$app->request->get('lang');
 
         if (in_array($module, $modules)) {
 

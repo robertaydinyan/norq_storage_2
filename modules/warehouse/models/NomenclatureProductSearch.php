@@ -41,7 +41,6 @@ class NomenclatureProductSearch extends NomenclatureProduct
      */
     public function search($params)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         $query = NomenclatureProduct::find()
             ->joinWith('groupProduct');
 
@@ -61,8 +60,8 @@ class NomenclatureProductSearch extends NomenclatureProduct
         }
 
         $dataProvider->sort->attributes['groupName'] = [
-            'asc'  => ['s_group_product.name_' . $lang => SORT_ASC],
-            'desc' => ['s_group_product.name_' . $lang => SORT_DESC],
+            'asc'  => ['s_group_product.name' => SORT_ASC],
+            'desc' => ['s_group_product.name' => SORT_DESC],
         ];
         if(isset($_GET['id'])){
             $query->andFilterWhere([
@@ -76,8 +75,8 @@ class NomenclatureProductSearch extends NomenclatureProduct
             'group_id' => $this->group_id,
         ]);
 
-        $query->andFilterWhere(['like', 'vendor_code_' . $lang, $this->{'vendor_code_' . $lang}])
-            ->andFilterWhere(['like', 'name_' . $lang, $this->{'name_' . $lang}])
+        $query->andFilterWhere(['like', 'vendor_code', $this->vendor_code])
+            ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 's_group_product.name', $this->groupName])
             ->andFilterWhere(['like', 'individual', $this->individual])
             ->andFilterWhere(['like', 'qty_type_id', $this->qty_type_id]);

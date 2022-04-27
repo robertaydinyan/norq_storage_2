@@ -9,7 +9,6 @@ use yii\helpers\Url;
 
 $this->title = array(Yii::t('app', 'Edit') . ": (" . $user->name . ")",'Edit');
 $this->params['breadcrumbs'][] = $this->title[0];
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 ?>

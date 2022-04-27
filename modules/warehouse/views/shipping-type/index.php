@@ -6,7 +6,6 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\warehouse\models\SearchShippingType */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title = array(Yii::t('app', 'Type of transfer'),'Type of transfer');
 $this->params['breadcrumbs'][] = $this->title[0];
@@ -35,14 +34,14 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         'columns' => [
 
             'id',
-            'name_' . $lang,
+            'name',
 
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{update}',
                 'buttons' => [
                     'update' => function ($url, $model) {
                         return \app\rbac\WarehouseRule::can('shipping-type', 'update') ?
-                            Html::a('<i class="fas fa-pencil-alt"></i>', $url .'&lang=' . \Yii::$app->language, [
+                            Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                 'title' => Yii::t('app', 'Update'),
                                 'class' => 'btn text-primary btn-sm mr-2'
                             ]) : '';

@@ -81,7 +81,6 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
         $whProductsCount = Yii::$app->db->createCommand("
                 SELECT COUNT(`s_product`.id) as total_count 
@@ -101,12 +100,12 @@ class ProductSearch extends Product
         $page_first_result = ($page-1) * $results_per_page;  
         $number_of_page = ceil (count($whProductsCount) / $results_per_page);  
         $whProducts = Yii::$app->db->createCommand(
-            "SELECT s_warehouse.name_" . $lang . " as wname,
+            "SELECT s_warehouse.name as wname,
                         s_nomenclature_product.img,
                         s_nomenclature_product.id as nid,
-                        s_qty_type.type_" . $lang . ",
+                        s_qty_type.type,
                         s_nomenclature_product.individual,
-                        s_nomenclature_product.name_" . $lang . " as nomeclature_name,
+                        s_nomenclature_product.name as nomeclature_name,
                         s_warehouse.id,
                         s_warehouse.type,
                         nomenclature_product_id, 
