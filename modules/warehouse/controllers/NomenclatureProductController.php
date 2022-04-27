@@ -140,8 +140,7 @@ class NomenclatureProductController extends Controller
                     }
                 }
 //                NomenclatureProduct::saveBarcodes($post['Barcodes'], $post['BarcodesNew'], $model->id);
-                return $this->redirect(['index',            'isFavorite' => $isFavorite,
-                    'lang' => \Yii::$app->language]);
+                return $this->redirect(['index',            'isFavorite' => $isFavorite]);
             }
         }
 

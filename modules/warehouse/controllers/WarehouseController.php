@@ -201,8 +201,7 @@ class WarehouseController extends Controller {
 
             Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->name .   "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
             Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->name .  "</b> հաջողությամբ ստեղծվել է", '/warehouse/warehouse/view?id=' . $model->id);
-            return $this->redirect(['index','isFavorite' => $isFavorite,
-                'lang' => \Yii::$app->language]);
+            return $this->redirect(['index','isFavorite' => $isFavorite]);
         }
 
         return $this->render('create', ['model' => $model,'isFavorite' => $isFavorite,
@@ -246,8 +245,7 @@ class WarehouseController extends Controller {
             $model->save(false);
             Notifications::setNotification(1, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
             Notifications::setNotification($model->responsible_id, "Պահեստ՝ <b>" . $model->name . "</b> հաջողությամբ փոփոխվել է", '/warehouse/warehouse/view?id=' . $model->id);
-            return $this->redirect(['view', 'id' => $model->id,'isFavorite' => $isFavorite,
-                'lang' => \Yii::$app->language]);
+            return $this->redirect(['view', 'id' => $model->id,'isFavorite' => $isFavorite]);
         }
 
         return $this->render('update', [
@@ -256,7 +254,7 @@ class WarehouseController extends Controller {
             'warehouse_types' => $warehouse_types,
             'dataUsers' => $dataUsers,
             'responsiblePersons' => $responsiblePersons,
-            'lang' => \Yii::$app->language
+
         ]);
     }
 

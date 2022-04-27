@@ -78,7 +78,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
                                     'template' => '{view}{update}{delete}',
                                     'buttons' => [
                                         'view' => function ($url, $model) {
-                                            return \app\rbac\WarehouseRule::can('nomenclature-product', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                                            return \app\rbac\WarehouseRule::can('nomenclature-product', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url, [
                                                 'title' => Yii::t('app', 'View'),
                                                 'class' => 'btn text-primary btn-sm mr-2'
                                             ]) : '';
@@ -86,13 +86,13 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
 
                                         'update' => function ($url, $model) {
                                             return
-                                                \app\rbac\WarehouseRule::can('nomenclature-product', 'update') ?   Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                                \app\rbac\WarehouseRule::can('nomenclature-product', 'update') ?   Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                                     'title' => Yii::t('app', 'Update'),
                                                     'class' => 'btn text-primary btn-sm mr-2'
                                                 ]) : '';
                                         },
                                         'delete' => function ($url, $model) {
-                                            return \app\rbac\WarehouseRule::can('nomenclature-product', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                            return \app\rbac\WarehouseRule::can('nomenclature-product', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url, [
                                                 'title' => Yii::t('app', 'Delete'),
                                                 'class' => 'btn text-danger btn-sm',
                                                 'data' => [

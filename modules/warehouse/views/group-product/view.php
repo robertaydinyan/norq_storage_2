@@ -26,7 +26,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                     'attribute' => 'group_id',
                     'label' => 'Group name',
                     'value' => function ($model) {
-                        return $model->parentGroup->{'name_' . explode('-', \Yii::$app->language)[0] ?: 'hy'};
+                        return $model->parentGroup->name;
                     }
                 ],
             ],

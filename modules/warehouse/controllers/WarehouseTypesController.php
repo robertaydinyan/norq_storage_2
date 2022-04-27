@@ -77,7 +77,7 @@ class WarehouseTypesController extends Controller
         $model = new WarehouseTypes();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index',  'isFavorite' => $isFavorite,'lang' => \Yii::$app->language]);
+            return $this->redirect(['index',  'isFavorite' => $isFavorite]);
         }
 
         return $this->render('create', [
@@ -99,8 +99,7 @@ class WarehouseTypesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index',            'isFavorite' => $isFavorite,
-                'lang' => \Yii::$app->language]);
+            return $this->redirect(['index',            'isFavorite' => $isFavorite]);
         }
 
         return $this->render('update', [

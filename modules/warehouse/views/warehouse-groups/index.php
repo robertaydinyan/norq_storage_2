@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
     <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <div>
             <?php if(\app\rbac\WarehouseRule::can('warehouse-groups', 'create')): ?>
-                <a  href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create');?></a>
+                <a  href="<?= Url::to(['create']) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create');?></a>
             <?php endif; ?>
                 <button  onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary ">Xls</button>
         </div>
@@ -40,13 +40,13 @@ $this->params['breadcrumbs'][] = $this->title[0];
                     'buttons' => [
                         'update' => function ($url, $model) {
                             return \app\rbac\WarehouseRule::can('warehouse-groups', 'update') ?
-                                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                                Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                     'title' => Yii::t('app', 'Update'),
                                     'class' => 'btn text-primary btn-sm mr-2'
                                 ]) : '';
                         },
                         'delete' => function ($url, $model) {
-                            return \app\rbac\WarehouseRule::can('warehouse-groups', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                            return \app\rbac\WarehouseRule::can('warehouse-groups', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url, [
                                 'title' => Yii::t('app', 'Delete'),
                                 'class' => 'btn text-danger btn-sm',
                                 'data' => [

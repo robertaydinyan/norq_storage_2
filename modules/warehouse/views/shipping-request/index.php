@@ -43,11 +43,11 @@ $table_all_columns = array();
             <h1  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span
                         class="star"><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
             <div style="padding-left: 20px" class="d-flex align-items-start pt-2">
-                <a  style="float: right" href="<?= Url::to(['calendar', 'lang' => Yii::$app->language]) ?>"
+                <a  style="float: right" href="<?= Url::to(['calendar']) ?>"
                        class="btn btn-primary mr-2"><?php echo Yii::t('app', 'Calendar'); ?></a>
                 <?php if (\app\rbac\WarehouseRule::can('shipping-request', 'create')): ?>
 
-                    <a style="float: right" href="<?= Url::to(['create', 'lang' => Yii::$app->language]) ?>"
+                    <a style="float: right" href="<?= Url::to(['create']) ?>"
                        class="btn btn-primary mr-2"><?php echo Yii::t('app', 'Create a query'); ?></a>
                 <?php endif; ?>
                 <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
@@ -265,7 +265,7 @@ $table_all_columns = array();
                     'buttons' => [
                         'view' => function ($url, $model) {
                             return \app\rbac\WarehouseRule::can('shipping-request', 'view') ?
-                                Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                                Html::a('<i class="fas fa-eye"></i>', $url, [
                                     'title' => Yii::t('app', 'View'),
                                     'class' => 'btn text-primary  btn-sm mr-2'
                                 ]) : '';
@@ -273,7 +273,7 @@ $table_all_columns = array();
                         'update' => function ($url, $model) {
                             if ($model->status != 3) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
-                                    Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                         'title' => Yii::t('app', 'Change'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
@@ -284,7 +284,7 @@ $table_all_columns = array();
                         'accept' => function ($url, $model) {
                             if ($model->status == 2) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
                                         'title' => Yii::t('app', 'Confirm'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
@@ -299,7 +299,7 @@ $table_all_columns = array();
                         'decline' => function ($url, $model) {
                             if ($model->status == 2) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
                                         'title' => Yii::t('app', 'Reject'),
                                         'class' => 'btn text-danger  btn-sm mr-2'
                                     ]) : '';
@@ -377,7 +377,7 @@ $table_all_columns = array();
                     'buttons' => [
                         'view' => function ($url, $model) {
                             return \app\rbac\WarehouseRule::can('shipping-request', 'view') ?
-                                Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                                Html::a('<i class="fas fa-eye"></i>', $url, [
                                     'title' => Yii::t('app', 'View'),
                                     'class' => 'btn text-primary  btn-sm mr-2'
                                 ]) : '';
@@ -385,7 +385,7 @@ $table_all_columns = array();
                         'update' => function ($url, $model) {
                             if ($model->status != 3) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
-                                    Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                         'title' => Yii::t('app', 'Change'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
@@ -396,7 +396,7 @@ $table_all_columns = array();
                         'accept' => function ($url, $model) {
                             if ($model->status == 2) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
                                         'title' => Yii::t('app', 'Confirm'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
@@ -405,7 +405,7 @@ $table_all_columns = array();
                         'decline' => function ($url, $model) {
                             if ($model->status == 2) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
                                         'title' => Yii::t('app', 'Reject'),
                                         'class' => 'btn text-danger  btn-sm mr-2'
                                     ]) : '';
@@ -463,7 +463,7 @@ $table_all_columns = array();
                     'buttons' => [
                         'view' => function ($url, $model) {
                             return \app\rbac\WarehouseRule::can('shipping-request', 'view') ?
-                                Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                                Html::a('<i class="fas fa-eye"></i>', $url, [
                                     'title' => Yii::t('app', 'View'),
                                     'class' => 'btn text-primary  btn-sm mr-2'
                                 ]) : '';
@@ -471,7 +471,7 @@ $table_all_columns = array();
                         'update' => function ($url, $model) {
                             if ($model->status != 3) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
-                                    Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                         'title' => Yii::t('app', 'Change'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
@@ -482,7 +482,7 @@ $table_all_columns = array();
                         'accept' => function ($url, $model) {
                             if ($model->status == 2) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
                                         'title' => Yii::t('app', 'Confirm'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
@@ -497,7 +497,7 @@ $table_all_columns = array();
                         'decline' => function ($url, $model) {
                             if ($model->status == 2) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
                                         'title' => Yii::t('app', 'Reject'),
                                         'class' => 'btn btn-danger  btn-sm mr-2'
                                     ]) : '';
@@ -572,7 +572,7 @@ $table_all_columns = array();
                     'buttons' => [
                         'view' => function ($url, $model) {
                             return \app\rbac\WarehouseRule::can('shipping-request', 'view') ?
-                                Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . Yii::$app->language, [
+                                Html::a('<i class="fas fa-eye"></i>', $url, [
                                     'title' => Yii::t('app', 'View'),
                                     'class' => 'btn text-primary  btn-sm mr-2'
                                 ]) : '';
@@ -580,7 +580,7 @@ $table_all_columns = array();
                         'update' => function ($url, $model) {
                             if ($model->status != 3) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
-                                    Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                         'title' => Yii::t('app', 'Change'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
@@ -591,7 +591,7 @@ $table_all_columns = array();
                         'accept' => function ($url, $model) {
                             if ($model->status == 2) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
                                         'title' => Yii::t('app', 'Confirm'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
@@ -606,7 +606,7 @@ $table_all_columns = array();
                         'decline' => function ($url, $model) {
                             if ($model->status == 2) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url . '&lang=' . Yii::$app->language, [
+                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
                                         'title' => Yii::t('app', 'Reject'),
                                         'class' => 'btn text-danger  btn-sm mr-2'
                                     ]) : '';

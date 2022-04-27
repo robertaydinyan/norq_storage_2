@@ -19,13 +19,13 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         'buttons' => [
 
             'view' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('complectation', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
+            return \app\rbac\WarehouseRule::can('complectation', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url, [
             'title' => Yii::t('app', 'View'),
             'class' => 'btn text-primary btn-sm mr-2'
             ]) : '';
             },
         'delete' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('complectation', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+            return \app\rbac\WarehouseRule::can('complectation', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url, [
             'title' => Yii::t('app', 'Delete'),
             'class' => 'btn text-danger btn-sm',
             'data' => [

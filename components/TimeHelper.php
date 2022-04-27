@@ -435,13 +435,10 @@ class TimeHelper
      * @param null|int $timestamp If not set, current timestamp will be used.
      * @return string
      */
-    public static function getPrettyDate($timestamp = null, $language = null)
+    public static function getPrettyDate($timestamp = null)
     {
         if ($timestamp === null) {
             $timestamp = time();
-        }
-        if ($language === null) {
-            $language = \Yii::$app->language;
         }
 
         $month = date('n', $timestamp);
@@ -450,40 +447,40 @@ class TimeHelper
         ];
         switch ($month) {
             case 1:
-                return \Yii::t('app', '{day} January', $params, $language);
+                return \Yii::t('app', '{day} January', $params);
                 break;
             case 2:
-                return \Yii::t('app', '{day} February', $params, $language);
+                return \Yii::t('app', '{day} February', $params);
                 break;
             case 3:
-                return \Yii::t('app', '{day} March', $params, $language);
+                return \Yii::t('app', '{day} March', $params);
                 break;
             case 4:
-                return \Yii::t('app', '{day} April', $params, $language);
+                return \Yii::t('app', '{day} April', $params);
                 break;
             case 5:
-                return \Yii::t('app', '{day} May', $params, $language);
+                return \Yii::t('app', '{day} May', $params);
                 break;
             case 6:
-                return \Yii::t('app', '{day} June', $params, $language);
+                return \Yii::t('app', '{day} June', $params);
                 break;
             case 7:
-                return \Yii::t('app', '{day} July', $params, $language);
+                return \Yii::t('app', '{day} July', $params);
                 break;
             case 8:
-                return \Yii::t('app', '{day} August', $params, $language);
+                return \Yii::t('app', '{day} August', $params);
                 break;
             case 9:
-                return \Yii::t('app', '{day} September', $params, $language);
+                return \Yii::t('app', '{day} September', $params);
                 break;
             case 10:
-                return \Yii::t('app', '{day} October', $params, $language);
+                return \Yii::t('app', '{day} October', $params);
                 break;
             case 11:
-                return \Yii::t('app', '{day} November', $params, $language);
+                return \Yii::t('app', '{day} November', $params);
                 break;
             case 12:
-                return \Yii::t('app', '{day} December', $params, $language);
+                return \Yii::t('app', '{day} December', $params);
                 break;
         }
     }

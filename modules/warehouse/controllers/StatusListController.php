@@ -78,8 +78,7 @@ class StatusListController extends Controller
         $model = new StatusList();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'isFavorite' => $isFavorite,
-                'lang' => \Yii::$app->language]);
+            return $this->redirect(['index', 'isFavorite' => $isFavorite]);
         }
 
         return $this->render('create', [
@@ -102,8 +101,7 @@ class StatusListController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'isFavorite' => $isFavorite,
-                'lang' => \Yii::$app->language]);
+            return $this->redirect(['index', 'isFavorite' => $isFavorite]);
         }
 
         return $this->render('update', [

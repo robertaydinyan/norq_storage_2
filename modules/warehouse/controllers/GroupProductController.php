@@ -64,8 +64,7 @@ class GroupProductController extends Controller
                 $model->name_en = $form_data['name_en'];
                 $model->save(false);
             }
-             return $this->redirect(['index','isFavorite' => $isFavorite,
-                 'lang' => \Yii::$app->language]);
+             return $this->redirect(['index','isFavorite' => $isFavorite]);
         }
 
         $groupProducts = Product::find()->select([

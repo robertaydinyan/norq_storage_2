@@ -61,7 +61,7 @@ class WarehouseGroupsController extends Controller
         $model = new WarehouseGroups();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'isFavorite' => $isFavorite,'lang' => Yii::$app->language]);
+            return $this->redirect(['index', 'isFavorite' => $isFavorite]);
         }
 
         return $this->render('create', [
@@ -83,7 +83,7 @@ class WarehouseGroupsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'isFavorite' => $isFavorite,'lang' => Yii::$app->language]);
+            return $this->redirect(['index', 'isFavorite' => $isFavorite]);
         }
 
         return $this->render('update', [
@@ -103,7 +103,7 @@ class WarehouseGroupsController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'lang' => Yii::$app->language]);
+        return $this->redirect(['index']);
     }
 
     /**

@@ -171,14 +171,14 @@ $this->params['breadcrumbs'][] = $this->title[0];
                                                                             class="nav-link <?php if (!isset($_GET['type'])) {
                                                                                 echo 'active';
                                                                             } ?>"
-                                                                            href="<?php echo '/warehouse/shipping-request/documents' . '?lang=' . \Yii::$app->language; ?>"><?php echo Yii::t('app', 'All'); ?></a>
+                                                                            href="/warehouse/shipping-request/documents"><?php echo Yii::t('app', 'All'); ?></a>
                                                                 </li>
                                                                 <?php foreach ($shipping_types as $shp_type => $shp_type_val) { ?>
                                                                     <li class="nav-item dropdown-item"><a
                                                                                 class="nav-link <?php if (isset($_GET['type']) && ($_GET['type'] == $shp_type_val->id)) {
                                                                                     echo 'active';
                                                                                 } ?>" href="#"
-                                                                                onclick="showPage('/warehouse/shipping-request/documents?type=<?php echo $shp_type_val->id; ?>&lang=<?php echo \Yii::$app->language; ?>','<?php echo $shp_type_val->name; ?>')"><?php echo $shp_type_val->name; ?></a>
+                                                                                onclick="showPage('/warehouse/shipping-request/documents?type=<?php echo $shp_type_val->id; ?>','<?php echo $shp_type_val->name; ?>')"><?php echo $shp_type_val->name; ?></a>
                                                                     </li>
                                                                 <?php } ?>
                                                             </ul>
@@ -244,14 +244,14 @@ $this->params['breadcrumbs'][] = $this->title[0];
                                                                             class="nav-link <?php if (!isset($_GET['type'])) {
                                                                                 echo 'active';
                                                                             } ?>"
-                                                                            href="<?php echo '/warehouse/shipping-request/documents' . '?lang=' . \Yii::$app->language; ?>"><?php echo Yii::t('app', 'All'); ?></a>
+                                                                            href="/warehouse/shipping-request/documents"><?php echo Yii::t('app', 'All'); ?></a>
                                                                 </li>
                                                                 <?php foreach ($shipping_types as $shp_type => $shp_type_val) { ?>
                                                                     <li class="nav-item dropdown-item"><a
                                                                                 class="nav-link <?php if (isset($_GET['type']) && ($_GET['type'] == $shp_type_val->id)) {
                                                                                     echo 'active';
                                                                                 } ?>" href="#"
-                                                                                onclick="showPage('/warehouse/shipping-request?type=<?php echo $shp_type_val->id; ?>&lang=<?php echo \Yii::$app->language; ?>','<?php echo $shp_type_val->name; ?>')"><?php echo $shp_type_val->name; ?></a>
+                                                                                onclick="showPage('/warehouse/shipping-request?type=<?php echo $shp_type_val->id; ?>','<?php echo $shp_type_val->name; ?>')"><?php echo $shp_type_val->name; ?></a>
                                                                     </li>
                                                                 <?php } ?>
                                                             </ul>

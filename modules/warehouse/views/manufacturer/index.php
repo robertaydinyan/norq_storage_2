@@ -37,21 +37,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view}{update}{delete}',
                 'buttons' => [
                     'view' => function ($url, $model) {
-                        return \app\rbac\WarehouseRule::can('manufacturer', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
+                        return \app\rbac\WarehouseRule::can('manufacturer', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url, [
                             'title' => Yii::t('app', 'View'),
                             'class' => 'btn text-primary btn-sm mr-2'
                         ]) : '';
                     },
                     'update' => function ($url, $model) {
                         return \app\rbac\WarehouseRule::can('manufacturer', 'update') ?
-                            Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                            Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                 'title' => Yii::t('app', 'Update'),
                                 'class' => 'btn text-primary btn-sm mr-2'
                             ]) : '';
                     },
                     'delete' => function ($url, $model) {
                         return \app\rbac\WarehouseRule::can('manufacturer', 'delete') ?
-                            Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                            Html::a('<i class="fas fa-trash-alt"></i>', $url, [
                                 'title' => Yii::t('app', 'Delete'),
                                 'class' => 'btn text-danger btn-sm',
                                 'data' => [

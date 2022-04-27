@@ -47,14 +47,14 @@ $actions = [
     'buttons' => [
         'update' => function ($url, $model) {
             return \app\rbac\WarehouseRule::can('payments-log', 'update') ?
-                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                     'title' => Yii::t('app', 'Update'),
                     'class' => 'btn text-primary btn-sm mr-2'
                 ]) : '';
         },
         'delete' => function ($url, $model) {
             return  \app\rbac\WarehouseRule::can('payments-log', 'delete') ?
-                Html::a('<i class="fas fa-trash-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                Html::a('<i class="fas fa-trash-alt"></i>', $url, [
                     'title' => Yii::t('app', 'Delete'),
                     'class' => 'btn text-danger btn-sm',
                     'data' => [

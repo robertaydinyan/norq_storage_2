@@ -5,16 +5,6 @@ use app\components\Url;
 use app\components\Helper;
 use app\modules\warehouse\models\SiteSettings;
 
-$flags = array(
-    'ru-RU' => 'ru',
-    'en-US' => 'en',
-    'hy' => 'hy',
-);
-$names = array(
-    'ru-RU' => 'Рус',
-    'en-US' => 'Eng',
-    'hy' => 'Հայ',
-);
 $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
 
 ?>
@@ -32,12 +22,11 @@ $s = SiteSettings::find()->where(['name' => 'page-status'])->one()->value;
 </div>
 <?php //echo $this->render('/modal/modal-table'); ?>
 <input type="hidden" id="user-id" value="<?php echo YII::$app->user->id; ?>">
-<input type="hidden" id="lang" value="<?php echo explode('-', \Yii::$app->language)[0] ?: 'hy'; ?>">
 <input type="hidden" id="user-link" value="<?php echo URL::current(); ?>">
 <input type="hidden" id="user-link-no-lang" value="<?php echo \app\rbac\WarehouseRule::removeLangFromLink(URL::current()); ?>">
 <nav class="topnav navbar navbar-expand shadow navbar-light" id="sidenavAccordion" style=" background:#0055a5!important;">
     <span style="font-size:30px;cursor:pointer;color: #fff" onclick="openNav()" class="px-3 menu-media">&#9776; </span>
-    <a class="navbar-brand" href="/warehouse/warehouse/home?lang=<?php echo \Yii::$app->language; ?>" style="color:#fff!important;padding-left: 20px;"><img src="/img/logo.png" style="width:35px;height: 35px;" class="mr-3">Warehouse</a>
+    <a class="navbar-brand" href="/warehouse/warehouse/home" style="color:#fff!important;padding-left: 20px;"><img src="/img/logo.png" style="width:35px;height: 35px;" class="mr-3">Warehouse</a>
     <div class="main-header2 ">
     <?php
     //        if(Yii::$app->controller->module->id == 'fastnet'){

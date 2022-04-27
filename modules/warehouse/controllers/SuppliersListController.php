@@ -64,8 +64,7 @@ class SuppliersListController extends Controller
             $model->comment = $form_data['comment'];
             $model->contract_type = $form_data['contract_type'];
             $model->save(false);
-            return $this->redirect(['index', 'isFavorite' => $isFavorite,
-                'lang' => \Yii::$app->language]);
+            return $this->redirect(['index', 'isFavorite' => $isFavorite]);
         }
         $partners = SuppliersList::find()->asArray()->all();
         $tableTreePartners = $this->buildTree($partners);
@@ -131,8 +130,7 @@ class SuppliersListController extends Controller
                    Notifications::setNotification($value->id,"Ստեղծվել է նոր Գործընկեր ".$model->name,'/warehouse/suppliers-list');
                 }
             } 
-            return $this->redirect(['index','isFavorite' => $isFavorite,
-                'lang' => \Yii::$app->language]);
+            return $this->redirect(['index','isFavorite' => $isFavorite]);
         }
 
         return $this->render('create', [

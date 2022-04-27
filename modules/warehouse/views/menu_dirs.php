@@ -7,9 +7,6 @@ use yii\helpers\Url;
         <ul id="w5" class="navbar-nav w-100 nav">
             <li class="nav-item "><a class="nav-link" href="<?php echo URL::to('/warehouse/qty-type'); ?>"><?php echo Yii::t('app', 'Unit of measurement'); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/warehouse/currency'); ?>"><?php echo Yii::t('app', 'Currency'); ?></a></li>
-<!--            <li class="nav-item"><a class="nav-link" href="/warehouse/shipping-type?lang=<?php /*echo \Yii::$app->language; */?>"><?php /*echo Yii::t('app', 'Type of transfer'); */?></a></li>
--->  <!--          <li class="nav-item"><a class="nav-link" href="/warehouse/status-list?lang=<?php /*echo \Yii::$app->language; */?>"><?php /*echo Yii::t('app', 'Statuses'); */?></a></li>
--->          <!--  <li class="nav-item"><a class="nav-link" href="/warehouse/warehouse-types?lang=<?php /*echo \Yii::$app->language; */?>"><?php /*echo Yii::t('app', 'Warehouse types'); */?></a></li>-->
             <li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/warehouse/warehouse-groups'); ?>"><?php echo Yii::t('app', 'Virtual (types)'); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/warehouse/suppliers-list'); ?>"><?php echo Yii::t('app', 'co-workers'); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/warehouse/group-product'); ?>"><?php echo Yii::t('app', 'Product group'); ?></a></li>

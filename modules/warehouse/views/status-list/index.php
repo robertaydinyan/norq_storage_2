@@ -38,7 +38,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'buttons' => [
                     'update' => function ($url, $model) {
                         return \app\rbac\WarehouseRule::can('status-list', 'update') ?
-                            Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . Yii::$app->language, [
+                            Html::a('<i class="fas fa-pencil-alt"></i>', $url , [
                                 'title' => Yii::t('app', 'Update'),
                                 'class' => 'btn text-primary btn-sm mr-2'
                             ]) : '';

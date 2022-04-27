@@ -78,9 +78,9 @@ if(!empty($data)){ ?>
                     <?php if(@$_GET['show-series']){ ?>
                         <td onclick="showLog('<?php echo $prod_val['mac'];?>')"><a href="javascript:void(0)" ><?php echo $prod_val['mac'];?></a></td>
                     <?php } ?>
-                    <td><a href="#" onclick="showPage('/warehouse/nomenclature-product/view?id=<?php echo $prod_val['nomenclature_product_id'];?>&lang=hy','<?php echo $prod_val['name_hy'];?>')"><?php echo $prod_val['name_hy'];?></a></td>
+                    <td><a href="#" onclick="showPage('/warehouse/nomenclature-product/view?id=<?php echo $prod_val['nomenclature_product_id'];?>','<?php echo $prod_val['name_hy'];?>')"><?php echo $prod_val['name_hy'];?></a></td>
                     <?php if(@$_GET['show-ware']){ ?>
-                        <td><a href="#" onclick="showPage('/warehouse/warehouse/view?id=<?php echo $prod_val['warehouse_id'];?>&lang=hy','<?php echo $prod_val['wname'];?>')"><?php echo $prod_val['wname'];?></a></td>
+                        <td><a href="#" onclick="showPage('/warehouse/warehouse/view?id=<?php echo $prod_val['warehouse_id'];?>','<?php echo $prod_val['wname'];?>')"><?php echo $prod_val['wname'];?></a></td>
                     <?php } ?>
                      <?php if(!$_GET['from_created_at'] || !$_GET['to_created_at'] || @!$_GET['show-ware']){ ?>
                         <td> <?php echo $prod_val['pcount'];?> <?php echo $prod_val['qty_type'];?></td>
