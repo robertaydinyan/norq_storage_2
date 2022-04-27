@@ -114,8 +114,8 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
         ]) ?>
         <?php if (\Yii::$app->user->can('admin')) { ?>
             <p>
-                <?= Html::a(Yii::t('app', 'Change'), ['update', 'id' => $model->id, 'lang' => \Yii::$app->language], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id, 'lang' => \Yii::$app->language], [
+                <?= Html::a(Yii::t('app', 'Change'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
@@ -134,7 +134,6 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
             <tr>
                 <th><?php echo Yii::t('app', 'Warehouse name'); ?></th>
                 <th><?php echo Yii::t('app', 'Product name'); ?></th>
-                <th><?php echo Yii::t('app', 'Product Picture'); ?></th>
                 <th><?php echo Yii::t('app', 'Quantity'); ?></th>
                 <th><?php echo Yii::t('app', 'Individual'); ?></th>
             </tr>
@@ -146,14 +145,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
                     <td><?php echo $products['wname']; ?></td>
                     <td><a href="#" onclick="showPage('/warehouse/nomenclature-product/view?id=<?= $products['nomenclature_product_id'] ?>','<?= $products['nomeclature_name'] ?>')"
                           ><?= $products['nomeclature_name'] ?></a></td>
-                    <td class="image"
-                        data-responsive="https://sachinchoolur.github.io/lightgallery.js/static/img/13-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/13-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/13.jpg 800"
-                        data-src="<?= $products['img'] ?>"
-                        data-sub-html="<h4 style='color: white'><?php echo $products['nomeclature_name']?></h4>">
-                        <a href="">
-                            <img class="img-responsive" width="100" src="<?= $products['img'] ?>">
-                        </a>
-                    </td>
+
                     <td><a href="#" data-toggle="modal" data-target="#viewInfo"
                            onclick="showInfo(<?= $products['nid'] ?>,<?php echo $products['id']; ?>)"><?= $products['count_n_product'] ?> <?= $products['qtype'] ?> </a>
                     </td>

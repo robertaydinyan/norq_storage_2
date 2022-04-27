@@ -161,7 +161,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
         <div class="form-group field-product-supplier_id hide for_bay">
             <label class="control-label"
                    for="product-supplier_id"><?php echo Yii::t('app', 'Supplier'); ?><?php if (!$model->isNewRecord) {
-                    echo '`' . $model->supplierp['name_' . $lang];
+                    echo '`' . $model->supplierp['name_' . $lang_s];
                 } ?></label>
 
             <div>
@@ -290,7 +290,7 @@ $lang_s = explode('-', \Yii::$app->language)[0] ?: 'hy';
                         <?php foreach ($products as $product => $prod_val) { ?>
                             <tr>
                                 <td><?php echo $prod_val['id']; ?></td>
-                                <td><?php echo $prod_val->nProduct->{'name_' . $lang}; ?></td>
+                                <td><?php echo $prod_val->nProduct->{'name_' . $lang_s}; ?></td>
                                 <td><?php echo $prod_val['count']; ?></td>
                                 <td><?php if ($prod_val->nProduct->individual == 'true' && isset($prod_val['mac_address'])) {
                                         echo @$prod_val['mac_address'];

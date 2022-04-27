@@ -121,7 +121,7 @@ class WarehouseTypesController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+        return $this->redirect(['index']);
     }
 
     /**

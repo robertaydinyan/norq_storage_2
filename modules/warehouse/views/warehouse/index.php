@@ -1,5 +1,6 @@
 <?php
 
+use app\components\Helper;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
@@ -12,6 +13,7 @@ $this->title = array(Yii::t('app', 'Warehouse type'),'Warehouse type');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title[0];
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,7 +25,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <div>
             <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary  mr-2">Xls</button>
-            <?php echo \app\rbac\WarehouseRule::can('warehouse', 'create') ? '<a  href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '" class="btn btn-primary "  >' .  Yii::t("app", "Create Warehouse") . '</a>' : ''; ?>
+            <?php echo \app\rbac\WarehouseRule::can('warehouse', 'create') ? '<a  href="' . Url::to(['create']) . '" class="btn btn-primary "  >' .  Yii::t("app", "Create Warehouse") . '</a>' : ''; ?>
             <!-- <button class="btn btn-primary mr-2" style="float: right"><i class="fa fa-wrench"></i></button>
              <button class="btn btn-primary mr-2" style="float: right" id="Filter" data-model="WarehouseTypes"><i class="fa fa-list"></i></button>-->
         </div>
@@ -33,9 +35,13 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
         <table class="kv-grid-table table table-hover  kv-table-wrap">
             <?php foreach ($warehouse_types as $ware_type => $ware_type_val){ ?>
             <tr>
-
-                <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'show-by-type') ? ('href="' . Url::to(['show-by-type', 'lang' => \Yii::$app->language]) . '&type=' . $ware_type_val->id) . '"' : '' ?>><?php echo $ware_type_val->{'name_' . $lang};?></a></td>
-                <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'show-by-type') ? 'href="' . Url::to(['show-by-type', 'lang' => \Yii::$app->language]) . '&type=' . $ware_type_val->id . '">' . \Yii::t('app','View') : '>';?> (<?php echo $ware_type_val->count;?>)</a></td>
+                <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'show-by-type') ?
+                        ('href="' . Url::to(['show-by-type', 'type' => $ware_type_val->id]) . '"') : '' ?>>
+                        <?php echo $ware_type_val->{'name_' . $lang};?></a></td>
+                <td><a class="nav-link" <?php echo \app\rbac\WarehouseRule::can('warehouse', 'show-by-type') ?
+                        'href="' . Url::to(['show-by-type', 'type' => $ware_type_val->id]) . '">' . \Yii::t('app','View') : '>';?>
+                       (<?php echo $ware_type_val->count;?>)
+                </a></td>
             </tr>
             <?php } ?>
         </table>
@@ -68,5 +74,6 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
             var resuri = uri + base64(format(template, ctx))
             downloadURI(resuri, fileName);
         }
-    })();</script>
+    })();
+</script>
 

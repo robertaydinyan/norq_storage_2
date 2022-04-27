@@ -238,7 +238,7 @@ AppAsset::register($this);
             color:#0055a5!important;
             margin-left: 10px;
         }
-        <?php if(isset($_GET['show-header'])){ ?>
+        <?php if($_GET['show-header'] == "false"){ ?>
         *:not('button'){
             background:#f0f0f0 !important;
 
@@ -263,8 +263,10 @@ AppAsset::register($this);
         }
         <?php } ?>
     </style>
-    <?php if(!isset($_GET['show-header'])){ ?>
+    <?php
+    if($_GET['show-header'] == "false"){ ?>
         <script>
+            // alert('a')
             function maximaize(el_){
                 $(el_).closest('.window').css({'width':'100%','height':'100%','top':'0px','left':'0px'});
                 $(el_).closest('.window').find('iframe').css({'width':'100%','min-height':'100vh'});

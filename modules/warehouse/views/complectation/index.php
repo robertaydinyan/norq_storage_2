@@ -66,7 +66,7 @@ array_push($table_columns, $actions);
     <h1  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></span></h1>
         <div class="d-flex align-items-start pt-2">
             <?php if(\app\rbac\WarehouseRule::can('complectation', 'create')): ?>
-                <a style="margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary mr-2" ><?php echo Yii::t('app', 'Create'); ?></a>
+                <a style="margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-primary mr-2" ><?php echo Yii::t('app', 'Create'); ?></a>
             <?php endif; ?>
                 <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary  mr-2">Xls</button>
                 <button class="btn btn-primary mr-2 px-1 position-relative" >

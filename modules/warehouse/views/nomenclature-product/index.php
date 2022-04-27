@@ -23,7 +23,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
     <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
     <div>
     <?php if(\app\rbac\WarehouseRule::can('nomenclature-product', 'create')): ?>
-        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create product nomenclature'); ?></a>
+        <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create product nomenclature'); ?></a>
     <?php endif; ?>
     </div>
 </div>
@@ -54,25 +54,25 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
                                 'class' => 'table table-hover'
                             ],
                             'columns' => [
-                                [
-                                    'label' => Yii::t('app', 'Image'),
-                                    'format'=>'html',
-                                    'contentOptions' => function($model) use ($lang) {
-                                        return [
-                                            'data-responsive' => "https://sachinchoolur.github.io/lightgallery.js/static/img/13-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/13-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/13.jpg 800",
-                                            'data-sub-html' => "<h4 style='color: white'>" . $model->{'vendor_code_' . $lang} . "</h4>",
-                                            'class' => 'image',
-                                            'data-src' => $model->img
-                                        ];
-                                    },
-                                    'value' => function ($model) {
-                                        if($model->img){
-                                            return '<a target="_blank" href="'.$model->img.'" ><img width="100" src="'.$model->img.'"></a>';
-                                        } else {
-                                            return '';
-                                        }
-                                    }
-                                ],
+//                                [
+//                                    'label' => Yii::t('app', 'Image'),
+//                                    'format'=>'html',
+//                                    'contentOptions' => function($model) use ($lang) {
+//                                        return [
+//                                            'data-responsive' => "https://sachinchoolur.github.io/lightgallery.js/static/img/13-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/13-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/13.jpg 800",
+//                                            'data-sub-html' => "<h4 style='color: white'>" . $model->{'vendor_code_' . $lang} . "</h4>",
+//                                            'class' => 'image',
+//                                            'data-src' => $model->img
+//                                        ];
+//                                    },
+//                                    'value' => function ($model) {
+//                                        if($model->img){
+//                                            return '<a target="_blank" href="'.$model->img.'" ><img width="100" src="'.$model->img.'"></a>';
+//                                        } else {
+//                                            return '';
+//                                        }
+//                                    }
+//                                ],
                                 [
                                     'attribute' => 'vendor_code_' . $lang,
                                     'label' => Yii::t('app', 'Vendor code')

@@ -17,7 +17,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     <?php echo $this->render('/menu_dirs', array(), true)?>
     <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
     <?php if(\app\rbac\WarehouseRule::can('status-list', 'create')): ?>
-        <?= Html::a(Yii::t('app', 'Create'), ['create', 'lang' => \Yii::$app->language], ['class' => 'btn btn-primary float-right']) ?>
+        <?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-primary float-right']) ?>
     <?php endif; ?>
     </h1>
 

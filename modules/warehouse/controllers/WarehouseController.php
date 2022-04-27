@@ -141,7 +141,7 @@ class WarehouseController extends Controller {
 
         }
         else {
-            return $this->redirect(['index','isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index','isFavorite' => $isFavorite]);
         }
     }
 
@@ -268,7 +268,7 @@ class WarehouseController extends Controller {
                 ->identity->username === 'ashotfast') {
             $this->findModel($id)->delete();
         }
-        $this->redirect(['index', 'lang' => \Yii::$app->language]);
+        $this->redirect(['index']);
     }
 
     protected function findModel($id) {

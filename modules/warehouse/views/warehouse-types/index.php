@@ -18,7 +18,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
     <?php echo $this->render('/menu_dirs', array(), true)?>
     <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
     <?php if(\app\rbac\WarehouseRule::can('warehouse-types', 'create')): ?>
-        <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Type'); ?></a>
+        <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn  btn-primary" ><?php echo Yii::t('app', 'Create') . ' ' . Yii::t('app', 'Type'); ?></a>
     <?php endif; ?>
     </h1>
     <div style="padding:20px;">

@@ -3,6 +3,7 @@
 namespace app\modules\warehouse\controllers;
 
 use app\components\Url;
+use app\modules\warehouse\models\Barcode;
 use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\Manufacturer;
@@ -11,6 +12,7 @@ use app\rbac\WarehouseRule;
 use Yii;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\NomenclatureProductSearch;
+use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -67,6 +69,10 @@ class NomenclatureProductController extends Controller
     public function actionView($id)
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => Barcode::find()->where(['numenclature_id' => $id]),
+//        ]);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'isFavorite' => $isFavorite,
@@ -107,13 +113,13 @@ class NomenclatureProductController extends Controller
 
         if ((int)$post['NomenclatureProduct']['qty_type_id'] === 0 && $model->load(Yii::$app->request->post())) {
             $qtyModel = new QtyType();
-            $qtyModel->type = $post['NomenclatureProduct']['qty_type_id'];
+//            $qtyModel->type = $post['NomenclatureProduct']['qty_type_id'];
             $qtyModel->save();
             $model->qty_type_id = $qtyModel->id;
         }
 
         if (empty($post['NomenclatureProduct']['individual']) && $model->load(Yii::$app->request->post())) {
-            $post['NomenclatureProduct']['production_date'] = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));
+//            $post['NomenclatureProduct']['production_date'] = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));
             $model->individual = 'false';
         }
         
@@ -126,14 +132,15 @@ class NomenclatureProductController extends Controller
 
             $admins = User::find()->where(['role'=>'admin'])->all();
             $model->production_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));
-            $model->is_vip = $post['NomenclatureProduct']['is_vip'];
+            $model->expiration_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['expiration_date']));
 
             if ($model->save()) {
                  if(!empty($admins)){
                     foreach ($admins as $key => $value) {
                        Notifications::setNotification($value->id,"Ստեղծվել է նոր Նոմենկլատուրա ".$model->{'name_' . $lang},'/warehouse/nomenclature-product');
                     }
-                } 
+                }
+//                NomenclatureProduct::saveBarcodes($post['Barcodes'], $post['BarcodesNew'], $model->id);
                 return $this->redirect(['index',            'isFavorite' => $isFavorite,
                     'lang' => \Yii::$app->language]);
             }
@@ -168,9 +175,10 @@ class NomenclatureProductController extends Controller
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
         $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type_' . $lang);
         $post = Yii::$app->request->post();
+//        $barcodes = Barcode::find()->where(['numenclature_id' => $id])->all();
         if ((int)$post['NomenclatureProduct']['qty_type_id'] === 0 && $model->load(Yii::$app->request->post())) {
             $qtyModel = new QtyType();
-            $qtyModel->type = $post['NomenclatureProduct']['qty_type_id'];
+//            $qtyModel->type = $post['NomenclatureProduct']['qty_type_id'];
             $qtyModel->save();
             $model->qty_type_id = $qtyModel->id;
         }
@@ -192,9 +200,11 @@ class NomenclatureProductController extends Controller
                 }
             } 
             $model->production_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));
-            $model->is_vip = $post['NomenclatureProduct']['is_vip'];
+            $model->expiration_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['expiration_date']));
             if ($model->save()) {
-                return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+//                NomenclatureProduct::saveBarcodes($post['Barcodes'], $post['BarcodesNew'], $model->id);
+                return $this->redirect(['index']);
+
             }
         }
 
@@ -228,7 +238,7 @@ class NomenclatureProductController extends Controller
         } 
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+        return $this->redirect(['index']);
     }
 
     /**

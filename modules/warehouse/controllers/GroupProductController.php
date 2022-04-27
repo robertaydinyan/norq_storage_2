@@ -217,7 +217,7 @@ class GroupProductController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Notifications::setNotification(1,"Ստեղծվել է ապրանքի խումբ ՝ <b>".$model->{'name_' . $lang} ."</b> ",'/warehouse/group-product');
-            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -243,7 +243,7 @@ class GroupProductController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Notifications::setNotification(1,"փոփոխվել է ապրանքի խումբ ՝ <b>".$model->name."</b> ",'/warehouse/group-product');
-            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [

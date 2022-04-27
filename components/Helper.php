@@ -175,16 +175,16 @@ class Helper
             ]);
 
             $warehouse = [
-                ['label' => Yii::t('app', 'Main warehouse'), 'url' => ['/warehouse/warehouse/view?id=20&lang=' . $lang]],
-                ['label' => Yii::t('app', 'Warehouses'), 'url' => ['/warehouse/warehouse?lang=' . $lang]],
-                ['label' => Yii::t('app', 'goods'), 'url' => ['/warehouse/product?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Documents'), 'url' => ['/warehouse/shipping-request/documents?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Polls'), 'url' => ['/warehouse/shipping-request?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Directory'), 'url' => ['/warehouse/qty-type?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Reports'), 'url' => ['/warehouse/reports?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Services'), 'url' => ['/warehouse/complectation?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Payments'), 'url' => ['/warehouse/payments?lang=' . $lang]],
-                ['label' => Yii::t('app', 'Users'), 'url' => ['/warehouse/users?lang=' . $lang]],
+                ['label' => Yii::t('app', 'Main warehouse'), 'url' => ['/warehouse/warehouse/view?id=20']],
+                ['label' => Yii::t('app', 'Warehouses'), 'url' => ['/warehouse/warehouse']],
+                ['label' => Yii::t('app', 'goods'), 'url' => ['/warehouse/product']],
+                ['label' => Yii::t('app', 'Documents'), 'url' => ['/warehouse/shipping-request/documents']],
+                ['label' => Yii::t('app', 'Polls'), 'url' => ['/warehouse/shipping-request']],
+                ['label' => Yii::t('app', 'Directory'), 'url' => ['/warehouse/qty-type']],
+                ['label' => Yii::t('app', 'Reports'), 'url' => ['/warehouse/reports']],
+                ['label' => Yii::t('app', 'Services'), 'url' => ['/warehouse/complectation']],
+                ['label' => Yii::t('app', 'Payments'), 'url' => ['/warehouse/payments']],
+                ['label' => Yii::t('app', 'Users'), 'url' => ['/warehouse/users']],
             ];
 
             $rbac = [
@@ -384,5 +384,10 @@ class Helper
 
             return $status;
         }
+    }
+
+    public static function showHeader() {
+        $header = Yii::$app->request->get('show-header');
+        return ($header != null && $header != 'true') ? 'false' : 'true';
     }
 }

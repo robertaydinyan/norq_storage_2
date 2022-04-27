@@ -21,13 +21,13 @@ $actions = [
         'header' => Yii::t('app', 'Action'),
         'template' => '{edit}{delete}{block}',
         'buttons' => [
-            'edit' => function($model) use ($lang) {
+            'edit' => function($url) use ($lang) {
                 return ((\app\rbac\WarehouseRule::can('users', 'edit')) ?
-                    ("<a href='" . $model . '&lang=' . $lang . "'><i class='fas fa-pencil-alt mr-3'></i></a>") : '');
+                    ("<a href='" . URL::to($url) . "'><i class='fas fa-pencil-alt mr-3'></i></a>") : '');
             },
-            'delete' => function($model) use ($lang) {
+            'delete' => function($url) use ($lang) {
                 return ((\app\rbac\WarehouseRule::can('users', 'delete')) ?
-                    ("<a onclick='return AreYouSure();' href='" . $model . '&lang=' . $lang . "'><i class='fas fa-trash-alt mr-3' style='color: red;'></i></a>") : '');
+                    ("<a onclick='return AreYouSure();' href='" . URL::to($url) . "'><i class='fas fa-trash-alt mr-3' style='color: red;'></i></a>") : '');
             },
             'block' => function($url, $model) {
                 return ((Yii::$app->user->identity->role == "admin") ?
@@ -61,7 +61,7 @@ array_push($table_columns, $actions);
     <h1 class="" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <div class="d-flex align-items-start pt-2">
         <?php if(\app\rbac\WarehouseRule::can('users', 'create')): ?>
-        <a style="float: right" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn btn-primary mr-2"  ><?php echo Yii::t('app', 'Create user'); ?></a>
+        <a style="float: right" href="<?= Url::to(['create']) ?>"  class="btn btn-primary mr-2"  ><?php echo Yii::t('app', 'Create user'); ?></a>
         <?php endif; ?>
         <button  onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
         <button class="btn btn-primary mr-2 position-relative" style="float: right">

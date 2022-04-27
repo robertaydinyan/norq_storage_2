@@ -1,10 +1,12 @@
 <?php
 
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\NomenclatureProduct */
+/* @var $dataProvider yii\data\ArrayDataProvider */
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 
 $this->title = array($model->{'name_' . $lang});
@@ -17,11 +19,8 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
     <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
     <div class="row">
-        <div class="col-5">
-            <img alt="Nomenclature image" src="<?php echo $model->img ?>" style="max-width: 100%; max-height: 750px">
-        </div>
 
-        <div style="padding:20px;" class="col-6">
+        <div style="padding:20px;" class="col-8">
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
@@ -49,29 +48,28 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                         }
                     ],
                     [
-                        'attribute' => 'manufacturer',
-                        'label' => Yii::t('app', 'Manufacturer'),
+                        'attribute' => 'production_date',
+                        'label' => Yii::t('app', 'Production date'),
                         'value' => function($model) {
-                            return $model->manufacturerName->name;
-                        }
-                    ],
-                    'production_date',
-                    [
-                        'attribute' => 'is_vip',
-                        'label' => 'Vip',
-                        'value' => function ($model) {
-                            return Yii::t('app', $model->is_vip ? 'Yes' : 'No');
+                            return $model->production_date ?  date('d-m-Y', strtotime($model->production_date)) : null;
                         }
                     ],
                     [
-                        'attribute' => 'individual',
-                        'label' => Yii::t('app', 'Individual'),
-                        'value' => function ($model) {
-                            return Yii::t('app', $model->individual ? 'Yes' : 'No');
+                        'attribute' => 'expiration_date',
+                        'label' => Yii::t('app', 'Expiration date'),
+                        'value' => function($model) {
+                            return $model->expiration_date ?  date('d-m-Y', strtotime($model->expiration_date)) : null;
                         }
                     ],
-                    'min_qty',
-                    'qty_for_notice',
+                    [
+                        'label' => Yii::t('app', 'Days count'),
+                        'value' => function($model) {
+                            return ($model->production_date && $model->expiration_date) ?  (strtotime($model->expiration_date) - strtotime($model->production_date)) / (60 * 60 * 24) : null;
+                        }
+                    ],
+                    'series',
+                    'ref',
+                    'expenditure_article',
                     [
                         'attribute' => 'qty_type',
                         'label' => Yii::t('app', 'Quantity type'),
@@ -79,23 +77,45 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                             return $model->getQtyType()->one()['type_' . $lang];
                         }
                     ],
-                    'expenditure_article',
                     'is_vat',
+                    [
+                        'attribute' => 'manufacturer',
+                        'label' => Yii::t('app', 'Manufacturer'),
+                        'value' => function($model) {
+                            return $model->manufacturerName->name;
+                        }
+                    ],
+                    'technical_description',
+                    'comment',
                     'other',
                     [
                         'attribute' => 'individual',
                         'label' => Yii::t('app', 'Individual'),
                         'value' => function ($model) {
-                            return $model->individual ? Yii::t('app', 'Yes') : Yii::t('app', 'No');
+                            return Yii::t('app', $model->individual ? 'Yes' : 'No');
                         }
                     ],
                 ],
             ]) ?>
         </div>
+
+<!--        <div class="col-4">-->
+<!--            <h5>--><?php //echo Yii::t('app', 'Barcodes');?><!--</h5>-->
+<!--            --><?//= GridView::widget([
+//                'dataProvider' => $dataProvider,
+//                'tableOptions' => [
+//                    'class' => 'table table-hover'
+//                ],
+//                'columns' => [
+//                    'id',
+//                    'code'
+//                ],
+//            ]); ?>
+<!--        </div>-->
     </div>
     <p style="padding:20px;">
-        <?= Html::a(Yii::t('app', 'Change'), ['update', 'id' => $model->id, 'lang' => \Yii::$app->language], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id, 'lang' => \Yii::$app->language], [
+        <?= Html::a(Yii::t('app', 'Change'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),

@@ -85,19 +85,19 @@ array_push($table_columns, $actions);
 <?php if(\app\rbac\WarehouseRule::can('payments-log', 'index')): ?>
 <div class="group-product-index">
     <div class="">
-       <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-        <div id="w3-collapse" class="collapse navbar-collapse">
-            <ul id="w5" class="navbar-nav w-100 nav">
-                <li class="nav-item"><a class="nav-link" href="/warehouse/payments"><?php echo Yii::t('app', 'Statistics'); ?></a></li>
-                <li class="nav-item"><a class="nav-link" href="/warehouse/payments-log"><?php echo Yii::t('app', 'Payments'); ?></a></li>
-            </ul>
-        </div>
-    </nav>
+        <nav id="w4" class="main-header navbar-expand bg-white navbar-light border-bottom">
+            <div id="w3-collapse" class="collapse navbar-collapse">
+                <ul id="w5" class="navbar-nav w-100 nav">
+                    <li class="nav-item"><a class="nav-link" href="<?php echo Url::to(['/warehouse/payments']); ?>"><?php echo Yii::t('app', 'Statistics'); ?></a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo Url::to(['/warehouse/payments-log']); ?>"><?php echo Yii::t('app', 'Payments'); ?></a></li>
+                </ul>
+            </div>
+        </nav>
         <div class="d-flex flex-wrap justify-content-between mt-3">
         <h1  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
             <div class="d-flex align-items-start pt-2">
             <?php if(\app\rbac\WarehouseRule::can('payments-log', 'create')): ?>
-            <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create', 'lang' => \Yii::$app->language]) ?>"  class="btn  btn-primary mr-2" ><?php echo Yii::t('app', 'make a payment'); ?></a>
+            <a style="float: right;margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn  btn-primary mr-2" ><?php echo Yii::t('app', 'make a payment'); ?></a>
             <?php endif; ?>
             <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
             <button class="btn btn-primary mr-2 position-relative" style="float: right">

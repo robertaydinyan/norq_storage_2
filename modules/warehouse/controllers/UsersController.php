@@ -119,7 +119,7 @@ class UsersController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        return $this->redirect(['users/index', 'lang' => \Yii::$app->language]);
+        return $this->redirect(['users/index']);
     }
 
     protected function findModel($id)

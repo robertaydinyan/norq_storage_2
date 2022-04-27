@@ -42,9 +42,9 @@ $table_all_columns = array(
 
             return
             Html::a( $product->warehouse->{'name_' . $lang},    
-                                '#',
-                                ['onclick'=>"showPage('/warehouse/warehouse/view?id=".$product->warehouse->{'id'}."','".$product->warehouse->{'name_' . $lang}."')"]
-                    );
+                '#', [
+                    'onclick' => "showPage('/warehouse/warehouse/view?id=".$product->warehouse->{'id'}."','".$product->warehouse->{'name_' . $lang}."')"]
+            );
              
         }
     ],
@@ -58,29 +58,29 @@ $table_all_columns = array(
                                 '#',
                                 ['onclick'=>"showPage('/warehouse/nomenclature-product/view?id=".$product->nomenclatureProduct->{'id'}."','".$product->nomenclatureProduct->{'name_' . $lang}."')"]
                     );
-      
+
         }
     ],
-    'ProductPicture' => [
-        'label' => Yii::t('app', 'Product Picture'),
-        'format' => 'html',
-        'contentOptions' => function($model) use ($lang, $hostname) {
-            return [
-                'data-responsive' => "https://sachinchoolur.github.io/lightgallery.js/static/img/13-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/13-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/13.jpg 800",
-                'data-sub-html' => "<h4 style='color: white'>" . $model->nomenclatureProduct->{'name_' . $lang} . "</h4>",
-                'class' => 'image',
-                'data-src' => $hostname . $model->nomenclatureProduct->img
-            ];
-        },
-        'value' => function($product) use ($lang, $hostname) {
-            return sprintf('<img class="img-responsive"   width="100" src="%s">',
-
-                $hostname . $product->nomenclatureProduct->img,
-
-            );
-        },
-
-    ],
+//    'ProductPicture' => [
+//        'label' => Yii::t('app', 'Product Picture'),
+//        'format' => 'html',
+//        'contentOptions' => function($model) use ($lang, $hostname) {
+//            return [
+//                'data-responsive' => "https://sachinchoolur.github.io/lightgallery.js/static/img/13-375.jpg 375, https://sachinchoolur.github.io/lightgallery.js/static/img/13-480.jpg 480, https://sachinchoolur.github.io/lightgallery.js/static/img/13.jpg 800",
+//                'data-sub-html' => "<h4 style='color: white'>" . $model->nomenclatureProduct->{'name_' . $lang} . "</h4>",
+//                'class' => 'image',
+//                'data-src' => $hostname . $model->nomenclatureProduct->img
+//            ];
+//        },
+//        'value' => function($product) use ($lang, $hostname) {
+//            return sprintf('<img class="img-responsive"   width="100" src="%s">',
+//
+//                $hostname . $product->nomenclatureProduct->img,
+//
+//            );
+//        },
+//
+//    ],
     'Quantity' => [
         'label' => Yii::t('app', 'Quantity'),
         'value' => function($product) use ($lang) {
@@ -125,13 +125,16 @@ if (count($table_columns) == 0) {
         <h1  data-title=" <?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
         <div class="d-flex align-items-start pt-2">
             <?php echo \app\rbac\WarehouseRule::can('group-product', 'show-group-products') ?
+                '<a href="' . URL::to(['/warehouse/group-product/show-group-products']) . '" class="btn btn-primary mr-2" style="float: right;">' .
+                    Yii::t('app', 'Product group') .
+                '</a>'
+            : ''; ?>
 
-            '<a href="/warehouse/group-product/show-group-products?lang=' . Yii::$app->language . '?>" class="btn btn-primary mr-2" style="float: right;">' .
-            Yii::t('app', 'Product group') . '</a>' : ''; ?>
-
-            <a href="/warehouse/product/product-more?lang=<?php echo  Yii::$app->language ?>" class="btn btn-primary mr-2" style="float: right;">
-                <?php echo  Yii::t('app', 'More about product') ?>
-            </a>
+            <?php echo \app\rbac\WarehouseRule::can('group-product', 'show-group-products') ?
+                '<a href="' . URL::to(['/warehouse/product/product-more']) . '" class="btn btn-primary mr-2" style="float: right;">' .
+                    Yii::t('app', 'More about product') .
+                '</a>'
+            : ''; ?>
 
             <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary float-right mr-2">Xls</button>
             <button class="btn btn-primary mr-2 position-relative" style="float: right">

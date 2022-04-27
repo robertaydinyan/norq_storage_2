@@ -161,7 +161,7 @@ class SuppliersListController extends Controller
                    Notifications::setNotification($value->id,"Փոփոխվել է Գործընկեր ".$model->name,'/warehouse/suppliers-list');
                 }
             } 
-            return $this->redirect(['view','isFavorite' => $isFavorite, 'id' => $model->id, 'lang' => \Yii::$app->language]);
+            return $this->redirect(['view','isFavorite' => $isFavorite, 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -186,7 +186,7 @@ class SuppliersListController extends Controller
                    Notifications::setNotification($value->id,"Ջնջվել է Գործընկեր ".$id,'/warehouse/suppliers-list');
                 }
             } 
-        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+        return $this->redirect(['index']);
     }
 
     /**

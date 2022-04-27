@@ -39,8 +39,8 @@ class Analogs extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'product_id' => 'Օրիգինալ',
-            'analog_id' => 'Անալոգ',
+            'product_id' => Yii::t('app', 'Original'),
+            'analog_id' => Yii::t('app', 'Analog'),
         ];
     }
     public function getNomiclatureName($type){

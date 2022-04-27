@@ -29,11 +29,11 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 <?php if(\app\rbac\WarehouseRule::can('payments', 'index')): ?>
     <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
 <div class="group-product-index">
-   <nav id="w4" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+   <nav id="w4" class="main-header navbar-expand bg-white navbar-light border-bottom">
     <div id="w3-collapse" class="collapse navbar-collapse">
         <ul id="w5" class="navbar-nav w-100 nav">
-            <li class="nav-item"><a class="nav-link" href="/warehouse/payments?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Statistics'); ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="/warehouse/payments-log?lang=<?php echo \Yii::$app->language; ?>"><?php echo Yii::t('app', 'Payments'); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo Url::to(['/warehouse/payments']); ?>"><?php echo Yii::t('app', 'Statistics'); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo Url::to(['/warehouse/payments-log']); ?>"><?php echo Yii::t('app', 'Payments'); ?></a></li>
         </ul>
     </div>
 </nav>

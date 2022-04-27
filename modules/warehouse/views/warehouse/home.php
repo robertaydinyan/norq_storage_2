@@ -18,6 +18,7 @@ $this->title = array(Yii::t('app', 'Warehouse'), 'Warehouse');
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 $this->params['breadcrumbs'][] = $this->title[0];
 $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
+$language = Yii::$app->language;
 ?>
 <?php if(!empty($_GET['search'])){ ?>
     <style>
@@ -53,8 +54,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                     </div>
 
                     <div class="card-bottom-section mt-5">
-                         
-                        <div> <a href="#" onclick="showPage('/warehouse/warehouse/view?id=20&lang=<?= $lang ?>','<?= Yii::t('app', 'Main warehouse') ?>')" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                        <div> <a href="#" onclick="showPage('/warehouse/warehouse/view?id=20&lang=<?= $language ?>','<?= Yii::t('app', 'Main warehouse') ?>')" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                          } ?>
                     </div>
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="#" onclick="showPage('/warehouse/warehouse?lang=<?= $lang ?>','Պահեստներ')" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="#" onclick="showPage('/warehouse/warehouse?lang=<?= $language ?>','Պահեստներ')" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
                 <!-- <h6><span class="badge badge-primary new-badge" style="position: absolute;top:0px;right: 0px;">12 <i class="fas fa-bell" style="color:#fff"></i></span></h6> -->
             </div>
@@ -127,7 +127,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                          } ?>
                     </div>
                 <div class="card-bottom-section mt-5">
-                    <div> <a  href="#"  onclick="showPage('/warehouse/product?lang=<?= $lang ?>','Ապրանքներ')" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a  href="#"  onclick="showPage('/warehouse/product?lang=<?= $language ?>','Ապրանքներ')" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -187,7 +187,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                      } ?>
                 </div>
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/shipping-request/documents?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="/warehouse/shipping-request/documents?lang=<?= $language ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -246,7 +246,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                      } ?>
                 </div>
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/shipping-request?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="/warehouse/shipping-request?lang=<?= $language ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -292,7 +292,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/qty-type?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="/warehouse/qty-type?lang=<?= $language ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -318,7 +318,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/reports?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="/warehouse/reports?lang=<?= $language ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -344,7 +344,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/complectation?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="/warehouse/complectation?lang=<?= $language ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -371,7 +371,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/payments?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="/warehouse/payments?lang=<?= $language ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -398,7 +398,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                 </div>
 
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/warehouse/payments-log?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="/warehouse/payments-log?lang=<?= $language ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>
@@ -433,7 +433,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
                          } ?>
                     </div>
                     <div class="card-bottom-section mt-5">
-                        <div> <a href="/warehouse/users?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                        <div> <a href="/warehouse/users?lang=<?= $language ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                     </div>
                 </div>
             </div>
@@ -467,7 +467,7 @@ $lang = explode('-', \Yii::$app->language)[0] ?: 'hy';
 //                     } ?>
 <!--                </div>-->
                 <div class="card-bottom-section mt-5">
-                    <div> <a href="/notifications?lang=<?= $lang ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
+                    <div> <a href="/notifications?lang=<?= $language ?>" class="btn  text-white see mb-3"><?=   Yii::t('app', 'View') ?></a></div>
                 </div>
             </div>
         </div>

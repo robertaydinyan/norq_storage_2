@@ -174,7 +174,7 @@ class PaymentsController extends Controller
                     }
                 }
             }
-            return $this->redirect(['index', 'isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
+            return $this->redirect(['index', 'isFavorite' => $isFavorite]);
 
         }
         return $this->render('create', [
@@ -197,7 +197,7 @@ class PaymentsController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+        return $this->redirect(['index']);
     }
    
 }

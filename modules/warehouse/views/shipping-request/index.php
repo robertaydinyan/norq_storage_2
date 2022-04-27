@@ -20,21 +20,21 @@ $table_all_columns = array();
 ?>
 <?php if (\app\rbac\WarehouseRule::can('shipping-request', 'index')): ?>
     <div class="shipping-request-index group-product-index">
-        <nav id="w5" class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+        <nav id="w5" class="main-header navbar-expand bg-white navbar-light border-bottom">
             <div id="w5-collapse" class="collapse navbar-collapse">
                 <ul id="w5" class="navbar-nav w-100 nav">
                     <?php $uri = explode('?', $_SERVER['REQUEST_URI']); ?>
                     <li class="nav-item "><a class="nav-link <?php if (!isset($_GET['type'])) {
                             echo 'active';
                         } ?>"
-                                             href="<?php echo $uri[0] . '?lang=' . \Yii::$app->language; ?>"><?php echo Yii::t('app', 'All'); ?></a>
+                         href="<?php echo URL::to([$uri[0]]); ?>"><?php echo Yii::t('app', 'All'); ?></a>
                     </li>
                     <?php foreach ($shipping_types as $shp_type => $shp_type_val) { ?>
-                        <li class="nav-item "><a
-                                    class="nav-link <?php if (isset($_GET['type']) && ($_GET['type'] == $shp_type_val->id)) {
-                                        echo 'active';
-                                    } ?>"
-                                    href="?type=<?php echo $shp_type_val->id; ?>&lang=<?php echo \Yii::$app->language; ?>"><?php echo $shp_type_val->{'name_' . $lang}; ?></a>
+                        <li class="nav-item ">
+                            <a class="nav-link <?php if (isset($_GET['type']) && ($_GET['type'] == $shp_type_val->id)) { echo 'active'; } ?>"
+                                href="<?php echo URL::to([$uri[0], 'type' => $shp_type_val->id]); ?>">
+                                <?php echo $shp_type_val->{'name_' . $lang}; ?>
+                            </a>
                         </li>
                     <?php } ?>
                 </ul>
@@ -71,22 +71,6 @@ $table_all_columns = array();
 
         </div>
         <div style="padding:20px;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <form class="row" action="" method="get">
                 <?php if (isset($_GET['type'])) { ?>
                     <input type="hidden" name="type" value="<?php echo $_GET['type']; ?>">
@@ -209,41 +193,6 @@ $table_all_columns = array();
                     </button>
                 </div>
             </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <br>
             <?php if (!isset($_GET['type']) || $_GET['type'] == 7) {
                 $table_all_columns = [

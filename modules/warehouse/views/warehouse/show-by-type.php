@@ -86,10 +86,11 @@ $actions = [
     'template' => '{view}{update}{delete}',
     'buttons' => [
         'view' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('warehouse', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
-                'title' => Yii::t('app', 'View'),
-                'class' => 'btn text-primary btn-sm mr-2'
-            ]) : '';
+            return \app\rbac\WarehouseRule::can('warehouse', 'view') ?
+                Html::a('<i class="fas fa-eye"></i>', URL::to($url), [
+                    'title' => Yii::t('app', 'View'),
+                    'class' => 'btn text-primary btn-sm mr-2'
+                ]) : '';
         },
         'update' => function ($url, $model) {
             return \app\rbac\WarehouseRule::can('warehouse', 'update') ?

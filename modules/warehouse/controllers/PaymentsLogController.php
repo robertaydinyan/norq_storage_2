@@ -89,7 +89,7 @@ class PaymentsLogController extends Controller
             $model->load(Yii::$app->request->post());
             $model->price = $model->price * Currency::getCurrencyByID($model->currency)['value'];
             if ($model->save(false)) {
-                return $this->redirect(['index','isFavorite' => $isFavorite, 'lang' => \Yii::$app->language]);
+                return $this->redirect(['index','isFavorite' => $isFavorite]);
             }
         }
 
@@ -132,7 +132,7 @@ class PaymentsLogController extends Controller
             ->all() , 'id', 'symbol');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'lang' => \Yii::$app->language]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -153,7 +153,7 @@ class PaymentsLogController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'lang' => \Yii::$app->language]);
+        return $this->redirect(['index']);
     }
 
     /**

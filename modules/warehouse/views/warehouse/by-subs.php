@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
             <?php foreach ($subs as $sub => $sub_val){ ?>
                 <tr>
                     <td><?php echo $sub_val->id;?></td>
-                    <td><a class="nav-link" href="<?= Url::to(['show-by-type', 'lang' => \Yii::$app->language]) ?>&group_id=<?php echo $sub_val->id;?>"><?php echo $sub_val->name;?> (<?php echo $sub_val->warehouseCount;?>)</a></td>
+                    <td><a class="nav-link" href="<?= Url::to(['show-by-type']) ?>&group_id=<?php echo $sub_val->id;?>"><?php echo $sub_val->name;?> (<?php echo $sub_val->warehouseCount;?>)</a></td>
                 </tr>
             <?php } ?>
         </table>

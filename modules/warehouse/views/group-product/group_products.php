@@ -32,10 +32,15 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
     <div class="d-flex flex-wrap justify-content-between ">
     <h1   data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
     <div>
-        <?php echo \app\rbac\WarehouseRule::can('group-product', 'create') ? ('<a style="float: right;margin-right: 10px;" class="btn btn-primary" 
-        href="' . Url::to(['create', 'lang' => \Yii::$app->language]) . '">' . Yii::t('app', 'Create a Product Group') . '</a>') : '' ?>
-        <?php echo \app\rbac\WarehouseRule::can('product', 'index') ? ('<a href="/warehouse/product?lang=' . \Yii::$app->language .
-        '" style="float: right;margin-right: 10px;" class="btn btn-primary">' . Yii::t('app', 'goods') . '</a>') : '' ?>
+        <?php echo \app\rbac\WarehouseRule::can('group-product', 'create') ?
+            ('<a style="float: right; margin-right: 10px;" class="btn btn-primary" 
+                href="' . Url::to(['create']) . '">' . Yii::t('app', 'Create a Product Group') . '</a>'
+            ) : '' ?>
+        <?php echo \app\rbac\WarehouseRule::can('product', 'index') ?
+            ('<a href="' . URL::to(['/warehouse/product']) . '" 
+                style="float: right;margin-right: 10px;" class="btn btn-primary">' .
+                Yii::t('app', 'goods') .
+            '</a>') : '' ?>
     </div>
 </div>
 

@@ -12,16 +12,17 @@ use Yii;
  * @property string $name_hy
  * @property string|null $group
  * @property string|null $production_date
+ * @property string|null $expiration_date
  * @property int|null $is_vip
  * @property string|null $individual
  * @property int|null $qty_type_id
  * @property int|null $min_qty
- * @property int|null $qty_for_notice
  * @property int $group_id
  * @property string|null $expenditure_article
  * @property int|null $is_vat
  * @property string|null $manufacturer_name
  * @property string|null $other
+ * @property string|null $technical_description
  */
 class NomenclatureProduct extends \yii\db\ActiveRecord
 {
@@ -40,21 +41,23 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
     {
         return [
             [['group_id'], 'required'],
-            [['production_date'], 'safe'],
-            [['group_id', 'qty_type_id','qty_for_notice','min_qty', 'is_vat', 'is_vat', 'manufacturer'], 'integer'],
+            [['production_date', 'expiration_date'], 'safe'],
+            [['group_id', 'qty_type_id', 'is_vat', 'manufacturer'], 'integer'],
             [[
                 'vendor_code_hy',
                 'vendor_code_ru',
                 'vendor_code_en',
                 'name_hy',
+                'series',
                 'name_en',
                 'name_ru',
                 'group',
                 'individual',
-                'img',
                 'expenditure_article',
-                'manufacturer_name',
                 'other',
+                'ref',
+                'technical_description',
+                'comment'
             ], 'string', 'max' => 255],
         ];
     }
@@ -67,23 +70,24 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'vendor_code_hy' => Yii::t('app', 'Vendor code(Armenian)'),
-            'name_hy' => Yii::t('app', 'Name(Armenian)'),
             'vendor_code_ru' => Yii::t('app', 'Vendor code(Russian)'),
-            'name_ru' => Yii::t('app', 'Name(Russian)'),
             'vendor_code_en' => Yii::t('app', 'Vendor code(English)'),
+            'name_hy' => Yii::t('app', 'Name(Armenian)'),
+            'name_ru' => Yii::t('app', 'Name(Russian)'),
             'name_en' => Yii::t('app', 'Name(English)'),
+            'series' => Yii::t('app', 'Series'),
             'production_date' => Yii::t('app', 'Production date'),
-            'individual' => Yii::t('app', 'Individual'),
-            'min_qty' => Yii::t('app', 'Min Quantity'),
-            'qty_for_notice' => Yii::t('app', 'Quantity required for approval'),
-            'is_vip' => 'Vip',
+            'expiration_date' => Yii::t('app', 'Expiration date'),
+            'ref' => Yii::t('app', 'Ref Code'),
             'qty_type_id' => Yii::t('app', 'Quantity type'),
-            'group_id' => Yii::t('app', 'Group'),
+            'technical_description' => Yii::t('app', 'Technical Description'),
             'expenditure_article' => Yii::t('app', 'Expenditure Article'),
             'is_vat' => Yii::t('app', 'Vat'),
-            'manufacturer_name' => Yii::t('app', 'Manufacturer Name'),
-            'other' => Yii::t('app', 'Other'),
+            'comment' => Yii::t('app', 'Comment'),
             'manufacturer' => Yii::t('app', 'Manufacturer'),
+            'other' => Yii::t('app', 'Other'),
+            'individual' => Yii::t('app', 'Individual'),
+            'group_id' => Yii::t('app', 'Group'),
         ];
     }
     public function getProducts()
@@ -124,5 +128,24 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
 
     public function getManufacturerName() {
         return $this->hasOne(Manufacturer::class, ['id' => 'manufacturer']);
+    }
+
+    public static function saveBarcodes($barcodes, $barcodes_new, $id) {
+        foreach ($barcodes_new as $i => $b) {
+            if (!$b) continue;
+            $barcode = new Barcode();
+            $barcode->code = $b;
+            $barcode->numenclature_id = $id;
+            $barcode->save();
+        }
+        foreach ($barcodes as $i => $b) {
+            if (!$b[0]) {
+                Barcode::deleteAll(['id' => $i]);
+            } else {
+                $barcode = Barcode::find()->where(['id' => $i])->one();
+                $barcode->code = $b[0];
+                $barcode->save();
+            }
+        }
     }
 }

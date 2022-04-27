@@ -157,14 +157,13 @@ $this->params['breadcrumbs'][] =  $this->title[0];
             $('.generate').show();
             $('.show-ware').show();
             $('.show-series').show();
+            $('.by-products').show();
         }
         if (val === 1) {
             $('.start').show();
             $('.end').show();
         } else if (val === 2) {
             $('.warehouse-type').show();
-        } else if (val === 3) {
-            $('.by-products').show();
         }
     }
 
