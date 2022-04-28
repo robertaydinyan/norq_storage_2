@@ -18,9 +18,7 @@ function editPopup(id , el_, path) {
         data: { id: id},
         success: function (data) {
             $('#editeGroup').modal('show');
-            $('#fname__').val(data['name_hy']);
-            $('#fname2__').val(data['name_ru']);
-            $('#fname3__').val(data['name_en']);
+            $('#fname__').val(data['name']);
             $('#vat_').val(data['vat']);
             $('#legal_address_').val(data['legal_address']);
             $('#business_address_').val(data['business_address']);

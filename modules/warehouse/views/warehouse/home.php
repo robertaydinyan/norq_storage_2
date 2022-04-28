@@ -211,79 +211,79 @@ $this->params['breadcrumbs'][] = $this->title[0];
             </div>
         </div>
     <?php endif; ?>
-    <?php if (\app\rbac\WarehouseRule::can('shippingRequest', 'index')): ?>
-        <div class="warehouse-home-item mb-3">
-            <div class="widget widget-card-two">
-                <div class="widget-content">
+<!--    --><?php //if (\app\rbac\WarehouseRule::can('shippingRequest', 'index')): ?>
+<!--        <div class="warehouse-home-item mb-3">-->
+<!--            <div class="widget widget-card-two">-->
+<!--                <div class="widget-content">-->
 
-                    <div class="media p-4 align-items-center border-bottom">
-                        <div class="media-body">
-                            <div class="media border-right-blue align-items-center">
-                                <div class="w-img">
-                                    <i class="fas fa-poll-h mr-2" style="color:#0055a5;font-size: 46px;"></i>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class=""><?= Yii::t('app', 'Polls') ?></h3>
-                                </div>
-                                <div class="w-img text-right">
-                                    <div class="w-img text-right">
-                                        <h2 style="color:#0055a5;font-weight: bold">
-                                            <div class="dropdown mr-2 btn-drop">
-                                                <button class="btn btn-secondary dropdown-toggle bg-white" type="button"
-                                                        id="dropdownMenuButton5" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                    <?= Yii::t('app', 'Menu') ?><i class="fa fa-caret-down ml-2"></i>
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                                    <nav id="w5"
-                                                         class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-                                                        <div id="w5-collapse" class="collapse navbar-collapse">
-                                                            <ul id="w5" class="navbar-nav w-100 nav">
-                                                                <?php $uri = explode('?', $_SERVER['REQUEST_URI']); ?>
-                                                                <li class="nav-item dropdown-item"><a
-                                                                            class="nav-link <?php if (!isset($_GET['type'])) {
-                                                                                echo 'active';
-                                                                            } ?>"
-                                                                            href="/warehouse/shipping-request/documents"><?php echo Yii::t('app', 'All'); ?></a>
-                                                                </li>
-                                                                <?php foreach ($shipping_types as $shp_type => $shp_type_val) { ?>
-                                                                    <li class="nav-item dropdown-item"><a
-                                                                                class="nav-link <?php if (isset($_GET['type']) && ($_GET['type'] == $shp_type_val->id)) {
-                                                                                    echo 'active';
-                                                                                } ?>" href="#"
-                                                                                onclick="showPage('/warehouse/shipping-request?type=<?php echo $shp_type_val->id; ?>','<?php echo $shp_type_val->name; ?>')"><?php echo $shp_type_val->name; ?></a>
-                                                                    </li>
-                                                                <?php } ?>
-                                                            </ul>
-                                                        </div>
-                                                    </nav>
-                                                </div>
-                                            </div>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div style="padding-left:20px;max-height: 200px;overflow:auto;">
-                        <?php if (isset($_GET['search'])) {
-                            $documents = ShippingRequest::find()->where(['LIKE', 'comment', $_GET['search']])->andWhere(['status' => 5])->all();
-                            if (!empty($documents)) {
-                                foreach ($documents as $document_ => $document_val) {
-                                    echo '<a target="_blank" href="/warehouse/shipping-request/view?id=' . $document_val->id . '">' . $document_val->shippingtype->name . '</a><br>';
-                                }
-                            }
-                        } ?>
-                    </div>
-                    <div class="card-bottom-section mt-5">
-                        <div><a href="/warehouse/shipping-request"
-                                class="btn  text-white see mb-3"><?= Yii::t('app', 'View') ?></a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
+<!--                    <div class="media p-4 align-items-center border-bottom">-->
+<!--                        <div class="media-body">-->
+<!--                            <div class="media border-right-blue align-items-center">-->
+<!--                                <div class="w-img">-->
+<!--                                    <i class="fas fa-poll-h mr-2" style="color:#0055a5;font-size: 46px;"></i>-->
+<!--                                </div>-->
+<!--                                <div class="media-body">-->
+<!--                                    <h3 class="">--><?//= Yii::t('app', 'Polls') ?><!--</h3>-->
+<!--                                </div>-->
+<!--                                <div class="w-img text-right">-->
+<!--                                    <div class="w-img text-right">-->
+<!--                                        <h2 style="color:#0055a5;font-weight: bold">-->
+<!--                                            <div class="dropdown mr-2 btn-drop">-->
+<!--                                                <button class="btn btn-secondary dropdown-toggle bg-white" type="button"-->
+<!--                                                        id="dropdownMenuButton5" data-toggle="dropdown"-->
+<!--                                                        aria-haspopup="true" aria-expanded="false">-->
+<!--                                                    --><?//= Yii::t('app', 'Menu') ?><!--<i class="fa fa-caret-down ml-2"></i>-->
+<!--                                                </button>-->
+<!--                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">-->
+<!--                                                    <nav id="w5"-->
+<!--                                                         class="main-header navbar navbar-expand bg-white navbar-light border-bottom">-->
+<!--                                                        <div id="w5-collapse" class="collapse navbar-collapse">-->
+<!--                                                            <ul id="w5" class="navbar-nav w-100 nav">-->
+<!--                                                                --><?php //$uri = explode('?', $_SERVER['REQUEST_URI']); ?>
+<!--                                                                <li class="nav-item dropdown-item"><a-->
+<!--                                                                            class="nav-link --><?php //if (!isset($_GET['type'])) {
+//                                                                                echo 'active';
+//                                                                            } ?><!--"-->
+<!--                                                                            href="/warehouse/shipping-request/documents">--><?php //echo Yii::t('app', 'All'); ?><!--</a>-->
+<!--                                                                </li>-->
+<!--                                                                --><?php //foreach ($shipping_types as $shp_type => $shp_type_val) { ?>
+<!--                                                                    <li class="nav-item dropdown-item"><a-->
+<!--                                                                                class="nav-link --><?php //if (isset($_GET['type']) && ($_GET['type'] == $shp_type_val->id)) {
+//                                                                                    echo 'active';
+//                                                                                } ?><!--" href="#"-->
+<!--                                                                                onclick="showPage('/warehouse/shipping-request?type=--><?php //echo $shp_type_val->id; ?><!-- ',' --><?php //echo $shp_type_val->name; ?><!-- //')">--><?php //echo $shp_type_val->name; ?><!--</a>-->
+<!--                                                                    </li>-->
+<!--                                                                --><?php //} ?>
+<!--                                                            </ul>-->
+<!--                                                        </div>-->
+<!--                                                    </nav>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </h2>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                    </div>-->
+<!--                    <div style="padding-left:20px;max-height: 200px;overflow:auto;">-->
+<!--                        --><?php //if (isset($_GET['search'])) {
+//                            $documents = ShippingRequest::find()->where(['LIKE', 'comment', $_GET['search']])->andWhere(['status' => 5])->all();
+//                            if (!empty($documents)) {
+//                                foreach ($documents as $document_ => $document_val) {
+//                                    echo '<a target="_blank" href="/warehouse/shipping-request/view?id=' . $document_val->id . '">' . $document_val->shippingtype->name . '</a><br>';
+//                                }
+//                            }
+//                        } ?>
+<!--                    </div>-->
+<!--                    <div class="card-bottom-section mt-5">-->
+<!--                        <div><a href="/warehouse/shipping-request"-->
+<!--                                class="btn  text-white see mb-3">--><?//= Yii::t('app', 'View') ?><!--</a></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    --><?php //endif; ?>
     <?php if (\app\rbac\WarehouseRule::can('qtyType', 'index')): ?>
         <div class="warehouse-home-item mb-3">
             <div class="widget widget-card-two">

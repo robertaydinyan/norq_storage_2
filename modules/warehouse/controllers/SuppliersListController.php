@@ -53,9 +53,7 @@ class SuppliersListController extends Controller
             } else {
                 $model = SuppliersList::find()->where(['id'=>$form_data['id']])->one();
             }
-            $model->name_hy = $form_data['name_hy'];
-            $model->name_ru = $form_data['name_ru'];
-            $model->name_en = $form_data['name_en'];
+            $model->name = $form_data['name'];
             $model->vat = $form_data['vat'];
             $model->legal_address = $form_data['legal_address'];
             $model->business_address = $form_data['business_address'];

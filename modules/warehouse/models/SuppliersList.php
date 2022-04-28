@@ -8,9 +8,7 @@ use Yii;
  * This is the model class for table "s_suppliers_list".
  *
  * @property int $id
- * @property string $name_hy
- * @property string $name_ru
- * @property string $name_en
+ * @property string $name
  * @property string $vat
  * @property string $legal_address
  * @property string $business_address

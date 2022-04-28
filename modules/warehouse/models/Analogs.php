@@ -49,6 +49,6 @@ class Analogs extends \yii\db\ActiveRecord
         } else {
            $nomiclature_id = $this->analog_id; 
         }
-        return NomenclatureProduct::findOne(['id'=>$nomiclature_id])->name_hy;
+        return NomenclatureProduct::findOne(['id'=>$nomiclature_id])->name;
     }
 }

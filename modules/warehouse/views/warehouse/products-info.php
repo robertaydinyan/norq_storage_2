@@ -17,7 +17,7 @@
             <?php if(!$prod_val->count){ continue; } ?>
            <tr>
                <td><?php echo $prod_val->id;?></td>
-               <td><a href="#" onclick="showLog('<?php echo $prod_val->id;?>')" ><?php echo $prod_val->nProduct->name_hy;?></a></td>
+               <td><a href="#" onclick="showLog('<?php echo $prod_val->id;?>')" ><?php echo $prod_val->nProduct->name;?></a></td>
                <td><a href="#" onclick="showLog('<?php echo $prod_val->mac_address;?>')" ><?php echo $prod_val->mac_address;?></a></td>
                <td><?php echo $prod_val->count;?></td>
                <td><?php echo $prod_val->price;?> դր․</td>

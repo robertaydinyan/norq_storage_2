@@ -50,18 +50,15 @@ class GroupProductController extends Controller
             $form_data = Yii::$app->request->post();
             if(!isset($form_data['update_button'])) {
                 $model = new GroupProduct();
-                $model->name_hy = $form_data['name_hy'];
-                $model->name_ru = $form_data['name_ru'];
-                $model->name_en = $form_data['name_en'];
+                $model->name = $form_data['name'];
                 if ($form_data['group_id']) {
                     $model->group_id = $form_data['group_id'];
                 }
+                $model->group_order = GroupProduct::find()->where(['group_id' => $model->group_id])->max('group_order');
                 $model->save(false);
             } else {
                 $model = GroupProduct::find()->where(['id'=>$form_data['id']])->one();
-                $model->name_hy = $form_data['name_hy'];
-                $model->name_ru = $form_data['name_ru'];
-                $model->name_en = $form_data['name_en'];
+                $model->name = $form_data['name'];
                 $model->save(false);
             }
              return $this->redirect(['index','isFavorite' => $isFavorite]);
@@ -88,7 +85,7 @@ class GroupProductController extends Controller
             ->leftJoin('s_warehouse', '`s_warehouse`.`id`= `s_product`.`warehouse_id`');
         $searchModel = new GroupProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $groups = GroupProduct::find()->asArray()->all();
+        $groups = GroupProduct::find()->orderBy('group_order')->asArray()->all();
         $tableTreeGroups = $this->buildTree($groups);
 
         return $this->render('index', [
@@ -209,7 +206,10 @@ class GroupProductController extends Controller
         $model = new GroupProduct();
         $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->group_order = GroupProduct::find()->where(['group_id' => $model->group_id])->max('group_order');
+            $model->group_order = $model->group_order ? $model->group_order : 1;
+            $model->save();
             Notifications::setNotification(1,"Ստեղծվել է ապրանքի խումբ ՝ <b>".$model->name ."</b> ",'/warehouse/group-product');
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -286,6 +286,19 @@ class GroupProductController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-
-
+    public function actionChangeOrder() {
+        $request = Yii::$app->request;
+        if ($request->isPost) {
+            $order = $request->post('order');
+            $parentID = $request->post('parentID');
+            $id = $request->post('itemID');
+            $gp = GroupProduct::find()->where(['id' => $id])->one();
+            if ($gp) {
+                $gp->group_id = $parentID;
+                $gp->group_order = $order;
+                $gp->save();
+                Yii::$app->db->createCommand("UPDATE s_group_product SET group_order=group_order+1 WHERE group_id" . ($gp->group_id ? " = '" . $gp->group_id . "'" : ' IS NULL') . " AND group_order >= $gp->group_order AND id <> $gp->id")->execute();
+            }
+         }
+    }
 }

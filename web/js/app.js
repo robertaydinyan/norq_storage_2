@@ -198,7 +198,7 @@ $('.star').click(function () {
 $('.filter').on('click', function() {
     let page = $(this).data('model');
     let type = $(this).data('type');
-    $.get('/site/get-table-rows?lang=' + $('html').attr('lang'), {
+    $.get('/site/get-table-rows', {
         'page': page,
         'type': type
     }).done(function(res) {
@@ -441,3 +441,5 @@ $("#preloder").delay(400).fadeOut("slow");
 //         selector: '.image'
 //     });
 // }
+if ($("table").length > 0)
+    $("table").colResizable();

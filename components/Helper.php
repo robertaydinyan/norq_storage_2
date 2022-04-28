@@ -178,7 +178,7 @@ class Helper
                 ['label' => Yii::t('app', 'Warehouses'), 'url' => ['/warehouse/warehouse']],
                 ['label' => Yii::t('app', 'goods'), 'url' => ['/warehouse/product']],
                 ['label' => Yii::t('app', 'Documents'), 'url' => ['/warehouse/shipping-request/documents']],
-                ['label' => Yii::t('app', 'Polls'), 'url' => ['/warehouse/shipping-request']],
+//                ['label' => Yii::t('app', 'Polls'), 'url' => ['/warehouse/shipping-request']],
                 ['label' => Yii::t('app', 'Directory'), 'url' => ['/warehouse/qty-type']],
                 ['label' => Yii::t('app', 'Reports'), 'url' => ['/warehouse/reports']],
                 ['label' => Yii::t('app', 'Services'), 'url' => ['/warehouse/complectation']],

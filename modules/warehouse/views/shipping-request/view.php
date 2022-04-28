@@ -8,8 +8,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\ShippingRequest */
 
-$this->title = array($model->shippingtype->
-    name . '  #'.$model->id, $model->shippingtype->name_en . ' '.$model->id);
+$this->title = array($model->shippingtype->name . '  #'.$model->id, $model->shippingtype->name . ' '.$model->id);
 $this->params['breadcrumbs'][] = ['label' => 'Shipping Requests', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title[0];
 \yii\web\YiiAsset::register($this);

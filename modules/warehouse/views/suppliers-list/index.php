@@ -62,14 +62,14 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                 <form method="post" action="">
                     <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
 
-                    <label for="fname"><?php echo Yii::t('app', 'Name(Armenian)'); ?></label><br>
-                    <input type="text" class="form-control" id="fname" name="name_hy"><br>
+                    <label for="fname"><?php echo Yii::t('app', 'Name'); ?></label><br>
+                    <input type="text" class="form-control" id="fname" name="name"><br>
 
-                    <label for="fname2"><?php echo Yii::t('app', 'Name(Russian)'); ?></label><br>
-                    <input type="text" class="form-control" id="fname2" name="name_ru"><br>
-
-                    <label for="fname3"><?php echo Yii::t('app', 'Name(English)'); ?></label><br>
-                    <input type="text" class="form-control" id="fname3" name="name_en"><br>
+<!--                    <label for="fname2">--><?php //echo Yii::t('app', 'Name(Russian)'); ?><!--</label><br>-->
+<!--                    <input type="text" class="form-control" id="fname2" name="name_ru"><br>-->
+<!---->
+<!--                    <label for="fname3">--><?php //echo Yii::t('app', 'Name(English)'); ?><!--</label><br>-->
+<!--                    <input type="text" class="form-control" id="fname3" name="name_en"><br>-->
 
                     <label for="vat"><?php echo Yii::t('app', 'Vat'); ?></label><br>
                     <input type="text" class="form-control" id="vat" name="vat"><br>
@@ -113,14 +113,8 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends'=>'y
                 <form method="post" action="">
                     <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
 
-                    <label for="fname__"><?php echo Yii::t('app', 'Name(Armenian)'); ?></label><br>
-                    <input type="text" class="form-control" id="fname__" name="name_hy"><br>
-
-                    <label for="fname2__"><?php echo Yii::t('app', 'Name(Russian)'); ?></label><br>
-                    <input type="text" class="form-control" id="fname2__" name="name_ru"><br>
-
-                    <label for="fname3__"><?php echo Yii::t('app', 'Name(English)'); ?></label><br>
-                    <input type="text" class="form-control" id="fname3__" name="name_en"><br>
+                    <label for="fname__"><?php echo Yii::t('app', 'Name'); ?></label><br>
+                    <input type="text" class="form-control" id="fname__" name="name"><br>
 
                     <label for="vat_"><?php echo Yii::t('app', 'Vat'); ?></label><br>
                     <input type="text" class="form-control" id="vat_" name="vat"><br>

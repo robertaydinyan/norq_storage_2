@@ -19,7 +19,7 @@ class NomenclatureProductSearch extends NomenclatureProduct
     {
         return [
             [['id', 'group_id'], 'integer'],
-            [['vendor_code_hy', 'vendor_code_ru', 'vendor_code_en', 'name_hy', 'name_ru', 'name_en', 'groupName', 'production_date', 'individual', 'qty_type_id'], 'safe'],
+            [['vendor_code', 'name', 'groupName', 'production_date', 'individual', 'qty_type_id'], 'safe'],
         ];
     }
 

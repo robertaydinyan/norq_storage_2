@@ -18,7 +18,7 @@ class WarehouseSearch extends Warehouse
     {
         return [
             [['id', 'responsible_id', 'crm_company_id', 'crm_contact_id'], 'integer'],
-            [['type', 'name_hy', 'name_ru', 'name_en', 'responsible_id', 'created_at', 'updated_at'], 'safe'],
+            [['type', 'name', 'responsible_id', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 

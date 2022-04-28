@@ -38,9 +38,9 @@
 
                                     <td><?php echo $log_val['id'];?></td>
                                     <th><a onclick="showLog('<?php echo $log_val['mac_address'];?>')" href="javascript:void(0)"><?php echo $log_val['mac_address'];?></a></td>
-                                    <td><a target="_blank" href="/warehouse/shipping-request/view?id=<?php echo $log_val['id'];?>"><?php echo $type->name_hy;?></a></td>
-                                    <td><?php echo $from->name_hy;?></td>
-                                    <td><?php echo $to->name_hy;?></td>
+                                    <td><a target="_blank" href="/warehouse/shipping-request/view?id=<?php echo $log_val['id'];?>"><?php echo $type->name;?></a></td>
+                                    <td><?php echo $from->name;?></td>
+                                    <td><?php echo $to->name;?></td>
                                     <td><?php echo $log_val['Pcount'];?></td>
                                     <th><?php echo $log_val['comment'];?></th>
                                     <td><?php echo date('d.m.Y',strtotime($log_val['created_at']));?></td>

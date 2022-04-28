@@ -47,6 +47,7 @@ class AppAsset extends AssetBundle
 
     ];
     public $js = [
+        'https://cdnjs.cloudflare.com/ajax/libs/colresizable/1.6.0/colResizable-1.6.min.js',
         'js/app.js',
         'js/script.js',
         'js/geocoder.js',
@@ -64,13 +65,8 @@ class AppAsset extends AssetBundle
         'js/modules/crm/arrow_sliders.js',
         'js/modules/crm/KANBAN/kanban.js',
        /* 'slick/slick.js',*/
-
-
         'js/modules/crm/script2.js',
         'js/plugins/fullcalendar/fullcalendar.min.js',
-
-
-
     ];
     public $depends = [
         'yii\web\YiiAsset',

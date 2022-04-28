@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string|null $vendor_code
- * @property string $name_hy
+ * @property string $name
  * @property string|null $group
  * @property string|null $production_date
  * @property string|null $expiration_date
@@ -44,13 +44,9 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             [['production_date', 'expiration_date'], 'safe'],
             [['group_id', 'qty_type_id', 'is_vat', 'manufacturer'], 'integer'],
             [[
-                'vendor_code_hy',
-                'vendor_code_ru',
-                'vendor_code_en',
-                'name_hy',
+                'vendor_code',
+                'name',
                 'series',
-                'name_en',
-                'name_ru',
                 'group',
                 'individual',
                 'expenditure_article',

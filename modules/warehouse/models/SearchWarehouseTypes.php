@@ -17,8 +17,8 @@ class SearchWarehouseTypes extends WarehouseTypes
     public function rules()
     {
         return [
-            [['name_hy', 'name_ru', 'name_en'], 'required'],
-            [['name_hy', 'name_ru', 'name_en'], 'string', 'max' => 255],
+            [['name'], 'required'],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 

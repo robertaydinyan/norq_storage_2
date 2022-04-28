@@ -26,6 +26,10 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
         width: 95%;
     }
 
+    .ui-sortable-handle {
+        -webkit-transition: none !important;
+    }
+
 </style>
 <div class="group-product-index" >
     <?php echo $this->render('/menu_dirs', array(), true)?>
@@ -35,7 +39,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
     </div>
     <div style="display: flex">
         <div class="col-lg-12">
-            <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
+            <ul class="file-tree sortable" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;" id="sortable-category">
                 <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
                     <li class="file-tree-folder" data-id="<?= $tableTreeGroup['id'] ?>"> <span data-name="<?= $tableTreeGroup['name'] ?>" class="parent-block"> <?= $tableTreeGroup['name'] ?>
                             <i class="fa fa-plus" onclick="addPopup(<?= $tableTreeGroup['id'] ?>)"></i>
@@ -62,12 +66,8 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                         </button>
                         <form method="post" action="">
                           <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
-                            <label for="fname"><?php echo Yii::t('app', 'Name(Armenian)'); ?></label><br>
-                            <input type="text" class="form-control" id="fname" name="name_hy"><br>
-                            <label for="fname2"><?php echo Yii::t('app', 'Name(Russian)'); ?></label><br>
-                            <input type="text" class="form-control" id="fname2" name="name_ru"><br>
-                            <label for="fname3"><?php echo Yii::t('app', 'Name(English)'); ?></label><br>
-                            <input type="text" class="form-control" id="fname3" name="name_en"><br>
+                            <label for="fname"><?php echo Yii::t('app', 'Name'); ?></label><br>
+                            <input type="text" class="form-control" id="fname" name="name"><br>
                           <input type="hidden" id="group_id" name="group_id">
                           <button class="btn btn-primary"><?php echo Yii::t('app', 'Add'); ?></button>
                         </form>
@@ -84,12 +84,8 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                     </button>
                     <form method="post" action="">
                         <input type="hidden" name="_csrf" value="UvFGCxza780T3mp_WyLZazh2DQwueuKMsksAY0R7RqMdky1ic769q3mbKz0qa7ASb0UgfEo_jrjoH3U6HE8qzg==">
-                        <label for="fname__"><?php echo Yii::t('app', 'Name(Armenian)'); ?></label><br>
-                        <input type="text" class="form-control" id="fname__" name="name_hy"><br>
-                        <label for="fname2__"><?php echo Yii::t('app', 'Name(Russian)'); ?></label><br>
-                        <input type="text" class="form-control" id="fname2__" name="name_ru"><br>
-                        <label for="fname3__"><?php echo Yii::t('app', 'Name(English)'); ?></label><br>
-                        <input type="text" class="form-control" id="fname3__" name="name_en"><br>
+                        <label for="fname__"><?php echo Yii::t('app', 'Name'); ?></label><br>
+                        <input type="text" class="form-control" id="fname__" name="name"><br>
                         <input type="hidden" id="id" name="id">
                         <button class="btn btn-primary" type="submit" name="update_button"><?php echo Yii::t('app', 'Save'); ?></button>
                     </form>
@@ -100,4 +96,34 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
     <br>
 </div>
 
+<!---->
+<!--<script>-->
+<!--    window.addEventListener('load', function () {-->
+<!---->
+<!--        $( ".sortable" ).sortable({-->
+<!--            connectWith: ".parent-block"-->
+<!--        }).disableSelection();-->
+<!--    });-->
+<!--</script>-->
+<script>
+    window.addEventListener('load', function () {
+        $('#sortable-category').sortable({
+            items: 'li',
+            toleranceElement: '> span',
+            update: function(event, el) {
+                let item = $(el.item[0]);
+                let itemID = item.data('id');
+                let parentID = item.parent().parent().data('id');
+                let order = item.index();
 
+                $.post('/warehouse/group-product/change-order', {
+                    order: order + 1,
+                    parentID: parentID,
+                    itemID: itemID
+                }).done(function(res) {
+                    console.log(res)
+                })
+            }
+        });
+    });
+</script>

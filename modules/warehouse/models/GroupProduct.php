@@ -11,6 +11,7 @@ use yii\db\ActiveQuery;
  * @property int $id
  * @property string $name
  * @property int|null $group_id
+ * @property int|null $group_order
  */
 class GroupProduct extends \yii\db\ActiveRecord
 {
@@ -30,7 +31,7 @@ class GroupProduct extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 255],
-            [['group_id'], 'integer'],
+            [['group_id', 'group_order'], 'integer'],
         ];
     }
 
@@ -43,6 +44,7 @@ class GroupProduct extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => Yii::t('app', 'Name'),
             'group_id' => Yii::t('app', 'Parent Name'),
+            'group_order' => Yii::t('app', 'Order'),
         ];
     }
     public function getNProducts()

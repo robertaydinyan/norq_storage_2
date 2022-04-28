@@ -78,7 +78,7 @@ class Warehouse extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'type' => 'Warehouse type',
-            'name_hy' => 'Name',
+            'name' => 'Name',
             'responsible_id' => 'storekeeper',
 //            'created_at' => 'Created',
 //            'updated_at' => 'Updated at',

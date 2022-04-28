@@ -18,7 +18,7 @@ class SearchStatusList extends StatusList
     {
         return [
             [['id'], 'integer'],
-            [['name_hy', 'name_ru', 'name_en'], 'safe'],
+            [['name'], 'safe'],
         ];
     }
 

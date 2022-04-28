@@ -409,21 +409,21 @@ class ShippingRequestController extends Controller {
             if ($for_notice) {
                 Notifications::setNotification($model
                     ->provider->responsible_id, "Ստեղծվել է " . $model
-                    ->shippingtype->name_hy . " <b>" . $model
-                    ->provider->name_hy . "</b> - <b>" . $model
-                    ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> - <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
                 Notifications::setNotification($model
                     ->supplier->responsible_id, "Ստեղծվել է " . $model
-                    ->shippingtype->name_hy . " <b>" . $model
-                    ->provider->name_hy . "</b> - <b>" . $model
-                    ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> - <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
                 if (($model
                     ->supplier->responsible_id != $model->user_id) && ($model
                     ->provider->responsible_id != $model->user_id)) {
                     Notifications::setNotification($model->user_id, "Ստեղծվել է " . $model
-                        ->shippingtype->name_hy . " <b>" . $model
-                        ->provider->name_hy . "</b> - <b>" . $model
-                        ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                        ->shippingtype->name . " <b>" . $model
+                        ->provider->name . "</b> - <b>" . $model
+                        ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
                 }
             }
             return $this->redirect(['index','isFavorite' => $isFavorite,]);
@@ -549,26 +549,26 @@ class ShippingRequestController extends Controller {
                 ShippingRequest::addShippingProducts($model, $request);
             }
             Notifications::setNotification(1, "Փոփոխվել է " . $model
-                ->shippingtype->name_hy . " <b>" . $model
-                ->provider->name_hy . "</b> - <b>" . $model
-                ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> - <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->provider->responsible_id, "Փոփոխվել է " . $model
-                ->shippingtype->name_hy . " <b>" . $model
-                ->provider->name_hy . "</b> -  <b>" . $model
-                ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> -  <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->supplier->responsible_id, "Փոփոխվել է " . $model
-                ->shippingtype->name_hy . " <b>" . $model
-                ->provider->name_hy . "</b> - <b>" . $model
-                ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> - <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             if (($model
                 ->supplier->responsible_id != $model->user_id) && ($model
                 ->provider->responsible_id != $model->user_id)) {
                 Notifications::setNotification($model->user_id, "Փոփոխվել է " . $model
-                    ->shippingtype->name_hy . " <b>" . $model
-                    ->provider->name_hy . "</b> - <b>" . $model
-                    ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> - <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
 
             return $this->redirect(['index','isFavorite' => $isFavorite,
@@ -779,21 +779,21 @@ class ShippingRequestController extends Controller {
             $model->save(false);
             Notifications::setNotification($model
                 ->provider->responsible_id, "Ստեղծվել է " . $model
-                ->shippingtype->name_hy . " <b>" . $model
-                ->provider->name_hy . "</b> - <b>" . $model
-                ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> - <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->supplier->responsible_id, "Ստեղծվել է " . $model
-                ->shippingtype->name_hy . " <b>" . $model
-                ->provider->name_hy . "</b> - <b>" . $model
-                ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> - <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             if (($model
                 ->supplier->responsible_id != $model->user_id) && ($model
                 ->provider->responsible_id != $model->user_id)) {
                 Notifications::setNotification($model->user_id, "Ստեղծվել է " . $model
-                    ->shippingtype->name_hy . " <b>" . $model
-                    ->provider->name_hy . "</b> - <b>" . $model
-                    ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> - <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
         }
         return $this->redirect(['index']);
@@ -825,21 +825,21 @@ class ShippingRequestController extends Controller {
 
             Notifications::setNotification($model
                 ->provider->responsible_id, "Մերժվել է " . $model
-                ->shippingtype->name_hy . " <b>" . $model
-                ->provider->name_hy . "</b> -  <b>" . $model
-                ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> -  <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->supplier->responsible_id, "Մերժվել է " . $model
-                ->shippingtype->name_hy . " <b>" . $model
-                ->provider->name_hy . "</b> - <b>" . $model
-                ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                ->shippingtype->name . " <b>" . $model
+                ->provider->name . "</b> - <b>" . $model
+                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             if (($model
                 ->supplier->responsible_id != $model->user_id) && ($model
                 ->provider->responsible_id != $model->user_id)) {
                 Notifications::setNotification($model->user_id, "Մերժվել է " . $model
-                    ->shippingtype->name_hy . " <b>" . $model
-                    ->provider->name_hy . "</b> - <b>" . $model
-                    ->supplier->name_hy . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> - <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
         }
         return $this->redirect(['index']);
