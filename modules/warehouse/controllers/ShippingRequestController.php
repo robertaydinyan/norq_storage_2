@@ -405,6 +405,7 @@ class ShippingRequestController extends Controller {
                     }
                 }
                 ShippingRequest::addShippingProducts($model, $request);
+
             }
             if ($for_notice) {
                 Notifications::setNotification($model
@@ -426,7 +427,7 @@ class ShippingRequestController extends Controller {
                         ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
                 }
             }
-            return $this->redirect(['index','isFavorite' => $isFavorite,]);
+            return $this->redirect(['/warehouse/shipping-request/accept?id=' . $model->id]);
         }
 
         return $this->render('create', ['model' => $model,'isFavorite' => $isFavorite, 'dataWarehouses' => $dataWarehouses, 'dataUsers' => $dataUsers, 'nProducts' => $nProducts, 'suppliers' => $suppliers, 'requests' => $requests, 'partners' => $partners, 'types' => $types]);
@@ -767,7 +768,7 @@ class ShippingRequestController extends Controller {
                     ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
         }
-        return $this->redirect(['index']);
+        return $this->redirect(['documents']);
     }
     public function actionAcceptAdmin() {
         $get = Yii::$app
