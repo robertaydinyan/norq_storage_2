@@ -20,6 +20,7 @@ use yii\web\UploadedFile;
  * @property int $shipping_id
  * @property int $nomenclature_product_id
  * @property int $status
+ * @property int $article
  * @property int $currency
  */
 class Product extends \yii\db\ActiveRecord {
@@ -43,7 +44,7 @@ class Product extends \yii\db\ActiveRecord {
             [['price', 'retail_price', 'shipping_id', 'min_qty', 'notice_if_move', 'status', 'currency'], 'number'],
             [['created_at', 'warehouse_id', 'nomenclature_product_id', 'product_name'], 'required'],
             [['warehouse_id', 'nomenclature_product_id'], 'integer'],
-            [['supplier_id', 'mac_address', 'invoice', 'comment', 'used', 'created_at', 'product_name'], 'string', 'max' => 255],
+            [['supplier_id', 'mac_address', 'invoice', 'comment', 'used', 'created_at', 'product_name', 'article'], 'string', 'max' => 255],
             [['images'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4],
         ];
     }
@@ -68,6 +69,7 @@ class Product extends \yii\db\ActiveRecord {
             'warehouse_id' => Yii::t('app', 'Warehouse'),
             'status' => Yii::t('app', 'Status'),
             'nomenclature_product_id' => Yii::t('app', 'Product'),
+            'article' => Yii::t('app', 'Article'),
         ];
     }
     /**
@@ -83,6 +85,7 @@ class Product extends \yii\db\ActiveRecord {
                 'ProductPicture' => 'Product Picture',
                 'Quantity' => 'Quantity',
                 'Individual' => 'Individual',
+                'article' => 'article',
 
             ];
         } else if ($type == 2) {
@@ -97,6 +100,7 @@ class Product extends \yii\db\ActiveRecord {
                 'comment' => 'Comment',
                 'created' => 'Created',
                 'invoice' => 'invoice',
+                'article' => 'article',
             ];
         }
 

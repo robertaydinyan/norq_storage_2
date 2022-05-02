@@ -61,7 +61,8 @@ class ProductController extends Controller
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new ProductSearch();
-        $dataProvider2 = $searchModel->search_(Yii::$app->request->post());
+        $article = Yii::$app->request->get('article');
+        $dataProvider2 = $searchModel->search_($article);
         TableRowsStatus::checkRows('Product', 1);
         $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id])->one();
@@ -74,6 +75,7 @@ class ProductController extends Controller
             'columns' => $columns,
             'dataProvider2' => $dataProvider2,
             'isFavorite' => $isFavorite,
+            'article' => $article
         ]);
 //        $model = new Product();
 //        $address = new ContactAdress();

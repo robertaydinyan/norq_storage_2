@@ -35,6 +35,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
 
 $table_all_columns = array(
     'id' => 'id',
+    'article' => 'article',
     'WarehouseName' => [
         'label' => Yii::t('app', 'Warehouse name'),
         'format' => 'raw',
@@ -154,7 +155,15 @@ if (count($table_columns) == 0) {
                         class="fa fa-wrench "></i></button>
         </div>
     </div>
-
+    <form action="" style="display: flex;">
+        <div class="form-group col-2" style="margin: 0;">
+            <label for="article" style="font-size: 14px;"><?php echo Yii::t('app', 'Article'); ?></label>
+            <input type="text" name="article" class="form-control" id="article" value="<?php echo $article; ?>">
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 28px;">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
     <div class="product-index table-scroll" id="lightgallery" style="padding: 20px;">
         <?= GridView::widget([
             'dataProvider' => $dataProvider2,

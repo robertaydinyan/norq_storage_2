@@ -274,7 +274,7 @@ function windowActions() {
         let id = $(this).data('id');
         console.log(id)
         if (id) {
-            $('.window').removeClass('zIndex')
+            $('.window').removeClass('nozIndex').removeClass('zIndex');
             $('.window[data-id=' + id + ']').addClass('zIndex')
         }
     });
@@ -459,4 +459,12 @@ if ($("table").length > 0) {
             localStorage[page] = JSON.stringify(widths);
         }
     });
+}
+
+function maximaize(el_){
+    $(el_).closest('.window').css({'width':'100%','height':'100%','top':'0px','left':'0px'});
+    $(el_).closest('.window').find('iframe').css({'width':'100%','min-height':'100vh'});
+}
+function minimize(el_){
+    $(el_).closest('.window').addClass('nozIndex');
 }

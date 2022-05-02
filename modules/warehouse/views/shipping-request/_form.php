@@ -27,7 +27,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'novalidate' => 'novalidate']]); ?>
 <div class="row">
-    <div class="shipping-request-form col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4">
+    <div class="shipping-request-form col-12	col-sm-12	col-md-12 col-lg-3	col-xl-3">
 
         <?= $form->field($model, 'shipping_type', [
             'options' => ['class' => 'form-group'],
@@ -188,7 +188,7 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
                    name="ShippingRequest[invoice]" maxlength="255">
         </div>
     </div>
-    <div class="shipping-request-form col-12	col-sm-12	col-md-12 col-lg-8	col-xl-8 mb-2">
+    <div class="shipping-request-form col-12	col-sm-12	col-md-12 col-lg-9	col-xl-9 mb-2">
         <?php if ($model->isNewRecord) { ?>
             <div class="hide-block"></div>
             <div id="product-add-block" class="product-add-block"></div>

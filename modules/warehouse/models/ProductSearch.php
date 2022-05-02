@@ -120,8 +120,16 @@ class ProductSearch extends Product
         return ['result' => $whProducts, 'params' => $params,'total'=>$number_of_page];
     }
 
-    public function search_($params) {
-        $query = Product::find()->where(['>','count',0])->andWhere(['>','warehouse_id',0])->groupBy(['warehouse_id','nomenclature_product_id'])->indexBy('id'); // where `id` is your primary key
+    public function search_($article) {
+        $query = Product::find()
+            ->where(['>','count',0])
+            ->andWhere(['>','warehouse_id',0])
+            ->groupBy(['warehouse_id','nomenclature_product_id'])
+            ->indexBy('id'); // where `id` is your primary key
+
+        if ($article) {
+            $query->andWhere(['like', 'article', $article]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

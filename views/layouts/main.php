@@ -234,6 +234,9 @@ AppAsset::register($this);
         .zIndex{
             z-index:1200 !important;
         }
+        .nozIndex {
+            top: 10000px !important;
+        }
         .favorite i{
             color:#0055a5!important;
             margin-left: 10px;
@@ -263,21 +266,13 @@ AppAsset::register($this);
         }
         <?php } ?>
     </style>
-    <?php
-    if($_GET['show-header'] == "false"){ ?>
-        <script>
-            // alert('a')
-            function maximaize(el_){
-                $(el_).closest('.window').css({'width':'100%','height':'100%','top':'0px','left':'0px'});
-                $(el_).closest('.window').find('iframe').css({'width':'100%','min-height':'100vh'});
-            }
-        </script>
-    <?php } ?>
+
     <?php $this->endBody() ?>
     <div class="window" style="max-width: auto;display: none;position: fixed;">
         <div class="title-bar">
             <div class="title-bar-text">Another window with contents</div>
             <div class="title-bar-controls">
+                <button aria-label="Minimize" onclick="minimize($(this))"></button>
                 <button aria-label="Maximize" onclick="maximaize($(this))"></button>
                 <button aria-label="Close" class="remove-window" ></button>
             </div>
