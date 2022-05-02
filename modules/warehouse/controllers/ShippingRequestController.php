@@ -99,6 +99,9 @@ class ShippingRequestController extends Controller {
             ->all();
         $dataUsers = [];
         $dataProvider->pagination->pageSize = $rows_count['count'];
+        if ($rows_count && $rows_count->column_name) {
+            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
+        }
 
         foreach ($uersData as $key => $value) {
             $dataUsers[$value
@@ -108,8 +111,16 @@ class ShippingRequestController extends Controller {
             ->where(['!=', 'id', 6])
             ->asArray()
             ->all());
-        return $this->render('index', ['searchModel' => $searchModel,'isFavorite' => $isFavorite, 'columns' => $columns,
-            'dataProvider' => $dataProvider, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'isFavorite' => $isFavorite,
+            'columns' => $columns,
+            'dataProvider' => $dataProvider,
+            'shipping_types' => $shipping_types,
+            'warehouses' => $physicalWarehouse,
+            'suppliers' => $suppliers,
+            'users' => $dataUsers
+        ]);
     }
 
     public function actionCalendar() {

@@ -20,6 +20,25 @@
                     </div>
                     <p style="font-size: 13px">Թիվը 0-ից մինչև 50</p>
                 </div>
+                <div class="d-flex flex-column col-12	col-sm-12	col-md-12 col-lg-6	col-xl-3" style="width: 22%;">
+                    <h6>տողերը դասավորել ըստ</h6>
+                    <div style="display: flex;">
+                        <select name="sort-column" id="" class="form-control" name="sort-column">
+                            <?php if(isset($columnsActive) || isset($columnsPassive)):
+                                foreach (array_merge($columnsActive, $columnsPassive) as $c): ?>
+                                    <option value="<?php echo $c->row_name; ?>"
+                                        <?php echo $rows_count->column_name == $c->row_name ? 'selected' : ''; ?>
+                                    ><?php echo Yii::t('app', $c->row_name_normal); ?></option>
+                                <?php endforeach;
+                            endif; ?>
+                        </select>
+                        <input type="hidden" name="sort-direction" value="<?php echo $rows_count->direction == 'DESC' ? 'DESC' : 'ASC'; ?>">
+                        <button type="button" class="sort-direction" data-sort="<?php echo $rows_count->direction == 'DESC' ? 'DESC' : 'ASC'; ?>">
+                            <i class="fa <?php echo $rows_count->direction == 'DESC' ? 'fa-arrow-up' : 'fa-arrow-down'; ?>" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-xl-6"></div>
 <!--                <div class="d-flex flex-column col-12	col-sm-12	col-md-12 col-lg-6	col-xl-3" style="width: 22%;">-->
 <!--                    <h6>Աղյուսակի տեսք *</h6>-->
 <!--                    <input type="text" class="form-control">-->
@@ -91,6 +110,16 @@
     }
 </style>
 <script>
+    $('.sort-direction').on('click', function() {
+        if ($(this).attr('data-sort') === "ASC") {
+            $(this).attr('data-sort', 'DESC');
+            $(this).find('i').attr('class', 'fa fa-arrow-up');
+        } else {
+            $(this).attr('data-sort', 'ASC');
+            $(this).find('i').attr('class', 'fa fa-arrow-down');
+        }
+        $(this).prev().val($(this).attr('data-sort'));
+    });
     $( ".sortable" ).sortable({
         connectWith: ".connectedSortable"
     }).disableSelection();

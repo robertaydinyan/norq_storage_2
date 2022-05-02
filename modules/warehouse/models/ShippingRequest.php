@@ -402,6 +402,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                         $product->shipping_id = $model->id;
                         $product->warehouse_id = $model->supplier_warehouse_id;
                         $product->nomenclature_product_id = $request['Product']['nomenclature_product_id'][$i];
+                        $product->product_name = $request['Product']['product_name'][$i];
                         $product->comment = $request['Product']['comment'][$i];
                         $product->mac_address = $request['Product']['mac_address'][$i][$j];
                         $product->price = $product->price * Currency::getCurrencyValue($product->currency);
@@ -424,6 +425,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                         $product = new Product();
                         $product->price = $request['Product']['price'][$i];
                         $product->currency = $request['Product']['currency'][$i];
+                        $product->product_name = $request['Product']['product_name'][$i];
                         $product->supplier_id = $model->supplier_id;
                         $product->invoice = $model->invoice;
                         $product->status = 0;

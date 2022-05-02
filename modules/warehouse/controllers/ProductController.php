@@ -66,6 +66,9 @@ class ProductController extends Controller
         $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id])->one();
         $dataProvider2->pagination->pageSize = $rows_count['count'];
+        if ($rows_count && $rows_count->column_name) {
+            $dataProvider2->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
+        }
 
         return $this->render('index', [
             'columns' => $columns,
@@ -413,5 +416,14 @@ class ProductController extends Controller
             'dataProvider' => $dataProvider,
             'isFavorite' => $isFavorite
         ]);
+    }
+
+    public function actionCheckName() {
+        $name = $this->request->get('name');
+
+        if ($name) {
+            return !!(Product::find()->where(['product_name' => $name])->count());
+        }
+        return false;
     }
 }

@@ -18,15 +18,21 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
 <div class="row product-form module-service-form-card justify-content-between align-items-center" style="position:relative;">
     <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6 d-flex justify-content-between align-items-center" style="padding: 0">
         <div class="form-group field-product-nomenclature_product_id required col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4">
-            <label class="control-label" for="product-nomenclature_product_id"><?php echo Yii::t('app', 'good'); ?></label>
+            <label class="control-label" for="product-nomenclature_product_id"><?php echo Yii::t('app', 'Nomenclature'); ?></label>
              <input type="text" class="form-control" onfocus="selectProductNamiclature($(this))" required="required">
              <input type="hidden" name="Product[nomenclature_product_id][]" class="namiclature_id">
         </div>
-        <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4" >
+        <div class="form-group required col-12 col-sm-12 col-md-12 col-lg-4	col-xl-4">
+            <label class="control-label"><?php echo Yii::t('app', 'good'); ?></label>
+            <input type="text" name="Product[product_name][]" class="form-control product_name" required="required">
+            <span style="color: red; display: none">Ապրանքի անունը չի կարող կրկնվել</span>
+        </div>
+
+        <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-3	col-xl-2" >
             <label class="control-label" for="product-price"><?php echo Yii::t('app', 'Price'); ?></label>
             <input type="number"  class="form-control price__" onchange="showTotal($(this)" name="Product[price][]" autocomplete="off">
         </div>
-        <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4" >
+        <div class="form-group field-product-price col-12	col-sm-12	col-md-12 col-lg-2	col-xl-2" >
             <label class="control-label" for="product-price"><?php echo Yii::t('app', 'Currency'); ?></label>
             <select class="form-control currency__ currency-input" onchange="showTotal($(this))" name="Product[currency][]" id="">
                 <option value="" disabled selected></option>
@@ -46,11 +52,11 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
     </div>
     <div class=" row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-4 d-flex justify-content-between align-items-center" style="padding: 0">
 
-        <div class="form-group field-product-comment col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6">
+        <div class="form-group field-product-comment col-12	col-sm-12	col-md-12 col-lg-9	col-xl-8">
             <label class="control-label" for="product-comment"><?php echo Yii::t('app', 'Comment'); ?></label>
             <input type="text" id="product-comment" class="form-control" name="Product[comment][]" maxlength="255" novalidate autocomplete="off">
         </div>
-        <div class="form-group field-product-count col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6">
+        <div class="form-group field-product-count col-12	col-sm-12	col-md-12 col-lg-3	col-xl-3">
             <label class="control-label" for="product-count"><?php echo Yii::t('app', 'Quantity'); ?></label>
             <input type="text"  class="form-control product-count" onchange="showTotal($(this))" name="Product[count][]" autocomplete="off">
         </div>
@@ -124,5 +130,18 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         //          th_.closest('.product-form').find('.product-count').show();
         //     }
         // });
-
+        $('.product_name').on('change', function() {
+            let name = $(this).val();
+            $.get('/warehouse/product/check-name', {
+                name: name
+            }).done((res) => {
+                if (res) {
+                    $('button[type=submit]').attr('disabled', 'disabled');
+                    $(this).next().show();
+                } else {
+                    $(this).next().hide();
+                    $('button[type=submit]').attr('disabled', false);
+                }
+            })
+        });
 </script>

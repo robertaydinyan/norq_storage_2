@@ -48,8 +48,8 @@ $table_all_columns = array(
 
         }
     ],
-    'ProductName' => [
-        'label' => Yii::t('app', 'Product name'),
+    'NomenclatureName' => [
+        'label' => Yii::t('app', 'Nomenclature'),
         'format' => 'raw',
         'value' => function ($product) {
             return
@@ -59,6 +59,12 @@ $table_all_columns = array(
                     ['onclick' => "showPage('/warehouse/nomenclature-product/view?id=" . $product->nomenclatureProduct->{'id'} . "','" . $product->nomenclatureProduct->name . "')"]
                 );
 
+        }
+    ],
+    'product_name' => [
+        'label' => Yii::t('app', 'Product name'),
+        'value' => function($product) {
+            return $product->product_name;
         }
     ],
     'Quantity' => [

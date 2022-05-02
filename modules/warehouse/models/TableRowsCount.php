@@ -9,6 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property string $page_name
+ * @property string $column_name
+ * @property string $direction
  * @property int|null $count
  * @property int|null $userID
  */
@@ -30,7 +32,7 @@ class TableRowsCount extends \yii\db\ActiveRecord
         return [
             [['page_name'], 'required'],
             [['count', 'userID'], 'integer'],
-            [['page_name'], 'string', 'max' => 255],
+            [['page_name', 'column_name', 'direction'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,6 +46,8 @@ class TableRowsCount extends \yii\db\ActiveRecord
             'page_name' => 'Page Name',
             'count' => 'Count',
             'userID' => 'User ID',
+            'column_name' => 'column_name',
+            'direction' => 'direction',
         ];
     }
 }

@@ -16,6 +16,7 @@ use yii\web\UploadedFile;
  * @property string|null $used
  * @property string $created_at
  * @property int $warehouse_id
+ * @property int $product_name
  * @property int $shipping_id
  * @property int $nomenclature_product_id
  * @property int $status
@@ -38,7 +39,13 @@ class Product extends \yii\db\ActiveRecord {
      * {@inheritdoc}
      */
     public function rules() {
-        return [[['price', 'retail_price', 'shipping_id', 'min_qty', 'notice_if_move', 'status', 'currency'], 'number'], [['created_at', 'warehouse_id', 'nomenclature_product_id'], 'required'], [['warehouse_id', 'nomenclature_product_id'], 'integer'], [['supplier_id', 'mac_address', 'invoice', 'comment', 'used', 'created_at'], 'string', 'max' => 255], [['images'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4], ];
+        return [
+            [['price', 'retail_price', 'shipping_id', 'min_qty', 'notice_if_move', 'status', 'currency'], 'number'],
+            [['created_at', 'warehouse_id', 'nomenclature_product_id', 'product_name'], 'required'],
+            [['warehouse_id', 'nomenclature_product_id'], 'integer'],
+            [['supplier_id', 'mac_address', 'invoice', 'comment', 'used', 'created_at', 'product_name'], 'string', 'max' => 255],
+            [['images'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4],
+        ];
     }
 
     /**
@@ -53,6 +60,7 @@ class Product extends \yii\db\ActiveRecord {
             'retail_price' => 'Մանրածախ գին',
             'supplier_id' => Yii::t('app', 'Supplier'),
             'mac_address' => 'Mac հասցե',
+            'product_name' => Yii::t('app', 'Product name'),
             'invoice' => 'Invoice',
             'comment' => Yii::t('app', 'Comment'),
             'count' => Yii::t('app', 'Count'),
@@ -69,8 +77,9 @@ class Product extends \yii\db\ActiveRecord {
         if ($type == 1) {
             return [
                 'id' => 'ID',
+                'product_name' => 'Product Name',
                 'WarehouseName' => 'Warehouse name',
-                'ProductName' => 'Product name',
+                'NomenclatureName' => 'Nomenclature',
                 'ProductPicture' => 'Product Picture',
                 'Quantity' => 'Quantity',
                 'Individual' => 'Individual',
@@ -79,8 +88,9 @@ class Product extends \yii\db\ActiveRecord {
         } else if ($type == 2) {
             return [
                 'id' => 'id',
+                'product_name' => 'Product Name',
                 'WarehouseName' => 'Warehouse name',
-                'ProductName' => 'Product name',
+                'NomenclatureName' => 'Nomenclature',
                 'ProductPicture' => 'Product Picture',
                 'price' => 'Price',
                 'currency' => 'Currency',

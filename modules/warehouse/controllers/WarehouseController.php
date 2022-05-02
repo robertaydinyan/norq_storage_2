@@ -89,6 +89,9 @@ class WarehouseController extends Controller {
             ->queryParams);
         $dataProvider->pagination->pageSize = $rows_count['count'];
         $warehouse_types = WarehouseTypes::find()->all();
+        if ($rows_count && $rows_count->column_name) {
+            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
+        }
 
         return $this->render('show-by-type', [
             'searchModel' => $searchModel,
@@ -418,6 +421,8 @@ class WarehouseController extends Controller {
                 $t->page_name = $request->post('page');
                 $t->userID = Yii::$app->user->id;
             }
+            $t->column_name = $request->post('sort-column');
+            $t->direction = $request->post('sort-direction');
             $t->count = $request->post('rows-count');
             $t->save(false);
         }
