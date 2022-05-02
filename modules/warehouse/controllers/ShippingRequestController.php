@@ -99,17 +99,27 @@ class ShippingRequestController extends Controller {
             ->all();
         $dataUsers = [];
         $dataProvider->pagination->pageSize = $rows_count['count'];
-
+        if ($rows_count && $rows_count->column_name) {
+            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
+        }
         foreach ($uersData as $key => $value) {
-            $dataUsers[$value
-                ->id] = $value->name . ' ' . $value->last_name;
+            $dataUsers[$value->id] = $value->name . ' ' . $value->last_name;
         }
         $suppliers = $this->buildTree(SuppliersList::find()
             ->where(['!=', 'id', 6])
             ->asArray()
+
             ->all());
-        return $this->render('index', ['searchModel' => $searchModel,'isFavorite' => $isFavorite, 'columns' => $columns,
-            'dataProvider' => $dataProvider, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'isFavorite' => $isFavorite,
+            'columns' => $columns,
+            'dataProvider' => $dataProvider,
+            'shipping_types' => $shipping_types,
+            'warehouses' => $physicalWarehouse,
+            'suppliers' => $suppliers,
+            'users' => $dataUsers
+        ]);
     }
 
     public function actionCalendar() {
@@ -432,6 +442,7 @@ class ShippingRequestController extends Controller {
 
         return $this->render('create', ['model' => $model,'isFavorite' => $isFavorite, 'dataWarehouses' => $dataWarehouses, 'dataUsers' => $dataUsers, 'nProducts' => $nProducts, 'suppliers' => $suppliers, 'requests' => $requests, 'partners' => $partners, 'types' => $types]);
     }
+
     public function buildTree(array $elements, $parentId = null) {
 
         $branch = array();

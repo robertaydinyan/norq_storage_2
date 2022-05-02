@@ -133,7 +133,6 @@ class ShippingRequestSearch extends ShippingRequest
             'nomenclature_product_id' => $this->nomenclature_product_id,
         ]);
 
-        $query->orderBy(['created_at'=> SORT_DESC]);
         return $dataProvider;
     }
 }

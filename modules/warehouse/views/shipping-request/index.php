@@ -225,6 +225,8 @@ $table_all_columns = array();
                         }
                     ],
                     'totalAmount' => [
+                        'class' => 'yii\grid\DataColumn',
+                        'attribute' => 'totalAmount',
                         'label' => Yii::t('app', 'Total amount'),
                         'value' => function ($model) {
                             $s = explode(' ', $model->totalsum);
@@ -341,10 +343,12 @@ $table_all_columns = array();
                         'attribute' => 'supplier',
                         'label' => Yii::t('app', 'Supplier'),
                         'value' => function ($model) {
-                            return $model->supplierp->name;;
+                            return $model->supplierp->name;
                         }
                     ],
                     'totalAmount' => [
+                        'class' => 'yii\grid\DataColumn',
+                        'attribute' => 'totalAmount',
                         'label' => Yii::t('app', 'Total amount'),
                         'value' => function ($model) {
                             return number_format($model->totalsum, '0', '.', ',') . ' դր․';
@@ -444,6 +448,8 @@ $table_all_columns = array();
                         }
                     ],
                     'totalAmount' => [
+                        'class' => 'yii\grid\DataColumn',
+                        'attribute' => 'totalAmount',
                         'label' => Yii::t('app', 'Total amount'),
                         'value' => function ($model) {
                             return number_format($model->totalsum, '0', '.', ',') . ' դր․';
@@ -553,6 +559,8 @@ $table_all_columns = array();
                         }
                     ],
                     'totalAmount' => [
+                        'class' => 'yii\grid\DataColumn',
+                        'attribute' => 'totalAmount',
                         'label' => Yii::t('app', 'Total amount'),
                         'value' => function ($model) {
                             return number_format($model->totalsumsale, '0', '.', ',') . ' դր․';
@@ -636,16 +644,19 @@ $table_all_columns = array();
             }
             if ($actions)
                 array_push($table_columns, $actions);
+
             ?>
 <div class="table-scroll">
             <?php
+
             echo GridView::widget([
                 'dataProvider' => $dataProvider,
                 'tableOptions' => [
                     'class' => 'table table-hover'
                 ],
-                'columns' => $table_columns,
-            ]); ?>
+                'columns' => $table_columns
+            ]);
+            ?>
 </div>
         </div>
         <div class="modal fade" id="viewInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

@@ -441,5 +441,22 @@ $("#preloder").delay(400).fadeOut("slow");
 //         selector: '.image'
 //     });
 // }
-if ($("table").length > 0)
-    $("table").colResizable();
+let page = window.location.href.split('/').slice(3).join('/').split('?')[0];
+
+if (localStorage[page]) {
+    let widths = JSON.parse(localStorage[page]);
+    $.each(widths, (i, v) => {
+        $('#tbl').find('tr').children().eq(i).css('width', v);
+    });
+}
+if ($("table").length > 0) {
+    $("table").colResizable({
+        onResize: function (e) {
+            let page = window.location.href.split('/').slice(3).join('/').split('?')[0];
+            let el = ($(e.target).parent().index())
+            let widths = localStorage[page] ? JSON.parse(localStorage[page]) : [];
+            widths[el] = $('table.JColResizer').find('th').eq(el).css('width');
+            localStorage[page] = JSON.stringify(widths);
+        }
+    });
+}
