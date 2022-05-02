@@ -52,6 +52,19 @@ function setNomiclature(id,name){
             }
         }
     });
+
+   isValid();
+}
+
+function isValid() {
+    // is warehouse selected
+    $('[type="submit"]').attr('disabled', 'disabled');
+    if ($('#shippingrequest-supplier_warehouse_id').val()) {
+        // is nomenclature and product name valid
+        if ($('.product_name').val() && $('.field-product-nomenclature_product_id').find('input').eq(0).val()) {
+            $('[type="submit"]').attr('disabled', false);
+        }
+    }
 }
 
 function setWarehouse(id,name){
@@ -60,11 +73,11 @@ function setWarehouse(id,name){
    if($('#shippingrequest-provider_warehouse_id').val() == $('#shippingrequest-supplier_warehouse_id').val()){
       $('#shippingrequest-supplier_warehouse_id').css('border','1px solid red');
       alert('Կրկնվում են ստացող և փոխանցող պահեստները');
-      $('[type="submit"]').attr('disabled','disabled');
    } else {
-    $('#shippingrequest-supplier_warehouse_id').css('border','1px solid lightgray');
-      $('[type="submit"]').removeAttr('disabled');
+        $('#shippingrequest-supplier_warehouse_id').css('border','1px solid lightgray');
    }
+    isValid();
+
 }
 function selectProduct(){
 
@@ -450,7 +463,6 @@ $(document).ready(function () {
     });
 
 });
-
 $('body').off().on('click','.clone-product',function (){
     var el_ = $(this).closest('.product-form').clone();
     el_.find('input,select').val(null);
@@ -460,7 +472,28 @@ $('body').off().on('click','.clone-product',function (){
     el_.find('.cloned').remove();
     $('#product-add-block').append('<br/>');
     $('#product-add-block').append(el_);
+    productName();
+
 });
+
+function productName() {
+    $('.product_name').off().on('change', function() {
+        let name = $(this).val();
+        if (name) {
+            $.get('/warehouse/product/check-name', {
+                name: name
+            }).done((res) => {
+                console.log(res)
+                if (res) {
+                    $(this).next().show();
+                } else {
+                    $(this).next().hide();
+                }
+                isValid();
+            })
+        }
+    });
+}
 
 window.onload = function(){
         $('body').on('click','.clone-mac',function (){
@@ -510,7 +543,7 @@ window.onload = function(){
 
            if($(this).val() == 2 || $(this).val() == 6 || $(this).val() == 5){
             var tp = $(this).val();
-               $.get( "/warehouse/shipping-request/create-product?lang=" + $('html').attr('lang'), function( data ) {
+               $.get( "/warehouse/shipping-request/create-product", function( data ) {
                    $( "#product-add-block" ).html( data );
 
                    $('#deal-addresses').hide();
@@ -528,6 +561,8 @@ window.onload = function(){
                    $('.field-shippingrequest-provider_warehouse_id').hide();
                    $('.for_sale').hide();
                    $('.field-shippingrequest-supplier_warehouse_id').show();
+                   productName()
+
                });
            } else if($(this).val() == 8 || $(this).val() == 9){
                $('.field-shippingrequest-request_id').hide();
@@ -553,6 +588,8 @@ window.onload = function(){
            if(($(this).val() == 2 || $(this).val() == 6 || $(this).val() == 5)){
               $('.check-counts').attr('disabled','disabled');
            }
+            productName()
+
         });
 
         if ($('#shippingrequest-shipping_type').val() == 2 || $('#shippingrequest-shipping_type').val() == 6 || $('#shippingrequest-shipping_type').val() == 5) {
@@ -569,6 +606,7 @@ window.onload = function(){
                 $('#product-add-block').show();
                 $('.provider_warehouse').hide();
                 $('.field-shippingrequest-supplier_warehouse_id').show();
+                productName()
             });
         } else if ($('#shippingrequest-shipping_type').val() == 8 || $('#shippingrequest-shipping_type').val() == 9) {
             $('.field-shippingrequest-supplier_warehouse_id').hide();
@@ -711,5 +749,4 @@ window.onload = function(){
                 }
             });
         $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
-
     }

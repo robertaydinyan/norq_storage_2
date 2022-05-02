@@ -323,7 +323,6 @@ $(document).ready(function () {
 
 });
 
-
 window.onload = function(){
 $('.clone-product').on('click', function() {
 
@@ -335,6 +334,7 @@ $('.clone-product').on('click', function() {
     $('#product-add-block').append('<br/>');
     $('#product-add-block').append(el_);
 });
+
         $('body').on('click','.clone-mac',function (){
             var el_ = $(this).closest('.cloned-mac').clone();
             el_.addClass('cloned').css('padding-top','10px');
@@ -347,7 +347,8 @@ $('.clone-product').on('click', function() {
             checkMac($(this));
          });
         $('#shippingrequest-supplier_warehouse_id').on('change', function(){
-            if($(this).val() != '' &&  $('#shippingrequest-shipping_type').val() != 6) {
+
+            if($(this).val() != '' && $('#shippingrequest-shipping_type').val() != 6) {
                 $('.check-counts').removeAttr('disabled');
             }
         });

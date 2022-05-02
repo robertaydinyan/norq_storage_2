@@ -424,6 +424,6 @@ class ProductController extends Controller
         if ($name) {
             return !!(Product::find()->where(['product_name' => $name])->count());
         }
-        return false;
+        return true;
     }
 }

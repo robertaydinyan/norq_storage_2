@@ -130,18 +130,5 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         //          th_.closest('.product-form').find('.product-count').show();
         //     }
         // });
-        $('.product_name').on('change', function() {
-            let name = $(this).val();
-            $.get('/warehouse/product/check-name', {
-                name: name
-            }).done((res) => {
-                if (res) {
-                    $('button[type=submit]').attr('disabled', 'disabled');
-                    $(this).next().show();
-                } else {
-                    $(this).next().hide();
-                    $('button[type=submit]').attr('disabled', false);
-                }
-            })
-        });
+        
 </script>
