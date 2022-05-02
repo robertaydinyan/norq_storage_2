@@ -64,9 +64,17 @@ $table_all_columns = array(
     'Quantity' => [
         'label' => Yii::t('app', 'Quantity'),
         'value' => function ($product) {
-            return $product->count . ' ' . $product->nProduct->qtyType->type;
+            return $product->count ;
         }
     ],
+
+    'Qty_type' => [
+        'label' => Yii::t('app', 'Չմ'),
+        'value' => function ($product) {
+            return $product->nProduct->qtyType->type ;
+        }
+    ],
+    
     'Individual' => [
         'label' => Yii::t('app', 'Individual'),
         'value' => function ($product) {
@@ -116,7 +124,7 @@ if (count($table_columns) == 0) {
                 : ''; ?>
 
             <?php echo \app\rbac\WarehouseRule::can('group-product', 'show-group-products') ?
-                '<a href="' . URL::to(['/warehouse/product/product-more']) . '" class="btn btn-primary mr-2" style="float: right;">' .
+                '<a href="' . URL::to(['/warehouse/nomenclature-product/index']) . '" class="btn btn-primary mr-2" style="float: right;">' .
                 Yii::t('app', 'More about product') .
                 '</a>'
                 : ''; ?>

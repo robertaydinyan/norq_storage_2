@@ -45,7 +45,6 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
 
                 </ul>
                 <div class="col-sm-9" id="lightgallery">
-                    <?php if(isset($_GET['id'])){?>
                         <br>
                         <?= GridView::widget([
                             'dataProvider' => $dataProvider,
@@ -55,8 +54,11 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
                             'columns' => [
 //
                                 [
-                                    'attribute' => 'vendor_code',
-                                    'label' => Yii::t('app', 'Vendor code')
+                                    'format'=>'raw',
+                                    'label' => Yii::t('app', 'Vendor code'),
+                                    'value' => function ($model) {
+                                        return '<a href="#" onclick="showInfo('.$model->id.')">'.$model->vendor_code.'</a>';
+                                    }
                                 ],
                                 //'groupProduct.name',
                                 [
@@ -106,13 +108,15 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
                                 ],
                             ],
                         ]); ?>
-                    <?php } ?>
+                     <div id="product_info"></div>
                 </div>
+
             </div>
-
+         
         </div>
-    </div>
 
+    </div>
+    
 </div>
 <style>
     .summary{
@@ -120,3 +124,19 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
     }
 </style>
 <?php endif; ?>
+<script>
+    function showInfo(nom_id){
+        $.ajax({
+            type: "GET",
+            url: "/warehouse/product/show-data",
+            data: {
+                id: nom_id
+            },
+            cache: false,
+            dataType: 'html',
+            success: function(res) {
+                $('#product_info').html(res);
+            }
+        });
+    }
+</script>

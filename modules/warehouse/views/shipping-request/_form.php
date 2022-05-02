@@ -388,4 +388,5 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
 
 
 </div>
+ <div id="showProducts"></div>
 <?php ActiveForm::end(); ?>

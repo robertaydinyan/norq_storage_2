@@ -57,13 +57,13 @@ AppAsset::register($this);
             </div>
         <?php endif;?>
         <div class="wrap">
-
             <?php if (Yii::$app->request->pathInfo != "site/error" && !Yii::$app->user->isGuest): ?>
                 <div class="bookmarks d-flex row ">
+                    
                     <div class="favorites col-12	col-sm-12	col-md-3 col-lg-4	col-xl-2 mb-3" >
                         <button class="accordion bg-white" style="background: #fff;"><?= Yii::t('app','Favorite') ?></button>
                         <div class="panel panel2">
-                        <?php if ($favorites):
+                        <?php if (!empty($favorites)):
                             foreach ($favorites as $f):
                                 $title = explode(":", $f->title);
                                 $title = Yii::t('app', trim($title[0])) . ($title[1] ? (": " . $title[1]) : '');?>
@@ -294,7 +294,6 @@ AppAsset::register($this);
 <script>
     var acc = document.getElementsByClassName("accordion");
     var j;
-
     for (j = 0; j < acc.length; j++) {
         acc[j].addEventListener("click", function() {
             this.classList.toggle("active");

@@ -41,7 +41,7 @@ $table_all_columns = [
             return $icon.'  '.$model->getType($model->type)->name;
         }
     ],
-    'name' => 'name',
+    'name',
     'responsible_id' => [
         'label' => Yii::t('app', 'storekeeper'),
         'value' => function ($model) {

@@ -14,7 +14,7 @@ $this->registerJsFile('@web/js/modules/warehouse/shipping_new.js', ['depends' =>
 $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_END]);
 
 ?>
- <div id="showProducts"></div>
+
 <div class="row product-form module-service-form-card justify-content-between align-items-center" style="position:relative;">
     <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-6 d-flex justify-content-between align-items-center" style="padding: 0">
         <div class="form-group field-product-nomenclature_product_id required col-12	col-sm-12	col-md-12 col-lg-4	col-xl-4">

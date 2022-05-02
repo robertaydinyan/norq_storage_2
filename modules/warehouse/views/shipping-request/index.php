@@ -225,8 +225,6 @@ $table_all_columns = array();
                         }
                     ],
                     'totalAmount' => [
-                        'class' => 'yii\grid\DataColumn',
-                        'attribute' => 'totalAmount',
                         'label' => Yii::t('app', 'Total amount'),
                         'value' => function ($model) {
                             $s = explode(' ', $model->totalsum);
@@ -250,7 +248,7 @@ $table_all_columns = array();
                     'status' => [
                         'label' => Yii::t('app', 'Status'),
                         'value' => function ($model) {
-                            return $model->status->name;
+                            return $model->status_->name;
                         }
                     ],
                     'document_type' => [
@@ -273,45 +271,11 @@ $table_all_columns = array();
                                 ]) : '';
                         },
                         'update' => function ($url, $model) {
-                            if ($model->status != 3) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
+                            return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
                                     Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                         'title' => Yii::t('app', 'Change'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
-                            } else {
-                                return '';
-                            }
-                        },
-                        'accept' => function ($url, $model) {
-                            if ($model->status == 2) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
-                                        'title' => Yii::t('app', 'Confirm'),
-                                        'class' => 'btn text-primary  btn-sm mr-2'
-                                    ]) : '';
-                            } else if ($model->status == 5 && \Yii::$app->user->can('admin')) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'accept-admin') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id=' . $model->id, [
-                                        'title' => Yii::t('app', 'Confirm'),
-                                        'class' => 'btn text-primary  btn-sm mr-2'
-                                    ]) : '';
-                            }
-                        },
-                        'decline' => function ($url, $model) {
-                            if ($model->status == 2) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
-                                        'title' => Yii::t('app', 'Reject'),
-                                        'class' => 'btn text-danger  btn-sm mr-2'
-                                    ]) : '';
-                            } else if ($model->status == 5 && \Yii::$app->user->can('admin')) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'decline-admin') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id=' . $model->id, [
-                                        'title' => Yii::t('app', 'Reject'),
-                                        'class' => 'btn text-danger  btn-sm mr-2'
-                                    ]) : '';
-                            }
                         },
                     ]
                 ];
@@ -343,12 +307,10 @@ $table_all_columns = array();
                         'attribute' => 'supplier',
                         'label' => Yii::t('app', 'Supplier'),
                         'value' => function ($model) {
-                            return $model->supplierp->name;
+                            return $model->supplierp->name;;
                         }
                     ],
                     'totalAmount' => [
-                        'class' => 'yii\grid\DataColumn',
-                        'attribute' => 'totalAmount',
                         'label' => Yii::t('app', 'Total amount'),
                         'value' => function ($model) {
                             return number_format($model->totalsum, '0', '.', ',') . ' դր․';
@@ -387,33 +349,11 @@ $table_all_columns = array();
                                 ]) : '';
                         },
                         'update' => function ($url, $model) {
-                            if ($model->status != 3) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
                                     Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                         'title' => Yii::t('app', 'Change'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
-                            } else {
-                                return '';
-                            }
-                        },
-                        'accept' => function ($url, $model) {
-                            if ($model->status == 2) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
-                                        'title' => Yii::t('app', 'Confirm'),
-                                        'class' => 'btn text-primary  btn-sm mr-2'
-                                    ]) : '';
-                            }
-                        },
-                        'decline' => function ($url, $model) {
-                            if ($model->status == 2) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
-                                        'title' => Yii::t('app', 'Reject'),
-                                        'class' => 'btn text-danger  btn-sm mr-2'
-                                    ]) : '';
-                            }
                         },
                     ],
                 ];
@@ -448,8 +388,6 @@ $table_all_columns = array();
                         }
                     ],
                     'totalAmount' => [
-                        'class' => 'yii\grid\DataColumn',
-                        'attribute' => 'totalAmount',
                         'label' => Yii::t('app', 'Total amount'),
                         'value' => function ($model) {
                             return number_format($model->totalsum, '0', '.', ',') . ' դր․';
@@ -475,45 +413,11 @@ $table_all_columns = array();
                                 ]) : '';
                         },
                         'update' => function ($url, $model) {
-                            if ($model->status != 3) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
                                     Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                         'title' => Yii::t('app', 'Change'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
-                            } else {
-                                return '';
-                            }
-                        },
-                        'accept' => function ($url, $model) {
-                            if ($model->status == 2) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
-                                        'title' => Yii::t('app', 'Confirm'),
-                                        'class' => 'btn text-primary  btn-sm mr-2'
-                                    ]) : '';
-                            } else if ($model->status == 5 && \Yii::$app->user->can('admin')) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'accept-admin') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id=' . $model->id, [
-                                        'title' => Yii::t('app', 'Accept'),
-                                        'class' => 'btn text-primary  btn-sm mr-2'
-                                    ]) : '';
-                            }
-                        },
-                        'decline' => function ($url, $model) {
-                            if ($model->status == 2) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
-                                        'title' => Yii::t('app', 'Reject'),
-                                        'class' => 'btn btn-danger  btn-sm mr-2'
-                                    ]) : '';
-                            } else if ($model->status == 5 && \Yii::$app->user->can('admin')) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'decline-admin') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id=' . $model->id, [
-                                        'title' => Yii::t('app', 'Reject'),
-                                        'class' => 'btn btn-danger  btn-sm mr-2'
-                                    ]) : '';
-                            }
                         },
                     ]
                 ];
@@ -559,8 +463,6 @@ $table_all_columns = array();
                         }
                     ],
                     'totalAmount' => [
-                        'class' => 'yii\grid\DataColumn',
-                        'attribute' => 'totalAmount',
                         'label' => Yii::t('app', 'Total amount'),
                         'value' => function ($model) {
                             return number_format($model->totalsumsale, '0', '.', ',') . ' դր․';
@@ -586,45 +488,11 @@ $table_all_columns = array();
                                 ]) : '';
                         },
                         'update' => function ($url, $model) {
-                            if ($model->status != 3) {
                                 return \app\rbac\WarehouseRule::can('shipping-request', 'update') ?
                                     Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                                         'title' => Yii::t('app', 'Change'),
                                         'class' => 'btn text-primary  btn-sm mr-2'
                                     ]) : '';
-                            } else {
-                                return '';
-                            }
-                        },
-                        'accept' => function ($url, $model) {
-                            if ($model->status == 2) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'accept') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', $url, [
-                                        'title' => Yii::t('app', 'Confirm'),
-                                        'class' => 'btn text-primary  btn-sm mr-2'
-                                    ]) : '';
-                            } else if ($model->status == 5 && \Yii::$app->user->can('admin')) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'accept-admin') ?
-                                    Html::a('<i class="fa fa-check" aria-hidden="true"></i>', '/warehouse/shipping-request/accept-admin?id=' . $model->id, [
-                                        'title' => Yii::t('app', 'Confirm'),
-                                        'class' => 'btn text-primary  btn-sm mr-2'
-                                    ]) : '';
-                            }
-                        },
-                        'decline' => function ($url, $model) {
-                            if ($model->status == 2) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'decline') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', $url, [
-                                        'title' => Yii::t('app', 'Reject'),
-                                        'class' => 'btn text-danger  btn-sm mr-2'
-                                    ]) : '';
-                            } else if ($model->status == 5 && \Yii::$app->user->can('admin')) {
-                                return \app\rbac\WarehouseRule::can('shipping-request', 'decline-admin') ?
-                                    Html::a('<i class="fa fa-times" aria-hidden="true"></i>', '/warehouse/shipping-request/decline-admin?id=' . $model->id, [
-                                        'title' => Yii::t('app', 'Reject'),
-                                        'class' => 'btn text-danger  btn-sm mr-2'
-                                    ]) : '';
-                            }
                         },
                     ]
                 ];
@@ -644,19 +512,16 @@ $table_all_columns = array();
             }
             if ($actions)
                 array_push($table_columns, $actions);
-
             ?>
 <div class="table-scroll">
             <?php
-
             echo GridView::widget([
                 'dataProvider' => $dataProvider,
                 'tableOptions' => [
                     'class' => 'table table-hover'
                 ],
-                'columns' => $table_columns
-            ]);
-            ?>
+                'columns' => $table_columns,
+            ]); ?>
 </div>
         </div>
         <div class="modal fade" id="viewInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

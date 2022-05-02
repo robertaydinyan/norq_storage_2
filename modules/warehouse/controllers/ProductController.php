@@ -66,9 +66,7 @@ class ProductController extends Controller
         $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id])->one();
         $dataProvider2->pagination->pageSize = $rows_count['count'];
-        if ($rows_count && $rows_count->column_name) {
-            $dataProvider2->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
-        }
+
         return $this->render('index', [
             'columns' => $columns,
             'dataProvider2' => $dataProvider2,
@@ -118,6 +116,14 @@ class ProductController extends Controller
                $logs = ProductShippingLog::find()->where(['mac_address'=>$mac])->all();
             }
             return $this->renderAjax('log-popup', ['logs' => $logs]);
+        }
+    }
+     public function actionShowData()
+    {
+        $id = Yii::$app->request->get()['id'];
+        if($id) {
+            $products = Product::find()->select('*,SUM(count) as count ')->where(['nomenclature_product_id'=>$id])->groupBy(['warehouse_id'])->andWhere(['>','count','0'])->all();
+            return $this->renderAjax('product-info', ['products' => $products]);
         }
     }
     public function actionSendNoticeProducts()
@@ -375,6 +381,7 @@ class ProductController extends Controller
     public function actionGetProductsPopupNomeclature(){
         $groups = GroupProduct::find()->asArray()->all();
         $tableTreeGroups = $this->buildTree($groups);
+        
         return $this->renderAjax('popup-nomeclature-only', ['tableTreeGroups'=> $tableTreeGroups]);
     }
      

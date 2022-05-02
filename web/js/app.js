@@ -251,7 +251,7 @@ function SaveForm(el) {
     history.back()
 }
 let last_title = localStorage.getItem('last_form_title');
-if(last_title !== "null" && last_title){
+if(last_title !== "null" && last_title && last_title !== "undefined"){
     $('.bookmarks').prepend('<div class="favorites  mt-0 col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 mb-3" onclick="showPage(\'/site/last-form\', \'' + last_title + '\', \'form\', false)"><button class="accordion bg-white">' + last_title +'</button></div>');
 }
 // setTimeout(function() {

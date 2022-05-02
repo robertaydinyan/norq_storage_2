@@ -87,11 +87,9 @@ class WarehouseController extends Controller {
         $dataProvider = $searchModel->search(Yii::$app
             ->request
             ->queryParams);
-        $dataProvider->pagination->pageSize = $rows_count->count;
-        if ($rows_count && $rows_count->column_name) {
-            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
-        }
+        $dataProvider->pagination->pageSize = $rows_count['count'];
         $warehouse_types = WarehouseTypes::find()->all();
+
         return $this->render('show-by-type', [
             'searchModel' => $searchModel,
             'isFavorite' => $isFavorite,
@@ -191,7 +189,6 @@ class WarehouseController extends Controller {
         $warehouse_groups = ArrayHelper::map(WarehouseGroups::find()->asArray()
             ->all() , 'id', 'name');
         $dataUsers = [];
-        var_dump($warehouse_groups);
         foreach ($uersData as $key => $value) {
             $dataUsers[$key] = $value[array_key_first($value) ] . ' ' . array_key_first($value);
         }
@@ -421,8 +418,6 @@ class WarehouseController extends Controller {
                 $t->page_name = $request->post('page');
                 $t->userID = Yii::$app->user->id;
             }
-            $t->column_name = $request->post('sort-column');
-            $t->direction = $request->post('sort-direction');
             $t->count = $request->post('rows-count');
             $t->save(false);
         }

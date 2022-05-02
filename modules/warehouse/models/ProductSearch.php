@@ -121,7 +121,7 @@ class ProductSearch extends Product
     }
 
     public function search_($params) {
-        $query = Product::find()->where(['>','count',0])->andWhere(['>','warehouse_id',0])->indexBy('id'); // where `id` is your primary key
+        $query = Product::find()->where(['>','count',0])->andWhere(['>','warehouse_id',0])->groupBy(['warehouse_id','nomenclature_product_id'])->indexBy('id'); // where `id` is your primary key
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -17,6 +17,20 @@ use yii\filters\VerbFilter;
  */
 class QtyTypeController extends Controller
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
 
     /**
      * Lists all QtyType models.
@@ -101,7 +115,8 @@ class QtyTypeController extends Controller
      */
     public function actionDelete($id)
     {
-//        $this->findModel($id)->delete();
+        $this->findModel($id)->delete();
+
         return $this->redirect(['index']);
     }
 
@@ -116,8 +131,8 @@ class QtyTypeController extends Controller
     {
         if (($model = QtyType::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

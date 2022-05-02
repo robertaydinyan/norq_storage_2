@@ -117,4 +117,3 @@
         <button class="btn btn-primary clone-product" type="button"><i class="fa fa-plus"></i></button>
     </div>
 </div>
-

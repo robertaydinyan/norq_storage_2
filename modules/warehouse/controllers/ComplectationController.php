@@ -59,10 +59,7 @@ class ComplectationController extends Controller
         $columns = TableRowsStatus::find()->where(['page_name' => 'Complectation', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Complectation', 'userID' => Yii::$app->user->id])->one();
         $dataProvider->pagination->pageSize = $rows_count['count'];
-        if ($rows_count && $rows_count->column_name) {
-            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
-        }
-
+        
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'isFavorite' => $isFavorite,

@@ -68,7 +68,7 @@ class ShippingProducts extends \yii\db\ActiveRecord
 
         if(intval($id)) {
             
-            return Yii::$app->db->createCommand("SELECT s_nomenclature_product.*,s_qty_type.typ as qty_type,s_product_for_request.* FROM s_product_for_request          
+            return Yii::$app->db->createCommand("SELECT s_nomenclature_product.*,s_qty_type.type as qty_type,s_product_for_request.* FROM s_product_for_request          
                                                      LEFT JOIN s_nomenclature_product ON s_nomenclature_product.id = s_product_for_request.nomenclature_product_id
                                                      LEFT JOIN s_qty_type ON s_nomenclature_product.qty_type_id = s_qty_type.id 
                                                   WHERE s_product_for_request.shipping_id = $id")->queryAll();
