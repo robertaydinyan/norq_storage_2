@@ -41,10 +41,10 @@ class Product extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['price', 'retail_price', 'shipping_id', 'min_qty', 'notice_if_move', 'status', 'currency'], 'number'],
+            [['price', 'retail_price', 'shipping_id','status', 'currency'], 'number'],
             [['created_at', 'warehouse_id', 'nomenclature_product_id', 'product_name'], 'required'],
             [['warehouse_id', 'nomenclature_product_id'], 'integer'],
-            [['supplier_id', 'mac_address', 'invoice', 'comment', 'used', 'created_at', 'product_name', 'article'], 'string', 'max' => 255],
+            [['supplier_id', 'mac_address', 'invoice', 'comment', 'created_at', 'product_name', 'article'], 'string', 'max' => 255],
             [['images'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4],
         ];
     }
@@ -68,7 +68,7 @@ class Product extends \yii\db\ActiveRecord {
             'created_at' => Yii::t('app', 'Created'),
             'warehouse_id' => Yii::t('app', 'Warehouse'),
             'status' => Yii::t('app', 'Status'),
-            'nomenclature_product_id' => Yii::t('app', 'Product'),
+            'nomenclature_product_id' => Yii::t('app', 'Nomenclature'),
             'article' => Yii::t('app', 'Article'),
         ];
     }

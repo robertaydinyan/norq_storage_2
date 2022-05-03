@@ -102,6 +102,22 @@ if (isset($columns)) {
 if (count($table_columns) == 0) {
     $table_columns = $table_all_columns;
 }
+$actions = [
+    'class' => 'yii\grid\ActionColumn',
+    'header' => Yii::t('app', 'Action'),
+    'template' => '{update}',
+    'buttons' => [
+        'update' => function ($url, $model) {
+            return \app\rbac\WarehouseRule::can('product', 'update') ?
+                Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
+                    'title' => Yii::t('app', 'Update'),
+                    'class' => 'btn text-primary btn-sm mr-2'
+                ]) : '';
+        }
+    ]
+];
+
+array_push($table_columns, $actions);
 ?>
 
 

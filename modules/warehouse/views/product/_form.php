@@ -24,92 +24,31 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
 
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 <div class="row product-form">
-<div class="col-lg-4">
-    <?= $form->field($model, 'nomenclature_product_id', [
-        'options' => ['class' => 'form-group'],
-    ])->widget(Select2::className(), [
-        'theme' => Select2::THEME_KRAJEE,
-        'data' => $nProducts,
-        'maintainOrder' => true,
-        'hideSearch' => true,
-        'options' => [
-            'placeholder' => Yii::t('app', 'Ընտրել'),
-        ],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]) ?>
-    <?= $form->field($model, 'price')->textInput() ?>
-    <?= $form->field($model, 'retail_price')->textInput() ?>
-    <?= $form->field($model, 'supplier_id', [
-        'options' => ['class' => 'form-group'],
-    ])->widget(Select2::className(), [
-        'theme' => Select2::THEME_KRAJEE,
-        'data' => $suppliers,
-        'maintainOrder' => true,
-        'hideSearch' => true,
-        'options' => [
-            'placeholder' => Yii::t('app', 'Ընտրել'),
-        ],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]) ?>
-</div>
-<div class="col-lg-4">
+    <div class="col-4">
+        <?= $form->field($model, 'nomenclature_product_id', [
+            'options' => ['class' => 'form-group'],
+        ])->widget(Select2::className(), [
+            'theme' => Select2::THEME_KRAJEE,
+            'data' => $nProducts,
+            'maintainOrder' => true,
+            'hideSearch' => true,
+            'options' => [
+                'placeholder' => Yii::t('app', 'Select'),
+            ],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]) ?>
+        <?= $form->field($model, 'product_name')->textInput() ?>
 
-    <?= $form->field($model, 'invoice')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'count')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'min_qty')->textInput(['maxlength' => true]) ?>
-    <br>
-    <?= $form->field($model, 'images[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
-</div>
-<div class="col-lg-4" style="margin-top:-8px;">
-    <br >
-    <?= $form->field($model, 'mac_address')->widget(MultipleInput::className(), [
-        'max'               => 30,
-        'min'               => 1, // should be at least 2 rows
-        'allowEmptyList'    => true,
-        'enableGuessTitle'  => true,
-        'addButtonPosition' => MultipleInput::POS_HEADER, // show add button in the header
-        'addButtonOptions' => [
-            'class' => 'btn btn-primary',
-            'label' => '<i class="fa fa-plus"></i>' // also you can use html code
-        ],
-        'removeButtonOptions' => [
-            'label' => '<i class="fa fa-trash"></i>'
-        ]
-    ])->label(false);?>
-    <div class="form-row">
-        <div class="c-checkbox">
-            <input type="checkbox"
-                   value="true"
-                   id="used-status"
-                   class="form-control"
-                   name="Product[used]"
-                <?= $model->used == true ? 'checked' : ''; ?>>
-            <label class="has-star" for="used-status">Օգտագործված</label>
-            <div class="help-block invalid-feedback"></div>
-        </div>
+        <?= $form->field($model, 'article')->textInput() ?>
+
+        <?= $form->field($model, 'price')->textInput() ?>
+
+        <?= $form->field($model, 'count')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
     </div>
-    <?= $form->field($model, 'warehouse_id', [
-        'options' => ['class' => 'form-group'],
-    ])->widget(Select2::className(), [
-        'theme' => Select2::THEME_KRAJEE,
-        'data' => $physicalWarehouse,
-        'maintainOrder' => true,
-        'hideSearch' => true,
-        'options' => [
-            'placeholder' => Yii::t('app', 'Ընտրել'),
-        ],
-        'pluginOptions' => [
-            'allowClear' => false
-        ],
-    ]) ?>
-    <input type="hidden" name="Product[notice_if_move]" id="is_vip" value="0">
-
-</div>
 </div>
 <div class="form-group">
     <?= Html::submitButton('Պահպանել', ['class' => 'btn btn-primary']) ?>

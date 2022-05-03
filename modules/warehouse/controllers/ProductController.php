@@ -237,14 +237,14 @@ class ProductController extends Controller
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()->all(), 'id', 'name');
         $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 'physical'])->asArray()->all(), 'id', 'name');
         $suppliers = ArrayHelper::map(SuppliersList::find()->asArray()->all(), 'id', 'name');
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save(false);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
             'isFavorite' => $isFavorite,
-
             'nProducts' => $nProducts,
             'physicalWarehouse' => $physicalWarehouse,
             'suppliers' => $suppliers,
