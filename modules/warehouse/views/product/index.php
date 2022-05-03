@@ -110,13 +110,24 @@ if (count($table_columns) == 0) {
 $actions = [
     'class' => 'yii\grid\ActionColumn',
     'header' => Yii::t('app', 'Action'),
-    'template' => '{update}',
+    'template' => '{update} {delete}',
     'buttons' => [
         'update' => function ($url, $model) {
             return \app\rbac\WarehouseRule::can('product', 'update') ?
                 Html::a('<i class="fas fa-pencil-alt"></i>', $url, [
                     'title' => Yii::t('app', 'Update'),
                     'class' => 'btn text-primary btn-sm mr-2'
+                ]) : '';
+        },
+        'delete' => function ($url, $model) {
+            return \app\rbac\WarehouseRule::can('product', 'delete') ?
+                Html::a('<i class="fas fa-trash-alt"></i>', $url, [
+                    'title' => Yii::t('app', 'Delete'),
+                    'class' => 'btn text-danger btn-sm',
+                    'data' => [
+                        'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
+                        'method' => 'post',
+                    ],
                 ]) : '';
         }
     ]
