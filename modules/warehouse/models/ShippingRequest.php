@@ -292,6 +292,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
     }
 
     public function addShippingProducts($model, $request) {
+        $barc = 0;
         if ($model->shipping_type != 2 && $model->shipping_type != 6 && $model->shipping_type != 5) {
             if (isset($request['ShippingRequest']['nomenclature_product_id']) && !empty($request['ShippingRequest']['nomenclature_product_id'])) {
                 foreach ($request['ShippingRequest']['nomenclature_product_id'] as $key => $nProductId) {
@@ -419,6 +420,13 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                         $ShippingProduct->shipping_id = $model->id;
                         $ShippingProduct->price = $ShippingProduct->price * Currency::getCurrencyValue($ShippingProduct->currency);
                         $ShippingProduct->save(false);
+                        $barc++;
+                        foreach ($request['BarcodesNew'][$barc] as $item => $value) {
+                            $b = new Barcode();
+                            $b->product_id = $product->id;
+                            $b->code = $value;
+                            $b->save(false);
+                        }
                     }
                 }
                 else if ($request['Product']['nomenclature_product_id'][0]) {
@@ -451,6 +459,13 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                         $ShippingProduct->shipping_id = $model->id;
                         $ShippingProduct->price = $ShippingProduct->price * Currency::getCurrencyValue($ShippingProduct->currency);
                         $ShippingProduct->save(false);
+                        $barc++;
+                        foreach ($request['BarcodesNew'][$barc] as $item => $value) {
+                            $b = new Barcode();
+                            $b->product_id = $product->id;
+                            $b->code = $value;
+                            $b->save(false);
+                        }
                     }
                 }
             }

@@ -466,6 +466,9 @@ $(document).ready(function () {
 $('body').off().on('click','.clone-product',function (){
     var el_ = $(this).closest('.product-form').clone();
     el_.find('input,select').val(null);
+    let item = parseInt($('.clone-barcode').last().parent().find('input').attr('name').split(/([[])/)[2].split(']')[0]);
+    el_.find('.remove-barcode').parent().remove();
+    el_.find('.clone-barcode').prev().attr('name', 'BarcodesNew[' + (item + 1) + '][]');
     el_.find('.rem').removeClass('hide');
     var ct = $('.product-form').length;
     el_.find('.mac').attr('name','Product[mac_address]['+ct+'][]');
@@ -473,9 +476,16 @@ $('body').off().on('click','.clone-product',function (){
     $('#product-add-block').append('<br/>');
     $('#product-add-block').append(el_);
     productName();
+    cloneBarcode();
 
 });
-
+function removeBarcode() {
+    $('.remove-barcode').off().on('click', function() {
+        $(this).parent().removeClass('form-group');
+        $(this).prev().attr('type', 'hidden').val('');
+        $(this).remove();
+    });
+}
 function productName() {
     $('.product_name').off().on('change', function() {
         let name = $(this).val();
@@ -495,7 +505,21 @@ function productName() {
     });
 }
 
+function cloneBarcode() {
+    $('.clone-barcode').off().on('click', function() {
+        let barcode = $(this).parent();
+        let barcode_new = barcode.clone().insertBefore(barcode);
+        barcode.find('input').val('');
+        barcode_new.find('button').html('<i style="color:red;" class="fa fa-times"></i>').removeClass('clone-barcode').addClass('remove-barcode');
+        removeBarcode();
+    });
+}
+
 window.onload = function(){
+
+    removeBarcode();
+    cloneBarcode();
+
         $('body').on('click','.clone-mac',function (){
             var el_ = $(this).closest('.cloned-mac').clone();
             el_.addClass('cloned').css('padding-top','10px');
@@ -561,8 +585,8 @@ window.onload = function(){
                    $('.field-shippingrequest-provider_warehouse_id').hide();
                    $('.for_sale').hide();
                    $('.field-shippingrequest-supplier_warehouse_id').show();
-                   productName()
-
+                   productName();
+                   cloneBarcode();
                });
            } else if($(this).val() == 8 || $(this).val() == 9){
                $('.field-shippingrequest-request_id').hide();
@@ -606,7 +630,8 @@ window.onload = function(){
                 $('#product-add-block').show();
                 $('.provider_warehouse').hide();
                 $('.field-shippingrequest-supplier_warehouse_id').show();
-                productName()
+                productName();
+                cloneBarcode();
             });
         } else if ($('#shippingrequest-shipping_type').val() == 8 || $('#shippingrequest-shipping_type').val() == 9) {
             $('.field-shippingrequest-supplier_warehouse_id').hide();

@@ -86,6 +86,13 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
             <input type="text"  class="form-control product-price-total" onchange="showTotal($(this))" autocomplete="off">
         </div>
     </div>
+    <div>
+        <span><?php echo Yii::t('app', 'Barcodes'); ?></span><br>
+        <div class="d-flex form-group col-12">
+            <input type="text" class="form-control" name="BarcodesNew[1][]">
+            <button class="btn btn-primary clone-barcode" type="button" style="margin-left: 20px;"><i class="fa fa-plus"></i></button>
+        </div>
+    </div>
     <div class="row col-12	col-sm-12	col-md-12 col-lg-6	col-xl-2" style="padding: 0; position: absolute; width: 90px; top: 2px; right: 4px;">
         <div class="rem hide" style="position: absolute; right: 100px; cursor:pointer;" onclick="$(this).closest('.product-form').remove()"><i style="color:red;font-size:30px;" class="fa fa-times"></i></div>
         <button class="btn btn-primary clone-product" type="button"><i class="fa fa-plus"></i></button>
@@ -133,5 +140,6 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         //          th_.closest('.product-form').find('.product-count').show();
         //     }
         // });
-        
+
+
 </script>

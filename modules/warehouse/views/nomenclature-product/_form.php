@@ -138,29 +138,6 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                     ]); ?>
             </div>
 
-            <!--                <div>-->
-            <!--                    <span>--><?php //echo Yii::t('app', 'Barcodes'); ?><!--</span><br>-->
-            <!---->
-            <!--                        --><?php //if (isset($barcodes)) {
-            //                            foreach ($barcodes as $barcode) {
-            //                                echo sprintf(
-            //                                    '<div class="d-flex form-group col-12">
-            //                                                <input type="text" value="%s" name="Barcodes[%s][]" class="form-control">
-            //                                                <button class="btn btn-primary remove-barcode" type="button" style="margin-left: 20px;">
-            //                                                    <i style="color:red;" class="fa fa-times"></i>
-            //                                                </button>
-            //                                            </div>',
-            //
-            //                                    $barcode->code,
-            //                                    $barcode->id
-            //                                );
-            //                            }
-            //                        }?>
-            <!--                    <div class="d-flex form-group col-12">-->
-            <!--                        <input type="text" class="form-control" name="BarcodesNew[]">-->
-            <!--                        <button class="btn btn-primary clone-barcode" type="button" style="margin-left: 20px;"><i class="fa fa-plus"></i></button>-->
-            <!--                    </div>-->
-            <!--                </div>-->
         </div>
 
         <div class="col-lg-4">
@@ -227,21 +204,5 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
 
         expDateDiff();
 
-        function removeBarcode() {
-            $('.remove-barcode').off().on('click', function() {
-                $(this).parent().removeClass('form-group');
-                $(this).prev().attr('type', 'hidden').val('');
-                $(this).remove();
-            });
-        }
-        removeBarcode();
-
-        $('.clone-barcode').on('click', function() {
-            let barcode = $(this).parent();
-            let barcode_new = barcode.clone().insertBefore(barcode);
-            barcode.find('input').val('');
-            barcode_new.find('button').html('<i style="color:red;" class="fa fa-times"></i>').removeClass('clone-barcode').addClass('remove-barcode');
-            removeBarcode();
-        });
     })
 </script>

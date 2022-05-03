@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string|null $code
- * @property int|null $numenclature_id
+ * @property int|null $product_id
  */
 class Barcode extends \yii\db\ActiveRecord
 {
@@ -27,7 +27,7 @@ class Barcode extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['numenclature_id'], 'integer'],
+            [['product_id'], 'integer'],
             [['code'], 'string', 'max' => 255],
         ];
     }
@@ -40,7 +40,7 @@ class Barcode extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'code' => Yii::t('app', 'Code'),
-            'numenclature_id' => 'Numenclature ID',
+            'product_id' => 'Product ID',
         ];
     }
 }

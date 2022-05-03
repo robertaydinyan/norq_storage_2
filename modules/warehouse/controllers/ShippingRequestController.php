@@ -361,6 +361,7 @@ class ShippingRequestController extends Controller {
 
             if ($model->save(false)) {
                 ShippingRequest::addShippingProducts($model, $request);
+//                NomenclatureProduct::saveBarcodes($post['Barcodes'], $post['BarcodesNew'], $model->id);
             }
             if ($for_notice) {
                 Notifications::setNotification($model

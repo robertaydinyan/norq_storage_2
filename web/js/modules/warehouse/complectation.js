@@ -322,7 +322,6 @@ $(document).ready(function () {
     });
 
 });
-
 window.onload = function(){
 $('.clone-product').on('click', function() {
 

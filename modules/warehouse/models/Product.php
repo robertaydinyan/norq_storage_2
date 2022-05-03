@@ -87,6 +87,7 @@ class Product extends \yii\db\ActiveRecord {
                 'qty_type' => 'qty_type',
                 'Individual' => 'Individual',
                 'article' => 'article',
+                'barcodes' => 'barcodes'
             ];
         } else if ($type == 2) {
             return [
@@ -507,4 +508,13 @@ class Product extends \yii\db\ActiveRecord {
        
     }
 
+    public function getBarcodes() {
+        $bs = Barcode::find()->where(['product_id' => $this->id])->all();
+        $res = '';
+        foreach ($bs as $b) {
+            $res .= '<span>' . $b->code . '</span><br>';
+        }
+
+        return $res;
+    }
 }

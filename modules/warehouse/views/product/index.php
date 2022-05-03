@@ -85,6 +85,13 @@ $table_all_columns = array(
         'value' => function ($product) {
             return Yii::t('app', $product->nomenclatureProduct->individual == 'true' ? 'Yes' : 'No');
         }
+    ],
+    'barcodes' => [
+        'label' => Yii::t('app', 'Barcodes'),
+        'format' => 'html',
+        'value' => function ($product) {
+            return $product->barcodes;
+        }
     ]
 );
 
