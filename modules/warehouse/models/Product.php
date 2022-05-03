@@ -84,9 +84,9 @@ class Product extends \yii\db\ActiveRecord {
                 'NomenclatureName' => 'Nomenclature',
                 'ProductPicture' => 'Product Picture',
                 'Quantity' => 'Quantity',
+                'qty_type' => 'qty_type',
                 'Individual' => 'Individual',
                 'article' => 'article',
-
             ];
         } else if ($type == 2) {
             return [

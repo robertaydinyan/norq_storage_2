@@ -74,14 +74,12 @@ $table_all_columns = array(
             return $product->count ;
         }
     ],
-
-    'Qty_type' => [
-        'label' => Yii::t('app', 'Չմ'),
+    'qty_type' => [
+        'label' => Yii::t('app', 'qty type'),
         'value' => function ($product) {
             return $product->nProduct->qtyType->type ;
         }
     ],
-    
     'Individual' => [
         'label' => Yii::t('app', 'Individual'),
         'value' => function ($product) {
