@@ -22,6 +22,7 @@ use yii\web\UploadedFile;
  * @property int $status
  * @property int $article
  * @property int $currency
+ * @property int $isDeleted
  */
 class Product extends \yii\db\ActiveRecord {
     /**
@@ -70,6 +71,7 @@ class Product extends \yii\db\ActiveRecord {
             'status' => Yii::t('app', 'Status'),
             'nomenclature_product_id' => Yii::t('app', 'Nomenclature'),
             'article' => Yii::t('app', 'Article'),
+            'isDeleted' => 'isDeleted'
         ];
     }
     /**

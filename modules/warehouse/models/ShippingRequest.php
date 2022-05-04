@@ -27,7 +27,6 @@ use app\modules\warehouse\models\ProductForRequest;
  * @property string|null $request_id
  * @property integer|null $document_type
  */
-
 class ShippingRequest extends \yii\db\ActiveRecord {
     /**
      * {@inheritdoc}
