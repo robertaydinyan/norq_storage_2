@@ -25,7 +25,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             ]) : '';
             },
         'delete' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('complectation', 'delete') ? Html::a('<i class="fas fa-trash-alt"></i>', $url, [
+            return \app\rbac\WarehouseRule::can('complectation', 'delete') ?  Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . '"></i>', $url, [
             'title' => Yii::t('app', 'Delete'),
             'class' => 'btn text-danger btn-sm',
             'data' => [

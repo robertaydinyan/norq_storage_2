@@ -32,6 +32,7 @@ class Currency extends \yii\db\ActiveRecord
             [['symbol'], 'required'],
             [['symbol', 'code'], 'string', 'max' => 3],
             [['value'], 'double'],
+            [['isDeleted'], 'integer'],
         ];
     }
 
@@ -44,6 +45,7 @@ class Currency extends \yii\db\ActiveRecord
             'id' => 'ID',
             'symbol' => Yii::t('app', 'Symbol'),
             'code' => Yii::t('app', 'Code'),
+            'isDeleted' => 'isDeleted'
         ];
     }
 

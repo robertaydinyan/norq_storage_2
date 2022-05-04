@@ -24,9 +24,9 @@ $actions = [
                 return ((\app\rbac\WarehouseRule::can('users', 'edit')) ?
                     ("<a href='" . URL::to($url) . "'><i class='fas fa-pencil-alt mr-3'></i></a>") : '');
             },
-            'delete' => function($url) {
+            'delete' => function($url, $model) {
                 return ((\app\rbac\WarehouseRule::can('users', 'delete')) ?
-                    ("<a onclick='return AreYouSure();' href='" . URL::to($url) . "'><i class='fas fa-trash-alt mr-3' style='color: red;'></i></a>") : '');
+                    ("<a onclick='return AreYouSure();' href='" . URL::to($url) . "'><i class=\"fas '" . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . "'\"></i></a>") : '');
             },
             'block' => function($url, $model) {
                 return ((Yii::$app->user->identity->role == "admin") ?

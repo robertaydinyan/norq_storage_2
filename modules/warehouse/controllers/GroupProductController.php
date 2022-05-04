@@ -267,7 +267,9 @@ class GroupProductController extends Controller
         $form_data = Yii::$app->request->get();
         $id = intval($form_data['id']);
         Notifications::setNotification(1,"Ջնջվել է ապրանքի խումբ ՝ <b>".$id."</b> ",'/warehouse/group-product');
-        $this->findModel($id)->delete();
+        $p = $this->findModel($id);
+        $p->isDeleted = 1 - $p->isDeleted;
+        $p->save(false);
         return $this->redirect(['/warehouse/group-product', 'lang' => Yii::$app->language]);
     }
     /**

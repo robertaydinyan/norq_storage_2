@@ -90,7 +90,7 @@ $actions = [
         },
         'delete' => function ($url, $model) {
             return \app\rbac\WarehouseRule::can('warehouse', 'delete') ?
-                Html::a('<i class="fas fa-trash-alt"></i>', $url, [
+                Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . '"></i>', $url, [
                     'title' => Yii::t('app', 'Delete'),
                     'class' => 'btn text-danger btn-sm',
                     'data' => [

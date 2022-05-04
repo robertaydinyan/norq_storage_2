@@ -23,6 +23,7 @@ class QtyType extends \yii\db\ActiveRecord
     {
         return [
             [['type',], 'required'],
+            [['isDeleted',], 'integer'],
             [['type',], 'string', 'max' => 255],
         ];
     }
@@ -35,6 +36,7 @@ class QtyType extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'type' => Yii::t('app', 'Unit of measurement'),
+            'isDeleted' => 'isDeleted'
         ];
     }
 

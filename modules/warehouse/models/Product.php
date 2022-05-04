@@ -44,7 +44,7 @@ class Product extends \yii\db\ActiveRecord {
         return [
             [['price', 'retail_price', 'shipping_id','status', 'currency'], 'number'],
             [['created_at', 'warehouse_id', 'nomenclature_product_id', 'product_name'], 'required'],
-            [['warehouse_id', 'nomenclature_product_id'], 'integer'],
+            [['warehouse_id', 'nomenclature_product_id','isDeleted'], 'integer'],
             [['supplier_id', 'mac_address', 'invoice', 'comment', 'created_at', 'product_name', 'article'], 'string', 'max' => 255],
             [['images'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4],
         ];

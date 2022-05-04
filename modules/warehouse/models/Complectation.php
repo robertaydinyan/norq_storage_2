@@ -31,7 +31,7 @@ class Complectation extends \yii\db\ActiveRecord
     {
         return [
             [['price'], 'number'],
-            [['count', 'other_cost'], 'integer'],
+            [['count', 'other_cost','isDeleted'], 'integer'],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
         ];
@@ -49,6 +49,7 @@ class Complectation extends \yii\db\ActiveRecord
             'count' => Yii::t('app', 'Count'),
             'created_at' => Yii::t('app', 'Date of creation'),
             'other_cost' => Yii::t('app', 'Other Cost'),
+            'isDeleted' => 'isDeleted'
         ];
     }
     public function attributeLabelsAll()

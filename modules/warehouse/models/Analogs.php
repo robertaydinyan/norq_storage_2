@@ -28,7 +28,7 @@ class Analogs extends \yii\db\ActiveRecord
     {
         return [
             [['product_id'], 'required'],
-            [['product_id'], 'integer'],
+            [['product_id','isDeleted'], 'integer'],
         ];
     }
 
@@ -41,6 +41,7 @@ class Analogs extends \yii\db\ActiveRecord
             'id' => 'ID',
             'product_id' => Yii::t('app', 'Original'),
             'analog_id' => Yii::t('app', 'Analog'),
+            'isDeleted' => 'isDeleted'
         ];
     }
     public function getNomiclatureName($type){
