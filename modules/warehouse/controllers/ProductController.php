@@ -24,7 +24,8 @@ use app\modules\warehouse\models\ShippingProducts;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ProductForRequest;
 use app\modules\warehouse\models\ProductSearch;
-use yii\helpers\ArrayHelper; 
+use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -62,15 +63,12 @@ class ProductController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new ProductSearch();
         $article = Yii::$app->request->get('article');
-        $dataProvider2 = $searchModel->search_($article);
         TableRowsStatus::checkRows('Product', 1);
         $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id])->one();
-        $dataProvider2->pagination->pageSize = $rows_count['count'];
-        if ($rows_count && $rows_count->column_name) {
-            $dataProvider2->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
-        }
 
+        $dataProvider2 = $searchModel->search_($article, $rows_count);
+        $dataProvider2->pagination->pageSize = $rows_count['count'];
         return $this->render('index', [
             'columns' => $columns,
             'dataProvider2' => $dataProvider2,
