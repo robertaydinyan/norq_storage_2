@@ -42,7 +42,7 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
         return [
             [['group_id'], 'required'],
             [['production_date', 'expiration_date'], 'safe'],
-            [['group_id', 'qty_type_id', 'is_vat', 'manufacturer'], 'integer'],
+            [['group_id', 'qty_type_id', 'is_vat', 'manufacturer','isDeleted'], 'integer'],
             [[
                 'vendor_code',
                 'name',
@@ -80,6 +80,7 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             'other' => Yii::t('app', 'Other'),
             'individual' => Yii::t('app', 'Individual'),
             'group_id' => Yii::t('app', 'Group'),
+            'isDeleted' => 'isDeleted'
         ];
     }
     public function getProducts()

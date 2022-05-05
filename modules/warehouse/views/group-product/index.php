@@ -44,7 +44,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
                     <li class="file-tree-folder" data-id="<?= $tableTreeGroup['id'] ?>"> <span data-name="<?= $tableTreeGroup['name'] ?>" class="parent-block"> <?= $tableTreeGroup['name'] ?>
                             <i class="fa fa-plus" onclick="addPopup(<?= $tableTreeGroup['id'] ?>)"></i>
                             <i style="margin-left:5px;" class="fa fa-pencil" onclick="editPopup(<?= $tableTreeGroup['id'] ?>,$(this), 'group-product/get-group')"></i>
-                            <i style="margin-left:5px;" class="fa fa-trash" onclick="deletePopup(<?= $tableTreeGroup['id'] ?>,$(this))"></i>
+                            <i style="margin-left:5px;" class="fas <?=  (!$tableTreeGroup['isDeleted'] ? 'fa-trash-alt' : 'fa-undo')  ?> " onclick="deletePopup(<?= $tableTreeGroup['id'] ?>,$(this))"></i>
                         </span>
                         <ul style="display: block;">
                             <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/group-product/tree_table.php', [

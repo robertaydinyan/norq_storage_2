@@ -262,11 +262,10 @@ class WarehouseController extends Controller {
     }
 
     public function actionDelete($id) {
-        if (Yii::$app
-                ->user
-                ->identity->username === 'ashotfast') {
-            $this->findModel($id)->delete();
-        }
+        $p = $this->findModel($id);
+        $p->isDeleted = 1 - $p->isDeleted;
+        $p->save(false);
+
         $this->redirect(['index']);
     }
 

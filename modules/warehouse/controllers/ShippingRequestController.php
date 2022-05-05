@@ -1,5 +1,6 @@
 <?php
 namespace app\modules\warehouse\controllers;
+use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 use app\components\Url;
 use app\models\Notifications;
@@ -80,11 +81,11 @@ class ShippingRequestController extends Controller {
             'suppliers' => $suppliers,
             'isFavorite' => $isFavorite,
             'columns' => $columns,
-
             'users' => $dataUsers
         ]);
     }
     public function actionDocuments() {
+        $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         TableRowsStatus::checkRows('ShippingRequest');
         $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app->request->get('type')])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
@@ -98,9 +99,13 @@ class ShippingRequestController extends Controller {
         $uersData = User::find()->where(['status' => User::STATUS_ACTIVE])
             ->all();
         $dataUsers = [];
-        $dataProvider->pagination->pageSize = $rows_count['count'];
+
+        $dataProvider2 = new ActiveDataProvider([
+            'query' => ShippingRequest::find(),
+        ]);
+        $dataProvider2->pagination->pageSize = $rows_count['count'];
         if ($rows_count && $rows_count->column_name) {
-            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
+            $dataProvider2->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
         }
 
         foreach ($uersData as $key => $value) {
@@ -116,6 +121,7 @@ class ShippingRequestController extends Controller {
             'isFavorite' => $isFavorite,
             'columns' => $columns,
             'dataProvider' => $dataProvider,
+            'dataProvider2' => $dataProvider2,
             'shipping_types' => $shipping_types,
             'warehouses' => $physicalWarehouse,
             'suppliers' => $suppliers,
