@@ -238,10 +238,10 @@ class Product extends \yii\db\ActiveRecord {
        
         if ($_GET["search"]) {
             if (empty($sql)) {
-                $sql = 'WHERE (`s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%")';
+                $sql = 'WHERE (`s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%")';
             }
             else {
-                $sql .= ' AND (`s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%")';
+                $sql .= ' AND (`s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%")';
             }
         }
         if ($data["warehouse_type"]) {
