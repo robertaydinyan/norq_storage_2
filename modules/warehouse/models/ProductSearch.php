@@ -147,14 +147,14 @@ class ProductSearch extends Product
                 $sort = $rows->column_name;
             }
         }
-        $query->orderBy([$sort => ($rows->direction == "DESC" ? SORT_DESC : SORT_ASC)]);
+
+        if ($sort) {
+            $query->orderBy([$sort => ($rows->direction == "DESC" ? SORT_DESC : SORT_ASC)]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-        if ($sort) {
-//            $dataProvider->sort->defaultOrder = [$sort => ($rows->direction == "DESC" ? SORT_DESC : SORT_ASC)];
-        }
 
 
         return $dataProvider;
