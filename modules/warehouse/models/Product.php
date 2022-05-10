@@ -16,14 +16,18 @@ use yii\web\UploadedFile;
  * @property string|null $used
  * @property string $created_at
  * @property int $warehouse_id
- * @property int $product_name
  * @property int $shipping_id
  * @property int $nomenclature_product_id
  * @property int $status
  * @property int $article
  * @property int $currency
- * @property int $isDeleted
+ * @property int $qty_type
+ * @property int $manufacturer
+ * @property int $not_is_vat_price
+ * @property int $group_id
  */
+
+
 class Product extends \yii\db\ActiveRecord {
     /**
      * @var UploadedFile[]
@@ -42,9 +46,9 @@ class Product extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['price', 'retail_price', 'shipping_id','status', 'currency'], 'number'],
+            [['price', 'retail_price', 'shipping_id', 'status', 'currency'], 'number'],
             [['created_at', 'warehouse_id', 'nomenclature_product_id', 'product_name'], 'required'],
-            [['warehouse_id', 'nomenclature_product_id','isDeleted'], 'integer'],
+            [['warehouse_id', 'nomenclature_product_id','group_id','qty_type','not_is_vat_price','manufacturer','isDeleted'], 'integer'],
             [['supplier_id', 'mac_address', 'invoice', 'comment', 'created_at', 'product_name', 'article'], 'string', 'max' => 255],
             [['images'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4],
         ];
@@ -57,7 +61,7 @@ class Product extends \yii\db\ActiveRecord {
         return [
             'id' => 'ID',
             'images' => 'Արտադրանքի նկարները',
-            'price' => Yii::t('app', 'Price'),
+            'price' => Yii::t('app', 'Արժեքը'),
             'currency' => Yii::t('app', 'Currency'),
             'retail_price' => 'Մանրածախ գին',
             'supplier_id' => Yii::t('app', 'Supplier'),
@@ -71,7 +75,10 @@ class Product extends \yii\db\ActiveRecord {
             'status' => Yii::t('app', 'Status'),
             'nomenclature_product_id' => Yii::t('app', 'Nomenclature'),
             'article' => Yii::t('app', 'Article'),
-            'isDeleted' => 'isDeleted'
+            'qty_type' => Yii::t('app', 'Չափման միավոր'),
+            'manufacturer' => Yii::t('app', 'Արտադրող'),
+            'not_is_vat_price' => Yii::t('app', 'Արժեքը առանց ՍԱՀ'),
+            'group_id' => Yii::t('app', 'Խումբ'),
         ];
     }
     /**
@@ -89,7 +96,11 @@ class Product extends \yii\db\ActiveRecord {
                 'qty_type' => 'qty_type',
                 'Individual' => 'Individual',
                 'article' => 'article',
-                'barcodes' => 'barcodes'
+                'barcodes' => 'barcodes',
+                'manufacturer' => Yii::t('app', 'Արտադրող'),
+                'not_is_vat_price' => Yii::t('app', 'Արժեքը առանց ՍԱՀ'),
+                'group_id' => Yii::t('app', 'Խումբ'),
+
             ];
         } else if ($type == 2) {
             return [
@@ -104,6 +115,9 @@ class Product extends \yii\db\ActiveRecord {
                 'created' => 'Created',
                 'invoice' => 'invoice',
                 'article' => 'article',
+                'manufacturer' => Yii::t('app', 'Արտադրող'),
+                'not_is_vat_price' => Yii::t('app', 'Արժեքը առանց ՍԱՀ'),
+                'group_id' => Yii::t('app', 'Խումբ'),
             ];
         }
 
@@ -238,10 +252,10 @@ class Product extends \yii\db\ActiveRecord {
        
         if ($_GET["search"]) {
             if (empty($sql)) {
-                $sql = 'WHERE (`s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%")';
+                $sql = 'WHERE (`s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%")';
             }
             else {
-                $sql .= ' AND (`s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%")';
+                $sql .= ' AND (`s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%" OR `s_nomenclature_product`.`name` LIKE "%' .$_GET["search"].'%")';
             }
         }
         if ($data["warehouse_type"]) {
@@ -509,7 +523,6 @@ class Product extends \yii\db\ActiveRecord {
          return $sell_out;
        
     }
-
     public function getBarcodes() {
         $bs = Barcode::find()->where(['product_id' => $this->id])->all();
         $res = '';

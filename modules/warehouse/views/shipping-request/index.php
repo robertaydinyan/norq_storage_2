@@ -23,9 +23,7 @@ $table_all_columns = array();
             <div id="w5-collapse" class="collapse navbar-collapse">
                 <ul id="w5" class="navbar-nav w-100 nav">
                     <?php $uri = explode('?', $_SERVER['REQUEST_URI']); ?>
-                    <li class="nav-item "><a class="nav-link <?php if (!isset($_GET['type'])) {
-                            echo 'active';
-                        } ?>"
+                    <li class="nav-item "><a class="nav-link <?php if (!isset($_GET['type'])) { echo 'active';} ?>"
                          href="<?php echo URL::to([$uri[0]]); ?>"><?php echo Yii::t('app', 'All'); ?></a>
                     </li>
                     <?php foreach ($shipping_types as $shp_type => $shp_type_val) { ?>
@@ -124,21 +122,20 @@ $table_all_columns = array();
                     </div>
 
                 </div>
-                <div class="col-6	col-sm-6	col-md-3 col-lg-3	col-xl-2">
+                <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
                     <?php
-                    echo DatePicker::widget([
-                        'name' => 'from_created_at',
-                        'value' => $_GET['from_created_at'],
-                        'options' => ['placeholder' => Yii::t('app', 'Start')],
-                        'pluginOptions' => [
-                            'format' => 'dd-mm-yyyy',
-                            'todayHighlight' => true
-                        ]
-                    ]);
+                        echo DatePicker::widget([
+                            'name' => 'from_created_at',
+                            'value' => $_GET['from_created_at'],
+                            'options' => ['placeholder' => Yii::t('app', 'Start')],
+                            'pluginOptions' => [
+                                'format' => 'dd-mm-yyyy',
+                                'todayHighlight' => true
+                            ]
+                        ]);
                     ?>
-
                 </div>
-                <div class="col-6	col-sm-6	col-md-3 col-lg-3	col-xl-2">
+                <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-2">
                     <?php
                     echo DatePicker::widget([
                         'name' => 'to_created_at',
@@ -169,9 +166,9 @@ $table_all_columns = array();
                                         style="border:1px solid #dee2e6;padding-left: 35px;padding-top: 5px;margin-top:0px;">
                                         <?php foreach ($suppliers as $tableTreePartner) : ?>
                                             <li class="file-tree-folder">
-                         <span data-name="<?= $tableTreePartner['name'] ?>"
-                               class="parent-block"><?= $tableTreePartner['name'] ?>
-                        </span>
+                                                <span data-name="<?= $tableTreePartner['name'] ?>"
+                                                    class="parent-block"><?= $tableTreePartner['name'] ?>
+                                                </span>
                                                 <ul style="display: block;">
                                                     <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/suppliers-list/tree_form_sup_table.php', [
                                                         'tableTreePartner' => $tableTreePartner,
@@ -497,8 +494,6 @@ $table_all_columns = array();
                     ]
                 ];
             }
-
-
             $table_columns = [];
             if (isset($columns)) {
                 foreach ($columns as $column) {
@@ -513,7 +508,7 @@ $table_all_columns = array();
             if ($actions)
                 array_push($table_columns, $actions);
             ?>
-<div class="table-scroll">
+            <div class="table-scroll">
             <?php
             echo GridView::widget([
                 'dataProvider' => $dataProvider,
@@ -522,7 +517,7 @@ $table_all_columns = array();
                 ],
                 'columns' => $table_columns,
             ]); ?>
-</div>
+           </div>
         </div>
         <div class="modal fade" id="viewInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">

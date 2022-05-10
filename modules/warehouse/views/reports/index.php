@@ -111,13 +111,13 @@ $this->params['breadcrumbs'][] = $this->title[0];
                             } ?>
                         </select>
                     </div>
-<!--                    <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2 --><?php //if (@!$_GET['community_id']) {
-//                        echo 'hide';
-//                    } ?><!-- community">-->
-<!--                        <select name="community_id" class="form-control community_select btn-primary">-->
-<!--                            <option value="">--><?php //echo Yii::t('app', 'Community'); ?><!--</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
+                    <!--                    <div class="col-12	col-sm-4	col-md-3 col-lg-3	col-xl-2 --><?php //if (@!$_GET['community_id']) {
+                    //                        echo 'hide';
+                    //                    } ?><!-- community">-->
+                    <!--                        <select name="community_id" class="form-control community_select btn-primary">-->
+                    <!--                            <option value="">--><?php //echo Yii::t('app', 'Community'); ?><!--</option>-->
+                    <!--                        </select>-->
+                    <!--                    </div>-->
                     <div class="col-12 col-sm-4	col-md-3 col-lg-3	col-xl-2 hide ware" <?php if (@!$_GET['supplier_warehouse_id']) {
                         echo 'hide';
                     } ?>>

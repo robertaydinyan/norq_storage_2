@@ -203,6 +203,5 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
         }
 
         expDateDiff();
-
     })
 </script>

@@ -149,3 +149,18 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
 </div>
 
 </div>
+<script>
+    function showInfo(id, wid) {
+        if (id) {
+            $.ajax({
+                url: '/warehouse/warehouse/get-product-info',
+                method: 'get',
+                dataType: 'html',
+                data: {id: id, wid: wid},
+                success: function (data) {
+                    $('.mod-content').html(data);
+                }
+            });
+        }
+    }
+</script>

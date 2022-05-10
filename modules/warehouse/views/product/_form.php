@@ -25,29 +25,60 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 <div class="row product-form">
     <div class="col-4">
-        <?= $form->field($model, 'nomenclature_product_id', [
+        <?= $form->field($model, 'product_name')->textInput() ?>
+        <?= $form->field($model, 'article')->textInput() ?>
+        <?= $form->field($model, 'price')->textInput() ?>
+        <?= $form->field($model, 'count')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
+    </div>
+     <div class="col-4">
+        <?= $form->field($model, 'qty_type', [
             'options' => ['class' => 'form-group'],
         ])->widget(Select2::className(), [
             'theme' => Select2::THEME_KRAJEE,
-            'data' => $nProducts,
+            'data' => $qtyTypes,
             'maintainOrder' => true,
-            'hideSearch' => true,
             'options' => [
                 'placeholder' => Yii::t('app', 'Select'),
             ],
             'pluginOptions' => [
+                'tags' => true,
                 'allowClear' => true
             ],
         ]) ?>
-        <?= $form->field($model, 'product_name')->textInput() ?>
+       <?= $form->field($model, 'manufacturer', [
+                    'options' => ['class' => 'form-group'],
+                ])->widget(Select2::className(), [
+                    'theme' => Select2::THEME_KRAJEE,
+                    'data' => $manufacturers,
+                    'maintainOrder' => true,
+                    'hideSearch' => true,
+                    'options' => [
+                        'placeholder' => Yii::t('app', 'Select'),
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                ]) ?>
+                 <?= $form->field($model, 'not_is_vat_price')->textInput() ?>
+            </div>
+       
+         <div class="col-4">
 
-        <?= $form->field($model, 'article')->textInput() ?>
-
-        <?= $form->field($model, 'price')->textInput() ?>
-
-        <?= $form->field($model, 'count')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
+            <label><?php echo Yii::t('app', 'Group'); ?></label>
+            <ul class="file-tree" style="border:1px solid lightgrey;padding: 20px;padding-left: 30px;">
+                <?php foreach ($tableTreeGroups as $tableTreeGroup) : ?>
+                    <li class="file-tree-folder"><span> <?= $tableTreeGroup['name'] ?></span>
+                        <ul style="display: block;">
+                            <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/nomenclature-product/tree_table_mm.php', [
+                                'tableTreeGroup' => $tableTreeGroup,
+                                'id' => $model->group_id
+                                //'groupProducts' => $groupProducts
+                            ]); ?>
+                        </ul>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
     </div>
 </div>
 <div class="form-group">

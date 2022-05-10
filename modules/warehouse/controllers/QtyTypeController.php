@@ -118,7 +118,6 @@ class QtyTypeController extends Controller
         $p = $this->findModel($id);
         $p->isDeleted = 1 - $p->isDeleted;
         $p->save(false);
-
         return $this->redirect(['index']);
     }
 

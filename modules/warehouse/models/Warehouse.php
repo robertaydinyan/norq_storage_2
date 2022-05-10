@@ -26,7 +26,6 @@ use Yii;
  * @property int|null $crm_contact_id
  * @property string|null $deal_number
  * @property int|null $contact_address_id
- * @property int $isDeleted
  */
 class Warehouse extends \yii\db\ActiveRecord
 {
@@ -46,7 +45,7 @@ class Warehouse extends \yii\db\ActiveRecord
         return [
             [['type', 'created_at'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
-            [['type','responsible_id', 'crm_company_id','group_id', 'crm_contact_id', 'contact_address_id','isDeleted'], 'integer'],
+            [['type','responsible_id', 'crm_company_id','group_id', 'crm_contact_id', 'contact_address_id', 'isDeleted'], 'integer'],
             [[ 'name', 'address'], 'string', 'max' => 255],
         ];
     }

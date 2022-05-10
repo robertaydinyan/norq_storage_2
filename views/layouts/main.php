@@ -266,7 +266,6 @@ AppAsset::register($this);
         }
         <?php } ?>
     </style>
-
     <?php $this->endBody() ?>
     <div class="window" style="max-width: auto;display: none;position: fixed;">
         <div class="title-bar">

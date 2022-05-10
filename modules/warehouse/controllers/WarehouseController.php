@@ -89,7 +89,6 @@ class WarehouseController extends Controller {
         $dataProvider->pagination->pageSize = $rows_count['count'];
         $warehouse_types = WarehouseTypes::find()->all();
 
-
         return $this->render('show-by-type', [
             'searchModel' => $searchModel,
             'isFavorite' => $isFavorite,
@@ -111,6 +110,18 @@ class WarehouseController extends Controller {
         if (intval($get['id'])) {
             return $this->renderAjax('products-info', ['products' => Product::find()
                 ->where(['nomenclature_product_id' => intval($get['id']) , 'warehouse_id' => intval($get['wid']) , 'status' => 1])->all() , ]);
+        }
+        else {
+            return [];
+        }
+    }
+     public function actionGetProductInfoById() {
+        $get = Yii::$app
+            ->request
+            ->get();
+        if (intval($get['id'])) {
+            return $this->renderAjax('products-info', ['products' => Product::find()
+                ->where(['id' => intval($get['id']) , 'warehouse_id' => intval($get['wid']) , 'status' => 1])->all() , ]);
         }
         else {
             return [];
@@ -263,7 +274,6 @@ class WarehouseController extends Controller {
         $p = $this->findModel($id);
         $p->isDeleted = 1 - $p->isDeleted;
         $p->save(false);
-
         $this->redirect(['index']);
     }
 

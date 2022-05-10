@@ -27,6 +27,7 @@ $actions = [
             'delete' => function($url, $model) {
                 return ((\app\rbac\WarehouseRule::can('users', 'delete')) ?
                     ("<a onclick='return AreYouSure();' href='" . URL::to($url) . "'><i class=\"mr-3 fas " . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . "\"></i></a>") : '');
+
             },
             'block' => function($url, $model) {
                 return ((Yii::$app->user->identity->role == "admin") ?

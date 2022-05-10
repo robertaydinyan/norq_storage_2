@@ -6,8 +6,6 @@ use app\components\Url;
 use app\models\User;
 use app\modules\billing\models\Regions;
 use app\modules\warehouse\models\Favorite;
-use app\modules\warehouse\models\GroupProduct;
-use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ReportConfigs;
 use app\modules\warehouse\models\ShippingType;
@@ -69,9 +67,9 @@ class ReportsController extends Controller
             'groups' =>$groups,
             'isFavorite' => $isFavorite,
             'rcs' => $rcs,
-            'data' =>$data,
             'nom' => $nom,
-            'repCon' => $repCon
+            'repCon' => $repCon,
+            'data' =>$data,
         ]);
     }
     public function actionGenerate(){
@@ -96,7 +94,7 @@ class ReportsController extends Controller
             $r->userID = Yii::$app->user->id;
             $r->save(false);
         }
-        return $this->renderAjax('generate', ['data' =>$data]);
+      return $this->renderAjax('generate', ['data' =>$data]);
     }
       public function actionGenerateSellout(){
         $get = Yii::$app->request->get();

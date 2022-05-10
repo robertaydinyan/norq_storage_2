@@ -31,7 +31,7 @@ class Complectation extends \yii\db\ActiveRecord
     {
         return [
             [['price'], 'number'],
-            [['count', 'other_cost','isDeleted'], 'integer'],
+            [['count', 'other_cost', 'isDeleted'], 'integer'],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
         ];

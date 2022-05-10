@@ -3,6 +3,9 @@
         font-size: 13px;
     }
 }
+.table td {
+    padding: 0.25rem;
+}
 @media only screen and (max-width: 1500px) {
     .warehouse-home-item {
         width: 32%;

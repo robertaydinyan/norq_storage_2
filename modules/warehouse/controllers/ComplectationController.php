@@ -62,7 +62,7 @@ class ComplectationController extends Controller
         if ($rows_count && $rows_count->column_name) {
             $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
         }
-
+        
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'isFavorite' => $isFavorite,
