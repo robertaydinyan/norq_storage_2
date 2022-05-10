@@ -27,6 +27,7 @@ use app\modules\warehouse\models\ProductForRequest;
  * @property string|null $request_id
  * @property integer|null $document_type
  */
+
 class ShippingRequest extends \yii\db\ActiveRecord {
     /**
      * {@inheritdoc}
@@ -398,12 +399,16 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                         $product->invoice = $model->invoice;
                         $product->count = 1;
                         $product->status = 0;
+                        $product->qty_type = $request['Product']['qty_type'];
+                        $product->manufacturer = $request['Product']['manufacturer'];
+                        $product->not_is_vat_price = $request['Product']['not_is_vat_price'];
+                        $product->group_id = $request['Product']['group_id'];
                         $product->created_at = $model->created_at;
                         $product->shipping_id = $model->id;
                         $product->warehouse_id = $model->supplier_warehouse_id;
                         $product->nomenclature_product_id = $request['Product']['nomenclature_product_id'][$i];
-                        $product->product_name = $request['Product']['product_name'][$i];
                         $product->article = $request['Product']['article'][$i];
+                        $product->product_name = $request['Product']['product_name'][$i];
                         $product->comment = $request['Product']['comment'][$i];
                         $product->mac_address = $request['Product']['mac_address'][$i][$j];
                         $product->price = $product->price * Currency::getCurrencyValue($product->currency);
@@ -430,6 +435,7 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                 }
                 else if ($request['Product']['nomenclature_product_id'][0]) {
                     if(!empty($request['Product']['nomenclature_product_id'][$i])){
+
                         $product = new Product();
                         $product->price = $request['Product']['price'][$i];
                         $product->currency = $request['Product']['currency'][$i];
@@ -440,6 +446,10 @@ class ShippingRequest extends \yii\db\ActiveRecord {
                         $product->status = 0;
                         $product->created_at = $model->created_at;
                         $product->shipping_id = $model->id;
+                        $product->qty_type = $request['Product']['qty_type'];
+                        $product->manufacturer = $request['Product']['manufacturer'];
+                        $product->not_is_vat_price = $request['Product']['not_is_vat_price'];
+                        $product->group_id = $request['Product']['group_id'];
 
                         $product->count = $request['Product']['count'][$i];
                         $product->comment = $request['Product']['comment'][$i];
@@ -695,4 +705,3 @@ class ShippingRequest extends \yii\db\ActiveRecord {
 
     }
 }
-

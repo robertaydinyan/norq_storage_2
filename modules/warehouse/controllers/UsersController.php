@@ -46,7 +46,9 @@ class UsersController extends Controller
      * @return mixed
      */
     public function actionIndex() {
-
+        $dataProvider = new ActiveDataProvider([
+            'query' => User::find(),
+        ]);
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         TableRowsStatus::checkRows('User');
         $columns = TableRowsStatus::find()->where(['page_name' => 'User', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
@@ -57,9 +59,6 @@ class UsersController extends Controller
             ->request
             ->queryParams);
         $dataProvider->pagination->pageSize = $rows_count['count'];
-        if ($rows_count && $rows_count->column_name) {
-            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
-        }
 
         return $this->render('index', [
             'users' => $users,
@@ -121,7 +120,6 @@ class UsersController extends Controller
         $p = $this->findModel($id);
         $p->isDeleted = 1 - $p->isDeleted;
         $p->save(false);
-
         return $this->redirect(['users/index']);
     }
 

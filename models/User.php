@@ -80,7 +80,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['updated_at', 'created_at', 'role', 'ref_password'], 'safe'],
             [['auth_key', 'access_token'], 'string', 'max' => 255],
             ['password_hash', 'string', 'min' => 6],
-            ['blocked','isDeleted', 'integer'],
+            ['blocked', 'isDeleted', 'integer'],
             [['password_hash', 'password_confirmation'], 'required', 'on' => 'create'],
             ['password_confirmation', 'compare', 'compareAttribute' => 'password_hash', 'skipOnEmpty' => true]
         ];

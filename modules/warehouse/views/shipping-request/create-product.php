@@ -140,6 +140,5 @@ $this->registerJsFile('@web/js/modules/warehouse/createProduct.js', ['depends'=>
         //          th_.closest('.product-form').find('.product-count').show();
         //     }
         // });
-
-
+        
 </script>

@@ -131,49 +131,49 @@ class ShippingRequestController extends Controller {
 
     public function actionCalendar() {
 
-        
-       
+
+
         TableRowsStatus::checkRows('ShippingRequest');
         $columns = TableRowsStatus::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => Yii::$app->request->get('type')])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
-      
+
         $shipping_types = ShippingType::find()->orderBy(['order_'=>SORT_ASC])->all();
-      
+
         $date_start = date('01-m-Y');
         $date_end = date('31-m-Y');
         if(!isset($_GET['type'])){
-             $res = ShippingRequest::find()->where(['>=','created_at',$date_start]);
-             $res->where(['>=','created_at',$date_start]);
-             $res->andWhere(['<=','created_at',$date_end]);
-             
-            if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
-                       $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
-                    }
-            if (isset($_GET['supplier_warehouse_id']) && !empty($_GET['supplier_warehouse_id'])) {
-                       $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
-                    }
-            if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
-                       $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
-                    }           
-                 $l =   $res->all();
-                    
+            $res = ShippingRequest::find()->where(['>=','created_at',$date_start]);
+            $res->where(['>=','created_at',$date_start]);
+            $res->andWhere(['<=','created_at',$date_end]);
 
-            
-        } else {
-             $res = ShippingRequest::find();          
-             $res->where(['>=','created_at',$date_start]);
-             $res->andWhere(['<=','created_at',$date_end]);
-             $res->andWhere(['=','shipping_type',intval($_GET['type'])]);
-             if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
-                       $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
-                    }
+            if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
+                $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
+            }
             if (isset($_GET['supplier_warehouse_id']) && !empty($_GET['supplier_warehouse_id'])) {
-                       $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
-                    }
+                $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
+            }
             if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
-                       $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
-                    }  
-              $l = $res->all();
+                $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
+            }
+            $l =   $res->all();
+
+
+
+        } else {
+            $res = ShippingRequest::find();
+            $res->where(['>=','created_at',$date_start]);
+            $res->andWhere(['<=','created_at',$date_end]);
+            $res->andWhere(['=','shipping_type',intval($_GET['type'])]);
+            if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
+                $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
+            }
+            if (isset($_GET['supplier_warehouse_id']) && !empty($_GET['supplier_warehouse_id'])) {
+                $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
+            }
+            if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
+                $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
+            }
+            $l = $res->all();
 
         }
 
@@ -190,64 +190,64 @@ class ShippingRequestController extends Controller {
         $suppliers = $this->buildTree(SuppliersList::find()
             ->where(['!=', 'id', 6])
             ->asArray()
-            ->all());       
+            ->all());
 
 
-       
+
 
         return $this->render('calendar', ['searchModel' => $searchModel,'isFavorite' => $isFavorite, 'columns' => $columns,
             'dataProvider' => $l, 'shipping_types' => $shipping_types, 'warehouses' => $physicalWarehouse, 'suppliers' => $suppliers, 'users' => $dataUsers]);
     }
 
-     public function actionCalendarAjax() {
+    public function actionCalendarAjax() {
 
         $month = $_POST['month_ajax'];
-      
+
         $date_start = date('Y-'.$month.'-01');
         $date_end = date('Y-'.$month.'-31');
 
-      
-        
-        
+
+
+
         if(!isset($_GET['type'])){
-             $res = ShippingRequest::find()->where(['>=','created_at',$date_start]);
-             $res->where(['>=','created_at',$date_start]);
-             $res->andWhere(['<=','created_at',$date_end]);
-             
+            $res = ShippingRequest::find()->where(['>=','created_at',$date_start]);
+            $res->where(['>=','created_at',$date_start]);
+            $res->andWhere(['<=','created_at',$date_end]);
+
             if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
-                       $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
-                    }
+                $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
+            }
             if (isset($_GET['supplier_warehouse_id']) && !empty($_GET['supplier_warehouse_id'])) {
-                       $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
-                    }
+                $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
+            }
             if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
-                       $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
-                    }           
-                 $l =   $res->all();
-                    
+                $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
+            }
+            $l =   $res->all();
 
-            
+
+
         } else {
-             $res = ShippingRequest::find();          
-             $res->where(['>=','created_at',$date_start]);
-             $res->andWhere(['<=','created_at',$date_end]);
-             $res->andWhere(['=','shipping_type',intval($_GET['type'])]);
-             if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
-                       $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
-                    }
+            $res = ShippingRequest::find();
+            $res->where(['>=','created_at',$date_start]);
+            $res->andWhere(['<=','created_at',$date_end]);
+            $res->andWhere(['=','shipping_type',intval($_GET['type'])]);
+            if (isset($_GET['provider_warehouse_id']) && !empty($_GET['provider_warehouse_id'])) {
+                $res->andWhere(['=','provider_warehouse_id',intval($_GET['provider_warehouse_id'])]);
+            }
             if (isset($_GET['supplier_warehouse_id']) && !empty($_GET['supplier_warehouse_id'])) {
-                       $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
-                    }
+                $res->andWhere(['=','supplier_warehouse_id',intval($_GET['supplier_warehouse_id'])]);
+            }
             if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
-                       $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
-                    }  
-              $l = $res->all();
+                $res->andWhere(['=','user_id',intval($_GET['user_id'])]);
+            }
+            $l = $res->all();
 
-        }       
-        
+        }
 
 
-        
+
+
         $color = [];
         $i = 0;
         $colors = ['#49851b','#a410e8','#b64280','#c3a115','#ab4a16','#0cff09','#f562e0','#6d1d5d','#3fe03d','#67610a','#2ffd32','#52775d'];
@@ -255,21 +255,21 @@ class ShippingRequestController extends Controller {
 
         foreach($l as $values){
             if ($i>0) {
-               if(isset($color[$values->shipping_type])){
-                continue;
-               }
-            }            
-        $color[$values->shipping_type] = $colors[$i];
-        $i++;
+                if(isset($color[$values->shipping_type])){
+                    continue;
+                }
+            }
+            $color[$values->shipping_type] = $colors[$i];
+            $i++;
         }
 
         $js_events = [];
         foreach($l as $value){
             $js_events[] = ['title'=>$value->shippingtype->name.' '.'#'.$value->id,'start'=>$value->created_at,'url'=>'/warehouse/shipping-request/view?id='.$value->id,'color'=>$color[$value->shipping_type]];
         }
-        
+
         return json_encode($js_events);
-       
+
 
     }
     /**
@@ -353,7 +353,7 @@ class ShippingRequestController extends Controller {
             $model->comment = $request['ShippingRequest']['comment'];
             $model->supplier_id = $request['ShippingRequest']['supplier_id'];
             $model->is_phys = 0;
-           
+
             if ($request['ShippingRequest']['date_create']) {
                 $model->created_at = date('Y-m-d', strtotime($request['ShippingRequest']['date_create']));
             }
@@ -372,14 +372,14 @@ class ShippingRequestController extends Controller {
             if ($for_notice) {
                 Notifications::setNotification($model
                     ->provider->responsible_id, "Ստեղծվել է " . $model
-                    ->shippingtype->name . " <b>" . $model
-                    ->provider->name . "</b> - <b>" . $model
-                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                        ->shippingtype->name . " <b>" . $model
+                        ->provider->name . "</b> - <b>" . $model
+                        ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
                 Notifications::setNotification($model
                     ->supplier->responsible_id, "Ստեղծվել է " . $model
-                    ->shippingtype->name . " <b>" . $model
-                    ->provider->name . "</b> - <b>" . $model
-                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                        ->shippingtype->name . " <b>" . $model
+                        ->provider->name . "</b> - <b>" . $model
+                        ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             }
             return $this->redirect(['/warehouse/shipping-request/accept?id=' . $model->id]);
         }
@@ -473,14 +473,14 @@ class ShippingRequestController extends Controller {
 
             Notifications::setNotification($model
                 ->provider->responsible_id, "Փոփոխվել է " . $model
-                ->shippingtype->name . " <b>" . $model
-                ->provider->name . "</b> -  <b>" . $model
-                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> -  <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->supplier->responsible_id, "Փոփոխվել է " . $model
-                ->shippingtype->name . " <b>" . $model
-                ->provider->name . "</b> - <b>" . $model
-                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> - <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
 
             return $this->redirect(['/warehouse/shipping-request/accept?id=' . $model->id]);
         }
@@ -529,33 +529,33 @@ class ShippingRequestController extends Controller {
             foreach ($products as $product => $prod_val) {
                 $product_full_data = $prod_val->findByProductId($prod_val->product_id) [0];
 
-                    $log = new ProductShippingLog();
-                    if ($model->shipping_type == 2 || $model->shipping_type == 6) {
-                        $log->from_ = SuppliersList::findOne(['id' => $model
-                            ->supplier_id])->name;
-                    } else {
-                        $log->from_ = $model->provider->name;
-                    }
-                    $log->to_ = $model->supplier->name;
-                    $log->mac_address = $prod_val->product_id;
-                    $log->shipping_type = $model->shipping_type;
-                    $log->request_id = $model->id;
-                    $log->date_create = $model->created_at;
-                    $log->save(false);
-                
+                $log = new ProductShippingLog();
+                if ($model->shipping_type == 2 || $model->shipping_type == 6) {
+                    $log->from_ = SuppliersList::findOne(['id' => $model
+                        ->supplier_id])->name;
+                } else {
+                    $log->from_ = $model->provider->name;
+                }
+                $log->to_ = $model->supplier->name;
+                $log->mac_address = $prod_val->product_id;
+                $log->shipping_type = $model->shipping_type;
+                $log->request_id = $model->id;
+                $log->date_create = $model->created_at;
+                $log->save(false);
+
 
             }
 
             Notifications::setNotification($model
                 ->provider->responsible_id, "Հաստատվել է " . $model
-                ->shippingtype->name . " <b>" . $model
-                ->provider->name . "</b> -  <b>" . $model
-                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> -  <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->supplier->responsible_id, "Հաստատվել է " . $model
-                ->shippingtype->name . " <b>" . $model
-                ->provider->name . "</b> - <b>" . $model
-                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> - <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
 
         }
         return $this->redirect(['documents']);
@@ -579,7 +579,7 @@ class ShippingRequestController extends Controller {
                     if ($newProduct) {
                         $newProduct->id = null;
                         $newProduct->status = 1;
-    //                    $newProduct->individual = false;
+                        //                    $newProduct->individual = false;
                         $newProduct->isNewRecord = true;
                         $newProduct->created_at = $model->created_at;
                         $newProduct->warehouse_id = $model->provider_warehouse_id;
@@ -590,14 +590,14 @@ class ShippingRequestController extends Controller {
             }
             Notifications::setNotification($model
                 ->provider->responsible_id, "Մերժվել է " . $model
-                ->shippingtype->name . " <b>" . $model
-                ->provider->name . "</b> -  <b>" . $model
-                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> -  <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
             Notifications::setNotification($model
                 ->supplier->responsible_id, "Մերժվել է " . $model
-                ->shippingtype->name . " <b>" . $model
-                ->provider->name . "</b> - <b>" . $model
-                ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
+                    ->shippingtype->name . " <b>" . $model
+                    ->provider->name . "</b> - <b>" . $model
+                    ->supplier->name . "</b> ", '/warehouse/shipping-request/view?id=' . $model->id);
         }
         return $this->redirect(['index']);
     }

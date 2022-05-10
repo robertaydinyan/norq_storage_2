@@ -33,7 +33,7 @@ class Currency extends \yii\db\ActiveRecord
             [['symbol', 'code'], 'string', 'max' => 3],
             [['value'], 'double'],
             [['isDeleted'], 'integer'],
-        ];
+            ];
     }
 
     /**

@@ -8,6 +8,7 @@
           <th>Գին</th>
           <th>Ամսաթիվ</th>
           <th>Ընդ․</th>
+          <th></th>
       </tr>
     </thead>
     <?php if(!empty($products)){?>
@@ -23,6 +24,7 @@
                <td><?php echo $prod_val->price;?> դր․</td>
                <td><?php echo date('d.m.Y',strtotime($prod_val->created_at));?> դր․</td>
                <td><?php echo $prod_val->price*$prod_val->count;?> դր․</td>
+               <td><a href="#" onclick="showPage('/warehouse/product/update?id=<?php echo $prod_val->id;?>&show-header=false#','Փոփոխել')"><i class="fa fa-pencil"></i></a></td>
            </tr>
            <?php } ?>
 

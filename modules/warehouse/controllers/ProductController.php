@@ -9,6 +9,7 @@ use app\modules\billing\models\Regions;
 use app\modules\crm\models\ContactAdress;
 use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\GroupProduct;
+use app\modules\warehouse\models\Manufacturer;
 use app\modules\warehouse\models\NomenclatureProduct;
 use app\modules\warehouse\models\ProductImagesPath;
 use app\modules\warehouse\models\ProductShippingLog;
@@ -24,8 +25,7 @@ use app\modules\warehouse\models\ShippingProducts;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ProductForRequest;
 use app\modules\warehouse\models\ProductSearch;
-use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
+use yii\helpers\ArrayHelper; 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -61,7 +61,7 @@ class ProductController extends Controller
     public function actionIndex()
     {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
-        $searchModel = new ProductSearch();
+        $searchModel = new ProductSearch();        
         $article = Yii::$app->request->get('article');
         TableRowsStatus::checkRows('Product', 1);
         $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => 1])->orderBy('order')->all();
@@ -235,6 +235,10 @@ class ProductController extends Controller
         $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()->all(), 'id', 'name');
         $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 'physical'])->asArray()->all(), 'id', 'name');
         $suppliers = ArrayHelper::map(SuppliersList::find()->asArray()->all(), 'id', 'name');
+        $manufacturers = ArrayHelper::map(Manufacturer::find()->asArray()->all(), 'id', 'name');
+        $groups = GroupProduct::find()->asArray()->all();
+        $tableTreeGroups = $this->buildTree($groups);
+        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type');
         if ($model->load(Yii::$app->request->post())) {
             $model->save(false);
             return $this->redirect(['index']);
@@ -246,6 +250,9 @@ class ProductController extends Controller
             'nProducts' => $nProducts,
             'physicalWarehouse' => $physicalWarehouse,
             'suppliers' => $suppliers,
+            'groupProducts' => $tableTreeGroups,
+            'manufacturers' => $manufacturers,
+            'qtyTypes' => $qtyTypes
         ]);
     }
 
@@ -419,7 +426,7 @@ class ProductController extends Controller
             'isFavorite' => $isFavorite
         ]);
     }
-
+    
     public function actionCheckName() {
         $name = $this->request->get('name');
 

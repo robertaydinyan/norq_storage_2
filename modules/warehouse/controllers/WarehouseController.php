@@ -92,7 +92,7 @@ class WarehouseController extends Controller {
         if ($rows_count && $rows_count->column_name) {
             $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
         }
-
+        
         return $this->render('show-by-type', [
             'searchModel' => $searchModel,
             'isFavorite' => $isFavorite,
@@ -113,6 +113,18 @@ class WarehouseController extends Controller {
         if (intval($get['id'])) {
             return $this->renderAjax('products-info', ['products' => Product::find()
                 ->where(['nomenclature_product_id' => intval($get['id']) , 'warehouse_id' => intval($get['wid']) , 'status' => 1])->all() , ]);
+        }
+        else {
+            return [];
+        }
+    }
+     public function actionGetProductInfoById() {
+        $get = Yii::$app
+            ->request
+            ->get();
+        if (intval($get['id'])) {
+            return $this->renderAjax('products-info', ['products' => Product::find()
+                ->where(['id' => intval($get['id']) , 'warehouse_id' => intval($get['wid']) , 'status' => 1])->all() , ]);
         }
         else {
             return [];
@@ -265,7 +277,6 @@ class WarehouseController extends Controller {
         $p = $this->findModel($id);
         $p->isDeleted = 1 - $p->isDeleted;
         $p->save(false);
-
         $this->redirect(['index']);
     }
 

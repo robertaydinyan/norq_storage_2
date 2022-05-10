@@ -25,14 +25,13 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             ]) : '';
             },
         'delete' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('complectation', 'delete') ?  Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . '"></i>', $url, [
-            'title' => Yii::t('app', 'Delete'),
-            'class' => 'btn text-danger btn-sm',
-            'data' => [
-            'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
-            'method' => 'post',
-            ],
-        ]) : '';
+            return \app\rbac\WarehouseRule::can('complectation', 'delete') ? Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . '"></i>', $url, [            'title' => Yii::t('app', 'Delete'),
+                'class' => 'btn text-danger btn-sm',
+                'data' => [
+                'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
+                'method' => 'post',
+                ],
+            ]) : '';
         }
 
         ]

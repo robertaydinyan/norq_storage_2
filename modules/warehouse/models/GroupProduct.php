@@ -31,7 +31,7 @@ class GroupProduct extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 255],
-            [['group_id', 'group_order','isDeleted'], 'integer'],
+            [['group_id', 'group_order', 'isDeleted'], 'integer'],
         ];
     }
 

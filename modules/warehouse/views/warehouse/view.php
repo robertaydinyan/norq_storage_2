@@ -39,53 +39,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
         <h1 class="mb-5 d-flex"
             data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($model->name) ?><span
                     class="star"><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
-        <!--        --><?php //if($model->type != 2){ ?>
-        <!--        --><? //= DetailView::widget([
-        //            'model' => $model,
-        //                'options' => ['class' => 'table table-hover'],
-        //            'attributes' => [
-        //                'name',
-        //                'address',
-        //                [
-        //                    'label' => Yii::t('app', 'Warehouse type'),
-        //                    'value' => $model->getType($model->type)->{'name'}
-        //                ],
-        //                [
-        //                    'label' => Yii::t('app', 'storekeeper'),
-        //                    'value' => function ($model) {
-        //                        $user = $model->getUser($model->responsible_id);
-        //                        return $user->name.' '.$user->last_name;
-        //                    }
-        //                ],
-        //                [
-        //                    'label' => Yii::t('app', 'Created'),
-        //                    'value' => function ($model) {
-        //                        return date('d.m.Y',strtotime($model->created_at));
-        //                    }
-        //                ],
-        //            ],
-        //        ]) ?>
-        <!--        --><?php //} else {
-        //            echo DetailView::widget([
-        //                'model' => $model,
-        //                'options' => ['class' => 'table table-hover'],
-        //                'attributes' => [
-        //                    'name',
-        //                    [
-        //                        'label' => Yii::t('app', 'Warehouse type'),
-        //                        'value' => $model->getType($model->type)->{'name'}
-        //                    ],
-        //                    [
-        //                        'label' => Yii::t('app', 'storekeeper'),
-        //                        'value' => function ($model) {
-        //                            $user = $model->getUser($model->responsible_id);
-        //                            return $user->name . ' ' . $user->last_name;
-        //                        }
-        //                    ],
-        //                    'created_at',
-        //                ],
-        //            ]);
-        //        } ?>
+ 
         <?= DetailView::widget([
             'model' => $model,
             'options' => ['class' => 'table table-hover'],
@@ -195,3 +149,18 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
 </div>
 
 </div>
+<script>
+    function showInfo(id, wid) {
+        if (id) {
+            $.ajax({
+                url: '/warehouse/warehouse/get-product-info',
+                method: 'get',
+                dataType: 'html',
+                data: {id: id, wid: wid},
+                success: function (data) {
+                    $('.mod-content').html(data);
+                }
+            });
+        }
+    }
+</script>

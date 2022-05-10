@@ -28,7 +28,7 @@ class Analogs extends \yii\db\ActiveRecord
     {
         return [
             [['product_id'], 'required'],
-            [['product_id','isDeleted'], 'integer'],
+            [['product_id', 'isDeleted'], 'integer'],
         ];
     }
 

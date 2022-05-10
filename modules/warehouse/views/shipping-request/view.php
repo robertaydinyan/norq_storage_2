@@ -110,7 +110,6 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                     <tr>
                         <th>ID</th>
                         <th><?php echo Yii::t('app', 'good'); ?></th>
-                        <th><?php echo Yii::t('app', 'Product Picture'); ?></th>
                         <th><?php echo Yii::t('app', 'Quantity'); ?></th>
                         <?php if($model->shipping_type == 9){ ?>
                             <th><?php echo Yii::t('app', 'Cost'); ?></th>
@@ -128,7 +127,6 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 
                                 <td><?php echo $prod_val['id'];?></td>
                                 <td><?php echo $prod_val['name'];?></td>
-                                <td><a target="_blank" href="<?= $prod_val['img'] ?>" ><img width="100" src="<?= $prod_val['img'] ?>"></a></td>
                                 <td><?php echo $prod_val['count'];?> <?php echo $prod_val['qty_type'];?></td>
                                 <?php if($model->shipping_type == 9){ ?>
                                 <td> <?php echo Product::findOne($prod_val['product_id'])->price;?> <?php echo Yii::t('app', 'dram'); ?></td>

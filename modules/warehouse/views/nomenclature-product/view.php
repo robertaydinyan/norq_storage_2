@@ -19,7 +19,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
     <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
     <div class="row">
 
-        <div style="padding:20px;" class="col-8">
+        <div style="padding:20px;" class="col-12">
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [

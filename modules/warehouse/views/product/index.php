@@ -48,7 +48,7 @@ $table_all_columns = array(
                 );
 
         }
-    ],
+    ],    
     'NomenclatureName' => [
         'label' => Yii::t('app', 'Nomenclature'),
         'format' => 'raw',
@@ -62,7 +62,7 @@ $table_all_columns = array(
 
         }
     ],
-    'product_name' => [
+'product_name' => [
         'label' => Yii::t('app', 'Product name'),
         'value' => function($product) {
             return $product->product_name;
@@ -80,6 +80,7 @@ $table_all_columns = array(
             return $product->nProduct->qtyType->type ;
         }
     ],
+    
     'Individual' => [
         'label' => Yii::t('app', 'Individual'),
         'value' => function ($product) {
@@ -110,7 +111,7 @@ if (count($table_columns) == 0) {
 $actions = [
     'class' => 'yii\grid\ActionColumn',
     'header' => Yii::t('app', 'Action'),
-    'template' => '{update} {delete}',
+    'template' => '{update}{delete}',
     'buttons' => [
         'update' => function ($url, $model) {
             return \app\rbac\WarehouseRule::can('product', 'update') ?

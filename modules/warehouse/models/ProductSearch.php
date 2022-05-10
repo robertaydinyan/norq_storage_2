@@ -119,13 +119,12 @@ class ProductSearch extends Product
         
         return ['result' => $whProducts, 'params' => $params,'total'=>$number_of_page];
     }
-
     /**
      * @param $article
      * @param STRING $rows
      * @return ActiveDataProvider
      */
-    public function search_($article, $rows = '') {
+    public function search_($article, $rows) {
         $query = Product::find()
             ->where(['>','count',0])
             ->andWhere(['>','warehouse_id',0])
@@ -135,6 +134,7 @@ class ProductSearch extends Product
         if ($article) {
             $query->andWhere(['like', 'article', $article]);
         }
+
         if (isset($rows) && $rows->column_name && !$this->hasAttribute($rows->column_name)) {
             if($rows->column_name == "NomenclatureName"){
                 $query->leftJoin('s_nomenclature_product', '`s_nomenclature_product`.`id`= `s_product`.`nomenclature_product_id`');
@@ -147,19 +147,12 @@ class ProductSearch extends Product
                 $sort = $rows->column_name;
             }
         }
-
-        if ($sort) {
-            $query->orderBy([$sort => ($rows->direction == "DESC" ? SORT_DESC : SORT_ASC)]);
-        }
-
+        $query->orderBy([$sort => ($rows->direction == "DESC" ? SORT_DESC : SORT_ASC)]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
 
         return $dataProvider;
     }
 
 }
-
-

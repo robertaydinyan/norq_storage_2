@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
 
                     <div class="card-bottom-section mt-5">
                         <div><a href="#"
-                                onclick="showPage('/warehouse/warehouse/view?id=20','<?= Yii::t('app', 'Main warehouse') ?>')"
+                                onclick="showPage('/warehouse/warehouse/view?show-header=false&id=20','<?= Yii::t('app', 'Main warehouse') ?>')"
                                 class="btn  text-white see mb-3"><?= Yii::t('app', 'View') ?></a></div>
                     </div>
                 </div>
@@ -85,13 +85,13 @@ $this->params['breadcrumbs'][] = $this->title[0];
                             $warehouses = Warehouse::find()->where(['LIKE', 'name', $_GET['search']])->all();
                             if (!empty($warehouses)) {
                                 foreach ($warehouses as $warehouse_ => $warehouse_val) {
-                                    echo '<a href="#" onclick="showPage(\'/warehouse/warehouse/view?id=' . $warehouse_val->id . '&lang=\',\'' . $warehouse_val->name . '\')">' . $warehouse_val->name . '</a><br>';
+                                    echo '<a href="#" onclick="showPage(\'/warehouse/warehouse/view?show-header=false&id=' . $warehouse_val->id . '&lang=\',\'' . $warehouse_val->name . '\')">' . $warehouse_val->name . '</a><br>';
                                 }
                             }
                         } ?>
                     </div>
                     <div class="card-bottom-section mt-5">
-                        <div><a href="#" onclick="showPage('/warehouse/warehouse','Պահեստներ')"
+                        <div><a href="#" onclick="showPage('/warehouse/warehouse?show-header=false','Պահեստներ')"
                                 class="btn  text-white see mb-3"><?= Yii::t('app', 'View') ?></a></div>
                     </div>
                     <!-- <h6><span class="badge badge-primary new-badge" style="position: absolute;top:0px;right: 0px;">12 <i class="fas fa-bell" style="color:#fff"></i></span></h6> -->
@@ -130,7 +130,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
                         } ?>
                     </div>
                     <div class="card-bottom-section mt-5">
-                        <div><a href="#" onclick="showPage('/warehouse/product','Ապրանքներ')"
+                        <div><a href="/warehouse/nomenclature-product/index"
                                 class="btn  text-white see mb-3"><?= Yii::t('app', 'View') ?></a></div>
                     </div>
                 </div>
@@ -168,17 +168,12 @@ $this->params['breadcrumbs'][] = $this->title[0];
                                                             <ul id="w5" class="navbar-nav w-100 nav">
                                                                 <?php $uri = explode('?', $_SERVER['REQUEST_URI']); ?>
                                                                 <li class="nav-item dropdown-item"><a
-                                                                            class="nav-link <?php if (!isset($_GET['type'])) {
-                                                                                echo 'active';
-                                                                            } ?>"
+                                                                            class="nav-link <?php if (!isset($_GET['type'])) { echo 'active';  } ?>"
                                                                             href="/warehouse/shipping-request/documents"><?php echo Yii::t('app', 'All'); ?></a>
                                                                 </li>
                                                                 <?php foreach ($shipping_types as $shp_type => $shp_type_val) { ?>
                                                                     <li class="nav-item dropdown-item"><a
-                                                                                class="nav-link <?php if (isset($_GET['type']) && ($_GET['type'] == $shp_type_val->id)) {
-                                                                                    echo 'active';
-                                                                                } ?>" href="#"
-                                                                                onclick="showPage('/warehouse/shipping-request/documents?type=<?php echo $shp_type_val->id; ?>','<?php echo $shp_type_val->name; ?>')"><?php echo $shp_type_val->name; ?></a>
+                                                                        class="nav-link <?php if (isset($_GET['type']) && ($_GET['type'] == $shp_type_val->id)) {  echo 'active'; } ?>" href="#" onclick="showPage('/warehouse/shipping-request/documents?show-header=false&type=<?php echo $shp_type_val->id; ?>','<?php echo $shp_type_val->name; ?>')"><?php echo $shp_type_val->name; ?></a>
                                                                     </li>
                                                                 <?php } ?>
                                                             </ul>
@@ -191,14 +186,13 @@ $this->params['breadcrumbs'][] = $this->title[0];
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div style="padding-left:20px;max-height: 200px;overflow:auto;">
                         <?php if (isset($_GET['search'])) {
                             $documents = ShippingRequest::find()->where(['LIKE', 'comment', $_GET['search']])->andWhere(['status' => 3])->all();
                             if (!empty($documents)) {
                                 foreach ($documents as $document_ => $document_val) {
-                                    echo '<a target="_blank" href="/warehouse/shipping-request/view?id=' . $document_val->id . '&lang=">' . $document_val->shippingtype->name . '</a><br>';
+                                    echo '<a target="_blank" href="/warehouse/shipping-request/view?show-header=false&id=' . $document_val->id . '&lang=">' . $document_val->shippingtype->name . '</a><br>';
                                 }
                             }
                         } ?>
