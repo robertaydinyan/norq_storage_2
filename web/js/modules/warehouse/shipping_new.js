@@ -694,17 +694,19 @@ window.onload = function () {
     $('body').on('change', '.warehouse_type', function () {
         var type_ = $('.warehouse_type').val();
         $('.ware').show();
-        $.ajax({
-            url: '/warehouse/warehouse/get-warehouses',
-            method: 'get',
-            dataType: 'html',
-            data: {type: type_},
-            success: (data) => {
-                $('.ware_select').html(data);
-                console.log($(this).attr('data-supplier-id'))
-                $('.ware_select').val($(this).attr('data-supplier-id'));
-            }
-        });
+        if (type_) {
+            $.ajax({
+                url: '/warehouse/warehouse/get-warehouses',
+                method: 'get',
+                dataType: 'html',
+                data: {type: type_},
+                success: (data) => {
+                    $('.ware_select').show();
+                    $('.ware_select').html(data);
+                    $('.ware_select').val($(this).attr('data-supplier-id'));
+                }
+            });
+        }
     });
     $('.warehouse_type').change();
     // $('body').on('change','.region_',function(){

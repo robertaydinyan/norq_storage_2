@@ -6,6 +6,7 @@ use app\components\Url;
 use app\models\User;
 use app\modules\billing\models\Regions;
 use app\modules\warehouse\models\Favorite;
+use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ReportConfigs;
 use app\modules\warehouse\models\ShippingType;
@@ -45,7 +46,7 @@ class ReportsController extends Controller
      */
     public function actionIndex()
     {
-        $rc = Yii::$app->request->get('rc');
+        $rc = Yii::$app->request->get("rs");
         $repCon = $rc ? ReportConfigs::find()->where(['id' => $rc])->one() : '';
         $nom = ($repCon && $repCon->group_id) ? GroupProduct::find()->where(['id' => $repCon->group_id])->one()->name : '';
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;

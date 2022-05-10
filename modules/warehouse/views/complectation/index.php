@@ -43,6 +43,13 @@ $table_all_columns = [
     'name' => 'name',
     'other_cost' => 'other_cost',
     'created_at' => 'created_at',
+//    'barcodes' => [
+//        'label' => Yii::t('app', 'Barcodes'),
+//        'format'=>'html',
+//        'value' => function ($model) {
+//            return $this-barcodes;
+//        }
+//    ],
 ];
 
 $table_columns = [];

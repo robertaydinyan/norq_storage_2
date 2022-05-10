@@ -196,7 +196,7 @@ class WarehouseController extends Controller {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new Warehouse();
 
-        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
+        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE, 'isDeleted' => 0])
             ->asArray()
             ->all() , 'name', 'last_name', 'id');
         $warehouse_types = ArrayHelper::map(WarehouseTypes::find()->asArray()
@@ -239,7 +239,7 @@ class WarehouseController extends Controller {
         $model->updated_at = Carbon::now()
             ->toDateTimeString();
 
-        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
+        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE, 'isDeleted' => 0])
             ->asArray()
             ->all() , 'name', 'last_name', 'id');
         $dataUsers = [];
@@ -290,7 +290,7 @@ class WarehouseController extends Controller {
     public function actionDeal() {
         $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()
             ->all() , 'id', 'name');
-        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
+        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE, 'isDeleted' => 0])
             ->asArray()
             ->all() , 'name', 'last_name', 'id');
 

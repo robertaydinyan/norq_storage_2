@@ -101,11 +101,11 @@ class NomenclatureProductController extends Controller
      */
     public function actionCreate()
     {
-        $manufacturers = ArrayHelper::map(Manufacturer::find()->asArray()->all(), 'id', 'name');
+        $manufacturers = ArrayHelper::map(Manufacturer::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new NomenclatureProduct();
-        $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
-        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type');
+        $groupProducts = ArrayHelper::map(GroupProduct::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
+        $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'type');
 
         $post = Yii::$app->request->post();
 
@@ -144,7 +144,7 @@ class NomenclatureProductController extends Controller
             }
         }
 
-        $groups = GroupProduct::find()->asArray()->all();
+        $groups = GroupProduct::find()->where(['isDeleted' => 0])->asArray()->all();
         $tableTreeGroups = $this->buildTree($groups);
 
         return $this->render('create', [
@@ -166,11 +166,11 @@ class NomenclatureProductController extends Controller
      */
     public function actionUpdate($id)
     {
-        $manufacturers = ArrayHelper::map(Manufacturer::find()->asArray()->all(), 'id', 'name');
+        $manufacturers = ArrayHelper::map(Manufacturer::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
-        $groupProducts = ArrayHelper::map(GroupProduct::find()->asArray()->all(), 'id', 'name');
-        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type');
+        $groupProducts = ArrayHelper::map(GroupProduct::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
+        $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'type');
         $post = Yii::$app->request->post();
 //        $barcodes = Barcode::find()->where(['numenclature_id' => $id])->all();
         if ((int)$post['NomenclatureProduct']['qty_type_id'] === 0 && $model->load(Yii::$app->request->post())) {
@@ -205,7 +205,7 @@ class NomenclatureProductController extends Controller
             }
         }
 
-        $groups = GroupProduct::find()->asArray()->all();
+        $groups = GroupProduct::find()->where(['isDeleted' => 0])->asArray()->all();
         $tableTreeGroups = $this->buildTree($groups);
 
         return $this->render('update', [
