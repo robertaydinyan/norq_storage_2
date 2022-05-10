@@ -39,7 +39,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
         <h1 class="mb-5 d-flex"
             data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($model->name) ?><span
                     class="star"><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
- 
+
         <?= DetailView::widget([
             'model' => $model,
             'options' => ['class' => 'table table-hover'],

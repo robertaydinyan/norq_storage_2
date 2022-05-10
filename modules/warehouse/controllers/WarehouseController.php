@@ -84,21 +84,18 @@ class WarehouseController extends Controller {
         $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id])->one();
         $searchModel = new WarehouseSearch();
-        $dataProvider = $searchModel->search(Yii::$app
-            ->request
-            ->queryParams);
+        $article = Yii::$app->request->get('article');
+        $dataProvider = $searchModel->search($article, $rows_count);
         $dataProvider->pagination->pageSize = $rows_count['count'];
         $warehouse_types = WarehouseTypes::find()->all();
-        if ($rows_count && $rows_count->column_name) {
-            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
-        }
-        
+
         return $this->render('show-by-type', [
             'searchModel' => $searchModel,
             'isFavorite' => $isFavorite,
             'dataProvider' => $dataProvider,
             'warehouse_types' => $warehouse_types,
-            'columns' => $columns
+            'columns' => $columns,
+            'article' => $article
         ]);
     }
 

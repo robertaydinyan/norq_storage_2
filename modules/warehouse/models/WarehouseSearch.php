@@ -38,17 +38,43 @@ class WarehouseSearch extends Warehouse
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    /**
+     * @param $article
+     * @param STRING $rows
+     * @return ActiveDataProvider
+     */
+    public function search($article, $rows = '')
     {
+
         $query = Warehouse::find();
 
         // add conditions that should always apply here
+        if ($article) {
+            $query->andWhere(['like', 'article', $article]);
+        }
 
+        if (isset($rows) && $rows->column_name) {
+            if (!$this->hasAttribute($rows->column_name)) {
+                if ($rows->column_name == "name") {
+                    $sort = 's_warehouse.name';
+                } elseif ($rows->column_name == "responsible_id") {
+                    $query->leftJoin('user', '`user`.`id`= `s_product`.`responsible_id`');
+                    $sort = 'user.name';
+                }
+            } else {
+                 $sort = $rows->column_name;
+
+            }
+
+        }
+        if ($sort) {
+            $query->orderBy([$sort => ($rows->direction == "DESC" ? SORT_DESC : SORT_ASC)]);
+        }
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($params);
+        $this->load($article);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
@@ -86,7 +112,6 @@ class WarehouseSearch extends Warehouse
             'crm_company_id' => $this->crm_company_id,
             'crm_contact_id' => $this->crm_contact_id,
         ]);
-        $query->orderBy(['id'=>SORT_ASC]);
         $query->andFilterWhere(['like', 'type', $this->type])
 //            ->andFilterWhere(['like', 'country', $this->country])
 //            ->andFilterWhere(['like', 'region', $this->region])
@@ -98,3 +123,8 @@ class WarehouseSearch extends Warehouse
         return $dataProvider;
     }
 }
+
+
+
+
+

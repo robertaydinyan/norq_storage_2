@@ -91,8 +91,6 @@ class ShippingRequestController extends Controller {
         $rows_count = TableRowsCount::find()->where(['page_name' => 'ShippingRequest', 'userID' => Yii::$app->user->id])->one();
         $searchModel = new ShippingRequestSearch();
         $shipping_types = ShippingType::find()->orderBy(['order_'=>SORT_ASC])->all();
-        $dataProvider = $searchModel->search(Yii::$app
-            ->request->queryParams, null, true);
         $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])
             ->asArray()
             ->all() , 'id', 'name');
@@ -100,13 +98,10 @@ class ShippingRequestController extends Controller {
             ->all();
         $dataUsers = [];
 
-        $dataProvider2 = new ActiveDataProvider([
-            'query' => ShippingRequest::find(),
-        ]);
-        $dataProvider2->pagination->pageSize = $rows_count['count'];
-        if ($rows_count && $rows_count->column_name) {
-            $dataProvider2->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
-        }
+        $article = Yii::$app->request->get('article');
+        $dataProvider = $searchModel->search($article, $rows_count);
+        $dataProvider->pagination->pageSize = $rows_count['count'];
+
 
         foreach ($uersData as $key => $value) {
             $dataUsers[$value
@@ -121,11 +116,11 @@ class ShippingRequestController extends Controller {
             'isFavorite' => $isFavorite,
             'columns' => $columns,
             'dataProvider' => $dataProvider,
-            'dataProvider2' => $dataProvider2,
             'shipping_types' => $shipping_types,
             'warehouses' => $physicalWarehouse,
             'suppliers' => $suppliers,
-            'users' => $dataUsers
+            'users' => $dataUsers,
+            'article' => $article
         ]);
     }
 
