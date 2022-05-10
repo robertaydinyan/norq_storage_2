@@ -135,15 +135,32 @@ class ProductSearch extends Product
         if ($article) {
             $query->andWhere(['like', 'article', $article]);
         }
-        if (isset($rows) && $rows->column_name && !$this->hasAttribute($rows->column_name)) {
-            if($rows->column_name == "NomenclatureName"){
-                $query->leftJoin('s_nomenclature_product', '`s_nomenclature_product`.`id`= `s_product`.`nomenclature_product_id`');
-                $sort = 's_nomenclature_product.name';
-            }elseif ($rows->column_name == "WarehouseName"){
-                $query->leftJoin('s_warehouse', '`s_warehouse`.`id`= `s_product`.`warehouse_id`');
-                $sort = 's_warehouse.name';
+        if (isset($rows) && $rows->column_name) {
+            if (!$this->hasAttribute($rows->column_name)) {
+
+                if ($rows->column_name == "NomenclatureName") {
+                    $query->leftJoin('s_nomenclature_product', '`s_nomenclature_product`.`id`= `s_product`.`nomenclature_product_id`');
+                    $sort = 's_nomenclature_product.name';
+                } elseif ($rows->column_name == "WarehouseName") {
+                    $query->leftJoin('s_warehouse', '`s_warehouse`.`id`= `s_product`.`warehouse_id`');
+                    $sort = 's_warehouse.name';
+                } elseif ($rows->column_name == "qty_type") {
+                    $query->leftJoin('s_qty_type', '`s_qty_type`.`id`= `s_product`.`warehouse_id`');
+                    $sort = 's_qty_type.type';
+                } elseif ($rows->column_name == "Individual") {
+                    $query->leftJoin('s_nomenclature_product', '`s_nomenclature_product`.`id`= `s_product`.`nomenclature_product_id`');
+                    $sort = 's_nomenclature_product.individual';
+                } elseif ($rows->column_name == "Quantity") {
+                    $sort = 's_product.count';
+                } elseif ($rows->column_name == "article") {
+                    $sort = 's_product.article';
+                } elseif ($rows->column_name == "barcodes") {
+                    $query->leftJoin('barcode', '`barcode`.`product_id`= `s_product`.`id`');
+                    $sort = 'barcode.code';
+                }
             }
             else {
+
                 $sort = $rows->column_name;
             }
         }
