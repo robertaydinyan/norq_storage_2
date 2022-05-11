@@ -140,4 +140,9 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             }
         }
     }
+
+    public function getVatName() {
+        return $this->hasOne(Vat::class, ['id' => 'is_vat']);
+    }
+
 }

@@ -3,18 +3,16 @@
 namespace app\modules\warehouse\controllers;
 
 use Yii;
-use app\modules\warehouse\models\Analogs;
-use app\modules\warehouse\models\AnalogsSearch;
-use app\modules\warehouse\models\NomenclatureProduct;
+use app\modules\warehouse\models\Vat;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 
 /**
- * AnalogsController implements the CRUD actions for Analogs model.
+ * VatController implements the CRUD actions for Vat model.
  */
-class AnalogsController extends Controller
+class VatController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -32,22 +30,22 @@ class AnalogsController extends Controller
     }
 
     /**
-     * Lists all Analogs models.
+     * Lists all Vat models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AnalogsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Vat::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Analogs model.
+     * Displays a single Vat model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -60,39 +58,25 @@ class AnalogsController extends Controller
     }
 
     /**
-     * Creates a new Analogs model.
+     * Creates a new Vat model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
+        $model = new Vat();
 
-        $model = new Analogs();
-        $nomiclatures = ArrayHelper::map(NomenclatureProduct::find()->where(['isDeleted' => 0])->asArray()->all(),'id','name');
-        if ($post = Yii::$app->request->post()) {
-             
-            if(!empty($post['Analogs']['analog_id'])){
-                $post['Analogs']['analog_id'] = array_unique($post['Analogs']['analog_id']);
-                for ($i=0; $i < count($post['Analogs']['analog_id']) ; $i++) { 
-                    if($post['Analogs']['product_id'] != $post['Analogs']['analog_id'][$i]){
-                        $analog = new Analogs();
-                        $analog->product_id = $post['Analogs']['product_id'];
-                        $analog->analog_id = $post['Analogs']['analog_id'][$i];
-                        $analog->save(false);
-                    }
-                }
-            }
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'nomiclatures'=>$nomiclatures
         ]);
     }
 
     /**
-     * Updates an existing Analogs model.
+     * Updates an existing Vat model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -101,18 +85,18 @@ class AnalogsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-        $nomiclatures = ArrayHelper::map(NomenclatureProduct::find()->where(['isDeleted' => 0])->asArray()->all(),'id','name');
+
         return $this->render('update', [
             'model' => $model,
-            'nomiclatures'=>$nomiclatures
         ]);
     }
 
     /**
-     * Deletes an existing Analogs model.
+     * Deletes an existing Vat model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -120,23 +104,21 @@ class AnalogsController extends Controller
      */
     public function actionDelete($id)
     {
-        $p = $this->findModel($id);
-        $p->isDeleted = 1 - $p->isDeleted;
-        $p->save(false);
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Analogs model based on its primary key value.
+     * Finds the Vat model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Analogs the loaded model
+     * @return Vat the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Analogs::findOne($id)) !== null) {
+        if (($model = Vat::findOne($id)) !== null) {
             return $model;
         }
 

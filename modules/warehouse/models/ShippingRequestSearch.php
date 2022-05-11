@@ -115,25 +115,25 @@ class ShippingRequestSearch extends ShippingRequest
         }
         if(isset($_GET['type'])){
             $query->andFilterWhere([
-                'shipping_type' => intval($_GET['type']),
+                's_shipping.shipping_type' => intval($_GET['type']),
             ]);
         }
         if(isset($_GET['ShippingRequest']['supplier_id'])){
             $query->andFilterWhere([
-                'supplier_id' => intval( $_GET['ShippingRequest']['supplier_id']),
+                's_shipping.supplier_id' => intval( $_GET['ShippingRequest']['supplier_id']),
             ]);
         }
 
         if(isset($_GET['created_at'])){
             $query->andFilterWhere([
-                'created_at' => $_GET['created_at'],
+                's_shipping.created_at' => $_GET['created_at'],
             ]);
         }
         if(\Yii::$app->user->can('technician') && !\Yii::$app->user->can('admin')) {
             $warehouseId = Warehouse::find()->where(['user_id'=>Yii::$app->user->getId()])->one()->id;
             $query->AndWhere(['or',
-                ['supplier_warehouse_id' => $warehouseId],
-                ['provider_warehouse_id' => $warehouseId]
+                ['s_shipping.supplier_warehouse_id' => $warehouseId],
+                ['s_shipping.provider_warehouse_id' => $warehouseId]
             ]);
 
 
@@ -141,41 +141,41 @@ class ShippingRequestSearch extends ShippingRequest
 
             if(isset($_GET['supplier_warehouse_id'])){
                 $query->andFilterWhere([
-                    'supplier_warehouse_id' => $_GET['supplier_warehouse_id'],
+                    's_shipping.supplier_warehouse_id' => $_GET['supplier_warehouse_id'],
                 ]);
             }
             if(isset($_GET['provider_warehouse_id'])){
                 $query->andFilterWhere([
-                    'provider_warehouse_id' => $_GET['provider_warehouse_id'],
+                    's_shipping.provider_warehouse_id' => $_GET['provider_warehouse_id'],
                 ]);
             }
         }
         if(isset($_GET['user_id'])){
             $query->andFilterWhere([
-                'user_id' => $_GET['user_id'],
+                's_shipping.user_id' => $_GET['user_id'],
             ]);
         }
         $query->andFilterWhere([
-            'status' => 3,
+            's_shipping.status' => 3,
         ]);
         if(isset($_GET['from_created_at'])){
             $query->andFilterWhere([
-                '>','created_at', $_GET['from_created_at'],
+                '>','s_shipping.created_at', $_GET['from_created_at'],
             ]);
         }
 
         if(isset($_GET['to_created_at'])){
 
             $query->andFilterWhere([
-                '<','created_at', $_GET['to_created_at'],
+                '<','s_shipping.created_at', $_GET['to_created_at'],
             ]);
         }
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'count' => $this->count,
-            'nomenclature_product_id' => $this->nomenclature_product_id,
+            's_shipping.id' => $this->id,
+            's_shipping.count' => $this->count,
+            's_shipping.nomenclature_product_id' => $this->nomenclature_product_id,
         ]);
 
         return $dataProvider;

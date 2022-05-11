@@ -8,6 +8,7 @@ use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\Manufacturer;
 use app\modules\warehouse\models\QtyType;
+use app\modules\warehouse\models\Vat;
 use app\rbac\WarehouseRule;
 use Yii;
 use app\modules\warehouse\models\NomenclatureProduct;
@@ -101,11 +102,12 @@ class NomenclatureProductController extends Controller
      */
     public function actionCreate()
     {
-        $manufacturers = ArrayHelper::map(Manufacturer::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
+        $manufacturers = ArrayHelper::map(Manufacturer::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new NomenclatureProduct();
         $groupProducts = ArrayHelper::map(GroupProduct::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
-        $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'type');
+        $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->orderBy('type')->asArray()->all(), 'id', 'type');
+        $vats = ArrayHelper::map(Vat::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
 
         $post = Yii::$app->request->post();
 
@@ -153,7 +155,8 @@ class NomenclatureProductController extends Controller
             'groupProducts' => $groupProducts,
             'isFavorite' => $isFavorite,
             'manufacturers' => $manufacturers,
-            'qtyTypes' => $qtyTypes
+            'qtyTypes' => $qtyTypes,
+            'vats' => $vats,
         ]);
     }
 
@@ -166,12 +169,13 @@ class NomenclatureProductController extends Controller
      */
     public function actionUpdate($id)
     {
-        $manufacturers = ArrayHelper::map(Manufacturer::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
+        $manufacturers = ArrayHelper::map(Manufacturer::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
         $groupProducts = ArrayHelper::map(GroupProduct::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
-        $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'type');
+        $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->orderBy('type')->asArray()->all(), 'id', 'type');
         $post = Yii::$app->request->post();
+        $vats = ArrayHelper::map(Vat::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
 //        $barcodes = Barcode::find()->where(['numenclature_id' => $id])->all();
         if ((int)$post['NomenclatureProduct']['qty_type_id'] === 0 && $model->load(Yii::$app->request->post())) {
             $qtyModel = new QtyType();
@@ -215,6 +219,7 @@ class NomenclatureProductController extends Controller
             'isFavorite' => $isFavorite,
             'qtyTypes' => $qtyTypes,
             'manufacturers' => $manufacturers,
+            'vats' => $vats
         ]);
     }
 

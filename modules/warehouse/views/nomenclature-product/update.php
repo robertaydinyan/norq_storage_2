@@ -27,7 +27,8 @@ $this->params['breadcrumbs'][] = $this->title[0];
         'qtyTypes' => $qtyTypes,
         'manufacturers' => $manufacturers,
         'type' => 'update',
-        'barcodes' => $barcodes
+        'barcodes' => $barcodes,
+        'vats' => $vats
     ]) ?>
     </div>
 </div>

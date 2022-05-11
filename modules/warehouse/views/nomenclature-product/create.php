@@ -24,7 +24,8 @@ $this->params['breadcrumbs'][] = $this->title[0];
         'tableTreeGroups'=> $tableTreeGroups,
         'type' => 'create',
         'manufacturers' => $manufacturers,
-        'barcodes' => null
+        'barcodes' => null,
+        'vats' => $vats
     ]) ?>
     </div>
 </div>

@@ -75,7 +75,13 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                             return $model->getQtyType()->one()['type'];
                         }
                     ],
-                    'is_vat',
+                    [
+                        'attribute' => 'is_vat',
+                        'label' => Yii::t('app', 'Vat'),
+                        'value' => function ($model) {
+                            return $model->vatName->name;
+                        }
+                    ],
                     [
                         'attribute' => 'manufacturer',
                         'label' => Yii::t('app', 'Manufacturer'),

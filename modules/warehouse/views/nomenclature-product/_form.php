@@ -100,9 +100,21 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                         ],
                     ]) ?>
                 </div>
-
                 <div class="col-4">
-                    <?= $form->field($model, 'is_vat')->textInput() ?>
+                    <?= $form->field($model, 'is_vat', [
+                        'options' => ['class' => 'form-group'],
+                    ])->widget(Select2::className(), [
+                        'theme' => Select2::THEME_KRAJEE,
+                        'data' => $vats,
+                        'maintainOrder' => true,
+                        'options' => [
+                            'placeholder' => Yii::t('app', 'Select'),
+                        ],
+                        'pluginOptions' => [
+                            'tags' => true,
+                            'allowClear' => true
+                        ],
+                    ]) ?>
                 </div>
 
                 <div class="col-4">

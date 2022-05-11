@@ -238,7 +238,7 @@ class ProductController extends Controller
         $manufacturers = ArrayHelper::map(Manufacturer::find()->asArray()->all(), 'id', 'name');
         $groups = GroupProduct::find()->asArray()->all();
         $tableTreeGroups = $this->buildTree($groups);
-        $qtyTypes = ArrayHelper::map(QtyType::find()->asArray()->all(), 'id', 'type');
+        $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->orderBy('type')->asArray()->all(), 'id', 'type');
         if ($model->load(Yii::$app->request->post())) {
             $model->save(false);
             return $this->redirect(['index']);

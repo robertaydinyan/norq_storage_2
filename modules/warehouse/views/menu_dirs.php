@@ -13,6 +13,7 @@ use yii\helpers\Url;
             <li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/warehouse/nomenclature-product'); ?>"><?php echo Yii::t('app', 'Product Nomenclature'); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/warehouse/analogs'); ?>"><?php echo Yii::t('app', 'Analogs'); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/warehouse/manufacturer'); ?>"><?php echo Yii::t('app', 'Manufacturers'); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php echo URL::to('/warehouse/vat'); ?>"><?php echo Yii::t('app', 'Vat'); ?></a></li>
         </ul>
     </div>
 </nav>
