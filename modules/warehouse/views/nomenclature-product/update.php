@@ -9,6 +9,8 @@ use yii\helpers\Html;
 /* @var $tableTreeGroups app\modules\warehouse\models\NomenclatureProduct */
 /* @var $manufacturers app\modules\warehouse\models\Manufacturer */
 /* @var $barcodes app\modules\warehouse\models\Barcode[] */
+/* @var $vats app\modules\warehouse\models\Vat[] */
+/* @var $expArticles app\modules\warehouse\models\ExpenditureArticle[] */
 
 $this->title = array(Yii::t('app', 'Update') .  ': ' . $model->name,'Update');
 $this->params['breadcrumbs'][] = ['label' => 'Nomenclature Products', 'url' => ['index']];
@@ -28,7 +30,8 @@ $this->params['breadcrumbs'][] = $this->title[0];
         'manufacturers' => $manufacturers,
         'type' => 'update',
         'barcodes' => $barcodes,
-        'vats' => $vats
+        'vats' => $vats,
+        'expArticles' => $expArticles
     ]) ?>
     </div>
 </div>

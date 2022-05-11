@@ -4,6 +4,7 @@ namespace app\modules\warehouse\controllers;
 
 use app\components\Url;
 use app\modules\warehouse\models\Barcode;
+use app\modules\warehouse\models\ExpenditureArticle;
 use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\Manufacturer;
@@ -108,6 +109,7 @@ class NomenclatureProductController extends Controller
         $groupProducts = ArrayHelper::map(GroupProduct::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
         $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->orderBy('type')->asArray()->all(), 'id', 'type');
         $vats = ArrayHelper::map(Vat::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
+        $expArticles = ArrayHelper::map(ExpenditureArticle::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
 
         $post = Yii::$app->request->post();
 
@@ -157,6 +159,7 @@ class NomenclatureProductController extends Controller
             'manufacturers' => $manufacturers,
             'qtyTypes' => $qtyTypes,
             'vats' => $vats,
+            'expArticles' => $expArticles
         ]);
     }
 
@@ -176,6 +179,7 @@ class NomenclatureProductController extends Controller
         $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->orderBy('type')->asArray()->all(), 'id', 'type');
         $post = Yii::$app->request->post();
         $vats = ArrayHelper::map(Vat::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
+        $expArticles = ArrayHelper::map(ExpenditureArticle::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
 //        $barcodes = Barcode::find()->where(['numenclature_id' => $id])->all();
         if ((int)$post['NomenclatureProduct']['qty_type_id'] === 0 && $model->load(Yii::$app->request->post())) {
             $qtyModel = new QtyType();
@@ -219,7 +223,8 @@ class NomenclatureProductController extends Controller
             'isFavorite' => $isFavorite,
             'qtyTypes' => $qtyTypes,
             'manufacturers' => $manufacturers,
-            'vats' => $vats
+            'vats' => $vats,
+            'expArticles' => $expArticles
         ]);
     }
 

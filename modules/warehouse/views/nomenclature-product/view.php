@@ -67,7 +67,13 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                     ],
                     'series',
                     'ref',
-                    'expenditure_article',
+                    [
+                        'attribute' => 'expenditure_article',
+                        'label' => Yii::t('app', 'Expenditure Article'),
+                        'value' => function($model) {
+                            return $model->expArticle->name;
+                        }
+                    ],
                     [
                         'attribute' => 'qty_type',
                         'label' => Yii::t('app', 'Quantity type'),

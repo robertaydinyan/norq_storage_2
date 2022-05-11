@@ -145,4 +145,8 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
         return $this->hasOne(Vat::class, ['id' => 'is_vat']);
     }
 
+    public function getExpArticle() {
+        return $this->hasOne(ExpenditureArticle::class, ['id' => 'expenditure_article']);
+    }
+
 }

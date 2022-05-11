@@ -81,7 +81,20 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 </div>
 
                 <div class="col-4">
-                    <?= $form->field($model, 'expenditure_article')->textInput() ?>
+                    <?= $form->field($model, 'expenditure_article', [
+                        'options' => ['class' => 'form-group'],
+                    ])->widget(Select2::className(), [
+                        'theme' => Select2::THEME_KRAJEE,
+                        'data' => $expArticles,
+                        'maintainOrder' => true,
+                        'options' => [
+                            'placeholder' => Yii::t('app', 'Select'),
+                        ],
+                        'pluginOptions' => [
+                            'tags' => true,
+                            'allowClear' => true
+                        ],
+                    ]) ?>
                 </div>
 
                 <div class="col-4">
