@@ -104,7 +104,9 @@ class VatController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $p = $this->findModel($id);
+        $p->isDeleted = 1 - $p->isDeleted;
+        $p->save(false);
 
         return $this->redirect(['index']);
     }
