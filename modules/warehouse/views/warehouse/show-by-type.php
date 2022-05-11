@@ -16,7 +16,20 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 $this->params['breadcrumbs'][] = $this->title[0];
 
 $table_all_columns = [
-    'id' => 'id',
+    'id' => [
+        'label' =>  Yii::t('app', 'ID'),
+        'format' => 'html',
+        'value' => function ($model) {
+            $isDeleted = $model->isDeleted;
+            if ($isDeleted == 1){
+                return $model->id . "<i class=\"fa fa-remove pl-3 text-danger\"></i>";
+
+            }else {
+                return  $model->id ;
+            }
+        }
+    ],
+
     'type' => [
         'label' => Yii::t('app', 'Warehouse type'),
         'format'=>'html',
@@ -49,6 +62,8 @@ $table_all_columns = [
             return $user->name.' '.$user->last_name;
         }
     ],
+
+
     'products' => [
         'label' => Yii::t('app', 'goods'),
         'value' => function ($model) {
@@ -90,7 +105,7 @@ $actions = [
         },
         'delete' => function ($url, $model) {
             return \app\rbac\WarehouseRule::can('warehouse', 'delete') ?
-                Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . '"></i>', $url, [
+                Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primary') . '"></i>', $url, [
                     'title' => Yii::t('app', 'Delete'),
                     'class' => 'btn text-danger btn-sm',
                     'data' => [

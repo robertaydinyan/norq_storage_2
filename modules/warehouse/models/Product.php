@@ -79,6 +79,7 @@ class Product extends \yii\db\ActiveRecord {
             'manufacturer' => Yii::t('app', 'Արտադրող'),
             'not_is_vat_price' => Yii::t('app', 'Արժեքը առանց ՍԱՀ'),
             'group_id' => Yii::t('app', 'Խումբ'),
+            'isDeleted' => 'isDeleted',
         ];
     }
     /**
@@ -100,6 +101,7 @@ class Product extends \yii\db\ActiveRecord {
                 'manufacturer' => Yii::t('app', 'Արտադրող'),
                 'not_is_vat_price' => Yii::t('app', 'Արժեքը առանց ՍԱՀ'),
                 'group_id' => Yii::t('app', 'Խումբ'),
+                'isDeleted' => 'isDeleted',
 
             ];
         } else if ($type == 2) {
@@ -118,6 +120,7 @@ class Product extends \yii\db\ActiveRecord {
                 'manufacturer' => Yii::t('app', 'Արտադրող'),
                 'not_is_vat_price' => Yii::t('app', 'Արժեքը առանց ՍԱՀ'),
                 'group_id' => Yii::t('app', 'Խումբ'),
+                'isDeleted' => 'isDeleted',
             ];
         }
 

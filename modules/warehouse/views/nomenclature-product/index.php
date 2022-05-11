@@ -73,6 +73,19 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
                                 //'individual',
                                 //'qty_type',
                                 //'group_id',
+                               /* 'isDeleted' => [
+                                    'label' =>  Yii::t('app', 'Status'),
+                                    'format' => 'html',
+                                    'value' => function ($model) {
+                                        $isDeleted = $model->isDeleted;
+                                        if ($isDeleted == 1){
+                                            return "<p class='text-center p-2 bg-danger w-50 text-white m-auto'>Deleted</p>";
+
+                                        }else {
+                                            return  "<p class='text-center p-2 bg-primary w-50 text-white m-auto'>Saved</p>";
+                                        }
+                                    }
+                                ],*/
 
                                 [
                                     'class' => 'yii\grid\ActionColumn',
@@ -94,7 +107,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.
                                                 ]) : '';
                                         },
                                         'delete' => function ($url, $model) {
-                                            return \app\rbac\WarehouseRule::can('nomenclature-product', 'delete') ? Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . '"></i>', $url, [
+                                            return \app\rbac\WarehouseRule::can('nomenclature-product', 'delete') ? Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primary') . '"></i>', $url, [
                                                 'title' => Yii::t('app', 'Delete'),
                                                 'class' => 'btn text-danger btn-sm',
                                                 'data' => [
