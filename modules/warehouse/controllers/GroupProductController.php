@@ -67,7 +67,6 @@ class GroupProductController extends Controller
         $groupProducts = Product::find()->select([
             's_product.id',
             's_product.price',
-            's_product.retail_price',
             's_product.supplier_id',
             's_product.mac_address',
             's_product.comment',
@@ -159,7 +158,6 @@ class GroupProductController extends Controller
         $groupProducts = Product::find()->select([
             's_product.id',
             's_product.price',
-            's_product.retail_price',
             's_product.supplier_id',
             's_product.mac_address',
             's_product.comment',

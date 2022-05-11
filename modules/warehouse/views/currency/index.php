@@ -51,33 +51,20 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $model->getCurrencyValue($model->id);
                     }
                 ],
-                /*'isDeleted' => [
-                    'label' =>  Yii::t('app', 'Status'),
-                    'format' => 'html',
-                    'value' => function ($model) {
-                        $isDeleted = $model->isDeleted;
-                        if ($isDeleted == 1){
-                            return "<p class='text-center p-2 bg-danger w-50 text-white m-auto'>Deleted</p>";
-
-                        }else {
-                            return  "<p class='text-center p-2 bg-primary w-50 text-white m-auto'>Saved</p>";
-                        }
-                    }
-                ],*/
 
                 ['class' => 'yii\grid\ActionColumn',
                     'header' => Yii::t('app', 'Action'),
                     'template' => '{view}{update}{delete}',
                     'buttons' => [
                         'view' => function ($url, $model) {
-                            return \app\rbac\WarehouseRule::can('currency', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url . '&lang=' . \Yii::$app->language, [
+                            return \app\rbac\WarehouseRule::can('currency', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url, [
                                 'title' => Yii::t('app', 'View'),
                                 'class' => 'btn text-primary btn-sm mr-2'
                             ]) : '';
                         },
                         'update' => function ($url, $model) {
                             return \app\rbac\WarehouseRule::can('currency', 'update') ?
-                                Html::a('<i class="fas fa-pencil-alt"></i>', $url . '&lang=' . \Yii::$app->language, [
+                                Html::a('<i class="fas fa-pencil-alt"></i>', $ur, [
                                     'title' => Yii::t('app', 'Update'),
                                     'class' => 'btn text-primary btn-sm mr-2'
                                 ]) : '';

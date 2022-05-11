@@ -27,7 +27,6 @@ class WarehouseGroups extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['isDeleted'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -40,7 +39,6 @@ class WarehouseGroups extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => Yii::t('app', 'Name'),
-            'isDeleted' => 'isDeleted'
         ];
     }
 

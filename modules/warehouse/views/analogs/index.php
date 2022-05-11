@@ -46,22 +46,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'value' => function ($model) {
                     return $model->getNomiclatureName(false);
                 }
-            ],
-           /* 'isDeleted' => [
-                'label' =>  Yii::t('app', 'Status'),
-                'format' => 'html',
-                'value' => function ($model) {
-                    $isDeleted = $model->isDeleted;
-                    if ($isDeleted == 1){
-                        return "<p class='text-center p-2 bg-danger w-50 text-white m-auto'>Deleted</p>";
-
-                    }else {
-                        return  "<p class='text-center p-2 bg-primary w-50 text-white m-auto'>Saved</p>";
-                    }
-                }
-            ],*/
-
-            [
+            ],[
                 'class' => 'yii\grid\ActionColumn',
                 'header' => Yii::t('app', 'Reference'),
                 'template' => '{update}{delete}',

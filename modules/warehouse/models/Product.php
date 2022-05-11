@@ -48,7 +48,7 @@ class Product extends \yii\db\ActiveRecord {
         return [
             [['price', 'retail_price', 'shipping_id', 'status', 'currency'], 'number'],
             [['created_at', 'warehouse_id', 'nomenclature_product_id', 'product_name'], 'required'],
-            [['warehouse_id', 'nomenclature_product_id','group_id','qty_type','not_is_vat_price','manufacturer','isDeleted'], 'integer'],
+            [['warehouse_id', 'nomenclature_product_id','group_id','qty_type','not_is_vat_price','manufacturer', 'isDeleted'], 'integer'],
             [['supplier_id', 'mac_address', 'invoice', 'comment', 'created_at', 'product_name', 'article'], 'string', 'max' => 255],
             [['images'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4],
         ];
@@ -79,7 +79,6 @@ class Product extends \yii\db\ActiveRecord {
             'manufacturer' => Yii::t('app', 'Արտադրող'),
             'not_is_vat_price' => Yii::t('app', 'Արժեքը առանց ՍԱՀ'),
             'group_id' => Yii::t('app', 'Խումբ'),
-            'isDeleted' => 'isDeleted',
         ];
     }
     /**
@@ -101,7 +100,6 @@ class Product extends \yii\db\ActiveRecord {
                 'manufacturer' => Yii::t('app', 'Արտադրող'),
                 'not_is_vat_price' => Yii::t('app', 'Արժեքը առանց ՍԱՀ'),
                 'group_id' => Yii::t('app', 'Խումբ'),
-                'isDeleted' => 'isDeleted',
 
             ];
         } else if ($type == 2) {
@@ -120,7 +118,6 @@ class Product extends \yii\db\ActiveRecord {
                 'manufacturer' => Yii::t('app', 'Արտադրող'),
                 'not_is_vat_price' => Yii::t('app', 'Արժեքը առանց ՍԱՀ'),
                 'group_id' => Yii::t('app', 'Խումբ'),
-                'isDeleted' => 'isDeleted',
             ];
         }
 

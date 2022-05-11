@@ -48,6 +48,10 @@ class WarehouseSearch extends Warehouse
 
         $query = Warehouse::find();
 
+        // add conditions that should always apply here
+        // if ($article) {
+        //     $query->andWhere(['like', 'article', $article]);
+        // }
 
         if (isset($rows) && $rows->column_name) {
             if (!$this->hasAttribute($rows->column_name)) {
@@ -70,7 +74,7 @@ class WarehouseSearch extends Warehouse
             'query' => $query,
         ]);
 
-//        $this->load($article);
+        // $this->load($article);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
@@ -119,8 +123,3 @@ class WarehouseSearch extends Warehouse
         return $dataProvider;
     }
 }
-
-
-
-
-

@@ -61,7 +61,6 @@ class Complectation extends \yii\db\ActiveRecord
             'count' => 'Count',
             'created_at' => 'Date of creation',
             'other_cost' => 'Other Cost',
-            'isDeleted' => 'isDeleted'
         ];
     }
 }

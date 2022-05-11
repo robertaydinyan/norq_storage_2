@@ -16,16 +16,13 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 <div class="group-product-index">
     <?php echo $this->render('/menu_dirs', array(), true)?>
     <div class="d-flex flex-wrap justify-content-between align-items-center">
-    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>" >
-        <?= Html::encode($this->title[0]) ?>
-        <span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span>
-    </h1>
-    <div>
+    <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span> </h1>
+        <div>
         <?php if(\app\rbac\WarehouseRule::can('qty-type', 'create')): ?>
         <a style="margin-right: 10px;" href="<?= Url::to(['create']) ?>"  class="btn btn-primary" ><?php echo Yii::t('app', 'Create a unit of measurement'); ?></a>
         <?php endif; ?>
         <button onclick="tableToExcel('tbl','test','warehouse.xls')" class="btn btn-primary  mr-2">Xls</button>
-    </div>
+        </div>
     </div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -54,20 +51,6 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 'header' => Yii::t('app', 'Unit of measurement'),
                 'attribute' => 'type'
             ],
-            /*'isDeleted' => [
-                'label' =>  Yii::t('app', 'Status'),
-                'format' => 'html',
-                'value' => function ($model) {
-                    $isDeleted = $model->isDeleted;
-                    if ($isDeleted == 1){
-                        return "<p class='text-center p-2 bg-danger w-50 text-white m-auto'>Deleted</p>";
-
-                    }else {
-                        return  "<p class='text-center p-2 bg-primary w-50 text-white m-auto'>Saved</p>";
-                    }
-                }
-            ],*/
-
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => Yii::t('app', 'Reference'),
@@ -82,7 +65,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                     },
                     'delete' => function ($url, $model) {
                         return \app\rbac\WarehouseRule::can('qty-type', 'delete') ?
-                        Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primary') . '"></i>', $url, [
+                        Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primar') . '"></i>', $url, [
                             'title' => Yii::t('app', 'Delete'),
                             'class' => 'btn text-danger btn-sm',
                             'data' => [

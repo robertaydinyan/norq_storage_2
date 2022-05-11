@@ -3,7 +3,7 @@
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use app\modules\warehouse\models\Product;
 /* @var $this yii\web\View */
 /* @var $model app\modules\warehouse\models\NomenclatureProduct */
 /* @var $dataProvider yii\data\ArrayDataProvider */
@@ -17,13 +17,20 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 <div class="nomenclature-product-view group-product-index">
 
     <h1 data-title="<?php echo $this->title[1]; ?>" style="padding: 20px;"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
-    <div class="row">
-
-        <div style="padding:20px;" class="col-12">
+    <div class="row" style="padding:20px;">
+       
+        <div  class="col-3">
+            
             <?= DetailView::widget([
                 'model' => $model,
+                'options' => ['class' => 'tl'],
+                 'template' => function($attribute, $index, $widget){
+                    if($attribute['value'])
+                    {
+                        return "<tr><th>{$attribute['label']}</th><td>{$attribute['value']}</td></tr>";
+                    }
+                },
                 'attributes' => [
-                    'id',
                     [
                         'attribute' => 'vendor_code',
                         'label' => Yii::t('app', 'Vendor code'),
@@ -108,7 +115,14 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                 ],
             ]) ?>
         </div>
-
+        <div class="col-9">
+             <?php 
+                  if($model->id) {
+                    $products = Product::find()->select('*,SUM(count) as count ')->where(['nomenclature_product_id'=>$model->id])->groupBy(['warehouse_id'])->andWhere(['>','count','0'])->all();
+                     echo $this->renderFile('@app/modules/warehouse/views/product/product-info.php', ['products' => $products]);
+                  }
+                ?>
+        </div>
 <!--        <div class="col-4">-->
 <!--            <h5>--><?php //echo Yii::t('app', 'Barcodes');?><!--</h5>-->
 <!--            --><?//= GridView::widget([
@@ -134,3 +148,9 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
         ]) ?>
     </p>
 </div>
+<style>
+  .tl td,.tl th{
+    padding: 10px;
+   border-bottom:2px solid #0055a5 !important;
+  }
+</style>

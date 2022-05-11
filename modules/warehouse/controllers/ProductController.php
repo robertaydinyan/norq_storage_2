@@ -63,12 +63,15 @@ class ProductController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new ProductSearch();        
         $article = Yii::$app->request->get('article');
+        $dataProvider2 = $searchModel->search_($article);
         TableRowsStatus::checkRows('Product', 1);
         $columns = TableRowsStatus::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id, 'status' => 1, 'type' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Product', 'userID' => Yii::$app->user->id])->one();
-
-        $dataProvider2 = $searchModel->search_($article, $rows_count);
         $dataProvider2->pagination->pageSize = $rows_count['count'];
+        if ($rows_count && $rows_count->column_name) {
+            $dataProvider2->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
+        }
+        
         return $this->render('index', [
             'columns' => $columns,
             'dataProvider2' => $dataProvider2,
@@ -160,11 +163,11 @@ class ProductController extends Controller
         $model = new Product();
 
         $model->created_at = Carbon::now()->toDateTimeString();
-        $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()->all(), 'id', 'name');
+        $nProducts = ArrayHelper::map(NomenclatureProduct::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
         if ($warehouseId !== null) {
-            $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])->where(['id' => $warehouseId])->asArray()->all(), 'id', 'name');
+            $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['isDeleted' => 0])->where(['type' => 1])->where(['id' => $warehouseId])->asArray()->all(), 'id', 'name');
         } else {
-            $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])->asArray()->all(), 'id', 'name');
+            $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['isDeleted' => 0])->where(['type' => 1])->asArray()->all(), 'id', 'name');
         }
         $suppliers = ArrayHelper::map(SuppliersList::find()->asArray()->all(), 'id', 'name');
         if ($model->load(Yii::$app->request->post())) {
@@ -232,11 +235,11 @@ class ProductController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
 
-        $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()->all(), 'id', 'name');
-        $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 'physical'])->asArray()->all(), 'id', 'name');
+        $nProducts = ArrayHelper::map(NomenclatureProduct::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
+        $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['isDeleted' => 0])->where(['type' => 'physical'])->asArray()->all(), 'id', 'name');
         $suppliers = ArrayHelper::map(SuppliersList::find()->asArray()->all(), 'id', 'name');
-        $manufacturers = ArrayHelper::map(Manufacturer::find()->asArray()->all(), 'id', 'name');
-        $groups = GroupProduct::find()->asArray()->all();
+        $manufacturers = ArrayHelper::map(Manufacturer::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
+        $groups = GroupProduct::find()->where(['isDeleted' => 0])->asArray()->all();
         $tableTreeGroups = $this->buildTree($groups);
         $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->orderBy('type')->asArray()->all(), 'id', 'type');
         if ($model->load(Yii::$app->request->post())) {
@@ -258,9 +261,7 @@ class ProductController extends Controller
 
     public function actionDelete($id)
     {
-        $p = $this->findModel($id);
-        $p->isDeleted = 1 - $p->isDeleted;
-        $p->save(false);
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }

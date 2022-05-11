@@ -113,6 +113,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                         ],
                     ]) ?>
                 </div>
+
                 <div class="col-4">
                     <?= $form->field($model, 'is_vat', [
                         'options' => ['class' => 'form-group'],

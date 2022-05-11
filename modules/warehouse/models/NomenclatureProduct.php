@@ -80,7 +80,6 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             'other' => Yii::t('app', 'Other'),
             'individual' => Yii::t('app', 'Individual'),
             'group_id' => Yii::t('app', 'Group'),
-            'isDeleted' => 'isDeleted'
         ];
     }
     public function getProducts()
@@ -117,7 +116,14 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             return 0;
         }
     }
-
+      public function findCountByNom($id)
+    {
+        if(intval($id)) {
+            return Yii::$app->db->createCommand("SELECT SUM(count) as count_ FROM s_product WHERE nomenclature_product_id = $id")->queryOne()['count_'];
+        } else {
+            return 0;
+        }
+    }
     public function getManufacturerName() {
         return $this->hasOne(Manufacturer::class, ['id' => 'manufacturer']);
     }
@@ -148,5 +154,4 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
     public function getExpArticle() {
         return $this->hasOne(ExpenditureArticle::class, ['id' => 'expenditure_article']);
     }
-
 }

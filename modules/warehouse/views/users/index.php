@@ -25,20 +25,6 @@ $table_all_columns = [
     'name' => 'name',
     'last_name' => 'last name',
     'email' => 'email',
-    /*'isDeleted' => [
-        'label' =>  Yii::t('app', 'Status'),
-        'format' => 'html',
-        'value' => function ($model) {
-            $isDeleted = $model->isDeleted;
-            if ($isDeleted == 1){
-                return "<p class='text-center p-2 bg-danger w-50 text-white m-auto'>Deleted</p>";
-
-            }else {
-                return  "<p class='text-center p-2 bg-primary w-50 text-white m-auto'>Saved</p>";
-            }
-        }
-    ],*/
-
 ];
 
 $actions = [

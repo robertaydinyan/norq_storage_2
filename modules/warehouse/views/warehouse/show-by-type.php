@@ -16,7 +16,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
 $this->params['breadcrumbs'][] = $this->title[0];
 
 $table_all_columns = [
-    'id' => [
+     'id' => [
         'label' =>  Yii::t('app', 'ID'),
         'format' => 'html',
         'value' => function ($model) {
@@ -29,7 +29,6 @@ $table_all_columns = [
             }
         }
     ],
-
     'type' => [
         'label' => Yii::t('app', 'Warehouse type'),
         'format'=>'html',
@@ -62,8 +61,6 @@ $table_all_columns = [
             return $user->name.' '.$user->last_name;
         }
     ],
-
-
     'products' => [
         'label' => Yii::t('app', 'goods'),
         'value' => function ($model) {

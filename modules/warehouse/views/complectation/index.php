@@ -25,7 +25,8 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             ]) : '';
             },
         'delete' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('complectation', 'delete') ? Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primary') . '"></i>', $url, [            'title' => Yii::t('app', 'Delete'),
+            return \app\rbac\WarehouseRule::can('complectation', 'delete') ? Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primary') . '"></i>', $url, [
+                'title' => Yii::t('app', 'Delete'),
                 'class' => 'btn text-danger btn-sm',
                 'data' => [
                 'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
@@ -55,21 +56,6 @@ $table_all_columns = [
     'name' => 'name',
     'other_cost' => 'other_cost',
     'created_at' => 'created_at',
-
-    /*'isDeleted' => [
-        'label' =>  Yii::t('app', 'Status'),
-        'format' => 'html',
-        'value' => function ($model) {
-            $isDeleted = $model->isDeleted;
-            if ($isDeleted == 1){
-                return "<p class='text-center p-2 bg-danger w-50 text-white m-auto'>Deleted</p>";
-
-            }else {
-                return  "<p class='text-center p-2 bg-primary w-50 text-white m-auto'>Saved</p>";
-            }
-        }
-    ],*/
-
 //    'barcodes' => [
 //        'label' => Yii::t('app', 'Barcodes'),
 //        'format'=>'html',
@@ -77,7 +63,6 @@ $table_all_columns = [
 //            return $this-barcodes;
 //        }
 //    ],
-
 ];
 
 $table_columns = [];
@@ -137,4 +122,3 @@ array_push($table_columns, $actions);
 </div>
 
 </div>
-

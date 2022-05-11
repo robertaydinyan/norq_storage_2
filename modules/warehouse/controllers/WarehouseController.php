@@ -84,18 +84,21 @@ class WarehouseController extends Controller {
         $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id])->one();
         $searchModel = new WarehouseSearch();
-        $article = Yii::$app->request->get('article');
-        $dataProvider = $searchModel->search($article, $rows_count);
+        $dataProvider = $searchModel->search(Yii::$app
+            ->request
+            ->queryParams);
         $dataProvider->pagination->pageSize = $rows_count['count'];
         $warehouse_types = WarehouseTypes::find()->all();
-
+        if ($rows_count && $rows_count->column_name) {
+            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
+        }
+        
         return $this->render('show-by-type', [
             'searchModel' => $searchModel,
             'isFavorite' => $isFavorite,
             'dataProvider' => $dataProvider,
             'warehouse_types' => $warehouse_types,
-            'columns' => $columns,
-            'article' => $article
+            'columns' => $columns
         ]);
     }
 
@@ -244,7 +247,7 @@ class WarehouseController extends Controller {
             $dataUsers[$key] = $value[array_key_first($value) ] . ' ' . array_key_first($value);
         }
         $users = User::find()->select(['name', 'last_name'])
-            ->where(['status' => User::STATUS_ACTIVE])
+            ->where(['status' => User::STATUS_ACTIVE, 'isDeleted' => 0])
             ->asArray()
             ->all();
         $responsiblePersons = [];
@@ -287,7 +290,7 @@ class WarehouseController extends Controller {
     public function actionDeal() {
         $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()
             ->all() , 'id', 'name');
-        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE, 'isDeleted' => 0])
+        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
             ->asArray()
             ->all() , 'name', 'last_name', 'id');
 

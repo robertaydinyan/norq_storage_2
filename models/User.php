@@ -80,7 +80,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['updated_at', 'created_at', 'role', 'ref_password'], 'safe'],
             [['auth_key', 'access_token'], 'string', 'max' => 255],
             ['password_hash', 'string', 'min' => 6],
-            ['blocked', 'isDeleted', 'integer'],
+            ['blocked', 'integer'],
             [['password_hash', 'password_confirmation'], 'required', 'on' => 'create'],
             ['password_confirmation', 'compare', 'compareAttribute' => 'password_hash', 'skipOnEmpty' => true]
         ];
@@ -124,8 +124,6 @@ class User extends ActiveRecord implements IdentityInterface
             'password_confirmation' => Yii::t('app', 'Գաղտնաբառի հաստատում'),
             'created_at' => Yii::t('app', 'Գրանցվել է'),
             'updated_at' => Yii::t('app', 'Թարմացվել է'),
-            'isDeleted' => 'isDeleted',
-
         ];
     }
 
@@ -136,7 +134,6 @@ class User extends ActiveRecord implements IdentityInterface
             'name' => 'Name',
             'last_name' => 'Last name',
             'email' => 'email',
-            'isDeleted' => 'isDeleted',
         ];
     }
 
