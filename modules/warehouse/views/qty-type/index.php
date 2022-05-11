@@ -37,11 +37,37 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
             'class' => 'table table-hover'
         ],
         'columns' => [
-            'id',
+            'id' => [
+                'label' =>  Yii::t('app', 'ID'),
+                'format' => 'html',
+                'value' => function ($model) {
+                    $isDeleted = $model->isDeleted;
+                    if ($isDeleted == 1){
+                        return $model->id . "<i class=\"fa fa-remove pl-3 text-danger\"></i>";
+
+                    }else {
+                        return  $model->id ;
+                    }
+                }
+            ],
             [
                 'header' => Yii::t('app', 'Unit of measurement'),
                 'attribute' => 'type'
             ],
+            /*'isDeleted' => [
+                'label' =>  Yii::t('app', 'Status'),
+                'format' => 'html',
+                'value' => function ($model) {
+                    $isDeleted = $model->isDeleted;
+                    if ($isDeleted == 1){
+                        return "<p class='text-center p-2 bg-danger w-50 text-white m-auto'>Deleted</p>";
+
+                    }else {
+                        return  "<p class='text-center p-2 bg-primary w-50 text-white m-auto'>Saved</p>";
+                    }
+                }
+            ],*/
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => Yii::t('app', 'Reference'),
@@ -56,7 +82,7 @@ $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depe
                     },
                     'delete' => function ($url, $model) {
                         return \app\rbac\WarehouseRule::can('qty-type', 'delete') ?
-                        Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . '"></i>', $url, [
+                        Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primary') . '"></i>', $url, [
                             'title' => Yii::t('app', 'Delete'),
                             'class' => 'btn text-danger btn-sm',
                             'data' => [

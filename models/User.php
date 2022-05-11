@@ -124,6 +124,7 @@ class User extends ActiveRecord implements IdentityInterface
             'password_confirmation' => Yii::t('app', 'Գաղտնաբառի հաստատում'),
             'created_at' => Yii::t('app', 'Գրանցվել է'),
             'updated_at' => Yii::t('app', 'Թարմացվել է'),
+            'isDeleted' => 'isDeleted',
 
         ];
     }
@@ -135,6 +136,7 @@ class User extends ActiveRecord implements IdentityInterface
             'name' => 'Name',
             'last_name' => 'Last name',
             'email' => 'email',
+            'isDeleted' => 'isDeleted',
         ];
     }
 

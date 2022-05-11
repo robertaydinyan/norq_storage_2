@@ -9,10 +9,36 @@ $this->params['breadcrumbs'][] = $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 
 $table_all_columns = [
-    'id' => 'id',
+    'id' => [
+        'label' =>  Yii::t('app', 'ID'),
+        'format' => 'html',
+        'value' => function ($model) {
+            $isDeleted = $model->isDeleted;
+            if ($isDeleted == 1){
+                return $model->id . "<i class=\"fa fa-remove pl-3 text-danger\"></i>";
+
+            }else {
+                return  $model->id ;
+            }
+        }
+    ],
     'name' => 'name',
     'last_name' => 'last name',
     'email' => 'email',
+    /*'isDeleted' => [
+        'label' =>  Yii::t('app', 'Status'),
+        'format' => 'html',
+        'value' => function ($model) {
+            $isDeleted = $model->isDeleted;
+            if ($isDeleted == 1){
+                return "<p class='text-center p-2 bg-danger w-50 text-white m-auto'>Deleted</p>";
+
+            }else {
+                return  "<p class='text-center p-2 bg-primary w-50 text-white m-auto'>Saved</p>";
+            }
+        }
+    ],*/
+
 ];
 
 $actions = [
@@ -26,7 +52,7 @@ $actions = [
             },
             'delete' => function($url, $model) {
                 return ((\app\rbac\WarehouseRule::can('users', 'delete')) ?
-                    ("<a onclick='return AreYouSure();' href='" . URL::to($url) . "'><i class=\"mr-3 fas " . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . "\"></i></a>") : '');
+                    ("<a onclick='return AreYouSure();' href='" . URL::to($url) . "'><i class=\"mr-3 fas " . (!$model->isDeleted ? 'fa-trash-alt text-danger' : ' fa-sync text-primary') . "\"></i></a>") : '');
 
             },
             'block' => function($url, $model) {

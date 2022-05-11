@@ -33,8 +33,34 @@ $this->params['breadcrumbs'][] = $this->title[0];
             ],
             'filterModel' => $searchModel,
             'columns' => [
-                'id',
+                'id' => [
+                    'label' =>  Yii::t('app', 'ID'),
+                    'format' => 'html',
+                    'value' => function ($model) {
+                        $isDeleted = $model->isDeleted;
+                        if ($isDeleted == 1){
+                            return $model->id . "<i class=\"fa fa-remove pl-3 text-danger\"></i>";
+
+                        }else {
+                            return  $model->id ;
+                        }
+                    }
+                ],
                 'name',
+                /*'isDeleted' => [
+                    'label' =>  Yii::t('app', 'Status'),
+                    'format' => 'html',
+                    'value' => function ($model) {
+                        $isDeleted = $model->isDeleted;
+                        if ($isDeleted == 1){
+                            return "<p class='text-center p-2 bg-danger w-50 text-white m-auto'>Deleted</p>";
+
+                        }else {
+                            return  "<p class='text-center p-2 bg-primary w-50 text-white m-auto'>Saved</p>";
+                        }
+                    }
+                ],*/
+
                 ['class' => 'yii\grid\ActionColumn',
                     'template' => '{update}{delete}',
                     'buttons' => [
@@ -46,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
                                 ]) : '';
                         },
                         'delete' => function ($url, $model) {
-                            return \app\rbac\WarehouseRule::can('warehouse-groups', 'delete') ? Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . '"></i>', $url, [
+                            return \app\rbac\WarehouseRule::can('warehouse-groups', 'delete') ? Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primary') . '"></i>', $url, [
                                 'title' => Yii::t('app', 'Delete'),
                                 'class' => 'btn text-danger btn-sm',
                                 'data' => [
