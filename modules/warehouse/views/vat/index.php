@@ -22,9 +22,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
         </div>
     </div>
 
-<!--    <p>-->
-<!--        --><?//= Html::a('Ստեղծել ԱԱՀ', ['create'], ['class' => 'btn btn-success']) ?>
-<!--    </p>-->
+
 
 
     <?= GridView::widget([
@@ -33,7 +31,19 @@ $this->params['breadcrumbs'][] = $this->title[0];
             'class' => 'table table-hover'
         ],
         'columns' => [
-            'id',
+            'id' => [
+                'label' =>  Yii::t('app', 'ID'),
+                'format' => 'html',
+                'value' => function ($model) {
+                    $isDeleted = $model->isDeleted;
+                    if ($isDeleted == 1){
+                        return $model->id . "<i class=\"fa fa-remove pl-3 text-danger\"></i>";
+
+                    }else {
+                        return  $model->id ;
+                    }
+                }
+            ],
             'name',
             'formula',
 
@@ -52,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title[0];
                     },
                     'delete' => function ($url, $model) {
                         return \app\rbac\WarehouseRule::can('qty-type', 'delete') ?
-                            Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-undo') . '"></i>', $url, [
+                            Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primary') . '"></i>', $url, [
                                 'title' => Yii::t('app', 'Delete'),
                                 'class' => 'btn text-danger btn-sm',
                                 'data' => [
