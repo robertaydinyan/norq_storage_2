@@ -68,7 +68,7 @@ class AnalogsController extends Controller
     {
 
         $model = new Analogs();
-        $nomiclatures = ArrayHelper::map(NomenclatureProduct::find()->asArray()->all(),'id','name');
+        $nomiclatures = ArrayHelper::map(NomenclatureProduct::find()->where(['isDeleted' => 0])->asArray()->all(),'id','name');
         if ($post = Yii::$app->request->post()) {
              
             if(!empty($post['Analogs']['analog_id'])){
@@ -104,7 +104,7 @@ class AnalogsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-        $nomiclatures = ArrayHelper::map(NomenclatureProduct::find()->asArray()->all(),'id','name');
+        $nomiclatures = ArrayHelper::map(NomenclatureProduct::find()->where(['isDeleted' => 0])->asArray()->all(),'id','name');
         return $this->render('update', [
             'model' => $model,
             'nomiclatures'=>$nomiclatures

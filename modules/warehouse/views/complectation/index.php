@@ -55,6 +55,7 @@ $table_all_columns = [
     'name' => 'name',
     'other_cost' => 'other_cost',
     'created_at' => 'created_at',
+
     /*'isDeleted' => [
         'label' =>  Yii::t('app', 'Status'),
         'format' => 'html',
@@ -68,6 +69,14 @@ $table_all_columns = [
             }
         }
     ],*/
+
+//    'barcodes' => [
+//        'label' => Yii::t('app', 'Barcodes'),
+//        'format'=>'html',
+//        'value' => function ($model) {
+//            return $this-barcodes;
+//        }
+//    ],
 
 ];
 

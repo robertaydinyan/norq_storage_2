@@ -213,6 +213,7 @@ if (isset($repCon) && $repCon != ''): ?>
         $('.show-ware').hide();
         $('.show-series').hide();
         $('.saveReport').parent().hide();
+        $('.ware_select').hide();
     }
 
     function reportStatusChanged(val) {

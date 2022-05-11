@@ -99,7 +99,7 @@ class ComplectationController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new Complectation();
         $model_products = new ComplectationProducts();
-        $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()->all(), 'id', 'name');
+        $dataWarehouses = ArrayHelper::map(Warehouse::find()->where(['isDeleted' => 0])->asArray()->all(), 'id', 'name');
         $post = Yii::$app->request->post();
 
         if ($model->load($post)) {

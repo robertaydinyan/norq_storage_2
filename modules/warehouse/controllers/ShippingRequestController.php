@@ -282,13 +282,13 @@ class ShippingRequestController extends Controller {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new Product();
 
-        $currencies = Currency::find()->all();
+        $currencies = Currency::find()->where(['isDeleted' => 0])->all();
 
         $model->created_at = Carbon::now()
             ->toDateTimeString();
-        $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()
+        $nProducts = ArrayHelper::map(NomenclatureProduct::find()->where(['isDeleted' => 0])->asArray()
             ->all() , 'id', 'name');
-        $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['type' => 1])
+        $physicalWarehouse = ArrayHelper::map(Warehouse::find()->where(['isDeleted' => 0])->where(['type' => 1])
             ->asArray()
             ->all() , 'id', 'name');
 
@@ -303,9 +303,9 @@ class ShippingRequestController extends Controller {
     public function actionCreate() {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = new ShippingRequest();
-        $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()
+        $dataWarehouses = ArrayHelper::map(Warehouse::find()->where(['isDeleted' => 0])->asArray()
             ->all() , 'id', 'name');
-        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])
+        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE, 'isDeleted' => 0])
             ->asArray()
             ->all() , 'name', 'last_name', 'id');
         $types = ArrayHelper::map(ShippingType::find()->asArray()
@@ -329,7 +329,7 @@ class ShippingRequestController extends Controller {
             ->orderBy(['id' => SORT_DESC])
             ->asArray()
             ->all() , 'id', 'id');
-        $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()
+        $nProducts = ArrayHelper::map(NomenclatureProduct::find()->where(['isDeleted' => 0])->asArray()
             ->all() , 'id', 'id');
 
         if ($model->load(Yii::$app
@@ -430,8 +430,8 @@ class ShippingRequestController extends Controller {
     public function actionUpdate($id) {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $model = $this->findModel($id);
-        $dataWarehouses = ArrayHelper::map(Warehouse::find()->asArray()->all() , 'id', 'name');
-        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE])->asArray()->all() , 'name', 'last_name', 'id');
+        $dataWarehouses = ArrayHelper::map(Warehouse::find()->where(['isDeleted' => 0])->asArray()->all() , 'id', 'name');
+        $uersData = ArrayHelper::map(User::find()->where(['status' => User::STATUS_ACTIVE, 'isDeleted' => 0])->asArray()->all() , 'name', 'last_name', 'id');
         $types = ArrayHelper::map(ShippingType::find()->asArray()->all() , 'id', 'name');
         $suppliers = $this->buildTree(SuppliersList::find()->where(['!=', 'id', 6])->asArray()->all());
         $partners = $this->buildTree(SuppliersList::find()->where(['!=', 'id', 7])->asArray()->all());
@@ -479,7 +479,7 @@ class ShippingRequestController extends Controller {
 
             return $this->redirect(['/warehouse/shipping-request/accept?id=' . $model->id]);
         }
-        $nProducts = ArrayHelper::map(NomenclatureProduct::find()->asArray()
+        $nProducts = ArrayHelper::map(NomenclatureProduct::find()->where(['isDeleted' => 0])->asArray()
             ->all() , 'id', 'id');
         return $this->render('update', ['model' => $model,'isFavorite' => $isFavorite,
             'dataWarehouses' => $dataWarehouses, 'dataUsers' => $dataUsers, 'suppliers' => $suppliers, 'requests' => $requests, 'nProducts' => $nProducts, 'partners' => $partners, 'types' => $types]);
