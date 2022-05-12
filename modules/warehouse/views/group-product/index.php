@@ -31,11 +31,14 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
     }
 
 </style>
+<?php if(\app\rbac\WarehouseRule::can('group-product', 'index')): ?>
 <div class="group-product-index" >
     <?php echo $this->render('/menu_dirs', array(), true)?>
     <div class="d-flex flex-wrap justify-content-between align-items-center">
     <h1 style="padding: 20px;" data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></h1>
+        <?php if(\app\rbac\WarehouseRule::can('group-product', 'create')): ?>
         <p><button class="btn  btn-primary"  onclick="addPopup(0)"><?php echo Yii::t('app', 'Create a Product Group'); ?></button></p>
+        <?php endif; ?>
     </div>
     <div style="display: flex">
         <div class="col-lg-12">
@@ -95,7 +98,7 @@ $this->registerJsFile('@web/js/modules/warehouse/product.js', ['depends'=>'yii\w
     </div>
     <br>
 </div>
-
+<?php endif; ?>
 <!---->
 <!--<script>-->
 <!--    window.addEventListener('load', function () {-->

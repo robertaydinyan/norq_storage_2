@@ -163,7 +163,7 @@ array_push($table_columns, $actions);
         width: 95%;
     }
 </style>
-
+<?php if(\app\rbac\WarehouseRule::can('product', 'index')): ?>
 <div class="group-product-index">
     <div class="d-flex flex-wrap justify-content-between ">
         <h1 data-title=" <?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star"><i
@@ -235,7 +235,7 @@ array_push($table_columns, $actions);
 
     </div>
 </div>
-
+<?php endif; ?>
 
 <script>
     function showInfo(id, wid) {

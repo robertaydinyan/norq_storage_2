@@ -2,6 +2,8 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\modules\warehouse\models\TableRowsCount;
+use app\modules\warehouse\models\TableRowsStatus;
 use Yii;
 use app\modules\warehouse\models\Analogs;
 use app\modules\warehouse\models\AnalogsSearch;
@@ -38,11 +40,20 @@ class AnalogsController extends Controller
     public function actionIndex()
     {
         $searchModel = new AnalogsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        TableRowsStatus::checkRows('Analogs');
+        $columns = TableRowsStatus::find()->where(['page_name' => 'Analogs', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'Analogs', 'userID' => Yii::$app->user->id])->one();
+        $article = Yii::$app->request->get('article');
+        $dataProvider = $searchModel->search($article, $rows_count);
+        $dataProvider->pagination->pageSize = $rows_count['count'];
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'columns' => $columns,
+            'article' => $article
         ]);
     }
 

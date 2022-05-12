@@ -4,6 +4,8 @@ namespace app\modules\warehouse\controllers;
 
 use app\components\Url;
 use app\modules\warehouse\models\Favorite;
+use app\modules\warehouse\models\TableRowsCount;
+use app\modules\warehouse\models\TableRowsStatus;
 use app\rbac\WarehouseRule;
 use Yii;
 use app\modules\warehouse\models\QtyType;
@@ -41,11 +43,19 @@ class QtyTypeController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $searchModel = new QtyTypeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        TableRowsStatus::checkRows('QtyType');
+        $columns = TableRowsStatus::find()->where(['page_name' => 'QtyType', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'QtyType', 'userID' => Yii::$app->user->id])->one();
+        $dataProvider->pagination->pageSize = $rows_count['count'];
+        if ($rows_count && $rows_count->column_name) {
+            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'isFavorite' => $isFavorite,
+            'columns' => $columns,
 
         ]);
     }

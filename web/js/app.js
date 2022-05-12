@@ -208,14 +208,12 @@ $('.filter').on('click', function() {
 });
 
 function startTime() {
-    const today = new Date();
-    let Y = today.getFullYear();
-    let mh = checkTime(today.getMonth());
-    let d = checkTime(today.getDay());
-    let h = today.getHours();
-    let m = checkTime(today.getMinutes());
+
+    var today = new Date();
+    var date = checkTime(today.getDate())+'.'+(checkTime(today.getMonth()+1))+'.' +checkTime(today.getFullYear());
+    var time = checkTime(today.getHours()) + ":" + checkTime(today.getMinutes());
     if (document.getElementById('txt')) {
-        document.getElementById('txt').innerHTML = d + "." + mh + "." + Y + " " + h + ":" + m ;
+        document.getElementById('txt').innerHTML = date + "  "  + time;
         setTimeout(startTime, 1000);
     }
 }

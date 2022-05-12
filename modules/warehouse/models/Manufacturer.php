@@ -41,4 +41,11 @@ class Manufacturer extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
         ];
     }
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' => 'ID',
+            'name' => Yii::t('app', 'Name'),
+        ];
+    }
 }

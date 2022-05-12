@@ -79,7 +79,7 @@ if (count($table_columns) == 0){
 
 array_push($table_columns, $actions);
 ?>
-
+<?php if(\app\rbac\WarehouseRule::can('complectation', 'index')): ?>
 <div class="group-product-index">
     <div class="d-flex flex-wrap justify-content-between ">
     <h1  data-title="<?php echo $this->title[1]; ?>"><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span></span></h1>
@@ -104,7 +104,7 @@ array_push($table_columns, $actions);
         </div>
 </div>
 
-
+    <?php endif; ?>
     <?php Pjax::begin(); ?>
     <div style="padding:20px;" class="table-scroll">
 
