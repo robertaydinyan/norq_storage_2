@@ -28,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title[0];
         'manufacturers' => $manufacturers,
         'barcodes' => null,
         'vats' => $vats,
-        'expArticles' => $expArticles
+        'expArticles' => $expArticles,
+        'nomType' => $nomType
     ]) ?>
     </div>
 </div>

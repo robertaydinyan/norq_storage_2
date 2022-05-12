@@ -44,6 +44,7 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             [['production_date', 'expiration_date'], 'safe'],
             [['group_id', 'qty_type_id', 'is_vat', 'manufacturer', 'isDeleted'], 'integer'],
             [[
+                'nomenclature_type',
                 'vendor_code',
                 'name',
                 'series',
@@ -74,11 +75,14 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             'technical_description' => Yii::t('app', 'Technical Description'),
             'expenditure_article' => Yii::t('app', 'Expenditure Article'),
             'vat' => Yii::t('app', 'Vat'),
+            'is_vat' => Yii::t('app', 'Vat'),
             'comment' => Yii::t('app', 'Comment'),
             'manufacturer_name' => Yii::t('app', 'Manufacturer'),
+            'manufacturer' => Yii::t('app', 'Manufacturer'),
             'other' => Yii::t('app', 'Other'),
             'individual' => Yii::t('app', 'Individual'),
             'group_id' => Yii::t('app', 'Group'),
+            'nomenclature_type' => Yii::t('app', 'Nomenclature Type'),
         ];
     }
     /**
@@ -105,7 +109,8 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             'individual' => 'Individual',
             'group' => 'Group',
             'count' => 'Count',
-            'barcode' => 'Barcode',
+            'barcode' => 'Barcodes',
+            'nomenclature_type' => 'Nomenclature Type'
         ];
     }
     public function getProducts()
@@ -189,5 +194,10 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
         }
 
         return $res;
+    }
+
+    public function getNomenclatureTypeName() {
+        return $this->hasOne(NomenclatureType::class, ['id' => 'nomenclature_type']);
+
     }
 }

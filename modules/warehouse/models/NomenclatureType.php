@@ -44,4 +44,5 @@ class NomenclatureType extends \yii\db\ActiveRecord
             'isDeleted' => 'Is Deleted',
         ];
     }
+
 }

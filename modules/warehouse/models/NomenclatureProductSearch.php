@@ -85,6 +85,9 @@ class NomenclatureProductSearch extends NomenclatureProduct
                 } else if ($rows->column_name == "qty_type") {
                     $query->leftJoin('s_qty_type', '`s_qty_type`.`id`= `s_nomenclature_product`.`qty_type_id`');
                     $sort = 's_qty_type.type';
+                } else if ($rows->column_name == "nomenclature_type") {
+                    $query->leftJoin('s_nomenclature_type', '`s_nomenclature_type`.`id`= `s_nomenclature_product`.`nomenclature_type`');
+                    $sort = 's_nomenclature_type.name';
                 }
             } else {
                 $sort = $rows->column_name;

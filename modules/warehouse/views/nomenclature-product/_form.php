@@ -31,7 +31,24 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 <div class="col-4">
                     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col-4"></div>
+
+                <div class="col-4">
+                    <?= $form->field($model, 'nomenclature_type', [
+                        'options' => ['class' => 'form-group'],
+                    ])->widget(Select2::className(), [
+                        'theme' => Select2::THEME_KRAJEE,
+                        'data' => $nomType,
+                        'maintainOrder' => true,
+                        'options' => [
+                            'placeholder' => Yii::t('app', 'Select'),
+                        ],
+                        'pluginOptions' => [
+                            'tags' => true,
+                            'allowClear' => true
+                        ],
+                    ]) ?>
+                </div>
+
                 <div class="col-4">
                     <?php $model->production_date = $model->production_date ? date('d-m-Y', strtotime($model->production_date)) : null; ?>
                     <?= $form->field($model, 'production_date', [

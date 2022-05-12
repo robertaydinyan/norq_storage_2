@@ -153,6 +153,13 @@ $table_all_columns = [
             return $model->barcodes;
         }
 
+    ],
+    'nomenclature_type' => [
+        'attribute' => 'nomenclature_type',
+        'label' => Yii::t('app', 'Nomenclature Type'),
+        'value' => function ($model) {
+            return $model->nomenclatureTypeName->name;
+        }
     ]
 ];
 

@@ -8,6 +8,7 @@ use app\modules\warehouse\models\ExpenditureArticle;
 use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\Manufacturer;
+use app\modules\warehouse\models\NomenclatureType;
 use app\modules\warehouse\models\QtyType;
 use app\modules\warehouse\models\TableRowsCount;
 use app\modules\warehouse\models\TableRowsStatus;
@@ -118,6 +119,7 @@ class NomenclatureProductController extends Controller
         $qtyTypes = ArrayHelper::map(QtyType::find()->where(['isDeleted' => 0])->orderBy('type')->asArray()->all(), 'id', 'type');
         $vats = ArrayHelper::map(Vat::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
         $expArticles = ArrayHelper::map(ExpenditureArticle::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
+        $nomType = ArrayHelper::map(NomenclatureType::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
 
         $post = Yii::$app->request->post();
 
@@ -167,7 +169,8 @@ class NomenclatureProductController extends Controller
             'manufacturers' => $manufacturers,
             'qtyTypes' => $qtyTypes,
             'vats' => $vats,
-            'expArticles' => $expArticles
+            'expArticles' => $expArticles,
+            'nomType' => $nomType
         ]);
     }
 
@@ -188,6 +191,7 @@ class NomenclatureProductController extends Controller
         $post = Yii::$app->request->post();
         $vats = ArrayHelper::map(Vat::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
         $expArticles = ArrayHelper::map(ExpenditureArticle::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
+        $nomType = ArrayHelper::map(NomenclatureType::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
         $barcodes = Barcode::find()->where(['product_id' => $id])->all();
         if ((int)$post['NomenclatureProduct']['qty_type_id'] === 0 && $model->load(Yii::$app->request->post())) {
             $qtyModel = new QtyType();
@@ -214,7 +218,6 @@ class NomenclatureProductController extends Controller
             } 
             $model->production_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));
             $model->expiration_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['expiration_date']));
-
             if ($model->save(false)) {
                 NomenclatureProduct::saveBarcodes($post['Barcodes'], $post['BarcodesNew'], $model->id);
                 return $this->redirect(['index']);
@@ -224,7 +227,6 @@ class NomenclatureProductController extends Controller
 
         $groups = GroupProduct::find()->where(['isDeleted' => 0])->asArray()->all();
         $tableTreeGroups = $this->buildTree($groups);
-
         return $this->render('update', [
             'tableTreeGroups'=> $tableTreeGroups,
             'model' => $model,
@@ -234,7 +236,8 @@ class NomenclatureProductController extends Controller
             'manufacturers' => $manufacturers,
             'vats' => $vats,
             'expArticles' => $expArticles,
-            'barcodes' => $barcodes
+            'barcodes' => $barcodes,
+            'nomType' => $nomType
         ]);
     }
 

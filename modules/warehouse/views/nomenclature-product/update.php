@@ -31,7 +31,8 @@ $this->params['breadcrumbs'][] = $this->title[0];
         'type' => 'update',
         'barcodes' => $barcodes,
         'vats' => $vats,
-        'expArticles' => $expArticles
+        'expArticles' => $expArticles,
+        'nomType' => $nomType
     ]) ?>
     </div>
 </div>
