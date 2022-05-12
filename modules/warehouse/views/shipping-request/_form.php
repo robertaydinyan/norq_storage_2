@@ -27,8 +27,38 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'novalidate' => 'novalidate']]); ?>
 <div class="row">
-    <div class="shipping-request-form col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
 
+    <div class="shipping-request-form col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+        <div class="form-group field-product-supplier_id hide for_bay">
+            <label class="control-label"
+                   for="product-supplier_id"><?php echo Yii::t('app', 'Supplier'); ?><?php if (!$model->isNewRecord) {
+                    echo '`' . $model->supplierp['name'];
+                } ?></label>
+
+            <div>
+                <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
+                    <?php foreach ($suppliers as $tableTreePartner) : ?>
+                        <li class="file-tree-folder">
+                         <span data-name="<?= $tableTreePartner['name'] ?>"
+                               class="parent-block"><?= $tableTreePartner['name'] ?>
+                        </span>
+                            <ul style="display: block;">
+                                <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/suppliers-list/tree_form_sup_table.php', [
+                                    'tableTreePartner' => $tableTreePartner,
+                                    'checked' => $model->supplier_id,
+                                ]); ?>
+                            </ul>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+
+        </div>
+        <div class="form-group field-product-invoice hide for_bay">
+            <label class="control-label" for="product-invoice">Invoice</label>
+            <input type="text" id="product-invoice" value="<?php echo $model->invoice; ?>" class="form-control"
+                   name="ShippingRequest[invoice]" maxlength="255">
+        </div>
         <?= $form->field($model, 'shipping_type', [
             'options' => ['class' => 'form-group'],
         ])->widget(Select2::className(), [
@@ -156,37 +186,9 @@ $this->registerCssFile('@web/hr_assets/css/ui-kit.css', ['depends' => [\yii\boot
             </div>
 
         </div>
-        <div class="form-group field-product-supplier_id hide for_bay">
-            <label class="control-label"
-                   for="product-supplier_id"><?php echo Yii::t('app', 'Supplier'); ?><?php if (!$model->isNewRecord) {
-                    echo '`' . $model->supplierp['name'];
-                } ?></label>
 
-            <div>
-                <ul class="file-tree" style="border:1px solid #dee2e6;padding: 30px;padding-top: 10px;margin-top:20px;">
-                    <?php foreach ($suppliers as $tableTreePartner) : ?>
-                        <li class="file-tree-folder">
-                         <span data-name="<?= $tableTreePartner['name'] ?>"
-                               class="parent-block"><?= $tableTreePartner['name'] ?>
-                        </span>
-                            <ul style="display: block;">
-                                <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/suppliers-list/tree_form_sup_table.php', [
-                                    'tableTreePartner' => $tableTreePartner,
-                                    'checked' => $model->supplier_id,
-                                ]); ?>
-                            </ul>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-
-        </div>
         <?= $form->field($model, 'comment')->textarea(['rows' => '6']) ?>
-        <div class="form-group field-product-invoice hide for_bay">
-            <label class="control-label" for="product-invoice">Invoice</label>
-            <input type="text" id="product-invoice" value="<?php echo $model->invoice; ?>" class="form-control"
-                   name="ShippingRequest[invoice]" maxlength="255">
-        </div>
+
     </div>
     <div class="shipping-request-form col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 mb-2">
         <?php if ($model->isNewRecord) { ?>
