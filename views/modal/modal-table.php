@@ -25,7 +25,8 @@
                     <div style="display: flex;">
                         <select name="sort-column" id="" class="form-control" name="sort-column">
                             <?php if(isset($columnsActive) || isset($columnsPassive)):
-                                foreach (array_merge($columnsActive, $columnsPassive) as $c): ?>
+                                foreach (array_merge($columnsActive, $columnsPassive) as $c):
+                                    if ($c->row_name == "barcode") continue; ?>
                                     <option value="<?php echo $c->row_name; ?>"
                                         <?php echo $rows_count->column_name == $c->row_name ? 'selected' : ''; ?>
                                     ><?php echo Yii::t('app', $c->row_name_normal); ?></option>

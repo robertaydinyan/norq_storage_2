@@ -54,11 +54,15 @@ $this->params['breadcrumbs'][] = $this->title[0];
                     <?php if (isset($rcs)) {
                         foreach ($rcs as $rc) {
                             echo sprintf(
-                                '<button type="button" onclick="showPage(\'%s\', \'%s\')" class="favorite col-1" style="margin-left: 12px">%s</button>',
+                                '<button type="button" onclick="showPage(\'%s\', \'%s\')" class="favorite col-1" style="margin-left: 12px">
+                                            %s
+                                            <i class="fa fa-times remove-report" data-report="%s"></i>
+                                        </button>',
 
                                 URL::to(['rs' => $rc->id]),
                                 $rc->report_name,
-                                $rc->report_name
+                                $rc->report_name,
+                                $rc->id
                             );
                         }
                     } ?>

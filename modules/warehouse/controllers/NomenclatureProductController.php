@@ -151,7 +151,7 @@ class NomenclatureProductController extends Controller
                        Notifications::setNotification($value->id,"Ստեղծվել է նոր Նոմենկլատուրա ".$model->name,'/warehouse/nomenclature-product');
                     }
                 }
-//                NomenclatureProduct::saveBarcodes($post['Barcodes'], $post['BarcodesNew'], $model->id);
+                NomenclatureProduct::saveBarcodes($post['Barcodes'], $post['BarcodesNew'], $model->id);
                 return $this->redirect(['index',            'isFavorite' => $isFavorite]);
             }
         }
@@ -188,7 +188,7 @@ class NomenclatureProductController extends Controller
         $post = Yii::$app->request->post();
         $vats = ArrayHelper::map(Vat::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
         $expArticles = ArrayHelper::map(ExpenditureArticle::find()->where(['isDeleted' => 0])->orderBy('name')->asArray()->all(), 'id', 'name');
-//        $barcodes = Barcode::find()->where(['numenclature_id' => $id])->all();
+        $barcodes = Barcode::find()->where(['product_id' => $id])->all();
         if ((int)$post['NomenclatureProduct']['qty_type_id'] === 0 && $model->load(Yii::$app->request->post())) {
             $qtyModel = new QtyType();
 //            $qtyModel->type = $post['NomenclatureProduct']['qty_type_id'];
@@ -214,8 +214,9 @@ class NomenclatureProductController extends Controller
             } 
             $model->production_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['production_date']));
             $model->expiration_date = date('Y-m-d', strtotime($post['NomenclatureProduct']['expiration_date']));
-            if ($model->save()) {
-//                NomenclatureProduct::saveBarcodes($post['Barcodes'], $post['BarcodesNew'], $model->id);
+
+            if ($model->save(false)) {
+                NomenclatureProduct::saveBarcodes($post['Barcodes'], $post['BarcodesNew'], $model->id);
                 return $this->redirect(['index']);
 
             }
@@ -232,7 +233,8 @@ class NomenclatureProductController extends Controller
             'qtyTypes' => $qtyTypes,
             'manufacturers' => $manufacturers,
             'vats' => $vats,
-            'expArticles' => $expArticles
+            'expArticles' => $expArticles,
+            'barcodes' => $barcodes
         ]);
     }
 

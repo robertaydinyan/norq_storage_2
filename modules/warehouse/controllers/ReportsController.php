@@ -133,4 +133,9 @@ class ReportsController extends Controller
       return $this->renderAjax('generate_sellout', ['data' =>$data]);
     }
 
+    public function actionRemoveReport() {
+        $repID = Yii::$app->request->get('reportID');
+        ReportConfigs::deleteAll(['id' => $repID]);
+
+    }
 }
