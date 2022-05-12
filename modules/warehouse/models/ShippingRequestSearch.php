@@ -46,7 +46,7 @@ class ShippingRequestSearch extends ShippingRequest
      * @param STRING $rows
      * @return ActiveDataProvider
      */
-    public function search($article , $rows = false)
+    public function search($article, $rows = false)
     {
        /* $query = $rows->id != null ? ShippingRequest::find()->where(['id' => $rows->id]) : ShippingRequest::find();
 
@@ -79,7 +79,6 @@ class ShippingRequestSearch extends ShippingRequest
                 } elseif ($rows->column_name == "created") {
                     $sort = 's_shipping.created_at';
                 }elseif ($rows->column_name == "status") {
-                    var_dump('a');
                     $query->leftJoin('s_status_list', '`s_status_list`.`id`= `s_shipping`.`status`');
                     $sort = 's_status_list.name';
                 } elseif ($rows->column_name == "document_type") {

@@ -36,10 +36,10 @@ class NomenclatureProductSearch extends NomenclatureProduct
      * Creates data provider instance with search query applied
      *
      * @param array $params
-     *
+     * @param TableRowsCount $rows
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $rows = false)
     {
         $query = NomenclatureProduct::find()
             ->joinWith('groupProduct');
@@ -58,11 +58,42 @@ class NomenclatureProductSearch extends NomenclatureProduct
             // $query->where('0=1');
             return $dataProvider;
         }
+        if (isset($rows) && $rows->column_name) {
+            if (!$this->hasAttribute($rows->column_name)) {
+                if ($rows->column_name == "vat") {
+                    $query->leftJoin('vat', '`vat`.`id`= `s_nomenclature_product`.`is_vat`');
+                    $sort = 'vat.name';
+                } else if ($rows->column_name == "manufacturer_name") {
+                    $query->leftJoin('manufacturer', '`manufacturer`.`id`= `s_nomenclature_product`.`manufacturer`');
+                    $sort = 'manufacturer.name';
+                } else if ($rows->column_name == "manufacturer_name") {
+                    $query->leftJoin('manufacturer', '`manufacturer`.`id`= `s_nomenclature_product`.`manufacturer`');
+                    $sort = 'manufacturer.name';
+                } else if ($rows->column_name == "expenditure_article_name") {
+                    $query->leftJoin('expenditure_article', '`expenditure_article`.`id`= `s_nomenclature_product`.`expenditure_article`');
+                    $sort = 'expenditure_article.name';
+                } else if ($rows->column_name == "expenditure_article_name") {
+                    $query->leftJoin('expenditure_article', '`expenditure_article`.`id`= `s_nomenclature_product`.`expenditure_article`');
+                    $sort = 'expenditure_article.name';
+                } else if ($rows->column_name == "group") {
+                    $sort = 's_group_product.name';
+                } else if ($rows->column_name == "count") {
+                    $query->leftJoin('s_product', 's_product.nomenclature_product_id = `s_nomenclature_product`.`id`');
+                    $query->select(['SUM(count) as count_', '`s_nomenclature_product`.*']);
+                    $query->groupBy('s_nomenclature_product.id');
+                    $sort = 'count_';
+                } else if ($rows->column_name == "qty_type") {
+                    $query->leftJoin('s_qty_type', '`s_qty_type`.`id`= `s_nomenclature_product`.`qty_type_id`');
+                    $sort = 's_qty_type.type';
+                }
+            } else {
+                $sort = $rows->column_name;
+            }
+        }
+        if ($sort) {
+            $query->orderBy([$sort => ($rows->direction == "DESC" ? SORT_DESC : SORT_ASC)]);
+        }
 
-        $dataProvider->sort->attributes['groupName'] = [
-            'asc'  => ['s_group_product.name' => SORT_ASC],
-            'desc' => ['s_group_product.name' => SORT_DESC],
-        ];
         if(isset($_GET['id'])){
             $query->andFilterWhere([
                 's_nomenclature_product.group_id' => intval($_GET['id']),
@@ -80,7 +111,6 @@ class NomenclatureProductSearch extends NomenclatureProduct
             ->andFilterWhere(['like', 's_group_product.name', $this->groupName])
             ->andFilterWhere(['like', 'individual', $this->individual])
             ->andFilterWhere(['like', 'qty_type_id', $this->qty_type_id]);
-
         return $dataProvider;
     }
 }

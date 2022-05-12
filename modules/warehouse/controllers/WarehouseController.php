@@ -8,6 +8,7 @@ use app\modules\billing\models\Regions;
 use app\modules\fastnet\models\Streets;
 use app\modules\rbac\filters\AccessControl;
 use app\modules\warehouse\models\NomenclatureProduct;
+use app\modules\warehouse\models\NomenclatureProductSearch;
 use app\modules\warehouse\models\Product;
 use app\modules\warehouse\models\ProductImagesPath;
 use app\modules\warehouse\models\SearchShippingType;
@@ -80,7 +81,7 @@ class WarehouseController extends Controller {
     }
     public function actionShowByType() {
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
-        TableRowsStatus::checkRows('Warehouse');
+        TableRowsStatus::checkRows('NomenclatureProduct');
         $columns = TableRowsStatus::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
         $rows_count = TableRowsCount::find()->where(['page_name' => 'Warehouse', 'userID' => Yii::$app->user->id])->one();
         $searchModel = new WarehouseSearch();

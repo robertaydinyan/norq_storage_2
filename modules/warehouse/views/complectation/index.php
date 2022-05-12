@@ -12,31 +12,31 @@ $this->title = array(Yii::t('app', 'Services'), 'Services');
 $this->params['breadcrumbs'][] =  $this->title[0];
 $this->registerCssFile('@web/css/modules/warehouse/custom-tree-view.css', ['depends'=>'yii\web\JqueryAsset', 'position' => \yii\web\View::POS_READY]);
 
-    $actions = [
-        'class' => 'yii\grid\ActionColumn',
-        'header' => Yii::t('app', 'Action'),
-        'template' => '{view}{delete}',
-        'buttons' => [
+$actions = [
+    'class' => 'yii\grid\ActionColumn',
+    'header' => Yii::t('app', 'Action'),
+    'template' => '{view}{delete}',
+    'buttons' => [
 
-            'view' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('complectation', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url, [
-            'title' => Yii::t('app', 'View'),
-            'class' => 'btn text-primary btn-sm mr-2'
-            ]) : '';
-            },
-        'delete' => function ($url, $model) {
-            return \app\rbac\WarehouseRule::can('complectation', 'delete') ? Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primary') . '"></i>', $url, [
-                'title' => Yii::t('app', 'Delete'),
-                'class' => 'btn text-danger btn-sm',
-                'data' => [
-                'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
-                'method' => 'post',
-                ],
-            ]) : '';
-        }
+        'view' => function ($url, $model) {
+        return \app\rbac\WarehouseRule::can('complectation', 'view') ? Html::a('<i class="fas fa-eye"></i>', $url, [
+        'title' => Yii::t('app', 'View'),
+        'class' => 'btn text-primary btn-sm mr-2'
+        ]) : '';
+        },
+    'delete' => function ($url, $model) {
+        return \app\rbac\WarehouseRule::can('complectation', 'delete') ? Html::a('<i class="fas ' . (!$model->isDeleted ? 'fa-trash-alt' : 'fa-sync text-primary') . '"></i>', $url, [
+            'title' => Yii::t('app', 'Delete'),
+            'class' => 'btn text-danger btn-sm',
+            'data' => [
+            'confirm' => Yii::t('app', 'Are you absolutely sure ? You will lose all the information about this user with this action.'),
+            'method' => 'post',
+            ],
+        ]) : '';
+    }
 
-        ]
-    ];
+    ]
+];
 
 $table_all_columns = [
     'id' => [

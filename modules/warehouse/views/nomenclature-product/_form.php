@@ -174,7 +174,7 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                         <ul style="display: block;">
                             <?= \Yii::$app->view->renderFile('@app/modules/warehouse/views/nomenclature-product/tree_table.php', [
                                 'tableTreeGroup' => $tableTreeGroup,
-                                'id' => $model->group
+                                'id' => $model->group_id
                                 //'groupProducts' => $groupProducts
                             ]); ?>
                         </ul>
@@ -183,6 +183,13 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
             </ul>
         </div>
 
+            <div>
+                <span><?php echo Yii::t('app', 'Barcodes'); ?></span><br>
+                <div class="d-flex form-group col-12">
+                    <input type="text" class="form-control" name="BarcodesNew[1][]">
+                    <button class="btn btn-primary clone-barcode" type="button" style="margin-left: 20px;"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
     </div>
 </div>
 <br>

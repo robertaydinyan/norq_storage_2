@@ -176,7 +176,7 @@ class Helper
             $warehouse = [
                 ['label' => Yii::t('app', 'Main warehouse'), 'url' => ['/warehouse/warehouse/view?id=20']],
                 ['label' => Yii::t('app', 'Warehouses'), 'url' => ['/warehouse/warehouse']],
-                ['label' => Yii::t('app', 'goods'), 'url' => ['/warehouse/product']],
+                ['label' => Yii::t('app', 'goods'), 'url' => ['/warehouse/nomenclature-product/index']],
                 ['label' => Yii::t('app', 'Documents'), 'url' => ['/warehouse/shipping-request/documents']],
 //                ['label' => Yii::t('app', 'Polls'), 'url' => ['/warehouse/shipping-request']],
                 ['label' => Yii::t('app', 'Directory'), 'url' => ['/warehouse/qty-type']],

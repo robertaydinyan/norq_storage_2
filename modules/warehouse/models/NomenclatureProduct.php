@@ -74,12 +74,38 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             'qty_type_id' => Yii::t('app', 'Quantity type'),
             'technical_description' => Yii::t('app', 'Technical Description'),
             'expenditure_article' => Yii::t('app', 'Expenditure Article'),
-            'is_vat' => Yii::t('app', 'Vat'),
+            'vat' => Yii::t('app', 'Vat'),
             'comment' => Yii::t('app', 'Comment'),
-            'manufacturer' => Yii::t('app', 'Manufacturer'),
+            'manufacturer_name' => Yii::t('app', 'Manufacturer'),
             'other' => Yii::t('app', 'Other'),
             'individual' => Yii::t('app', 'Individual'),
             'group_id' => Yii::t('app', 'Group'),
+        ];
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' => 'ID',
+            'vendor_code' => 'Vendor code',
+            'name' => 'Name',
+            'series' => 'Series',
+            'production_date' => 'Production date',
+            'expiration_date' => 'Expiration date',
+//            'daysCount' => 'Days count',
+            'ref' => 'Ref Code',
+            'qty_type' => 'Quantity type',
+            'technical_description' => 'Technical Description',
+            'expenditure_article_name' => 'Expenditure Article',
+            'is_vat' => 'Vat',
+            'comment' => 'Comment',
+            'manufacturer' => 'Manufacturer',
+            'other' => 'Other',
+            'individual' => 'Individual',
+            'group' => 'Group',
+            'count' => 'Count',
         ];
     }
     public function getProducts()

@@ -9,6 +9,8 @@ use app\modules\warehouse\models\Favorite;
 use app\modules\warehouse\models\GroupProduct;
 use app\modules\warehouse\models\Manufacturer;
 use app\modules\warehouse\models\QtyType;
+use app\modules\warehouse\models\TableRowsCount;
+use app\modules\warehouse\models\TableRowsStatus;
 use app\modules\warehouse\models\Vat;
 use app\rbac\WarehouseRule;
 use Yii;
@@ -51,14 +53,20 @@ class NomenclatureProductController extends Controller
         $isFavorite = Favorite::find()->where(['user_id' => Yii::$app->user->id, 'link_no_lang' => WarehouseRule::removeLangFromLink(URL::current())])->count() == 1;
         $groups = GroupProduct::find()->asArray()->all();
         $tableTreeGroups = $this->buildTree($groups);
+        TableRowsStatus::checkRows('NomenclatureProduct');
+        $columns = TableRowsStatus::find()->where(['page_name' => 'NomenclatureProduct', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'NomenclatureProduct', 'userID' => Yii::$app->user->id])->one();
 
         $searchModel = new NomenclatureProductSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $rows_count);
+        $dataProvider->pagination->pageSize = $rows_count['count'];
+
         return $this->render('index', [
             'tableTreeGroups'=> $tableTreeGroups,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'isFavorite' => $isFavorite,
+            'columns' => $columns
         ]);
     }
 
