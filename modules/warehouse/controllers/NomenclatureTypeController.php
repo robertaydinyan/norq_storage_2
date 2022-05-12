@@ -2,6 +2,8 @@
 
 namespace app\modules\warehouse\controllers;
 
+use app\modules\warehouse\models\TableRowsCount;
+use app\modules\warehouse\models\TableRowsStatus;
 use Yii;
 use app\modules\warehouse\models\NomenclatureType;
 use yii\data\ActiveDataProvider;
@@ -38,9 +40,17 @@ class NomenclatureTypeController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => NomenclatureType::find(),
         ]);
+        TableRowsStatus::checkRows('NomenclatureType');
+        $columns = TableRowsStatus::find()->where(['page_name' => 'NomenclatureType', 'userID' => Yii::$app->user->id, 'status' => 1])->orderBy('order')->all();
+        $rows_count = TableRowsCount::find()->where(['page_name' => 'NomenclatureType', 'userID' => Yii::$app->user->id])->one();
+        $dataProvider->pagination->pageSize = $rows_count['count'];
+        if ($rows_count && $rows_count->column_name) {
+            $dataProvider->sort->defaultOrder = [$rows_count->column_name => ($rows_count->direction == "DESC" ? SORT_DESC : SORT_ASC)];
+        }
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'columns' => $columns,
         ]);
     }
 
@@ -104,7 +114,9 @@ class NomenclatureTypeController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $p = $this->findModel($id);
+        $p->isDeleted = 1 - $p->isDeleted;
+        $p->save(false);
 
         return $this->redirect(['index']);
     }

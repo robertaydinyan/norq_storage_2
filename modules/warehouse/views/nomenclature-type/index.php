@@ -68,25 +68,42 @@ $actions = [
 array_push($table_columns, $actions);
 
 ?>
-<div class="nomenclature-type-index">
+<?php if(\app\rbac\WarehouseRule::can('nomenclature-types', 'index')): ?>
+    <div class="expenditure-article-index">
+        <?php echo $this->render('/menu_dirs', array(), true)?>
+        <div class="d-flex flex-wrap justify-content-between mt-3 mb-3">
+            <h1  data-title="<?php echo $this->title[1]; ?>" ><?= Html::encode($this->title[0]) ?><span class="star" ><i class="fa <?php echo $isFavorite ? 'fa-star' : 'fa-star-o' ?> ml-4"></i></span> </h1>
+            <div>
+                <?php if(\app\rbac\WarehouseRule::can('nomenclature-types', 'create')): ?>
+                    <?= Html::a(Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-primary']) ?>
+                <?php endif; ?>
+                <button onclick="tableToExcel('tbl','test','ExpenditureArticles.xls')" class="btn btn-primary  mr-2">Xls</button>
+                <button class="btn btn-primary mr-2 position-relative" >
+                    <div id="list1" class="dropdown-check-list" tabindex="100">
+                        <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
+                        <ul class="items">
+                            <?php if ($columns):
+                                foreach ($columns as $i => $k): ?>
+                                    <li><input type="checkbox" class="hide-row" data-queue="<?php echo $i; ?>"
+                                               checked/><?php echo Yii::t('app', $k->row_name_normal) ?> </li>
+                                <?php endforeach;
+                            endif; ?>
+                        </ul>
+                    </div>
+                </button>
+                <button class="btn btn-primary mr-2 filter"  data-model="NomenclatureType"><i
+                            class="fa fa-wrench "></i></button>
+            </div>
+        </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Nomenclature Type', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'id',
-            'name',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'tableOptions' => [
+                'class' => 'table table-hover '
+            ],
+            'columns' => $table_columns,
+        ]) ?>
 
 
-</div>
+    </div>
+<?php endif; ?>

@@ -225,5 +225,5 @@ return [
     'Vat' => 'ԱԱՀ',
     'Barcodes' => 'Շտրիխ կոդեր',
     'Article' => 'Արտիկուլ',
-    'Nomenclature Type' => 'Նոմենկլատուրաի տեսակ'
+    'Nomenclature Types' => 'Նոմենկլատուրայի տեսակ'
 ];

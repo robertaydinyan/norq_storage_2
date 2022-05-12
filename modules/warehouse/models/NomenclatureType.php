@@ -41,7 +41,13 @@ class NomenclatureType extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'isDeleted' => 'Is Deleted',
+        ];
+    }
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Name',
         ];
     }
 
