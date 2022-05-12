@@ -70,7 +70,7 @@ AppAsset::register($this);
                                 <div class="favorite" data-url="<?php echo $f->link_no_lang ?>"
                                      <?php echo sprintf(
                                              "onclick='showPage(\"%s\", \"%s\", %s)'>",
-                                            $f->link . (strpos($f->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language,
+                                            $f->link,
                                             $title,
                                             $f->id
                                     ) ?>
@@ -91,7 +91,7 @@ AppAsset::register($this);
                                 <div class="favorite"
                                     <?php echo sprintf(
                                         "onclick='showPage(\"%s\", \"%s\", %s)'>",
-                                        $h->link . (strpos($h->link, '?') ? '&' : '?') . 'lang=' . Yii::$app->language,
+                                        $h->link,
                                         $title,
                                         $h->id
                                     ) ?>

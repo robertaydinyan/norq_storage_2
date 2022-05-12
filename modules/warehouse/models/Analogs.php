@@ -44,6 +44,15 @@ class Analogs extends \yii\db\ActiveRecord
             'isDeleted' => 'isDeleted'
         ];
     }
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' => 'ID',
+            'product_id' => Yii::t('app', 'Original'),
+            'analog_id' => Yii::t('app', 'Analog'),
+            'isDeleted' => 'isDeleted'
+        ];
+    }
     public function getNomiclatureName($type){
         if($type){
             $nomiclature_id = $this->product_id;

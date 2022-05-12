@@ -40,7 +40,13 @@ class ExpenditureArticle extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => Yii::t('app', 'Name'),
-            'isDeleted' => 'Is Deleted',
+        ];
+    }
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' => 'ID',
+            'name' => Yii::t('app', 'Name'),
         ];
     }
 }

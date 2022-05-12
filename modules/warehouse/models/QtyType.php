@@ -37,5 +37,12 @@ class QtyType extends \yii\db\ActiveRecord
             'type' => Yii::t('app', 'Unit of measurement'),
         ];
     }
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' => 'ID',
+            'type' => Yii::t('app', 'Unit of measurement'),
+        ];
+    }
 
 }

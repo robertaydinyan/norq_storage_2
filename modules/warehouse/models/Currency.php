@@ -45,7 +45,14 @@ class Currency extends \yii\db\ActiveRecord
             'id' => 'ID',
             'symbol' => Yii::t('app', 'Symbol'),
             'code' => Yii::t('app', 'Code'),
-            'isDeleted' => 'isDeleted'
+        ];
+    }
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' => 'ID',
+            'symbol' => Yii::t('app', 'Symbol'),
+            'code' => Yii::t('app', 'Code'),
         ];
     }
 

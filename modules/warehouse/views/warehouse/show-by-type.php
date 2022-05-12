@@ -115,6 +115,7 @@ $actions = [
 ];
 array_push($table_columns, $actions);
 ?>
+<?php if(\app\rbac\WarehouseRule::can('warehouse', 'index')): ?>
 <div class="group-product-index">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -151,10 +152,11 @@ array_push($table_columns, $actions);
                 'class' => 'table table-hover'
             ],
             'columns' => $table_columns,
-        ]); ?>
+        ]);
+        ?>
         </div>
 
-
+    <?php endif; ?>
 <script>
     window.onload = function(){
       $('table').attr('id','tbl');

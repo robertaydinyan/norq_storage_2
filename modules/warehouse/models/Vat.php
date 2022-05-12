@@ -43,7 +43,14 @@ class Vat extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Անուն',
             'formula' => 'Բանաձև',
-            'isDeleted' => 'isDeleted',
+        ];
+    }
+    public function attributeLabelsAll()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Անուն',
+            'formula' => 'Բանաձև',
         ];
     }
 }

@@ -37,17 +37,45 @@ class AnalogsSearch extends Analogs
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+
+    /**
+     * @param $article
+     * @param STRING $rows
+     * @return ActiveDataProvider
+     */
+    public function search($article , $rows = '')
     {
         $query = Analogs::find();
 
         // add conditions that should always apply here
+        if ($article) {
+            $query->andWhere(['like', 'article', $article]);
+        }
 
+        if (isset($rows) && $rows->column_name) {
+
+            if (!$this->hasAttribute($rows->column_name)) {
+
+                if ($rows->column_name == "product_id") {
+                    $query->leftJoin('s_nomenclature_product', '`s_nomenclature_product`.`id`= `s_analogs`.`product_id`');
+                    $sort = 's_nomenclature_product.vendor_code';
+                } elseif ($rows->column_name == "analog_id") {
+
+                    $query->leftJoin('s_nomenclature_product', '`s_nomenclature_product`.`id`= `s_analogs`.`analog_id`');
+                    $sort = 's_nomenclature_product.name';
+                }
+            } else {
+                $sort = $rows->column_name;
+            }
+        }
+        if ($sort) {
+            $query->orderBy([$sort => ($rows->direction == "DESC" ? SORT_DESC : SORT_ASC)]);
+        }
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($params);
+        $this->load($article);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
