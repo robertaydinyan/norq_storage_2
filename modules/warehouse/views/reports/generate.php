@@ -19,16 +19,19 @@ if(!empty($data)){ ?>
                 <?php if(@$_GET['show-ware']){ ?>
                     <td>Պահեստ</td>
                 <?php } ?>
-                 <?php if(!$_GET['from_created_at'] || !$_GET['to_created_at'] || @!$_GET['show-ware']){ ?>
-                    <td>Քանակ</td>
-                <?php } ?>
-                <td>Գին</td>
-                <td>Ընդ</td>
                 <?php if($_GET['from_created_at'] && $_GET['to_created_at'] && @$_GET['show-ware'] && @!$_GET['show-series']){ ?>
                     <td>Սկզբնական մնացորդ</td>
+                    <td>Ընդ․ Գումար</td>
                     <td>Մուտք</td>
+                    <td>Ընդ․ Գումար</td>
                     <td>Ելք</td>
+                    <td>Ընդ․ Գումար</td>
                     <td>Վերջնական մնացորդ</td>
+                    <td>Ընդ․ Գումար</td>
+                <?php } else { ?>
+                    <td>Քանակ</td>
+                    <!-- <td>Միջ․Գին</td> -->
+                    <!-- <td>Ընդ․ Գումար</td> -->
                 <?php } ?>
             </tr>
             </thead>
@@ -39,6 +42,7 @@ if(!empty($data)){ ?>
                     $count_prods[$prod_val['nomenclature_product_id']] = 0;
                 }
                 $count_prods[$prod_val['nomenclature_product_id']] +=1;
+
                 ?>
                 <?php 
                 if($prod_val['warehouse_id']){
@@ -58,19 +62,20 @@ if(!empty($data)){ ?>
                         <?php } ?>
                         <td><?php echo $prod_val['name'];?></td>
                         <td></td>
-                            <?php if(!$_GET['from_created_at'] || !$_GET['to_created_at'] || @!$_GET['show-ware']){ ?>
-                        <td><?php echo $total[$prod_val['nomenclature_product_id']]['count'];?> <?php echo $prod_val['qty_type'];?></td>
-                        <?php } ?>
-                        <td></td>
-                        
-                    
-                        <td></td>
 
                         <?php if($_GET['from_created_at'] && $_GET['to_created_at'] && @$_GET['show-ware'] && @!$_GET['show-series']){ ?>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        <?php } else { ?>
+                            <td><?php echo $total[$prod_val['nomenclature_product_id']]['count'];?> <?php echo $prod_val['qty_type_name'];?></td>
+                            <!-- <td></td> -->
+                          <!--   <td></td> -->
                         <?php } ?>
                     </tr>
                 <?php } ?>
@@ -82,28 +87,51 @@ if(!empty($data)){ ?>
                     <?php if(@$_GET['show-ware']){ ?>
                         <td><a href="#" onclick="showPage('/warehouse/warehouse/view?id=<?php echo $prod_val['warehouse_id'];?>','<?php echo $prod_val['wname'];?>')"><?php echo $prod_val['wname'];?></a></td>
                     <?php } ?>
-                     <?php if(!$_GET['from_created_at'] || !$_GET['to_created_at'] || @!$_GET['show-ware']){ ?>
-                        <td> <?php echo $prod_val['pcount'];?> <?php echo $prod_val['qty_type'];?></td>
-                    <?php } ?>
-                    <td><?php echo number_format($prod_val['avgprice'],0,'.','.');?> դր</td>
-                    <td><?php echo number_format($prod_val['pprice'],0,'.','.');?> դր</td>
+                     
                     <?php if($_GET['from_created_at'] && $_GET['to_created_at'] && @$_GET['show-ware'] && @!$_GET['show-series']){ ?>
 
                       <?php if($prod_val['individual'] == 'true'){ ?>
                         <td style="cursor:pointer;" onclick="showOpening(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)">
-                            <?php echo intval($moveData['opening']);?> <?php echo $prod_val['qty_type'];?>
+                            <?php echo intval($moveData['opening']);?> <?php echo $prod_val['qty_type_name'];?>
                         </td>
-                        <td style="cursor:pointer;" onclick="showSellIn(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)"><?php echo intval($moveData['sell_in']); ?> <?php echo $prod_val['qty_type'];?></td>
-                        <td style="cursor:pointer;" onclick="showSellOut(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)"><?php echo intval($moveData['sell_out']); ?> <?php echo $prod_val['qty_type'];?></td>
-                        <td style="cursor:pointer;" onclick="showClosing(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)"><?php echo ($moveData['closing']);?> <?php echo $prod_val['qty_type'];?></td>
+                        <td style="cursor:pointer;">
+                            <?php echo number_format(intval($moveData['opening'])*$prod_val['avgprice'],0,'.','.');?> դր․
+                        </td>
+                        <td style="cursor:pointer;" onclick="showSellIn(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)"><?php echo intval($moveData['sell_in']); ?> <?php echo $prod_val['qty_type_name'];?></td>
+                        <td style="cursor:pointer;">
+                            <?php echo number_format(intval($moveData['sell_in'])*$prod_val['avgprice'],0,'.','.');?> դր․
+                        </td>
+                        <td style="cursor:pointer;" onclick="showSellOut(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)"><?php echo intval($moveData['sell_out']); ?> <?php echo $prod_val['qty_type_name'];?></td>
+                        <td style="cursor:pointer;">
+                            <?php echo number_format(intval($moveData['sell_out'])*$prod_val['avgprice'],0,'.','.');?> դր․
+                        </td>
+                        <td style="cursor:pointer;" onclick="showClosing(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)"><?php echo ($moveData['closing']);?> <?php echo $prod_val['qty_type_name'];?></td>
+                        <td style="cursor:pointer;">
+                            <?php echo number_format(intval($moveData['closing'])*$prod_val['avgprice'],0,'.','.');?> դր․
+                        </td>
                       <?php } else { ?>
                          <td>
-                            <?php echo intval($moveData['opening']);?> <?php echo $prod_val['qty_type'];?>
+                            <?php echo intval($moveData['opening']);?> <?php echo $prod_val['qty_type_name'];?>
                         </td>
-                        <td style="cursor:pointer;" onclick="showSellIn(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)"><?php echo intval($moveData['sell_in']); ?> <?php echo $prod_val['qty_type'];?></td>
-                        <td style="cursor:pointer;" onclick="showSellOut(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)"><?php echo intval($moveData['sell_out']); ?> <?php echo $prod_val['qty_type'];?></td>
-                        <td><?php echo ($moveData['closing']);?> <?php echo $prod_val['qty_type'];?></td>
+                        <td style="cursor:pointer;">
+                            <?php echo number_format(intval($moveData['opening'])*$prod_val['avgprice'],0,'.','.');?> դր․
+                        </td>
+                        <td style="cursor:pointer;" onclick="showSellIn(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)"><?php echo intval($moveData['sell_in']); ?> <?php echo $prod_val['qty_type_name'];?></td>
+                        <td style="cursor:pointer;">
+                            <?php echo number_format(intval($moveData['sell_in'])*$prod_val['avgprice'],0,'.','.');?> դր․
+                        </td>
+                        <td style="cursor:pointer;" onclick="showSellOut(<?php echo $prod_val['nomenclature_product_id'];?>,<?php echo $prod_val['warehouse_id'];?>)"><?php echo intval($moveData['sell_out']); ?> <?php echo $prod_val['qty_type_name'];?></td>
+                        <td style="cursor:pointer;">
+                            <?php echo number_format(intval($moveData['sell_out'])*$prod_val['avgprice'],0,'.','.');?> դր․
+                        </td>
+                        <td><?php echo ($moveData['closing']);?> <?php echo $prod_val['qty_type_name'];?></td>
+                        <td style="cursor:pointer;">
+                            <?php echo number_format(intval($moveData['closing'])*$prod_val['avgprice'],0,'.','.');?> դր․
+                        </td>
                       <?php } ?>
+                    <?php } else { ?>
+                        <td> <?php echo $prod_val['pcount'];?> <?php echo $prod_val['qty_type_name'];?></td>
+                        <!-- <td><?php echo number_format($prod_val['avgprice'],0,'.','.');?> դր</td> -->
                     <?php } ?>
                 </tr>
             <?php } ?>
