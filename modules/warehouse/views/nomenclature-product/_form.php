@@ -182,14 +182,22 @@ $this->registerJsFile('@web/js/modules/warehouse/custom-tree.js', ['depends' => 
                 <?php endforeach; ?>
             </ul>
         </div>
+        <div>
+            <span><?php echo Yii::t('app', 'Barcodes'); ?></span><br>
+            <?php if ($barcodes):
+                foreach ($barcodes as $barcode): ?>
+                        <div class="d-flex form-group col-12">
+                            <input type="text" class="form-control" name="Barcodes[<?php echo $barcode->id; ?>][]" value="<?php echo $barcode->code; ?>">
+                            <button class="btn btn-primary remove-barcode" type="button" style="margin-left: 20px;"><i class="text-danger fa fa-remove"></i></button>
+                        </div>
+                <?php endforeach;
+            endif;?>
 
-            <div>
-                <span><?php echo Yii::t('app', 'Barcodes'); ?></span><br>
-                <div class="d-flex form-group col-12">
-                    <input type="text" class="form-control" name="BarcodesNew[1][]">
-                    <button class="btn btn-primary clone-barcode" type="button" style="margin-left: 20px;"><i class="fa fa-plus"></i></button>
-                </div>
+            <div class="d-flex form-group col-12">
+                <input type="text" class="form-control" name="BarcodesNew[]">
+                <button class="btn btn-primary clone-barcode" type="button" style="margin-left: 20px;"><i class="fa fa-plus"></i></button>
             </div>
+        </div>
     </div>
 </div>
 <br>

@@ -145,6 +145,36 @@ $('.remove-favorite').on('click', function(e) {
         'url': $(this).parent().data('url'),
     });
 })
+
+function removeBarcode() {
+    $('.remove-barcode').off().on('click', function () {
+        $(this).parent().removeClass('form-group');
+        $(this).prev().attr('type', 'hidden').val('');
+        $(this).remove();
+    });
+}
+function cloneBarcode() {
+    $('.clone-barcode').off().on('click', function () {
+        let barcode = $(this).parent();
+        let barcode_new = barcode.clone().insertBefore(barcode);
+        barcode.find('input').val('');
+        barcode_new.find('button').html('<i style="color:red;" class="fa fa-times"></i>').removeClass('clone-barcode').addClass('remove-barcode');
+        removeBarcode();
+    });
+}
+
+removeBarcode();
+cloneBarcode();
+$('.remove-report').on('click', function(e) {
+    e.stopPropagation();
+
+    $(this).parent().remove();
+
+    $.get('/warehouse/reports/remove-report', {
+        'reportID': $(this).data('report')
+    });
+})
+
 function removeHistoryItem() {
     $('.remove-history-item').off().on('click', function(e) {
         e.stopPropagation();

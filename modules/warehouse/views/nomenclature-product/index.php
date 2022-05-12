@@ -146,6 +146,14 @@ $table_all_columns = [
             return $model->findCountByNom($model->id);
         }
     ],
+    'barcode' => [
+        'format' => 'html',
+        'label' => Yii::t('app', 'Barcodes'),
+        'value' => function ($model) {
+            return $model->barcodes;
+        }
+
+    ]
 ];
 
 
@@ -181,7 +189,8 @@ array_push($table_columns, $actions);
                     <span class="anchor"><i class="fa fa-list" style="width: -webkit-fill-available;"></i></span>
                     <ul class="items">
                         <?php if ($columns):
-                            foreach ($columns as $i => $k): ?>
+                            foreach ($columns as $i => $k):
+                                if ($i == "barcode") continue; ?>
                                 <li><input type="checkbox" class="hide-row" data-queue="<?php echo $i; ?>" checked/><?php echo Yii::t('app',$k->row_name_normal) ?> </li>
                             <?php endforeach;
                         endif;?>

@@ -47,7 +47,6 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
                 'vendor_code',
                 'name',
                 'series',
-                'group',
                 'individual',
                 'expenditure_article',
                 'other',
@@ -106,6 +105,7 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             'individual' => 'Individual',
             'group' => 'Group',
             'count' => 'Count',
+            'barcode' => 'Barcode',
         ];
     }
     public function getProducts()
@@ -159,8 +159,8 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
             if (!$b) continue;
             $barcode = new Barcode();
             $barcode->code = $b;
-            $barcode->numenclature_id = $id;
-            $barcode->save();
+            $barcode->product_id = $id;
+            $barcode->save(false);
         }
         foreach ($barcodes as $i => $b) {
             if (!$b[0]) {
@@ -179,5 +179,15 @@ class NomenclatureProduct extends \yii\db\ActiveRecord
 
     public function getExpArticle() {
         return $this->hasOne(ExpenditureArticle::class, ['id' => 'expenditure_article']);
+    }
+
+    public function getBarcodes() {
+        $bs = Barcode::find()->where(['product_id' => $this->id])->all();
+        $res = '';
+        foreach ($bs as $b) {
+            $res .= '<span>' . $b->code . '</span><br>';
+        }
+
+        return $res;
     }
 }
